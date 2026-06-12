@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(node --version)",
+      "PowerShell(npm --version)",
+      "PowerShell($ProgressPreference='SilentlyContinue'; $rel = Invoke-RestMethod 'https://storage.googleapis.com/flutter_infra_release/releases/releases_windows.json'; $cur = $rel.releases | Where-Object {$_.hash -eq $rel.current_release.stable} | Select-Object -First 1; \"$\\($rel.base_url\\)/$\\($cur.archive\\)\"; $cur.version)",
+      "PowerShell(try { Add-MpPreference -ControlledFolderAccessAllowedApplications \"C:\\\\dev\\\\flutter\\\\bin\\\\cache\\\\dart-sdk\\\\bin\\\\dart.exe\" -ErrorAction Stop; Add-MpPreference -ControlledFolderAccessAllowedApplications \"$env:ProgramFiles\\\\nodejs\\\\node.exe\" -ErrorAction Stop; \"ALLOWED\" } catch { \"DENIED: $\\($_.Exception.Message\\)\" })",
+      "PowerShell(robocopy \"C:\\\\Users\\\\Tony Kakina\\\\OneDrive\\\\Documents\\\\Watoto\" C:\\\\dev\\\\watoto /E /XD node_modules .dart_tool build dist coverage /NFL /NDL /NJH | Select-Object -Last 8; if \\($LASTEXITCODE -le 7\\) { 'COPY OK'; exit 0 } else { throw \"robocopy failed: $LASTEXITCODE\" })"
+    ]
+  }
+}

@@ -1,0 +1,182 @@
+// Watoto core schema — scaffold subset of the full design (docs/02-database-schema.md).
+// Tables land in dependency order; gamification/billing/classroom modules follow.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  child
+  parent
+  teacher
+  admin
+  super_admin
+}
+
+enum AgeBand {
+  b0_2
+  b3_5
+  b6_8
+  b9_10
+}
+
+enum LocaleCode {
+  en
+  sw
+  fr
+}
+
+enum ContentStatus {
+  draft
+  in_review
+  approved
+  published
+  archived
+}
+
+enum LessonType {
+  interactive
+  video
+  audio
+  reading
+  activity
+}
+
+enum ProgressStatus {
+  not_started
+  in_progress
+  completed
+  mastered
+}
+
+model User {
+  id          String   @id @default(uuid()) @db.Uuid
+  firebaseUid String   @unique @map("firebase_uid")
+  email       String?  @unique
+  role        UserRole
+  displayName String   @map("display_name")
+  locale      LocaleCode @default(en)
+  isActive    Boolean  @default(true) @map("is_active")
+  deletedAt   DateTime? @map("deleted_at")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  children ChildProfile[]
+
+  @@map("users")
+}
+
+model ChildProfile {
+  id             String     @id @default(uuid()) @db.Uuid
+  parentId       String     @map("parent_id") @db.Uuid
+  nickname       String
+  avatarKey      String     @default("lion_01") @map("avatar_key")
+  birthMonth     DateTime   @map("birth_month") @db.Date
+  ageBand        AgeBand    @map("age_band")
+  learningLocale LocaleCode @default(en) @map("learning_locale")
+  settings       Json       @default("{}")
+  deletedAt      DateTime?  @map("deleted_at")
+  createdAt      DateTime   @default(now()) @map("created_at")
+  updatedAt      DateTime   @updatedAt @map("updated_at")
+
+  parent   User             @relation(fields: [parentId], references: [id])
+  progress LessonProgress[]
+
+  @@index([parentId])
+  @@map("child_profiles")
+}
+
+model Subject {
+  id      String @id @default(uuid()) @db.Uuid
+  slug    String @unique
+  iconKey String @map("icon_key")
+  sort    Int    @default(0)
+
+  courses Course[]
+
+  @@map("subjects")
+}
+
+model Course {
+  id        String        @id @default(uuid()) @db.Uuid
+  subjectId String        @map("subject_id") @db.Uuid
+  ageBand   AgeBand       @map("age_band")
+  slug      String        @unique
+  sort      Int           @default(0)
+  status    ContentStatus @default(draft)
+
+  subject Subject @relation(fields: [subjectId], references: [id])
+  units   Unit[]
+
+  @@unique([subjectId, ageBand])
+  @@map("courses")
+}
+
+model Unit {
+  id       String @id @default(uuid()) @db.Uuid
+  courseId String @map("course_id") @db.Uuid
+  slug     String
+  sort     Int    @default(0)
+
+  course  Course   @relation(fields: [courseId], references: [id])
+  lessons Lesson[]
+
+  @@unique([courseId, slug])
+  @@map("units")
+}
+
+model Lesson {
+  id         String        @id @default(uuid()) @db.Uuid
+  unitId     String        @map("unit_id") @db.Uuid
+  slug       String
+  lessonType LessonType    @map("lesson_type")
+  difficulty Int           @default(1) @db.SmallInt
+  estMinutes Int           @default(5) @map("est_minutes") @db.SmallInt
+  isPremium  Boolean       @default(false) @map("is_premium")
+  skills     String[]      @default([])
+  status     ContentStatus @default(draft)
+  body       Json          @default("{}")
+  sort       Int           @default(0)
+
+  unit     Unit             @relation(fields: [unitId], references: [id])
+  progress LessonProgress[]
+
+  @@unique([unitId, slug])
+  @@index([unitId, status, sort])
+  @@map("lessons")
+}
+
+model LessonProgress {
+  id              String         @id @default(uuid()) @db.Uuid
+  childId         String         @map("child_id") @db.Uuid
+  lessonId        String         @map("lesson_id") @db.Uuid
+  status          ProgressStatus @default(not_started)
+  scorePct        Int?           @map("score_pct") @db.SmallInt
+  timeSpentS      Int            @default(0) @map("time_spent_s")
+  completedAt     DateTime?      @map("completed_at")
+  clientUpdatedAt DateTime       @map("client_updated_at")
+  updatedAt       DateTime       @updatedAt @map("updated_at")
+
+  child  ChildProfile @relation(fields: [childId], references: [id])
+  lesson Lesson       @relation(fields: [lessonId], references: [id])
+
+  @@unique([childId, lessonId])
+  @@index([childId, status])
+  @@map("lesson_progress")
+}
+
+model SyncOp {
+  clientOpId String   @id @map("client_op_id") @db.Uuid
+  childId    String   @map("child_id") @db.Uuid
+  opType     String   @map("op_type")
+  payload    Json
+  deviceId   String   @map("device_id")
+  appliedAt  DateTime @default(now()) @map("applied_at")
+
+  @@map("sync_ops")
+}

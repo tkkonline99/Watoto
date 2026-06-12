@@ -1,0 +1,31 @@
+# Node / NestJS
+node_modules/
+dist/
+coverage/
+*.log
+.env
+.env.local
+
+# Flutter / Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+build/
+*.g.dart
+*.freezed.dart
+.packages
+.pub-cache/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*

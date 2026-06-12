@@ -1,0 +1,21 @@
+{
+  "schema": "watoto.lesson/1.0",
+  "titleKey": "lessonCountingTitle",
+  "blocks": [
+    { "type": "concept", "textKey": "lessonCountingTitle", "emoji": "🥭" },
+    { "type": "tap_to_count", "items": 3 },
+    {
+      "type": "check",
+      "promptKey": "checkAnswerPrompt",
+      "options": [
+        { "text": "2", "correct": false },
+        { "text": "3", "correct": true },
+        { "text": "4", "correct": false }
+      ]
+    }
+  ],
+  "completion": {
+    "rewards": { "xp": 10, "stars": 1 },
+    "skills": ["counting.1-10"]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "@@locale": "fr",
+  "appTitle": "Watoto",
+  "homeGreeting": "Jambo, {name} !",
+  "dailyChallenge": "Défi du jour",
+  "startLearning": "Commencer",
+  "subjects": "Matières",
+  "subjectMath": "Maths",
+  "subjectEnglish": "Anglais",
+  "subjectScience": "Sciences",
+  "subjectArt": "Art",
+  "lessonCountingTitle": "Compter de 1 à 3",
+  "tapToCountPrompt": "Touche chaque mangue pour la compter !",
+  "checkAnswerPrompt": "Combien de mangues avons-nous comptées ?",
+  "greatJob": "Bravo !",
+  "tryAgain": "Presque ! Essaie encore !",
+  "next": "Suivant",
+  "done": "Terminé",
+  "xpEarned": "+{xp} XP",
+  "chooseLanguage": "Choisis ta langue",
+  "premiumLocked": "Demande à un adulte de déverrouiller"
+}

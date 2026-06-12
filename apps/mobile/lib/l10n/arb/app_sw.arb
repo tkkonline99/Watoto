@@ -1,0 +1,22 @@
+{
+  "@@locale": "sw",
+  "appTitle": "Watoto",
+  "homeGreeting": "Jambo, {name}!",
+  "dailyChallenge": "Changamoto ya Leo",
+  "startLearning": "Anza",
+  "subjects": "Masomo",
+  "subjectMath": "Hesabu",
+  "subjectEnglish": "Kiingereza",
+  "subjectScience": "Sayansi",
+  "subjectArt": "Sanaa",
+  "lessonCountingTitle": "Kuhesabu 1 hadi 3",
+  "tapToCountPrompt": "Gusa kila embe ili kulihesabu!",
+  "checkAnswerPrompt": "Tulihesabu maembe mangapi?",
+  "greatJob": "Hongera sana!",
+  "tryAgain": "Karibu sana! Jaribu tena!",
+  "next": "Endelea",
+  "done": "Maliza",
+  "xpEarned": "+{xp} XP",
+  "chooseLanguage": "Chagua lugha yako",
+  "premiumLocked": "Mwombe mtu mzima akufungulie"
+}
