@@ -72,15 +72,31 @@ The repo now contains a **working scaffold**: a Flutter app (`apps/mobile`) and 
 # Backend (needs Node 20+; PostgreSQL via docker compose up -d for full function)
 cd apps/api
 npm install
-npm run build ; npm test            # 7 unit tests
+npm run build ; npm test            # 12 unit tests
 node dist/main.js                   # http://localhost:3000/v1/health
 
 # Mobile/Web app (needs Flutter SDK — installed at C:\dev\flutter on this machine)
 cd apps/mobile
 flutter pub get ; flutter gen-l10n
-flutter analyze ; flutter test      # 5 tests incl. full lesson flow
+flutter analyze ; flutter test      # 18 tests incl. full lesson + quiz flow
 flutter run -d chrome               # or: flutter build web --release
+
+# Android (SDK at C:\dev\android-sdk, JDK 21 at C:\dev\jdk-21):
+pwsh tool/build-android.ps1 apk --debug        # -> build/app/outputs/flutter-apk/app-debug.apk
 ```
+
+### Building Android on this machine
+
+`flutter build apk` works, but **must be invoked via `tool/build-android.ps1`** (or with
+`TMP`/`TEMP` set to a clean path like `C:\dev\tmp`). Reason: this machine's endpoint
+security blocks AF_UNIX socket files under the default `%TEMP%`
+(`C:\Users\...\AppData\Local\Temp`). Gradle's Java NIO selector opens such a socket as an
+internal self-pipe, so a plain build dies instantly with *"Unable to establish loopback
+connection"* (`UnixDomainSockets.connect0 → Invalid argument: connect`). Redirecting
+`TMP`/`TEMP` elsewhere sidesteps it — no admin rights needed. This is **not** an iOS/Android
+code issue and does not affect CI or other machines.
+
+iOS still requires macOS + Xcode (or a cloud-Mac CI runner) — unchanged.
 
 > **⚠ Windows note (this machine):** Windows Defender **Controlled Folder Access** blocks
 > `dart.exe` (and slows `node.exe`) inside this OneDrive folder. Day-to-day builds run from the
