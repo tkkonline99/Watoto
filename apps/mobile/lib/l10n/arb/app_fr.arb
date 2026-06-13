@@ -57,5 +57,9 @@
   "lessonsDone": "{count} leçons",
   "privacyData": "Confidentialité et données",
   "switchChild": "Changer d'enfant",
-  "lockParentZone": "Verrouiller"
+  "lockParentZone": "Verrouiller",
+  "storybooks": "Livres d'histoires",
+  "textSize": "Taille du texte",
+  "theEnd": "Fin !",
+  "readAgain": "Relire"
 }

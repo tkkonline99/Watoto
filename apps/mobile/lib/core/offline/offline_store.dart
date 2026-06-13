@@ -135,6 +135,9 @@ class OfflineStore {
   Map<String, dynamic>? lastQuizAttempt(String childId, String quizId) =>
       _read('quiz:$childId:$quizId');
 
+  bool hasReadStory(String childId, String storyId) =>
+      _read('story:$childId:$storyId') != null;
+
   Map<String, dynamic>? _read(String key) {
     final raw = _progress.get(key);
     if (raw == null) return null;
@@ -220,9 +223,35 @@ class OfflineStore {
     ));
   }
 
-  /// Count of completed lessons for a child — drives the parent dashboard.
+  /// Records that [childId] finished reading [storyId] (idempotent on the
+  /// key; XP is granted only the first time) and enqueues the sync op.
+  Future<void> recordStoryRead({
+    required String childId,
+    required String storyId,
+    required int xpEarned,
+  }) async {
+    if (hasReadStory(childId, storyId)) return; // already read — no double XP
+    final now = DateTime.now().toUtc();
+    await _progress.put(
+      'story:$childId:$storyId',
+      jsonEncode({'storyId': storyId, 'readAt': now.toIso8601String()}),
+    );
+    await _grantXp(childId, xpEarned);
+    await _enqueue(SyncOp(
+      clientOpId: _uuid.v4(),
+      opType: 'story_read',
+      payload: {'storyId': storyId},
+      clientUpdatedAt: now,
+    ));
+  }
+
+  /// Counts for the parent dashboard.
   int completedLessonCount(String childId) => _progress.keys
       .where((k) => (k as String).startsWith('lesson:$childId:'))
+      .length;
+
+  int completedStoryCount(String childId) => _progress.keys
+      .where((k) => (k as String).startsWith('story:$childId:'))
       .length;
 
   Future<void> _grantXp(String childId, int amount) async {

@@ -197,4 +197,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get lockParentZone => 'Lock';
+
+  @override
+  String get storybooks => 'Storybooks';
+
+  @override
+  String get textSize => 'Text size';
+
+  @override
+  String get theEnd => 'The End!';
+
+  @override
+  String get readAgain => 'Read again';
 }

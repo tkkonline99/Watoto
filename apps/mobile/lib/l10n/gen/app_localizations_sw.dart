@@ -197,4 +197,16 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get lockParentZone => 'Funga';
+
+  @override
+  String get storybooks => 'Vitabu vya Hadithi';
+
+  @override
+  String get textSize => 'Ukubwa wa maandishi';
+
+  @override
+  String get theEnd => 'Mwisho!';
+
+  @override
+  String get readAgain => 'Soma tena';
 }

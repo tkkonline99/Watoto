@@ -128,4 +128,29 @@ export class ProgressService {
       throw e;
     }
   }
+
+  /// Records that a child finished a story. Idempotent on clientOpId so
+  /// offline re-sends never double-count.
+  async recordStoryRead(input: {
+    childId: string;
+    storyId: string;
+    clientOpId: string;
+    readAt?: Date;
+  }): Promise<void> {
+    try {
+      await this.prisma.storyRead.create({
+        data: {
+          childId: input.childId,
+          storyId: input.storyId,
+          readAt: input.readAt ?? new Date(),
+          clientOpId: input.clientOpId,
+        },
+      });
+    } catch (e) {
+      if (e instanceof Prisma.PrismaClientKnownRequestError && e.code === 'P2002') {
+        return; // already recorded (duplicate op)
+      }
+      throw e;
+    }
+  }
 }

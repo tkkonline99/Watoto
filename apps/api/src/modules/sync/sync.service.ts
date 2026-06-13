@@ -6,7 +6,7 @@ import { ProgressService } from '../learning/progress.service';
 
 export const syncOpSchema = z.object({
   clientOpId: z.string().uuid(),
-  opType: z.enum(['lesson_progress', 'quiz_attempt']), // reward_event, reading_attempt… follow with their modules
+  opType: z.enum(['lesson_progress', 'quiz_attempt', 'story_read']), // reward_event, reading_attempt… follow with their modules
   payload: z.record(z.unknown()),
   clientUpdatedAt: z.coerce.date(),
 });
@@ -34,6 +34,10 @@ const quizPayloadSchema = z.object({
     .min(1)
     .max(50),
   // scorePct/passed from the client are advisory only — server re-grades.
+});
+
+const storyPayloadSchema = z.object({
+  storyId: z.string().uuid(),
 });
 
 @Injectable()
@@ -79,6 +83,8 @@ export class SyncService {
         return this.applyLessonProgress(childId, op);
       case 'quiz_attempt':
         return this.applyQuizAttempt(childId, op);
+      case 'story_read':
+        return this.applyStoryRead(childId, op);
     }
   }
 
@@ -114,5 +120,18 @@ export class SyncService {
     } catch {
       return 'rejected'; // e.g. quiz unpublished since the attempt
     }
+  }
+
+  private async applyStoryRead(childId: string, op: SyncOpInput): Promise<SyncOpResult> {
+    const parsed = storyPayloadSchema.safeParse(op.payload);
+    if (!parsed.success) return 'rejected';
+
+    await this.progress.recordStoryRead({
+      childId,
+      storyId: parsed.data.storyId,
+      clientOpId: op.clientOpId,
+      readAt: op.clientUpdatedAt,
+    });
+    return 'applied';
   }
 }

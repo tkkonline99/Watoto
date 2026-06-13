@@ -93,6 +93,7 @@ model ChildProfile {
   parent       User             @relation(fields: [parentId], references: [id])
   progress     LessonProgress[]
   quizAttempts QuizAttempt[]
+  storyReads   StoryRead[]
 
   @@index([parentId])
   @@map("child_profiles")
@@ -222,6 +223,19 @@ model QuizAttempt {
 
   @@index([childId, attemptedAt(sort: Desc)])
   @@map("quiz_attempts")
+}
+
+model StoryRead {
+  id         String   @id @default(uuid()) @db.Uuid
+  childId    String   @map("child_id") @db.Uuid
+  storyId    String   @map("story_id") @db.Uuid
+  readAt     DateTime @map("read_at")
+  clientOpId String   @unique @map("client_op_id") @db.Uuid
+
+  child ChildProfile @relation(fields: [childId], references: [id])
+
+  @@index([childId, readAt(sort: Desc)])
+  @@map("story_reads")
 }
 
 model SyncOp {

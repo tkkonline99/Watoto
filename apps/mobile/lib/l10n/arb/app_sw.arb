@@ -57,5 +57,9 @@
   "lessonsDone": "Masomo {count}",
   "privacyData": "Faragha na data",
   "switchChild": "Badilisha mtoto",
-  "lockParentZone": "Funga"
+  "lockParentZone": "Funga",
+  "storybooks": "Vitabu vya Hadithi",
+  "textSize": "Ukubwa wa maandishi",
+  "theEnd": "Mwisho!",
+  "readAgain": "Soma tena"
 }

@@ -92,7 +92,44 @@ class ChildHomeScreen extends ConsumerWidget {
               crossAxisSpacing: 12,
               children: [for (final island in _islands) _IslandCard(island: island)],
             ),
+            const SizedBox(height: 16),
+            _StorybooksCard(l10n: l10n),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _StorybooksCard extends StatelessWidget {
+  const _StorybooksCard({required this.l10n});
+
+  final AppLocalizations l10n;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: WatotoColors.leaf,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(24),
+        onTap: () => context.go('/stories'),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Row(
+            children: [
+              const Text('📚', style: TextStyle(fontSize: 40)),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  l10n.storybooks,
+                  style: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.w800, color: Colors.white),
+                ),
+              ),
+              const Icon(Icons.chevron_right, color: Colors.white),
+            ],
+          ),
         ),
       ),
     );

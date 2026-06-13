@@ -89,5 +89,9 @@
   },
   "privacyData": "Privacy & data",
   "switchChild": "Switch child",
-  "lockParentZone": "Lock"
+  "lockParentZone": "Lock",
+  "storybooks": "Storybooks",
+  "textSize": "Text size",
+  "theEnd": "The End!",
+  "readAgain": "Read again"
 }

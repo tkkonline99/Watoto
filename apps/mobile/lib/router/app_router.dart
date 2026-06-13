@@ -11,6 +11,8 @@ import '../features/parent/pin_gate_screen.dart';
 import '../features/profiles/add_child_screen.dart';
 import '../features/profiles/profile_picker_screen.dart';
 import '../features/quiz/quiz_runner_screen.dart';
+import '../features/stories/story_library_screen.dart';
+import '../features/stories/story_reader_screen.dart';
 
 /// Router is provided (not a global) so each app instance — and each widget
 /// test — gets fresh navigation state. Guards enforce the deployment-required
@@ -59,6 +61,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/quiz/:slug',
         builder: (c, s) => QuizRunnerScreen(slug: s.pathParameters['slug']!),
+      ),
+      GoRoute(path: '/stories', builder: (c, s) => const StoryLibraryScreen()),
+      GoRoute(
+        path: '/story/:slug',
+        builder: (c, s) => StoryReaderScreen(slug: s.pathParameters['slug']!),
       ),
     ],
   );

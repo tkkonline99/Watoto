@@ -6,6 +6,7 @@ import '../../features/lesson_player/lesson_models.dart';
 import '../../features/onboarding/consent.dart';
 import '../../features/profiles/child_profile.dart';
 import '../../features/quiz/quiz_models.dart';
+import '../../features/stories/story_models.dart';
 import '../network/watoto_api.dart';
 import 'offline_store.dart';
 import 'sync_engine.dart';
@@ -192,6 +193,18 @@ class LearningService {
       ],
       durationS: durationS,
       xpEarned: grade.xp,
+    );
+    _afterWrite(store, childId);
+  }
+
+  Future<void> completeStory(StoryBody story) async {
+    final childId = _ref.read(sessionProvider).activeChildId;
+    if (childId == null) return;
+    final store = _ref.read(offlineStoreProvider);
+    await store.recordStoryRead(
+      childId: childId,
+      storyId: story.id,
+      xpEarned: story.xp,
     );
     _afterWrite(store, childId);
   }

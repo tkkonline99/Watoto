@@ -447,6 +447,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Lock'**
   String get lockParentZone;
+
+  /// No description provided for @storybooks.
+  ///
+  /// In en, this message translates to:
+  /// **'Storybooks'**
+  String get storybooks;
+
+  /// No description provided for @textSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Text size'**
+  String get textSize;
+
+  /// No description provided for @theEnd.
+  ///
+  /// In en, this message translates to:
+  /// **'The End!'**
+  String get theEnd;
+
+  /// No description provided for @readAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Read again'**
+  String get readAgain;
 }
 
 class _AppLocalizationsDelegate
