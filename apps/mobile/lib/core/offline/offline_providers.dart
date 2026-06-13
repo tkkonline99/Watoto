@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../features/lesson_player/lesson_models.dart';
+import '../../features/onboarding/consent.dart';
+import '../../features/profiles/child_profile.dart';
 import '../../features/quiz/quiz_models.dart';
 import '../network/watoto_api.dart';
 import 'offline_store.dart';
@@ -20,14 +22,133 @@ final syncEngineProvider = Provider<SyncEngine>(
   (ref) => SyncEngine(ref.watch(offlineStoreProvider), ref.watch(syncApiProvider)),
 );
 
-/// XP balance, seeded from the persisted store on startup.
-final xpProvider = StateProvider<int>((ref) => ref.watch(offlineStoreProvider).xp);
+// --------------------------------------------------------------- session
+
+/// Navigation-relevant session state. Drives the router guards
+/// (docs/05 §5.4). `parentUnlocked` is in-memory only and resets on restart.
+class SessionState {
+  const SessionState({
+    required this.onboardingComplete,
+    required this.activeChildId,
+    required this.parentUnlocked,
+    required this.profilesRev,
+  });
+
+  final bool onboardingComplete;
+  final String? activeChildId;
+  final bool parentUnlocked;
+  final int profilesRev; // bumps when the set of profiles changes
+
+  SessionState _copy({
+    bool? onboardingComplete,
+    Object? activeChildId = _unset,
+    bool? parentUnlocked,
+    int? profilesRev,
+  }) =>
+      SessionState(
+        onboardingComplete: onboardingComplete ?? this.onboardingComplete,
+        activeChildId:
+            activeChildId == _unset ? this.activeChildId : activeChildId as String?,
+        parentUnlocked: parentUnlocked ?? this.parentUnlocked,
+        profilesRev: profilesRev ?? this.profilesRev,
+      );
+
+  static const _unset = Object();
+}
+
+class SessionController extends StateNotifier<SessionState> {
+  SessionController(this._store)
+      : super(SessionState(
+          onboardingComplete: _store.onboardingComplete,
+          activeChildId: _store.activeChildId,
+          parentUnlocked: false,
+          profilesRev: 0,
+        ));
+
+  final OfflineStore _store;
+
+  Future<ChildProfile> completeOnboarding({
+    required ConsentRecord consent,
+    required String pin,
+    required String nickname,
+    required String avatarKey,
+    required int birthYear,
+  }) async {
+    final child = await _store.completeOnboarding(
+      consent: consent,
+      pin: pin,
+      nickname: nickname,
+      avatarKey: avatarKey,
+      birthYear: birthYear,
+    );
+    state = state._copy(
+      onboardingComplete: true,
+      activeChildId: child.id,
+      profilesRev: state.profilesRev + 1,
+    );
+    return child;
+  }
+
+  Future<ChildProfile> addChild({
+    required String nickname,
+    required String avatarKey,
+    required int birthYear,
+  }) async {
+    final child = await _store.addChild(
+        nickname: nickname, avatarKey: avatarKey, birthYear: birthYear);
+    state = state._copy(profilesRev: state.profilesRev + 1);
+    return child;
+  }
+
+  Future<void> selectChild(String id) async {
+    await _store.setActiveChild(id);
+    state = state._copy(activeChildId: id);
+  }
+
+  /// Return to the "who's learning?" picker.
+  void switchChild() => state = state._copy(activeChildId: null);
+
+  Future<void> saveConsent(ConsentRecord consent) async {
+    await _store.saveConsent(consent);
+    state = state._copy(); // nudge listeners
+  }
+
+  void unlockParent() => state = state._copy(parentUnlocked: true);
+  void lockParent() => state = state._copy(parentUnlocked: false);
+}
+
+final sessionProvider =
+    StateNotifierProvider<SessionController, SessionState>(
+  (ref) => SessionController(ref.watch(offlineStoreProvider)),
+);
+
+/// The currently-selected child profile, or null at the picker.
+final activeChildProvider = Provider<ChildProfile?>((ref) {
+  final id = ref.watch(sessionProvider.select((s) => s.activeChildId));
+  if (id == null) return null;
+  ref.watch(sessionProvider.select((s) => s.profilesRev));
+  return ref.watch(offlineStoreProvider).childById(id);
+});
+
+final childrenProvider = Provider<List<ChildProfile>>((ref) {
+  ref.watch(sessionProvider.select((s) => s.profilesRev));
+  return ref.watch(offlineStoreProvider).children;
+});
+
+/// XP balance for the active child, seeded from the store and updated on write.
+final xpProvider = StateProvider<int>((ref) {
+  final id = ref.watch(sessionProvider.select((s) => s.activeChildId));
+  if (id == null) return 0;
+  return ref.watch(offlineStoreProvider).xpFor(id);
+});
+
+// --------------------------------------------------------------- learning
 
 final learningServiceProvider = Provider<LearningService>(LearningService.new);
 
-/// Single entry point for "the child finished something": persists locally,
-/// updates balances, and kicks a best-effort sync — the UI never waits on
-/// the network.
+/// Single entry point for "the child finished something": persists locally for
+/// the active child, updates balances, and kicks a best-effort sync — the UI
+/// never waits on the network.
 class LearningService {
   LearningService(this._ref);
 
@@ -38,14 +159,17 @@ class LearningService {
     required int scorePct,
     required int timeSpentS,
   }) async {
+    final childId = _ref.read(sessionProvider).activeChildId;
+    if (childId == null) return;
     final store = _ref.read(offlineStoreProvider);
     await store.recordLessonCompleted(
+      childId: childId,
       lessonId: lesson.id,
       scorePct: scorePct,
       timeSpentS: timeSpentS,
       xpEarned: lesson.completion.xp,
     );
-    _afterWrite(store);
+    _afterWrite(store, childId);
   }
 
   Future<void> completeQuiz(
@@ -54,8 +178,11 @@ class LearningService {
     required QuizGrade grade,
     required int durationS,
   }) async {
+    final childId = _ref.read(sessionProvider).activeChildId;
+    if (childId == null) return;
     final store = _ref.read(offlineStoreProvider);
     await store.recordQuizAttempt(
+      childId: childId,
       quizId: quiz.id,
       scorePct: grade.scorePct,
       passed: grade.passed,
@@ -66,11 +193,11 @@ class LearningService {
       durationS: durationS,
       xpEarned: grade.xp,
     );
-    _afterWrite(store);
+    _afterWrite(store, childId);
   }
 
-  void _afterWrite(OfflineStore store) {
-    _ref.read(xpProvider.notifier).state = store.xp;
+  void _afterWrite(OfflineStore store, String childId) {
+    _ref.read(xpProvider.notifier).state = store.xpFor(childId);
     unawaited(_ref.read(syncEngineProvider).flush());
   }
 }

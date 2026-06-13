@@ -38,7 +38,7 @@ void main() {
   Future<void> seedOps(int n) async {
     for (var i = 0; i < n; i++) {
       await store.recordLessonCompleted(
-          lessonId: 'L$i', scorePct: 100, timeSpentS: 5, xpEarned: 10);
+          childId: 'c1', lessonId: 'L$i', scorePct: 100, timeSpentS: 5, xpEarned: 10);
       await Future<void>.delayed(const Duration(milliseconds: 2));
     }
   }

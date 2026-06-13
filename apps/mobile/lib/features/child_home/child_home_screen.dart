@@ -41,12 +41,18 @@ class ChildHomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
-    final nickname = ref.watch(activeChildNicknameProvider);
+    final child = ref.watch(activeChildProvider);
+    final nickname = child?.nickname ?? '';
     final xp = ref.watch(xpProvider);
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        leading: IconButton(
+          tooltip: l10n.whoIsLearning,
+          icon: Text(child?.emoji ?? '🦁', style: const TextStyle(fontSize: 24)),
+          onPressed: () => context.go('/profiles'),
+        ),
         title: Text(
           l10n.homeGreeting(nickname),
           style: const TextStyle(fontWeight: FontWeight.w800, color: WatotoColors.deep),
@@ -60,6 +66,11 @@ class ChildHomeScreen extends ConsumerWidget {
             ),
           ),
           const _LanguageMenu(),
+          IconButton(
+            tooltip: l10n.parentZone,
+            icon: const Icon(Icons.lock_outline, color: WatotoColors.deep),
+            onPressed: () => context.go('/parent'),
+          ),
         ],
       ),
       body: SafeArea(

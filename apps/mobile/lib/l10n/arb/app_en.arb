@@ -39,5 +39,55 @@
       "total": { "type": "int" }
     }
   },
-  "retry": "Try again"
+  "retry": "Try again",
+  "consentTitle": "A safe place to learn",
+  "consentBody": "Watoto has no ads and no chat. We only collect what is needed to save your child's progress. As the grown-up, you choose what to turn on.",
+  "consentCoreData": "Save learning progress",
+  "consentRequired": "Required to use the app",
+  "consentAi": "AI Tutor & helpers",
+  "consentAiBody": "Personalized help and explanations",
+  "consentVoice": "Voice recording",
+  "consentVoiceBody": "For reading practice; audio is deleted within 30 days",
+  "consentChangeLater": "You can change these anytime in the Parent Zone.",
+  "agreeContinue": "Agree & continue",
+  "setPinTitle": "Set a parent PIN",
+  "setPinSubtitle": "This keeps settings and the Parent Zone for grown-ups only.",
+  "parentPin": "PIN",
+  "confirmPin": "Confirm PIN",
+  "pinTooShort": "Use at least 4 digits",
+  "pinMismatch": "PINs do not match",
+  "enterPinTitle": "Grown-ups only",
+  "enterPinSubtitle": "Enter your parent PIN to continue.",
+  "wrongPin": "Wrong PIN, try again",
+  "unlock": "Unlock",
+  "createChildTitle": "Add your child",
+  "childNickname": "Nickname",
+  "childNicknameHint": "What should we call them?",
+  "chooseAvatar": "Choose an animal",
+  "childAge": "Age {age} ({band})",
+  "@childAge": {
+    "placeholders": {
+      "age": { "type": "int" },
+      "band": { "type": "String" }
+    }
+  },
+  "whoIsLearning": "Who is learning?",
+  "addChild": "Add child",
+  "parentZone": "Parent Zone",
+  "children": "Children",
+  "ageBandLabel": "Ages {band}",
+  "@ageBandLabel": {
+    "placeholders": {
+      "band": { "type": "String" }
+    }
+  },
+  "lessonsDone": "{count} lessons",
+  "@lessonsDone": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "privacyData": "Privacy & data",
+  "switchChild": "Switch child",
+  "lockParentZone": "Lock"
 }

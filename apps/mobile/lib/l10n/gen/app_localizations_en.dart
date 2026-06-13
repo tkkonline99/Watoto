@@ -85,4 +85,116 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get retry => 'Try again';
+
+  @override
+  String get consentTitle => 'A safe place to learn';
+
+  @override
+  String get consentBody =>
+      'Watoto has no ads and no chat. We only collect what is needed to save your child\'s progress. As the grown-up, you choose what to turn on.';
+
+  @override
+  String get consentCoreData => 'Save learning progress';
+
+  @override
+  String get consentRequired => 'Required to use the app';
+
+  @override
+  String get consentAi => 'AI Tutor & helpers';
+
+  @override
+  String get consentAiBody => 'Personalized help and explanations';
+
+  @override
+  String get consentVoice => 'Voice recording';
+
+  @override
+  String get consentVoiceBody =>
+      'For reading practice; audio is deleted within 30 days';
+
+  @override
+  String get consentChangeLater =>
+      'You can change these anytime in the Parent Zone.';
+
+  @override
+  String get agreeContinue => 'Agree & continue';
+
+  @override
+  String get setPinTitle => 'Set a parent PIN';
+
+  @override
+  String get setPinSubtitle =>
+      'This keeps settings and the Parent Zone for grown-ups only.';
+
+  @override
+  String get parentPin => 'PIN';
+
+  @override
+  String get confirmPin => 'Confirm PIN';
+
+  @override
+  String get pinTooShort => 'Use at least 4 digits';
+
+  @override
+  String get pinMismatch => 'PINs do not match';
+
+  @override
+  String get enterPinTitle => 'Grown-ups only';
+
+  @override
+  String get enterPinSubtitle => 'Enter your parent PIN to continue.';
+
+  @override
+  String get wrongPin => 'Wrong PIN, try again';
+
+  @override
+  String get unlock => 'Unlock';
+
+  @override
+  String get createChildTitle => 'Add your child';
+
+  @override
+  String get childNickname => 'Nickname';
+
+  @override
+  String get childNicknameHint => 'What should we call them?';
+
+  @override
+  String get chooseAvatar => 'Choose an animal';
+
+  @override
+  String childAge(int age, String band) {
+    return 'Age $age ($band)';
+  }
+
+  @override
+  String get whoIsLearning => 'Who is learning?';
+
+  @override
+  String get addChild => 'Add child';
+
+  @override
+  String get parentZone => 'Parent Zone';
+
+  @override
+  String get children => 'Children';
+
+  @override
+  String ageBandLabel(String band) {
+    return 'Ages $band';
+  }
+
+  @override
+  String lessonsDone(int count) {
+    return '$count lessons';
+  }
+
+  @override
+  String get privacyData => 'Privacy & data';
+
+  @override
+  String get switchChild => 'Switch child';
+
+  @override
+  String get lockParentZone => 'Lock';
 }

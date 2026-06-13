@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
@@ -11,6 +11,7 @@ import 'package:watoto_mobile/core/offline/offline_store.dart';
 import 'package:watoto_mobile/core/offline/sync_op.dart';
 import 'package:watoto_mobile/features/lesson_player/lesson_models.dart';
 import 'package:watoto_mobile/features/lesson_player/lesson_repository.dart';
+import 'package:watoto_mobile/features/onboarding/consent.dart';
 import 'package:watoto_mobile/features/quiz/quiz_models.dart';
 import 'package:watoto_mobile/features/quiz/quiz_repository.dart';
 
@@ -75,6 +76,20 @@ void main() {
     await store.close();
   });
 
+  /// Seeds an onboarded family (PIN 1234, child "Amani") so tests start on
+  /// the child home instead of onboarding.
+  Future<String> seedOnboarded() async {
+    final child = await store.completeOnboarding(
+      consent: const ConsentRecord(
+          coreData: true, aiFeatures: false, voiceRecording: false, recordedAt: null),
+      pin: '1234',
+      nickname: 'Amani',
+      avatarKey: 'lion',
+      birthYear: 2019,
+    );
+    return child.id;
+  }
+
   Widget buildApp() => ProviderScope(
         overrides: [
           lessonProvider.overrideWith((ref, slug) async => _lesson),
@@ -85,7 +100,6 @@ void main() {
         child: const WatotoApp(),
       );
 
-  /// Scripts the lesson up to the celebration screen.
   Future<void> completeLesson(WidgetTester tester) async {
     await tester.tap(find.text('Math'));
     await tester.pumpAndSettle();
@@ -101,7 +115,6 @@ void main() {
     await tester.pumpAndSettle();
   }
 
-  /// Answers the current quiz with the given option texts.
   Future<void> answerQuiz(WidgetTester tester, List<String> picks) async {
     for (final pick in picks) {
       await tester.tap(find.text(pick));
@@ -110,7 +123,38 @@ void main() {
     }
   }
 
+  testWidgets('first run: onboarding -> consent -> PIN -> child -> home',
+      (tester) async {
+    // store is fresh (not onboarded) -> app must start in onboarding.
+    await tester.pumpWidget(buildApp());
+    await tester.pumpAndSettle();
+
+    expect(find.text('Choose your language'), findsOneWidget);
+    await tester.tap(find.text('Start'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('A safe place to learn'), findsOneWidget);
+    await tester.tap(find.text('Agree & continue'));
+    await tester.pumpAndSettle();
+
+    await tester.enterText(find.byType(TextField).at(0), '2468');
+    await tester.enterText(find.byType(TextField).at(1), '2468');
+    await tester.tap(find.text('Next'));
+    await tester.pumpAndSettle();
+
+    await tester.enterText(find.byType(TextField).first, 'Zuri');
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Done'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Jambo, Zuri!'), findsOneWidget);
+    expect(store.onboardingComplete, isTrue);
+    expect(store.children.single.nickname, 'Zuri');
+    expect(store.verifyPin('2468'), isTrue);
+  });
+
   testWidgets('home shows greeting, subjects, and daily challenge', (tester) async {
+    await seedOnboarded();
     await tester.pumpWidget(buildApp());
     await tester.pumpAndSettle();
 
@@ -120,20 +164,19 @@ void main() {
     expect(find.text('0 XP'), findsOneWidget);
   });
 
-  testWidgets('child completes the lesson offline: XP banked, op queued', (tester) async {
+  testWidgets('child completes the lesson offline: XP banked, op queued',
+      (tester) async {
+    final id = await seedOnboarded();
     await tester.pumpWidget(buildApp());
     await tester.pumpAndSettle();
 
-    // Enter the lesson from the Math island.
     await tester.tap(find.text('Math'));
     await tester.pumpAndSettle();
     expect(find.text('Counting 1 to 3'), findsWidgets);
 
-    // Block 1: concept → Next.
     await tester.tap(find.text('Next'));
     await tester.pumpAndSettle();
 
-    // Block 2: tap all three mangoes, then Next.
     expect(find.text('Tap each mango to count it!'), findsOneWidget);
     for (var i = 0; i < 3; i++) {
       await tester.tap(find.text('🥭').at(i));
@@ -142,7 +185,6 @@ void main() {
     await tester.tap(find.text('Next'));
     await tester.pumpAndSettle();
 
-    // Block 3: wrong answer is forgiving, correct answer completes.
     await tester.tap(find.text('2'));
     await tester.pumpAndSettle();
     expect(find.text('So close! Try again!'), findsOneWidget);
@@ -152,22 +194,21 @@ void main() {
     expect(find.text('Great job!'), findsOneWidget);
     expect(find.text('+10 XP'), findsOneWidget);
 
-    // Done → home, with XP banked.
     await tester.tap(find.text('Done'));
     await tester.pumpAndSettle();
     expect(find.text('10 XP'), findsOneWidget);
 
-    // Offline-first contract: completion persisted locally and the sync op
-    // is still queued because the (fake) network was unreachable.
-    expect(store.xp, 10);
-    expect(store.progressFor(_lesson.id)?['status'], 'completed');
+    expect(store.xpFor(id), 10);
+    expect(store.progressFor(id, _lesson.id)?['status'], 'completed');
     final ops = store.pendingOps;
     expect(ops, hasLength(1));
     expect(ops.single.opType, 'lesson_progress');
     expect(ops.single.payload['lessonId'], _lesson.id);
   });
 
-  testWidgets('quiz: fail is forgiving, retry passes, attempts queue offline', (tester) async {
+  testWidgets('quiz: fail is forgiving, retry passes, attempts queue offline',
+      (tester) async {
+    final id = await seedOnboarded();
     await tester.pumpWidget(buildApp());
     await tester.pumpAndSettle();
 
@@ -177,12 +218,10 @@ void main() {
     expect(find.text('Counting Quiz'), findsWidgets);
     expect(find.text('How many do you see?'), findsOneWidget);
 
-    // Attempt 1: one wrong answer → 2/3 = 67% → fail, warmly.
     await answerQuiz(tester, ['1', '1', '3']);
     expect(find.text('So close! Try again!'), findsOneWidget);
     expect(find.text('You got 2 of 3!'), findsOneWidget);
 
-    // Attempt 2: all correct → pass with 3 stars and XP.
     await tester.tap(find.text('Try again'));
     await tester.pumpAndSettle();
     await answerQuiz(tester, ['1', '2', '3']);
@@ -191,23 +230,42 @@ void main() {
     expect(find.text('⭐⭐⭐'), findsOneWidget);
     expect(find.text('+20 XP'), findsOneWidget);
 
-    // Home shows lesson (10) + quiz (20) XP.
     await tester.tap(find.text('Done'));
     await tester.pumpAndSettle();
     expect(find.text('30 XP'), findsOneWidget);
 
-    // Offline queue holds: 1 lesson op + 2 quiz attempts (fail AND pass —
-    // attempts are data), all awaiting sync.
     final ops = store.pendingOps;
     expect(ops, hasLength(3));
     expect(ops.where((o) => o.opType == 'quiz_attempt'), hasLength(2));
-    final lastAttempt = store.lastQuizAttempt(_quiz.id);
+    final lastAttempt = store.lastQuizAttempt(id, _quiz.id);
     expect(lastAttempt?['passed'], true);
     expect(lastAttempt?['scorePct'], 100);
-    expect(store.xp, 30);
+    expect(store.xpFor(id), 30);
+  });
+
+  testWidgets('parent zone is PIN-gated', (tester) async {
+    await seedOnboarded();
+    await tester.pumpWidget(buildApp());
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byTooltip('Parent Zone'));
+    await tester.pumpAndSettle();
+    expect(find.text('Grown-ups only'), findsOneWidget);
+
+    await tester.enterText(find.byType(TextField), '0000');
+    await tester.tap(find.text('Unlock'));
+    await tester.pumpAndSettle();
+    expect(find.text('Wrong PIN, try again'), findsOneWidget);
+
+    await tester.enterText(find.byType(TextField), '1234');
+    await tester.tap(find.text('Unlock'));
+    await tester.pumpAndSettle();
+    expect(find.text('Children'), findsOneWidget);
+    expect(find.text('Amani'), findsOneWidget);
   });
 
   testWidgets('locale switches to Swahili', (tester) async {
+    await seedOnboarded();
     await tester.pumpWidget(buildApp());
     await tester.pumpAndSettle();
 

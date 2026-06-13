@@ -243,6 +243,210 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Try again'**
   String get retry;
+
+  /// No description provided for @consentTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'A safe place to learn'**
+  String get consentTitle;
+
+  /// No description provided for @consentBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Watoto has no ads and no chat. We only collect what is needed to save your child\'s progress. As the grown-up, you choose what to turn on.'**
+  String get consentBody;
+
+  /// No description provided for @consentCoreData.
+  ///
+  /// In en, this message translates to:
+  /// **'Save learning progress'**
+  String get consentCoreData;
+
+  /// No description provided for @consentRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Required to use the app'**
+  String get consentRequired;
+
+  /// No description provided for @consentAi.
+  ///
+  /// In en, this message translates to:
+  /// **'AI Tutor & helpers'**
+  String get consentAi;
+
+  /// No description provided for @consentAiBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Personalized help and explanations'**
+  String get consentAiBody;
+
+  /// No description provided for @consentVoice.
+  ///
+  /// In en, this message translates to:
+  /// **'Voice recording'**
+  String get consentVoice;
+
+  /// No description provided for @consentVoiceBody.
+  ///
+  /// In en, this message translates to:
+  /// **'For reading practice; audio is deleted within 30 days'**
+  String get consentVoiceBody;
+
+  /// No description provided for @consentChangeLater.
+  ///
+  /// In en, this message translates to:
+  /// **'You can change these anytime in the Parent Zone.'**
+  String get consentChangeLater;
+
+  /// No description provided for @agreeContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Agree & continue'**
+  String get agreeContinue;
+
+  /// No description provided for @setPinTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Set a parent PIN'**
+  String get setPinTitle;
+
+  /// No description provided for @setPinSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This keeps settings and the Parent Zone for grown-ups only.'**
+  String get setPinSubtitle;
+
+  /// No description provided for @parentPin.
+  ///
+  /// In en, this message translates to:
+  /// **'PIN'**
+  String get parentPin;
+
+  /// No description provided for @confirmPin.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm PIN'**
+  String get confirmPin;
+
+  /// No description provided for @pinTooShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Use at least 4 digits'**
+  String get pinTooShort;
+
+  /// No description provided for @pinMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'PINs do not match'**
+  String get pinMismatch;
+
+  /// No description provided for @enterPinTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Grown-ups only'**
+  String get enterPinTitle;
+
+  /// No description provided for @enterPinSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your parent PIN to continue.'**
+  String get enterPinSubtitle;
+
+  /// No description provided for @wrongPin.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong PIN, try again'**
+  String get wrongPin;
+
+  /// No description provided for @unlock.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock'**
+  String get unlock;
+
+  /// No description provided for @createChildTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add your child'**
+  String get createChildTitle;
+
+  /// No description provided for @childNickname.
+  ///
+  /// In en, this message translates to:
+  /// **'Nickname'**
+  String get childNickname;
+
+  /// No description provided for @childNicknameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'What should we call them?'**
+  String get childNicknameHint;
+
+  /// No description provided for @chooseAvatar.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose an animal'**
+  String get chooseAvatar;
+
+  /// No description provided for @childAge.
+  ///
+  /// In en, this message translates to:
+  /// **'Age {age} ({band})'**
+  String childAge(int age, String band);
+
+  /// No description provided for @whoIsLearning.
+  ///
+  /// In en, this message translates to:
+  /// **'Who is learning?'**
+  String get whoIsLearning;
+
+  /// No description provided for @addChild.
+  ///
+  /// In en, this message translates to:
+  /// **'Add child'**
+  String get addChild;
+
+  /// No description provided for @parentZone.
+  ///
+  /// In en, this message translates to:
+  /// **'Parent Zone'**
+  String get parentZone;
+
+  /// No description provided for @children.
+  ///
+  /// In en, this message translates to:
+  /// **'Children'**
+  String get children;
+
+  /// No description provided for @ageBandLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Ages {band}'**
+  String ageBandLabel(String band);
+
+  /// No description provided for @lessonsDone.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} lessons'**
+  String lessonsDone(int count);
+
+  /// No description provided for @privacyData.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy & data'**
+  String get privacyData;
+
+  /// No description provided for @switchChild.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch child'**
+  String get switchChild;
+
+  /// No description provided for @lockParentZone.
+  ///
+  /// In en, this message translates to:
+  /// **'Lock'**
+  String get lockParentZone;
 }
 
 class _AppLocalizationsDelegate

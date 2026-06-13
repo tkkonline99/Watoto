@@ -1,24 +1,28 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:crypto/crypto.dart';
 import 'package:hive/hive.dart';
 import 'package:uuid/uuid.dart';
 
+import '../../features/onboarding/consent.dart';
+import '../../features/profiles/child_profile.dart';
 import 'sync_op.dart';
 
-/// Offline-first local store: progress, reward balances, and the outbound
-/// sync queue. Every learning write lands here first; the [SyncEngine]
-/// drains the queue when the API is reachable (docs/15-offline-sync.md).
+/// Offline-first local store: account/profiles/consent, per-child progress and
+/// reward balances, and the outbound sync queue. Every learning write lands
+/// here first; the [SyncEngine] drains the queue when the API is reachable
+/// (docs/15-offline-sync.md).
 ///
 /// Hive keeps this portable across Android/iOS/Web and trivially testable;
-/// the drift/SQLite upgrade slots in behind the same interface when
-/// relational queries are needed.
+/// the drift/SQLite + Firebase-auth upgrade slots in behind this interface.
 class OfflineStore {
-  OfflineStore._(this._progress, this._queue, this._stats);
+  OfflineStore._(this._progress, this._queue, this._stats, this._account);
 
-  final Box<String> _progress; // 'lesson:<id>' / 'quiz:<id>' -> record JSON
+  final Box<String> _progress; // 'lesson:<child>:<id>' / 'quiz:<child>:<id>' -> JSON
   final Box<String> _queue; // clientOpId -> SyncOp JSON
-  final Box<int> _stats; // 'xp' -> balance
+  final Box<int> _stats; // 'xp:<child>' -> balance
+  final Box<String> _account; // onboarding, pin, consent, profiles, active child
 
   static const _uuid = Uuid();
 
@@ -30,14 +34,106 @@ class OfflineStore {
       await openBox<String>('progress'),
       await openBox<String>('sync_queue'),
       await openBox<int>('stats'),
+      await openBox<String>('account'),
     );
   }
 
-  int get xp => _stats.get('xp', defaultValue: 0)!;
+  // ---------------------------------------------------------------- account
 
-  Map<String, dynamic>? progressFor(String lessonId) => _read('lesson:$lessonId');
+  bool get onboardingComplete => _account.get('onboardingComplete') == 'true';
 
-  Map<String, dynamic>? lastQuizAttempt(String quizId) => _read('quiz:$quizId');
+  String? get activeChildId => _account.get('activeChildId');
+
+  Future<void> setActiveChild(String childId) =>
+      _account.put('activeChildId', childId);
+
+  bool get hasPin => _account.get('pinHash') != null;
+
+  /// Local parent gate. A salted SHA-256 keeps the PIN out of plaintext on
+  /// device; the production design uses argon2id server-side (docs/16 §16.1).
+  Future<void> setPin(String pin) async {
+    await _account.put('pinSalt', _uuid.v4());
+    await _account.put('pinHash', _hashPin(pin));
+  }
+
+  bool verifyPin(String pin) =>
+      hasPin && _hashPin(pin) == _account.get('pinHash');
+
+  String _hashPin(String pin) {
+    final salt = _account.get('pinSalt') ?? '';
+    return sha256.convert(utf8.encode('$salt:$pin')).toString();
+  }
+
+  ConsentRecord get consent {
+    final raw = _account.get('consent');
+    if (raw == null) return ConsentRecord.empty;
+    return ConsentRecord.fromJson((jsonDecode(raw) as Map).cast<String, dynamic>());
+  }
+
+  Future<void> saveConsent(ConsentRecord consent) =>
+      _account.put('consent', jsonEncode(consent.toJson()));
+
+  List<ChildProfile> get children {
+    return _account.keys
+        .where((k) => (k as String).startsWith('child:'))
+        .map((k) => ChildProfile.fromJson(
+            (jsonDecode(_account.get(k)!) as Map).cast<String, dynamic>()))
+        .toList()
+      ..sort((a, b) => a.nickname.toLowerCase().compareTo(b.nickname.toLowerCase()));
+  }
+
+  ChildProfile? childById(String id) {
+    final raw = _account.get('child:$id');
+    if (raw == null) return null;
+    return ChildProfile.fromJson((jsonDecode(raw) as Map).cast<String, dynamic>());
+  }
+
+  Future<ChildProfile> addChild({
+    required String nickname,
+    required String avatarKey,
+    required int birthYear,
+  }) async {
+    final child = ChildProfile(
+      id: _uuid.v4(),
+      nickname: nickname,
+      avatarKey: avatarKey,
+      birthYear: birthYear,
+      ageBand: ageBandForBirthYear(birthYear),
+    );
+    await _account.put('child:${child.id}', jsonEncode(child.toJson()));
+    return child;
+  }
+
+  /// Persists the full first-run result atomically enough for local use:
+  /// consent, PIN, first child, then marks onboarding complete + active child.
+  Future<ChildProfile> completeOnboarding({
+    required ConsentRecord consent,
+    required String pin,
+    required String nickname,
+    required String avatarKey,
+    required int birthYear,
+  }) async {
+    await saveConsent(consent);
+    await setPin(pin);
+    final child = await addChild(
+      nickname: nickname,
+      avatarKey: avatarKey,
+      birthYear: birthYear,
+    );
+    await setActiveChild(child.id);
+    await _account.put('onboardingComplete', 'true');
+    return child;
+  }
+
+  // --------------------------------------------------------------- learning
+
+  int xpFor(String childId) => _stats.get('xp:$childId', defaultValue: 0)!;
+
+  Map<String, dynamic>? progressFor(String childId, String lessonId) =>
+      _read('lesson:$childId:$lessonId');
+
+  Map<String, dynamic>? lastQuizAttempt(String childId, String quizId) =>
+      _read('quiz:$childId:$quizId');
 
   Map<String, dynamic>? _read(String key) {
     final raw = _progress.get(key);
@@ -55,8 +151,9 @@ class OfflineStore {
     return ops;
   }
 
-  /// Records a lesson completion locally and enqueues the matching sync op.
+  /// Records a lesson completion for [childId] and enqueues the sync op.
   Future<void> recordLessonCompleted({
+    required String childId,
     required String lessonId,
     required int scorePct,
     required int timeSpentS,
@@ -64,7 +161,7 @@ class OfflineStore {
   }) async {
     final now = DateTime.now().toUtc();
     await _progress.put(
-      'lesson:$lessonId',
+      'lesson:$childId:$lessonId',
       jsonEncode({
         'lessonId': lessonId,
         'status': 'completed',
@@ -73,7 +170,7 @@ class OfflineStore {
         'clientUpdatedAt': now.toIso8601String(),
       }),
     );
-    await _grantXp(xpEarned);
+    await _grantXp(childId, xpEarned);
     await _enqueue(SyncOp(
       clientOpId: _uuid.v4(),
       opType: 'lesson_progress',
@@ -90,6 +187,7 @@ class OfflineStore {
   /// Records a quiz attempt (pass or fail — attempts are data) and enqueues
   /// it for server-side authoritative re-grading.
   Future<void> recordQuizAttempt({
+    required String childId,
     required String quizId,
     required int scorePct,
     required bool passed,
@@ -99,7 +197,7 @@ class OfflineStore {
   }) async {
     final now = DateTime.now().toUtc();
     await _progress.put(
-      'quiz:$quizId',
+      'quiz:$childId:$quizId',
       jsonEncode({
         'quizId': quizId,
         'scorePct': scorePct,
@@ -107,7 +205,7 @@ class OfflineStore {
         'attemptedAt': now.toIso8601String(),
       }),
     );
-    await _grantXp(xpEarned);
+    await _grantXp(childId, xpEarned);
     await _enqueue(SyncOp(
       clientOpId: _uuid.v4(),
       opType: 'quiz_attempt',
@@ -122,8 +220,13 @@ class OfflineStore {
     ));
   }
 
-  Future<void> _grantXp(int amount) async {
-    if (amount > 0) await _stats.put('xp', xp + amount);
+  /// Count of completed lessons for a child — drives the parent dashboard.
+  int completedLessonCount(String childId) => _progress.keys
+      .where((k) => (k as String).startsWith('lesson:$childId:'))
+      .length;
+
+  Future<void> _grantXp(String childId, int amount) async {
+    if (amount > 0) await _stats.put('xp:$childId', xpFor(childId) + amount);
   }
 
   Future<void> _enqueue(SyncOp op) =>
@@ -136,5 +239,6 @@ class OfflineStore {
     await _progress.close();
     await _queue.close();
     await _stats.close();
+    await _account.close();
   }
 }

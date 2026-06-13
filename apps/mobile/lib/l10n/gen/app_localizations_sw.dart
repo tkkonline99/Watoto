@@ -85,4 +85,116 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get retry => 'Jaribu tena';
+
+  @override
+  String get consentTitle => 'Mahali salama pa kujifunza';
+
+  @override
+  String get consentBody =>
+      'Watoto haina matangazo wala soga. Tunakusanya tu kinachohitajika kuhifadhi maendeleo ya mtoto wako. Kama mzazi, wewe huchagua kipi kiwashwe.';
+
+  @override
+  String get consentCoreData => 'Hifadhi maendeleo ya kujifunza';
+
+  @override
+  String get consentRequired => 'Inahitajika kutumia programu';
+
+  @override
+  String get consentAi => 'Mwalimu wa AI na wasaidizi';
+
+  @override
+  String get consentAiBody => 'Msaada na maelezo yaliyobinafsishwa';
+
+  @override
+  String get consentVoice => 'Kurekodi sauti';
+
+  @override
+  String get consentVoiceBody =>
+      'Kwa mazoezi ya kusoma; sauti hufutwa ndani ya siku 30';
+
+  @override
+  String get consentChangeLater =>
+      'Unaweza kubadilisha haya wakati wowote katika Eneo la Mzazi.';
+
+  @override
+  String get agreeContinue => 'Kubali na uendelee';
+
+  @override
+  String get setPinTitle => 'Weka PIN ya mzazi';
+
+  @override
+  String get setPinSubtitle =>
+      'Hii huweka mipangilio na Eneo la Mzazi kwa watu wazima pekee.';
+
+  @override
+  String get parentPin => 'PIN';
+
+  @override
+  String get confirmPin => 'Thibitisha PIN';
+
+  @override
+  String get pinTooShort => 'Tumia angalau tarakimu 4';
+
+  @override
+  String get pinMismatch => 'PIN hazifanani';
+
+  @override
+  String get enterPinTitle => 'Watu wazima pekee';
+
+  @override
+  String get enterPinSubtitle => 'Weka PIN yako ya mzazi ili kuendelea.';
+
+  @override
+  String get wrongPin => 'PIN si sahihi, jaribu tena';
+
+  @override
+  String get unlock => 'Fungua';
+
+  @override
+  String get createChildTitle => 'Ongeza mtoto wako';
+
+  @override
+  String get childNickname => 'Jina la utani';
+
+  @override
+  String get childNicknameHint => 'Tumwite vipi?';
+
+  @override
+  String get chooseAvatar => 'Chagua mnyama';
+
+  @override
+  String childAge(int age, String band) {
+    return 'Umri $age ($band)';
+  }
+
+  @override
+  String get whoIsLearning => 'Nani anajifunza?';
+
+  @override
+  String get addChild => 'Ongeza mtoto';
+
+  @override
+  String get parentZone => 'Eneo la Mzazi';
+
+  @override
+  String get children => 'Watoto';
+
+  @override
+  String ageBandLabel(String band) {
+    return 'Umri $band';
+  }
+
+  @override
+  String lessonsDone(int count) {
+    return 'Masomo $count';
+  }
+
+  @override
+  String get privacyData => 'Faragha na data';
+
+  @override
+  String get switchChild => 'Badilisha mtoto';
+
+  @override
+  String get lockParentZone => 'Funga';
 }
