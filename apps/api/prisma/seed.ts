@@ -8,6 +8,50 @@ const prisma = new PrismaClient();
 const DEMO_PARENT_ID = '00000000-0000-0000-0000-000000000001';
 const DEMO_CHILD_ID = '00000000-0000-0000-0000-000000000002';
 const SAMPLE_LESSON_ID = '5d3f1a2b-9c4e-4f6a-8b7d-1e2f3a4b5c6d';
+const SAMPLE_QUIZ_ID = '8c1d2e3f-4a5b-4c6d-8e7f-9a0b1c2d3e4f';
+
+// Mirrors apps/mobile/assets/content/counting-quiz.json (offline pack).
+const QUIZ_QUESTIONS = [
+  {
+    id: '11111111-1111-4111-8111-111111111101',
+    body: {
+      promptKey: 'quizHowMany',
+      emoji: '☀️',
+      count: 1,
+      options: [
+        { text: '1', correct: true },
+        { text: '2', correct: false },
+        { text: '3', correct: false },
+      ],
+    },
+  },
+  {
+    id: '11111111-1111-4111-8111-111111111102',
+    body: {
+      promptKey: 'quizHowMany',
+      emoji: '🐘',
+      count: 2,
+      options: [
+        { text: '1', correct: false },
+        { text: '2', correct: true },
+        { text: '3', correct: false },
+      ],
+    },
+  },
+  {
+    id: '11111111-1111-4111-8111-111111111103',
+    body: {
+      promptKey: 'quizHowMany',
+      emoji: '🥭',
+      count: 3,
+      options: [
+        { text: '1', correct: false },
+        { text: '2', correct: false },
+        { text: '3', correct: true },
+      ],
+    },
+  },
+];
 
 const SAMPLE_LESSON_BODY = {
   schema: 'watoto.lesson/1.0',
@@ -101,7 +145,33 @@ async function main(): Promise<void> {
     },
   });
 
-  console.log('Seed complete: demo family + 3 subjects + published counting lesson.');
+  const quiz = await prisma.quiz.upsert({
+    where: { slug: 'counting-quiz' },
+    update: { status: 'published' },
+    create: {
+      id: SAMPLE_QUIZ_ID,
+      unitId: unit.id,
+      slug: 'counting-quiz',
+      passPct: 70,
+      status: 'published',
+    },
+  });
+
+  for (const [i, question] of QUIZ_QUESTIONS.entries()) {
+    await prisma.question.upsert({
+      where: { id: question.id },
+      update: { body: question.body, sort: i },
+      create: {
+        id: question.id,
+        quizId: quiz.id,
+        qtype: 'multiple_choice',
+        body: question.body,
+        sort: i,
+      },
+    });
+  }
+
+  console.log('Seed complete: demo family + 3 subjects + counting lesson & quiz.');
 }
 
 main()

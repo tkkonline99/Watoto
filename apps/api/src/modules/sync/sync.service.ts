@@ -6,7 +6,7 @@ import { ProgressService } from '../learning/progress.service';
 
 export const syncOpSchema = z.object({
   clientOpId: z.string().uuid(),
-  opType: z.enum(['lesson_progress']), // quiz_attempt, reward_event, ... follow with their modules
+  opType: z.enum(['lesson_progress', 'quiz_attempt']), // reward_event, reading_attempt… follow with their modules
   payload: z.record(z.unknown()),
   clientUpdatedAt: z.coerce.date(),
 });
@@ -19,6 +19,21 @@ const progressPayloadSchema = z.object({
   status: z.enum(['not_started', 'in_progress', 'completed', 'mastered']),
   scorePct: z.number().int().min(0).max(100).optional(),
   timeSpentS: z.number().int().min(0).default(0),
+});
+
+const quizPayloadSchema = z.object({
+  quizId: z.string().uuid(),
+  durationS: z.number().int().min(0).default(0),
+  answers: z
+    .array(
+      z.object({
+        questionId: z.string().uuid(),
+        selectedIndex: z.number().int().min(0),
+      }),
+    )
+    .min(1)
+    .max(50),
+  // scorePct/passed from the client are advisory only — server re-grades.
 });
 
 @Injectable()
@@ -59,6 +74,15 @@ export class SyncService {
       throw e;
     }
 
+    switch (op.opType) {
+      case 'lesson_progress':
+        return this.applyLessonProgress(childId, op);
+      case 'quiz_attempt':
+        return this.applyQuizAttempt(childId, op);
+    }
+  }
+
+  private async applyLessonProgress(childId: string, op: SyncOpInput): Promise<SyncOpResult> {
     const parsed = progressPayloadSchema.safeParse(op.payload);
     if (!parsed.success) return 'rejected';
 
@@ -71,5 +95,24 @@ export class SyncService {
       clientUpdatedAt: op.clientUpdatedAt,
     });
     return result === 'applied' ? 'applied' : 'conflict_server_won';
+  }
+
+  private async applyQuizAttempt(childId: string, op: SyncOpInput): Promise<SyncOpResult> {
+    const parsed = quizPayloadSchema.safeParse(op.payload);
+    if (!parsed.success) return 'rejected';
+
+    try {
+      await this.progress.submitQuizAttempt({
+        childId,
+        quizId: parsed.data.quizId,
+        answers: parsed.data.answers,
+        durationS: parsed.data.durationS,
+        clientOpId: op.clientOpId,
+        attemptedAt: op.clientUpdatedAt,
+      });
+      return 'applied';
+    } catch {
+      return 'rejected'; // e.g. quiz unpublished since the attempt
+    }
   }
 }

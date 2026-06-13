@@ -55,4 +55,26 @@ export class CatalogService {
     if (!lesson) throw new NotFoundException('Lesson not found');
     return lesson;
   }
+
+  /** Quiz with questions — answer keys stripped; grading is server-side. */
+  async getQuiz(quizId: string) {
+    const quiz = await this.prisma.quiz.findFirst({
+      where: { id: quizId, status: 'published' },
+      include: { questions: { orderBy: { sort: 'asc' } } },
+    });
+    if (!quiz) throw new NotFoundException('Quiz not found');
+    return {
+      ...quiz,
+      questions: quiz.questions.map((q) => ({ ...q, body: stripAnswerKey(q.body) })),
+    };
+  }
+}
+
+function stripAnswerKey(body: unknown): unknown {
+  const b = body as { options?: Array<Record<string, unknown>> } | null;
+  if (!b?.options) return body;
+  return {
+    ...b,
+    options: b.options.map(({ correct: _correct, ...rest }) => rest),
+  };
 }

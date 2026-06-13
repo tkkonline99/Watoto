@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../features/lesson_player/lesson_models.dart';
+import '../../features/quiz/quiz_models.dart';
 import '../network/watoto_api.dart';
 import 'offline_store.dart';
 import 'sync_engine.dart';
@@ -44,6 +45,31 @@ class LearningService {
       timeSpentS: timeSpentS,
       xpEarned: lesson.completion.xp,
     );
+    _afterWrite(store);
+  }
+
+  Future<void> completeQuiz(
+    QuizBody quiz, {
+    required List<int> selected,
+    required QuizGrade grade,
+    required int durationS,
+  }) async {
+    final store = _ref.read(offlineStoreProvider);
+    await store.recordQuizAttempt(
+      quizId: quiz.id,
+      scorePct: grade.scorePct,
+      passed: grade.passed,
+      answers: [
+        for (var i = 0; i < selected.length; i++)
+          {'questionId': quiz.questions[i].id, 'selectedIndex': selected[i]},
+      ],
+      durationS: durationS,
+      xpEarned: grade.xp,
+    );
+    _afterWrite(store);
+  }
+
+  void _afterWrite(OfflineStore store) {
     _ref.read(xpProvider.notifier).state = store.xp;
     unawaited(_ref.read(syncEngineProvider).flush());
   }

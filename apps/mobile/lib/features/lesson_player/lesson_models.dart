@@ -9,6 +9,7 @@ class LessonBody {
     required this.titleKey,
     required this.blocks,
     required this.completion,
+    this.quizSlug,
   });
 
   /// Server-side lesson UUID — sync ops reference this.
@@ -18,11 +19,15 @@ class LessonBody {
   final List<LessonBlock> blocks;
   final LessonCompletion completion;
 
+  /// Optional follow-up quiz offered from the celebration screen.
+  final String? quizSlug;
+
   factory LessonBody.fromJson(Map<String, dynamic> json) {
     return LessonBody(
       id: json['id'] as String,
       schema: json['schema'] as String,
       titleKey: json['titleKey'] as String,
+      quizSlug: json['quizSlug'] as String?,
       blocks: (json['blocks'] as List<dynamic>)
           .map((b) => LessonBlock.fromJson(b as Map<String, dynamic>))
           .toList(),

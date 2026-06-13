@@ -18,5 +18,10 @@
   "done": "Maliza",
   "xpEarned": "+{xp} XP",
   "chooseLanguage": "Chagua lugha yako",
-  "premiumLocked": "Mwombe mtu mzima akufungulie"
+  "premiumLocked": "Mwombe mtu mzima akufungulie",
+  "quizTime": "Wakati wa jaribio!",
+  "quizCountingTitle": "Jaribio la Kuhesabu",
+  "quizHowMany": "Unaona ngapi?",
+  "quizScore": "Umepata {correct} kati ya {total}!",
+  "retry": "Jaribu tena"
 }

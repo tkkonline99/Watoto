@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../features/child_home/child_home_screen.dart';
 import '../features/lesson_player/lesson_player_screen.dart';
+import '../features/quiz/quiz_runner_screen.dart';
 
 /// Router is provided (not a global) so each app instance — and each widget
 /// test — gets fresh navigation state.
@@ -18,6 +19,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         path: '/lesson/:slug',
         builder: (context, state) =>
             LessonPlayerScreen(slug: state.pathParameters['slug']!),
+      ),
+      GoRoute(
+        path: '/quiz/:slug',
+        builder: (context, state) =>
+            QuizRunnerScreen(slug: state.pathParameters['slug']!),
       ),
     ],
   );

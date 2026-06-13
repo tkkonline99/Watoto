@@ -68,4 +68,21 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get premiumLocked => 'Demande à un adulte de déverrouiller';
+
+  @override
+  String get quizTime => 'C\'est l\'heure du quiz !';
+
+  @override
+  String get quizCountingTitle => 'Quiz de comptage';
+
+  @override
+  String get quizHowMany => 'Combien en vois-tu ?';
+
+  @override
+  String quizScore(int correct, int total) {
+    return 'Tu as eu $correct sur $total !';
+  }
+
+  @override
+  String get retry => 'Réessayer';
 }

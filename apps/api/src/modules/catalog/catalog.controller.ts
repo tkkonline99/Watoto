@@ -32,4 +32,9 @@ export class CatalogController {
   getLesson(@Param('id', ParseUUIDPipe) id: string) {
     return this.catalog.getLesson(id);
   }
+
+  @Get('quizzes/:id')
+  getQuiz(@Param('id', ParseUUIDPipe) id: string) {
+    return this.catalog.getQuiz(id);
+  }
 }

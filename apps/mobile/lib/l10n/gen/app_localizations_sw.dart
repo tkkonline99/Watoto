@@ -68,4 +68,21 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get premiumLocked => 'Mwombe mtu mzima akufungulie';
+
+  @override
+  String get quizTime => 'Wakati wa jaribio!';
+
+  @override
+  String get quizCountingTitle => 'Jaribio la Kuhesabu';
+
+  @override
+  String get quizHowMany => 'Unaona ngapi?';
+
+  @override
+  String quizScore(int correct, int total) {
+    return 'Umepata $correct kati ya $total!';
+  }
+
+  @override
+  String get retry => 'Jaribu tena';
 }

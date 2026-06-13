@@ -213,6 +213,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Ask a grown-up to unlock'**
   String get premiumLocked;
+
+  /// No description provided for @quizTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiz time!'**
+  String get quizTime;
+
+  /// No description provided for @quizCountingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Counting Quiz'**
+  String get quizCountingTitle;
+
+  /// No description provided for @quizHowMany.
+  ///
+  /// In en, this message translates to:
+  /// **'How many do you see?'**
+  String get quizHowMany;
+
+  /// No description provided for @quizScore.
+  ///
+  /// In en, this message translates to:
+  /// **'You got {correct} of {total}!'**
+  String quizScore(int correct, int total);
+
+  /// No description provided for @retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get retry;
 }
 
 class _AppLocalizationsDelegate

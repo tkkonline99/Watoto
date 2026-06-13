@@ -18,5 +18,10 @@
   "done": "Terminé",
   "xpEarned": "+{xp} XP",
   "chooseLanguage": "Choisis ta langue",
-  "premiumLocked": "Demande à un adulte de déverrouiller"
+  "premiumLocked": "Demande à un adulte de déverrouiller",
+  "quizTime": "C'est l'heure du quiz !",
+  "quizCountingTitle": "Quiz de comptage",
+  "quizHowMany": "Combien en vois-tu ?",
+  "quizScore": "Tu as eu {correct} sur {total} !",
+  "retry": "Réessayer"
 }

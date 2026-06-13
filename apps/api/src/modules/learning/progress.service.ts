@@ -1,6 +1,7 @@
-import { Injectable } from '@nestjs/common';
-import { ProgressStatus } from '@prisma/client';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { Prisma, ProgressStatus } from '@prisma/client';
 import { PrismaService } from '../../common/prisma/prisma.service';
+import { GradeResult, SubmittedAnswer, gradeFromScore, gradeQuiz } from './grading';
 
 export interface ProgressUpsert {
   childId: string;
@@ -66,5 +67,65 @@ export class ProgressService {
       },
     });
     return { result: incomingNewer ? 'applied' : 'merged' };
+  }
+
+  /**
+   * Grades server-side from raw answers (client scores are advisory) and
+   * stores the attempt. Idempotent on clientOpId: re-sends return the
+   * stored attempt's grade instead of double-recording.
+   */
+  async submitQuizAttempt(input: {
+    childId: string;
+    quizId: string;
+    answers: SubmittedAnswer[];
+    durationS: number;
+    clientOpId: string;
+    attemptedAt?: Date;
+  }): Promise<GradeResult> {
+    const quiz = await this.prisma.quiz.findFirst({
+      where: { id: input.quizId, status: 'published' },
+      include: { questions: true },
+    });
+    if (!quiz) throw new NotFoundException('Quiz not found');
+
+    const grade = gradeQuiz(
+      quiz.questions.map((q) => ({
+        id: q.id,
+        body: q.body as { options?: Array<{ correct?: boolean }> },
+      })),
+      input.answers,
+      quiz.passPct,
+    );
+
+    try {
+      await this.prisma.quizAttempt.create({
+        data: {
+          childId: input.childId,
+          quizId: input.quizId,
+          scorePct: grade.scorePct,
+          passed: grade.passed,
+          answers: input.answers as unknown as Prisma.InputJsonValue,
+          durationS: input.durationS,
+          attemptedAt: input.attemptedAt ?? new Date(),
+          clientOpId: input.clientOpId,
+        },
+      });
+      return grade;
+    } catch (e) {
+      if (e instanceof Prisma.PrismaClientKnownRequestError && e.code === 'P2002') {
+        const existing = await this.prisma.quizAttempt.findUnique({
+          where: { clientOpId: input.clientOpId },
+        });
+        if (existing) {
+          return gradeFromScore(
+            existing.scorePct,
+            quiz.questions.length,
+            Math.round((existing.scorePct / 100) * quiz.questions.length),
+            quiz.passPct,
+          );
+        }
+      }
+      throw e;
+    }
   }
 }

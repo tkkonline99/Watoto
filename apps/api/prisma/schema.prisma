@@ -54,6 +54,12 @@ enum ProgressStatus {
   mastered
 }
 
+enum QuestionType {
+  multiple_choice
+  true_false
+  tap_image
+}
+
 model User {
   id          String   @id @default(uuid()) @db.Uuid
   firebaseUid String   @unique @map("firebase_uid")
@@ -84,8 +90,9 @@ model ChildProfile {
   createdAt      DateTime   @default(now()) @map("created_at")
   updatedAt      DateTime   @updatedAt @map("updated_at")
 
-  parent   User             @relation(fields: [parentId], references: [id])
-  progress LessonProgress[]
+  parent       User             @relation(fields: [parentId], references: [id])
+  progress     LessonProgress[]
+  quizAttempts QuizAttempt[]
 
   @@index([parentId])
   @@map("child_profiles")
@@ -125,6 +132,7 @@ model Unit {
 
   course  Course   @relation(fields: [courseId], references: [id])
   lessons Lesson[]
+  quizzes Quiz[]
 
   @@unique([courseId, slug])
   @@map("units")
@@ -168,6 +176,52 @@ model LessonProgress {
   @@unique([childId, lessonId])
   @@index([childId, status])
   @@map("lesson_progress")
+}
+
+model Quiz {
+  id        String        @id @default(uuid()) @db.Uuid
+  unitId    String?       @map("unit_id") @db.Uuid
+  slug      String        @unique
+  passPct   Int           @default(70) @map("pass_pct") @db.SmallInt
+  isPremium Boolean       @default(false) @map("is_premium")
+  status    ContentStatus @default(draft)
+
+  unit      Unit?         @relation(fields: [unitId], references: [id])
+  questions Question[]
+  attempts  QuizAttempt[]
+
+  @@map("quizzes")
+}
+
+model Question {
+  id     String       @id @default(uuid()) @db.Uuid
+  quizId String       @map("quiz_id") @db.Uuid
+  qtype  QuestionType
+  body   Json // promptKey, emoji/media, options (with correct flags — stripped for child reads)
+  sort   Int          @default(0)
+
+  quiz Quiz @relation(fields: [quizId], references: [id], onDelete: Cascade)
+
+  @@index([quizId, sort])
+  @@map("questions")
+}
+
+model QuizAttempt {
+  id          String   @id @default(uuid()) @db.Uuid
+  childId     String   @map("child_id") @db.Uuid
+  quizId      String   @map("quiz_id") @db.Uuid
+  scorePct    Int      @map("score_pct") @db.SmallInt
+  passed      Boolean
+  answers     Json
+  durationS   Int      @default(0) @map("duration_s")
+  attemptedAt DateTime @map("attempted_at")
+  clientOpId  String   @unique @map("client_op_id") @db.Uuid
+
+  child ChildProfile @relation(fields: [childId], references: [id])
+  quiz  Quiz         @relation(fields: [quizId], references: [id])
+
+  @@index([childId, attemptedAt(sort: Desc)])
+  @@map("quiz_attempts")
 }
 
 model SyncOp {

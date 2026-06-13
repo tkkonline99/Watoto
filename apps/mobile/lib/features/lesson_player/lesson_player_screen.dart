@@ -4,22 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/l10n/content_key_resolver.dart';
 import '../../core/offline/offline_providers.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
 import 'lesson_models.dart';
 import 'lesson_repository.dart';
-
-/// Maps bundled content keys to localized strings. Server-delivered content
-/// arrives pre-localized; this resolver only covers the offline sample pack.
-String resolveContentKey(AppLocalizations l10n, String key) {
-  return switch (key) {
-    'lessonCountingTitle' => l10n.lessonCountingTitle,
-    'tapToCountPrompt' => l10n.tapToCountPrompt,
-    'checkAnswerPrompt' => l10n.checkAnswerPrompt,
-    _ => key,
-  };
-}
 
 class LessonPlayerScreen extends ConsumerStatefulWidget {
   const LessonPlayerScreen({super.key, required this.slug});
@@ -76,6 +66,7 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
         data: (lesson) => _finished
             ? _CelebrationView(
                 xp: lesson.completion.xp,
+                quizSlug: lesson.quizSlug,
                 onDone: () => context.go('/'),
               )
             : Column(
@@ -291,9 +282,10 @@ class _CheckViewState extends State<_CheckView> {
 }
 
 class _CelebrationView extends StatelessWidget {
-  const _CelebrationView({required this.xp, required this.onDone});
+  const _CelebrationView({required this.xp, required this.quizSlug, required this.onDone});
 
   final int xp;
+  final String? quizSlug;
   final VoidCallback onDone;
 
   @override
@@ -319,7 +311,17 @@ class _CelebrationView extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 40),
-          FilledButton(onPressed: onDone, child: Text(l10n.done)),
+          Wrap(
+            spacing: 16,
+            children: [
+              if (quizSlug != null)
+                FilledButton(
+                  onPressed: () => context.go('/quiz/$quizSlug'),
+                  child: Text(l10n.quizTime),
+                ),
+              FilledButton(onPressed: onDone, child: Text(l10n.done)),
+            ],
+          ),
         ],
       ),
     );

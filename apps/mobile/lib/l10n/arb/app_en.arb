@@ -28,5 +28,16 @@
     }
   },
   "chooseLanguage": "Choose your language",
-  "premiumLocked": "Ask a grown-up to unlock"
+  "premiumLocked": "Ask a grown-up to unlock",
+  "quizTime": "Quiz time!",
+  "quizCountingTitle": "Counting Quiz",
+  "quizHowMany": "How many do you see?",
+  "quizScore": "You got {correct} of {total}!",
+  "@quizScore": {
+    "placeholders": {
+      "correct": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
+  "retry": "Try again"
 }
