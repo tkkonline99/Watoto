@@ -1,11 +1,19 @@
+import 'dart:io';
+
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hive/hive.dart';
 import 'package:watoto_mobile/app.dart';
+import 'package:watoto_mobile/core/network/watoto_api.dart';
+import 'package:watoto_mobile/core/offline/offline_providers.dart';
+import 'package:watoto_mobile/core/offline/offline_store.dart';
+import 'package:watoto_mobile/core/offline/sync_op.dart';
 import 'package:watoto_mobile/features/lesson_player/lesson_models.dart';
 import 'package:watoto_mobile/features/lesson_player/lesson_repository.dart';
 
 const _lesson = LessonBody(
+  id: '5d3f1a2b-9c4e-4f6a-8b7d-1e2f3a4b5c6d',
   schema: 'watoto.lesson/1.0',
   titleKey: 'lessonCountingTitle',
   blocks: [
@@ -22,16 +30,35 @@ const _lesson = LessonBody(
   completion: LessonCompletion(xp: 10, stars: 1, skills: ['counting.1-10']),
 );
 
-Widget buildApp() {
-  return ProviderScope(
-    overrides: [
-      lessonProvider.overrideWith((ref, slug) async => _lesson),
-    ],
-    child: const WatotoApp(),
-  );
+/// Simulates being offline: every sync attempt fails, ops must stay queued.
+class _UnreachableApi implements SyncApi {
+  @override
+  Future<Map<String, String>> syncBatch(List<SyncOp> ops) async =>
+      throw SyncApiException('offline');
 }
 
 void main() {
+  late OfflineStore store;
+
+  setUpAll(() => Hive.init(Directory.systemTemp.path));
+
+  setUp(() async {
+    store = await OfflineStore.open(inMemory: true);
+  });
+
+  tearDown(() async {
+    await store.close();
+  });
+
+  Widget buildApp() => ProviderScope(
+        overrides: [
+          lessonProvider.overrideWith((ref, slug) async => _lesson),
+          offlineStoreProvider.overrideWithValue(store),
+          syncApiProvider.overrideWithValue(_UnreachableApi()),
+        ],
+        child: const WatotoApp(),
+      );
+
   testWidgets('home shows greeting, subjects, and daily challenge', (tester) async {
     await tester.pumpWidget(buildApp());
     await tester.pumpAndSettle();
@@ -42,7 +69,7 @@ void main() {
     expect(find.text('0 XP'), findsOneWidget);
   });
 
-  testWidgets('child completes the counting lesson and earns XP', (tester) async {
+  testWidgets('child completes the lesson offline: XP banked, op queued', (tester) async {
     await tester.pumpWidget(buildApp());
     await tester.pumpAndSettle();
 
@@ -78,6 +105,15 @@ void main() {
     await tester.tap(find.text('Done'));
     await tester.pumpAndSettle();
     expect(find.text('10 XP'), findsOneWidget);
+
+    // Offline-first contract: completion persisted locally and the sync op
+    // is still queued because the (fake) network was unreachable.
+    expect(store.xp, 10);
+    expect(store.progressFor(_lesson.id)?['status'], 'completed');
+    final ops = store.pendingOps;
+    expect(ops, hasLength(1));
+    expect(ops.single.opType, 'lesson_progress');
+    expect(ops.single.payload['lessonId'], _lesson.id);
   });
 
   testWidgets('locale switches to Swahili', (tester) async {

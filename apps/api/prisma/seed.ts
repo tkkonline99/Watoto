@@ -3,6 +3,12 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
+// Fixed IDs shared with dev tooling: the mobile sample pack references
+// SAMPLE_LESSON_ID, and POST /auth/dev-token defaults to the demo family.
+const DEMO_PARENT_ID = '00000000-0000-0000-0000-000000000001';
+const DEMO_CHILD_ID = '00000000-0000-0000-0000-000000000002';
+const SAMPLE_LESSON_ID = '5d3f1a2b-9c4e-4f6a-8b7d-1e2f3a4b5c6d';
+
 const SAMPLE_LESSON_BODY = {
   schema: 'watoto.lesson/1.0',
   titleKey: 'lesson.counting-1-3.title',
@@ -26,6 +32,30 @@ const SAMPLE_LESSON_BODY = {
 };
 
 async function main(): Promise<void> {
+  await prisma.user.upsert({
+    where: { firebaseUid: 'dev-parent' },
+    update: {},
+    create: {
+      id: DEMO_PARENT_ID,
+      firebaseUid: 'dev-parent',
+      email: 'demo@watoto.app',
+      role: 'parent',
+      displayName: 'Demo Parent',
+    },
+  });
+
+  await prisma.childProfile.upsert({
+    where: { id: DEMO_CHILD_ID },
+    update: {},
+    create: {
+      id: DEMO_CHILD_ID,
+      parentId: DEMO_PARENT_ID,
+      nickname: 'Amani',
+      birthMonth: new Date('2022-06-01'),
+      ageBand: 'b3_5',
+    },
+  });
+
   const math = await prisma.subject.upsert({
     where: { slug: 'math' },
     update: {},
@@ -58,6 +88,7 @@ async function main(): Promise<void> {
     where: { unitId_slug: { unitId: unit.id, slug: 'counting-1-3' } },
     update: { status: 'published', body: SAMPLE_LESSON_BODY },
     create: {
+      id: SAMPLE_LESSON_ID,
       unitId: unit.id,
       slug: 'counting-1-3',
       lessonType: 'interactive',
@@ -70,7 +101,7 @@ async function main(): Promise<void> {
     },
   });
 
-  console.log('Seed complete: 3 subjects, 1 published course/unit/lesson.');
+  console.log('Seed complete: demo family + 3 subjects + published counting lesson.');
 }
 
 main()

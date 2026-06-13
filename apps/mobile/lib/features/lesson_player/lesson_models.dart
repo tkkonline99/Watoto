@@ -4,12 +4,15 @@ library;
 
 class LessonBody {
   const LessonBody({
+    required this.id,
     required this.schema,
     required this.titleKey,
     required this.blocks,
     required this.completion,
   });
 
+  /// Server-side lesson UUID — sync ops reference this.
+  final String id;
   final String schema;
   final String titleKey;
   final List<LessonBlock> blocks;
@@ -17,6 +20,7 @@ class LessonBody {
 
   factory LessonBody.fromJson(Map<String, dynamic> json) {
     return LessonBody(
+      id: json['id'] as String,
       schema: json['schema'] as String,
       titleKey: json['titleKey'] as String,
       blocks: (json['blocks'] as List<dynamic>)

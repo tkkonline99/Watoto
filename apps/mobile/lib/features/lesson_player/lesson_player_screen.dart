@@ -1,8 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../core/state/app_state.dart';
+import '../../core/offline/offline_providers.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
 import 'lesson_models.dart';
@@ -31,13 +33,20 @@ class LessonPlayerScreen extends ConsumerStatefulWidget {
 class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
   int _blockIndex = 0;
   bool _finished = false;
+  final Stopwatch _elapsed = Stopwatch()..start();
 
   void _advance(LessonBody lesson) {
     if (_blockIndex < lesson.blocks.length - 1) {
       setState(() => _blockIndex++);
     } else {
       setState(() => _finished = true);
-      ref.read(xpProvider.notifier).state += lesson.completion.xp;
+      _elapsed.stop();
+      // Persist + enqueue sync; the celebration never waits on the network.
+      unawaited(ref.read(learningServiceProvider).completeLesson(
+            lesson,
+            scorePct: 100,
+            timeSpentS: _elapsed.elapsed.inSeconds,
+          ));
     }
   }
 

@@ -5,6 +5,7 @@ import 'package:watoto_mobile/features/lesson_player/lesson_models.dart';
 
 const sampleJson = '''
 {
+  "id": "5d3f1a2b-9c4e-4f6a-8b7d-1e2f3a4b5c6d",
   "schema": "watoto.lesson/1.0",
   "titleKey": "lessonCountingTitle",
   "blocks": [
@@ -25,6 +26,7 @@ void main() {
     final lesson =
         LessonBody.fromJson(jsonDecode(sampleJson) as Map<String, dynamic>);
 
+    expect(lesson.id, '5d3f1a2b-9c4e-4f6a-8b7d-1e2f3a4b5c6d');
     expect(lesson.schema, 'watoto.lesson/1.0');
     expect(lesson.blocks, hasLength(3));
     expect(lesson.blocks[0], isA<ConceptBlock>());

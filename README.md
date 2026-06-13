@@ -91,8 +91,11 @@ flutter run -d chrome               # or: flutter build web --release
 
 What the scaffold includes today: child home (subject islands, daily challenge, XP chip), a
 lesson player executing `watoto.lesson/1.0` JSON (concept → tap-to-count → check blocks,
-celebration + XP), one-click EN/SW/FR switching, Savanna theme; API with health/auth(dev)/
-catalog/progress/sync modules, Prisma schema + seed, LWW merge logic with tests.
+celebration + XP), one-click EN/SW/FR switching, Savanna theme; **offline-first layer** —
+Hive-backed local store (progress, XP balance, sync queue) with a SyncEngine draining to
+`POST /v1/sync/batch` (idempotent, queue survives restarts; 13 tests incl. an offline
+end-to-end lesson flow); API with health/auth(dev)/catalog/progress/sync modules, Prisma
+schema + seed (demo family + sample lesson on fixed UUIDs), LWW merge logic with tests.
 
 ## Non-Negotiable Product Constraints
 
