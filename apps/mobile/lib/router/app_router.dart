@@ -27,7 +27,9 @@ final appRouterProvider = Provider<GoRouter>((ref) {
   });
 
   return GoRouter(
-    initialLocation: '/',
+    // Default '/'; a --dart-define=START=<route> allows deep-link launches
+    // for demos and manual testing (guards still apply).
+    initialLocation: const String.fromEnvironment('START', defaultValue: '/'),
     refreshListenable: refresh,
     redirect: (context, state) {
       final s = ref.read(sessionProvider);
