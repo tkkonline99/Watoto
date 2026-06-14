@@ -471,6 +471,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Read again'**
   String get readAgain;
+
+  /// No description provided for @curriculum.
+  ///
+  /// In en, this message translates to:
+  /// **'Curriculum'**
+  String get curriculum;
+
+  /// No description provided for @forGrownups.
+  ///
+  /// In en, this message translates to:
+  /// **'For grown-ups'**
+  String get forGrownups;
+
+  /// No description provided for @stageOf.
+  ///
+  /// In en, this message translates to:
+  /// **'Stage {stage} · Ages {ages}'**
+  String stageOf(int stage, String ages);
 }
 
 class _AppLocalizationsDelegate

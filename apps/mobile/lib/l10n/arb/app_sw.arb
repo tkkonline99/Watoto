@@ -61,5 +61,8 @@
   "storybooks": "Vitabu vya Hadithi",
   "textSize": "Ukubwa wa maandishi",
   "theEnd": "Mwisho!",
-  "readAgain": "Soma tena"
+  "readAgain": "Soma tena",
+  "curriculum": "Mtaala",
+  "forGrownups": "Kwa watu wazima",
+  "stageOf": "Hatua {stage} · Umri {ages}"
 }

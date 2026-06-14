@@ -101,7 +101,7 @@ void main() {
       );
 
   Future<void> completeLesson(WidgetTester tester) async {
-    await tester.tap(find.text('Math'));
+    await tester.tap(find.text('Start'));
     await tester.pumpAndSettle();
     await tester.tap(find.text('Next'));
     await tester.pumpAndSettle();
@@ -170,7 +170,7 @@ void main() {
     await tester.pumpWidget(buildApp());
     await tester.pumpAndSettle();
 
-    await tester.tap(find.text('Math'));
+    await tester.tap(find.text('Start'));
     await tester.pumpAndSettle();
     expect(find.text('Counting 1 to 3'), findsWidgets);
 
@@ -274,7 +274,9 @@ void main() {
     await tester.tap(find.text('Kiswahili'));
     await tester.pumpAndSettle();
 
-    expect(find.text('Changamoto ya Leo'), findsOneWidget);
-    expect(find.text('Hesabu'), findsOneWidget);
+    expect(find.text('Changamoto ya Leo'), findsOneWidget); // dailyChallenge
+    expect(find.text('Masomo'), findsOneWidget); // "Subjects" header
+    // Note: subject names come from the curriculum content (English in the
+    // source deck), so they are not localized yet — only UI chrome is.
   });
 }

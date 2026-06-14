@@ -61,5 +61,8 @@
   "storybooks": "Livres d'histoires",
   "textSize": "Taille du texte",
   "theEnd": "Fin !",
-  "readAgain": "Relire"
+  "readAgain": "Relire",
+  "curriculum": "Programme",
+  "forGrownups": "Pour les adultes",
+  "stageOf": "Étape {stage} · Âges {ages}"
 }

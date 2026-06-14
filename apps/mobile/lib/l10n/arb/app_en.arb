@@ -93,5 +93,14 @@
   "storybooks": "Storybooks",
   "textSize": "Text size",
   "theEnd": "The End!",
-  "readAgain": "Read again"
+  "readAgain": "Read again",
+  "curriculum": "Curriculum",
+  "forGrownups": "For grown-ups",
+  "stageOf": "Stage {stage} · Ages {ages}",
+  "@stageOf": {
+    "placeholders": {
+      "stage": { "type": "int" },
+      "ages": { "type": "String" }
+    }
+  }
 }

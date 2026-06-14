@@ -209,4 +209,15 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get readAgain => 'Relire';
+
+  @override
+  String get curriculum => 'Programme';
+
+  @override
+  String get forGrownups => 'Pour les adultes';
+
+  @override
+  String stageOf(int stage, String ages) {
+    return 'Étape $stage · Âges $ages';
+  }
 }

@@ -5,36 +5,13 @@ import 'package:go_router/go_router.dart';
 import '../../core/offline/offline_providers.dart';
 import '../../core/state/app_state.dart';
 import '../../core/theme/watoto_theme.dart';
+import '../../features/curriculum/curriculum_data.dart';
+import '../../features/curriculum/curriculum_models.dart';
 import '../../l10n/gen/app_localizations.dart';
 
-class _SubjectIsland {
-  const _SubjectIsland({
-    required this.label,
-    required this.emoji,
-    required this.color,
-    this.lessonSlug,
-    this.locked = false,
-  });
-
-  final String Function(AppLocalizations) label;
-  final String emoji;
-  final Color color;
-  final String? lessonSlug;
-  final bool locked;
-}
-
-final _islands = <_SubjectIsland>[
-  _SubjectIsland(
-    label: (l) => l.subjectMath,
-    emoji: '🔢',
-    color: WatotoColors.sky,
-    lessonSlug: 'counting-1-3',
-  ),
-  _SubjectIsland(label: (l) => l.subjectEnglish, emoji: '📚', color: WatotoColors.leaf),
-  _SubjectIsland(label: (l) => l.subjectScience, emoji: '🌱', color: WatotoColors.mango),
-  _SubjectIsland(label: (l) => l.subjectArt, emoji: '🎨', color: WatotoColors.berry, locked: true),
-];
-
+/// Child home — greeting, the child's current curriculum stage (from
+/// curriculum.pptx), the day's playable challenge, the stage's subjects, and
+/// the storybook library.
 class ChildHomeScreen extends ConsumerWidget {
   const ChildHomeScreen({super.key});
 
@@ -44,6 +21,8 @@ class ChildHomeScreen extends ConsumerWidget {
     final child = ref.watch(activeChildProvider);
     final nickname = child?.nickname ?? '';
     final xp = ref.watch(xpProvider);
+    final stage =
+        child == null ? curriculumStages.first : stageForBirthYear(child.birthYear);
 
     return Scaffold(
       appBar: AppBar(
@@ -77,12 +56,12 @@ class ChildHomeScreen extends ConsumerWidget {
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
+            _StageBanner(stage: stage, l10n: l10n),
+            const SizedBox(height: 12),
             _DailyChallengeCard(l10n: l10n),
             const SizedBox(height: 16),
-            Text(
-              l10n.subjects,
-              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w800),
-            ),
+            Text(l10n.subjects,
+                style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w800)),
             const SizedBox(height: 8),
             GridView.count(
               crossAxisCount: 2,
@@ -90,7 +69,10 @@ class ChildHomeScreen extends ConsumerWidget {
               physics: const NeverScrollableScrollPhysics(),
               mainAxisSpacing: 12,
               crossAxisSpacing: 12,
-              children: [for (final island in _islands) _IslandCard(island: island)],
+              childAspectRatio: 1.3,
+              children: [
+                for (final topic in stage.topics) _SubjectCard(topic: topic),
+              ],
             ),
             const SizedBox(height: 16),
             _StorybooksCard(l10n: l10n),
@@ -101,35 +83,40 @@ class ChildHomeScreen extends ConsumerWidget {
   }
 }
 
-class _StorybooksCard extends StatelessWidget {
-  const _StorybooksCard({required this.l10n});
+class _StageBanner extends StatelessWidget {
+  const _StageBanner({required this.stage, required this.l10n});
 
+  final CurriculumStage stage;
   final AppLocalizations l10n;
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: WatotoColors.leaf,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(24),
-        onTap: () => context.go('/stories'),
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Row(
-            children: [
-              const Text('📚', style: TextStyle(fontSize: 40)),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Text(
-                  l10n.storybooks,
-                  style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.w800, color: Colors.white),
-                ),
+    return InkWell(
+      borderRadius: BorderRadius.circular(16),
+      onTap: () => context.go('/curriculum'),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: WatotoColors.sky.withValues(alpha: 0.14),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(l10n.stageOf(stage.stage, stage.ageRange),
+                      style: const TextStyle(
+                          fontSize: 12, fontWeight: FontWeight.w700, color: WatotoColors.sky)),
+                  Text(stage.title,
+                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w800)),
+                ],
               ),
-              const Icon(Icons.chevron_right, color: Colors.white),
-            ],
-          ),
+            ),
+            const Icon(Icons.chevron_right, color: WatotoColors.deep),
+          ],
         ),
       ),
     );
@@ -192,46 +179,72 @@ class _DailyChallengeCard extends StatelessWidget {
   }
 }
 
-class _IslandCard extends StatelessWidget {
-  const _IslandCard({required this.island});
+class _SubjectCard extends StatelessWidget {
+  const _SubjectCard({required this.topic});
 
-  final _SubjectIsland island;
+  final CurriculumTopic topic;
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    final enabled = island.lessonSlug != null && !island.locked;
-
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
       clipBehavior: Clip.antiAlias,
       child: InkWell(
-        onTap: enabled ? () => context.go('/lesson/${island.lessonSlug}') : null,
+        onTap: () => context.go('/curriculum'),
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: [island.color.withValues(alpha: 0.25), Colors.white],
+              colors: [WatotoColors.sky.withValues(alpha: 0.18), Colors.white],
             ),
           ),
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(12),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(island.emoji, style: const TextStyle(fontSize: 48)),
+              Text(topic.emoji, style: const TextStyle(fontSize: 40)),
               const SizedBox(height: 8),
               Text(
-                island.label(l10n),
-                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+                topic.name,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w800),
               ),
-              if (island.locked) ...[
-                const SizedBox(height: 4),
-                Tooltip(
-                  message: l10n.premiumLocked,
-                  child: const Icon(Icons.lock_rounded, color: WatotoColors.deep),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _StorybooksCard extends StatelessWidget {
+  const _StorybooksCard({required this.l10n});
+
+  final AppLocalizations l10n;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: WatotoColors.leaf,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(24),
+        onTap: () => context.go('/stories'),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Row(
+            children: [
+              const Text('📚', style: TextStyle(fontSize: 40)),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+                  l10n.storybooks,
+                  style: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.w800, color: Colors.white),
                 ),
-              ],
+              ),
+              const Icon(Icons.chevron_right, color: Colors.white),
             ],
           ),
         ),

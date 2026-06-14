@@ -209,4 +209,15 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get readAgain => 'Soma tena';
+
+  @override
+  String get curriculum => 'Mtaala';
+
+  @override
+  String get forGrownups => 'Kwa watu wazima';
+
+  @override
+  String stageOf(int stage, String ages) {
+    return 'Hatua $stage · Umri $ages';
+  }
 }

@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../core/offline/offline_providers.dart';
 import '../features/child_home/child_home_screen.dart';
+import '../features/curriculum/curriculum_screen.dart';
 import '../features/lesson_player/lesson_player_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
 import '../features/parent/parent_dashboard_screen.dart';
@@ -64,6 +65,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         path: '/quiz/:slug',
         builder: (c, s) => QuizRunnerScreen(slug: s.pathParameters['slug']!),
       ),
+      GoRoute(path: '/curriculum', builder: (c, s) => const CurriculumScreen()),
       GoRoute(path: '/stories', builder: (c, s) => const StoryLibraryScreen()),
       GoRoute(
         path: '/story/:slug',

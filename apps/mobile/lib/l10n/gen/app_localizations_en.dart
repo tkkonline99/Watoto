@@ -209,4 +209,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get readAgain => 'Read again';
+
+  @override
+  String get curriculum => 'Curriculum';
+
+  @override
+  String get forGrownups => 'For grown-ups';
+
+  @override
+  String stageOf(int stage, String ages) {
+    return 'Stage $stage · Ages $ages';
+  }
 }
