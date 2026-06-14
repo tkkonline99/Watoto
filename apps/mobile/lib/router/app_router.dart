@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../core/offline/offline_providers.dart';
 import '../features/child_home/child_home_screen.dart';
 import '../features/curriculum/curriculum_screen.dart';
+import '../features/curriculum/subject_detail_screen.dart';
 import '../features/lesson_player/lesson_player_screen.dart';
 import '../features/library/library_play_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
@@ -14,7 +15,6 @@ import '../features/profiles/add_child_screen.dart';
 import '../features/profiles/profile_picker_screen.dart';
 import '../features/quiz/quiz_runner_screen.dart';
 import '../features/stories/story_library_screen.dart';
-import '../features/stories/story_reader_screen.dart';
 
 /// Router is provided (not a global) so each app instance — and each widget
 /// test — gets fresh navigation state. Guards enforce the deployment-required
@@ -68,14 +68,17 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(path: '/curriculum', builder: (c, s) => const CurriculumScreen()),
       GoRoute(
+        path: '/subject/:stage/:name',
+        builder: (c, s) => SubjectDetailScreen(
+          stage: int.tryParse(s.pathParameters['stage'] ?? '') ?? 1,
+          subject: Uri.decodeComponent(s.pathParameters['name'] ?? ''),
+        ),
+      ),
+      GoRoute(
         path: '/play/:id',
         builder: (c, s) => LibraryPlayScreen(id: s.pathParameters['id']!),
       ),
       GoRoute(path: '/stories', builder: (c, s) => const StoryLibraryScreen()),
-      GoRoute(
-        path: '/story/:slug',
-        builder: (c, s) => StoryReaderScreen(slug: s.pathParameters['slug']!),
-      ),
     ],
   );
 });

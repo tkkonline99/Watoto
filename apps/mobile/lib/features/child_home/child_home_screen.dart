@@ -66,15 +66,15 @@ class ChildHomeScreen extends ConsumerWidget {
                 style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w800)),
             const SizedBox(height: 8),
             GridView.count(
-              crossAxisCount: 2,
+              crossAxisCount: 3,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              mainAxisSpacing: 12,
-              crossAxisSpacing: 12,
-              childAspectRatio: 1.3,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+              childAspectRatio: 0.95,
               children: [
                 for (final topic in stage.topics)
-                  _SubjectCard(emoji: topic.emoji, label: localizedSubject(topic.name, lang)),
+                  _SubjectCard(topic: topic, lang: lang, stage: stage.stage),
               ],
             ),
             const SizedBox(height: 16),
@@ -183,18 +183,21 @@ class _DailyChallengeCard extends StatelessWidget {
 }
 
 class _SubjectCard extends StatelessWidget {
-  const _SubjectCard({required this.emoji, required this.label});
+  const _SubjectCard({required this.topic, required this.lang, required this.stage});
 
-  final String emoji;
-  final String label;
+  final CurriculumTopic topic;
+  final String lang;
+  final int stage;
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
       clipBehavior: Clip.antiAlias,
       child: InkWell(
-        onTap: () => context.go('/curriculum'),
+        // Drill into just this subject for this stage.
+        onTap: () =>
+            context.push('/subject/$stage/${Uri.encodeComponent(topic.name)}'),
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -203,16 +206,18 @@ class _SubjectCard extends StatelessWidget {
               colors: [WatotoColors.sky.withValues(alpha: 0.18), Colors.white],
             ),
           ),
-          padding: const EdgeInsets.all(12),
+          padding: const EdgeInsets.all(8),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(emoji, style: const TextStyle(fontSize: 40)),
-              const SizedBox(height: 8),
+              Text(topic.emoji, style: const TextStyle(fontSize: 30)),
+              const SizedBox(height: 6),
               Text(
-                label,
+                localizedSubject(topic.name, lang),
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w800),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w700),
               ),
             ],
           ),
