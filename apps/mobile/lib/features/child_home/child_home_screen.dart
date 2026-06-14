@@ -7,6 +7,7 @@ import '../../core/state/app_state.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../features/curriculum/curriculum_data.dart';
 import '../../features/curriculum/curriculum_models.dart';
+import '../../features/curriculum/subject_i18n.dart';
 import '../../l10n/gen/app_localizations.dart';
 
 /// Child home — greeting, the child's current curriculum stage (from
@@ -18,6 +19,7 @@ class ChildHomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
+    final lang = ref.watch(localeProvider).languageCode;
     final child = ref.watch(activeChildProvider);
     final nickname = child?.nickname ?? '';
     final xp = ref.watch(xpProvider);
@@ -71,7 +73,8 @@ class ChildHomeScreen extends ConsumerWidget {
               crossAxisSpacing: 12,
               childAspectRatio: 1.3,
               children: [
-                for (final topic in stage.topics) _SubjectCard(topic: topic),
+                for (final topic in stage.topics)
+                  _SubjectCard(emoji: topic.emoji, label: localizedSubject(topic.name, lang)),
               ],
             ),
             const SizedBox(height: 16),
@@ -180,9 +183,10 @@ class _DailyChallengeCard extends StatelessWidget {
 }
 
 class _SubjectCard extends StatelessWidget {
-  const _SubjectCard({required this.topic});
+  const _SubjectCard({required this.emoji, required this.label});
 
-  final CurriculumTopic topic;
+  final String emoji;
+  final String label;
 
   @override
   Widget build(BuildContext context) {
@@ -203,10 +207,10 @@ class _SubjectCard extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(topic.emoji, style: const TextStyle(fontSize: 40)),
+              Text(emoji, style: const TextStyle(fontSize: 40)),
               const SizedBox(height: 8),
               Text(
-                topic.name,
+                label,
                 textAlign: TextAlign.center,
                 style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w800),
               ),

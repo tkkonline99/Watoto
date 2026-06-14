@@ -3,8 +3,12 @@ import { z } from 'zod';
 import { AuthedRequest, JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { ProgressService } from './progress.service';
 
+// Content ids are slugs from the content library (e.g. s08.math.lesson.01),
+// not UUIDs — so they validate as non-empty strings. clientOpId stays a UUID.
+const contentId = z.string().min(1).max(80);
+
 const progressSchema = z.object({
-  lessonId: z.string().uuid(),
+  lessonId: contentId,
   status: z.enum(['not_started', 'in_progress', 'completed', 'mastered']),
   scorePct: z.number().int().min(0).max(100).optional(),
   timeSpentS: z.number().int().min(0).default(0),
@@ -12,13 +16,13 @@ const progressSchema = z.object({
 });
 
 const quizAttemptSchema = z.object({
-  quizId: z.string().uuid(),
+  quizId: contentId,
   durationS: z.number().int().min(0).default(0),
   clientOpId: z.string().uuid(),
   answers: z
     .array(
       z.object({
-        questionId: z.string().uuid(),
+        questionId: contentId,
         selectedIndex: z.number().int().min(0),
       }),
     )

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../features/lesson_player/lesson_models.dart';
+import '../../features/library/library_models.dart';
 import '../../features/onboarding/consent.dart';
 import '../../features/profiles/child_profile.dart';
 import '../../features/quiz/quiz_models.dart';
@@ -205,6 +206,56 @@ class LearningService {
       childId: childId,
       storyId: story.id,
       xpEarned: story.xp,
+    );
+    _afterWrite(store, childId);
+  }
+
+  // --- Playable content library (content/watoto_content_library.json) ---
+
+  Future<void> completeLibraryLesson(LibraryItem item, {required int timeSpentS}) async {
+    final childId = _ref.read(sessionProvider).activeChildId;
+    if (childId == null) return;
+    final store = _ref.read(offlineStoreProvider);
+    await store.recordLessonCompleted(
+      childId: childId,
+      lessonId: item.id,
+      scorePct: 100,
+      timeSpentS: timeSpentS,
+      xpEarned: item.xp,
+    );
+    _afterWrite(store, childId);
+  }
+
+  Future<void> completeLibraryQuiz(
+    LibraryItem item, {
+    required int scorePct,
+    required bool passed,
+    required List<Map<String, dynamic>> answers,
+    required int durationS,
+  }) async {
+    final childId = _ref.read(sessionProvider).activeChildId;
+    if (childId == null) return;
+    final store = _ref.read(offlineStoreProvider);
+    await store.recordQuizAttempt(
+      childId: childId,
+      quizId: item.id,
+      scorePct: scorePct,
+      passed: passed,
+      answers: answers,
+      durationS: durationS,
+      xpEarned: passed ? item.xp : 0,
+    );
+    _afterWrite(store, childId);
+  }
+
+  Future<void> completeLibraryStory(LibraryItem item) async {
+    final childId = _ref.read(sessionProvider).activeChildId;
+    if (childId == null) return;
+    final store = _ref.read(offlineStoreProvider);
+    await store.recordStoryRead(
+      childId: childId,
+      storyId: item.id,
+      xpEarned: item.xp,
     );
     _afterWrite(store, childId);
   }

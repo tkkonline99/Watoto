@@ -14,20 +14,23 @@ export const syncOpSchema = z.object({
 export type SyncOpInput = z.infer<typeof syncOpSchema>;
 export type SyncOpResult = 'applied' | 'duplicate' | 'conflict_server_won' | 'rejected';
 
+// Content ids are content-library slugs (e.g. s08.math.lesson.01), not UUIDs.
+const contentId = z.string().min(1).max(80);
+
 const progressPayloadSchema = z.object({
-  lessonId: z.string().uuid(),
+  lessonId: contentId,
   status: z.enum(['not_started', 'in_progress', 'completed', 'mastered']),
   scorePct: z.number().int().min(0).max(100).optional(),
   timeSpentS: z.number().int().min(0).default(0),
 });
 
 const quizPayloadSchema = z.object({
-  quizId: z.string().uuid(),
+  quizId: contentId,
   durationS: z.number().int().min(0).default(0),
   answers: z
     .array(
       z.object({
-        questionId: z.string().uuid(),
+        questionId: contentId,
         selectedIndex: z.number().int().min(0),
       }),
     )
@@ -37,7 +40,7 @@ const quizPayloadSchema = z.object({
 });
 
 const storyPayloadSchema = z.object({
-  storyId: z.string().uuid(),
+  storyId: contentId,
 });
 
 @Injectable()

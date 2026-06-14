@@ -3,13 +3,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/offline/offline_providers.dart';
+import '../../core/state/app_state.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
+import '../library/library_models.dart';
+import '../library/library_repository.dart';
 import 'curriculum_data.dart';
 import 'curriculum_models.dart';
+import 'subject_i18n.dart';
 
-/// Browsable view of the full 10-stage curriculum (curriculum.pptx). Defaults
-/// to the active child's stage; the grown-up can scan any stage.
+/// Browsable view of the full 10-stage curriculum (curriculum.pptx) with the
+/// playable content library wired in per subject. Defaults to the active
+/// child's stage; subject names follow the chosen language.
 class CurriculumScreen extends ConsumerStatefulWidget {
   const CurriculumScreen({super.key});
 
@@ -23,7 +28,9 @@ class _CurriculumScreenState extends ConsumerState<CurriculumScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final lang = ref.watch(localeProvider).languageCode;
     final child = ref.watch(activeChildProvider);
+    final repo = ref.watch(libraryProvider).asData?.value;
     final defaultStage =
         child == null ? 1 : stageForBirthYear(child.birthYear).stage;
     final selected = _selectedStage ?? defaultStage;
@@ -55,7 +62,12 @@ class _CurriculumScreenState extends ConsumerState<CurriculumScreen> {
                   const SizedBox(height: 12),
                   _DesignTip(text: stage.designTip, label: l10n.forGrownups),
                   const SizedBox(height: 16),
-                  for (final topic in stage.topics) _TopicCard(topic: topic),
+                  for (final topic in stage.topics)
+                    _TopicCard(
+                      topic: topic,
+                      lang: lang,
+                      items: repo?.forStageSubject(stage.stage, topic.name) ?? const [],
+                    ),
                 ],
               ),
             ),
@@ -170,9 +182,17 @@ class _DesignTip extends StatelessWidget {
 }
 
 class _TopicCard extends StatelessWidget {
-  const _TopicCard({required this.topic});
+  const _TopicCard({required this.topic, required this.lang, required this.items});
 
   final CurriculumTopic topic;
+  final String lang;
+  final List<LibraryItem> items;
+
+  static const _typeEmoji = {
+    LibraryType.lesson: '📘',
+    LibraryType.quiz: '❓',
+    LibraryType.story: '📖',
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -187,10 +207,38 @@ class _TopicCard extends StatelessWidget {
               Text(topic.emoji, style: const TextStyle(fontSize: 28)),
               const SizedBox(width: 10),
               Expanded(
-                child: Text(topic.name,
+                child: Text(localizedSubject(topic.name, lang),
                     style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800)),
               ),
             ]),
+            // Playable items from the content library, if any exist yet.
+            if (items.isNotEmpty) ...[
+              const SizedBox(height: 10),
+              for (final item in items)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 3),
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(12),
+                    onTap: () => context.push('/play/${item.id}'),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                      decoration: BoxDecoration(
+                        color: WatotoColors.sun.withValues(alpha: 0.16),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Row(children: [
+                        Text(_typeEmoji[item.type] ?? '⭐'),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Text(item.title,
+                              style: const TextStyle(fontWeight: FontWeight.w700)),
+                        ),
+                        const Icon(Icons.play_circle_fill, color: WatotoColors.mango),
+                      ]),
+                    ),
+                  ),
+                ),
+            ],
             const SizedBox(height: 8),
             for (final activity in topic.activities)
               Padding(
