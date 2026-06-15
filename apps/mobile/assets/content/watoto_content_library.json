@@ -2,8 +2,8 @@
   "_meta": {
     "app": "Watoto",
     "title": "Watoto Playable Content Library",
-    "version": "0.2.0",
-    "generated": "2026-06-14",
+    "version": "0.3.0",
+    "generated": "2026-06-15",
     "sourceCurriculum": "curriculum.pptx (10 stages, Birth-Age 10)",
     "contentTypes": [
       "lesson",
@@ -4605,6 +4605,692 @@
           "answer": 0,
           "correctFeedback": "Right — joining text gives '23'!",
           "retryFeedback": "Quotes make it text, so it joins — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s01.sensory.lesson.04",
+      "stage": 1,
+      "ages": "0-1",
+      "subject": "Sensory Exploration",
+      "type": "lesson",
+      "title": "Light and Shadow",
+      "objective": "Notice light appearing and disappearing.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Try real shadow puppets on a wall together afterward.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s01/lamp.png",
+          "desc": "Soft lamp"
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/shadow_bunny.png",
+          "desc": "Bunny shadow"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Tap to turn on the soft light.",
+          "action": "tap",
+          "feedback": "A warm glow fills the screen."
+        },
+        {
+          "narration": "Tap again — the bunny's shadow waves!",
+          "action": "tap",
+          "feedback": "A gentle shadow puppet appears."
+        }
+      ]
+    },
+    {
+      "id": "s01.sensory.lesson.05",
+      "stage": 1,
+      "ages": "0-1",
+      "subject": "Sensory Exploration",
+      "type": "lesson",
+      "title": "Color Glow",
+      "objective": "Explore soft color and touch.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "press",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s01/color_glow.png",
+          "desc": "Soft color gradient"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Press the screen to fill it with soft color.",
+          "action": "press",
+          "feedback": "A calm color blooms outward."
+        },
+        {
+          "narration": "Press a new spot for a new color.",
+          "action": "press",
+          "feedback": "Gentle colors blend where you touch."
+        }
+      ]
+    },
+    {
+      "id": "s01.sensory.lesson.06",
+      "stage": 1,
+      "ages": "0-1",
+      "subject": "Sensory Exploration",
+      "type": "lesson",
+      "title": "Crinkle and Crunch",
+      "objective": "Link touch to a playful sound.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "press",
+      "parentNote": "Offer a real crinkle toy alongside the screen.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s01/leaf.png",
+          "desc": "Crinkly leaf"
+        },
+        {
+          "type": "audio",
+          "ref": "audio/s01/crinkle.mp3",
+          "desc": "Crinkle sound"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Press the crinkly leaf.",
+          "action": "press",
+          "feedback": "Crinkle-crinkle, like a fun toy."
+        },
+        {
+          "narration": "Press the bubbly wrap.",
+          "action": "press",
+          "feedback": "Pop-pop-pop, soft and silly."
+        }
+      ]
+    },
+    {
+      "id": "s01.sensory.quiz.01",
+      "stage": 1,
+      "ages": "0-1",
+      "subject": "Sensory Exploration",
+      "type": "quiz",
+      "title": "Find the Bright One",
+      "objective": "Look toward the brighter of two lights.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Point to the bright light and say 'bright!' together.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Tap the one that is glowing brightly.",
+          "options": [
+            {
+              "label": "Bright star",
+              "asset": "img/s01/star_bright.png"
+            },
+            {
+              "label": "Dim star",
+              "asset": "img/s01/star_dim.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "You found the bright one! ✨",
+          "retryFeedback": "Look for the glow — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s01.sensory.quiz.02",
+      "stage": 1,
+      "ages": "0-1",
+      "subject": "Sensory Exploration",
+      "type": "quiz",
+      "title": "Which One Wiggled?",
+      "objective": "Notice and tap the thing that moved.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "One shape wiggled. Tap the one that moved!",
+          "options": [
+            {
+              "label": "Wiggly fish",
+              "asset": "img/s01/fish.png"
+            },
+            {
+              "label": "Still rock",
+              "asset": "img/s01/rock.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — the fish wiggled!",
+          "retryFeedback": "Watch closely — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s01.sensory.story.01",
+      "stage": 1,
+      "ages": "0-1",
+      "subject": "Sensory Exploration",
+      "type": "story",
+      "title": "A Day of Sounds",
+      "objective": "Enjoy a gentle tour of everyday sounds.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "listen",
+      "parentNote": "Make each sound softly with your own voice as you go.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "audio",
+          "ref": "audio/s01/day_sounds.mp3",
+          "desc": "Gentle narrator with soft sounds"
+        }
+      ],
+      "pages": [
+        {
+          "narration": "Good morning! The birds say tweet-tweet.",
+          "illustration": "img/s01/morning_bird.png",
+          "interaction": null
+        },
+        {
+          "narration": "Splish-splash — it is bath time!",
+          "illustration": "img/s01/bath_splash.png",
+          "interaction": null
+        },
+        {
+          "narration": "Shhh, the night is quiet. Sweet dreams.",
+          "illustration": "img/s01/night_quiet.png",
+          "interaction": null
+        }
+      ]
+    },
+    {
+      "id": "s01.cause.lesson.04",
+      "stage": 1,
+      "ages": "0-1",
+      "subject": "Cause & Effect",
+      "type": "lesson",
+      "title": "Roll the Ball",
+      "objective": "Move something and watch what happens.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "swipe",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s01/ball_bell.png",
+          "desc": "Ball and bell"
+        },
+        {
+          "type": "audio",
+          "ref": "audio/s01/ding.mp3",
+          "desc": "Bell ding"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Swipe to roll the ball.",
+          "action": "swipe",
+          "feedback": "It rolls and goes 'ding' on the bell."
+        },
+        {
+          "narration": "Roll it the other way.",
+          "action": "swipe",
+          "feedback": "Ding-ding! You made the sound."
+        }
+      ]
+    },
+    {
+      "id": "s01.cause.lesson.05",
+      "stage": 1,
+      "ages": "0-1",
+      "subject": "Cause & Effect",
+      "type": "lesson",
+      "title": "Twinkle Lights",
+      "objective": "Tap to turn lights on.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s01/string_lights.png",
+          "desc": "String of lights"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Tap a light to turn it on.",
+          "action": "tap",
+          "feedback": "It twinkles to life."
+        },
+        {
+          "narration": "Tap them all!",
+          "action": "tap",
+          "feedback": "A string of lights glows."
+        }
+      ]
+    },
+    {
+      "id": "s01.cause.lesson.06",
+      "stage": 1,
+      "ages": "0-1",
+      "subject": "Cause & Effect",
+      "type": "lesson",
+      "title": "Big Drum",
+      "objective": "Tap to make a big sound.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Pat a real pot or drum together to feel the beat.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s01/big_drum.png",
+          "desc": "Big drum"
+        },
+        {
+          "type": "audio",
+          "ref": "audio/s01/boom.mp3",
+          "desc": "Drum boom"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Tap the big drum.",
+          "action": "tap",
+          "feedback": "BOOM! A deep, happy beat."
+        },
+        {
+          "narration": "Tap softly.",
+          "action": "tap",
+          "feedback": "A quiet tap-tap. You choose!"
+        }
+      ]
+    },
+    {
+      "id": "s01.cause.quiz.01",
+      "stage": 1,
+      "ages": "0-1",
+      "subject": "Cause & Effect",
+      "type": "quiz",
+      "title": "Wake the Puppy",
+      "objective": "Tap to cause a friendly reaction.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "The puppy is sleeping. Tap the puppy to say good morning!",
+          "options": [
+            {
+              "label": "Sleeping puppy",
+              "asset": "img/s01/puppy_sleep.png"
+            },
+            {
+              "label": "Empty bed",
+              "asset": "img/s01/empty_bed.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Woof! The puppy woke up happy. 🐶",
+          "retryFeedback": "Tap the puppy — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s01.cause.quiz.02",
+      "stage": 1,
+      "ages": "0-1",
+      "subject": "Cause & Effect",
+      "type": "quiz",
+      "title": "Which Makes Music?",
+      "objective": "Find the button that does something.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Tap the button that plays music.",
+          "options": [
+            {
+              "label": "Music button",
+              "asset": "img/s01/btn_music.png"
+            },
+            {
+              "label": "Quiet button",
+              "asset": "img/s01/btn_quiet.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "La-la-la! You found the music. 🎵",
+          "retryFeedback": "Try the other one!"
+        }
+      ]
+    },
+    {
+      "id": "s01.cause.story.01",
+      "stage": 1,
+      "ages": "0-1",
+      "subject": "Cause & Effect",
+      "type": "story",
+      "title": "Press and See!",
+      "objective": "Make something happen on every page.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap-to-turn",
+      "parentNote": "Cheer 'you did it!' each time something happens.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "audio",
+          "ref": "audio/s01/press_see.mp3",
+          "desc": "Warm narrator"
+        }
+      ],
+      "pages": [
+        {
+          "narration": "Tap the seed... a flower grows!",
+          "illustration": "img/s01/seed_flower.png",
+          "interaction": "tap-to-grow"
+        },
+        {
+          "narration": "Tap the sky... the sun comes up!",
+          "illustration": "img/s01/sky_sun.png",
+          "interaction": "tap-to-rise"
+        },
+        {
+          "narration": "Tap the cloud... soft rain falls. The end!",
+          "illustration": "img/s01/cloud_rain.png",
+          "interaction": "tap-to-rain"
+        }
+      ]
+    },
+    {
+      "id": "s01.object.lesson.02",
+      "stage": 1,
+      "ages": "0-1",
+      "subject": "Object Permanence",
+      "type": "lesson",
+      "title": "Under the Box",
+      "objective": "A toy still exists when hidden.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap-reveal",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s01/box_car.png",
+          "desc": "Box covering a toy car"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "The car drives under the box. Where is it?",
+          "action": "watch",
+          "feedback": "The box gently covers the car."
+        },
+        {
+          "narration": "Tap the box to lift it.",
+          "action": "tap",
+          "feedback": "There it is! Vroom-vroom."
+        }
+      ]
+    },
+    {
+      "id": "s01.object.lesson.03",
+      "stage": 1,
+      "ages": "0-1",
+      "subject": "Object Permanence",
+      "type": "lesson",
+      "title": "Behind the Door",
+      "objective": "Find who is hiding behind a door.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap-reveal",
+      "parentNote": "Play knock-knock on real doors together.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s01/door.png",
+          "desc": "Small door"
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/kitten.png",
+          "desc": "Kitten"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Knock-knock! Tap the little door.",
+          "action": "tap",
+          "feedback": "It swings open..."
+        },
+        {
+          "narration": "Peek inside!",
+          "action": "tap",
+          "feedback": "A friendly kitten says hello!"
+        }
+      ]
+    },
+    {
+      "id": "s01.object.lesson.04",
+      "stage": 1,
+      "ages": "0-1",
+      "subject": "Object Permanence",
+      "type": "lesson",
+      "title": "In the Pocket",
+      "objective": "An object hidden in a pocket is still there.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap-reveal",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s01/pocket_ball.png",
+          "desc": "Pocket with a ball"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "The ball drops into the pocket.",
+          "action": "watch",
+          "feedback": "Plop! It disappears inside."
+        },
+        {
+          "narration": "Tap the pocket to find it.",
+          "action": "tap",
+          "feedback": "Found it! The ball is back."
+        }
+      ]
+    },
+    {
+      "id": "s01.object.lesson.05",
+      "stage": 1,
+      "ages": "0-1",
+      "subject": "Object Permanence",
+      "type": "lesson",
+      "title": "Peekaboo Hands",
+      "objective": "Faces come back after hiding.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap-reveal",
+      "parentNote": "Play peekaboo with your hands right along with the screen.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s01/peekaboo_baby.png",
+          "desc": "Baby covering eyes"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "The baby covers her eyes. Where did she go?",
+          "action": "watch",
+          "feedback": "Little hands hide the face."
+        },
+        {
+          "narration": "Tap to say peekaboo!",
+          "action": "tap",
+          "feedback": "Peekaboo! A big happy smile."
+        }
+      ]
+    },
+    {
+      "id": "s01.object.lesson.06",
+      "stage": 1,
+      "ages": "0-1",
+      "subject": "Object Permanence",
+      "type": "lesson",
+      "title": "Through the Tunnel",
+      "objective": "An object that goes out of sight reappears.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "watch",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s01/tunnel_train.png",
+          "desc": "Train entering a tunnel"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "The train goes into the tunnel...",
+          "action": "watch",
+          "feedback": "It disappears inside."
+        },
+        {
+          "narration": "Here it comes out the other side!",
+          "action": "tap",
+          "feedback": "Choo-choo! There it is."
+        }
+      ]
+    },
+    {
+      "id": "s01.object.quiz.02",
+      "stage": 1,
+      "ages": "0-1",
+      "subject": "Object Permanence",
+      "type": "quiz",
+      "title": "Where Is the Duck?",
+      "objective": "Find a hidden object behind two choices.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "The duck hid behind a bush. Tap the bush it is behind.",
+          "options": [
+            {
+              "label": "Left bush",
+              "asset": "img/s01/bush_left.png"
+            },
+            {
+              "label": "Right bush",
+              "asset": "img/s01/bush_right.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Quack! You found the duck. 🦆",
+          "retryFeedback": "Peek behind the other one — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s01.object.story.01",
+      "stage": 1,
+      "ages": "0-1",
+      "subject": "Object Permanence",
+      "type": "story",
+      "title": "Peekaboo, Little Bird!",
+      "objective": "A gentle hide-and-reappear bedtime story.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap-to-turn",
+      "parentNote": "A cozy wind-down story; pause and ask 'where is Bird?' on each page.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "audio",
+          "ref": "audio/s01/peekaboo_bird.mp3",
+          "desc": "Soft bedtime narrator"
+        }
+      ],
+      "pages": [
+        {
+          "narration": "Little Bird hides behind a leaf. Where is Bird?",
+          "illustration": "img/s01/bird_leaf.png",
+          "interaction": "tap-to-find"
+        },
+        {
+          "narration": "Peekaboo! There is Bird, singing softly.",
+          "illustration": "img/s01/bird_peek.png",
+          "interaction": "tap-to-turn"
+        },
+        {
+          "narration": "Now Bird tucks into the nest. Goodnight, Bird!",
+          "illustration": "img/s01/bird_nest.png",
+          "interaction": null
         }
       ]
     }
