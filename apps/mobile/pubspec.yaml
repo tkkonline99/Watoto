@@ -33,3 +33,4 @@ flutter:
   generate: true
   assets:
     - assets/content/
+    - assets/i18n/

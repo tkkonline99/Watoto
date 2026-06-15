@@ -2,7 +2,7 @@
   "_meta": {
     "app": "Watoto",
     "title": "Watoto Playable Content Library",
-    "version": "0.1.0-seed",
+    "version": "0.2.0",
     "generated": "2026-06-14",
     "sourceCurriculum": "curriculum.pptx (10 stages, Birth-Age 10)",
     "contentTypes": [
@@ -1920,6 +1920,2691 @@
           "narration": "Reflect: Why do you think the author tells us about the grandfather's saying? Tap to share your idea.",
           "illustration": "img/s10/bridge_done.png",
           "interaction": "open-response"
+        }
+      ]
+    },
+    {
+      "id": "s01.sensory.lesson.03",
+      "stage": 1,
+      "ages": "0-1",
+      "subject": "Sensory Exploration",
+      "type": "lesson",
+      "title": "Nature Sounds",
+      "objective": "Tap to hear gentle real-world sounds.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Name each sound aloud as your baby taps.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s01/rattle.png",
+          "desc": "Baby rattle"
+        },
+        {
+          "type": "audio",
+          "ref": "audio/s01/rattle.mp3",
+          "desc": "Rattle"
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/bell.png",
+          "desc": "Small bell"
+        },
+        {
+          "type": "audio",
+          "ref": "audio/s01/bird.mp3",
+          "desc": "Birdsong"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Tap the rattle.",
+          "action": "tap",
+          "feedback": "Soft shake-shake sound."
+        },
+        {
+          "narration": "Tap the little bell.",
+          "action": "tap",
+          "feedback": "Ting! A gentle chime."
+        },
+        {
+          "narration": "Tap the bird.",
+          "action": "tap",
+          "feedback": "Tweet-tweet, a calm birdsong."
+        }
+      ]
+    },
+    {
+      "id": "s01.cause.lesson.03",
+      "stage": 1,
+      "ages": "0-1",
+      "subject": "Cause & Effect",
+      "type": "lesson",
+      "title": "Shake for a Sound",
+      "objective": "Move the device to make something happen.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "shake",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s01/maracas.png",
+          "desc": "Colorful maracas"
+        },
+        {
+          "type": "audio",
+          "ref": "audio/s01/shaker.mp3",
+          "desc": "Shaker"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Shake the device gently.",
+          "action": "shake",
+          "feedback": "Maracas rattle and shapes wiggle."
+        },
+        {
+          "narration": "Shake again — softer this time.",
+          "action": "shake",
+          "feedback": "A quieter shake. You control it!"
+        }
+      ]
+    },
+    {
+      "id": "s01.lang.lesson.02",
+      "stage": 1,
+      "ages": "0-1",
+      "subject": "Early Language",
+      "type": "lesson",
+      "title": "Animal Names",
+      "objective": "Hear first animal words.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s01/puppy.png",
+          "desc": "Dog"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/cat.png",
+          "desc": "Cat"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Tap the dog.",
+          "action": "tap",
+          "feedback": "'Dog! Woof.'"
+        },
+        {
+          "narration": "Tap the cat.",
+          "action": "tap",
+          "feedback": "'Cat! Meow.'"
+        }
+      ]
+    },
+    {
+      "id": "s01.motor.lesson.02",
+      "stage": 1,
+      "ages": "0-1",
+      "subject": "Motor Imitation",
+      "type": "lesson",
+      "title": "Wave Bye-Bye",
+      "objective": "Imitate waving.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap-wave",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s01/bear_wave.png",
+          "desc": "Bear waving"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "The bear waves bye-bye. Wave back!",
+          "action": "wave",
+          "feedback": "Bear giggles and waves."
+        },
+        {
+          "narration": "Tap to wave together.",
+          "action": "tap-wave",
+          "feedback": "'Bye-bye!' said cheerfully."
+        }
+      ]
+    },
+    {
+      "id": "s02.body.lesson.02",
+      "stage": 2,
+      "ages": "1-2",
+      "subject": "Body Parts",
+      "type": "lesson",
+      "title": "Head, Shoulders, Knees",
+      "objective": "Locate body parts through song.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap-along",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "audio",
+          "ref": "audio/s02/hsk_song.mp3",
+          "desc": "Head-shoulders-knees song"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Touch the head when the song says 'head'.",
+          "action": "tap-along",
+          "feedback": "'Head!'"
+        },
+        {
+          "narration": "Now shoulders, knees, and toes!",
+          "action": "tap-along",
+          "feedback": "Giggles as the song speeds up."
+        }
+      ]
+    },
+    {
+      "id": "s02.colors.lesson.02",
+      "stage": 2,
+      "ages": "1-2",
+      "subject": "Colors & Shapes",
+      "type": "lesson",
+      "title": "Circle, Square, Triangle",
+      "objective": "Name three basic shapes.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s02/circle.png",
+          "desc": "Circle"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/square.png",
+          "desc": "Square"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/triangle.png",
+          "desc": "Triangle"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Tap the circle.",
+          "action": "tap",
+          "feedback": "'Circle — round and round!'"
+        },
+        {
+          "narration": "Tap the square.",
+          "action": "tap",
+          "feedback": "'Square!'"
+        },
+        {
+          "narration": "Tap the triangle.",
+          "action": "tap",
+          "feedback": "'Triangle — three sides!'"
+        }
+      ]
+    },
+    {
+      "id": "s02.sorting.quiz.01",
+      "stage": 2,
+      "ages": "1-2",
+      "subject": "Simple Sorting",
+      "type": "quiz",
+      "title": "Sort by Color",
+      "objective": "Match items to the same color.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "drag",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Drag the red sock to the red basket.",
+          "options": [
+            {
+              "label": "Red basket",
+              "asset": "img/s02/basket_red.png"
+            },
+            {
+              "label": "Blue basket",
+              "asset": "img/s02/basket_blue.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Match! Red with red.",
+          "retryFeedback": "Look for the same color — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s02.numbers.quiz.01",
+      "stage": 2,
+      "ages": "1-2",
+      "subject": "First Numbers",
+      "type": "quiz",
+      "title": "How Many?",
+      "objective": "Count a small set.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "How many balls? Tap the right number.",
+          "options": [
+            {
+              "label": "2",
+              "asset": null
+            },
+            {
+              "label": "1",
+              "asset": null
+            },
+            {
+              "label": "3",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — two balls!",
+          "retryFeedback": "Touch each ball as you count — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s03.vocab.lesson.02",
+      "stage": 3,
+      "ages": "2-3",
+      "subject": "Vocabulary",
+      "type": "lesson",
+      "title": "Categories: Food, Clothes, Vehicles",
+      "objective": "Sort words into everyday categories.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "drag",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s03/apple.png",
+          "desc": "Apple"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/hat.png",
+          "desc": "Hat"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/bus.png",
+          "desc": "Bus"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Drag the apple to the FOOD box.",
+          "action": "drag",
+          "feedback": "'Food!'"
+        },
+        {
+          "narration": "Drag the hat to the CLOTHES box.",
+          "action": "drag",
+          "feedback": "'Clothes!'"
+        },
+        {
+          "narration": "Drag the bus to the VEHICLES box.",
+          "action": "drag",
+          "feedback": "'Vehicle! Beep beep.'"
+        }
+      ]
+    },
+    {
+      "id": "s03.counting.quiz.01",
+      "stage": 3,
+      "ages": "2-3",
+      "subject": "Counting & Numbers",
+      "type": "quiz",
+      "title": "Count to 5",
+      "objective": "Match a quantity to its numeral.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Count the stars. Which numeral matches?",
+          "options": [
+            {
+              "label": "5",
+              "asset": null
+            },
+            {
+              "label": "3",
+              "asset": null
+            },
+            {
+              "label": "4",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Five stars! ⭐",
+          "retryFeedback": "Tap each star as you count — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s03.emotions.lesson.01",
+      "stage": 3,
+      "ages": "2-3",
+      "subject": "Emotions",
+      "type": "lesson",
+      "title": "Happy, Sad, Angry",
+      "objective": "Name three basic feelings.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Name feelings out loud during the day to build emotional words.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s03/face_happy.png",
+          "desc": "Happy"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/face_sad.png",
+          "desc": "Sad"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/face_angry.png",
+          "desc": "Angry"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Tap the happy face.",
+          "action": "tap",
+          "feedback": "'Happy! A big smile.'"
+        },
+        {
+          "narration": "Tap the sad face.",
+          "action": "tap",
+          "feedback": "'Sad. It is okay to feel sad.'"
+        },
+        {
+          "narration": "Tap the angry face.",
+          "action": "tap",
+          "feedback": "'Angry. Let us take a deep breath.'"
+        }
+      ]
+    },
+    {
+      "id": "s04.literacy.lesson.01",
+      "stage": 4,
+      "ages": "3-4",
+      "subject": "Language & Literacy",
+      "type": "lesson",
+      "title": "Uppercase Letters & Sounds",
+      "objective": "Connect uppercase letters to their sounds.",
+      "designTier": "encourage-effort",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s04/abc_blocks.png",
+          "desc": "A B C letter blocks"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Tap the letter A.",
+          "action": "tap",
+          "feedback": "'A says /a/, like apple.'"
+        },
+        {
+          "narration": "Tap the letter B.",
+          "action": "tap",
+          "feedback": "'B says /b/, like ball.'"
+        },
+        {
+          "narration": "Tap the letter C.",
+          "action": "tap",
+          "feedback": "'C says /c/, like cat.'"
+        }
+      ]
+    },
+    {
+      "id": "s04.literacy.quiz.01",
+      "stage": 4,
+      "ages": "3-4",
+      "subject": "Language & Literacy",
+      "type": "quiz",
+      "title": "Find the First Letter",
+      "objective": "Recognize the starting letter of a word.",
+      "designTier": "encourage-effort",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "'Ball' begins with which letter?",
+          "options": [
+            {
+              "label": "B",
+              "asset": null
+            },
+            {
+              "label": "D",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — B for ball!",
+          "retryFeedback": "Listen: /b/-all — try again!"
+        },
+        {
+          "prompt": "'Sun' begins with which letter?",
+          "options": [
+            {
+              "label": "S",
+              "asset": null
+            },
+            {
+              "label": "M",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Right — S!",
+          "retryFeedback": "/s/-un — try again, you can do it!"
+        }
+      ]
+    },
+    {
+      "id": "s04.literacy.story.01",
+      "stage": 4,
+      "ages": "3-4",
+      "subject": "Language & Literacy",
+      "type": "story",
+      "title": "The Three Little Pigs",
+      "objective": "Follow a story's beginning, middle, and end.",
+      "designTier": "encourage-effort",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap-to-turn",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "audio",
+          "ref": "audio/s04/pigs_narration.mp3",
+          "desc": "Friendly narrator"
+        }
+      ],
+      "pages": [
+        {
+          "narration": "Three little pigs set off to build their homes. (Beginning)",
+          "illustration": "img/s04/pigs_start.png",
+          "interaction": "tap-to-turn"
+        },
+        {
+          "narration": "One built with straw, one with sticks, one with strong bricks. (Middle)",
+          "illustration": "img/s04/pigs_houses.png",
+          "interaction": "tap-to-turn"
+        },
+        {
+          "narration": "The brick house kept everyone safe and warm. (End) The end!",
+          "illustration": "img/s04/pigs_brick.png",
+          "interaction": null
+        }
+      ]
+    },
+    {
+      "id": "s04.math.lesson.01",
+      "stage": 4,
+      "ages": "3-4",
+      "subject": "Math & Logic",
+      "type": "lesson",
+      "title": "Count to 10",
+      "objective": "Rote count and tag objects 1-10.",
+      "designTier": "encourage-effort",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap-to-count",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s04/balloons10.png",
+          "desc": "Ten balloons"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Tap each balloon to count them.",
+          "action": "tap-to-count",
+          "feedback": "'One... two... up to ten!'"
+        },
+        {
+          "narration": "How many balloons in all?",
+          "action": "tap",
+          "feedback": "'Ten balloons!'"
+        }
+      ]
+    },
+    {
+      "id": "s04.math.quiz.01",
+      "stage": 4,
+      "ages": "3-4",
+      "subject": "Math & Logic",
+      "type": "quiz",
+      "title": "Longer or Shorter?",
+      "objective": "Compare lengths.",
+      "designTier": "encourage-effort",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Which snake is LONGER?",
+          "options": [
+            {
+              "label": "Long snake",
+              "asset": "img/s04/snake_long.png"
+            },
+            {
+              "label": "Short snake",
+              "asset": "img/s04/snake_short.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — that one is longer!",
+          "retryFeedback": "Look end to end — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s04.science.lesson.01",
+      "stage": 4,
+      "ages": "3-4",
+      "subject": "Science & Nature",
+      "type": "lesson",
+      "title": "The Five Senses",
+      "objective": "Learn the five senses and what they do.",
+      "designTier": "encourage-effort",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s04/senses.png",
+          "desc": "Eyes, ears, nose, hand, mouth"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Tap the eyes — what do we do?",
+          "action": "tap",
+          "feedback": "'We SEE with our eyes!'"
+        },
+        {
+          "narration": "Tap the ears.",
+          "action": "tap",
+          "feedback": "'We HEAR with our ears!'"
+        },
+        {
+          "narration": "Tap the nose.",
+          "action": "tap",
+          "feedback": "'We SMELL with our nose!'"
+        }
+      ]
+    },
+    {
+      "id": "s04.science.quiz.01",
+      "stage": 4,
+      "ages": "3-4",
+      "subject": "Science & Nature",
+      "type": "quiz",
+      "title": "Where Do I Live?",
+      "objective": "Match an animal to its habitat.",
+      "designTier": "encourage-effort",
+      "reading": false,
+      "timed": false,
+      "interaction": "drag",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Where does the polar bear live?",
+          "options": [
+            {
+              "label": "Arctic ice",
+              "asset": "img/s04/arctic.png"
+            },
+            {
+              "label": "Hot desert",
+              "asset": "img/s04/desert.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — the cold Arctic!",
+          "retryFeedback": "A polar bear likes the cold — try again!"
+        },
+        {
+          "prompt": "Where does the fish live?",
+          "options": [
+            {
+              "label": "Ocean",
+              "asset": "img/s04/ocean.png"
+            },
+            {
+              "label": "Treetop",
+              "asset": "img/s04/tree.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Right — the ocean!",
+          "retryFeedback": "Fish need water — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s04.social.lesson.01",
+      "stage": 4,
+      "ages": "3-4",
+      "subject": "Social Studies",
+      "type": "lesson",
+      "title": "Community Helpers",
+      "objective": "Meet people who help in the community.",
+      "designTier": "encourage-effort",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s04/helpers.png",
+          "desc": "Doctor, firefighter, teacher"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Tap the doctor.",
+          "action": "tap",
+          "feedback": "'A doctor helps us feel better.'"
+        },
+        {
+          "narration": "Tap the firefighter.",
+          "action": "tap",
+          "feedback": "'A firefighter keeps us safe.'"
+        },
+        {
+          "narration": "Tap the teacher.",
+          "action": "tap",
+          "feedback": "'A teacher helps us learn!'"
+        }
+      ]
+    },
+    {
+      "id": "s04.social.quiz.01",
+      "stage": 4,
+      "ages": "3-4",
+      "subject": "Social Studies",
+      "type": "quiz",
+      "title": "Who Helps?",
+      "objective": "Match a helper to their job.",
+      "designTier": "encourage-effort",
+      "reading": false,
+      "timed": false,
+      "interaction": "drag",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Who puts out fires?",
+          "options": [
+            {
+              "label": "Firefighter",
+              "asset": "img/s04/firefighter.png"
+            },
+            {
+              "label": "Baker",
+              "asset": "img/s04/baker.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — the firefighter!",
+          "retryFeedback": "Who uses a hose? Try again!"
+        }
+      ]
+    },
+    {
+      "id": "s04.arts.lesson.01",
+      "stage": 4,
+      "ages": "3-4",
+      "subject": "Creative Arts",
+      "type": "lesson",
+      "title": "Color Mixing",
+      "objective": "Discover what two colors make together.",
+      "designTier": "encourage-effort",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap-mix",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s04/paint_pots.png",
+          "desc": "Pots of red, blue, yellow paint"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Mix RED and BLUE. Tap to pour them together.",
+          "action": "tap-mix",
+          "feedback": "Swirl... 'Purple!'"
+        },
+        {
+          "narration": "Mix YELLOW and BLUE.",
+          "action": "tap-mix",
+          "feedback": "Swirl... 'Green!'"
+        }
+      ]
+    },
+    {
+      "id": "s04.arts.lesson.02",
+      "stage": 4,
+      "ages": "3-4",
+      "subject": "Creative Arts",
+      "type": "lesson",
+      "title": "Finger Paint",
+      "objective": "Free creative expression on screen.",
+      "designTier": "encourage-effort",
+      "reading": false,
+      "timed": false,
+      "interaction": "draw",
+      "parentNote": "There is no right answer here — celebrate the effort and the colors.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s04/canvas.png",
+          "desc": "Blank paint canvas with color palette"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Drag your finger to paint anything you like!",
+          "action": "draw",
+          "feedback": "Colorful strokes follow your finger."
+        },
+        {
+          "narration": "Tap a new color and keep going.",
+          "action": "draw",
+          "feedback": "Your picture grows. Beautiful!"
+        }
+      ]
+    },
+    {
+      "id": "s04.semotional.lesson.01",
+      "stage": 4,
+      "ages": "3-4",
+      "subject": "Social-Emotional",
+      "type": "lesson",
+      "title": "Calm-Down Breathing",
+      "objective": "Practice a simple breathing exercise.",
+      "designTier": "encourage-effort",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap-breathe",
+      "parentNote": "A great tool for big feelings — breathe along together.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s04/breath_balloon.png",
+          "desc": "Balloon that grows and shrinks"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Breathe IN as the balloon grows. Hold...",
+          "action": "tap-breathe",
+          "feedback": "Balloon fills slowly with a soft tone."
+        },
+        {
+          "narration": "Breathe OUT as the balloon shrinks. Aaah.",
+          "action": "tap-breathe",
+          "feedback": "Calm chime. 'You did it. Feel calmer?'"
+        }
+      ]
+    },
+    {
+      "id": "s04.semotional.quiz.01",
+      "stage": 4,
+      "ages": "3-4",
+      "subject": "Social-Emotional",
+      "type": "quiz",
+      "title": "Taking Turns",
+      "objective": "Recognize kind, fair choices.",
+      "designTier": "encourage-effort",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Two friends want the same toy. What is the kind thing to do?",
+          "options": [
+            {
+              "label": "Take turns",
+              "asset": null
+            },
+            {
+              "label": "Grab it",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — taking turns is fair and kind!",
+          "retryFeedback": "How can both friends be happy? Try again!"
+        }
+      ]
+    },
+    {
+      "id": "s05.science.lesson.01",
+      "stage": 5,
+      "ages": "4-5",
+      "subject": "Science",
+      "type": "lesson",
+      "title": "Living vs. Non-Living",
+      "objective": "Sort things into living and non-living.",
+      "designTier": "encourage-effort",
+      "reading": true,
+      "timed": false,
+      "interaction": "drag",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s05/living_sort.png",
+          "desc": "Living vs non-living sort board"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Is a dog living? Drag it to LIVING.",
+          "action": "drag",
+          "feedback": "'Yes! A dog grows, eats, and breathes.'"
+        },
+        {
+          "narration": "Is a rock living? Drag it to NON-LIVING.",
+          "action": "drag",
+          "feedback": "'Right — a rock does not grow or eat.'"
+        }
+      ]
+    },
+    {
+      "id": "s05.science.quiz.01",
+      "stage": 5,
+      "ages": "4-5",
+      "subject": "Science",
+      "type": "quiz",
+      "title": "Sink or Float?",
+      "objective": "Predict whether objects sink or float.",
+      "designTier": "encourage-effort",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Will the cork float or sink?",
+          "options": [
+            {
+              "label": "Float",
+              "asset": null
+            },
+            {
+              "label": "Sink",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "It floats! Cork is light for its size.",
+          "retryFeedback": "Light things often float — try again!"
+        },
+        {
+          "prompt": "Will the metal key float or sink?",
+          "options": [
+            {
+              "label": "Sink",
+              "asset": null
+            },
+            {
+              "label": "Float",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "It sinks — metal is heavy and dense.",
+          "retryFeedback": "Heavy, dense things sink — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s05.social.lesson.01",
+      "stage": 5,
+      "ages": "4-5",
+      "subject": "Social Studies",
+      "type": "lesson",
+      "title": "Land and Water",
+      "objective": "Read a simple map of land and water.",
+      "designTier": "encourage-effort",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s05/simple_map.png",
+          "desc": "Map with land and water"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Tap the blue part. What is it?",
+          "action": "tap",
+          "feedback": "'Water — like an ocean or a lake.'"
+        },
+        {
+          "narration": "Tap the green part.",
+          "action": "tap",
+          "feedback": "'Land — where we walk and build.'"
+        }
+      ]
+    },
+    {
+      "id": "s05.social.quiz.01",
+      "stage": 5,
+      "ages": "4-5",
+      "subject": "Social Studies",
+      "type": "quiz",
+      "title": "Safety Signs",
+      "objective": "Recognize common safety signs.",
+      "designTier": "encourage-effort",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "What does the red STOP sign mean?",
+          "options": [
+            {
+              "label": "Stop",
+              "asset": null
+            },
+            {
+              "label": "Go fast",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — stop and look!",
+          "retryFeedback": "Red usually means stop — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s05.coding.lesson.01",
+      "stage": 5,
+      "ages": "4-5",
+      "subject": "Creativity & Coding",
+      "type": "lesson",
+      "title": "First Commands",
+      "objective": "Use forward and turn commands to move a character.",
+      "designTier": "encourage-effort",
+      "reading": true,
+      "timed": false,
+      "interaction": "drag-blocks",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s05/duck_grid.png",
+          "desc": "Duck on a grid heading to a pond"
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/arrow_blocks.png",
+          "desc": "Forward / turn-left blocks"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Drag a FORWARD arrow so the duck moves one step.",
+          "action": "drag",
+          "feedback": "Duck steps forward. Quack!"
+        },
+        {
+          "narration": "Add TURN LEFT, then FORWARD, and press GO.",
+          "action": "drag-then-run",
+          "feedback": "Duck reaches the pond! You gave it directions."
+        }
+      ]
+    },
+    {
+      "id": "s05.coding.quiz.01",
+      "stage": 5,
+      "ages": "4-5",
+      "subject": "Creativity & Coding",
+      "type": "quiz",
+      "title": "What Comes Next?",
+      "objective": "Read a short command sequence.",
+      "designTier": "encourage-effort",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Forward, Forward, ... to reach the star, what is next?",
+          "options": [
+            {
+              "label": "Forward",
+              "asset": null
+            },
+            {
+              "label": "Backward",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — one more forward!",
+          "retryFeedback": "Trace the path to the star — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s06.science.lesson.01",
+      "stage": 6,
+      "ages": "5-6",
+      "subject": "Science",
+      "type": "lesson",
+      "title": "Solid, Liquid, Gas",
+      "objective": "Identify the three states of matter.",
+      "designTier": "gamify-gently",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s06/states_matter.png",
+          "desc": "Ice, water, steam"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Ice is hard. What state is it?",
+          "action": "tap",
+          "feedback": "'Solid!'"
+        },
+        {
+          "narration": "Water pours. What state?",
+          "action": "tap",
+          "feedback": "'Liquid!'"
+        },
+        {
+          "narration": "Steam floats away. What state?",
+          "action": "tap",
+          "feedback": "'Gas!'"
+        }
+      ]
+    },
+    {
+      "id": "s06.science.quiz.01",
+      "stage": 6,
+      "ages": "5-6",
+      "subject": "Science",
+      "type": "quiz",
+      "title": "Mammal, Bird, Reptile, or Fish?",
+      "objective": "Classify animals by group.",
+      "designTier": "gamify-gently",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "A dog is a...",
+          "options": [
+            {
+              "label": "Mammal",
+              "asset": null
+            },
+            {
+              "label": "Fish",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — mammals have fur and feed milk. ⭐",
+          "retryFeedback": "Does a dog have fur? Try again!"
+        },
+        {
+          "prompt": "A parrot is a...",
+          "options": [
+            {
+              "label": "Bird",
+              "asset": null
+            },
+            {
+              "label": "Reptile",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Right — birds have feathers!",
+          "retryFeedback": "Feathers and wings mean... try again!"
+        }
+      ]
+    },
+    {
+      "id": "s06.social.lesson.01",
+      "stage": 6,
+      "ages": "5-6",
+      "subject": "Social Studies",
+      "type": "lesson",
+      "title": "Our Flag and Anthem",
+      "objective": "Learn that countries have flags and anthems.",
+      "designTier": "gamify-gently",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s06/flag.png",
+          "desc": "Generic flag"
+        },
+        {
+          "type": "audio",
+          "ref": "audio/s06/anthem.mp3",
+          "desc": "Gentle anthem clip"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Tap the flag to see it wave.",
+          "action": "tap",
+          "feedback": "'A flag is a symbol of a country.'"
+        },
+        {
+          "narration": "Tap the music note to hear an anthem.",
+          "action": "tap",
+          "feedback": "'An anthem is a country's special song.'"
+        }
+      ]
+    },
+    {
+      "id": "s06.social.quiz.01",
+      "stage": 6,
+      "ages": "5-6",
+      "subject": "Social Studies",
+      "type": "quiz",
+      "title": "Then vs. Now",
+      "objective": "Compare old and new everyday things.",
+      "designTier": "gamify-gently",
+      "reading": true,
+      "timed": false,
+      "interaction": "drag",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Which is from LONG AGO?",
+          "options": [
+            {
+              "label": "Horse and cart",
+              "asset": "img/s06/cart.png"
+            },
+            {
+              "label": "Modern car",
+              "asset": "img/s06/car.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — people used horses and carts long ago!",
+          "retryFeedback": "Which one is older? Try again!"
+        }
+      ]
+    },
+    {
+      "id": "s06.math.lesson.01",
+      "stage": 6,
+      "ages": "5-6",
+      "subject": "Math",
+      "type": "lesson",
+      "title": "Tens and Ones",
+      "objective": "Understand place value with tens and ones.",
+      "designTier": "gamify-gently",
+      "reading": true,
+      "timed": false,
+      "interaction": "drag",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s06/place_value.png",
+          "desc": "Ten-rods and unit cubes"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Make the number 23. Drag 2 ten-rods and 3 ones.",
+          "action": "drag",
+          "feedback": "'2 tens and 3 ones makes 23.'"
+        },
+        {
+          "narration": "Now make 14.",
+          "action": "drag",
+          "feedback": "'1 ten and 4 ones — that is 14!'"
+        }
+      ]
+    },
+    {
+      "id": "s06.reading.quiz.01",
+      "stage": 6,
+      "ages": "5-6",
+      "subject": "Reading & Writing",
+      "type": "quiz",
+      "title": "Capitals and End Marks",
+      "objective": "Spot correct sentence punctuation.",
+      "designTier": "gamify-gently",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Which sentence is written correctly?",
+          "options": [
+            {
+              "label": "The dog runs.",
+              "asset": null
+            },
+            {
+              "label": "the dog runs",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — capital letter and a period!",
+          "retryFeedback": "A sentence starts big and ends with a dot — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s07.reading.lesson.01",
+      "stage": 7,
+      "ages": "6-7",
+      "subject": "Reading",
+      "type": "lesson",
+      "title": "Silent-e and Vowel Teams",
+      "objective": "Read words with silent-e and vowel teams.",
+      "designTier": "gamify-gently",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap-read",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s07/silent_e.png",
+          "desc": "cap / cape word cards"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Read 'cap'. Now add silent-e: 'cape'. Tap to hear.",
+          "action": "tap-read",
+          "feedback": "The e is silent but makes a say its name: 'cape'."
+        },
+        {
+          "narration": "Read the vowel team 'ai' in 'rain'.",
+          "action": "tap-read",
+          "feedback": "'ai' says /ay/ — 'rain'. Great reading!"
+        }
+      ]
+    },
+    {
+      "id": "s07.reading.quiz.01",
+      "stage": 7,
+      "ages": "6-7",
+      "subject": "Reading",
+      "type": "quiz",
+      "title": "Predict What Happens",
+      "objective": "Make a prediction from a story clue.",
+      "designTier": "gamify-gently",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Dark clouds roll in and the wind blows. What will probably happen?",
+          "options": [
+            {
+              "label": "It will rain",
+              "asset": null
+            },
+            {
+              "label": "It will be sunny",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Good prediction — rain is likely! ⭐",
+          "retryFeedback": "What do dark clouds bring? Try again!"
+        }
+      ]
+    },
+    {
+      "id": "s07.writing.lesson.01",
+      "stage": 7,
+      "ages": "6-7",
+      "subject": "Writing & Grammar",
+      "type": "lesson",
+      "title": "Nouns, Verbs, Adjectives",
+      "objective": "Tell the difference between word types.",
+      "designTier": "gamify-gently",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s07/word_types.png",
+          "desc": "Sentence with tappable words"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "A NOUN is a person, place, or thing. Tap the noun: 'The happy dog runs.'",
+          "action": "tap",
+          "feedback": "'dog' is the noun!"
+        },
+        {
+          "narration": "A VERB is an action. Tap it.",
+          "action": "tap",
+          "feedback": "'runs' is the verb!"
+        },
+        {
+          "narration": "An ADJECTIVE describes. Tap it.",
+          "action": "tap",
+          "feedback": "'happy' is the adjective!"
+        }
+      ]
+    },
+    {
+      "id": "s07.writing.quiz.01",
+      "stage": 7,
+      "ages": "6-7",
+      "subject": "Writing & Grammar",
+      "type": "quiz",
+      "title": "Finish the Sentence",
+      "objective": "Build a simple reason sentence.",
+      "designTier": "gamify-gently",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "'I like summer because ___'. Which finishes it best?",
+          "options": [
+            {
+              "label": "I can swim outside",
+              "asset": null
+            },
+            {
+              "label": "the dog",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — that gives a reason!",
+          "retryFeedback": "A reason tells WHY — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s07.math.lesson.01",
+      "stage": 7,
+      "ages": "6-7",
+      "subject": "Math",
+      "type": "lesson",
+      "title": "Add and Subtract Within 20",
+      "objective": "Add and subtract using a number line.",
+      "designTier": "gamify-gently",
+      "reading": true,
+      "timed": false,
+      "interaction": "number-line",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s07/number_line20.png",
+          "desc": "Number line 0-20"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "8 + 5: start at 8 and hop forward 5.",
+          "action": "number-line",
+          "feedback": "Land on 13. 8 + 5 = 13!"
+        },
+        {
+          "narration": "Now 13 - 4: hop backward 4.",
+          "action": "number-line",
+          "feedback": "Land on 9. 13 - 4 = 9. Nice!"
+        }
+      ]
+    },
+    {
+      "id": "s07.math.quiz.01",
+      "stage": 7,
+      "ages": "6-7",
+      "subject": "Math",
+      "type": "quiz",
+      "title": "Read the Bar Graph",
+      "objective": "Read data from a simple bar graph.",
+      "designTier": "gamify-gently",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Which fruit got the MOST votes on the graph?",
+          "options": [
+            {
+              "label": "Apples",
+              "asset": null
+            },
+            {
+              "label": "Pears",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — apples have the tallest bar!",
+          "retryFeedback": "Find the tallest bar — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s07.science.lesson.01",
+      "stage": 7,
+      "ages": "6-7",
+      "subject": "Science",
+      "type": "lesson",
+      "title": "Life Cycle of a Butterfly",
+      "objective": "Order the butterfly life-cycle stages.",
+      "designTier": "gamify-gently",
+      "reading": true,
+      "timed": false,
+      "interaction": "drag-order",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s07/butterfly_cycle.png",
+          "desc": "Butterfly life-cycle stages"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Put them in order. What comes first?",
+          "action": "drag-order",
+          "feedback": "Egg comes first!"
+        },
+        {
+          "narration": "Then caterpillar, chrysalis, and...?",
+          "action": "drag-order",
+          "feedback": "A butterfly! egg → caterpillar → chrysalis → butterfly."
+        }
+      ]
+    },
+    {
+      "id": "s07.science.quiz.01",
+      "stage": 7,
+      "ages": "6-7",
+      "subject": "Science",
+      "type": "quiz",
+      "title": "Simple Machines",
+      "objective": "Identify a simple machine.",
+      "designTier": "gamify-gently",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "A see-saw is an example of which simple machine?",
+          "options": [
+            {
+              "label": "Lever",
+              "asset": null
+            },
+            {
+              "label": "Wheel",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — a see-saw is a lever!",
+          "retryFeedback": "It tips on a point in the middle — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s07.social.lesson.01",
+      "stage": 7,
+      "ages": "6-7",
+      "subject": "Social Studies",
+      "type": "lesson",
+      "title": "Continents and Oceans",
+      "objective": "Locate continents and oceans on a globe.",
+      "designTier": "gamify-gently",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap-map",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s07/globe.png",
+          "desc": "Simple labeled globe"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Tap any of the seven continents.",
+          "action": "tap-map",
+          "feedback": "'That is a continent — a huge piece of land!'"
+        },
+        {
+          "narration": "Tap the blue between them.",
+          "action": "tap-map",
+          "feedback": "'Those are the oceans — there are five!'"
+        }
+      ]
+    },
+    {
+      "id": "s07.social.quiz.01",
+      "stage": 7,
+      "ages": "6-7",
+      "subject": "Social Studies",
+      "type": "quiz",
+      "title": "Needs vs. Wants",
+      "objective": "Tell a need from a want.",
+      "designTier": "gamify-gently",
+      "reading": true,
+      "timed": false,
+      "interaction": "drag",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Which is a NEED?",
+          "options": [
+            {
+              "label": "Clean water",
+              "asset": null
+            },
+            {
+              "label": "A new toy",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — we need water to live!",
+          "retryFeedback": "A need keeps us healthy and alive — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s07.health.lesson.01",
+      "stage": 7,
+      "ages": "6-7",
+      "subject": "Health",
+      "type": "lesson",
+      "title": "Food Groups and Hygiene",
+      "objective": "Learn healthy habits.",
+      "designTier": "gamify-gently",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s07/food_groups.png",
+          "desc": "Food-group plate"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Sort the apple into the FRUITS group.",
+          "action": "drag",
+          "feedback": "'Fruits help our bodies grow strong!'"
+        },
+        {
+          "narration": "Tap to wash hands before eating.",
+          "action": "tap",
+          "feedback": "Scrub-scrub for 20 seconds. 'All clean and healthy!'"
+        }
+      ]
+    },
+    {
+      "id": "s07.health.quiz.01",
+      "stage": 7,
+      "ages": "6-7",
+      "subject": "Health",
+      "type": "quiz",
+      "title": "Safe or Unsafe?",
+      "objective": "Recognize safe choices.",
+      "designTier": "gamify-gently",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "A stranger online asks for your home address. What do you do?",
+          "options": [
+            {
+              "label": "Tell a trusted grown-up",
+              "asset": null
+            },
+            {
+              "label": "Send it",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — always tell a trusted grown-up. You are safe.",
+          "retryFeedback": "Never share private info online — tell a grown-up. Try again!"
+        }
+      ]
+    },
+    {
+      "id": "s08.writing.lesson.01",
+      "stage": 8,
+      "ages": "7-8",
+      "subject": "Writing & Grammar",
+      "type": "lesson",
+      "title": "Plurals and Verb Tenses",
+      "objective": "Form plurals and past-tense verbs.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s08/grammar_cards.png",
+          "desc": "Plural and tense word cards"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "One box, two ___? Tap the plural.",
+          "action": "tap",
+          "feedback": "'boxes' — add -es after x!"
+        },
+        {
+          "narration": "Today I walk. Yesterday I ___? Tap it.",
+          "action": "tap",
+          "feedback": "'walked' — past tense adds -ed."
+        }
+      ]
+    },
+    {
+      "id": "s08.writing.quiz.01",
+      "stage": 8,
+      "ages": "7-8",
+      "subject": "Writing & Grammar",
+      "type": "quiz",
+      "title": "Order the Narrative",
+      "objective": "Sequence events in a personal story.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "drag-order",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "In 'My First Bike Ride', which sentence comes FIRST?",
+          "options": [
+            {
+              "label": "Dad held the seat as I started to pedal.",
+              "asset": null
+            },
+            {
+              "label": "Soon I was riding all by myself!",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — that is the beginning.",
+          "retryFeedback": "Which happened earlier? Try again!"
+        }
+      ]
+    },
+    {
+      "id": "s08.science.lesson.01",
+      "stage": 8,
+      "ages": "7-8",
+      "subject": "Science",
+      "type": "lesson",
+      "title": "Food Chains",
+      "objective": "Build a simple food chain.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "drag-order",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s08/food_chain.png",
+          "desc": "Sun, grass, rabbit, fox"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Start the chain: the sun gives energy to the ___?",
+          "action": "drag-order",
+          "feedback": "Grass! The sun feeds the grass."
+        },
+        {
+          "narration": "Grass → rabbit → ___?",
+          "action": "drag-order",
+          "feedback": "Fox! Energy passes along the food chain."
+        }
+      ]
+    },
+    {
+      "id": "s08.science.quiz.01",
+      "stage": 8,
+      "ages": "7-8",
+      "subject": "Science",
+      "type": "quiz",
+      "title": "What Causes Erosion?",
+      "objective": "Identify forces that wear down land.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Which slowly wears away rock over many years?",
+          "options": [
+            {
+              "label": "Wind and water",
+              "asset": null
+            },
+            {
+              "label": "Sunlight only",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — wind and water cause erosion!",
+          "retryFeedback": "Think of a river carving a canyon — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s08.social.lesson.01",
+      "stage": 8,
+      "ages": "7-8",
+      "subject": "Social Studies",
+      "type": "lesson",
+      "title": "Ancient Egypt",
+      "objective": "Explore an ancient civilization.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s08/egypt.png",
+          "desc": "Pyramid and hieroglyphs"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Tap the pyramid to learn what it was for.",
+          "action": "tap",
+          "feedback": "'Pyramids were huge tombs for pharaohs.'"
+        },
+        {
+          "narration": "Tap the hieroglyphs.",
+          "action": "tap",
+          "feedback": "'Egyptians wrote with picture-symbols called hieroglyphs.'"
+        }
+      ]
+    },
+    {
+      "id": "s08.social.quiz.01",
+      "stage": 8,
+      "ages": "7-8",
+      "subject": "Social Studies",
+      "type": "quiz",
+      "title": "Urban, Suburban, or Rural?",
+      "objective": "Classify community types.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "A place with tall buildings and busy streets is...",
+          "options": [
+            {
+              "label": "Urban",
+              "asset": null
+            },
+            {
+              "label": "Rural",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — urban means a city!",
+          "retryFeedback": "Lots of buildings and people means... try again!"
+        }
+      ]
+    },
+    {
+      "id": "s08.tech.lesson.01",
+      "stage": 8,
+      "ages": "7-8",
+      "subject": "Creativity & Tech",
+      "type": "lesson",
+      "title": "Code a Jump (Scratch Jr. style)",
+      "objective": "Sequence blocks to animate a character.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "drag-blocks",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s08/scratch_blocks.png",
+          "desc": "Move / jump / sound blocks"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Drag MOVE RIGHT, then JUMP. Press the green flag.",
+          "action": "drag-then-run",
+          "feedback": "The cat moves and jumps! You animated it."
+        },
+        {
+          "narration": "Add a SOUND block at the end and run again.",
+          "action": "drag-then-run",
+          "feedback": "Meow! Your sequence plays in order."
+        }
+      ]
+    },
+    {
+      "id": "s08.tech.quiz.01",
+      "stage": 8,
+      "ages": "7-8",
+      "subject": "Creativity & Tech",
+      "type": "quiz",
+      "title": "Read the Music",
+      "objective": "Tell a note from a rest.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Which symbol means 'play a sound for one beat'?",
+          "options": [
+            {
+              "label": "Quarter note",
+              "asset": null
+            },
+            {
+              "label": "Quarter rest",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — a quarter note is a one-beat sound!",
+          "retryFeedback": "A rest means silence — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s09.reading.lesson.01",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Reading",
+      "type": "lesson",
+      "title": "Simile and Metaphor",
+      "objective": "Spot figurative language.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/figurative.png",
+          "desc": "Simile vs metaphor cards"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "'As brave as a lion' compares using 'as'. That is a SIMILE.",
+          "action": "tap",
+          "feedback": "Similes use like or as."
+        },
+        {
+          "narration": "'The classroom was a zoo' calls it something it is not. That is a METAPHOR.",
+          "action": "tap",
+          "feedback": "Metaphors compare directly. Nice!"
+        }
+      ]
+    },
+    {
+      "id": "s09.reading.quiz.01",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Reading",
+      "type": "quiz",
+      "title": "Find the Main Idea",
+      "objective": "Identify the main idea of a passage.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "A passage describes how bees collect nectar, make honey, and feed the hive. The main idea is:",
+          "options": [
+            {
+              "label": "How bees make honey",
+              "asset": null
+            },
+            {
+              "label": "Bees can sting",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — that is what the whole passage is about.",
+          "retryFeedback": "What ties all the details together? Try again!"
+        }
+      ]
+    },
+    {
+      "id": "s09.writing.lesson.01",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Writing",
+      "type": "lesson",
+      "title": "Write an Opinion Paragraph",
+      "objective": "Structure an opinion with reasons.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "build",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/paragraph_frame.png",
+          "desc": "Opinion paragraph builder"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "State your opinion: 'Recess should be longer.' Now add a REASON.",
+          "action": "input",
+          "feedback": "Good — give a 'because'!"
+        },
+        {
+          "narration": "Add a second reason and a closing sentence.",
+          "action": "input",
+          "feedback": "You built an opinion paragraph: opinion → reasons → closing."
+        }
+      ]
+    },
+    {
+      "id": "s09.writing.quiz.01",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Writing",
+      "type": "quiz",
+      "title": "Topic Sentence or Detail?",
+      "objective": "Tell a topic sentence from a detail.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Which is a TOPIC sentence?",
+          "options": [
+            {
+              "label": "Dogs make wonderful pets.",
+              "asset": null
+            },
+            {
+              "label": "They wag their tails when happy.",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — it states the big idea.",
+          "retryFeedback": "A topic sentence introduces the whole idea — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s09.math.lesson.01",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Math",
+      "type": "lesson",
+      "title": "Multiplication and Division Facts",
+      "objective": "Connect multiplication and division.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/fact_family.png",
+          "desc": "Fact-family triangle"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "6 × 4 = ? Build the array and count.",
+          "action": "build-array",
+          "feedback": "24! Six groups of four."
+        },
+        {
+          "narration": "So 24 ÷ 4 = ? Use the same fact backward.",
+          "action": "input",
+          "feedback": "6! Multiplication and division are linked."
+        }
+      ]
+    },
+    {
+      "id": "s09.math.quiz.01",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Math",
+      "type": "quiz",
+      "title": "Area and Perimeter",
+      "objective": "Tell area from perimeter.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Which measures the distance AROUND a shape?",
+          "options": [
+            {
+              "label": "Perimeter",
+              "asset": null
+            },
+            {
+              "label": "Area",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — perimeter is the distance around.",
+          "retryFeedback": "Area is the space inside — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s09.science.lesson.01",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Science",
+      "type": "lesson",
+      "title": "Force, Motion, and Magnets",
+      "objective": "Explore pushes, pulls, and magnetism.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/magnet.png",
+          "desc": "Magnet and paperclip"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Push the cart. What made it move?",
+          "action": "tap",
+          "feedback": "'A push is a force that starts motion!'"
+        },
+        {
+          "narration": "Bring the magnet near the paperclip.",
+          "action": "tap",
+          "feedback": "Snap! 'Magnets pull some metals — that is a force, too.'"
+        }
+      ]
+    },
+    {
+      "id": "s09.science.quiz.01",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Science",
+      "type": "quiz",
+      "title": "Weather vs. Climate",
+      "objective": "Tell weather from climate.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "'It is rainy today' describes...",
+          "options": [
+            {
+              "label": "Weather",
+              "asset": null
+            },
+            {
+              "label": "Climate",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — weather is right now.",
+          "retryFeedback": "Climate is the usual pattern over years — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s09.social.lesson.01",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Social Studies",
+      "type": "lesson",
+      "title": "Three Branches of Government",
+      "objective": "Learn what each branch does.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/branches.png",
+          "desc": "Three branches diagram"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Tap the branch that MAKES laws.",
+          "action": "tap",
+          "feedback": "'The legislative branch makes laws.'"
+        },
+        {
+          "narration": "Tap the branch that decides if laws are fair.",
+          "action": "tap",
+          "feedback": "'The judicial branch — the courts.'"
+        }
+      ]
+    },
+    {
+      "id": "s09.social.quiz.01",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Social Studies",
+      "type": "quiz",
+      "title": "Goods or Services?",
+      "objective": "Tell goods from services.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "A haircut is a...",
+          "options": [
+            {
+              "label": "Service",
+              "asset": null
+            },
+            {
+              "label": "Good",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — a service is helpful work someone does.",
+          "retryFeedback": "A good is a thing you can hold — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s09.coding.lesson.01",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Logic & Coding",
+      "type": "lesson",
+      "title": "Loops: Repeat",
+      "objective": "Use a loop to repeat actions.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "drag-blocks",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/loop_blocks.png",
+          "desc": "Repeat-loop block with forward+turn"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "To draw a square, instead of 4 'forward+turn' blocks, use REPEAT 4 times.",
+          "action": "drag",
+          "feedback": "The loop runs four times and draws a square!"
+        },
+        {
+          "narration": "Change it to REPEAT 3 for a triangle.",
+          "action": "drag-then-run",
+          "feedback": "Loops save work by repeating. Clever!"
+        }
+      ]
+    },
+    {
+      "id": "s09.coding.quiz.01",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Logic & Coding",
+      "type": "quiz",
+      "title": "Find the Bug",
+      "objective": "Debug a short sequence.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "The robot should go forward then turn, but it spins in place. What is missing?",
+          "options": [
+            {
+              "label": "A forward command",
+              "asset": null
+            },
+            {
+              "label": "More turns",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — it needs a forward step!",
+          "retryFeedback": "What makes it move ahead? Try again!"
+        }
+      ]
+    },
+    {
+      "id": "s10.science.lesson.01",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Science",
+      "type": "lesson",
+      "title": "Electricity and Circuits",
+      "objective": "Build a simple circuit to light a bulb.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "build-circuit",
+      "parentNote": null,
+      "accessibility": "Circuit state is announced aloud; works with switch controls.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/circuit.png",
+          "desc": "Battery, wire, bulb circuit"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Connect the battery, wire, and bulb to make a loop.",
+          "action": "build-circuit",
+          "feedback": "The bulb lights! A complete circuit lets current flow."
+        },
+        {
+          "narration": "Now open a gap in the wire.",
+          "action": "build-circuit",
+          "feedback": "The light goes out — a broken circuit stops the flow."
+        }
+      ]
+    },
+    {
+      "id": "s10.science.quiz.01",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Science",
+      "type": "quiz",
+      "title": "Moon Phases",
+      "objective": "Order or identify moon phases.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "When we cannot see the lit Moon at all, it is a...",
+          "options": [
+            {
+              "label": "New moon",
+              "asset": null
+            },
+            {
+              "label": "Full moon",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — a new moon!",
+          "retryFeedback": "Full moon is fully lit; the opposite is... try again!"
+        }
+      ]
+    },
+    {
+      "id": "s10.social.lesson.01",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Social Studies",
+      "type": "lesson",
+      "title": "Latitude and Longitude",
+      "objective": "Read coordinates on a map grid.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap-map",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/lat_long.png",
+          "desc": "Map grid with latitude/longitude"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Latitude lines run side to side. Tap the equator (0 degrees).",
+          "action": "tap-map",
+          "feedback": "'The equator circles the middle of Earth.'"
+        },
+        {
+          "narration": "Longitude lines run top to bottom. Tap one.",
+          "action": "tap-map",
+          "feedback": "'Together they give every place an address!'"
+        }
+      ]
+    },
+    {
+      "id": "s10.social.quiz.01",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Social Studies",
+      "type": "quiz",
+      "title": "Medieval Life",
+      "objective": "Recall facts about the medieval period.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "A large stone home built to defend against attackers was a...",
+          "options": [
+            {
+              "label": "Castle",
+              "asset": null
+            },
+            {
+              "label": "Skyscraper",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — a castle!",
+          "retryFeedback": "Think tall stone walls and a moat — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s10.coding.quiz.01",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Digital Literacy & Coding",
+      "type": "quiz",
+      "title": "What Will Python Print?",
+      "objective": "Trace a tiny program's output.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "What does  print(2 + 3)  show?",
+          "options": [
+            {
+              "label": "5",
+              "asset": null
+            },
+            {
+              "label": "2 + 3",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — Python adds first, printing 5.",
+          "retryFeedback": "Python solves the math inside print() — try again!"
+        },
+        {
+          "prompt": "What does  print(\"2\" + \"3\")  show?",
+          "options": [
+            {
+              "label": "23",
+              "asset": null
+            },
+            {
+              "label": "5",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Right — joining text gives '23'!",
+          "retryFeedback": "Quotes make it text, so it joins — try again!"
         }
       ]
     }

@@ -5,13 +5,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/offline/offline_providers.dart';
+import '../../core/state/app_state.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
+import 'content_i18n.dart';
 import 'library_models.dart';
 import 'library_repository.dart';
 
 /// Plays a single library item by id, dispatching to the right player. Content
-/// text is English (as authored in the library); UI chrome is localized.
+/// text is localized at runtime from the locale bundles (English fallback).
 class LibraryPlayScreen extends ConsumerWidget {
   const LibraryPlayScreen({super.key, required this.id});
 
@@ -36,6 +38,13 @@ class LibraryPlayScreen extends ConsumerWidget {
       },
     );
   }
+}
+
+/// Builds the localized view of an item from the current locale.
+LocalizedItem _localized(WidgetRef ref, LibraryItem item) {
+  final lang = ref.watch(localeProvider).languageCode;
+  final i18n = ref.watch(contentI18nProvider).asData?.value;
+  return LocalizedItem(item, i18n, lang);
 }
 
 PreferredSizeWidget _bar(BuildContext context, String title) => AppBar(
@@ -97,14 +106,14 @@ class _LessonViewState extends ConsumerState<_LessonView> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final loc = _localized(ref, widget.item);
     if (_done) {
       return _Celebration(emoji: '🎉', title: l10n.greatJob, xp: widget.item.xp);
     }
     final steps = widget.item.steps;
-    final step = steps[_step];
     final isLast = _step == steps.length - 1;
     return Scaffold(
-      appBar: _bar(context, widget.item.title),
+      appBar: _bar(context, loc.title),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24),
@@ -117,12 +126,12 @@ class _LessonViewState extends ConsumerState<_LessonView> {
                   children: [
                     _placeholder('✨'),
                     const SizedBox(height: 24),
-                    Text(step.narration,
+                    Text(loc.stepNarration(_step),
                         textAlign: TextAlign.center,
                         style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w800)),
                     if (_showFeedback) ...[
                       const SizedBox(height: 16),
-                      Text(step.feedback,
+                      Text(loc.stepFeedback(_step),
                           textAlign: TextAlign.center,
                           style: const TextStyle(fontSize: 17, color: WatotoColors.leaf)),
                     ],
@@ -168,18 +177,20 @@ class _QuizViewState extends ConsumerState<_QuizView> {
 
   void _pick(int index) {
     final question = widget.item.questions[_q];
+    final loc = LocalizedItem(widget.item, ref.read(contentI18nProvider).asData?.value,
+        ref.read(localeProvider).languageCode);
     if (index == question.answer) {
       _answers.add({'questionId': '${widget.item.id}.q$_q', 'selectedIndex': index});
       if (!_wrongThisQ) _firstTryCorrect++;
       setState(() {
-        _feedback = question.correctFeedback;
+        _feedback = loc.questionCorrect(_q);
         _feedbackGood = true;
       });
       Timer(const Duration(milliseconds: 700), _next);
     } else {
       setState(() {
         _wrongThisQ = true;
-        _feedback = question.retryFeedback;
+        _feedback = loc.questionRetry(_q);
         _feedbackGood = false;
       });
     }
@@ -215,12 +226,13 @@ class _QuizViewState extends ConsumerState<_QuizView> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final loc = _localized(ref, widget.item);
     if (_done) {
       return _Celebration(emoji: '🎉', title: l10n.greatJob, xp: widget.item.xp, stars: _stars);
     }
     final question = widget.item.questions[_q];
     return Scaffold(
-      appBar: _bar(context, widget.item.title),
+      appBar: _bar(context, loc.title),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24),
@@ -228,7 +240,7 @@ class _QuizViewState extends ConsumerState<_QuizView> {
             children: [
               _ProgressDots(count: widget.item.questions.length, active: _q),
               const SizedBox(height: 12),
-              Text(question.prompt,
+              Text(loc.questionPrompt(_q),
                   textAlign: TextAlign.center,
                   style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w800)),
               const SizedBox(height: 24),
@@ -247,7 +259,7 @@ class _QuizViewState extends ConsumerState<_QuizView> {
                               minimumSize: const Size.fromHeight(52),
                             ),
                             onPressed: () => _pick(i),
-                            child: Text(question.options[i].label),
+                            child: Text(loc.optionLabel(_q, i)),
                           ),
                         ),
                       ),
@@ -293,14 +305,14 @@ class _StoryViewState extends ConsumerState<_StoryView> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final loc = _localized(ref, widget.item);
     if (_done) {
       return _Celebration(emoji: '📖✨', title: l10n.theEnd, xp: widget.item.xp);
     }
     final pages = widget.item.pages;
-    final page = pages[_page];
     final isLast = _page == pages.length - 1;
     return Scaffold(
-      appBar: _bar(context, widget.item.title),
+      appBar: _bar(context, loc.title),
       body: SafeArea(
         child: Column(
           children: [
@@ -312,7 +324,7 @@ class _StoryViewState extends ConsumerState<_StoryView> {
                   children: [
                     _placeholder('📖'),
                     const SizedBox(height: 24),
-                    Text(page.narration,
+                    Text(loc.pageNarration(_page),
                         textAlign: TextAlign.center,
                         style: const TextStyle(fontSize: 20, height: 1.5, fontWeight: FontWeight.w600)),
                   ],

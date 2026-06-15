@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../core/state/app_state.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
+import '../library/content_i18n.dart';
 import '../library/library_models.dart';
 import '../library/library_repository.dart';
 import 'curriculum_data.dart';
@@ -24,6 +25,7 @@ class SubjectDetailScreen extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final lang = ref.watch(localeProvider).languageCode;
     final repo = ref.watch(libraryProvider).asData?.value;
+    final i18n = ref.watch(contentI18nProvider).asData?.value;
 
     final stageData = (stage >= 1 && stage <= curriculumStages.length)
         ? curriculumStages[stage - 1]
@@ -73,7 +75,8 @@ class SubjectDetailScreen extends ConsumerWidget {
               Text(l10n.startLearning,
                   style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w800)),
               const SizedBox(height: 8),
-              for (final item in items) _PlayTile(item: item),
+              for (final item in items)
+                _PlayTile(item: item, title: itemTitle(i18n, lang, item)),
               const SizedBox(height: 16),
             ],
 
@@ -102,9 +105,10 @@ class SubjectDetailScreen extends ConsumerWidget {
 }
 
 class _PlayTile extends StatelessWidget {
-  const _PlayTile({required this.item});
+  const _PlayTile({required this.item, required this.title});
 
   final LibraryItem item;
+  final String title;
 
   static const _typeEmoji = {
     LibraryType.lesson: '📘',
@@ -129,7 +133,7 @@ class _PlayTile extends StatelessWidget {
             Text(_typeEmoji[item.type] ?? '⭐', style: const TextStyle(fontSize: 22)),
             const SizedBox(width: 10),
             Expanded(
-              child: Text(item.title,
+              child: Text(title,
                   style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
             ),
             const Icon(Icons.play_circle_fill, color: WatotoColors.mango, size: 28),

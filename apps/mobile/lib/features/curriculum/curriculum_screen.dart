@@ -6,6 +6,7 @@ import '../../core/offline/offline_providers.dart';
 import '../../core/state/app_state.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
+import '../library/content_i18n.dart';
 import '../library/library_models.dart';
 import '../library/library_repository.dart';
 import 'curriculum_data.dart';
@@ -31,6 +32,7 @@ class _CurriculumScreenState extends ConsumerState<CurriculumScreen> {
     final lang = ref.watch(localeProvider).languageCode;
     final child = ref.watch(activeChildProvider);
     final repo = ref.watch(libraryProvider).asData?.value;
+    final i18n = ref.watch(contentI18nProvider).asData?.value;
     final defaultStage =
         child == null ? 1 : stageForBirthYear(child.birthYear).stage;
     final selected = _selectedStage ?? defaultStage;
@@ -66,6 +68,7 @@ class _CurriculumScreenState extends ConsumerState<CurriculumScreen> {
                     _TopicCard(
                       topic: topic,
                       lang: lang,
+                      i18n: i18n,
                       items: repo?.forStageSubject(stage.stage, topic.name) ?? const [],
                     ),
                 ],
@@ -182,10 +185,12 @@ class _DesignTip extends StatelessWidget {
 }
 
 class _TopicCard extends StatelessWidget {
-  const _TopicCard({required this.topic, required this.lang, required this.items});
+  const _TopicCard(
+      {required this.topic, required this.lang, required this.i18n, required this.items});
 
   final CurriculumTopic topic;
   final String lang;
+  final ContentI18n? i18n;
   final List<LibraryItem> items;
 
   static const _typeEmoji = {
@@ -230,7 +235,7 @@ class _TopicCard extends StatelessWidget {
                         Text(_typeEmoji[item.type] ?? '⭐'),
                         const SizedBox(width: 8),
                         Expanded(
-                          child: Text(item.title,
+                          child: Text(itemTitle(i18n, lang, item),
                               style: const TextStyle(fontWeight: FontWeight.w700)),
                         ),
                         const Icon(Icons.play_circle_fill, color: WatotoColors.mango),

@@ -32,19 +32,19 @@ Future<LibraryRepository> loadFromDisk() async {
 
 void main() {
   group('content library', () {
-    test('parses all 39 seed items by type', () async {
+    test('parses all v0.2.0 items by type', () async {
       final repo = await loadFromDisk();
-      expect(repo.all, hasLength(39));
-      expect(repo.all.where((i) => i.type == LibraryType.lesson), hasLength(23));
-      expect(repo.all.where((i) => i.type == LibraryType.quiz), hasLength(10));
-      expect(repo.all.where((i) => i.type == LibraryType.story), hasLength(6));
+      expect(repo.all, hasLength(112));
+      expect(repo.all.where((i) => i.type == LibraryType.lesson), hasLength(62));
+      expect(repo.all.where((i) => i.type == LibraryType.quiz), hasLength(43));
+      expect(repo.all.where((i) => i.type == LibraryType.story), hasLength(7));
     });
 
     test('indexes by stage + subject', () async {
       final repo = await loadFromDisk();
       final s8math = repo.forStageSubject(8, 'Math');
       expect(s8math, isNotEmpty);
-      expect(s8math.first.id, 's08.math.lesson.01');
+      expect(s8math.map((e) => e.id), contains('s08.math.lesson.01'));
       expect(repo.byId['s01.cause.lesson.01']?.subject, 'Cause & Effect');
     });
 
