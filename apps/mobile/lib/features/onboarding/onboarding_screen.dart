@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import '../../core/offline/offline_providers.dart';
 import '../../core/state/app_state.dart';
 import '../../core/theme/watoto_theme.dart';
+import '../../features/auth/auth_service.dart';
+import '../../features/auth/parent_gate.dart';
 import '../../l10n/gen/app_localizations.dart';
 import '../profiles/child_form.dart';
 import 'consent.dart';
@@ -23,6 +25,10 @@ class OnboardingScreen extends ConsumerStatefulWidget {
 class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   int _step = 0;
 
+  // grown-up gate (FTC parental gate)
+  final _gate = TextEditingController();
+  String? _gateError;
+
   // consent
   bool _aiFeatures = false;
   bool _voiceRecording = false;
@@ -37,6 +43,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
   @override
   void dispose() {
+    _gate.dispose();
     _pin.dispose();
     _pinConfirm.dispose();
     super.dispose();
@@ -71,14 +78,28 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           padding: const EdgeInsets.all(24),
           child: switch (_step) {
             0 => _LanguageStep(onNext: _next),
-            1 => _ConsentStep(
+            1 => _GateStep(
+                challenge: ref.watch(parentGateChallengeProvider),
+                controller: _gate,
+                error: _gateError,
+                onNext: () {
+                  if (checkParentGate(
+                      _gate.text, ref.read(parentGateChallengeProvider))) {
+                    setState(() => _gateError = null);
+                    _next();
+                  } else {
+                    setState(() => _gateError = l10n.wrongNumbers);
+                  }
+                },
+              ),
+            2 => _ConsentStep(
                 aiFeatures: _aiFeatures,
                 voiceRecording: _voiceRecording,
                 onAi: (v) => setState(() => _aiFeatures = v),
                 onVoice: (v) => setState(() => _voiceRecording = v),
                 onNext: _next,
               ),
-            2 => _PinStep(
+            3 => _PinStep(
                 pin: _pin,
                 confirm: _pinConfirm,
                 error: _pinError,
@@ -167,6 +188,54 @@ class _LanguageStep extends ConsumerWidget {
               onTap: () =>
                   ref.read(localeProvider.notifier).state = Locale(entry.key),
             ),
+        ],
+      ),
+    );
+  }
+}
+
+class _GateStep extends StatelessWidget {
+  const _GateStep({
+    required this.challenge,
+    required this.controller,
+    required this.error,
+    required this.onNext,
+  });
+
+  final ParentGateChallenge challenge;
+  final TextEditingController controller;
+  final String? error;
+  final VoidCallback onNext;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return _StepScaffold(
+      emoji: '🔢',
+      title: l10n.grownupCheck,
+      actionLabel: l10n.next,
+      onAction: onNext,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(l10n.grownupCheckBody, style: const TextStyle(fontSize: 16, height: 1.4)),
+          const SizedBox(height: 24),
+          Center(
+            child: Text(challenge.prompt,
+                style: const TextStyle(
+                    fontSize: 28, fontWeight: FontWeight.w800, color: WatotoColors.deep)),
+          ),
+          const SizedBox(height: 24),
+          TextField(
+            controller: controller,
+            keyboardType: TextInputType.number,
+            maxLength: 6,
+            textAlign: TextAlign.center,
+            decoration: InputDecoration(
+              border: const OutlineInputBorder(),
+              errorText: error,
+            ),
+          ),
         ],
       ),
     );

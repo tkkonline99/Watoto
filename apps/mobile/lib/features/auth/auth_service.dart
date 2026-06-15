@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
 
+import 'parent_gate.dart';
+
 /// Authentication seam — Dart port of the design in `auth/` (auth.ts).
 ///
 /// COPPA-aware: children never create credentialed accounts. The app runs an
@@ -96,3 +98,8 @@ class LocalAuthService implements AuthService {
 }
 
 final authServiceProvider = Provider<AuthService>((_) => LocalAuthService());
+
+/// One spelled-out parental-gate challenge per app session. Overridable in
+/// tests so the answer is known.
+final parentGateChallengeProvider =
+    Provider<ParentGateChallenge>((_) => makeParentGate());

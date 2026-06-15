@@ -484,6 +484,24 @@ abstract class AppLocalizations {
   /// **'For grown-ups'**
   String get forGrownups;
 
+  /// No description provided for @grownupCheck.
+  ///
+  /// In en, this message translates to:
+  /// **'Grown-up check'**
+  String get grownupCheck;
+
+  /// No description provided for @grownupCheckBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask a grown-up to continue. Type these numbers:'**
+  String get grownupCheckBody;
+
+  /// No description provided for @wrongNumbers.
+  ///
+  /// In en, this message translates to:
+  /// **'Those numbers don\'t match — try again'**
+  String get wrongNumbers;
+
   /// No description provided for @stageOf.
   ///
   /// In en, this message translates to:

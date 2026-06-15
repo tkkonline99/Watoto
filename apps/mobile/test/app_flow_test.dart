@@ -9,6 +9,8 @@ import 'package:watoto_mobile/core/network/watoto_api.dart';
 import 'package:watoto_mobile/core/offline/offline_providers.dart';
 import 'package:watoto_mobile/core/offline/offline_store.dart';
 import 'package:watoto_mobile/core/offline/sync_op.dart';
+import 'package:watoto_mobile/features/auth/auth_service.dart';
+import 'package:watoto_mobile/features/auth/parent_gate.dart';
 import 'package:watoto_mobile/features/lesson_player/lesson_models.dart';
 import 'package:watoto_mobile/features/lesson_player/lesson_repository.dart';
 import 'package:watoto_mobile/features/onboarding/consent.dart';
@@ -96,6 +98,9 @@ void main() {
           quizProvider.overrideWith((ref, slug) async => _quiz),
           offlineStoreProvider.overrideWithValue(store),
           syncApiProvider.overrideWithValue(_UnreachableApi()),
+          // Fixed parent-gate challenge so the onboarding test knows the answer.
+          parentGateChallengeProvider.overrideWithValue(
+              const ParentGateChallenge(prompt: 'one — two — three', answer: '123')),
         ],
         child: const WatotoApp(),
       );
@@ -131,6 +136,12 @@ void main() {
 
     expect(find.text('Choose your language'), findsOneWidget);
     await tester.tap(find.text('Start'));
+    await tester.pumpAndSettle();
+
+    // FTC parent gate: type the spelled-out numbers (overridden to 123).
+    expect(find.text('Grown-up check'), findsOneWidget);
+    await tester.enterText(find.byType(TextField), '123');
+    await tester.tap(find.text('Next'));
     await tester.pumpAndSettle();
 
     expect(find.text('A safe place to learn'), findsOneWidget);

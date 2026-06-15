@@ -217,6 +217,16 @@ class AppLocalizationsSw extends AppLocalizations {
   String get forGrownups => 'Kwa watu wazima';
 
   @override
+  String get grownupCheck => 'Uthibitisho wa mtu mzima';
+
+  @override
+  String get grownupCheckBody =>
+      'Mwombe mtu mzima aendelee. Andika namba hizi:';
+
+  @override
+  String get wrongNumbers => 'Namba hazifanani — jaribu tena';
+
+  @override
   String stageOf(int stage, String ages) {
     return 'Hatua $stage · Umri $ages';
   }

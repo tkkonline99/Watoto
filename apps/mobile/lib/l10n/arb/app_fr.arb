@@ -64,5 +64,8 @@
   "readAgain": "Relire",
   "curriculum": "Programme",
   "forGrownups": "Pour les adultes",
+  "grownupCheck": "Vérification adulte",
+  "grownupCheckBody": "Demande à un adulte de continuer. Saisis ces chiffres :",
+  "wrongNumbers": "Ces chiffres ne correspondent pas — réessaie",
   "stageOf": "Étape {stage} · Âges {ages}"
 }

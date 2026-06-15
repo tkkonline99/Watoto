@@ -217,6 +217,16 @@ class AppLocalizationsFr extends AppLocalizations {
   String get forGrownups => 'Pour les adultes';
 
   @override
+  String get grownupCheck => 'Vérification adulte';
+
+  @override
+  String get grownupCheckBody =>
+      'Demande à un adulte de continuer. Saisis ces chiffres :';
+
+  @override
+  String get wrongNumbers => 'Ces chiffres ne correspondent pas — réessaie';
+
+  @override
   String stageOf(int stage, String ages) {
     return 'Étape $stage · Âges $ages';
   }

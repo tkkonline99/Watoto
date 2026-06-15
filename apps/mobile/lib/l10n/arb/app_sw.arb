@@ -64,5 +64,8 @@
   "readAgain": "Soma tena",
   "curriculum": "Mtaala",
   "forGrownups": "Kwa watu wazima",
+  "grownupCheck": "Uthibitisho wa mtu mzima",
+  "grownupCheckBody": "Mwombe mtu mzima aendelee. Andika namba hizi:",
+  "wrongNumbers": "Namba hazifanani — jaribu tena",
   "stageOf": "Hatua {stage} · Umri {ages}"
 }
