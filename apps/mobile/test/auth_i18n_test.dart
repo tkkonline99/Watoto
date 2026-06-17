@@ -13,19 +13,26 @@ Map<String, String> _bundle(String code) =>
 
 void main() {
   group('content i18n overlay', () {
-    test('French overlays Stage 1, falls back to English elsewhere', () {
-      final i18n = ContentI18n({'en': _bundle('en'), 'fr': _bundle('fr'), 'sw': _bundle('sw')});
+    test('French overlays translated content, falls back to English otherwise', () {
+      final en = _bundle('en');
+      final fr = _bundle('fr');
+      final i18n = ContentI18n({'en': en, 'fr': fr, 'sw': _bundle('sw')});
 
-      // Stage 1 is translated.
+      // Stage 1 is translated in both locales.
       expect(i18n.tr('fr', 's01.cause.lesson.01.title', 'x'),
           'Touche pour faire une étoile');
       expect(i18n.tr('sw', 's01.cause.lesson.01.title', 'x'),
           'Gusa ili kutengeneza nyota');
 
-      // Untranslated key (later stage) falls back to the English catalog.
-      const laterKey = 's08.math.lesson.01.title';
-      expect(i18n.tr('fr', laterKey, 'fallback'), i18n.tr('en', laterKey, 'fallback'));
-      expect(i18n.tr('fr', laterKey, 'fallback'), isNot('fallback'));
+      // Translation is partial and grows over time: any English key not yet
+      // translated to French resolves to the English catalog value, not the
+      // raw fallback. (Skipped only in the unlikely event FR hits 100%.)
+      final untranslated =
+          en.keys.firstWhere((k) => !fr.containsKey(k), orElse: () => '');
+      if (untranslated.isNotEmpty) {
+        expect(i18n.tr('fr', untranslated, 'fallback'), en[untranslated]);
+        expect(i18n.tr('fr', untranslated, 'fallback'), isNot('fallback'));
+      }
 
       // Unknown key returns the provided fallback.
       expect(i18n.tr('fr', 'does.not.exist', 'fallback'), 'fallback');
