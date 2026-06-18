@@ -67,5 +67,9 @@
   "grownupCheck": "Uthibitisho wa mtu mzima",
   "grownupCheckBody": "Mwombe mtu mzima aendelee. Andika namba hizi:",
   "wrongNumbers": "Namba hazifanani — jaribu tena",
-  "stageOf": "Hatua {stage} · Umri {ages}"
+  "stageOf": "Hatua {stage} · Umri {ages}",
+  "legalSection": "Kuhusu na Kisheria",
+  "privacyPolicy": "Sera ya Faragha",
+  "termsOfService": "Masharti ya Huduma",
+  "legalDraftNote": "Rasimu — inasubiri ukaguzi wa kisheria"
 }

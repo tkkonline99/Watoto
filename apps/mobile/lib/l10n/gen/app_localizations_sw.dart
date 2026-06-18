@@ -230,4 +230,16 @@ class AppLocalizationsSw extends AppLocalizations {
   String stageOf(int stage, String ages) {
     return 'Hatua $stage · Umri $ages';
   }
+
+  @override
+  String get legalSection => 'Kuhusu na Kisheria';
+
+  @override
+  String get privacyPolicy => 'Sera ya Faragha';
+
+  @override
+  String get termsOfService => 'Masharti ya Huduma';
+
+  @override
+  String get legalDraftNote => 'Rasimu — inasubiri ukaguzi wa kisheria';
 }

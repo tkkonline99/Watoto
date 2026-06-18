@@ -32,12 +32,12 @@ Future<LibraryRepository> loadFromDisk() async {
 
 void main() {
   group('content library', () {
-    test('parses all v0.12.0 items by type', () async {
+    test('parses all v0.13.0 items by type', () async {
       final repo = await loadFromDisk();
-      expect(repo.all, hasLength(466));
-      expect(repo.all.where((i) => i.type == LibraryType.lesson), hasLength(280));
-      expect(repo.all.where((i) => i.type == LibraryType.quiz), hasLength(140));
-      expect(repo.all.where((i) => i.type == LibraryType.story), hasLength(46));
+      expect(repo.all, hasLength(565));
+      expect(repo.all.where((i) => i.type == LibraryType.lesson), hasLength(342));
+      expect(repo.all.where((i) => i.type == LibraryType.quiz), hasLength(166));
+      expect(repo.all.where((i) => i.type == LibraryType.story), hasLength(57));
     });
 
     test('indexes by stage + subject', () async {

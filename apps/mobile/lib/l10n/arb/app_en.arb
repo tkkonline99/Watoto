@@ -100,6 +100,10 @@
   "grownupCheckBody": "Ask a grown-up to continue. Type these numbers:",
   "wrongNumbers": "Those numbers don't match — try again",
   "stageOf": "Stage {stage} · Ages {ages}",
+  "legalSection": "About & legal",
+  "privacyPolicy": "Privacy Policy",
+  "termsOfService": "Terms of Service",
+  "legalDraftNote": "Draft — pending legal review",
   "@stageOf": {
     "placeholders": {
       "stage": { "type": "int" },

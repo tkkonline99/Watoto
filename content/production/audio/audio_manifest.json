@@ -1,0 +1,55 @@
+{
+  "vo": {
+    "clips_per_language": {
+      "en": 2661,
+      "fr": 2661,
+      "sw": 2661
+    },
+    "clips_total_all_languages": 7983,
+    "unique_lines_per_language": 2661,
+    "by_field_per_language": {
+      "lesson.feedback": 747,
+      "lesson.narration": 747,
+      "quiz.correct": 192,
+      "quiz.option": 420,
+      "quiz.prompt": 192,
+      "quiz.retry": 192,
+      "story.narration": 171
+    },
+    "by_stage_per_language": {
+      "1": 189,
+      "2": 286,
+      "3": 283,
+      "4": 275,
+      "5": 222,
+      "6": 226,
+      "7": 255,
+      "8": 265,
+      "9": 255,
+      "10": 405
+    },
+    "est_minutes_per_language": {
+      "en": 156.6,
+      "fr": 185.7,
+      "sw": 142.3
+    },
+    "est_minutes_all_languages": 484.6,
+    "review_for_locale_lines": 284,
+    "pace_wpm": 130
+  },
+  "sound_design": {
+    "declared_audio_assets": 87,
+    "by_kind": {
+      "sfx": 24,
+      "music": 8,
+      "spoken-cue": 55
+    },
+    "spoken_cues_need_localizing": 55
+  },
+  "excluded_from_child_vo": {
+    "title": 565,
+    "parentNote": 122,
+    "note": "Titles are UI labels; parent notes are adult-facing. Add to VO only if the app announces them."
+  },
+  "path_scheme": "audio/<lang>/<i18n-key>.mp3  (resolves from the same key used for captions)"
+}

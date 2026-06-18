@@ -2,7 +2,7 @@
   "_meta": {
     "app": "Watoto",
     "title": "Watoto Playable Content Library",
-    "version": "0.12.0",
+    "version": "0.13.0",
     "generated": "2026-06-17",
     "sourceCurriculum": "curriculum.pptx (10 stages, Birth-Age 10)",
     "contentTypes": [
@@ -17083,6 +17083,3851 @@
         {
           "narration": "All 5 seeds planted, fast! Loops make work easier. Beep beep!",
           "illustration": "img/s08/pixel_done.png",
+          "interaction": null
+        }
+      ]
+    },
+    {
+      "id": "s09.reading.lesson.02",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Reading",
+      "type": "lesson",
+      "title": "Making Inferences",
+      "objective": "Use clues to infer what isn't stated.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/inference.png",
+          "desc": "Girl with umbrella at window"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "'Mia grabbed her umbrella and frowned at the window.' What can you INFER? Tap your idea.",
+          "action": "tap",
+          "feedback": "Good inference — it's probably raining! The clues told you."
+        },
+        {
+          "narration": "Authors don't say everything; readers figure it out.",
+          "action": "tap",
+          "feedback": "You read between the lines!"
+        }
+      ]
+    },
+    {
+      "id": "s09.reading.lesson.03",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Reading",
+      "type": "lesson",
+      "title": "Cause and Effect",
+      "objective": "Connect a cause to its effect.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "drag",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/cause_effect.png",
+          "desc": "Rain and flood"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "CAUSE: it rained all night. What is the EFFECT? Drag 'the river flooded'.",
+          "action": "drag",
+          "feedback": "Cause → effect!"
+        },
+        {
+          "narration": "Signal words like 'because' and 'so' show the link.",
+          "action": "tap",
+          "feedback": "Nicely connected!"
+        }
+      ]
+    },
+    {
+      "id": "s09.reading.lesson.04",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Reading",
+      "type": "lesson",
+      "title": "Text Features",
+      "objective": "Use headings, captions, and bold words.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/text_features.png",
+          "desc": "Page with heading and caption"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "A HEADING tells what a section is about. Tap the heading.",
+          "action": "tap",
+          "feedback": "Headings guide the reader!"
+        },
+        {
+          "narration": "A CAPTION explains a picture; BOLD words are important. Tap each.",
+          "action": "tap",
+          "feedback": "Text features help us find information fast!"
+        }
+      ]
+    },
+    {
+      "id": "s09.reading.lesson.05",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Reading",
+      "type": "lesson",
+      "title": "Summarize a Passage",
+      "objective": "Retell the key points briefly.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/summarize.png",
+          "desc": "Long text to short summary"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "A good summary keeps the MAIN points and drops small details. Tap the best summary.",
+          "action": "tap",
+          "feedback": "Short and complete — a great summary!"
+        },
+        {
+          "narration": "Summarizing shows you understood the whole text.",
+          "action": "tap",
+          "feedback": "Well summarized!"
+        }
+      ]
+    },
+    {
+      "id": "s09.reading.lesson.06",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Reading",
+      "type": "lesson",
+      "title": "Author's Purpose",
+      "objective": "Identify why an author wrote a text.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/author_purpose.png",
+          "desc": "Inform, entertain, persuade"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Authors write to INFORM, ENTERTAIN, or PERSUADE. A funny story is to... tap 'entertain'.",
+          "action": "tap",
+          "feedback": "Yes — to entertain!"
+        },
+        {
+          "narration": "An ad that says 'Buy this!' is to PERSUADE.",
+          "action": "tap",
+          "feedback": "You found the author's purpose!"
+        }
+      ]
+    },
+    {
+      "id": "s09.reading.quiz.02",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Reading",
+      "type": "quiz",
+      "title": "What Can You Infer?",
+      "objective": "Draw an inference from clues.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "'Sam's stomach growled and he eyed the kitchen.' What can you infer?",
+          "options": [
+            {
+              "label": "Sam is hungry",
+              "asset": null
+            },
+            {
+              "label": "Sam is sleepy",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — a growling stomach means hungry!",
+          "retryFeedback": "What do the clues suggest? Try again!"
+        }
+      ]
+    },
+    {
+      "id": "s09.reading.quiz.03",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Reading",
+      "type": "quiz",
+      "title": "Cause and Effect",
+      "objective": "Match a cause to its effect.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "EFFECT: the plant wilted. What was the CAUSE?",
+          "options": [
+            {
+              "label": "No one watered it",
+              "asset": null
+            },
+            {
+              "label": "It was painted blue",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — without water, plants wilt!",
+          "retryFeedback": "Which one would make a plant wilt? Try again!"
+        }
+      ]
+    },
+    {
+      "id": "s09.reading.story.01",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Reading",
+      "type": "story",
+      "title": "The Missing Lunch",
+      "objective": "Solve a mystery using inference.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap-to-turn",
+      "parentNote": "Ask your child what clues helped solve the mystery.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "audio",
+          "ref": "audio/s09/missing_lunch.mp3",
+          "desc": "Intriguing narrator"
+        }
+      ],
+      "pages": [
+        {
+          "narration": "Ravi's lunch vanished from his desk. Crumbs led to the window.",
+          "illustration": "img/s09/mystery_crumbs.png",
+          "interaction": "tap-to-turn"
+        },
+        {
+          "narration": "A feather and a tiny footprint sat on the sill. Who could it be?",
+          "illustration": "img/s09/mystery_clues.png",
+          "interaction": "tap-to-turn"
+        },
+        {
+          "narration": "A cheeky crow on the branch held a sandwich! Mystery solved by clues.",
+          "illustration": "img/s09/mystery_crow.png",
+          "interaction": null
+        }
+      ]
+    },
+    {
+      "id": "s09.writing.lesson.02",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Writing",
+      "type": "lesson",
+      "title": "Transitions",
+      "objective": "Sequence ideas with transition words.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "drag",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/transitions.png",
+          "desc": "First, next, finally"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Order the steps with FIRST, NEXT, FINALLY. Drag them in order.",
+          "action": "drag",
+          "feedback": "Transitions guide the reader through!"
+        },
+        {
+          "narration": "Words like 'then' and 'after that' connect ideas.",
+          "action": "tap",
+          "feedback": "Smooth writing!"
+        }
+      ]
+    },
+    {
+      "id": "s09.writing.lesson.03",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Writing",
+      "type": "lesson",
+      "title": "Quotation Marks",
+      "objective": "Punctuate spoken words.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/quotation_marks.png",
+          "desc": "Speech with quotation marks"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Quotation marks go around what someone SAYS. \"Hello,\" said Ana. Tap the quotation marks.",
+          "action": "tap",
+          "feedback": "Quotes show the exact words!"
+        },
+        {
+          "narration": "The comma and period stay inside the quotes.",
+          "action": "tap",
+          "feedback": "Neatly punctuated!"
+        }
+      ]
+    },
+    {
+      "id": "s09.writing.lesson.04",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Writing",
+      "type": "lesson",
+      "title": "Proper Nouns",
+      "objective": "Capitalize specific names.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/proper_nouns.png",
+          "desc": "Monday, Nile"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "A PROPER noun names a specific person, place, or day. Tap 'Monday'.",
+          "action": "tap",
+          "feedback": "Proper nouns get capitals!"
+        },
+        {
+          "narration": "'river' is common, but 'Nile' is proper. Tap 'Nile'.",
+          "action": "tap",
+          "feedback": "Specific names are capitalized!"
+        }
+      ]
+    },
+    {
+      "id": "s09.writing.lesson.05",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Writing",
+      "type": "lesson",
+      "title": "Verb Tenses",
+      "objective": "Use past, present, and future.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/verb_tenses.png",
+          "desc": "Past, present, future"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "PAST: I walked. PRESENT: I walk. FUTURE: I will walk. Tap the future tense.",
+          "action": "tap",
+          "feedback": "'will walk' — the future!"
+        },
+        {
+          "narration": "Tenses tell WHEN something happens.",
+          "action": "tap",
+          "feedback": "You control time with verbs!"
+        }
+      ]
+    },
+    {
+      "id": "s09.writing.lesson.06",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Writing",
+      "type": "lesson",
+      "title": "Edit Your Writing",
+      "objective": "Check capitals, punctuation, spelling.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Have your child reread and fix one piece of writing.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/editing.png",
+          "desc": "Editing marks on a sentence"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "This sentence has a mistake: 'my dog runs fast' — what's missing? Tap to add a capital and period.",
+          "action": "tap",
+          "feedback": "'My dog runs fast.' Fixed!"
+        },
+        {
+          "narration": "Good writers always edit their work.",
+          "action": "tap",
+          "feedback": "Editing makes writing shine!"
+        }
+      ]
+    },
+    {
+      "id": "s09.writing.quiz.02",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Writing",
+      "type": "quiz",
+      "title": "Find the Proper Noun",
+      "objective": "Identify a proper noun.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Which is a PROPER noun?",
+          "options": [
+            {
+              "label": "Africa",
+              "asset": null
+            },
+            {
+              "label": "country",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — Africa is a specific place, so it's a proper noun!",
+          "retryFeedback": "Which names a specific place? Try again!"
+        }
+      ]
+    },
+    {
+      "id": "s09.writing.quiz.03",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Writing",
+      "type": "quiz",
+      "title": "Quotation Marks",
+      "objective": "Choose correct quotation use.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Which sentence uses quotation marks correctly?",
+          "options": [
+            {
+              "label": "\"Let's go!\" yelled Tom.",
+              "asset": null
+            },
+            {
+              "label": "Let's go! yelled Tom.",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — the spoken words go inside quotes!",
+          "retryFeedback": "Quotes wrap the exact spoken words — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s09.writing.story.01",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Writing",
+      "type": "story",
+      "title": "The Writer's Club",
+      "objective": "Follow the writing process in a story.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap-to-turn",
+      "parentNote": "Remind your child that good writing comes from revising.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "audio",
+          "ref": "audio/s09/writers_club.mp3",
+          "desc": "Encouraging narrator"
+        }
+      ],
+      "pages": [
+        {
+          "narration": "Ada joins the Writer's Club. Her first draft is messy — and that's okay!",
+          "illustration": "img/s09/writers_draft.png",
+          "interaction": "tap-to-turn"
+        },
+        {
+          "narration": "She revises: adds details, fixes spelling, and reads it aloud.",
+          "illustration": "img/s09/writers_revise.png",
+          "interaction": "tap-to-turn"
+        },
+        {
+          "narration": "She shares her polished story. The club claps. Writing takes steps!",
+          "illustration": "img/s09/writers_share.png",
+          "interaction": null
+        }
+      ]
+    },
+    {
+      "id": "s09.math.lesson.02",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Math",
+      "type": "lesson",
+      "title": "Understanding Fractions",
+      "objective": "See fractions as equal parts.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/fractions.png",
+          "desc": "Pizza in quarters"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "A pizza cut in 4 equal parts: each is 1/4. Tap one quarter.",
+          "action": "tap",
+          "feedback": "'One out of four — 1/4!'"
+        },
+        {
+          "narration": "The bottom number is the total parts; the top is how many we have.",
+          "action": "tap",
+          "feedback": "Fractions are equal parts!"
+        }
+      ]
+    },
+    {
+      "id": "s09.math.lesson.03",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Math",
+      "type": "lesson",
+      "title": "Compare Fractions",
+      "objective": "Compare fractions with the same whole.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/compare_fractions.png",
+          "desc": "Half vs quarter"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Which is bigger, 1/2 or 1/4? Tap the bigger piece.",
+          "action": "tap",
+          "feedback": "'1/2 is bigger — fewer pieces means bigger pieces!'"
+        },
+        {
+          "narration": "The more parts you cut, the smaller each part.",
+          "action": "tap",
+          "feedback": "Smart comparing!"
+        }
+      ]
+    },
+    {
+      "id": "s09.math.lesson.04",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Math",
+      "type": "lesson",
+      "title": "Multiply by Tens",
+      "objective": "Multiply by multiples of ten.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/multiply_tens.png",
+          "desc": "3 x 20 = 60"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "3 × 10 = 30. Just add a zero! Tap 30.",
+          "action": "tap",
+          "feedback": "'3 × 10 = 30!'"
+        },
+        {
+          "narration": "3 × 20 is 3 × 2 = 6, then a zero: 60.",
+          "action": "tap",
+          "feedback": "'3 × 20 = 60!'"
+        }
+      ]
+    },
+    {
+      "id": "s09.math.lesson.05",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Math",
+      "type": "lesson",
+      "title": "Rounding",
+      "objective": "Round to the nearest 10 and 100.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/rounding.png",
+          "desc": "Number line rounding 47"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Round 47 to the nearest 10. Is it closer to 40 or 50? Tap 50.",
+          "action": "tap",
+          "feedback": "'47 rounds to 50!'"
+        },
+        {
+          "narration": "Round 230 to the nearest 100: 200.",
+          "action": "tap",
+          "feedback": "Rounding makes numbers easier!"
+        }
+      ]
+    },
+    {
+      "id": "s09.math.lesson.06",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Math",
+      "type": "lesson",
+      "title": "Read a Bar Graph",
+      "objective": "Read data from a bar graph.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Make a simple bar graph of something at home together.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/bar_graph.png",
+          "desc": "Bar graph of pets"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "The graph shows pets in class. Which bar is tallest? Tap it.",
+          "action": "tap",
+          "feedback": "'Dogs — the most popular pet!'"
+        },
+        {
+          "narration": "How many more dogs than cats? Compare the bars.",
+          "action": "tap",
+          "feedback": "You read the data!"
+        }
+      ]
+    },
+    {
+      "id": "s09.math.quiz.02",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Math",
+      "type": "quiz",
+      "title": "Bigger Fraction",
+      "objective": "Compare two fractions.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Which fraction is BIGGER?",
+          "options": [
+            {
+              "label": "1/2",
+              "asset": null
+            },
+            {
+              "label": "1/4",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — 1/2 is bigger than 1/4!",
+          "retryFeedback": "Fewer pieces means each is bigger — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s09.math.quiz.03",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Math",
+      "type": "quiz",
+      "title": "Times Table",
+      "objective": "Recall a multiplication fact.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "What is 7 × 6?",
+          "options": [
+            {
+              "label": "42",
+              "asset": null
+            },
+            {
+              "label": "36",
+              "asset": null
+            },
+            {
+              "label": "48",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — 7 × 6 = 42!",
+          "retryFeedback": "Try 7 × 6: think 7 × 5 = 35, plus 7 — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s09.math.story.01",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Math",
+      "type": "story",
+      "title": "Sharing the Pizza",
+      "objective": "Use fractions in a story.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap-to-turn",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "audio",
+          "ref": "audio/s09/sharing_pizza.mp3",
+          "desc": "Friendly narrator"
+        }
+      ],
+      "pages": [
+        {
+          "narration": "Four friends share one pizza fairly. How many slices each?",
+          "illustration": "img/s09/pizza_whole.png",
+          "interaction": "tap-to-turn"
+        },
+        {
+          "narration": "They cut it into 4 equal parts. Each gets 1/4. Tap to slice.",
+          "illustration": "img/s09/pizza_quarters.png",
+          "interaction": "tap-to-turn"
+        },
+        {
+          "narration": "Everyone gets an equal share. Fractions make sharing fair!",
+          "illustration": "img/s09/pizza_share.png",
+          "interaction": null
+        }
+      ]
+    },
+    {
+      "id": "s09.science.lesson.02",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Science",
+      "type": "lesson",
+      "title": "Animal Adaptations",
+      "objective": "Learn how adaptations help survival.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/adaptations.png",
+          "desc": "Polar bear and camouflaged gecko"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "A polar bear's thick fur keeps it warm. Tap the fur.",
+          "action": "tap",
+          "feedback": "An adaptation for the cold!"
+        },
+        {
+          "narration": "Camouflage helps animals hide. Tap the hidden gecko.",
+          "action": "tap",
+          "feedback": "Adaptations help animals survive!"
+        }
+      ]
+    },
+    {
+      "id": "s09.science.lesson.03",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Science",
+      "type": "lesson",
+      "title": "Food Webs",
+      "objective": "See how food chains connect.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/food_web.png",
+          "desc": "Connected food web"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Many food chains link into a FOOD WEB. Tap to connect the grass, rabbit, and hawk.",
+          "action": "tap",
+          "feedback": "They're all connected!"
+        },
+        {
+          "narration": "If one animal disappears, the whole web is affected.",
+          "action": "tap",
+          "feedback": "Ecosystems are connected!"
+        }
+      ]
+    },
+    {
+      "id": "s09.science.lesson.04",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Science",
+      "type": "lesson",
+      "title": "Fossils",
+      "objective": "Discover what fossils tell us.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/fossils.png",
+          "desc": "Dinosaur fossil"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "A FOSSIL is the preserved trace of a living thing from long ago. Tap the fossil.",
+          "action": "tap",
+          "feedback": "A clue from the past!"
+        },
+        {
+          "narration": "Fossils show us animals that lived millions of years ago, like dinosaurs.",
+          "action": "tap",
+          "feedback": "Fossils tell Earth's story!"
+        }
+      ]
+    },
+    {
+      "id": "s09.science.lesson.05",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Science",
+      "type": "lesson",
+      "title": "Simple Machines",
+      "objective": "Identify simple machines that help us.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "drag",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/simple_machines.png",
+          "desc": "Ramp, lever, pulley"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "A ramp is an INCLINED PLANE — it makes lifting easier. Drag the box up the ramp.",
+          "action": "drag",
+          "feedback": "Less force with a ramp!"
+        },
+        {
+          "narration": "A LEVER and a PULLEY also help us do work. Match them.",
+          "action": "drag",
+          "feedback": "Simple machines multiply our effort!"
+        }
+      ]
+    },
+    {
+      "id": "s09.science.lesson.06",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Science",
+      "type": "lesson",
+      "title": "The Solar System",
+      "objective": "Name planets in our solar system.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Look at the night sky and find a planet or the Moon together.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/solar_system.png",
+          "desc": "Planets orbiting the Sun"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Eight planets orbit the Sun. Earth is the third. Tap Earth.",
+          "action": "tap",
+          "feedback": "'Our home — Earth!'"
+        },
+        {
+          "narration": "Tap the largest planet, Jupiter.",
+          "action": "tap",
+          "feedback": "Eight planets circle our Sun!"
+        }
+      ]
+    },
+    {
+      "id": "s09.science.quiz.02",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Science",
+      "type": "quiz",
+      "title": "Helpful Adaptation",
+      "objective": "Connect an adaptation to survival.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Which adaptation helps a polar bear survive the cold?",
+          "options": [
+            {
+              "label": "Thick fur",
+              "asset": null
+            },
+            {
+              "label": "Thin skin",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — thick fur keeps it warm!",
+          "retryFeedback": "What keeps an animal warm? Try again!"
+        }
+      ]
+    },
+    {
+      "id": "s09.science.quiz.03",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Science",
+      "type": "quiz",
+      "title": "Count the Planets",
+      "objective": "Recall a fact about the solar system.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "How many planets orbit our Sun?",
+          "options": [
+            {
+              "label": "8",
+              "asset": null
+            },
+            {
+              "label": "5",
+              "asset": null
+            },
+            {
+              "label": "12",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — eight planets!",
+          "retryFeedback": "Count them: Mercury to Neptune — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s09.science.story.01",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Science",
+      "type": "story",
+      "title": "The Chameleon's Secret",
+      "objective": "Explore adaptation through a story.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap-to-turn",
+      "parentNote": "Talk about other animals that use camouflage.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "audio",
+          "ref": "audio/s09/chameleon.mp3",
+          "desc": "Curious narrator"
+        }
+      ],
+      "pages": [
+        {
+          "narration": "Kael the chameleon could not be found by the hungry bird.",
+          "illustration": "img/s09/chameleon_hide.png",
+          "interaction": "tap-to-turn"
+        },
+        {
+          "narration": "He changed color to match each leaf and branch. Camouflage!",
+          "illustration": "img/s09/chameleon_color.png",
+          "interaction": "tap-to-turn"
+        },
+        {
+          "narration": "The bird flew off, puzzled. Kael's adaptation kept him safe!",
+          "illustration": "img/s09/chameleon_safe.png",
+          "interaction": null
+        }
+      ]
+    },
+    {
+      "id": "s09.social.lesson.02",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Social Studies",
+      "type": "lesson",
+      "title": "Map Legend and Scale",
+      "objective": "Read a map's legend and scale.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/map_legend.png",
+          "desc": "Map with legend and scale"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "A LEGEND explains the map's symbols. Tap the legend to learn what a star means.",
+          "action": "tap",
+          "feedback": "A star is the capital city!"
+        },
+        {
+          "narration": "The SCALE shows real distance. Tap it.",
+          "action": "tap",
+          "feedback": "Legends and scales help us read maps!"
+        }
+      ]
+    },
+    {
+      "id": "s09.social.lesson.03",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Social Studies",
+      "type": "lesson",
+      "title": "Rights and Responsibilities",
+      "objective": "Tell rights from responsibilities.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "drag",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/rights_resp.png",
+          "desc": "Rights and responsibilities"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "A RIGHT is something you're free to have, like an education. Drag it to 'rights'.",
+          "action": "drag",
+          "feedback": "A right!"
+        },
+        {
+          "narration": "A RESPONSIBILITY is a duty, like following rules. Drag it to 'responsibilities'.",
+          "action": "drag",
+          "feedback": "Rights come with responsibilities!"
+        }
+      ]
+    },
+    {
+      "id": "s09.social.lesson.04",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Social Studies",
+      "type": "lesson",
+      "title": "Saving and Spending",
+      "objective": "Understand budgeting basics.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Talk about saving for something your child wants.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/saving.png",
+          "desc": "Coins, toy, savings jar"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "You have 10 coins. A toy costs 7. If you buy it, you SAVE 3. Tap to save 3.",
+          "action": "tap",
+          "feedback": "Saving means keeping some!"
+        },
+        {
+          "narration": "A budget plans what to spend and save.",
+          "action": "tap",
+          "feedback": "Smart money choices!"
+        }
+      ]
+    },
+    {
+      "id": "s09.social.lesson.05",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Social Studies",
+      "type": "lesson",
+      "title": "Reading a Timeline",
+      "objective": "Order events on a timeline.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/timeline.png",
+          "desc": "Historical timeline"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "A TIMELINE shows events in order. Tap the earliest event on the left.",
+          "action": "tap",
+          "feedback": "Timelines go from past to present!"
+        },
+        {
+          "narration": "Events further right happened later.",
+          "action": "tap",
+          "feedback": "You read history in order!"
+        }
+      ]
+    },
+    {
+      "id": "s09.social.lesson.06",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Social Studies",
+      "type": "lesson",
+      "title": "Where People Live",
+      "objective": "Compare rural, suburban, urban areas.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/community_types.png",
+          "desc": "Rural, suburban, urban"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "A RURAL area has farms and open land. Tap the farm.",
+          "action": "tap",
+          "feedback": "Rural — countryside!"
+        },
+        {
+          "narration": "SUBURBAN has homes near a city; URBAN is the busy city. Tap each.",
+          "action": "tap",
+          "feedback": "People live in different kinds of places!"
+        }
+      ]
+    },
+    {
+      "id": "s09.social.quiz.02",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Social Studies",
+      "type": "quiz",
+      "title": "Map Legend",
+      "objective": "Understand a map legend.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "What does a map LEGEND show?",
+          "options": [
+            {
+              "label": "What the symbols mean",
+              "asset": null
+            },
+            {
+              "label": "The map's age",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — a legend explains the symbols!",
+          "retryFeedback": "A legend is a key to the symbols — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s09.social.quiz.03",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Social Studies",
+      "type": "quiz",
+      "title": "Right or Responsibility?",
+      "objective": "Classify a right or responsibility.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Following the law is a...",
+          "options": [
+            {
+              "label": "Responsibility",
+              "asset": null
+            },
+            {
+              "label": "Right",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — obeying laws is a responsibility!",
+          "retryFeedback": "Is it a freedom or a duty? Try again!"
+        }
+      ]
+    },
+    {
+      "id": "s09.social.story.01",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Social Studies",
+      "type": "story",
+      "title": "The Lemonade Stand",
+      "objective": "Learn economics through a story.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap-to-turn",
+      "parentNote": "Talk about cost, earnings, and profit with your child.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "audio",
+          "ref": "audio/s09/lemonade.mp3",
+          "desc": "Upbeat narrator"
+        }
+      ],
+      "pages": [
+        {
+          "narration": "Tomas opens a lemonade stand. He spends 5 coins on lemons and sugar.",
+          "illustration": "img/s09/lemonade_buy.png",
+          "interaction": "tap-to-turn"
+        },
+        {
+          "narration": "He sells 10 cups and earns 15 coins. Tap to count his profit.",
+          "illustration": "img/s09/lemonade_sell.png",
+          "interaction": "tap-to-turn"
+        },
+        {
+          "narration": "15 earned minus 5 spent = 10 profit! He saves some and plans more.",
+          "illustration": "img/s09/lemonade_profit.png",
+          "interaction": null
+        }
+      ]
+    },
+    {
+      "id": "s09.coding.lesson.02",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Logic & Coding",
+      "type": "lesson",
+      "title": "If-Else Decisions",
+      "objective": "Use if-else to choose between actions.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/if_else.png",
+          "desc": "If-else two branches"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "IF the gate is open, go through; ELSE, knock. Tap to set the if-else.",
+          "action": "tap",
+          "feedback": "Two paths, one choice!"
+        },
+        {
+          "narration": "If-else lets a program pick between options.",
+          "action": "tap",
+          "feedback": "Smart decisions in code!"
+        }
+      ]
+    },
+    {
+      "id": "s09.coding.lesson.03",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Logic & Coding",
+      "type": "lesson",
+      "title": "Variables",
+      "objective": "Store a value in a variable.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/variables.png",
+          "desc": "Variable box holding a number"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "A VARIABLE is a box that holds a value. Put 5 into 'score'. Tap to set it.",
+          "action": "tap",
+          "feedback": "score = 5!"
+        },
+        {
+          "narration": "Change it: score + 3. Now score holds 8.",
+          "action": "tap",
+          "feedback": "Variables can change!"
+        }
+      ]
+    },
+    {
+      "id": "s09.coding.lesson.04",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Logic & Coding",
+      "type": "lesson",
+      "title": "Functions",
+      "objective": "Group steps into a reusable function.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/functions.png",
+          "desc": "Function block 'wave'"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "A FUNCTION names a group of steps so you can reuse them. Make 'wave' = raise arm, lower arm. Tap to call 'wave'.",
+          "action": "tap",
+          "feedback": "The robot waves!"
+        },
+        {
+          "narration": "Call 'wave' again — no need to rewrite the steps!",
+          "action": "tap",
+          "feedback": "Functions save work!"
+        }
+      ]
+    },
+    {
+      "id": "s09.coding.lesson.05",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Logic & Coding",
+      "type": "lesson",
+      "title": "True or False",
+      "objective": "Use boolean logic.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/boolean.png",
+          "desc": "True and false"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "'5 is greater than 3' — is that TRUE or FALSE? Tap true.",
+          "action": "tap",
+          "feedback": "True! 5 > 3."
+        },
+        {
+          "narration": "'A cat has wings' is FALSE. Computers use true/false to decide.",
+          "action": "tap",
+          "feedback": "Boolean logic!"
+        }
+      ]
+    },
+    {
+      "id": "s09.coding.lesson.06",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Logic & Coding",
+      "type": "lesson",
+      "title": "Plan an Algorithm",
+      "objective": "Break a task into clear steps.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "drag",
+      "parentNote": "Plan a everyday task as numbered steps together.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s09/algorithm.png",
+          "desc": "Sandwich steps in order"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "To make a sandwich, list the steps in order. Drag them into an algorithm.",
+          "action": "drag",
+          "feedback": "A clear plan — an algorithm!"
+        },
+        {
+          "narration": "Good algorithms have steps in the right order.",
+          "action": "tap",
+          "feedback": "You think like a coder!"
+        }
+      ]
+    },
+    {
+      "id": "s09.coding.quiz.02",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Logic & Coding",
+      "type": "quiz",
+      "title": "What's in the Variable?",
+      "objective": "Track a variable's value.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "score = 4. Then score = score + 2. What is score now?",
+          "options": [
+            {
+              "label": "6",
+              "asset": null
+            },
+            {
+              "label": "4",
+              "asset": null
+            },
+            {
+              "label": "2",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — 4 + 2 = 6!",
+          "retryFeedback": "Add 2 to the old value — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s09.coding.quiz.03",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Logic & Coding",
+      "type": "quiz",
+      "title": "If-Else Branch",
+      "objective": "Predict which branch runs.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "IF it is sunny, wear a hat; ELSE, take an umbrella. It is raining. What happens?",
+          "options": [
+            {
+              "label": "Take an umbrella",
+              "asset": null
+            },
+            {
+              "label": "Wear a hat",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — it's not sunny, so the ELSE runs!",
+          "retryFeedback": "Is it sunny? If not, the else branch runs — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s09.coding.story.01",
+      "stage": 9,
+      "ages": "8-9",
+      "subject": "Logic & Coding",
+      "type": "story",
+      "title": "Robo's Recipe Function",
+      "objective": "Learn functions through a story.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap-to-turn",
+      "parentNote": null,
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "audio",
+          "ref": "audio/s09/robo_recipe.mp3",
+          "desc": "Cheerful robot narrator"
+        }
+      ],
+      "pages": [
+        {
+          "narration": "Robo bakes cookies again and again, repeating every step. So tiring!",
+          "illustration": "img/s09/robo_repeat.png",
+          "interaction": "tap-to-turn"
+        },
+        {
+          "narration": "Robo makes a FUNCTION called 'bake' with all the steps inside. Tap to call it.",
+          "illustration": "img/s09/robo_function.png",
+          "interaction": "tap-to-turn"
+        },
+        {
+          "narration": "Now Robo just says 'bake'! Functions make code neat and reusable. Beep!",
+          "illustration": "img/s09/robo_bake.png",
+          "interaction": null
+        }
+      ]
+    },
+    {
+      "id": "s10.math.lesson.02",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Math",
+      "type": "lesson",
+      "title": "Multiply Two-Digit Numbers",
+      "objective": "Multiply a two-digit number using place value.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "step-build",
+      "parentNote": null,
+      "accessibility": "Each partial product is announced; a grid model can be toggled on.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/area_model.png",
+          "desc": "Area model showing 20×4 and 3×4"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "23 × 4. Break 23 into 20 + 3. Multiply each: 20×4=80, 3×4=12.",
+          "action": "tap",
+          "feedback": "Partial products: 80 and 12."
+        },
+        {
+          "narration": "Add the partial products: 80 + 12 = ?",
+          "action": "tap",
+          "feedback": "23 × 4 = 92!"
+        },
+        {
+          "narration": "Try 31 × 5 the same way: (30×5) + (1×5).",
+          "action": "tap",
+          "feedback": "150 + 5 = 155. Place value makes it easy!"
+        }
+      ]
+    },
+    {
+      "id": "s10.math.lesson.03",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Math",
+      "type": "lesson",
+      "title": "Equivalent Fractions",
+      "objective": "Find fractions that name the same amount.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "drag",
+      "parentNote": null,
+      "accessibility": "Fraction bars have labels and high-contrast fills; values read aloud.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/fraction_bars.png",
+          "desc": "Fraction bars showing 1/2 = 2/4"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "1/2 of a bar is shaded. Split each half again — now it's 2/4. Same amount!",
+          "action": "drag",
+          "feedback": "1/2 = 2/4."
+        },
+        {
+          "narration": "Multiply top and bottom by the same number: 1/2 × 2/2 = 2/4.",
+          "action": "tap",
+          "feedback": "That's the rule for equal fractions."
+        },
+        {
+          "narration": "Make a fraction equal to 1/3 by multiplying by 3/3.",
+          "action": "tap",
+          "feedback": "1/3 = 3/9. Nice!"
+        }
+      ]
+    },
+    {
+      "id": "s10.math.lesson.04",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Math",
+      "type": "lesson",
+      "title": "Add Fractions (Same Bottom)",
+      "objective": "Add and subtract fractions with like denominators.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "step-build",
+      "parentNote": null,
+      "accessibility": "Numerator and denominator are announced separately.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/add_fractions.png",
+          "desc": "Two fifths added to one fifth"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "1/5 + 2/5. The bottoms match, so add the tops: 1 + 2 = 3.",
+          "action": "tap",
+          "feedback": "1/5 + 2/5 = 3/5."
+        },
+        {
+          "narration": "The denominator stays the same — it tells the size of each piece.",
+          "action": "tap",
+          "feedback": "Only the top changes."
+        },
+        {
+          "narration": "Try 4/6 - 1/6.",
+          "action": "tap",
+          "feedback": "3/6. Great — same bottom, subtract the tops!"
+        }
+      ]
+    },
+    {
+      "id": "s10.math.lesson.05",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Math",
+      "type": "lesson",
+      "title": "Tenths and Hundredths",
+      "objective": "Read decimals to the hundredths place.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "Place-value chart can be toggled; decimals read in words.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/decimal_grid.png",
+          "desc": "Hundredths grid with 0.25 shaded"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "0.7 means 7 tenths — 7 out of 10 parts. Tap the 7th mark.",
+          "action": "tap",
+          "feedback": "0.7 = seven tenths."
+        },
+        {
+          "narration": "0.25 means 25 hundredths. Two digits after the dot = hundredths.",
+          "action": "tap",
+          "feedback": "0.25 = twenty-five hundredths."
+        },
+        {
+          "narration": "Which is bigger, 0.5 or 0.45? Line up the dots.",
+          "action": "tap",
+          "feedback": "0.5 is bigger — 5 tenths beats 4 tenths."
+        }
+      ]
+    },
+    {
+      "id": "s10.math.lesson.06",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Math",
+      "type": "lesson",
+      "title": "Area and Perimeter",
+      "objective": "Find area and perimeter of rectangles.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "step-build",
+      "parentNote": null,
+      "accessibility": "Grid squares are countable with audio; formulas shown and spoken.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/area_perimeter.png",
+          "desc": "Labeled 5 by 3 rectangle on a grid"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "A rectangle is 5 long and 3 wide. Perimeter = add all sides: 5+3+5+3.",
+          "action": "tap",
+          "feedback": "Perimeter = 16 units."
+        },
+        {
+          "narration": "Area = length × width = 5 × 3.",
+          "action": "tap",
+          "feedback": "Area = 15 square units."
+        },
+        {
+          "narration": "Try a 6 × 2 rectangle: find both.",
+          "action": "tap",
+          "feedback": "Perimeter 16, area 12. You've got it!"
+        }
+      ]
+    },
+    {
+      "id": "s10.math.quiz.01",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Math",
+      "type": "quiz",
+      "title": "Multiply It",
+      "objective": "Solve a two-digit multiplication.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "single-select",
+      "parentNote": null,
+      "accessibility": "Options are large and screen-reader labeled.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "What is 23 × 4?",
+          "options": [
+            {
+              "label": "92",
+              "asset": null
+            },
+            {
+              "label": "82",
+              "asset": null
+            },
+            {
+              "label": "96",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — (20×4) + (3×4) = 80 + 12 = 92!",
+          "retryFeedback": "Break 23 into 20 + 3, multiply each, then add — try again!"
+        },
+        {
+          "prompt": "What is 12 × 6?",
+          "options": [
+            {
+              "label": "72",
+              "asset": null
+            },
+            {
+              "label": "62",
+              "asset": null
+            },
+            {
+              "label": "76",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — 12 × 6 = 72!",
+          "retryFeedback": "Try (10×6) + (2×6) — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s10.math.quiz.02",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Math",
+      "type": "quiz",
+      "title": "Fraction Sense",
+      "objective": "Identify equivalent fractions and sums.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "single-select",
+      "parentNote": null,
+      "accessibility": "Fractions read as 'one half', etc.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Which fraction equals 1/2?",
+          "options": [
+            {
+              "label": "3/6",
+              "asset": null
+            },
+            {
+              "label": "2/5",
+              "asset": null
+            },
+            {
+              "label": "1/4",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — 3/6 is the same as 1/2!",
+          "retryFeedback": "Does the top fit into the bottom exactly twice? Try again!"
+        },
+        {
+          "prompt": "What is 1/4 + 2/4?",
+          "options": [
+            {
+              "label": "3/4",
+              "asset": null
+            },
+            {
+              "label": "3/8",
+              "asset": null
+            },
+            {
+              "label": "2/4",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — same bottom, add the tops: 3/4!",
+          "retryFeedback": "Keep the denominator, add the numerators — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s10.math.quiz.03",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Math",
+      "type": "quiz",
+      "title": "Decimals and Area",
+      "objective": "Compare decimals and compute area.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "single-select",
+      "parentNote": null,
+      "accessibility": "Numbers and units read aloud.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Which is larger: 0.6 or 0.59?",
+          "options": [
+            {
+              "label": "0.6",
+              "asset": null
+            },
+            {
+              "label": "0.59",
+              "asset": null
+            },
+            {
+              "label": "They are equal",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — 0.6 is six tenths, larger than 0.59!",
+          "retryFeedback": "Compare tenths first — try again!"
+        },
+        {
+          "prompt": "A rectangle is 4 by 3. What is its area?",
+          "options": [
+            {
+              "label": "12 square units",
+              "asset": null
+            },
+            {
+              "label": "14 square units",
+              "asset": null
+            },
+            {
+              "label": "7 square units",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — 4 × 3 = 12 square units!",
+          "retryFeedback": "Area is length × width — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s10.math.story.01",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Math",
+      "type": "story",
+      "title": "The Bake Sale Budget",
+      "objective": "Use multiplication and division to plan a bake sale.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "read-and-solve",
+      "parentNote": null,
+      "accessibility": "Each step can be solved with on-screen manipulatives or read aloud.",
+      "assets": [
+        {
+          "type": "audio",
+          "ref": "audio/s10/bake_sale.mp3",
+          "desc": "Narrator, adjustable speed"
+        }
+      ],
+      "pages": [
+        {
+          "narration": "Lina's class wants to raise money. Each tray of muffins costs 8 coins to make and holds 12 muffins.",
+          "illustration": "img/s10/bake_sale.png",
+          "interaction": null
+        },
+        {
+          "narration": "They make 4 trays. How many muffins is that? Tap to work it out: 4 × 12.",
+          "illustration": "img/s10/muffin_trays.png",
+          "interaction": "tap-to-solve"
+        },
+        {
+          "narration": "48 muffins! If each sells for 2 coins, that's 96 coins. After 32 coins of costs, they keep 64. Teamwork and math win!",
+          "illustration": "img/s10/coins_counted.png",
+          "interaction": null
+        }
+      ]
+    },
+    {
+      "id": "s10.reading.lesson.01",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Reading",
+      "type": "lesson",
+      "title": "Similes and Metaphors",
+      "objective": "Tell the difference between a simile and a metaphor.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "Examples are read aloud; key comparison words are highlighted.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/figurative.png",
+          "desc": "Illustration of a lion and a smiling sun"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "A SIMILE compares using 'like' or 'as': 'brave as a lion'. Tap the simile.",
+          "action": "tap",
+          "feedback": "Yes — 'as' signals a simile."
+        },
+        {
+          "narration": "A METAPHOR says one thing IS another: 'the classroom was a zoo'. Tap the metaphor.",
+          "action": "tap",
+          "feedback": "Yes — no 'like' or 'as', it just IS."
+        },
+        {
+          "narration": "Is 'her smile was sunshine' a simile or metaphor?",
+          "action": "tap",
+          "feedback": "A metaphor — it says the smile IS sunshine."
+        }
+      ]
+    },
+    {
+      "id": "s10.reading.lesson.02",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Reading",
+      "type": "lesson",
+      "title": "Idioms",
+      "objective": "Understand that idioms have a meaning beyond the words.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Share an idiom from your family's language and what it really means.",
+      "accessibility": "Literal and figurative meanings are shown side by side and read aloud.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/idioms.png",
+          "desc": "Playful art of an easy task labeled 'a piece of cake'"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "'It's raining cats and dogs' doesn't mean animals fall! It means raining hard. Tap the real meaning.",
+          "action": "tap",
+          "feedback": "Yes — idioms mean something figurative."
+        },
+        {
+          "narration": "'Break a leg' means 'good luck'. Tap the kind meaning.",
+          "action": "tap",
+          "feedback": "Right — not a real wish to get hurt!"
+        },
+        {
+          "narration": "What might 'a piece of cake' mean?",
+          "action": "tap",
+          "feedback": "Something very easy. Idioms are fun once you learn them!"
+        }
+      ]
+    },
+    {
+      "id": "s10.reading.lesson.03",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Reading",
+      "type": "lesson",
+      "title": "Finding the Theme",
+      "objective": "Identify the central message or lesson of a story.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "Story summaries are read aloud; theme options are clearly labeled.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/theme.png",
+          "desc": "Tortoise crossing a finish line"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "A theme is the BIG lesson, like 'never give up' or 'kindness matters'. It's not just what happens.",
+          "action": "tap",
+          "feedback": "Theme = the message behind the story."
+        },
+        {
+          "narration": "In a tale where a slow tortoise wins by trying hard, the theme is...?",
+          "action": "tap",
+          "feedback": "'Steady effort wins' — that's the theme!"
+        },
+        {
+          "narration": "Ask: what did the character learn? That points to the theme.",
+          "action": "tap",
+          "feedback": "Smart reading strategy!"
+        }
+      ]
+    },
+    {
+      "id": "s10.reading.lesson.04",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Reading",
+      "type": "lesson",
+      "title": "Point of View",
+      "objective": "Tell first-person from third-person narration.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "Pronouns are highlighted and announced.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/point_of_view.png",
+          "desc": "Two speech bubbles: 'I' versus 'she'"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "FIRST person uses 'I' and 'we' — the narrator is in the story. Tap the first-person line.",
+          "action": "tap",
+          "feedback": "Yes — 'I ran home' is first person."
+        },
+        {
+          "narration": "THIRD person uses 'he', 'she', 'they' — a narrator outside the story. Tap it.",
+          "action": "tap",
+          "feedback": "Right — 'She ran home' is third person."
+        },
+        {
+          "narration": "Who is telling the story changes how we see it.",
+          "action": "tap",
+          "feedback": "Great thinking!"
+        }
+      ]
+    },
+    {
+      "id": "s10.reading.lesson.05",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Reading",
+      "type": "lesson",
+      "title": "Summarize a Passage",
+      "objective": "Retell the key points in a short summary.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "Passage is read aloud; key sentences can be highlighted.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/summary.png",
+          "desc": "A long paragraph shrinking into three key points"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "A summary keeps only the MOST important ideas — who, what, and why. Skip tiny details.",
+          "action": "tap",
+          "feedback": "A summary is short and focused."
+        },
+        {
+          "narration": "Read a paragraph about a rescue dog. Tap the sentence that is just a small detail.",
+          "action": "tap",
+          "feedback": "Yes — the color of the collar isn't a key point."
+        },
+        {
+          "narration": "Now keep the main events in order to build your summary.",
+          "action": "tap",
+          "feedback": "Clear and complete — well done!"
+        }
+      ]
+    },
+    {
+      "id": "s10.reading.lesson.06",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Reading",
+      "type": "lesson",
+      "title": "Read Between the Lines",
+      "objective": "Make an inference using text clues.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "Clue words are highlighted; prompts accept typed or spoken answers.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/inference.png",
+          "desc": "A child bundled in winter clothes"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "'Mateo zipped his coat and stamped his boots in the snow.' Is it warm or cold? Tap your inference.",
+          "action": "tap",
+          "feedback": "Cold — the clues tell us, even though it isn't stated!"
+        },
+        {
+          "narration": "An INFERENCE is a smart guess from evidence in the text.",
+          "action": "tap",
+          "feedback": "You combined clues with what you know."
+        },
+        {
+          "narration": "'Her stomach growled as she eyed the clock.' What can you infer?",
+          "action": "tap",
+          "feedback": "She's hungry and waiting — good inference!"
+        }
+      ]
+    },
+    {
+      "id": "s10.reading.quiz.01",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Reading",
+      "type": "quiz",
+      "title": "Simile or Metaphor?",
+      "objective": "Classify figurative language.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "single-select",
+      "parentNote": null,
+      "accessibility": "Sentences read aloud on tap.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "'The stars were diamonds in the sky.' This is a...",
+          "options": [
+            {
+              "label": "Metaphor",
+              "asset": null
+            },
+            {
+              "label": "Simile",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — it says stars ARE diamonds, so it's a metaphor!",
+          "retryFeedback": "Does it use 'like' or 'as'? If not, it's a metaphor — try again!"
+        },
+        {
+          "prompt": "'He runs like the wind.' This is a...",
+          "options": [
+            {
+              "label": "Simile",
+              "asset": null
+            },
+            {
+              "label": "Metaphor",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — 'like' makes it a simile!",
+          "retryFeedback": "Look for 'like' or 'as' — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s10.reading.quiz.02",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Reading",
+      "type": "quiz",
+      "title": "What's the Theme?",
+      "objective": "Identify the message of a short story.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "single-select",
+      "parentNote": null,
+      "accessibility": "Story summary read aloud.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "A girl shares her lunch with a new student and they become friends. What is the THEME?",
+          "options": [
+            {
+              "label": "Kindness builds friendship",
+              "asset": null
+            },
+            {
+              "label": "Lunch is at noon",
+              "asset": null
+            },
+            {
+              "label": "She had a sandwich",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — the lesson is that kindness builds friendship!",
+          "retryFeedback": "The theme is the big lesson, not a small detail — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s10.reading.quiz.03",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Reading",
+      "type": "quiz",
+      "title": "Whose Point of View?",
+      "objective": "Identify narration point of view.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "single-select",
+      "parentNote": null,
+      "accessibility": "Pronouns announced.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "'I couldn't believe what I saw.' What point of view is this?",
+          "options": [
+            {
+              "label": "First person",
+              "asset": null
+            },
+            {
+              "label": "Third person",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — 'I' means first person!",
+          "retryFeedback": "Who is speaking — someone inside or outside the story? Try again!"
+        },
+        {
+          "prompt": "'They opened the mysterious door.' What point of view?",
+          "options": [
+            {
+              "label": "Third person",
+              "asset": null
+            },
+            {
+              "label": "First person",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — 'they' means third person!",
+          "retryFeedback": "Look at the pronoun — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s10.science.lesson.02",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Science",
+      "type": "lesson",
+      "title": "The Solar System",
+      "objective": "Identify the planets orbiting the Sun.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "Planets are labeled, color-coded, and read aloud; relative sizes described.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/solar_system.png",
+          "desc": "The eight planets orbiting the Sun"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Eight planets orbit the Sun. The four closest are rocky: Mercury, Venus, Earth, Mars. Tap Earth.",
+          "action": "tap",
+          "feedback": "Earth — our home, the third planet!"
+        },
+        {
+          "narration": "The four outer planets are giants: Jupiter, Saturn, Uranus, Neptune. Tap Saturn, the ringed one.",
+          "action": "tap",
+          "feedback": "Saturn's rings are made of ice and rock!"
+        },
+        {
+          "narration": "A year is one trip around the Sun. Farther planets take longer.",
+          "action": "tap",
+          "feedback": "Neptune's year is 165 Earth years!"
+        }
+      ]
+    },
+    {
+      "id": "s10.science.lesson.03",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Science",
+      "type": "lesson",
+      "title": "Forms of Energy",
+      "objective": "Recognize light, heat, sound, and motion energy.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "Each energy type has an icon, a sound sample, and a spoken label.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/energy_forms.png",
+          "desc": "Lamp, drum, ball, and fire showing energy types"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "A lamp gives LIGHT energy. Tap the lamp.",
+          "action": "tap",
+          "feedback": "Light lets us see!"
+        },
+        {
+          "narration": "A drum makes SOUND energy when it vibrates. Tap the drum.",
+          "action": "tap",
+          "feedback": "Sound is energy we hear!"
+        },
+        {
+          "narration": "A rolling ball has MOTION energy; a fire gives HEAT. Energy can change form.",
+          "action": "tap",
+          "feedback": "Energy is never lost — it transforms!"
+        }
+      ]
+    },
+    {
+      "id": "s10.science.lesson.04",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Science",
+      "type": "lesson",
+      "title": "Food Webs",
+      "objective": "Trace energy through a food web.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "drag",
+      "parentNote": null,
+      "accessibility": "Arrows are described; nodes are labeled and read aloud.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/food_web.png",
+          "desc": "A food web linking grass, insects, frog, and hawk"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Producers (plants) make energy from sunlight. Drag the Sun to the grass.",
+          "action": "drag",
+          "feedback": "Producers start every food web."
+        },
+        {
+          "narration": "A grasshopper eats grass; a frog eats the grasshopper. Connect them.",
+          "action": "drag",
+          "feedback": "Energy moves up the web."
+        },
+        {
+          "narration": "A web has MANY connected chains. Remove one animal and others are affected.",
+          "action": "tap",
+          "feedback": "Everything in nature is linked!"
+        }
+      ]
+    },
+    {
+      "id": "s10.science.lesson.05",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Science",
+      "type": "lesson",
+      "title": "Changes of Matter",
+      "objective": "Describe melting, freezing, and evaporating.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "State changes are animated with described captions and spoken steps.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/matter_changes.png",
+          "desc": "Ice, water, and vapor with arrows"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Heat melts a SOLID into a LIQUID: ice into water. Tap to melt the ice.",
+          "action": "tap",
+          "feedback": "Melting adds heat."
+        },
+        {
+          "narration": "Cooling freezes a liquid back to solid: water into ice. Tap to freeze.",
+          "action": "tap",
+          "feedback": "Freezing removes heat."
+        },
+        {
+          "narration": "More heat evaporates liquid into GAS: water into vapor. Same stuff, new form.",
+          "action": "tap",
+          "feedback": "Matter can change state and back again!"
+        }
+      ]
+    },
+    {
+      "id": "s10.science.lesson.06",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Science",
+      "type": "lesson",
+      "title": "Think Like a Scientist",
+      "objective": "Follow the steps of the scientific method.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "step-build",
+      "parentNote": "Try a simple home experiment and ask your child to predict the result first.",
+      "accessibility": "Each step is labeled, sequential, and read aloud; data log accepts typed or spoken entries.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/scientific_method.png",
+          "desc": "Cycle: ask, hypothesize, test, conclude"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "First ASK a question: 'Which paper plane flies farthest?' Tap to begin.",
+          "action": "tap",
+          "feedback": "A good question starts science."
+        },
+        {
+          "narration": "Make a HYPOTHESIS (a smart guess), then TEST it with a fair experiment.",
+          "action": "tap",
+          "feedback": "Change one thing at a time!"
+        },
+        {
+          "narration": "Record results and draw a CONCLUSION. Tap to log your data.",
+          "action": "tap",
+          "feedback": "Observe, test, conclude — that's science!"
+        }
+      ]
+    },
+    {
+      "id": "s10.science.quiz.02",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Science",
+      "type": "quiz",
+      "title": "Name That Energy",
+      "objective": "Identify forms of energy and our planet.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "single-select",
+      "parentNote": null,
+      "accessibility": "Options read aloud.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "A vibrating guitar string makes which kind of energy?",
+          "options": [
+            {
+              "label": "Sound",
+              "asset": null
+            },
+            {
+              "label": "Light",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — vibrations make sound energy!",
+          "retryFeedback": "What do your ears notice? Try again!"
+        },
+        {
+          "prompt": "Which planet do we live on?",
+          "options": [
+            {
+              "label": "Earth",
+              "asset": null
+            },
+            {
+              "label": "Mars",
+              "asset": null
+            },
+            {
+              "label": "Jupiter",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — Earth is our home, the third planet!",
+          "retryFeedback": "It's the third planet from the Sun — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s10.science.quiz.03",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Science",
+      "type": "quiz",
+      "title": "Food Web Logic",
+      "objective": "Reason about energy flow.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "single-select",
+      "parentNote": null,
+      "accessibility": "Prompts read aloud.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "In a food web, what do producers (plants) use to make energy?",
+          "options": [
+            {
+              "label": "Sunlight",
+              "asset": null
+            },
+            {
+              "label": "Meat",
+              "asset": null
+            },
+            {
+              "label": "Rocks",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — plants use sunlight to make food!",
+          "retryFeedback": "Think about what a plant needs to grow — try again!"
+        },
+        {
+          "prompt": "If all the grass disappeared, the grasshoppers would...",
+          "options": [
+            {
+              "label": "Have less food",
+              "asset": null
+            },
+            {
+              "label": "Have more food",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — losing producers means less food up the web!",
+          "retryFeedback": "Grasshoppers eat grass — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s10.science.story.01",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Science",
+      "type": "story",
+      "title": "Nadia and the Night Sky",
+      "objective": "Explore moon phases through a story.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "read-and-observe",
+      "parentNote": null,
+      "accessibility": "Narration adjustable; moon-phase journal is described for screen readers.",
+      "assets": [
+        {
+          "type": "audio",
+          "ref": "audio/s10/night_sky.mp3",
+          "desc": "Narrator, adjustable speed"
+        }
+      ],
+      "pages": [
+        {
+          "narration": "Every night, Nadia drew the Moon from her window. Some nights it was a thin sliver; other nights, a full bright circle.",
+          "illustration": "img/s10/night_sky.png",
+          "interaction": null
+        },
+        {
+          "narration": "Her drawings showed a pattern: the Moon seemed to grow, then shrink, over about a month. Tap to see her moon journal.",
+          "illustration": "img/s10/moon_journal.png",
+          "interaction": "tap-to-explore"
+        },
+        {
+          "narration": "Grandpa smiled. 'The Moon isn't changing shape — sunlight just lights up different parts as it orbits Earth.' Nadia grinned: science was everywhere!",
+          "illustration": "img/s10/grandpa_telescope.png",
+          "interaction": null
+        }
+      ]
+    },
+    {
+      "id": "s10.social.lesson.02",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Social Studies",
+      "type": "lesson",
+      "title": "Three Branches of Government",
+      "objective": "Identify the roles of the three branches.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "drag",
+      "parentNote": null,
+      "accessibility": "Each branch is labeled and read aloud; matches can be done by tap or drag.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/three_branches.png",
+          "desc": "Three pillars: lawmakers, leader, courts"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "The LEGISLATIVE branch makes laws. Drag the lawmakers to 'makes laws'.",
+          "action": "drag",
+          "feedback": "Lawmakers write the rules."
+        },
+        {
+          "narration": "The EXECUTIVE branch carries out laws, led by a president or prime minister. Drag it to 'carries out'.",
+          "action": "drag",
+          "feedback": "The executive puts laws into action."
+        },
+        {
+          "narration": "The JUDICIAL branch decides what laws mean — courts and judges. Drag it to 'interprets'.",
+          "action": "drag",
+          "feedback": "Three branches share power and balance each other!"
+        }
+      ]
+    },
+    {
+      "id": "s10.social.lesson.03",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Social Studies",
+      "type": "lesson",
+      "title": "Goods, Services, and Trade",
+      "objective": "Tell goods from services and explain supply and demand.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "Examples are illustrated, labeled, and read aloud.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/goods_services.png",
+          "desc": "A loaf of bread beside a barber at work"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "A GOOD is something you can hold, like bread. A SERVICE is helpful work, like a haircut. Tap the service.",
+          "action": "tap",
+          "feedback": "A haircut is a service!"
+        },
+        {
+          "narration": "When many people want a scarce item, DEMAND is high and the price often rises.",
+          "action": "tap",
+          "feedback": "Supply and demand set prices."
+        },
+        {
+          "narration": "People TRADE goods and services to get what they need.",
+          "action": "tap",
+          "feedback": "Trade connects communities!"
+        }
+      ]
+    },
+    {
+      "id": "s10.social.lesson.04",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Social Studies",
+      "type": "lesson",
+      "title": "Continents and Oceans",
+      "objective": "Locate the seven continents and major oceans.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "Continents and oceans are outlined, labeled, and spoken.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/world_map.png",
+          "desc": "Labeled world map of continents and oceans"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Earth has seven continents. Tap Africa, the second-largest.",
+          "action": "tap",
+          "feedback": "Africa — vast and diverse!"
+        },
+        {
+          "narration": "Five oceans cover most of Earth. Tap the Pacific, the largest.",
+          "action": "tap",
+          "feedback": "The Pacific is the biggest ocean!"
+        },
+        {
+          "narration": "Maps use a compass and a key to help us read them.",
+          "action": "tap",
+          "feedback": "Now you can find places worldwide!"
+        }
+      ]
+    },
+    {
+      "id": "s10.social.lesson.05",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Social Studies",
+      "type": "lesson",
+      "title": "The Empire of Mali",
+      "objective": "Learn about a great West African empire.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "Map routes and places are labeled and read aloud.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/mali_empire.png",
+          "desc": "Map of the Mali Empire with trade routes and Timbuktu"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Long ago, the Empire of Mali grew rich from trading gold and salt. Tap the trade routes.",
+          "action": "tap",
+          "feedback": "Caravans crossed the Sahara to trade."
+        },
+        {
+          "narration": "The city of Timbuktu became a famous center of learning and books. Tap Timbuktu.",
+          "action": "tap",
+          "feedback": "Scholars came from far away to study!"
+        },
+        {
+          "narration": "Leaders like Mansa Musa were known across the world. History is full of great civilizations.",
+          "action": "tap",
+          "feedback": "Every continent has rich history!"
+        }
+      ]
+    },
+    {
+      "id": "s10.social.lesson.06",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Social Studies",
+      "type": "lesson",
+      "title": "Being a Good Citizen",
+      "objective": "Describe rights and responsibilities of citizens.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Talk about one way your family helps the community.",
+      "accessibility": "Examples are illustrated, labeled, and spoken.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/citizenship.png",
+          "desc": "Diverse people voting and volunteering"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Citizens have RIGHTS, like learning and speaking freely. Tap a right.",
+          "action": "tap",
+          "feedback": "Rights protect people."
+        },
+        {
+          "narration": "Citizens also have RESPONSIBILITIES, like following fair rules and helping others. Tap a responsibility.",
+          "action": "tap",
+          "feedback": "Responsibilities keep communities strong."
+        },
+        {
+          "narration": "Voting is how citizens help choose leaders and decisions.",
+          "action": "tap",
+          "feedback": "Good citizens take part!"
+        }
+      ]
+    },
+    {
+      "id": "s10.social.quiz.02",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Social Studies",
+      "type": "quiz",
+      "title": "Which Branch?",
+      "objective": "Match government roles to branches.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "single-select",
+      "parentNote": null,
+      "accessibility": "Options read aloud.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Which branch MAKES the laws?",
+          "options": [
+            {
+              "label": "Legislative",
+              "asset": null
+            },
+            {
+              "label": "Judicial",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — the legislative branch makes laws!",
+          "retryFeedback": "Which branch is the lawmakers? Try again!"
+        },
+        {
+          "prompt": "Which branch decides what laws mean in court?",
+          "options": [
+            {
+              "label": "Judicial",
+              "asset": null
+            },
+            {
+              "label": "Executive",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — judges in the judicial branch interpret laws!",
+          "retryFeedback": "Think about courts — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s10.social.quiz.03",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Social Studies",
+      "type": "quiz",
+      "title": "World and Work",
+      "objective": "Recall geography and economics basics.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "single-select",
+      "parentNote": null,
+      "accessibility": "Prompts read aloud.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Which is the largest ocean?",
+          "options": [
+            {
+              "label": "Pacific",
+              "asset": null
+            },
+            {
+              "label": "Atlantic",
+              "asset": null
+            },
+            {
+              "label": "Arctic",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — the Pacific is the largest ocean!",
+          "retryFeedback": "It borders Asia and the Americas — try again!"
+        },
+        {
+          "prompt": "A haircut is an example of a...",
+          "options": [
+            {
+              "label": "Service",
+              "asset": null
+            },
+            {
+              "label": "Good",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — a haircut is a service, which is helpful work!",
+          "retryFeedback": "Can you hold it in your hand? If not, it's a service — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s10.social.story.01",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Social Studies",
+      "type": "story",
+      "title": "The Town Vote",
+      "objective": "See democracy in action through a story.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "read-and-respond",
+      "parentNote": null,
+      "accessibility": "Narration adjustable; voting interaction is keyboard and screen-reader friendly.",
+      "assets": [
+        {
+          "type": "audio",
+          "ref": "audio/s10/town_vote.mp3",
+          "desc": "Narrator, adjustable speed"
+        }
+      ],
+      "pages": [
+        {
+          "narration": "Greenfield town had one big question: should the empty lot become a park or a parking area? People disagreed.",
+          "illustration": "img/s10/town_meeting.png",
+          "interaction": null
+        },
+        {
+          "narration": "At the town meeting, everyone listened to both sides. Then citizens voted — one person, one vote. Tap to cast a vote.",
+          "illustration": "img/s10/ballot_box.png",
+          "interaction": "tap-to-vote"
+        },
+        {
+          "narration": "The park won by a small margin. Some were disappointed, but all agreed the choice was fair. That's how democracy works!",
+          "illustration": "img/s10/new_park.png",
+          "interaction": null
+        }
+      ]
+    },
+    {
+      "id": "s10.coding.lesson.02",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Digital Literacy & Coding",
+      "type": "lesson",
+      "title": "Variables Store Values",
+      "objective": "Use a variable to store and reuse a value.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "code-run",
+      "parentNote": null,
+      "accessibility": "Editor supports screen readers and adjustable font; output read on request.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/variables.png",
+          "desc": "A labeled box holding a value, like a container"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Type:  name = \"Sam\"   then   print(name)   and RUN.",
+          "action": "code-run",
+          "feedback": "Output: Sam. The variable 'name' holds your text."
+        },
+        {
+          "narration": "Change the value: name = \"Ada\" and RUN again.",
+          "action": "code-run",
+          "feedback": "Output: Ada. One variable, many values!"
+        },
+        {
+          "narration": "Make a variable  age = 10  and print it.",
+          "action": "code-run",
+          "feedback": "Variables let programs remember things."
+        }
+      ]
+    },
+    {
+      "id": "s10.coding.lesson.03",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Digital Literacy & Coding",
+      "type": "lesson",
+      "title": "Loops with for",
+      "objective": "Repeat actions using a for loop.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "code-run",
+      "parentNote": null,
+      "accessibility": "Indentation is announced; output read aloud on request.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/for_loop.png",
+          "desc": "Arrow looping back to repeat a step"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Type:  for i in range(3):  then indented  print(\"Hi\")  and RUN.",
+          "action": "code-run",
+          "feedback": "Hi prints three times — the loop repeats!"
+        },
+        {
+          "narration": "Change range(3) to range(5) and RUN.",
+          "action": "code-run",
+          "feedback": "Now it prints five times. Loops save typing."
+        },
+        {
+          "narration": "Loop to print the numbers 1, 2, 3.",
+          "action": "code-run",
+          "feedback": "Loops are a programmer's superpower!"
+        }
+      ]
+    },
+    {
+      "id": "s10.coding.lesson.04",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Digital Literacy & Coding",
+      "type": "lesson",
+      "title": "If / Else Decisions",
+      "objective": "Make a program choose between two paths.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "code-run",
+      "parentNote": null,
+      "accessibility": "Logic is described step by step; output read aloud.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/if_else.png",
+          "desc": "A path splitting into two based on a question"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Type:  if score >= 10:  print(\"You win!\")  else:  print(\"Try again\").  Set score = 12 and RUN.",
+          "action": "code-run",
+          "feedback": "Output: You win! The condition was true."
+        },
+        {
+          "narration": "Change score to 4 and RUN.",
+          "action": "code-run",
+          "feedback": "Output: Try again. The else path ran."
+        },
+        {
+          "narration": "Conditions let programs react differently to different data.",
+          "action": "code-run",
+          "feedback": "Now your code can decide!"
+        }
+      ]
+    },
+    {
+      "id": "s10.coding.lesson.05",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Digital Literacy & Coding",
+      "type": "lesson",
+      "title": "Find and Fix the Bug",
+      "objective": "Debug a short program that has an error.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "code-run",
+      "parentNote": "Praise the persistence it takes to track down a bug.",
+      "accessibility": "Error messages are read aloud; the editor highlights the flagged line.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/debug.png",
+          "desc": "A magnifying glass over a line of code"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "This code should print 'Hello' but prints nothing. The line  prnt(\"Hello\")  has a typo. Tap the bug.",
+          "action": "tap",
+          "feedback": "Found it — 'prnt' should be 'print'."
+        },
+        {
+          "narration": "Fix it to  print(\"Hello\")  and RUN.",
+          "action": "code-run",
+          "feedback": "Output: Hello. Debugged!"
+        },
+        {
+          "narration": "Good programmers read errors calmly and fix one thing at a time.",
+          "action": "tap",
+          "feedback": "Patience is a coding skill!"
+        }
+      ]
+    },
+    {
+      "id": "s10.coding.lesson.06",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Digital Literacy & Coding",
+      "type": "lesson",
+      "title": "Smart and Safe Online",
+      "objective": "Protect privacy and judge if a source is trustworthy.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Agree on what personal details should never be shared online.",
+      "accessibility": "Choices are illustrated, labeled, and read aloud.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/online_safety.png",
+          "desc": "A shield protecting personal information"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "A strong password is long and mixes letters, numbers, and symbols. Tap the stronger password.",
+          "action": "tap",
+          "feedback": "Yes — longer and mixed is harder to guess!"
+        },
+        {
+          "narration": "Never share your address or passwords with strangers online. Tap the safe choice.",
+          "action": "tap",
+          "feedback": "Keep private things private!"
+        },
+        {
+          "narration": "Before trusting a website, ask: who wrote it, and is it backed up elsewhere?",
+          "action": "tap",
+          "feedback": "Smart readers check their sources!"
+        }
+      ]
+    },
+    {
+      "id": "s10.coding.quiz.02",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Digital Literacy & Coding",
+      "type": "quiz",
+      "title": "Trace the Loop",
+      "objective": "Predict the output of a loop.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "single-select",
+      "parentNote": null,
+      "accessibility": "Code read aloud on tap.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "How many times does this print?  for i in range(4):  print(\"hi\")",
+          "options": [
+            {
+              "label": "4",
+              "asset": null
+            },
+            {
+              "label": "1",
+              "asset": null
+            },
+            {
+              "label": "3",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — range(4) repeats 4 times!",
+          "retryFeedback": "range(4) gives 0,1,2,3 — that's 4 times. Try again!"
+        },
+        {
+          "prompt": "What does a variable do?",
+          "options": [
+            {
+              "label": "Stores a value",
+              "asset": null
+            },
+            {
+              "label": "Deletes the program",
+              "asset": null
+            },
+            {
+              "label": "Turns off the screen",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — a variable stores a value to reuse!",
+          "retryFeedback": "Think of a labeled box holding something — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s10.coding.quiz.03",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Digital Literacy & Coding",
+      "type": "quiz",
+      "title": "Stay Safe Online",
+      "objective": "Choose safe online habits.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "single-select",
+      "parentNote": null,
+      "accessibility": "Options read aloud.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Which is the strongest password?",
+          "options": [
+            {
+              "label": "Blue!Tiger_92",
+              "asset": null
+            },
+            {
+              "label": "123456",
+              "asset": null
+            },
+            {
+              "label": "password",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — long and mixed is strongest!",
+          "retryFeedback": "Longer with letters, numbers, and symbols is best — try again!"
+        },
+        {
+          "prompt": "A stranger online asks for your home address. What should you do?",
+          "options": [
+            {
+              "label": "Don't share it and tell a trusted adult",
+              "asset": null
+            },
+            {
+              "label": "Send it right away",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — keep it private and tell a trusted adult!",
+          "retryFeedback": "Personal info stays private — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s10.coding.story.01",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Digital Literacy & Coding",
+      "type": "story",
+      "title": "Ada and the Stuck Robot",
+      "objective": "Follow a debugging adventure.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "read-and-solve",
+      "parentNote": null,
+      "accessibility": "Narration adjustable; the debugging interaction is screen-reader friendly.",
+      "assets": [
+        {
+          "type": "audio",
+          "ref": "audio/s10/ada_robot.mp3",
+          "desc": "Narrator, adjustable speed"
+        }
+      ],
+      "pages": [
+        {
+          "narration": "Ada's robot was supposed to walk to the door, but it kept spinning in circles. 'There must be a bug,' she said.",
+          "illustration": "img/s10/stuck_robot.png",
+          "interaction": null
+        },
+        {
+          "narration": "She read the code line by line. One step said 'turn' four times but never 'walk forward'. Tap to spot the missing step.",
+          "illustration": "img/s10/robot_code.png",
+          "interaction": "tap-to-debug"
+        },
+        {
+          "narration": "Ada added 'walk forward' and ran it again. The robot rolled straight to the door! Bugs aren't scary — they're puzzles to solve.",
+          "illustration": "img/s10/robot_success.png",
+          "interaction": null
+        }
+      ]
+    },
+    {
+      "id": "s10.writing.lesson.01",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Writing",
+      "type": "lesson",
+      "title": "Parts of an Essay",
+      "objective": "Identify the introduction, body, and conclusion.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "drag",
+      "parentNote": null,
+      "accessibility": "Each part is labeled and read aloud; ordering works by tap or drag.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/essay_structure.png",
+          "desc": "Three stacked blocks: intro, body, conclusion"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "The INTRODUCTION tells the main idea and grabs attention. Drag it to the top.",
+          "action": "drag",
+          "feedback": "The intro opens your essay."
+        },
+        {
+          "narration": "The BODY paragraphs give reasons and details. Drag them to the middle.",
+          "action": "drag",
+          "feedback": "The body proves your point."
+        },
+        {
+          "narration": "The CONCLUSION wraps up and restates the big idea. Drag it to the end.",
+          "action": "drag",
+          "feedback": "Intro, body, conclusion — a strong essay!"
+        }
+      ]
+    },
+    {
+      "id": "s10.writing.lesson.02",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Writing",
+      "type": "lesson",
+      "title": "Topic Sentence and Support",
+      "objective": "Write a topic sentence backed by details.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "Sentences are read aloud; topic versus detail is color-coded.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/topic_sentence.png",
+          "desc": "A heading sentence above supporting bullet ideas"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "A TOPIC SENTENCE states the paragraph's main idea: 'Dogs make great pets.' Tap the topic sentence.",
+          "action": "tap",
+          "feedback": "It tells the reader the big idea."
+        },
+        {
+          "narration": "SUPPORTING details give reasons: 'They are loyal. They help us exercise.' Tap a supporting detail.",
+          "action": "tap",
+          "feedback": "Details back up your point!"
+        },
+        {
+          "narration": "Strong paragraphs are one clear idea plus reasons that fit it.",
+          "action": "tap",
+          "feedback": "Well organized!"
+        }
+      ]
+    },
+    {
+      "id": "s10.writing.lesson.03",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Writing",
+      "type": "lesson",
+      "title": "Linking Words",
+      "objective": "Use transitions to connect ideas.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "Transition words are highlighted and read aloud.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/transitions.png",
+          "desc": "Bridges connecting sentence blocks"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Transitions like 'first', 'next', and 'finally' show order. Tap the order word.",
+          "action": "tap",
+          "feedback": "Order words guide the reader."
+        },
+        {
+          "narration": "'However' and 'but' show a change or contrast. Tap the contrast word.",
+          "action": "tap",
+          "feedback": "Contrast words signal a turn."
+        },
+        {
+          "narration": "'Because' and 'so' show cause and effect. Good writing flows with links.",
+          "action": "tap",
+          "feedback": "Transitions make writing smooth!"
+        }
+      ]
+    },
+    {
+      "id": "s10.writing.lesson.04",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Writing",
+      "type": "lesson",
+      "title": "Punctuating Dialogue",
+      "objective": "Use quotation marks and commas in dialogue.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "Punctuation marks are announced; correct examples shown for reference.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/dialogue.png",
+          "desc": "A line of dialogue with quotation marks highlighted"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "Put quotation marks around the exact words spoken: \"Let's go,\" said Maria. Tap the quotation marks.",
+          "action": "tap",
+          "feedback": "Quotation marks show spoken words."
+        },
+        {
+          "narration": "A comma goes inside before the closing quote when a tag follows. Tap the comma.",
+          "action": "tap",
+          "feedback": "Punctuation tucks inside the quotes."
+        },
+        {
+          "narration": "Start a new line each time a new person speaks.",
+          "action": "tap",
+          "feedback": "Now your dialogue is clear and correct!"
+        }
+      ]
+    },
+    {
+      "id": "s10.writing.lesson.05",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Writing",
+      "type": "lesson",
+      "title": "Three Kinds of Writing",
+      "objective": "Tell narrative, informative, and persuasive writing apart.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": null,
+      "accessibility": "Each type has a labeled example read aloud.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/writing_types.png",
+          "desc": "Three labeled writing samples"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "NARRATIVE writing tells a story. Tap the story example.",
+          "action": "tap",
+          "feedback": "Narrative is a tale with events."
+        },
+        {
+          "narration": "INFORMATIVE writing explains facts. Tap the explaining example.",
+          "action": "tap",
+          "feedback": "Informative teaches or informs."
+        },
+        {
+          "narration": "PERSUASIVE writing tries to convince you. Tap the convincing example.",
+          "action": "tap",
+          "feedback": "Persuasive argues an opinion!"
+        }
+      ]
+    },
+    {
+      "id": "s10.writing.lesson.06",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Writing",
+      "type": "lesson",
+      "title": "Revise and Edit",
+      "objective": "Improve a draft by revising and editing.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Ask your child to read a draft aloud — it helps them catch what to improve.",
+      "accessibility": "Suggested fixes are read aloud; changes can be made by tap or typing.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/revise_edit.png",
+          "desc": "A draft with revision and editing marks"
+        }
+      ],
+      "steps": [
+        {
+          "narration": "REVISING improves ideas: add a detail or a clearer word. Tap the sentence that needs more detail.",
+          "action": "tap",
+          "feedback": "Revising makes meaning stronger."
+        },
+        {
+          "narration": "EDITING fixes spelling, capitals, and punctuation. Tap the editing mistake.",
+          "action": "tap",
+          "feedback": "Editing polishes the writing."
+        },
+        {
+          "narration": "Great writers reread and improve their work.",
+          "action": "tap",
+          "feedback": "Revise, then edit — that's the secret!"
+        }
+      ]
+    },
+    {
+      "id": "s10.writing.quiz.02",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Writing",
+      "type": "quiz",
+      "title": "Find the Topic Sentence",
+      "objective": "Identify the main-idea sentence.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "single-select",
+      "parentNote": null,
+      "accessibility": "Sentences read aloud.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Which is the TOPIC sentence? 'Recess is the best part of school. We play games. We get fresh air.'",
+          "options": [
+            {
+              "label": "Recess is the best part of school.",
+              "asset": null
+            },
+            {
+              "label": "We play games.",
+              "asset": null
+            },
+            {
+              "label": "We get fresh air.",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — it states the main idea; the others are details!",
+          "retryFeedback": "The topic sentence states the big idea — try again!"
+        }
+      ]
+    },
+    {
+      "id": "s10.writing.quiz.03",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Writing",
+      "type": "quiz",
+      "title": "Pick the Transition",
+      "objective": "Choose the linking word that fits.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "single-select",
+      "parentNote": null,
+      "accessibility": "Options read aloud.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "'I wanted to play outside. ___, it was raining.' Which word fits?",
+          "options": [
+            {
+              "label": "However",
+              "asset": null
+            },
+            {
+              "label": "Because",
+              "asset": null
+            },
+            {
+              "label": "First",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — 'However' shows the contrast!",
+          "retryFeedback": "The sentence shows a change of plan — try again!"
+        },
+        {
+          "prompt": "Which word shows ORDER?",
+          "options": [
+            {
+              "label": "Finally",
+              "asset": null
+            },
+            {
+              "label": "However",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes — 'Finally' shows order!",
+          "retryFeedback": "Which word tells when something happens? Try again!"
+        }
+      ]
+    },
+    {
+      "id": "s10.writing.story.01",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Writing",
+      "type": "story",
+      "title": "Jamal's Big Speech",
+      "objective": "Watch the writing process come together.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "read-and-respond",
+      "parentNote": null,
+      "accessibility": "Narration adjustable; the improve-the-draft step accepts typed or spoken input.",
+      "assets": [
+        {
+          "type": "audio",
+          "ref": "audio/s10/jamal_speech.mp3",
+          "desc": "Narrator, adjustable speed"
+        }
+      ],
+      "pages": [
+        {
+          "narration": "Jamal was chosen to give a speech about why the school needs a garden. He stared at a blank page, unsure how to start.",
+          "illustration": "img/s10/blank_page.png",
+          "interaction": null
+        },
+        {
+          "narration": "He made a plan: an introduction, three reasons, and a strong ending. Then he wrote a messy first draft. Tap to help him add a transition word.",
+          "illustration": "img/s10/speech_draft.png",
+          "interaction": "tap-to-improve"
+        },
+        {
+          "narration": "Jamal revised, edited, and practiced aloud. On the big day, his clear, organized speech won applause — and a new school garden!",
+          "illustration": "img/s10/speech_day.png",
           "interaction": null
         }
       ]

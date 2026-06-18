@@ -230,4 +230,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String stageOf(int stage, String ages) {
     return 'Stage $stage · Ages $ages';
   }
+
+  @override
+  String get legalSection => 'About & legal';
+
+  @override
+  String get privacyPolicy => 'Privacy Policy';
+
+  @override
+  String get termsOfService => 'Terms of Service';
+
+  @override
+  String get legalDraftNote => 'Draft — pending legal review';
 }

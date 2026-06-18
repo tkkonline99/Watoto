@@ -230,4 +230,16 @@ class AppLocalizationsFr extends AppLocalizations {
   String stageOf(int stage, String ages) {
     return 'Étape $stage · Âges $ages';
   }
+
+  @override
+  String get legalSection => 'À propos et mentions légales';
+
+  @override
+  String get privacyPolicy => 'Politique de confidentialité';
+
+  @override
+  String get termsOfService => 'Conditions d\'utilisation';
+
+  @override
+  String get legalDraftNote => 'Brouillon — en attente de révision juridique';
 }

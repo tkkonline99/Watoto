@@ -6,6 +6,7 @@ import '../core/offline/offline_providers.dart';
 import '../features/child_home/child_home_screen.dart';
 import '../features/curriculum/curriculum_screen.dart';
 import '../features/curriculum/subject_detail_screen.dart';
+import '../features/legal/legal_doc_screen.dart';
 import '../features/lesson_player/lesson_player_screen.dart';
 import '../features/library/library_play_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
@@ -57,6 +58,14 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/profiles/add', builder: (c, s) => const AddChildScreen()),
       GoRoute(path: '/parent/pin', builder: (c, s) => const PinGateScreen()),
       GoRoute(path: '/parent', builder: (c, s) => const ParentDashboardScreen()),
+      GoRoute(
+        path: '/parent/legal/privacy',
+        builder: (c, s) => const LegalDocScreen(doc: LegalDoc.privacy),
+      ),
+      GoRoute(
+        path: '/parent/legal/terms',
+        builder: (c, s) => const LegalDocScreen(doc: LegalDoc.terms),
+      ),
       GoRoute(path: '/', builder: (c, s) => const ChildHomeScreen()),
       GoRoute(
         path: '/lesson/:slug',

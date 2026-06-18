@@ -1,0 +1,544 @@
+image_ref,stage,subject,used_by_count,used_by,usage,text_risk,art_brief
+img/s01/baby_face.png,1,Early Language,1,s01.lang.lesson.03,asset-image,,Smiling baby face
+img/s01/ball.png,1,Early Language,1,s01.lang.lesson.04,asset-image,,Ball
+img/s01/ball_bell.png,1,Cause & Effect,1,s01.cause.lesson.04,asset-image,,Ball and bell
+img/s01/bath_splash.png,1,Sensory Exploration,1,s01.sensory.story.01,story-illustration(p1),,Splish-splash — it is bath time!
+img/s01/bear_wave.png,1,Motor Imitation,1,s01.motor.lesson.02,asset-image,,Bear waving
+img/s01/bell.png,1,Sensory Exploration,1,s01.sensory.lesson.03,asset-image,,Small bell
+img/s01/big_drum.png,1,Cause & Effect,1,s01.cause.lesson.06,asset-image,,Big drum
+img/s01/bird_leaf.png,1,Object Permanence,1,s01.object.story.01,story-illustration(p0),,Little Bird hides behind a leaf. Where is Bird?
+img/s01/bird_nest.png,1,Object Permanence,1,s01.object.story.01,story-illustration(p2),,"Now Bird tucks into the nest. Goodnight, Bird!"
+img/s01/bird_peek.png,1,Object Permanence,1,s01.object.story.01,story-illustration(p1),,"Peekaboo! There is Bird, singing softly."
+img/s01/box_car.png,1,Object Permanence,1,s01.object.lesson.02,asset-image,,Box covering a toy car
+img/s01/bubbles.png,1,Cause & Effect,1,s01.cause.lesson.02,asset-image,,Slowly rising bubbles
+img/s01/bunny_clap.png,1,Motor Imitation,1,s01.motor.lesson.01,asset-image,,Bunny clapping
+img/s01/cloth.png,1,Object Permanence,1,s01.object.lesson.01,asset-image,,Soft cloth over a shape
+img/s01/cloud_rain.png,1,Cause & Effect,1,s01.cause.story.01,story-illustration(p2),,Tap the cloud... soft rain falls. The end!
+img/s01/clouds.png,1,Early Language,1,s01.lang.story.01,story-illustration(p1),,Two soft clouds float by.
+img/s01/color_glow.png,1,Sensory Exploration,1,s01.sensory.lesson.05,asset-image,,Soft color gradient
+img/s01/cup.png,1,Early Language,1,s01.lang.lesson.04,asset-image,,Cup
+img/s01/dada.png,1,Early Language,1,s01.lang.lesson.01,asset-image,,Friendly caregiver
+img/s01/door.png,1,Object Permanence,1,s01.object.lesson.03,asset-image,,Small door
+img/s01/elephant_stomp.png,1,Motor Imitation,1,s01.motor.lesson.05,asset-image,,Stomping elephant
+img/s01/giraffe_arms.png,1,Motor Imitation,1,s01.motor.lesson.03,asset-image,,Giraffe with arms up
+img/s01/hands_star.png,1,Motor Imitation,1,s01.motor.lesson.06,asset-image,,Opening and closing hands
+img/s01/hat.png,1,Early Language,1,s01.lang.lesson.05,asset-image,,Hat
+img/s01/kitten.png,1,Object Permanence,1,s01.object.lesson.03,asset-image,,Kitten
+img/s01/koala_kiss.png,1,Motor Imitation,1,s01.motor.lesson.04,asset-image,,Koala blowing a kiss
+img/s01/lamp.png,1,Sensory Exploration,1,s01.sensory.lesson.04,asset-image,,Soft lamp
+img/s01/leaf.png,1,Sensory Exploration,1,s01.sensory.lesson.06,asset-image,,Crinkly leaf
+img/s01/mama.png,1,Early Language,1,s01.lang.lesson.01,asset-image,,Friendly caregiver
+img/s01/maracas.png,1,Cause & Effect,1,s01.cause.lesson.03,asset-image,,Colorful maracas
+img/s01/moon.png,1,Early Language,1,s01.lang.story.01,story-illustration(p2),,The moon smiles. Shhh... time to rest.
+img/s01/morning_bird.png,1,Sensory Exploration,1,s01.sensory.story.01,story-illustration(p0),,Good morning! The birds say tweet-tweet.
+img/s01/night_quiet.png,1,Sensory Exploration,1,s01.sensory.story.01,story-illustration(p2),,"Shhh, the night is quiet. Sweet dreams."
+img/s01/night_sky.png,1,Cause & Effect,1,s01.cause.lesson.01,asset-image,,Empty dark sky
+img/s01/peekaboo_baby.png,1,Object Permanence,1,s01.object.lesson.05,asset-image,,Baby covering eyes
+img/s01/pocket_ball.png,1,Object Permanence,1,s01.object.lesson.04,asset-image,,Pocket with a ball
+img/s01/puppy.png,1,Early Language; Object Permanence,3,s01.object.lesson.01; s01.lang.lesson.02; s01.lang.lesson.04,asset-image,,Smiling puppy | Dog
+img/s01/rattle.png,1,Sensory Exploration,1,s01.sensory.lesson.03,asset-image,,Baby rattle
+img/s01/seed_flower.png,1,Cause & Effect,1,s01.cause.story.01,story-illustration(p0),,Tap the seed... a flower grows!
+img/s01/shadow_bunny.png,1,Sensory Exploration,1,s01.sensory.lesson.04,asset-image,,Bunny shadow
+img/s01/shoe.png,1,Early Language,1,s01.lang.lesson.05,asset-image,,Shoe
+img/s01/sky_sun.png,1,Cause & Effect,1,s01.cause.story.01,story-illustration(p1),,Tap the sky... the sun comes up!
+img/s01/star.png,1,Cause & Effect,1,s01.cause.lesson.01,asset-image,,Glowing star
+img/s01/star_one.png,1,Early Language,1,s01.lang.story.01,story-illustration(p0),,One little star says goodnight.
+img/s01/story_clap.png,1,Motor Imitation,1,s01.motor.story.01,story-illustration(p0),,"Clap your hands like me — clap, clap!"
+img/s01/story_hug.png,1,Motor Imitation,1,s01.motor.story.01,story-illustration(p2),,"Last, a big hug. Squeeze! Goodnight, little one."
+img/s01/story_wave.png,1,Motor Imitation,1,s01.motor.story.01,story-illustration(p1),,"Now wave hello — wave, wave!"
+img/s01/string_lights.png,1,Cause & Effect,1,s01.cause.lesson.05,asset-image,,String of lights
+img/s01/swirl_bw.png,1,Sensory Exploration,1,s01.sensory.lesson.01,asset-image,,Slow rotating high-contrast spiral
+img/s01/texture_tiles.png,1,Sensory Exploration,1,s01.sensory.lesson.02,asset-image,Y,Two large texture tiles
+img/s01/tunnel_train.png,1,Object Permanence,1,s01.object.lesson.06,asset-image,,Train entering a tunnel
+img/s01/two_cups.png,1,Object Permanence,1,s01.object.quiz.01,asset-image,,"Two upside-down cups, teddy under one"
+img/s02/animals_toys.png,2,Simple Sorting,1,s02.sorting.lesson.03,asset-image,,Animals and toys to sort
+img/s02/ball_big.png,2,Simple Sorting,1,s02.sorting.lesson.01,asset-image,,Large ball
+img/s02/ball_small.png,2,Simple Sorting,1,s02.sorting.lesson.01,asset-image,,Small ball
+img/s02/banana.png,2,Colors & Shapes,1,s02.colors.lesson.04,asset-image,,Yellow banana
+img/s02/bath_duck.png,2,Music & Routines,1,s02.music.story.01,story-illustration(p1),,"Scrub-a-dub the duck. Wash, wash, wash!"
+img/s02/bathtub.png,2,Music & Routines,1,s02.music.story.01,story-illustration(p0),,"Splish, splash! Time for the bath. Tap the tap to fill the tub!"
+img/s02/bedtime.png,2,Music & Routines,1,s02.music.lesson.06,asset-image,,Child in pajamas
+img/s02/bell.png,2,Music & Routines,1,s02.music.lesson.03,asset-image,,Bell
+img/s02/bird.png,2,Animals,1,s02.animals.lesson.04,asset-image,,Bird
+img/s02/blue_ball.png,2,Colors & Shapes,1,s02.colors.lesson.01,asset-image,,Blue ball
+img/s02/body_actions.png,2,Body Parts,1,s02.body.lesson.06,asset-image,,Child clapping and stomping
+img/s02/body_outline.png,2,Body Parts,1,s02.body.lesson.05,asset-image,,Child body outline
+img/s02/buckets.png,2,Simple Sorting,1,s02.sorting.lesson.01,asset-image,,Big bucket and small bucket
+img/s02/calf.png,2,Animals,1,s02.animals.quiz.01,asset-image,,Baby calf
+img/s02/carrot.png,2,Colors & Shapes,1,s02.colors.lesson.03,asset-image,,Orange carrot
+img/s02/cat.png,"1,2",Animals; Early Language,3,s02.animals.lesson.01; s01.lang.lesson.02; s02.animals.lesson.04,asset-image,,Orange cat | Cat
+img/s02/circle.png,2,Colors & Shapes,1,s02.colors.lesson.02,asset-image,,Circle
+img/s02/color_bins.png,2,Simple Sorting,1,s02.sorting.lesson.02,asset-image,,Red and blue bins with blocks
+img/s02/cow.png,2,Animals,1,s02.animals.lesson.01,asset-image,,Friendly cow
+img/s02/crab.png,2,Animals,1,s02.animals.lesson.03,asset-image,,Crab
+img/s02/dog.png,2,Animals,1,s02.animals.lesson.04,asset-image,,Dog
+img/s02/drum.png,2,Music & Routines,2,s02.music.lesson.01; s02.music.lesson.03,asset-image,,Colorful drum | Drum
+img/s02/duck.png,2,Animals,2,s02.animals.lesson.01; s02.animals.lesson.05,asset-image,,Yellow duck | Duck
+img/s02/duck_1.png,2,First Numbers,1,s02.numbers.story.01,story-illustration(p0),,One little duck swims in the pond.
+img/s02/duck_3.png,2,First Numbers,1,s02.numbers.story.01,story-illustration(p1),,Two more come along — now there are three!
+img/s02/ducks_home.png,2,First Numbers,1,s02.numbers.story.01,story-illustration(p2),,"Three little ducks paddle home. Goodnight, ducks!"
+img/s02/elephant.png,2,Animals,2,s02.animals.lesson.02; s02.animals.lesson.06,asset-image,,Elephant | Big elephant
+img/s02/face.png,2,Body Parts,2,s02.body.lesson.01; s02.body.lesson.04,asset-image,,Big friendly face | Friendly face
+img/s02/farm_coop.png,2,Animals,1,s02.animals.story.01,story-illustration(p2),,"In the coop, the hen lays an egg. Goodnight, farm!"
+img/s02/farm_cow.png,2,Animals,1,s02.animals.story.01,story-illustration(p0),,"On the farm, the cow eats grass. Tap the cow!"
+img/s02/farm_pond.png,2,Animals,1,s02.animals.story.01,story-illustration(p1),,"In the pond, the duck goes for a swim. Tap the duck!"
+img/s02/fish.png,2,Animals,1,s02.animals.lesson.03,asset-image,,Fish
+img/s02/five_stars.png,2,First Numbers,1,s02.numbers.lesson.02,asset-image,,Five stars in a row
+img/s02/foot.png,2,Body Parts,1,s02.body.lesson.03,asset-image,,Foot
+img/s02/frog.png,2,Animals,1,s02.animals.lesson.05,asset-image,,Frog
+img/s02/hand.png,2,Body Parts,1,s02.body.lesson.03,asset-image,,Hand
+img/s02/hand_count.png,2,First Numbers,1,s02.numbers.lesson.06,asset-image,,Hand with five fingers
+img/s02/leaf_green.png,2,Colors & Shapes,1,s02.colors.lesson.03,asset-image,,Green leaf
+img/s02/lion.png,2,Animals,1,s02.animals.lesson.02,asset-image,,Lion
+img/s02/messy_room.png,2,Simple Sorting,1,s02.sorting.story.01,story-illustration(p0),,Toys everywhere! Let's tidy up. Tap to start.
+img/s02/monkey.png,2,Animals,1,s02.animals.lesson.02,asset-image,,Monkey
+img/s02/morning.png,2,Music & Routines,1,s02.music.lesson.05,asset-image,,Sunny morning window
+img/s02/mouse.png,2,Animals,1,s02.animals.lesson.06,asset-image,,Small mouse
+img/s02/numerals.png,2,First Numbers,1,s02.numbers.lesson.05,asset-image,,Numerals 1 2 3
+img/s02/one_many.png,2,First Numbers,1,s02.numbers.lesson.03,asset-image,,One flower vs many flowers
+img/s02/parade_circle.png,2,Colors & Shapes,1,s02.colors.story.01,story-illustration(p0),,"Here comes the circle, rolling along!"
+img/s02/parade_square.png,2,Colors & Shapes,1,s02.colors.story.01,story-illustration(p1),,"The square marches, stomp-stomp!"
+img/s02/parade_triangle.png,2,Colors & Shapes,1,s02.colors.story.01,story-illustration(p2),,"The triangle hops at the end. Hooray, shapes!"
+img/s02/plate.png,2,Colors & Shapes,1,s02.colors.lesson.05,asset-image,,Plate
+img/s02/puppy.png,2,Animals,1,s02.animals.quiz.01,asset-image,,Puppy
+img/s02/red_apple.png,2,Colors & Shapes,2,s02.colors.lesson.01; s02.colors.lesson.04,asset-image,,Red apple
+img/s02/same_diff.png,2,Simple Sorting,1,s02.sorting.lesson.04,asset-image,,"Three shapes, one different"
+img/s02/shaker.png,2,Music & Routines,1,s02.music.lesson.02,asset-image,,Shaker
+img/s02/shape_sorter.png,2,Colors & Shapes,1,s02.colors.lesson.06,asset-image,,Shape sorter toy
+img/s02/sky.png,2,Colors & Shapes,1,s02.colors.lesson.04,asset-image,,Blue sky
+img/s02/socks_pairs.png,2,Simple Sorting,1,s02.sorting.lesson.06,asset-image,,Socks to match in pairs
+img/s02/sorting_toys.png,2,Simple Sorting,1,s02.sorting.story.01,story-illustration(p1),,"Blocks in the block box, balls in the ball bag!"
+img/s02/square.png,2,Colors & Shapes,1,s02.colors.lesson.02,asset-image,,Square
+img/s02/story_arms.png,2,Body Parts,1,s02.body.story.01,story-illustration(p1),,"Wave your arms — swish, swish!"
+img/s02/story_head.png,2,Body Parts,1,s02.body.story.01,story-illustration(p0),,"Nod your head — yes, yes, yes!"
+img/s02/story_toes.png,2,Body Parts,1,s02.body.story.01,story-illustration(p2),,"Wiggle your toes, then have a rest. All done!"
+img/s02/tall_short.png,2,Simple Sorting,1,s02.sorting.lesson.05,asset-image,,Tall tree and short bush
+img/s02/teddy_steps.png,2,First Numbers,1,s02.numbers.lesson.04,asset-image,,Teddy climbing three steps
+img/s02/three_ducks.png,2,First Numbers,1,s02.numbers.lesson.01,asset-image,,Row of three ducks
+img/s02/tidy_room.png,2,Simple Sorting,1,s02.sorting.story.01,story-illustration(p2),,All tidy! Great helping. Time to rest.
+img/s02/towel.png,2,Music & Routines,1,s02.music.story.01,story-illustration(p2),,All clean! Wrap up in a cozy towel. The end.
+img/s02/triangle.png,2,Colors & Shapes,1,s02.colors.lesson.02,asset-image,,Triangle
+img/s02/whale.png,2,Animals,1,s02.animals.lesson.03,asset-image,,Whale
+img/s02/wheel.png,2,Colors & Shapes,1,s02.colors.lesson.05,asset-image,,Wheel
+img/s02/yellow_sun.png,2,Colors & Shapes,1,s02.colors.lesson.01,asset-image,,Yellow sun
+img/s03/apple.png,3,Vocabulary,1,s03.vocab.lesson.02,asset-image,,Apple
+img/s03/apples_add.png,3,Counting & Numbers,1,s03.counting.lesson.05,asset-image,,Apples to add one
+img/s03/b_words.png,3,Phonological Awareness,1,s03.phono.lesson.01,asset-image,,Ball and bear
+img/s03/banana.png,3,Phonological Awareness,1,s03.phono.lesson.03,asset-image,,Banana
+img/s03/bear_eat.png,3,Vocabulary,1,s03.vocab.lesson.01,asset-image,,Bear eating
+img/s03/big_small.png,3,Patterns & Opposites,1,s03.patterns.lesson.01,asset-image,,Big and small cubes
+img/s03/breathe_flower.png,3,Emotions,1,s03.emotions.lesson.05,asset-image,,Flower and candle
+img/s03/bus.png,3,Vocabulary,1,s03.vocab.lesson.02,asset-image,,Bus
+img/s03/carrot.png,3,Counting & Numbers,1,s03.counting.lesson.01,asset-image,,Carrot
+img/s03/cat_down.png,3,Patterns & Opposites,1,s03.patterns.story.01,story-illustration(p1),,Now the cat is DOWN low.
+img/s03/cat_up.png,3,Patterns & Opposites,1,s03.patterns.story.01,story-illustration(p0),,Today is Opposite Day! The cat is UP high.
+img/s03/circle_trace.png,3,Tracing & Stories,1,s03.tracing.lesson.03,asset-image,,Circle to trace
+img/s03/clap_stomp.png,3,Patterns & Opposites,1,s03.patterns.lesson.04,asset-image,,Clap and stomp icons
+img/s03/clothes.png,3,Vocabulary,1,s03.vocab.lesson.04,asset-image,,"Hat, shoes, coat"
+img/s03/color_pattern.png,3,Patterns & Opposites,1,s03.patterns.lesson.05,asset-image,,Red-blue pattern
+img/s03/day_night.png,3,Patterns & Opposites,1,s03.patterns.lesson.03,asset-image,,Sun and moon
+img/s03/describing.png,3,Vocabulary,1,s03.vocab.lesson.06,asset-image,,"Hot soup, wet puppy"
+img/s03/dots_123.png,3,Tracing & Stories,1,s03.tracing.lesson.06,asset-image,,Dots 1-2-3 to connect
+img/s03/duck_path.png,3,Tracing & Stories,1,s03.tracing.lesson.01,asset-image,,Dotted path from duckling to mother duck
+img/s03/duck_pond.png,3,Tracing & Stories,1,s03.stories.story.01,story-illustration(p2),,Splash! She found the pond and swam all day. (End) The end!
+img/s03/duck_wake.png,3,Tracing & Stories,1,s03.stories.story.01,story-illustration(p0),Y,Little Duck woke up. 'I want to swim!' (Beginning) Tap to turn the page.
+img/s03/duck_walk.png,3,Tracing & Stories,1,s03.stories.story.01,story-illustration(p1),,"She waddled past the barn and the big tree, looking for water. (Middle)"
+img/s03/ducks_back.png,3,Counting & Numbers,1,s03.counting.story.01,story-illustration(p2),,"At bedtime, all five came back. Goodnight, ducks!"
+img/s03/excited.png,3,Emotions,1,s03.emotions.lesson.03,asset-image,,Excited face
+img/s03/face_angry.png,3,Emotions,1,s03.emotions.lesson.01,asset-image,,Angry
+img/s03/face_happy.png,3,Emotions,1,s03.emotions.lesson.01,asset-image,,Happy
+img/s03/face_sad.png,3,Emotions,1,s03.emotions.lesson.01,asset-image,,Sad
+img/s03/faces_feelings.png,3,Emotions,1,s03.emotions.lesson.06,asset-image,,Happy and sleepy faces
+img/s03/fast_slow.png,3,Patterns & Opposites,1,s03.patterns.lesson.06,asset-image,,Rabbit and turtle
+img/s03/five_ducks.png,3,Counting & Numbers,1,s03.counting.story.01,story-illustration(p0),,Five little ducks went out to play.
+img/s03/five_fish.png,3,Counting & Numbers,1,s03.counting.lesson.06,asset-image,,Five fish
+img/s03/foods.png,3,Vocabulary,1,s03.vocab.lesson.05,asset-image,,"Apple, bread, milk"
+img/s03/four_ducks.png,3,Counting & Numbers,1,s03.counting.story.01,story-illustration(p1),,"One stayed home, so four swam away."
+img/s03/fox_run.png,3,Vocabulary,1,s03.vocab.lesson.01,asset-image,,Running fox
+img/s03/frog_jump.png,3,Vocabulary,1,s03.vocab.lesson.01,asset-image,,Jumping frog
+img/s03/hat.png,3,Vocabulary,1,s03.vocab.lesson.02,asset-image,,Hat
+img/s03/hot_cold.png,3,Patterns & Opposites,1,s03.patterns.lesson.02,asset-image,,Hot soup and cold ice
+img/s03/house_objects.png,3,Vocabulary,1,s03.vocab.lesson.03,asset-image,,"Chair, bed, door"
+img/s03/leo_breathe.png,3,Emotions,1,s03.emotions.story.01,story-illustration(p1),,He takes a deep breath — in and out.
+img/s03/leo_frustrated.png,3,Emotions,1,s03.emotions.story.01,story-illustration(p0),,Leo's tower fell. He feels frustrated.
+img/s03/leo_happy.png,3,Emotions,1,s03.emotions.story.01,story-illustration(p2),,He tries again and smiles. Feelings can pass!
+img/s03/letter_o.png,3,Tracing & Stories,1,s03.tracing.lesson.05,asset-image,Y,Letter O to trace
+img/s03/line_road.png,3,Tracing & Stories,1,s03.tracing.lesson.02,asset-image,,Straight road to trace
+img/s03/m_words.png,3,Phonological Awareness,1,s03.phono.lesson.05,asset-image,,Moon and mouse
+img/s03/mia_apple.png,3,Vocabulary,1,s03.vocab.story.01,story-illustration(p1),,She eats an apple for a snack. Yum!
+img/s03/mia_ball.png,3,Vocabulary,1,s03.vocab.story.01,story-illustration(p2),,Then she plays with her ball outside. What a day!
+img/s03/mia_shoes.png,3,Vocabulary,1,s03.vocab.story.01,story-illustration(p0),,Mia wakes up and puts on her shoes. Tap the shoes!
+img/s03/number_order.png,3,Counting & Numbers,1,s03.counting.lesson.04,asset-image,,Numbers 1-5 to order
+img/s03/opposites_end.png,3,Patterns & Opposites,1,s03.patterns.story.01,story-illustration(p2),,"Fast then slow, big then small. What fun!"
+img/s03/rabbits3.png,3,Counting & Numbers,1,s03.counting.lesson.01,asset-image,,Three rabbits
+img/s03/s_words.png,3,Phonological Awareness,1,s03.phono.lesson.04,asset-image,,Sun and sock
+img/s03/sad_hug.png,3,Emotions,1,s03.emotions.lesson.04,asset-image,,Sad face and hug
+img/s03/scared_safe.png,3,Emotions,1,s03.emotions.lesson.02,asset-image,,Scared face and a hug
+img/s03/snake_bee.png,3,Phonological Awareness,1,s03.phono.lesson.06,asset-image,,Snake and bee
+img/s03/ten_balloons.png,3,Counting & Numbers,1,s03.counting.lesson.02,asset-image,,Ten balloons
+img/s03/train_cat.png,3,Phonological Awareness,1,s03.phono.story.01,story-illustration(p0),,The train goes by with a cat in a hat!
+img/s03/train_dog.png,3,Phonological Awareness,1,s03.phono.story.01,story-illustration(p1),,"Next a dog on a log, riding along!"
+img/s03/train_home.png,3,Phonological Awareness,1,s03.phono.story.01,story-illustration(p2),,Toot-toot! The rhyme train heads home.
+img/s03/two_hands.png,3,Counting & Numbers,1,s03.counting.lesson.03,asset-image,,Two hands
+img/s03/up_down.png,3,Patterns & Opposites,1,s03.patterns.lesson.01,asset-image,,Balloon and anchor
+img/s03/zigzag.png,3,Tracing & Stories,1,s03.tracing.lesson.04,asset-image,,Zigzag mountains to trace
+img/s04/abc_blocks.png,4,Language & Literacy,1,s04.literacy.lesson.01,asset-image,Y,A B C letter blocks
+img/s04/animal_babies.png,4,Science & Nature,1,s04.science.lesson.05,asset-image,,Animals and babies
+img/s04/balloons10.png,4,Math & Logic,1,s04.math.lesson.01,asset-image,,Ten balloons
+img/s04/begin_sounds.png,4,Language & Literacy,1,s04.literacy.lesson.05,asset-image,,Moon and sun
+img/s04/big_feelings.png,4,Social-Emotional,1,s04.semotional.lesson.03,asset-image,,Frustrated and proud faces
+img/s04/breath_balloon.png,4,Social-Emotional,1,s04.semotional.lesson.01,asset-image,,Balloon that grows and shrinks
+img/s04/canvas.png,4,Creative Arts,1,s04.arts.lesson.02,asset-image,,Blank paint canvas with color palette
+img/s04/clean_earth.png,4,Social Studies,1,s04.social.lesson.06,asset-image,,Recycling and bins
+img/s04/count_match.png,4,Math & Logic,1,s04.math.lesson.02,asset-image,,Apples and numerals
+img/s04/day_night_sky.png,4,Science & Nature,1,s04.science.lesson.04,asset-image,,Day and night sky
+img/s04/draw_face.png,4,Creative Arts,1,s04.arts.lesson.03,asset-image,,Face drawing canvas
+img/s04/family.png,4,Social Studies,1,s04.social.lesson.02,asset-image,,Diverse family
+img/s04/finger_add.png,4,Math & Logic,1,s04.math.lesson.03,asset-image,,Counting fingers
+img/s04/float_sink.png,4,Science & Nature,1,s04.science.lesson.06,asset-image,,Leaf and stone in water
+img/s04/four_shapes.png,4,Math & Logic,1,s04.math.lesson.04,asset-image,,Four shapes
+img/s04/helpers.png,4,Social Studies,1,s04.social.lesson.01,asset-image,,"Doctor, firefighter, teacher"
+img/s04/helping.png,4,Social-Emotional,1,s04.semotional.lesson.05,asset-image,,Child helping another
+img/s04/i_can.png,4,Social-Emotional,1,s04.semotional.lesson.06,asset-image,,Child completing a puzzle
+img/s04/instruments.png,4,Creative Arts,1,s04.arts.lesson.04,asset-image,,Shaker and drum
+img/s04/kind_words.png,4,Social Studies,1,s04.social.lesson.05,asset-image,,Children being polite
+img/s04/lowercase_abc.png,4,Language & Literacy,1,s04.literacy.lesson.02,asset-image,,Lowercase a b c
+img/s04/market_bus.png,4,Social Studies,1,s04.social.story.01,story-illustration(p0),,Amara and Dad take the bus to the market. Beep!
+img/s04/market_home.png,4,Social Studies,1,s04.social.story.01,story-illustration(p2),Y,'Thank you!' They walk home together. What a nice day.
+img/s04/market_seller.png,4,Social Studies,1,s04.social.story.01,story-illustration(p1),Y,"The seller smiles. 'Two apples, please!' says Amara."
+img/s04/name_letters.png,4,Language & Literacy,1,s04.literacy.lesson.04,asset-image,Y,Letter cards
+img/s04/paint_pots.png,4,Creative Arts,1,s04.arts.lesson.01,asset-image,,"Pots of red, blue, yellow paint"
+img/s04/paint_sky.png,4,Creative Arts,1,s04.arts.story.01,story-illustration(p0),,Leo finds a magic paintbrush. Tap to paint the sky blue!
+img/s04/paint_sun.png,4,Creative Arts,1,s04.arts.story.01,story-illustration(p1),,He paints a yellow sun and green grass.
+img/s04/paint_world.png,4,Creative Arts,1,s04.arts.story.01,story-illustration(p2),,What a colorful world! Art is everywhere.
+img/s04/patterns_abc.png,4,Math & Logic,1,s04.math.lesson.06,asset-image,,AB and ABC patterns
+img/s04/pigs_brick.png,4,Language & Literacy,1,s04.literacy.story.01,story-illustration(p2),,The brick house kept everyone safe and warm. (End) The end!
+img/s04/pigs_houses.png,4,Language & Literacy,1,s04.literacy.story.01,story-illustration(p1),,"One built with straw, one with sticks, one with strong bricks. (Middle)"
+img/s04/pigs_start.png,4,Language & Literacy,1,s04.literacy.story.01,story-illustration(p0),,Three little pigs set off to build their homes. (Beginning)
+img/s04/plant_grow.png,4,Science & Nature,1,s04.science.lesson.03,asset-image,,Seed growing
+img/s04/pretend.png,4,Creative Arts,1,s04.arts.lesson.06,asset-image,,Child pretending
+img/s04/puddles.png,4,Science & Nature,1,s04.science.story.01,story-illustration(p1),,"Puddles everywhere — splash, splash!"
+img/s04/rain_umbrella.png,4,Science & Nature,1,s04.science.story.01,story-illustration(p0),,Drip-drop! It starts to rain. Tap to open the umbrella.
+img/s04/rainbow.png,4,Science & Nature,1,s04.science.story.01,story-illustration(p2),,The sun comes out and makes a rainbow. So pretty!
+img/s04/saying_sorry.png,4,Social-Emotional,1,s04.semotional.lesson.04,asset-image,,Children making up
+img/s04/senses.png,4,Science & Nature,1,s04.science.lesson.01,asset-image,,"Eyes, ears, nose, hand, mouth"
+img/s04/shape_houses.png,4,Math & Logic,1,s04.math.story.01,story-illustration(p0),,"In Shape Town, the houses are squares."
+img/s04/shape_sun.png,4,Math & Logic,1,s04.math.story.01,story-illustration(p1),,The sun is a circle and the roofs are triangles.
+img/s04/shape_town.png,4,Math & Logic,1,s04.math.story.01,story-illustration(p2),,Count the shapes you see. What a shapely town!
+img/s04/sharing.png,4,Social-Emotional,1,s04.semotional.lesson.02,asset-image,,Children sharing a ball
+img/s04/size_bears.png,4,Math & Logic,1,s04.math.lesson.05,asset-image,,Three bears by size
+img/s04/swing_friends.png,4,Social-Emotional,1,s04.semotional.story.01,story-illustration(p2),,Now they push each other and laugh. Good friends share!
+img/s04/swing_share.png,4,Social-Emotional,1,s04.semotional.story.01,story-illustration(p1),Y,They decide to take turns. 'You first!'
+img/s04/swing_want.png,4,Social-Emotional,1,s04.semotional.story.01,story-illustration(p0),,Sara and Kofi both want the swing.
+img/s04/town_places.png,4,Social Studies,1,s04.social.lesson.03,asset-image,,"School, store, park"
+img/s04/travel.png,4,Social Studies,1,s04.social.lesson.04,asset-image,,"Car, bus, bike"
+img/s04/weather.png,4,Science & Nature,1,s04.science.lesson.02,asset-image,,"Sun, rain, snow"
+img/s05/animal_homes.png,5,Science,1,s05.science.lesson.04,asset-image,,"Nest, den, web"
+img/s05/apple.png,5,Math,1,s05.math.lesson.01,asset-image,,Apple
+img/s05/arrow_blocks.png,5,Creativity & Coding,1,s05.coding.lesson.01,asset-image,,Forward / turn-left blocks
+img/s05/basket_apples.png,5,Math,1,s05.math.lesson.01,asset-image,,Basket with apples
+img/s05/blend_words.png,5,Reading & Writing,1,s05.reading.lesson.04,asset-image,,dog and map
+img/s05/cat.png,5,Reading & Writing,1,s05.reading.lesson.01,asset-image,,Cat
+img/s05/cat_hat.png,5,Reading & Writing,1,s05.reading.story.01,story-illustration(p1),,The cat put on a hat. What a fat cat!
+img/s05/cat_mat.png,5,Reading & Writing,1,s05.reading.story.01,story-illustration(p0),,A cat sat on a mat. Tap to read along.
+img/s05/cat_run.png,5,Reading & Writing,1,s05.reading.story.01,story-illustration(p2),,The cat ran with the hat. The end!
+img/s05/code_arrows.png,5,Creativity & Coding,1,s05.coding.lesson.05,asset-image,,Grid with arrow commands
+img/s05/compare_groups.png,5,Math,1,s05.math.lesson.05,asset-image,,Groups to compare
+img/s05/debug.png,5,Creativity & Coding,1,s05.coding.lesson.04,asset-image,,Robot path with a wrong arrow
+img/s05/duck_grid.png,5,Creativity & Coding,1,s05.coding.lesson.01,asset-image,,Duck on a grid heading to a pond
+img/s05/five_bed.png,5,Math,1,s05.math.story.01,story-illustration(p0),Y,Five friends in a bed. 'Roll over!'
+img/s05/flags.png,5,Social Studies,1,s05.social.lesson.05,asset-image,,Diverse flags
+img/s05/four_bed.png,5,Math,1,s05.math.story.01,story-illustration(p1),,One rolls out — now there are four.
+img/s05/four_seasons.png,5,Science,1,s05.science.lesson.02,asset-image,,Four seasons
+img/s05/happy_street.png,5,Social Studies,1,s05.social.story.01,story-illustration(p2),Y,'Thank you!' he smiles. Helping makes a happy street.
+img/s05/help_pick.png,5,Social Studies,1,s05.social.story.01,story-illustration(p1),,Nia and Sam stop to help pick them up.
+img/s05/ice_water.png,5,Science,1,s05.science.lesson.06,asset-image,,Ice melting to water
+img/s05/jobs.png,5,Social Studies,1,s05.social.lesson.04,asset-image,,"Farmer, nurse, driver"
+img/s05/letters_cat.png,5,Reading & Writing,1,s05.reading.lesson.01,asset-image,Y,Letters c a t
+img/s05/living_sort.png,5,Science,1,s05.science.lesson.01,asset-image,,Living vs non-living sort board
+img/s05/loop.png,5,Creativity & Coding,1,s05.coding.lesson.03,asset-image,,Loop repeat icon
+img/s05/measure_cubes.png,5,Math,1,s05.math.lesson.06,asset-image,,Pencil measured in cubes
+img/s05/music_pattern.png,5,Creativity & Coding,1,s05.coding.lesson.06,asset-image,,Drum-bell pattern
+img/s05/needs_wants.png,5,Social Studies,1,s05.social.lesson.03,asset-image,,Needs vs wants
+img/s05/number_bonds.png,5,Math,1,s05.math.lesson.04,asset-image,,Bonds making 5
+img/s05/one_bed.png,5,Math,1,s05.math.story.01,story-illustration(p2),Y,"One by one, down to one. 'Goodnight!' Five take away four is one."
+img/s05/past_present.png,5,Social Studies,1,s05.social.lesson.06,asset-image,,Horse and car
+img/s05/plant_parts.png,5,Science,1,s05.science.lesson.03,asset-image,Y,Labeled plant parts
+img/s05/push_pull.png,5,Science,1,s05.science.lesson.05,asset-image,,Pushing and pulling
+img/s05/robot_done.png,5,Creativity & Coding,1,s05.coding.story.01,story-illustration(p2),,"The plant gets water. Good coding, Beep!"
+img/s05/robot_start.png,5,Creativity & Coding,1,s05.coding.story.01,story-illustration(p0),,Beep the robot wants to water the plant. Tap to give it steps.
+img/s05/robot_steps.png,5,Creativity & Coding,1,s05.coding.story.01,story-illustration(p1),,"Forward, forward, then pour! Beep follows the steps."
+img/s05/rules.png,5,Social Studies,1,s05.social.lesson.02,asset-image,,Children following rules
+img/s05/seed_flower.png,5,Science,1,s05.science.story.01,story-illustration(p2),,It grows tall into a flower. Living things grow!
+img/s05/seed_soil.png,5,Science,1,s05.science.story.01,story-illustration(p0),,A little seed sleeps in the soil. Tap to give it rain.
+img/s05/seed_sprout.png,5,Science,1,s05.science.story.01,story-illustration(p1),,"With sun and water, a green sprout pokes up!"
+img/s05/sequence.png,5,Creativity & Coding,1,s05.coding.lesson.02,asset-image,,Toast-making steps
+img/s05/sight_words.png,5,Reading & Writing,1,s05.reading.lesson.02,asset-image,Y,"Word cards: I, the, a"
+img/s05/simple_map.png,5,Social Studies,1,s05.social.lesson.01,asset-image,,Map with land and water
+img/s05/simple_sentence.png,5,Reading & Writing,1,s05.reading.lesson.06,asset-image,Y,Sentence with a cat
+img/s05/spill.png,5,Social Studies,1,s05.social.story.01,story-illustration(p0),,Mr. Ade's groceries spilled on the path.
+img/s05/subtract.png,5,Math,1,s05.math.lesson.02,asset-image,,Apples to subtract
+img/s05/twenty_stars.png,5,Math,1,s05.math.lesson.03,asset-image,,Twenty stars
+img/s05/word_family_ig.png,5,Reading & Writing,1,s05.reading.lesson.05,asset-image,,"pig, big, dig"
+img/s05/write_letters.png,5,Reading & Writing,1,s05.reading.lesson.03,asset-image,Y,Letters a and b to trace
+img/s06/2d_3d.png,6,Math,1,s06.math.lesson.06,asset-image,,Flat and solid shapes
+img/s06/add_ten.png,6,Math,1,s06.math.lesson.02,asset-image,,Counters making 9
+img/s06/algorithm_steps.png,6,Technology & Logic,1,s06.tech.lesson.03,asset-image,,Tooth-brushing steps
+img/s06/animal_needs.png,6,Science,1,s06.science.lesson.02,asset-image,,"Food, water, shelter"
+img/s06/apples_stay.png,6,Math,1,s06.math.story.01,story-illustration(p2),,They all stay up. Hooray for 5 apples!
+img/s06/bear_apples.png,6,Math,1,s06.math.story.01,story-illustration(p0),,A bear balances 3 apples on top. Tap to add 2 more!
+img/s06/blocks.png,6,Technology & Logic,1,s06.tech.lesson.01,asset-image,,Forward / Turn-left command blocks
+img/s06/build_word.png,6,Reading & Writing,1,s06.reading.lesson.05,asset-image,Y,Letter tiles
+img/s06/caps_periods.png,6,Reading & Writing,1,s06.reading.lesson.06,asset-image,Y,Sentence with capital and period
+img/s06/ch_words.png,6,Reading & Writing,1,s06.reading.lesson.02,asset-image,,chip and lunch
+img/s06/citizen.png,6,Social Studies,1,s06.social.lesson.02,asset-image,,Children helping and sharing
+img/s06/clean_park.png,6,Social Studies,1,s06.social.story.01,story-illustration(p2),,Now the park is clean and pretty. Good citizens work together!
+img/s06/clouds_form.png,6,Science,1,s06.science.story.01,story-illustration(p1),,"Up high, it makes clouds. The clouds grow heavy."
+img/s06/fast_slow_motion.png,6,Science,1,s06.science.lesson.06,asset-image,,Race car and snail
+img/s06/five_apples.png,6,Math,1,s06.math.story.01,story-illustration(p1),,"3 and 2 is 5 apples — wobble, wobble!"
+img/s06/flag.png,6,Social Studies,1,s06.social.lesson.01,asset-image,,Generic flag
+img/s06/goods_services.png,6,Social Studies,1,s06.social.lesson.04,asset-image,,Goods and services
+img/s06/hat_mat.png,6,Reading & Writing,1,s06.reading.story.01,story-illustration(p1),,The hat is on the mat.
+img/s06/materials.png,6,Science,1,s06.science.lesson.05,asset-image,,"Wood, metal, plastic"
+img/s06/online_safety.png,6,Technology & Logic,1,s06.tech.lesson.06,asset-image,,Child asking a grown-up
+img/s06/park_litter.png,6,Social Studies,1,s06.social.story.01,story-illustration(p0),,The class park is full of litter. The children want to help.
+img/s06/pattern_aab.png,6,Technology & Logic,1,s06.tech.lesson.04,asset-image,,AAB pattern
+img/s06/place_value.png,6,Math,1,s06.math.lesson.01,asset-image,,Ten-rods and unit cubes
+img/s06/plant_flower.png,6,Social Studies,1,s06.social.story.01,story-illustration(p1),,Together they pick it up and plant a flower.
+img/s06/rain_down.png,6,Science,1,s06.science.story.01,story-illustration(p2),,Drip-drop — it rains back down! Water goes round and round.
+img/s06/read_sentence.png,6,Reading & Writing,1,s06.reading.lesson.04,asset-image,Y,Dog running sentence
+img/s06/robo_messy.png,6,Technology & Logic,1,s06.tech.story.01,story-illustration(p0),,Robo's toys are all mixed up! Tap to help sort.
+img/s06/robo_sorting.png,6,Technology & Logic,1,s06.tech.story.01,story-illustration(p1),,"Blocks with blocks, cars with cars — sort by type!"
+img/s06/robo_tidy.png,6,Technology & Logic,1,s06.tech.story.01,story-illustration(p2),Y,All sorted and tidy. Robo says: 'Thank you for the good logic!'
+img/s06/robot_grid.png,6,Technology & Logic,1,s06.tech.lesson.01,asset-image,,Robot on a grid with a star
+img/s06/room_map.png,6,Social Studies,1,s06.social.lesson.03,asset-image,,Top-down room map
+img/s06/sam.png,6,Reading & Writing,1,s06.reading.story.01,asset-image,,Child named Sam
+img/s06/sam_cat.png,6,Reading & Writing,1,s06.reading.story.01,story-illustration(p2),,Sam and the cat sit on the mat. The end!
+img/s06/sam_hat.png,6,Reading & Writing,1,s06.reading.story.01,story-illustration(p0),Y,Sam has a red hat. (Tap any word to hear it.)
+img/s06/sh_words.png,6,Reading & Writing,1,s06.reading.lesson.01,asset-image,,ship and fish
+img/s06/sight_words2.png,6,Reading & Writing,1,s06.reading.lesson.03,asset-image,,"you, see, go, to"
+img/s06/sky_objects.png,6,Science,1,s06.science.lesson.03,asset-image,,"Sun, moon, stars"
+img/s06/states_matter.png,6,Science,1,s06.science.lesson.01,asset-image,,"Ice, water, steam"
+img/s06/subtract_ten.png,6,Math,1,s06.math.lesson.03,asset-image,,Birds flying away
+img/s06/tablet_parts.png,6,Technology & Logic,1,s06.tech.lesson.05,asset-image,,Tablet screen and button
+img/s06/teen_numbers.png,6,Math,1,s06.math.lesson.04,asset-image,,Teen number cards
+img/s06/tens_ones.png,6,Math,1,s06.math.lesson.05,asset-image,,Ten-sticks and cubes
+img/s06/then_now.png,6,Social Studies,1,s06.social.lesson.06,asset-image,,Quill and phone
+img/s06/two_rules.png,6,Technology & Logic,1,s06.tech.lesson.02,asset-image,,Shapes by color and shape
+img/s06/water_rise.png,6,Science,1,s06.science.story.01,story-illustration(p0),,The sun warms the lake. Water rises up as invisible mist.
+img/s06/weather_clothes.png,6,Science,1,s06.science.lesson.04,asset-image,,Coat and sun hat
+img/s06/world_people.png,6,Social Studies,1,s06.social.lesson.05,asset-image,,Diverse children worldwide
+img/s07/add_twenty.png,7,Math,1,s07.math.lesson.02,asset-image,,Ten-frame with 8+7
+img/s07/amir_done.png,7,Writing & Grammar,1,s07.writing.story.01,story-illustration(p2),,He ends with a period and signs his name. Grandma will love it!
+img/s07/amir_sentence.png,7,Writing & Grammar,1,s07.writing.story.01,story-illustration(p1),Y,He starts with a capital letter and writes a sentence.
+img/s07/amir_write.png,7,Writing & Grammar,1,s07.writing.story.01,story-illustration(p0),,Amir wants to write a thank-you note to Grandma.
+img/s07/being_fair.png,7,Social Studies,1,s07.social.lesson.06,asset-image,,Children taking turns
+img/s07/blends.png,7,Reading,1,s07.reading.lesson.03,asset-image,,blue and star
+img/s07/body_parts.png,7,Science,1,s07.science.lesson.03,asset-image,,Simple body diagram
+img/s07/butterfly_cycle.png,7,Science,2,s07.science.lesson.01; s07.science.lesson.02,asset-image,,Butterfly life-cycle stages
+img/s07/butterfly_fly.png,7,Science,1,s07.science.story.01,story-illustration(p2),,Out comes a butterfly with bright wings. It flies away!
+img/s07/buy_kite.png,7,Math,1,s07.math.story.01,story-illustration(p2),,Ten is enough for the kite! Off she runs to buy it.
+img/s07/caterpillar_munch.png,7,Science,1,s07.science.story.01,story-illustration(p1),,"Out crawls a hungry caterpillar. Munch, munch! It forms a chrysalis."
+img/s07/class_vote.png,7,Social Studies,1,s07.social.story.01,story-illustration(p0),Y,"The class can't agree: a story or a song? Miss Bello says, 'Let's vote!'"
+img/s07/clock_hour.png,7,Math,1,s07.math.lesson.05,asset-image,,Clock at 3 o'clock
+img/s07/coin_jar.png,7,Math,1,s07.math.story.01,story-illustration(p0),,Lila saves coins in a jar for a kite.
+img/s07/coins.png,7,Math,1,s07.math.lesson.06,asset-image,,Coins of different values
+img/s07/count_coins.png,7,Math,1,s07.math.story.01,story-illustration(p1),,"She has two 5-coins. Tap to count: 5, 10!"
+img/s07/count_votes.png,7,Social Studies,1,s07.social.story.01,story-illustration(p1),,Each child raises a hand. Tap to count the votes.
+img/s07/egg_leaf.png,7,Science,1,s07.science.story.01,story-illustration(p0),,A tiny egg sits on a leaf. Tap to watch it hatch.
+img/s07/exercise.png,7,Health,1,s07.health.lesson.04,asset-image,,Children playing actively
+img/s07/families_time.png,7,Social Studies,1,s07.social.lesson.05,asset-image,,Washboard and machine
+img/s07/food_groups.png,7,Health,1,s07.health.lesson.01,asset-image,,Food-group plate
+img/s07/girl_tag.png,7,Reading,1,s07.reading.story.01,story-illustration(p1),,A kind girl saw it and read its name tag.
+img/s07/globe.png,7,Social Studies,1,s07.social.lesson.01,asset-image,Y,Simple labeled globe
+img/s07/good_sleep.png,7,Health,1,s07.health.lesson.05,asset-image,,Child sleeping peacefully
+img/s07/healthy_foods.png,7,Health,1,s07.health.lesson.03,asset-image,,Fruits and vegetables
+img/s07/helpers_tools.png,7,Social Studies,1,s07.social.lesson.04,asset-image,,Helpers and tools
+img/s07/light_shadow.png,7,Science,1,s07.science.lesson.04,asset-image,,Tree casting a shadow
+img/s07/lost_puppy.png,7,Reading,1,s07.reading.story.01,story-illustration(p0),Y,A small puppy could not find its way home. (Tap a word to hear it.)
+img/s07/main_idea.png,7,Reading,1,s07.reading.lesson.06,asset-image,,Dog facts page
+img/s07/map_globe.png,7,Social Studies,1,s07.social.lesson.02,asset-image,,Map and globe
+img/s07/nouns.png,7,Writing & Grammar,1,s07.writing.lesson.02,asset-image,,Dog and school
+img/s07/number_line20.png,7,Math,1,s07.math.lesson.01,asset-image,Y,Number line 0-20
+img/s07/place_value.png,7,Math,1,s07.math.lesson.04,asset-image,,47 in tens and ones
+img/s07/plant_care.png,7,Science,1,s07.science.lesson.06,asset-image,,Watering a plant
+img/s07/plurals.png,7,Writing & Grammar,1,s07.writing.lesson.06,asset-image,,"One cat, two cats"
+img/s07/puppy_home.png,7,Reading,1,s07.reading.story.01,story-illustration(p2),,She walked it home. The puppy wagged its tail. The end!
+img/s07/question_mark.png,7,Writing & Grammar,1,s07.writing.lesson.05,asset-image,,Question mark
+img/s07/read_meaning.png,7,Reading,1,s07.reading.lesson.04,asset-image,,Girl kicking a ball
+img/s07/retell.png,7,Reading,1,s07.reading.lesson.05,asset-image,,Three story scenes
+img/s07/rules_laws.png,7,Social Studies,1,s07.social.lesson.03,asset-image,Y,Red light and school sign
+img/s07/safety.png,7,Health,1,s07.health.lesson.06,asset-image,,Helmet and seatbelt
+img/s07/silent_e.png,7,Reading,1,s07.reading.lesson.01,asset-image,Y,cap / cape word cards
+img/s07/sounds.png,7,Science,1,s07.science.lesson.05,asset-image,,Drum and guitar string
+img/s07/subtract_twenty.png,7,Math,1,s07.math.lesson.03,asset-image,Y,Number line 15-6
+img/s07/verbs.png,7,Writing & Grammar,1,s07.writing.lesson.03,asset-image,,Jumping child
+img/s07/vote_result.png,7,Social Studies,1,s07.social.story.01,story-illustration(p2),,Song wins! Voting is a fair way to choose together.
+img/s07/vowels.png,7,Reading,1,s07.reading.lesson.02,asset-image,,cap and cape
+img/s07/wash_hands.png,7,Health,1,s07.health.lesson.02,asset-image,,Washing hands with soap
+img/s07/word_types.png,7,Writing & Grammar,1,s07.writing.lesson.01,asset-image,Y,Sentence with tappable words
+img/s07/write_sentence.png,7,Writing & Grammar,1,s07.writing.lesson.04,asset-image,Y,Sentence builder
+img/s07/zoe_morning.png,7,Health,1,s07.health.story.01,story-illustration(p0),,"Zoe wakes up, brushes her teeth, and eats fruit for breakfast."
+img/s07/zoe_play.png,7,Health,1,s07.health.story.01,story-illustration(p1),,"She runs and plays outside, then washes her hands for lunch."
+img/s07/zoe_sleep.png,7,Health,1,s07.health.story.01,story-illustration(p2),,"After a calm bedtime, she sleeps well. A healthy day!"
+img/s08/add_regroup.png,8,Math,1,s08.math.lesson.02,asset-image,,24 + 18 with carry
+img/s08/adjectives.png,8,Writing & Grammar,1,s08.writing.lesson.05,asset-image,,Fluffy dog
+img/s08/array.png,8,Math,1,s08.math.lesson.05,asset-image,,3 by 4 array
+img/s08/array_grid.png,8,Math,1,s08.math.lesson.01,asset-image,,Tappable dot-array grid
+img/s08/capitals_names.png,8,Writing & Grammar,1,s08.writing.lesson.02,asset-image,,"Maya, Paris"
+img/s08/celebrations.png,8,Social Studies,1,s08.social.lesson.06,asset-image,,Festivals around the world
+img/s08/character_setting.png,8,Reading,1,s08.reading.lesson.04,asset-image,,Girl at the beach
+img/s08/commas_list.png,8,Writing & Grammar,1,s08.writing.lesson.03,asset-image,,List with commas
+img/s08/compound.png,8,Reading,1,s08.reading.lesson.01,asset-image,,"cup+cake, rain+bow"
+img/s08/context_clues.png,8,Reading,1,s08.reading.lesson.03,asset-image,,Dog drinking water
+img/s08/contractions.png,8,Writing & Grammar,1,s08.writing.lesson.04,asset-image,,do not = don't
+img/s08/debug_program.png,8,Creativity & Tech,1,s08.tech.lesson.04,asset-image,,Code with a wrong step
+img/s08/directions.png,8,Social Studies,1,s08.social.lesson.02,asset-image,,Compass rose
+img/s08/egypt.png,8,Social Studies,1,s08.social.lesson.01,asset-image,,Pyramid and hieroglyphs
+img/s08/fact_opinion.png,8,Reading,1,s08.reading.lesson.05,asset-image,,Fact vs opinion
+img/s08/food_chain.png,8,Science,2,s08.science.lesson.01; s08.science.lesson.03,asset-image,,"Sun, grass, rabbit, fox"
+img/s08/government.png,8,Social Studies,1,s08.social.lesson.03,asset-image,,Town hall and mayor
+img/s08/grammar_cards.png,8,Writing & Grammar,1,s08.writing.lesson.01,asset-image,Y,Plural and tense word cards
+img/s08/habitats.png,8,Science,1,s08.science.lesson.02,asset-image,,Pond and desert
+img/s08/if_then.png,8,Creativity & Tech,1,s08.tech.lesson.03,asset-image,,If rain then umbrella
+img/s08/kind_online.png,8,Creativity & Tech,1,s08.tech.lesson.05,asset-image,,Kind online message
+img/s08/landforms.png,8,Social Studies,1,s08.social.lesson.04,asset-image,,"Mountain, river, island"
+img/s08/loop_square.png,8,Creativity & Tech,1,s08.tech.lesson.02,asset-image,,Loop drawing a square
+img/s08/magnets.png,8,Science,1,s08.science.lesson.06,asset-image,,Magnet and paperclips
+img/s08/main_details.png,8,Reading,1,s08.reading.lesson.06,asset-image,,Bee paragraph
+img/s08/market_add.png,8,Math,1,s08.math.story.01,story-illustration(p1),,A customer buys 2 mangoes. Tap to add: 6 + 6 = 12 coins.
+img/s08/market_coins.png,8,Math,1,s08.math.story.01,story-illustration(p2),Y,Kofi counts 12 coins. 'Asante — thank you!' he smiles.
+img/s08/market_mango.png,8,Math,1,s08.math.story.01,story-illustration(p0),,Kofi sells mangoes at the market. One costs 6 coins.
+img/s08/matter_states.png,8,Science,1,s08.science.lesson.04,asset-image,,"Rock, juice, balloon"
+img/s08/paragraph.png,8,Writing & Grammar,1,s08.writing.lesson.06,asset-image,Y,Topic and detail sentences
+img/s08/pixel_art.png,8,Creativity & Tech,1,s08.tech.lesson.06,asset-image,,Pixel heart on a grid
+img/s08/pixel_done.png,8,Creativity & Tech,1,s08.tech.story.01,story-illustration(p2),,"All 5 seeds planted, fast! Loops make work easier. Beep beep!"
+img/s08/pixel_loop.png,8,Creativity & Tech,1,s08.tech.story.01,story-illustration(p1),Y,Pixel learns a LOOP: 'repeat 5 times: plant'. Tap to run it.
+img/s08/pixel_slow.png,8,Creativity & Tech,1,s08.tech.story.01,story-illustration(p0),Y,Pixel the robot must plant 5 seeds. Typing 'plant' five times is slow!
+img/s08/playground_built.png,8,Social Studies,1,s08.social.story.01,story-illustration(p2),,Together they build it. A community works as a team!
+img/s08/playground_meet.png,8,Social Studies,1,s08.social.story.01,story-illustration(p0),,The neighborhood wants a new playground. They meet to decide.
+img/s08/playground_vote.png,8,Social Studies,1,s08.social.story.01,story-illustration(p1),,Everyone shares ideas. They vote on the best plan.
+img/s08/pond_life.png,8,Science,1,s08.science.story.01,story-illustration(p2),,Every creature has a part to play. The pond is alive!
+img/s08/pond_plants.png,8,Science,1,s08.science.story.01,story-illustration(p0),,"In the pond, tiny plants soak up the sun."
+img/s08/pond_tadpole.png,8,Science,1,s08.science.story.01,story-illustration(p1),,A tadpole nibbles the plants. A heron watches nearby.
+img/s08/prefixes.png,8,Reading,1,s08.reading.lesson.02,asset-image,,"unhappy, redo"
+img/s08/priya_details.png,8,Writing & Grammar,1,s08.writing.story.01,story-illustration(p1),,"She writes details: the lions roared, the monkeys played."
+img/s08/priya_read.png,8,Writing & Grammar,1,s08.writing.story.01,story-illustration(p2),,She reads it aloud. A whole paragraph — she did it!
+img/s08/priya_topic.png,8,Writing & Grammar,1,s08.writing.story.01,story-illustration(p0),,Priya wants to write about her best day. She picks a topic: the zoo!
+img/s08/producer_consumer.png,8,Social Studies,1,s08.social.lesson.05,asset-image,,Baker and shopper
+img/s08/race_finish.png,8,Reading,1,s08.reading.story.01,story-illustration(p2),,"He didn't win, but he finished — and felt proud. Trying hard matters most!"
+img/s08/race_train.png,8,Reading,1,s08.reading.story.01,story-illustration(p0),,Sam trained all week for the big race. He was nervous but ready.
+img/s08/race_trip.png,8,Reading,1,s08.reading.story.01,story-illustration(p1),,"At the start, he tripped! But he got up and kept running."
+img/s08/scratch_blocks.png,8,Creativity & Tech,1,s08.tech.lesson.01,asset-image,,Move / jump / sound blocks
+img/s08/skip_count.png,8,Math,1,s08.math.lesson.04,asset-image,Y,Number line by 5s
+img/s08/subtract_regroup.png,8,Math,1,s08.math.lesson.03,asset-image,,52 - 27 with borrow
+img/s08/time_5min.png,8,Math,1,s08.math.lesson.06,asset-image,,Clock at 2:15
+img/s08/water_cycle.png,8,Science,1,s08.science.lesson.05,asset-image,,Water cycle diagram
+img/s09/adaptations.png,9,Science,1,s09.science.lesson.02,asset-image,,Polar bear and camouflaged gecko
+img/s09/algorithm.png,9,Logic & Coding,1,s09.coding.lesson.06,asset-image,,Sandwich steps in order
+img/s09/author_purpose.png,9,Reading,1,s09.reading.lesson.06,asset-image,,"Inform, entertain, persuade"
+img/s09/bar_graph.png,9,Math,1,s09.math.lesson.06,asset-image,,Bar graph of pets
+img/s09/boolean.png,9,Logic & Coding,1,s09.coding.lesson.05,asset-image,,True and false
+img/s09/branches.png,9,Social Studies,1,s09.social.lesson.01,asset-image,,Three branches diagram
+img/s09/cause_effect.png,9,Reading,1,s09.reading.lesson.03,asset-image,,Rain and flood
+img/s09/chameleon_color.png,9,Science,1,s09.science.story.01,story-illustration(p1),,He changed color to match each leaf and branch. Camouflage!
+img/s09/chameleon_hide.png,9,Science,1,s09.science.story.01,story-illustration(p0),,Kael the chameleon could not be found by the hungry bird.
+img/s09/chameleon_safe.png,9,Science,1,s09.science.story.01,story-illustration(p2),,"The bird flew off, puzzled. Kael's adaptation kept him safe!"
+img/s09/community_types.png,9,Social Studies,1,s09.social.lesson.06,asset-image,,"Rural, suburban, urban"
+img/s09/compare_fractions.png,9,Math,1,s09.math.lesson.03,asset-image,,Half vs quarter
+img/s09/editing.png,9,Writing,1,s09.writing.lesson.06,asset-image,Y,Editing marks on a sentence
+img/s09/fact_family.png,9,Math,1,s09.math.lesson.01,asset-image,,Fact-family triangle
+img/s09/figurative.png,9,Reading,1,s09.reading.lesson.01,asset-image,,Simile vs metaphor cards
+img/s09/food_web.png,9,Science,1,s09.science.lesson.03,asset-image,,Connected food web
+img/s09/fossils.png,9,Science,1,s09.science.lesson.04,asset-image,,Dinosaur fossil
+img/s09/fractions.png,9,Math,1,s09.math.lesson.02,asset-image,,Pizza in quarters
+img/s09/functions.png,9,Logic & Coding,1,s09.coding.lesson.04,asset-image,Y,Function block 'wave'
+img/s09/if_else.png,9,Logic & Coding,1,s09.coding.lesson.02,asset-image,,If-else two branches
+img/s09/inference.png,9,Reading,1,s09.reading.lesson.02,asset-image,,Girl with umbrella at window
+img/s09/lemonade_buy.png,9,Social Studies,1,s09.social.story.01,story-illustration(p0),,Tomas opens a lemonade stand. He spends 5 coins on lemons and sugar.
+img/s09/lemonade_profit.png,9,Social Studies,1,s09.social.story.01,story-illustration(p2),,15 earned minus 5 spent = 10 profit! He saves some and plans more.
+img/s09/lemonade_sell.png,9,Social Studies,1,s09.social.story.01,story-illustration(p1),,He sells 10 cups and earns 15 coins. Tap to count his profit.
+img/s09/loop_blocks.png,9,Logic & Coding,1,s09.coding.lesson.01,asset-image,,Repeat-loop block with forward+turn
+img/s09/magnet.png,9,Science,1,s09.science.lesson.01,asset-image,,Magnet and paperclip
+img/s09/map_legend.png,9,Social Studies,1,s09.social.lesson.02,asset-image,,Map with legend and scale
+img/s09/multiply_tens.png,9,Math,1,s09.math.lesson.04,asset-image,,3 x 20 = 60
+img/s09/mystery_clues.png,9,Reading,1,s09.reading.story.01,story-illustration(p1),,A feather and a tiny footprint sat on the sill. Who could it be?
+img/s09/mystery_crow.png,9,Reading,1,s09.reading.story.01,story-illustration(p2),,A cheeky crow on the branch held a sandwich! Mystery solved by clues.
+img/s09/mystery_crumbs.png,9,Reading,1,s09.reading.story.01,story-illustration(p0),,Ravi's lunch vanished from his desk. Crumbs led to the window.
+img/s09/paragraph_frame.png,9,Writing,1,s09.writing.lesson.01,asset-image,,Opinion paragraph builder
+img/s09/pizza_quarters.png,9,Math,1,s09.math.story.01,story-illustration(p1),,They cut it into 4 equal parts. Each gets 1/4. Tap to slice.
+img/s09/pizza_share.png,9,Math,1,s09.math.story.01,story-illustration(p2),,Everyone gets an equal share. Fractions make sharing fair!
+img/s09/pizza_whole.png,9,Math,1,s09.math.story.01,story-illustration(p0),,Four friends share one pizza fairly. How many slices each?
+img/s09/proper_nouns.png,9,Writing,1,s09.writing.lesson.04,asset-image,,"Monday, Nile"
+img/s09/quotation_marks.png,9,Writing,1,s09.writing.lesson.03,asset-image,,Speech with quotation marks
+img/s09/rights_resp.png,9,Social Studies,1,s09.social.lesson.03,asset-image,,Rights and responsibilities
+img/s09/robo_bake.png,9,Logic & Coding,1,s09.coding.story.01,story-illustration(p2),Y,Now Robo just says 'bake'! Functions make code neat and reusable. Beep!
+img/s09/robo_function.png,9,Logic & Coding,1,s09.coding.story.01,story-illustration(p1),Y,Robo makes a FUNCTION called 'bake' with all the steps inside. Tap to call it.
+img/s09/robo_repeat.png,9,Logic & Coding,1,s09.coding.story.01,story-illustration(p0),,"Robo bakes cookies again and again, repeating every step. So tiring!"
+img/s09/rounding.png,9,Math,1,s09.math.lesson.05,asset-image,Y,Number line rounding 47
+img/s09/saving.png,9,Social Studies,1,s09.social.lesson.04,asset-image,,"Coins, toy, savings jar"
+img/s09/simple_machines.png,9,Science,1,s09.science.lesson.05,asset-image,,"Ramp, lever, pulley"
+img/s09/solar_system.png,9,Science,1,s09.science.lesson.06,asset-image,,Planets orbiting the Sun
+img/s09/summarize.png,9,Reading,1,s09.reading.lesson.05,asset-image,Y,Long text to short summary
+img/s09/text_features.png,9,Reading,1,s09.reading.lesson.04,asset-image,Y,Page with heading and caption
+img/s09/timeline.png,9,Social Studies,1,s09.social.lesson.05,asset-image,,Historical timeline
+img/s09/transitions.png,9,Writing,1,s09.writing.lesson.02,asset-image,,"First, next, finally"
+img/s09/variables.png,9,Logic & Coding,1,s09.coding.lesson.03,asset-image,,Variable box holding a number
+img/s09/verb_tenses.png,9,Writing,1,s09.writing.lesson.05,asset-image,,"Past, present, future"
+img/s09/writers_draft.png,9,Writing,1,s09.writing.story.01,story-illustration(p0),Y,Ada joins the Writer's Club. Her first draft is messy — and that's okay!
+img/s09/writers_revise.png,9,Writing,1,s09.writing.story.01,story-illustration(p1),Y,"She revises: adds details, fixes spelling, and reads it aloud."
+img/s09/writers_share.png,9,Writing,1,s09.writing.story.01,story-illustration(p2),Y,She shares her polished story. The club claps. Writing takes steps!
+img/s10/add_fractions.png,10,Math,1,s10.math.lesson.04,asset-image,,Two fifths added to one fifth
+img/s10/area_model.png,10,Math,1,s10.math.lesson.02,asset-image,,Area model showing 20×4 and 3×4
+img/s10/area_perimeter.png,10,Math,1,s10.math.lesson.06,asset-image,Y,Labeled 5 by 3 rectangle on a grid
+img/s10/bake_sale.png,10,Math,1,s10.math.story.01,story-illustration(p0),,Lina's class wants to raise money. Each tray of muffins costs 8 coins to make and holds 12
+img/s10/ballot_box.png,10,Social Studies,1,s10.social.story.01,story-illustration(p1),,"At the town meeting, everyone listened to both sides. Then citizens voted — one person, on"
+img/s10/blank_page.png,10,Writing,1,s10.writing.story.01,story-illustration(p0),,Jamal was chosen to give a speech about why the school needs a garden. He stared at a blan
+img/s10/bridge_cliffs.png,10,Reading,1,s10.reading.story.01,story-illustration(p0),,Ama studied the gap between the two cliffs. The village needed a way across before the rai
+img/s10/bridge_done.png,10,Reading,1,s10.reading.story.01,story-illustration(p2),,Reflect: Why do you think the author tells us about the grandfather's saying? Tap to share
+img/s10/bridge_sketch.png,10,Reading,1,s10.reading.story.01,story-illustration(p1),,"She sketched, erased, and sketched again. 'A bridge is just patience made of rope and wood"
+img/s10/circuit.png,10,Science,1,s10.science.lesson.01,asset-image,,"Battery, wire, bulb circuit"
+img/s10/citizenship.png,10,Social Studies,1,s10.social.lesson.06,asset-image,,Diverse people voting and volunteering
+img/s10/code_editor.png,10,Digital Literacy & Coding,1,s10.coding.lesson.01,asset-image,,Kid-friendly Python editor with Run button
+img/s10/coins_counted.png,10,Math,1,s10.math.story.01,story-illustration(p2),,"48 muffins! If each sells for 2 coins, that's 96 coins. After 32 coins of costs, they keep"
+img/s10/debug.png,10,Digital Literacy & Coding,1,s10.coding.lesson.05,asset-image,,A magnifying glass over a line of code
+img/s10/decimal_grid.png,10,Math,1,s10.math.lesson.05,asset-image,,Hundredths grid with 0.25 shaded
+img/s10/dialogue.png,10,Writing,1,s10.writing.lesson.04,asset-image,,A line of dialogue with quotation marks highlighted
+img/s10/energy_forms.png,10,Science,1,s10.science.lesson.03,asset-image,,"Lamp, drum, ball, and fire showing energy types"
+img/s10/essay_structure.png,10,Writing,1,s10.writing.lesson.01,asset-image,,"Three stacked blocks: intro, body, conclusion"
+img/s10/figurative.png,10,Reading,1,s10.reading.lesson.01,asset-image,,Illustration of a lion and a smiling sun
+img/s10/food_web.png,10,Science,1,s10.science.lesson.04,asset-image,,"A food web linking grass, insects, frog, and hawk"
+img/s10/for_loop.png,10,Digital Literacy & Coding,1,s10.coding.lesson.03,asset-image,,Arrow looping back to repeat a step
+img/s10/fraction_bars.png,10,Math,1,s10.math.lesson.03,asset-image,,Fraction bars showing 1/2 = 2/4
+img/s10/goods_services.png,10,Social Studies,1,s10.social.lesson.03,asset-image,,A loaf of bread beside a barber at work
+img/s10/grandpa_telescope.png,10,Science,1,s10.science.story.01,story-illustration(p2),Y,Grandpa smiled. 'The Moon isn't changing shape — sunlight just lights up different parts a
+img/s10/idioms.png,10,Reading,1,s10.reading.lesson.02,asset-image,Y,Playful art of an easy task labeled 'a piece of cake'
+img/s10/if_else.png,10,Digital Literacy & Coding,1,s10.coding.lesson.04,asset-image,,A path splitting into two based on a question
+img/s10/inference.png,10,Reading,1,s10.reading.lesson.06,asset-image,,A child bundled in winter clothes
+img/s10/lat_long.png,10,Social Studies,1,s10.social.lesson.01,asset-image,,Map grid with latitude/longitude
+img/s10/long_division.png,10,Math,1,s10.math.lesson.01,asset-image,,Long-division worktable
+img/s10/mali_empire.png,10,Social Studies,1,s10.social.lesson.05,asset-image,,Map of the Mali Empire with trade routes and Timbuktu
+img/s10/matter_changes.png,10,Science,1,s10.science.lesson.05,asset-image,,"Ice, water, and vapor with arrows"
+img/s10/moon_journal.png,10,Science,1,s10.science.story.01,story-illustration(p1),,"Her drawings showed a pattern: the Moon seemed to grow, then shrink, over about a month. T"
+img/s10/muffin_trays.png,10,Math,1,s10.math.story.01,story-illustration(p1),,They make 4 trays. How many muffins is that? Tap to work it out: 4 × 12.
+img/s10/new_park.png,10,Social Studies,1,s10.social.story.01,story-illustration(p2),,"The park won by a small margin. Some were disappointed, but all agreed the choice was fair"
+img/s10/night_sky.png,10,Science,1,s10.science.story.01,story-illustration(p0),,"Every night, Nadia drew the Moon from her window. Some nights it was a thin sliver; other "
+img/s10/online_safety.png,10,Digital Literacy & Coding,1,s10.coding.lesson.06,asset-image,,A shield protecting personal information
+img/s10/point_of_view.png,10,Reading,1,s10.reading.lesson.04,asset-image,Y,Two speech bubbles: 'I' versus 'she'
+img/s10/revise_edit.png,10,Writing,1,s10.writing.lesson.06,asset-image,,A draft with revision and editing marks
+img/s10/robot_code.png,10,Digital Literacy & Coding,1,s10.coding.story.01,story-illustration(p1),Y,She read the code line by line. One step said 'turn' four times but never 'walk forward'. 
+img/s10/robot_success.png,10,Digital Literacy & Coding,1,s10.coding.story.01,story-illustration(p2),Y,Ada added 'walk forward' and ran it again. The robot rolled straight to the door! Bugs are
+img/s10/scientific_method.png,10,Science,1,s10.science.lesson.06,asset-image,,"Cycle: ask, hypothesize, test, conclude"
+img/s10/solar_system.png,10,Science,1,s10.science.lesson.02,asset-image,,The eight planets orbiting the Sun
+img/s10/speech_day.png,10,Writing,1,s10.writing.story.01,story-illustration(p2),,"Jamal revised, edited, and practiced aloud. On the big day, his clear, organized speech wo"
+img/s10/speech_draft.png,10,Writing,1,s10.writing.story.01,story-illustration(p1),,"He made a plan: an introduction, three reasons, and a strong ending. Then he wrote a messy"
+img/s10/stuck_robot.png,10,Digital Literacy & Coding,1,s10.coding.story.01,story-illustration(p0),Y,"Ada's robot was supposed to walk to the door, but it kept spinning in circles. 'There must"
+img/s10/summary.png,10,Reading,1,s10.reading.lesson.05,asset-image,,A long paragraph shrinking into three key points
+img/s10/theme.png,10,Reading,1,s10.reading.lesson.03,asset-image,,Tortoise crossing a finish line
+img/s10/three_branches.png,10,Social Studies,1,s10.social.lesson.02,asset-image,,"Three pillars: lawmakers, leader, courts"
+img/s10/topic_sentence.png,10,Writing,1,s10.writing.lesson.02,asset-image,Y,A heading sentence above supporting bullet ideas
+img/s10/town_meeting.png,10,Social Studies,1,s10.social.story.01,story-illustration(p0),,Greenfield town had one big question: should the empty lot become a park or a parking area
+img/s10/transitions.png,10,Writing,1,s10.writing.lesson.03,asset-image,Y,Bridges connecting sentence blocks
+img/s10/variables.png,10,Digital Literacy & Coding,1,s10.coding.lesson.02,asset-image,Y,"A labeled box holding a value, like a container"
+img/s10/world_map.png,10,Social Studies,1,s10.social.lesson.04,asset-image,Y,Labeled world map of continents and oceans
+img/s10/writing_types.png,10,Writing,1,s10.writing.lesson.05,asset-image,Y,Three labeled writing samples

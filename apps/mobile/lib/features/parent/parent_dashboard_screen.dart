@@ -87,6 +87,23 @@ class ParentDashboardScreen extends ConsumerWidget {
                   .saveConsent(consent.copyWith(voiceRecording: v)),
             ),
             const Divider(height: 32),
+            Text(l10n.legalSection, style: _section),
+            const SizedBox(height: 8),
+            ListTile(
+              leading: const Icon(Icons.privacy_tip_outlined),
+              title: Text(l10n.privacyPolicy),
+              subtitle: Text(l10n.legalDraftNote),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => context.push('/parent/legal/privacy'),
+            ),
+            ListTile(
+              leading: const Icon(Icons.description_outlined),
+              title: Text(l10n.termsOfService),
+              subtitle: Text(l10n.legalDraftNote),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => context.push('/parent/legal/terms'),
+            ),
+            const Divider(height: 32),
             ListTile(
               leading: const Icon(Icons.switch_account),
               title: Text(l10n.switchChild),

@@ -1,0 +1,25 @@
+{
+  "unique_images": 543,
+  "total_usage_instances": 554,
+  "usage_instances_by_kind": {
+    "asset-image": 383,
+    "story-illustration": 171
+  },
+  "unique_images_by_stage": {
+    "1": 53,
+    "2": 70,
+    "3": 61,
+    "4": 51,
+    "5": 48,
+    "6": 47,
+    "7": 53,
+    "8": 53,
+    "9": 54,
+    "10": 54
+  },
+  "shared_or_reused_images": 9,
+  "text_risk_images": 59,
+  "path_note": "Art is language-neutral: one render serves en/fr/sw if no text is baked in.",
+  "text_risk_note": "text_risk=Y means the brief implies embedded words/letters/labels — keep text out of the art (app overlays localized captions) or supply per-locale variants.",
+  "haptic_assets": 2
+}
