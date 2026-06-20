@@ -1,7 +1,7 @@
 name: build
 on:
   push:
-    branches: [ main ]
+    branches: [ main, master ]
     tags: [ 'v*' ]
   pull_request:
 
@@ -30,9 +30,13 @@ jobs:
       - uses: subosito/flutter-action@v2
         with: { channel: stable }
       - name: Decode upload keystore
-        run: echo "$ANDROID_KEYSTORE_BASE64" | base64 -d > android/upload.jks
+        run: echo "$ANDROID_KEYSTORE_BASE64" | base64 -d > apps/mobile/android/upload.jks
         env: { ANDROID_KEYSTORE_BASE64: '${{ secrets.ANDROID_KEYSTORE_BASE64 }}' }
+      # NOTE: release signing must still be wired in apps/mobile/android/app/build.gradle.kts
+      # (a signingConfigs.release block reading the keystore above) — the release build
+      # currently signs with the debug key, which the Play Store rejects.
       - name: Build signed App Bundle
+        working-directory: apps/mobile
         run: flutter build appbundle --release --build-number=${{ github.run_number }}
         env:
           ANDROID_KEYSTORE_PASSWORD: '${{ secrets.ANDROID_KEYSTORE_PASSWORD }}'
@@ -43,8 +47,8 @@ jobs:
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJsonPlainText: '${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}'
-          packageName: '[com.company.watoto]'
-          releaseFiles: build/app/outputs/bundle/release/app-release.aab
+          packageName: app.watoto.watoto_mobile
+          releaseFiles: apps/mobile/build/app/outputs/bundle/release/app-release.aab
           track: internal
 
   ios:
@@ -65,11 +69,35 @@ jobs:
           IOS_DIST_CERT_BASE64: '${{ secrets.IOS_DIST_CERT_BASE64 }}'
           IOS_DIST_CERT_PASSWORD: '${{ secrets.IOS_DIST_CERT_PASSWORD }}'
           IOS_PROVISIONING_PROFILE_BASE64: '${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}'
+      # NOTE: requires apps/mobile/ios/ExportOptions.plist (team id + app-store method) —
+      # add it before the first signed build.
       - name: Build signed IPA
+        working-directory: apps/mobile
         run: flutter build ipa --release --build-number=${{ github.run_number }} --export-options-plist=ios/ExportOptions.plist
       - name: Upload to TestFlight
         if: github.ref_type == 'tag'
-        run: xcrun altool --upload-app -f build/ios/ipa/*.ipa --type ios --apiKey "$ASC_KEY_ID" --apiIssuer "$ASC_ISSUER_ID"
+        run: xcrun altool --upload-app -f apps/mobile/build/ios/ipa/*.ipa --type ios --apiKey "$ASC_KEY_ID" --apiIssuer "$ASC_ISSUER_ID"
         env:
           ASC_KEY_ID: '${{ secrets.APP_STORE_CONNECT_KEY_ID }}'
           ASC_ISSUER_ID: '${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}'
+
+  web:
+    needs: verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with: { channel: stable }
+      - name: Build web
+        working-directory: apps/mobile
+        run: flutter build web --release
+      - name: Deploy to Firebase Hosting
+        if: github.ref_type == 'tag'
+        run: |
+          npm i -g firebase-tools
+          printf '%s' "$FIREBASE_SERVICE_ACCOUNT" > "$RUNNER_TEMP/firebase-sa.json"
+          export GOOGLE_APPLICATION_CREDENTIALS="$RUNNER_TEMP/firebase-sa.json"
+          firebase deploy --only hosting --project "$FIREBASE_PROJECT_ID" --config backend/firebase.json --non-interactive
+        env:
+          FIREBASE_SERVICE_ACCOUNT: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+          FIREBASE_PROJECT_ID: '${{ secrets.FIREBASE_PROJECT_ID }}'

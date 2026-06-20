@@ -10,7 +10,7 @@ The product is built and the launch package is assembled. **[docs/LAUNCH_RUNBOOK
 
 - **Backend (`backend/`)** — a deployable **Firebase + Cloud Firestore + Security Rules + Cloud Functions** backend (consent ledger, account export/deletion, scheduled purge) that reuses the existing Firebase Auth project. Recommended over running a second cloud backend; the AWS/NestJS design in `docs/` remains the documented alternative. See [`backend/BACKEND_README.md`](backend/BACKEND_README.md).
 - **Payments (`backend/functions/src/payments.ts`, `auth/entitlements.ts`)** — Apple IAP + Google Play Billing with server-side receipt verification and renewal/refund sync; entitlement is server-only, so clients can never set paid status. See [`backend/PAYMENTS_README.md`](backend/PAYMENTS_README.md).
-- **CI / build (`.github/workflows/build.yml`, `codemagic.yaml`)** — runs the Firestore rules tests + Cloud Functions typecheck on every push, builds signed Android/iOS, and uploads to Play internal / TestFlight. No Mac required. See [`BUILD_README.md`](BUILD_README.md).
+- **CI / build (`.github/workflows/build.yml`, `codemagic.yaml`)** — runs the Firestore rules tests + Cloud Functions typecheck on every push; builds signed Android/iOS and the web app; uploads to Play internal / TestFlight and deploys web to **Firebase Hosting**. No Mac required. See [`BUILD_README.md`](BUILD_README.md).
 - **Store listing (`docs/STORE_LISTING.md`)** — paste-ready App Store / Play metadata, privacy-label answers, age rating, and screenshot shot-list.
 
 ## Document Index

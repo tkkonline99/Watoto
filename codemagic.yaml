@@ -1,15 +1,16 @@
 # Codemagic — Flutter-first CI. Simplest path to iOS builds without owning a Mac.
 workflows:
   watoto-release:
-    name: Watoto release (iOS + Android)
+    name: Watoto release (iOS + Android + Web)
     instance_type: mac_mini_m2
     environment:
       flutter: stable
       groups:
         - signing            # define ANDROID_* + GOOGLE_PLAY_SERVICE_ACCOUNT_JSON here
+        - firebase           # FIREBASE_PROJECT_ID + FIREBASE_SERVICE_ACCOUNT (web hosting deploy)
       ios_signing:
         distribution_type: app_store
-        bundle_identifier: "[com.company.watoto]"
+        bundle_identifier: "app.watoto.watotoMobile"
       vars:
         APP_STORE_CONNECT_API_KEY: "[managed via Codemagic integration]"
     scripts:
@@ -19,14 +20,22 @@ workflows:
           npm i -g firebase-tools
           (cd backend/tests && npm ci)
           cd backend && firebase emulators:exec --only firestore "node --test tests/"
-      - name: Build
+      - name: Build (Android + iOS + Web)
         script: |
+          cd apps/mobile
           flutter pub get
           flutter build appbundle --release
           flutter build ipa --release
+          flutter build web --release
+      - name: Deploy web to Firebase Hosting
+        script: |
+          echo "$FIREBASE_SERVICE_ACCOUNT" > "$CM_BUILD_DIR/firebase-sa.json"
+          export GOOGLE_APPLICATION_CREDENTIALS="$CM_BUILD_DIR/firebase-sa.json"
+          npm i -g firebase-tools
+          firebase deploy --only hosting --project "$FIREBASE_PROJECT_ID" --config backend/firebase.json --non-interactive
     artifacts:
-      - build/**/outputs/bundle/**/*.aab
-      - build/ios/ipa/*.ipa
+      - apps/mobile/build/**/outputs/bundle/**/*.aab
+      - apps/mobile/build/ios/ipa/*.ipa
     publishing:
       app_store_connect:
         auth: integration

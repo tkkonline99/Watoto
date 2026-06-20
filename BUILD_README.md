@@ -27,6 +27,7 @@ Use either; you don't need both.
 | `APP_STORE_CONNECT_KEY_ID`, `APP_STORE_CONNECT_ISSUER_ID`, `APP_STORE_CONNECT_KEY_BASE64` | iOS signing + TestFlight upload |
 | `IOS_DIST_CERT_BASE64`, `IOS_DIST_CERT_PASSWORD`, `IOS_PROVISIONING_PROFILE_BASE64` | iOS signing on GitHub Actions (not needed if Codemagic auto-signs) |
 | `GOOGLE_PLAY_SERVICE_ACCOUNT_JSON` | Upload to Play internal track |
+| `FIREBASE_SERVICE_ACCOUNT`, `FIREBASE_PROJECT_ID` | Deploy the web build to Firebase Hosting |
 
 Never commit these; set them in the CI provider's encrypted secrets.
 
@@ -35,8 +36,9 @@ Never commit these; set them in the CI provider's encrypted secrets.
 1. **Verify** (Linux): typecheck the Cloud Functions (`tsc --noEmit`), `dart analyze`, and run the **Firestore rules tests** in the emulator (`backend/tests/`). A failing rules test fails the build.
 2. **Android** (Linux): `flutter build appbundle --release`, signed with the upload keystore → uploads the `.aab` to the Play **internal** track.
 3. **iOS** (macOS): `flutter build ipa --release` with signing → uploads to **TestFlight**.
+4. **Web** (Linux): `flutter build web --release` → deploys to **Firebase Hosting** (`firebase deploy --only hosting`, using `backend/firebase.json`).
 
-Both store uploads target test tracks, not public release — promotion to production stays a manual, deliberate step in the consoles.
+The store uploads target test tracks, not public release — promotion to production stays a manual, deliberate step in the consoles. The Flutter app lives in `apps/mobile`, so CI runs every `flutter` command there; the web deploy serves `apps/mobile/build/web`. Android release signing still needs a `signingConfigs.release` block in `build.gradle.kts`, and iOS needs an `ExportOptions.plist` — see the inline notes in `build.yml`.
 
 ## Versioning
 
