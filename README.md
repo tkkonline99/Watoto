@@ -4,6 +4,15 @@
 
 This repository contains the complete production-ready design package: architecture, database, APIs, project structures, infrastructure, security, compliance, testing, CI/CD, deployment, and roadmaps.
 
+## Launch status
+
+The product is built and the launch package is assembled. **[docs/LAUNCH_RUNBOOK.md](docs/LAUNCH_RUNBOOK.md)** is the authoritative gate-by-gate status and the consolidated "what only you can do" list (accounts, billing, legal sign-off, assets). Delivered alongside the blueprint:
+
+- **Backend (`backend/`)** — a deployable **Firebase + Cloud Firestore + Security Rules + Cloud Functions** backend (consent ledger, account export/deletion, scheduled purge) that reuses the existing Firebase Auth project. Recommended over running a second cloud backend; the AWS/NestJS design in `docs/` remains the documented alternative. See [`backend/BACKEND_README.md`](backend/BACKEND_README.md).
+- **Payments (`backend/functions/src/payments.ts`, `auth/entitlements.ts`)** — Apple IAP + Google Play Billing with server-side receipt verification and renewal/refund sync; entitlement is server-only, so clients can never set paid status. See [`backend/PAYMENTS_README.md`](backend/PAYMENTS_README.md).
+- **CI / build (`.github/workflows/build.yml`, `codemagic.yaml`)** — runs the Firestore rules tests + Cloud Functions typecheck on every push, builds signed Android/iOS, and uploads to Play internal / TestFlight. No Mac required. See [`BUILD_README.md`](BUILD_README.md).
+- **Store listing (`docs/STORE_LISTING.md`)** — paste-ready App Store / Play metadata, privacy-label answers, age rating, and screenshot shot-list.
+
 ## Document Index
 
 | # | Document | Contents |
@@ -43,7 +52,7 @@ This repository contains the complete production-ready design package: architect
 | Data | PostgreSQL 16 (RDS), Redis 7 (ElastiCache), Postgres FTS |
 | Media | S3 + CloudFront |
 | Auth | Firebase Authentication (Email, Google, Apple) + Parent PIN; backend-issued JWT + refresh tokens; RBAC |
-| Payments | Apple IAP, Google Play Billing, Stripe (web) |
+| Payments | Apple IAP (StoreKit 2) + Google Play Billing in‑app, verified server‑side via Cloud Functions; Stripe only if a web purchase flow is added later |
 | AI | OpenAI API (tutor, insights), STT/TTS, pronunciation assessment |
 | Observability | Firebase Analytics, Crashlytics, CloudWatch, Sentry |
 | Infra | AWS — ECS Fargate, RDS, ElastiCache, S3, CloudFront, Route53, WAF, Secrets Manager |
@@ -55,13 +64,15 @@ This repository contains the complete production-ready design package: architect
 watoto/
 ├── apps/
 │   ├── mobile/          # Flutter app (Android/iOS/Web)
-│   └── api/             # NestJS backend (serves CMS admin API too)
-├── packages/
-│   ├── shared_models/   # OpenAPI-generated Dart + TS clients
-│   └── content_schema/  # JSON Schemas for lesson/quiz/story content
+│   └── api/             # NestJS backend (alternative; serves CMS admin API too)
+├── backend/             # Firebase backend — Firestore rules+indexes, Cloud Functions, payments (recommended)
+├── auth/                # Firebase Auth client adapters (TS + Dart) + entitlements
+├── content/             # Content library, i18n, validators, generators
+├── packages/            # (target) OpenAPI-generated clients, content JSON Schemas
 ├── infra/               # Terraform (envs: dev, staging, prod)
-├── docs/                # This design package
-└── .github/workflows/   # CI/CD
+├── docs/                # Design package + LAUNCH_RUNBOOK, STORE_LISTING
+├── codemagic.yaml       # iOS/Android CI (Codemagic)
+└── .github/workflows/   # CI/CD (rules tests, signed builds)
 ```
 
 ## Getting Started (current scaffold)

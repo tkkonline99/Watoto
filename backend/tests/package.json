@@ -1,0 +1,12 @@
+{
+  "name": "watoto-backend-rules-tests",
+  "description": "Firestore Security Rules tests (Firebase emulator) — guards the children's-data security model. Run from backend/ via the firebase emulator; see BUILD_README.md.",
+  "private": true,
+  "scripts": {
+    "test": "cd .. && firebase emulators:exec --only firestore \"node --test tests/\""
+  },
+  "devDependencies": {
+    "@firebase/rules-unit-testing": "^3.0.4",
+    "firebase": "^10.12.2"
+  }
+}

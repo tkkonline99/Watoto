@@ -1,0 +1,36 @@
+# Codemagic — Flutter-first CI. Simplest path to iOS builds without owning a Mac.
+workflows:
+  watoto-release:
+    name: Watoto release (iOS + Android)
+    instance_type: mac_mini_m2
+    environment:
+      flutter: stable
+      groups:
+        - signing            # define ANDROID_* + GOOGLE_PLAY_SERVICE_ACCOUNT_JSON here
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: "[com.company.watoto]"
+      vars:
+        APP_STORE_CONNECT_API_KEY: "[managed via Codemagic integration]"
+    scripts:
+      - name: Cloud Functions typecheck + Firestore rules tests
+        script: |
+          cd backend/functions && npm ci && npx tsc --noEmit && cd ../..
+          npm i -g firebase-tools
+          (cd backend/tests && npm ci)
+          cd backend && firebase emulators:exec --only firestore "node --test tests/"
+      - name: Build
+        script: |
+          flutter pub get
+          flutter build appbundle --release
+          flutter build ipa --release
+    artifacts:
+      - build/**/outputs/bundle/**/*.aab
+      - build/ios/ipa/*.ipa
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true        # test track, not public release
+      google_play:
+        credentials: $GOOGLE_PLAY_SERVICE_ACCOUNT_JSON
+        track: internal

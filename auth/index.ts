@@ -41,3 +41,13 @@ export {
   checkParentGate,
   type ParentGateChallenge,
 } from "./parentGate";
+
+export {
+  getEntitlement,
+  watchEntitlement,
+  isUnlocked,
+  subscribe,
+  restorePurchases,
+  type Entitlement,
+  type PurchaseBridge,
+} from "./entitlements";

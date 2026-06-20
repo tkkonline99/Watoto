@@ -1,0 +1,23 @@
+{
+  "name": "watoto-functions",
+  "description": "Watoto backend — Firebase Cloud Functions (consent ledger, account export/deletion, scheduled purge, payments).",
+  "private": true,
+  "engines": { "node": "20" },
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc -w",
+    "typecheck": "tsc --noEmit",
+    "serve": "npm run build && firebase emulators:start --only functions,firestore",
+    "deploy": "firebase deploy --only functions"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.1.0",
+    "firebase-functions": "^5.0.1",
+    "google-auth-library": "^9.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.7",
+    "typescript": "^5.4.5"
+  }
+}

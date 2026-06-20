@@ -1,0 +1,72 @@
+rules_version = '2';
+// Watoto — Firestore Security Rules
+// Model: the account holder (a parent/guardian) is the only authenticated principal.
+// Children never sign in separately; the app acts under the parent's session, so all
+// child data lives UNDER the parent's account document and is reachable only by them.
+// Server-only fields (plan, entitlement, consent ledger) are written by Cloud Functions
+// with the Admin SDK, which bypasses these rules; clients are denied those writes here.
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---- helpers ----
+    function signedIn() { return request.auth != null; }
+    function isOwner(uid) { return signedIn() && request.auth.uid == uid; }
+    function incoming() { return request.resource.data; }
+    function existing() { return resource.data; }
+    // last-write-wins: accept only if there is no prior doc or the update is newer
+    function isNewer() {
+      return !('updatedAt' in existing()) || incoming().updatedAt >= existing().updatedAt;
+    }
+
+    // ---- account holder (parent) ----
+    match /accounts/{uid} {
+      allow read: if isOwner(uid);
+      // create at sign-up: uid must match, and the client may not set server-owned fields
+      allow create: if isOwner(uid)
+                    && !incoming().keys().hasAny(['plan', 'entitlementExpiry', 'deletedAt']);
+      // updates: client may change only safe profile/settings fields, never entitlement/lifecycle
+      allow update: if isOwner(uid)
+                    && !request.resource.data.diff(resource.data).affectedKeys()
+                          .hasAny(['plan', 'entitlementExpiry', 'deletedAt', 'email']);
+      allow delete: if false; // deletion is handled by the requestAccountDeletion function
+
+      // ---- child profiles (minimal, parent-created) ----
+      match /profiles/{profileId} {
+        function validProfile() {
+          return incoming().displayName is string
+                 && incoming().displayName.size() >= 1
+                 && incoming().displayName.size() <= 40
+                 && incoming().ageBand is string
+                 // disallow any field that looks like child PII
+                 && !incoming().keys().hasAny(['realName', 'email', 'phone', 'address', 'geo', 'photo']);
+        }
+        allow read, delete: if isOwner(uid);
+        allow create, update: if isOwner(uid) && validProfile();
+
+        // ---- per-item learning progress (keyed by content item id, e.g. s09.math.quiz.01) ----
+        match /progress/{itemId} {
+          allow read, delete: if isOwner(uid);
+          // offline-first sync: owner may write, last-write-wins by updatedAt
+          allow create, update: if isOwner(uid)
+                                && incoming().updatedAt is timestamp
+                                && isNewer();
+        }
+      }
+
+      // ---- consent ledger (append-only evidence; see PRIVACY_POLICY.md) ----
+      match /consents/{consentId} {
+        allow read:   if isOwner(uid);
+        allow create: if isOwner(uid)
+                      && incoming().policyVersion is string
+                      && incoming().method is string;
+        allow update, delete: if false; // immutable; purged only by the deletion runbook
+      }
+    }
+
+    // ---- everything else is denied ----
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

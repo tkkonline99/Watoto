@@ -1,0 +1,7 @@
+{
+  "_comment": "Shared product catalog for client + server. Create identical ids in App Store Connect and Play Console.",
+  "products": [
+    { "id": "watoto.premium.monthly", "tier": "premium", "periodDays": 30,  "autoRenew": true },
+    { "id": "watoto.premium.annual",  "tier": "premium", "periodDays": 365, "autoRenew": true }
+  ]
+}

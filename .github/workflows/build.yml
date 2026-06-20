@@ -1,0 +1,75 @@
+name: build
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - name: Cloud Functions typecheck
+        working-directory: backend/functions
+        run: npm ci && npx tsc --noEmit
+      - name: Firestore rules tests
+        working-directory: backend
+        run: |
+          npm i -g firebase-tools
+          (cd tests && npm ci)
+          firebase emulators:exec --only firestore "node --test tests/"
+
+  android:
+    needs: verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with: { channel: stable }
+      - name: Decode upload keystore
+        run: echo "$ANDROID_KEYSTORE_BASE64" | base64 -d > android/upload.jks
+        env: { ANDROID_KEYSTORE_BASE64: '${{ secrets.ANDROID_KEYSTORE_BASE64 }}' }
+      - name: Build signed App Bundle
+        run: flutter build appbundle --release --build-number=${{ github.run_number }}
+        env:
+          ANDROID_KEYSTORE_PASSWORD: '${{ secrets.ANDROID_KEYSTORE_PASSWORD }}'
+          ANDROID_KEY_ALIAS: '${{ secrets.ANDROID_KEY_ALIAS }}'
+          ANDROID_KEY_PASSWORD: '${{ secrets.ANDROID_KEY_PASSWORD }}'
+      - name: Upload to Play internal track
+        if: github.ref_type == 'tag'
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: '${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON }}'
+          packageName: '[com.company.watoto]'
+          releaseFiles: build/app/outputs/bundle/release/app-release.aab
+          track: internal
+
+  ios:
+    needs: verify
+    runs-on: macos-14   # the cloud Mac — you do not need to own one
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with: { channel: stable }
+      - name: Import signing assets
+        run: |
+          echo "$IOS_DIST_CERT_BASE64" | base64 -d > cert.p12
+          echo "$IOS_PROVISIONING_PROFILE_BASE64" | base64 -d > profile.mobileprovision
+          # Create a temporary keychain, import cert.p12 with $IOS_DIST_CERT_PASSWORD,
+          # and install the provisioning profile. (Codemagic does this automatically;
+          # on GitHub Actions, fastlane `setup_ci` + `import_certificate` is the common path.)
+        env:
+          IOS_DIST_CERT_BASE64: '${{ secrets.IOS_DIST_CERT_BASE64 }}'
+          IOS_DIST_CERT_PASSWORD: '${{ secrets.IOS_DIST_CERT_PASSWORD }}'
+          IOS_PROVISIONING_PROFILE_BASE64: '${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}'
+      - name: Build signed IPA
+        run: flutter build ipa --release --build-number=${{ github.run_number }} --export-options-plist=ios/ExportOptions.plist
+      - name: Upload to TestFlight
+        if: github.ref_type == 'tag'
+        run: xcrun altool --upload-app -f build/ios/ipa/*.ipa --type ios --apiKey "$ASC_KEY_ID" --apiIssuer "$ASC_ISSUER_ID"
+        env:
+          ASC_KEY_ID: '${{ secrets.APP_STORE_CONNECT_KEY_ID }}'
+          ASC_ISSUER_ID: '${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}'
