@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Watoto — iOS export options for App Store / TestFlight builds.
+  Used by: flutter build ipa --release --export-options-plist=ios/ExportOptions.plist
+  (the `ios` job in .github/workflows/build.yml).
+
+  FILL IN before the first signed build:
+    * teamID                      - your 10-character Apple Developer Team ID
+                                    (Apple Developer portal -> Membership).
+    * provisioningProfiles value  - the exact NAME of an App Store distribution
+                                    provisioning profile for app.watoto.watotoMobile.
+
+  This uses MANUAL signing to match the distribution cert + profile imported in CI.
+  To let Xcode manage signing instead, set <signingStyle> to "automatic", drop the
+  provisioningProfiles/signingCertificate keys, and pass an App Store Connect API key
+  to the build. Codemagic manages signing itself and does not use this file.
+-->
+<plist version="1.0">
+<dict>
+	<key>method</key>
+	<string>app-store</string>
+
+	<key>teamID</key>
+	<string>YOUR_TEAM_ID</string>
+
+	<key>signingStyle</key>
+	<string>manual</string>
+
+	<key>signingCertificate</key>
+	<string>Apple Distribution</string>
+
+	<key>provisioningProfiles</key>
+	<dict>
+		<key>app.watoto.watotoMobile</key>
+		<string>YOUR_APP_STORE_PROFILE_NAME</string>
+	</dict>
+
+	<key>uploadSymbols</key>
+	<true/>
+
+	<key>uploadBitcode</key>
+	<false/>
+
+	<key>stripSwiftSymbols</key>
+	<true/>
+
+	<key>destination</key>
+	<string>export</string>
+</dict>
+</plist>

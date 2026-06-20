@@ -17,7 +17,7 @@ Use either; you don't need both.
 2. **Android signing:** create an upload keystore (`keytool -genkey -v -keystore upload.jks -keyalg RSA -keysize 2048 -validity 9125 -alias upload`). For local release builds, copy `apps/mobile/android/key.properties.example` to `key.properties` and fill it in (both it and `*.jks` are gitignored); CI instead supplies the `ANDROID_*` secrets and decodes the keystore. The Gradle config reads whichever is present and falls back to debug signing if neither is.
 3. **App Store Connect API key** (.p8 + key id + issuer id) — reuse the one created for payments verification; it also drives TestFlight uploads.
 4. **Google Play service account** with release permissions — reuse the one from payments; it also drives Play uploads.
-5. **iOS signing assets** — a distribution certificate (.p12) and provisioning profile. On Codemagic, let it manage these automatically with the App Store Connect API key. On GitHub Actions, store them as base64 secrets (below).
+5. **iOS signing assets** — a distribution certificate (.p12) and provisioning profile. On Codemagic, let it manage these automatically with the App Store Connect API key. On GitHub Actions, store them as base64 secrets (below) and fill in the `teamID` + provisioning-profile name in `apps/mobile/ios/ExportOptions.plist`.
 
 ## Secrets to set in CI
 
@@ -38,7 +38,7 @@ Never commit these; set them in the CI provider's encrypted secrets.
 3. **iOS** (macOS): `flutter build ipa --release` with signing → uploads to **TestFlight**.
 4. **Web** (Linux): `flutter build web --release` → deploys to **Firebase Hosting** (`firebase deploy --only hosting`, using `backend/firebase.json`).
 
-The store uploads target test tracks, not public release — promotion to production stays a manual, deliberate step in the consoles. The Flutter app lives in `apps/mobile`, so CI runs every `flutter` command there; the web deploy serves `apps/mobile/build/web`. Android release signing is wired in `build.gradle.kts` (reads `key.properties` or the `ANDROID_*` secrets); iOS still needs an `ExportOptions.plist` before its first signed build — see the inline note in `build.yml`.
+The store uploads target test tracks, not public release — promotion to production stays a manual, deliberate step in the consoles. The Flutter app lives in `apps/mobile`, so CI runs every `flutter` command there; the web deploy serves `apps/mobile/build/web`. Android release signing is wired in `build.gradle.kts` (reads `key.properties` or the `ANDROID_*` secrets); iOS uses `apps/mobile/ios/ExportOptions.plist` — fill in its `teamID` and provisioning-profile name before the first signed build.
 
 ## Versioning
 
