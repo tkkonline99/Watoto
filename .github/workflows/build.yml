@@ -32,9 +32,9 @@ jobs:
       - name: Decode upload keystore
         run: echo "$ANDROID_KEYSTORE_BASE64" | base64 -d > apps/mobile/android/upload.jks
         env: { ANDROID_KEYSTORE_BASE64: '${{ secrets.ANDROID_KEYSTORE_BASE64 }}' }
-      # NOTE: release signing must still be wired in apps/mobile/android/app/build.gradle.kts
-      # (a signingConfigs.release block reading the keystore above) — the release build
-      # currently signs with the debug key, which the Play Store rejects.
+      # Release signing is wired in apps/mobile/android/app/build.gradle.kts: it reads the
+      # keystore decoded above plus the ANDROID_* env vars below. With the secrets set it
+      # produces a Play-acceptable bundle; without them it falls back to debug signing.
       - name: Build signed App Bundle
         working-directory: apps/mobile
         run: flutter build appbundle --release --build-number=${{ github.run_number }}

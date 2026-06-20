@@ -1,0 +1,16 @@
+# Android upload-key config for LOCAL release builds.
+# Copy this file to `key.properties` (same folder) and fill in real values, then place
+# your keystore next to it. `key.properties` and `*.jks` are gitignored — never commit them.
+#
+# CI does NOT use this file: it supplies the same values via the ANDROID_* repository
+# secrets and decodes the keystore to android/upload.jks (see .github/workflows/build.yml).
+# build.gradle.kts reads whichever source is present; with neither, release builds fall
+# back to debug signing so `flutter run --release` still works.
+#
+# Create a keystore with:
+#   keytool -genkey -v -keystore upload.jks -keyalg RSA -keysize 2048 -validity 9125 -alias upload
+
+storeFile=upload.jks
+storePassword=CHANGEME
+keyAlias=upload
+keyPassword=CHANGEME
