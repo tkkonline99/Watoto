@@ -1,8 +1,10 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'app.dart';
 import 'core/offline/offline_providers.dart';
@@ -11,7 +13,7 @@ import 'features/auth/auth_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Hive.initFlutter('watoto');
+  await _initHive();
   final store = await OfflineStore.open();
 
   final container = ProviderContainer(
@@ -24,4 +26,23 @@ Future<void> main() async {
   unawaited(container.read(syncEngineProvider).flush());
 
   runApp(UncontrolledProviderScope(container: container, child: const WatotoApp()));
+}
+
+/// Initializes Hive in a writable location for the platform. On desktop the
+/// user's Documents folder is commonly redirected to OneDrive and locked by
+/// Controlled Folder Access, so `initFlutter` (which targets Documents) can't
+/// create the database there; store under the app-support dir instead
+/// (%APPDATA% on Windows, ~/.local/share on Linux, Application Support on
+/// macOS). Mobile and web keep the Flutter default.
+Future<void> _initHive() async {
+  final isDesktop = !kIsWeb &&
+      (defaultTargetPlatform == TargetPlatform.windows ||
+          defaultTargetPlatform == TargetPlatform.linux ||
+          defaultTargetPlatform == TargetPlatform.macOS);
+  if (isDesktop) {
+    final dir = await getApplicationSupportDirectory();
+    Hive.init(dir.path);
+  } else {
+    await Hive.initFlutter('watoto');
+  }
 }
