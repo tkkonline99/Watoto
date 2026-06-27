@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -65,6 +66,12 @@ class _PinGateScreenState extends ConsumerState<PinGateScreen> {
                 controller: _pin,
                 keyboardType: TextInputType.number,
                 obscureText: true,
+                // obscureText + number keyboard drops keystrokes on many
+                // Android IMEs unless suggestions/autocorrect are off
+                // (flutter#67391).
+                enableSuggestions: false,
+                autocorrect: false,
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                 maxLength: 6,
                 textAlign: TextAlign.center,
                 autofocus: true,

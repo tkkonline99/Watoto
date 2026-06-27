@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -186,7 +187,7 @@ class _LanguageStep extends ConsumerWidget {
                   ? const Icon(Icons.check_circle, color: WatotoColors.leaf)
                   : const Icon(Icons.circle_outlined),
               onTap: () =>
-                  ref.read(localeProvider.notifier).state = Locale(entry.key),
+                  ref.read(localeProvider.notifier).set(Locale(entry.key)),
             ),
         ],
       ),
@@ -328,6 +329,11 @@ class _PinStep extends StatelessWidget {
             controller: pin,
             keyboardType: TextInputType.number,
             obscureText: true,
+            // obscureText + number keyboard drops keystrokes on many Android
+            // IMEs unless suggestions/autocorrect are off (flutter#67391).
+            enableSuggestions: false,
+            autocorrect: false,
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             maxLength: 6,
             decoration: InputDecoration(
               labelText: l10n.parentPin,
@@ -338,6 +344,9 @@ class _PinStep extends StatelessWidget {
             controller: confirm,
             keyboardType: TextInputType.number,
             obscureText: true,
+            enableSuggestions: false,
+            autocorrect: false,
+            inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             maxLength: 6,
             decoration: InputDecoration(
               labelText: l10n.confirmPin,

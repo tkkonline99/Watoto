@@ -5,14 +5,15 @@ import 'package:go_router/go_router.dart';
 import '../../core/offline/offline_providers.dart';
 import '../../core/state/app_state.dart';
 import '../../core/theme/watoto_theme.dart';
-import '../../features/curriculum/curriculum_data.dart';
-import '../../features/curriculum/curriculum_models.dart';
+import '../../features/curriculum/age_picker.dart';
+import '../../features/curriculum/subject_catalog.dart';
 import '../../features/curriculum/subject_i18n.dart';
 import '../../l10n/gen/app_localizations.dart';
 
-/// Child home — greeting, the child's current curriculum stage (from
-/// curriculum.pptx), the day's playable challenge, the stage's subjects, and
-/// the storybook library.
+/// Child home — greeting, the day's playable challenge, the academic subjects,
+/// and the storybook library. There is no fixed stage: the child picks an age
+/// when they open a subject or the daily challenge, then sees content matched
+/// to that age.
 class ChildHomeScreen extends ConsumerWidget {
   const ChildHomeScreen({super.key});
 
@@ -23,8 +24,6 @@ class ChildHomeScreen extends ConsumerWidget {
     final child = ref.watch(activeChildProvider);
     final nickname = child?.nickname ?? '';
     final xp = ref.watch(xpProvider);
-    final stage =
-        child == null ? curriculumStages.first : stageForBirthYear(child.birthYear);
 
     return Scaffold(
       appBar: AppBar(
@@ -58,8 +57,6 @@ class ChildHomeScreen extends ConsumerWidget {
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
-            _StageBanner(stage: stage, l10n: l10n),
-            const SizedBox(height: 12),
             _DailyChallengeCard(l10n: l10n),
             const SizedBox(height: 16),
             Text(l10n.subjects,
@@ -73,8 +70,8 @@ class ChildHomeScreen extends ConsumerWidget {
               crossAxisSpacing: 10,
               childAspectRatio: 0.95,
               children: [
-                for (final topic in stage.topics)
-                  _SubjectCard(topic: topic, lang: lang, stage: stage.stage),
+                for (final category in subjectCatalog)
+                  _SubjectCard(category: category, lang: lang),
               ],
             ),
             const SizedBox(height: 16),
@@ -86,44 +83,21 @@ class ChildHomeScreen extends ConsumerWidget {
   }
 }
 
-class _StageBanner extends StatelessWidget {
-  const _StageBanner({required this.stage, required this.l10n});
-
-  final CurriculumStage stage;
-  final AppLocalizations l10n;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      borderRadius: BorderRadius.circular(16),
-      onTap: () => context.go('/curriculum'),
-      child: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: WatotoColors.sky.withValues(alpha: 0.14),
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(l10n.stageOf(stage.stage, stage.ageRange),
-                      style: const TextStyle(
-                          fontSize: 12, fontWeight: FontWeight.w700, color: WatotoColors.sky)),
-                  Text(stage.title,
-                      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w800)),
-                ],
-              ),
-            ),
-            const Icon(Icons.chevron_right, color: WatotoColors.deep),
-          ],
-        ),
-      ),
-    );
-  }
+/// Opens the age picker for [subject], then drills into that subject's content
+/// for the chosen age. Shared by the subject cards and the daily challenge.
+Future<void> _openSubjectForAge(
+  BuildContext context, {
+  required SubjectCategory subject,
+  required String heading,
+}) async {
+  final stage = await showAgePicker(
+    context,
+    stages: subject.stagesAvailable(),
+    heading: heading,
+  );
+  if (stage == null || !context.mounted) return;
+  final topic = subject.topicNameFor(stage)!;
+  context.push('/subject/${stage.stage}/${Uri.encodeComponent(topic)}');
 }
 
 class _LanguageMenu extends ConsumerWidget {
@@ -135,7 +109,7 @@ class _LanguageMenu extends ConsumerWidget {
     return PopupMenuButton<Locale>(
       icon: const Icon(Icons.language_rounded, color: WatotoColors.deep),
       tooltip: l10n.chooseLanguage,
-      onSelected: (locale) => ref.read(localeProvider.notifier).state = locale,
+      onSelected: (locale) => ref.read(localeProvider.notifier).set(locale),
       itemBuilder: (context) => const [
         PopupMenuItem(value: Locale('en'), child: Text('English')),
         PopupMenuItem(value: Locale('sw'), child: Text('Kiswahili')),
@@ -172,7 +146,13 @@ class _DailyChallengeCard extends StatelessWidget {
                 backgroundColor: WatotoColors.deep,
                 foregroundColor: Colors.white,
               ),
-              onPressed: () => context.go('/lesson/counting-1-3'),
+              // The daily challenge is age-aware too: pick an age, then play
+              // the challenge for that age.
+              onPressed: () => _openSubjectForAge(
+                context,
+                subject: dailyChallengeSubject,
+                heading: l10n.dailyChallenge,
+              ),
               child: Text(l10n.startLearning),
             ),
           ],
@@ -183,11 +163,10 @@ class _DailyChallengeCard extends StatelessWidget {
 }
 
 class _SubjectCard extends StatelessWidget {
-  const _SubjectCard({required this.topic, required this.lang, required this.stage});
+  const _SubjectCard({required this.category, required this.lang});
 
-  final CurriculumTopic topic;
+  final SubjectCategory category;
   final String lang;
-  final int stage;
 
   @override
   Widget build(BuildContext context) {
@@ -195,9 +174,12 @@ class _SubjectCard extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
       clipBehavior: Clip.antiAlias,
       child: InkWell(
-        // Drill into just this subject for this stage.
-        onTap: () =>
-            context.push('/subject/$stage/${Uri.encodeComponent(topic.name)}'),
+        // Pick an age first, then drill into this subject for that age.
+        onTap: () => _openSubjectForAge(
+          context,
+          subject: category,
+          heading: localizedSubject(category.englishLabel, lang),
+        ),
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -210,10 +192,10 @@ class _SubjectCard extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(topic.emoji, style: const TextStyle(fontSize: 30)),
+              Text(category.emoji, style: const TextStyle(fontSize: 30)),
               const SizedBox(height: 6),
               Text(
-                localizedSubject(topic.name, lang),
+                localizedSubject(category.englishLabel, lang),
                 textAlign: TextAlign.center,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,

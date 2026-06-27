@@ -16,6 +16,7 @@ import 'package:watoto_mobile/features/lesson_player/lesson_repository.dart';
 import 'package:watoto_mobile/features/onboarding/consent.dart';
 import 'package:watoto_mobile/features/quiz/quiz_models.dart';
 import 'package:watoto_mobile/features/quiz/quiz_repository.dart';
+import 'package:watoto_mobile/router/app_router.dart';
 
 const _quiz = QuizBody(
   id: '8c1d2e3f-4a5b-4c6d-8e7f-9a0b1c2d3e4f',
@@ -65,6 +66,15 @@ class _UnreachableApi implements SyncApi {
       throw SyncApiException('offline');
 }
 
+/// The home no longer deep-links into the hard-coded counting lesson — the
+/// daily challenge now opens the age picker — so the lesson/quiz flow tests
+/// drive the still-live `/lesson` and `/quiz` routes directly.
+void goTo(WidgetTester tester, String location) {
+  ProviderScope.containerOf(tester.element(find.byType(WatotoApp)))
+      .read(appRouterProvider)
+      .go(location);
+}
+
 void main() {
   late OfflineStore store;
 
@@ -106,7 +116,7 @@ void main() {
       );
 
   Future<void> completeLesson(WidgetTester tester) async {
-    await tester.tap(find.text('Start'));
+    goTo(tester, '/lesson/counting-1-3');
     await tester.pumpAndSettle();
     await tester.tap(find.text('Next'));
     await tester.pumpAndSettle();
@@ -158,7 +168,7 @@ void main() {
     await tester.tap(find.text('Done'));
     await tester.pumpAndSettle();
 
-    expect(find.text('Jambo, Zuri!'), findsOneWidget);
+    expect(find.text('Hello, Zuri!'), findsOneWidget);
     expect(store.onboardingComplete, isTrue);
     expect(store.children.single.nickname, 'Zuri');
     expect(store.verifyPin('2468'), isTrue);
@@ -169,7 +179,7 @@ void main() {
     await tester.pumpWidget(buildApp());
     await tester.pumpAndSettle();
 
-    expect(find.text('Jambo, Amani!'), findsOneWidget);
+    expect(find.text('Hello, Amani!'), findsOneWidget);
     expect(find.text('Math'), findsOneWidget);
     expect(find.text('Daily Challenge'), findsOneWidget);
     expect(find.text('0 XP'), findsOneWidget);
@@ -181,7 +191,7 @@ void main() {
     await tester.pumpWidget(buildApp());
     await tester.pumpAndSettle();
 
-    await tester.tap(find.text('Start'));
+    goTo(tester, '/lesson/counting-1-3');
     await tester.pumpAndSettle();
     expect(find.text('Counting 1 to 3'), findsWidgets);
 

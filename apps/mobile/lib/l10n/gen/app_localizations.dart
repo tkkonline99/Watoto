@@ -109,7 +109,7 @@ abstract class AppLocalizations {
   /// No description provided for @homeGreeting.
   ///
   /// In en, this message translates to:
-  /// **'Jambo, {name}!'**
+  /// **'Hello, {name}!'**
   String homeGreeting(String name);
 
   /// No description provided for @dailyChallenge.
@@ -129,6 +129,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Subjects'**
   String get subjects;
+
+  /// No description provided for @selectAgeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How old are you?'**
+  String get selectAgeTitle;
+
+  /// No description provided for @selectAgeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick an age to see the right activities.'**
+  String get selectAgeSubtitle;
 
   /// No description provided for @subjectMath.
   ///

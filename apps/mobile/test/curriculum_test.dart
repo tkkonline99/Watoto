@@ -9,6 +9,7 @@ import 'package:watoto_mobile/core/offline/offline_providers.dart';
 import 'package:watoto_mobile/core/offline/offline_store.dart';
 import 'package:watoto_mobile/core/offline/sync_op.dart';
 import 'package:watoto_mobile/features/curriculum/curriculum_data.dart';
+import 'package:watoto_mobile/features/curriculum/subject_catalog.dart';
 import 'package:watoto_mobile/features/onboarding/consent.dart';
 
 class _UnreachableApi implements SyncApi {
@@ -56,10 +57,33 @@ void main() {
     });
   });
 
+  group('subject catalog (home grid → age picker)', () {
+    test('every catalog subject maps to a real topic in some stage', () {
+      for (final subject in subjectCatalog) {
+        final stages = subject.stagesAvailable();
+        expect(stages, isNotEmpty, reason: 'no stage offers ${subject.key}');
+        for (final stage in stages) {
+          final topic = subject.topicNameFor(stage);
+          expect(topic, isNotNull, reason: '${subject.key} @ stage ${stage.stage}');
+          // The resolved topic must actually exist in that stage's curriculum.
+          expect(stage.topics.map((t) => t.name), contains(topic));
+        }
+      }
+    });
+
+    test('catalog keys are unique and the daily challenge is Math', () {
+      final keys = subjectCatalog.map((s) => s.key).toList();
+      expect(keys.toSet(), hasLength(keys.length));
+      expect(dailyChallengeSubject.key, 'math');
+      // Math is a through-line: it should be offered across many age bands.
+      expect(dailyChallengeSubject.stagesAvailable().length, greaterThan(5));
+    });
+  });
+
   group('curriculum screen', () {
     setUpAll(() => Hive.init(Directory.systemTemp.path));
 
-    testWidgets('home stage banner opens the curriculum at the child stage',
+    testWidgets('home subject card opens the age picker, then drills in',
         (tester) async {
       final store = await OfflineStore.open(inMemory: true);
       await store.completeOnboarding(
@@ -68,7 +92,7 @@ void main() {
         pin: '1234',
         nickname: 'Amani',
         avatarKey: 'lion',
-        birthYear: DateTime.now().year - 7, // -> stage 8 (Grade 2)
+        birthYear: DateTime.now().year - 7,
       );
 
       await tester.pumpWidget(ProviderScope(
@@ -80,14 +104,16 @@ void main() {
       ));
       await tester.pumpAndSettle();
 
-      // The stage banner on the home shows the child's current stage title.
-      expect(find.text('Expanding Knowledge & Skills'), findsWidgets);
-      await tester.tap(find.text('Expanding Knowledge & Skills').first);
+      // There's no fixed stage now: tapping a subject asks for an age first.
+      await tester.tap(find.text('Math'));
       await tester.pumpAndSettle();
+      expect(find.text('How old are you?'), findsOneWidget);
 
-      // Curriculum screen shows the stage's topics and transcribed activities.
-      expect(find.text('Curriculum'), findsOneWidget);
-      expect(find.text('Folk tales & fables'), findsOneWidget);
+      // Pick the first offered age band -> drills into that subject's detail
+      // screen, which shows the chosen stage/age ("Stage N · Ages …").
+      await tester.tap(find.textContaining('Ages ').first);
+      await tester.pumpAndSettle();
+      expect(find.textContaining('Stage '), findsWidgets);
 
       await store.close();
     });

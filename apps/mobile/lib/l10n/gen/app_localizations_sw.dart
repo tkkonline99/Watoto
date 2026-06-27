@@ -26,6 +26,12 @@ class AppLocalizationsSw extends AppLocalizations {
   String get subjects => 'Masomo';
 
   @override
+  String get selectAgeTitle => 'Una umri gani?';
+
+  @override
+  String get selectAgeSubtitle => 'Chagua umri ili kuona shughuli zinazofaa.';
+
+  @override
   String get subjectMath => 'Hesabu';
 
   @override

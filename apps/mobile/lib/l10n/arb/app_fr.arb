@@ -1,10 +1,12 @@
 {
   "@@locale": "fr",
   "appTitle": "Watoto",
-  "homeGreeting": "Jambo, {name} !",
+  "homeGreeting": "Bonjour, {name} !",
   "dailyChallenge": "Défi du jour",
   "startLearning": "Commencer",
   "subjects": "Matières",
+  "selectAgeTitle": "Quel âge as-tu ?",
+  "selectAgeSubtitle": "Choisis un âge pour voir les bonnes activités.",
   "subjectMath": "Maths",
   "subjectEnglish": "Anglais",
   "subjectScience": "Sciences",

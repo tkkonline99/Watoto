@@ -13,7 +13,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String homeGreeting(String name) {
-    return 'Jambo, $name !';
+    return 'Bonjour, $name !';
   }
 
   @override
@@ -24,6 +24,13 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get subjects => 'Matières';
+
+  @override
+  String get selectAgeTitle => 'Quel âge as-tu ?';
+
+  @override
+  String get selectAgeSubtitle =>
+      'Choisis un âge pour voir les bonnes activités.';
 
   @override
   String get subjectMath => 'Maths';

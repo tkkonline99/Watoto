@@ -1,7 +1,7 @@
 {
   "@@locale": "en",
   "appTitle": "Watoto",
-  "homeGreeting": "Jambo, {name}!",
+  "homeGreeting": "Hello, {name}!",
   "@homeGreeting": {
     "placeholders": {
       "name": { "type": "String" }
@@ -10,6 +10,8 @@
   "dailyChallenge": "Daily Challenge",
   "startLearning": "Start",
   "subjects": "Subjects",
+  "selectAgeTitle": "How old are you?",
+  "selectAgeSubtitle": "Pick an age to see the right activities.",
   "subjectMath": "Math",
   "subjectEnglish": "English",
   "subjectScience": "Science",

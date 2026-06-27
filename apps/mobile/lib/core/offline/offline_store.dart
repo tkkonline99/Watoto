@@ -47,6 +47,13 @@ class OfflineStore {
   Future<void> setActiveChild(String childId) =>
       _account.put('activeChildId', childId);
 
+  /// Persisted UI/content language ('en' | 'fr' | 'sw'), or null before the
+  /// family has chosen one. Restored on launch so the app reopens in the
+  /// language they picked rather than always defaulting to English.
+  String? get localeCode => _account.get('localeCode');
+
+  Future<void> setLocaleCode(String code) => _account.put('localeCode', code);
+
   bool get hasPin => _account.get('pinHash') != null;
 
   /// Local parent gate. A salted SHA-256 keeps the PIN out of plaintext on
