@@ -40,6 +40,16 @@ Never commit these; set them in the CI provider's encrypted secrets.
 
 The store uploads target test tracks, not public release — promotion to production stays a manual, deliberate step in the consoles. The Flutter app lives in `apps/mobile`, so CI runs every `flutter` command there; the web deploy serves `apps/mobile/build/web`. Android release signing is wired in `build.gradle.kts` (reads `key.properties` or the `ANDROID_*` secrets); iOS uses `apps/mobile/ios/ExportOptions.plist` — fill in its `teamID` and provisioning-profile name before the first signed build.
 
+## Windows desktop (local build)
+
+The app also targets **Windows desktop** (`apps/mobile/windows`), for a sideloadable `.exe` outside the mobile stores. It is not in CI — there's no store channel — so build it locally:
+
+1. Install **Visual Studio 2019 or newer** with the **"Desktop development with C++"** workload (`flutter doctor` must show `[✓] Visual Studio - develop Windows apps`).
+2. From `apps/mobile`: `flutter build windows --release`.
+3. The bundle lands in `apps/mobile/build/windows/x64/runner/Release/` — ship the whole folder (the `.exe` needs the `.dll`s and `data/` beside it), or wrap it in an MSIX/installer.
+
+On this machine, build from the `C:\dev\watoto` mirror, not the OneDrive copy — Controlled Folder Access blocks the C++ toolchain from writing there (same reason Android builds use the mirror).
+
 ## Versioning
 
 Version comes from `pubspec.yaml` (`version: 1.0.0+<build>`). CI sets the build number from the run number so every build is unique; bump the marketing version (`1.0.0`) by hand for releases. Tagging `v1.0.0` is a good trigger for a release build.
