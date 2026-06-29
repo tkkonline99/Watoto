@@ -160,6 +160,10 @@ class AppLocalizationsSw extends AppLocalizations {
   String get createChildTitle => 'Ongeza mtoto wako';
 
   @override
+  String get createChildSubtitle =>
+      'Chagua jina la kufurahisha na mnyama rafiki wa kujifunza naye!';
+
+  @override
   String get childNickname => 'Jina la utani';
 
   @override
@@ -228,6 +232,9 @@ class AppLocalizationsSw extends AppLocalizations {
   @override
   String get grownupCheckBody =>
       'Mwombe mtu mzima aendelee. Andika namba hizi:';
+
+  @override
+  String get gateAnswerHint => 'Andika jibu';
 
   @override
   String get wrongNumbers => 'Namba hazifanani — jaribu tena';

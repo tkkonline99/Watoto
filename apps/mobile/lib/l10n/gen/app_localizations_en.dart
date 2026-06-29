@@ -160,6 +160,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get createChildTitle => 'Add your child';
 
   @override
+  String get createChildSubtitle =>
+      'Pick a fun name and an animal buddy to learn with!';
+
+  @override
   String get childNickname => 'Nickname';
 
   @override
@@ -228,6 +232,9 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get grownupCheckBody =>
       'Ask a grown-up to continue. Type these numbers:';
+
+  @override
+  String get gateAnswerHint => 'Type the answer';
 
   @override
   String get wrongNumbers => 'Those numbers don\'t match — try again';

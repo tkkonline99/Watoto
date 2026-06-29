@@ -14,6 +14,7 @@ import 'package:watoto_mobile/features/auth/parent_gate.dart';
 import 'package:watoto_mobile/features/lesson_player/lesson_models.dart';
 import 'package:watoto_mobile/features/lesson_player/lesson_repository.dart';
 import 'package:watoto_mobile/features/onboarding/consent.dart';
+import 'package:watoto_mobile/features/onboarding/savanna_background.dart';
 import 'package:watoto_mobile/features/quiz/quiz_models.dart';
 import 'package:watoto_mobile/features/quiz/quiz_repository.dart';
 import 'package:watoto_mobile/router/app_router.dart';
@@ -78,7 +79,12 @@ void goTo(WidgetTester tester, String location) {
 void main() {
   late OfflineStore store;
 
-  setUpAll(() => Hive.init(Directory.systemTemp.path));
+  setUpAll(() {
+    Hive.init(Directory.systemTemp.path);
+    // Hold the perpetual savanna ambient drift still so pumpAndSettle (used
+    // throughout) doesn't wait forever on an animation that never completes.
+    debugDisableSavannaAmbient = true;
+  });
 
   setUp(() async {
     store = await OfflineStore.open(inMemory: true);
@@ -140,12 +146,14 @@ void main() {
 
   testWidgets('first run: onboarding -> consent -> PIN -> child -> home',
       (tester) async {
+    // The onboarding cards can exceed a short test viewport; give them room so
+    // the primary buttons aren't scrolled off-screen when tapped.
+    await tester.binding.setSurfaceSize(const Size(900, 1400));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+
     // store is fresh (not onboarded) -> app must start in onboarding.
     await tester.pumpWidget(buildApp());
-    // The language screen runs a perpetual ambient animation, so it never
-    // "settles"; pump a fixed amount to let the (transform-only) intro play.
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 900));
+    await tester.pumpAndSettle();
 
     expect(find.text('Choose your language'), findsOneWidget);
     // The button can sit below the fold on a small test viewport; bring it in.
@@ -158,21 +166,31 @@ void main() {
     // FTC parent gate: type the spelled-out numbers (overridden to 123).
     expect(find.text('Grown-up check'), findsOneWidget);
     await tester.enterText(find.byType(TextField), '123');
-    await tester.tap(find.text('Next'));
+    await tester.pump(); // let the (now input-gated) Next button enable
+    final gateNext = find.text('Next');
+    await tester.ensureVisible(gateNext);
+    await tester.tap(gateNext);
     await tester.pumpAndSettle();
 
     expect(find.text('A safe place to learn'), findsOneWidget);
-    await tester.tap(find.text('Agree & continue'));
+    final agree = find.text('Agree & continue');
+    await tester.ensureVisible(agree);
+    await tester.tap(agree);
     await tester.pumpAndSettle();
 
     await tester.enterText(find.byType(TextField).at(0), '2468');
     await tester.enterText(find.byType(TextField).at(1), '2468');
-    await tester.tap(find.text('Next'));
+    await tester.pump(); // let the (now input-gated) Next button enable
+    final pinNext = find.text('Next');
+    await tester.ensureVisible(pinNext);
+    await tester.tap(pinNext);
     await tester.pumpAndSettle();
 
     await tester.enterText(find.byType(TextField).first, 'Zuri');
     await tester.pumpAndSettle();
-    await tester.tap(find.text('Done'));
+    final done = find.text('Done');
+    await tester.ensureVisible(done);
+    await tester.tap(done);
     await tester.pumpAndSettle();
 
     expect(find.text('Hello, Zuri!'), findsOneWidget);

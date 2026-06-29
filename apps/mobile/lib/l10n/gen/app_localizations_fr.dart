@@ -161,6 +161,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get createChildTitle => 'Ajoute ton enfant';
 
   @override
+  String get createChildSubtitle =>
+      'Choisis un nom rigolo et un animal pour apprendre avec toi !';
+
+  @override
   String get childNickname => 'Surnom';
 
   @override
@@ -229,6 +233,9 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get grownupCheckBody =>
       'Demande à un adulte de continuer. Saisis ces chiffres :';
+
+  @override
+  String get gateAnswerHint => 'Tape la réponse';
 
   @override
   String get wrongNumbers => 'Ces chiffres ne correspondent pas — réessaie';

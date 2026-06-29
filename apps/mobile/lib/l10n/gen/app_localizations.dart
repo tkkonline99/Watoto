@@ -382,6 +382,12 @@ abstract class AppLocalizations {
   /// **'Add your child'**
   String get createChildTitle;
 
+  /// No description provided for @createChildSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a fun name and an animal buddy to learn with!'**
+  String get createChildSubtitle;
+
   /// No description provided for @childNickname.
   ///
   /// In en, this message translates to:
@@ -507,6 +513,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Ask a grown-up to continue. Type these numbers:'**
   String get grownupCheckBody;
+
+  /// No description provided for @gateAnswerHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Type the answer'**
+  String get gateAnswerHint;
 
   /// No description provided for @wrongNumbers.
   ///
