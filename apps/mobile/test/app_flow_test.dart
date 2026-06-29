@@ -142,10 +142,17 @@ void main() {
       (tester) async {
     // store is fresh (not onboarded) -> app must start in onboarding.
     await tester.pumpWidget(buildApp());
-    await tester.pumpAndSettle();
+    // The language screen runs a perpetual ambient animation, so it never
+    // "settles"; pump a fixed amount to let the (transform-only) intro play.
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 900));
 
     expect(find.text('Choose your language'), findsOneWidget);
-    await tester.tap(find.text('Start'));
+    // The button can sit below the fold on a small test viewport; bring it in.
+    final letsGo = find.text("Let's go! 🚀");
+    await tester.ensureVisible(letsGo);
+    await tester.pump();
+    await tester.tap(letsGo);
     await tester.pumpAndSettle();
 
     // FTC parent gate: type the spelled-out numbers (overridden to 123).

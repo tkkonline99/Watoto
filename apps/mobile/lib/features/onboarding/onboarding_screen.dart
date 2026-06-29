@@ -4,13 +4,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/offline/offline_providers.dart';
-import '../../core/state/app_state.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../features/auth/auth_service.dart';
 import '../../features/auth/parent_gate.dart';
 import '../../l10n/gen/app_localizations.dart';
 import '../profiles/child_form.dart';
 import 'consent.dart';
+import 'language_select_screen.dart';
 
 /// First-run flow: language → consent → parent PIN → first child.
 /// Everything is captured locally and persisted in one step at the end
@@ -73,12 +73,16 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    // Step 0 (language) is a full-bleed playful savanna scene; the later steps
+    // share a simple padded scaffold.
+    if (_step == 0) {
+      return LanguageSelectScreen(onStart: _next);
+    }
     return Scaffold(
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24),
           child: switch (_step) {
-            0 => _LanguageStep(onNext: _next),
             1 => _GateStep(
                 challenge: ref.watch(parentGateChallengeProvider),
                 controller: _gate,
@@ -158,39 +162,6 @@ class _StepScaffold extends StatelessWidget {
         const SizedBox(height: 12),
         FilledButton(onPressed: onAction, child: Text(actionLabel)),
       ],
-    );
-  }
-}
-
-class _LanguageStep extends ConsumerWidget {
-  const _LanguageStep({required this.onNext});
-  final VoidCallback onNext;
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context);
-    return _StepScaffold(
-      emoji: '🦁',
-      title: l10n.chooseLanguage,
-      actionLabel: l10n.startLearning,
-      onAction: onNext,
-      child: Column(
-        children: [
-          for (final entry in const {
-            'en': 'English',
-            'sw': 'Kiswahili',
-            'fr': 'Français',
-          }.entries)
-            ListTile(
-              title: Text(entry.value, style: const TextStyle(fontSize: 18)),
-              trailing: ref.watch(localeProvider).languageCode == entry.key
-                  ? const Icon(Icons.check_circle, color: WatotoColors.leaf)
-                  : const Icon(Icons.circle_outlined),
-              onTap: () =>
-                  ref.read(localeProvider.notifier).set(Locale(entry.key)),
-            ),
-        ],
-      ),
     );
   }
 }

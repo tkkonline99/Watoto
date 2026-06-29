@@ -19,7 +19,9 @@ ThemeData buildWatotoTheme() {
     error: WatotoColors.berry,
     surface: Colors.white,
   );
-  final base = ThemeData(colorScheme: scheme);
+  // Nunito (variable) is the default body font; Baloo 2 is used for the
+  // rounded headings/buttons (applied where headings are built).
+  final base = ThemeData(colorScheme: scheme, fontFamily: 'Nunito');
   return base.copyWith(
     scaffoldBackgroundColor: WatotoColors.cloud,
     textTheme: base.textTheme.apply(
@@ -32,7 +34,8 @@ ThemeData buildWatotoTheme() {
         foregroundColor: WatotoColors.deep,
         minimumSize: const Size(120, 56), // child-friendly tap target
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
-        textStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+        textStyle: const TextStyle(
+            fontFamily: 'Baloo2', fontSize: 20, fontWeight: FontWeight.w700),
       ),
     ),
   );

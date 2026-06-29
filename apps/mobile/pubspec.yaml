@@ -52,3 +52,12 @@ flutter:
     - assets/content/
     - assets/i18n/
     - assets/legal/
+  # Bundled variable fonts (offline-safe; no runtime fetch). Baloo 2 for the
+  # rounded headings/buttons, Nunito for body. Both expose a `wght` axis.
+  fonts:
+    - family: Baloo2
+      fonts:
+        - asset: assets/fonts/Baloo2.ttf
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/Nunito.ttf
