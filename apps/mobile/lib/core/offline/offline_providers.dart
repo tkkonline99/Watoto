@@ -32,18 +32,25 @@ class SessionState {
     required this.onboardingComplete,
     required this.activeChildId,
     required this.parentUnlocked,
+    required this.loggedIn,
     required this.profilesRev,
   });
 
   final bool onboardingComplete;
   final String? activeChildId;
   final bool parentUnlocked;
+  final bool loggedIn; // a parent account session is active
   final int profilesRev; // bumps when the set of profiles changes
+
+  /// The parent zone is reachable when a PIN session is unlocked OR a parent
+  /// account is logged in (account families have no PIN).
+  bool get parentAccessAllowed => parentUnlocked || loggedIn;
 
   SessionState _copy({
     bool? onboardingComplete,
     Object? activeChildId = _unset,
     bool? parentUnlocked,
+    bool? loggedIn,
     int? profilesRev,
   }) =>
       SessionState(
@@ -51,6 +58,7 @@ class SessionState {
         activeChildId:
             activeChildId == _unset ? this.activeChildId : activeChildId as String?,
         parentUnlocked: parentUnlocked ?? this.parentUnlocked,
+        loggedIn: loggedIn ?? this.loggedIn,
         profilesRev: profilesRev ?? this.profilesRev,
       );
 
@@ -63,6 +71,7 @@ class SessionController extends StateNotifier<SessionState> {
           onboardingComplete: _store.onboardingComplete,
           activeChildId: _store.activeChildId,
           parentUnlocked: false,
+          loggedIn: _store.isLoggedIn,
           profilesRev: 0,
         ));
 
@@ -70,7 +79,9 @@ class SessionController extends StateNotifier<SessionState> {
 
   Future<ChildProfile> completeOnboarding({
     required ConsentRecord consent,
-    required String pin,
+    String? pin,
+    String? accountEmail,
+    String? accountPassword,
     required String nickname,
     required String avatarKey,
     required int birthYear,
@@ -78,6 +89,8 @@ class SessionController extends StateNotifier<SessionState> {
     final child = await _store.completeOnboarding(
       consent: consent,
       pin: pin,
+      accountEmail: accountEmail,
+      accountPassword: accountPassword,
       nickname: nickname,
       avatarKey: avatarKey,
       birthYear: birthYear,
@@ -85,9 +98,28 @@ class SessionController extends StateNotifier<SessionState> {
     state = state._copy(
       onboardingComplete: true,
       activeChildId: child.id,
+      loggedIn: accountEmail != null,
       profilesRev: state.profilesRev + 1,
     );
     return child;
+  }
+
+  /// Creates a local parent account and starts the session.
+  Future<void> createAccount(String email, String password) async {
+    await _store.createAccount(email, password);
+    state = state._copy(loggedIn: true);
+  }
+
+  /// Signs in to the local account; returns false on a credential mismatch.
+  Future<bool> signIn(String email, String password) async {
+    final ok = await _store.signIn(email, password);
+    if (ok) state = state._copy(loggedIn: true);
+    return ok;
+  }
+
+  Future<void> signOutAccount() async {
+    await _store.signOut();
+    state = state._copy(loggedIn: false, parentUnlocked: false);
   }
 
   Future<ChildProfile> addChild({

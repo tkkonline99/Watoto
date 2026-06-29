@@ -139,7 +139,7 @@ void main() {
     }
   }
 
-  testWidgets('first run: onboarding -> consent -> PIN -> child -> home',
+  testWidgets('first run: onboarding -> consent -> account -> child -> home',
       (tester) async {
     // The onboarding cards can exceed a short test viewport; give them room so
     // the primary buttons aren't scrolled off-screen when tapped.
@@ -165,12 +165,13 @@ void main() {
     await tester.tap(agree);
     await tester.pumpAndSettle();
 
-    await tester.enterText(find.byType(TextField).at(0), '2468');
-    await tester.enterText(find.byType(TextField).at(1), '2468');
-    await tester.pump(); // let the (now input-gated) Next button enable
-    final pinNext = find.text('Next');
-    await tester.ensureVisible(pinNext);
-    await tester.tap(pinNext);
+    // Default secure step = create a parent account (no PIN asked).
+    await tester.enterText(find.byType(TextField).at(0), 'parent@example.com');
+    await tester.enterText(find.byType(TextField).at(1), 'secret123');
+    await tester.pump(); // let the (input-gated) Next button enable
+    final next = find.text('Next');
+    await tester.ensureVisible(next);
+    await tester.tap(next);
     await tester.pumpAndSettle();
 
     await tester.enterText(find.byType(TextField).first, 'Zuri');
@@ -183,7 +184,31 @@ void main() {
     expect(find.text('Hello, Zuri!'), findsOneWidget);
     expect(store.onboardingComplete, isTrue);
     expect(store.children.single.nickname, 'Zuri');
-    expect(store.verifyPin('2468'), isTrue);
+    expect(store.hasAccount, isTrue);
+    expect(store.accountEmail, 'parent@example.com');
+    expect(store.isLoggedIn, isTrue);
+    expect(store.hasPin, isFalse); // account families are never asked for a PIN
+  });
+
+  testWidgets('account family reaches the parent zone without a PIN',
+      (tester) async {
+    await store.completeOnboarding(
+      consent: const ConsentRecord(
+          coreData: true, aiFeatures: false, voiceRecording: false, recordedAt: null),
+      accountEmail: 'mom@example.com',
+      accountPassword: 'secret123',
+      nickname: 'Amani',
+      avatarKey: 'lion',
+      birthYear: 2019,
+    );
+    await tester.pumpWidget(buildApp());
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.byTooltip('Parent Zone'));
+    await tester.pumpAndSettle();
+    // Straight into the dashboard — no PIN gate.
+    expect(find.text('Children'), findsOneWidget);
+    expect(find.text('Grown-ups only'), findsNothing);
   });
 
   testWidgets('home shows greeting, subjects, and daily challenge', (tester) async {

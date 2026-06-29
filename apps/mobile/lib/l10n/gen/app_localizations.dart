@@ -382,6 +382,102 @@ abstract class AppLocalizations {
   /// **'Unlock'**
   String get unlock;
 
+  /// No description provided for @createAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Create account'**
+  String get createAccount;
+
+  /// No description provided for @logIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Log in'**
+  String get logIn;
+
+  /// No description provided for @logOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Log out'**
+  String get logOut;
+
+  /// No description provided for @emailLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get emailLabel;
+
+  /// No description provided for @emailHint.
+  ///
+  /// In en, this message translates to:
+  /// **'you@example.com'**
+  String get emailHint;
+
+  /// No description provided for @passwordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get passwordLabel;
+
+  /// No description provided for @passwordHint.
+  ///
+  /// In en, this message translates to:
+  /// **'At least 6 characters'**
+  String get passwordHint;
+
+  /// No description provided for @usePinInstead.
+  ///
+  /// In en, this message translates to:
+  /// **'No account? Use a PIN'**
+  String get usePinInstead;
+
+  /// No description provided for @createAccountInstead.
+  ///
+  /// In en, this message translates to:
+  /// **'Create an account instead'**
+  String get createAccountInstead;
+
+  /// No description provided for @invalidEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid email'**
+  String get invalidEmail;
+
+  /// No description provided for @passwordTooShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Use at least 6 characters'**
+  String get passwordTooShort;
+
+  /// No description provided for @wrongPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong password, try again'**
+  String get wrongPassword;
+
+  /// No description provided for @parentAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Parent account'**
+  String get parentAccount;
+
+  /// No description provided for @account.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get account;
+
+  /// No description provided for @createAccountSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'So you can manage settings and save your child\'s progress.'**
+  String get createAccountSubtitle;
+
+  /// No description provided for @signedInAs.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed in as {email}'**
+  String signedInAs(String email);
+
   /// No description provided for @createChildTitle.
   ///
   /// In en, this message translates to:

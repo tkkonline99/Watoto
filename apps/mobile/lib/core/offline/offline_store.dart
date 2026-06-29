@@ -71,6 +71,45 @@ class OfflineStore {
     return sha256.convert(utf8.encode('$salt:$pin')).toString();
   }
 
+  // ----- parent account (local; a Firebase-backed AuthService swaps in later) -
+
+  /// A local parent account is an alternative to the PIN: families who create
+  /// one are never asked for a PIN. Single-device model for now — the password
+  /// is salted-SHA-256 hashed (same caveat as the PIN; argon2id server-side).
+  bool get hasAccount => _account.get('accountEmail') != null;
+
+  String? get accountEmail => _account.get('accountEmail');
+
+  /// Whether a parent session is currently active (persisted across launches).
+  bool get isLoggedIn => _account.get('loggedIn') == 'true';
+
+  Future<void> createAccount(String email, String password) async {
+    await _account.put('accountEmail', email.trim());
+    await _account.put('accountSalt', _uuid.v4());
+    await _account.put('accountHash', _hashAccount(password));
+    await _account.put('loggedIn', 'true');
+  }
+
+  bool verifyAccount(String password) =>
+      hasAccount && _hashAccount(password) == _account.get('accountHash');
+
+  /// Starts a session when [email]/[password] match the local account.
+  Future<bool> signIn(String email, String password) async {
+    if (email.trim().toLowerCase() != (accountEmail ?? '').toLowerCase()) {
+      return false;
+    }
+    if (!verifyAccount(password)) return false;
+    await _account.put('loggedIn', 'true');
+    return true;
+  }
+
+  Future<void> signOut() => _account.put('loggedIn', 'false');
+
+  String _hashAccount(String password) {
+    final salt = _account.get('accountSalt') ?? '';
+    return sha256.convert(utf8.encode('$salt:$password')).toString();
+  }
+
   ConsentRecord get consent {
     final raw = _account.get('consent');
     if (raw == null) return ConsentRecord.empty;
@@ -112,16 +151,23 @@ class OfflineStore {
   }
 
   /// Persists the full first-run result atomically enough for local use:
-  /// consent, PIN, first child, then marks onboarding complete + active child.
+  /// consent, a parent gate (a PIN *or* a local account), first child, then
+  /// marks onboarding complete + active child. Exactly one of [pin] /
+  /// ([accountEmail] + [accountPassword]) is expected.
   Future<ChildProfile> completeOnboarding({
     required ConsentRecord consent,
-    required String pin,
+    String? pin,
+    String? accountEmail,
+    String? accountPassword,
     required String nickname,
     required String avatarKey,
     required int birthYear,
   }) async {
     await saveConsent(consent);
-    await setPin(pin);
+    if (pin != null && pin.isNotEmpty) await setPin(pin);
+    if (accountEmail != null && accountPassword != null) {
+      await createAccount(accountEmail, accountPassword);
+    }
     final child = await addChild(
       nickname: nickname,
       avatarKey: avatarKey,

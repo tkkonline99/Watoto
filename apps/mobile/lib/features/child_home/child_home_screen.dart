@@ -41,6 +41,8 @@ class ChildHomeScreen extends ConsumerWidget {
       topRight: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
+          _AccountButton(tooltip: l10n.account),
+          const SizedBox(width: 8),
           _LanguageMenu(),
           const SizedBox(width: 8),
           SavannaLockButton(
@@ -397,6 +399,61 @@ class _ActivityTile extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Top-chrome button to the parent account screen (log in / create account).
+/// A small green dot marks an active parent session.
+class _AccountButton extends ConsumerWidget {
+  const _AccountButton({required this.tooltip});
+  final String tooltip;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final loggedIn = ref.watch(sessionProvider.select((s) => s.loggedIn));
+    return Tooltip(
+      message: tooltip,
+      child: InkWell(
+        customBorder: const CircleBorder(),
+        onTap: () => context.go('/account'),
+        child: Container(
+          width: 46,
+          height: 46,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: WatotoColors.deep.withValues(alpha: 0.12),
+                blurRadius: 10,
+                offset: const Offset(0, 4),
+              ),
+            ],
+          ),
+          child: Stack(
+            clipBehavior: Clip.none,
+            children: [
+              const Icon(Icons.person_rounded, color: WatotoColors.deep),
+              if (loggedIn)
+                Positioned(
+                  right: -2,
+                  top: -2,
+                  child: Container(
+                    width: 12,
+                    height: 12,
+                    decoration: BoxDecoration(
+                      color: WatotoColors.leaf,
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.white, width: 2),
+                    ),
+                  ),
+                ),
             ],
           ),
         ),

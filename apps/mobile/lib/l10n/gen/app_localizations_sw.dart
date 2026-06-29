@@ -160,6 +160,57 @@ class AppLocalizationsSw extends AppLocalizations {
   String get unlock => 'Fungua';
 
   @override
+  String get createAccount => 'Fungua akaunti';
+
+  @override
+  String get logIn => 'Ingia';
+
+  @override
+  String get logOut => 'Toka';
+
+  @override
+  String get emailLabel => 'Barua pepe';
+
+  @override
+  String get emailHint => 'wewe@mfano.com';
+
+  @override
+  String get passwordLabel => 'Nenosiri';
+
+  @override
+  String get passwordHint => 'Angalau herufi 6';
+
+  @override
+  String get usePinInstead => 'Huna akaunti? Tumia PIN';
+
+  @override
+  String get createAccountInstead => 'Au fungua akaunti';
+
+  @override
+  String get invalidEmail => 'Weka barua pepe sahihi';
+
+  @override
+  String get passwordTooShort => 'Tumia angalau herufi 6';
+
+  @override
+  String get wrongPassword => 'Nenosiri si sahihi, jaribu tena';
+
+  @override
+  String get parentAccount => 'Akaunti ya mzazi';
+
+  @override
+  String get account => 'Akaunti';
+
+  @override
+  String get createAccountSubtitle =>
+      'Ili uweze kusimamia mipangilio na kuhifadhi maendeleo ya mtoto wako.';
+
+  @override
+  String signedInAs(String email) {
+    return 'Umeingia kama $email';
+  }
+
+  @override
   String get createChildTitle => 'Ongeza mtoto wako';
 
   @override

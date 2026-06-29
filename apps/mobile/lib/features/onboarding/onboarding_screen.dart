@@ -6,15 +6,17 @@ import 'package:go_router/go_router.dart';
 import '../../core/offline/offline_providers.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
+import '../auth/account_screen.dart' show accountFieldDecoration;
 import '../profiles/child_form.dart';
 import 'consent.dart';
 import 'language_select_screen.dart';
 import 'savanna_background.dart';
 
-/// First-run flow: language → consent → parent PIN → first child.
+/// First-run flow: language → consent → account-or-PIN → first child.
 /// Everything is captured locally and persisted in one step at the end
 /// (docs/09 §9.1). Required for any deployment — no child data is collected
-/// before parental consent is recorded.
+/// before parental consent is recorded. Families create a parent account *or*
+/// set a PIN; account families are never asked for a PIN.
 class OnboardingScreen extends ConsumerStatefulWidget {
   const OnboardingScreen({super.key});
 
@@ -29,16 +31,21 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   bool _aiFeatures = false;
   bool _voiceRecording = false;
 
-  // pin
+  // secure step: a parent account (default) or a PIN
+  bool _useAccount = true;
+  final _email = TextEditingController();
+  final _password = TextEditingController();
   final _pin = TextEditingController();
   final _pinConfirm = TextEditingController();
-  String? _pinError;
+  String? _secureError;
 
   // child
   ChildFormValue? _child;
 
   @override
   void dispose() {
+    _email.dispose();
+    _password.dispose();
     _pin.dispose();
     _pinConfirm.dispose();
     super.dispose();
@@ -57,7 +64,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     final child = _child!;
     await ref.read(sessionProvider.notifier).completeOnboarding(
           consent: consent,
-          pin: _pin.text,
+          pin: _useAccount ? null : _pin.text,
+          accountEmail: _useAccount ? _email.text.trim() : null,
+          accountPassword: _useAccount ? _password.text : null,
           nickname: child.nickname,
           avatarKey: child.avatarKey,
           birthYear: child.birthYear,
@@ -80,18 +89,35 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           onBack: _back,
           onNext: _next,
         ),
-      2 => _PinStep(
+      2 => _SecureStep(
+          useAccount: _useAccount,
+          onToggle: (v) => setState(() {
+            _useAccount = v;
+            _secureError = null;
+          }),
+          email: _email,
+          password: _password,
           pin: _pin,
           confirm: _pinConfirm,
-          error: _pinError,
+          error: _secureError,
           onBack: _back,
           onNext: () {
-            if (_pin.text.length < 4) {
-              setState(() => _pinError = l10n.pinTooShort);
+            if (_useAccount) {
+              final email = _email.text.trim();
+              if (!(email.contains('@') && email.contains('.') && email.length >= 5)) {
+                setState(() => _secureError = l10n.invalidEmail);
+              } else if (_password.text.length < 6) {
+                setState(() => _secureError = l10n.passwordTooShort);
+              } else {
+                setState(() => _secureError = null);
+                _next();
+              }
+            } else if (_pin.text.length < 4) {
+              setState(() => _secureError = l10n.pinTooShort);
             } else if (_pin.text != _pinConfirm.text) {
-              setState(() => _pinError = l10n.pinMismatch);
+              setState(() => _secureError = l10n.pinMismatch);
             } else {
-              setState(() => _pinError = null);
+              setState(() => _secureError = null);
               _next();
             }
           },
@@ -522,8 +548,14 @@ class _ConsentToggle extends StatelessWidget {
   }
 }
 
-class _PinStep extends StatelessWidget {
-  const _PinStep({
+/// Protect the parent zone: create a parent account (default) or set a PIN.
+/// Account families skip the PIN entirely (here and on every later unlock).
+class _SecureStep extends StatelessWidget {
+  const _SecureStep({
+    required this.useAccount,
+    required this.onToggle,
+    required this.email,
+    required this.password,
     required this.pin,
     required this.confirm,
     required this.error,
@@ -531,6 +563,10 @@ class _PinStep extends StatelessWidget {
     required this.onNext,
   });
 
+  final bool useAccount;
+  final ValueChanged<bool> onToggle;
+  final TextEditingController email;
+  final TextEditingController password;
   final TextEditingController pin;
   final TextEditingController confirm;
   final String? error;
@@ -543,28 +579,71 @@ class _PinStep extends StatelessWidget {
     return _StepCard(
       stepIndex: 1,
       onBack: onBack,
-      emoji: '🔐',
+      emoji: useAccount ? '🔑' : '🔐',
       iconColor: _pinColor,
-      title: l10n.setPinTitle,
-      subtitle: l10n.setPinSubtitle,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _FieldLabel(l10n.parentPin),
-          _PinField(controller: pin),
-          const SizedBox(height: 16),
-          _FieldLabel(l10n.confirmPin),
-          _PinField(controller: confirm, errorText: error),
-        ],
-      ),
+      title: useAccount ? l10n.createAccount : l10n.setPinTitle,
+      subtitle: useAccount ? l10n.createAccountSubtitle : l10n.setPinSubtitle,
+      body: useAccount
+          ? Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TextField(
+                  controller: email,
+                  keyboardType: TextInputType.emailAddress,
+                  autocorrect: false,
+                  decoration:
+                      accountFieldDecoration(l10n.emailLabel, l10n.emailHint),
+                ),
+                const SizedBox(height: 14),
+                TextField(
+                  controller: password,
+                  obscureText: true,
+                  enableSuggestions: false,
+                  autocorrect: false,
+                  decoration: accountFieldDecoration(
+                          l10n.passwordLabel, l10n.passwordHint)
+                      .copyWith(errorText: error),
+                ),
+                const SizedBox(height: 6),
+                Center(
+                  child: TextButton(
+                    onPressed: () => onToggle(false),
+                    child: Text(l10n.usePinInstead),
+                  ),
+                ),
+              ],
+            )
+          : Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _FieldLabel(l10n.parentPin),
+                _PinField(controller: pin),
+                const SizedBox(height: 16),
+                _FieldLabel(l10n.confirmPin),
+                _PinField(controller: confirm, errorText: error),
+                const SizedBox(height: 6),
+                Center(
+                  child: TextButton(
+                    onPressed: () => onToggle(true),
+                    child: Text(l10n.createAccountInstead),
+                  ),
+                ),
+              ],
+            ),
       button: AnimatedBuilder(
-        animation: Listenable.merge([pin, confirm]),
-        builder: (context, _) => _PrimaryButton(
-          label: l10n.next,
-          trailing: const Icon(Icons.arrow_forward_rounded,
-              size: 20, color: WatotoColors.deep),
-          onPressed: (pin.text.isEmpty || confirm.text.isEmpty) ? null : onNext,
-        ),
+        animation:
+            Listenable.merge(useAccount ? [email, password] : [pin, confirm]),
+        builder: (context, _) {
+          final ready = useAccount
+              ? (email.text.trim().isNotEmpty && password.text.isNotEmpty)
+              : (pin.text.isNotEmpty && confirm.text.isNotEmpty);
+          return _PrimaryButton(
+            label: l10n.next,
+            trailing: const Icon(Icons.arrow_forward_rounded,
+                size: 20, color: WatotoColors.deep),
+            onPressed: ready ? onNext : null,
+          );
+        },
       ),
     );
   }

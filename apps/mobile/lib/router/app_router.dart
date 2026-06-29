@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../core/offline/offline_providers.dart';
+import '../features/auth/account_screen.dart';
 import '../features/child_home/child_home_screen.dart';
 import '../features/curriculum/curriculum_screen.dart';
 import '../features/curriculum/subject_detail_screen.dart';
@@ -44,7 +45,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
 
       if (loc.startsWith('/parent')) {
         if (loc == '/parent/pin') return null;
-        return s.parentUnlocked ? null : '/parent/pin';
+        // Account families are let straight in (no PIN). Otherwise PIN families
+        // unlock with the PIN; a signed-out account family logs back in.
+        if (s.parentAccessAllowed) return null;
+        return ref.read(offlineStoreProvider).hasPin ? '/parent/pin' : '/account';
       }
 
       // Child surfaces require a selected profile; the picker is always allowed.
@@ -67,6 +71,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         builder: (c, s) => const LegalDocScreen(doc: LegalDoc.terms),
       ),
       GoRoute(path: '/', builder: (c, s) => const ChildHomeScreen()),
+      GoRoute(path: '/account', builder: (c, s) => const AccountScreen()),
       GoRoute(
         path: '/lesson/:slug',
         builder: (c, s) => LessonPlayerScreen(slug: s.pathParameters['slug']!),

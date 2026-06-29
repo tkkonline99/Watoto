@@ -63,6 +63,27 @@
   "enterPinSubtitle": "Enter your parent PIN to continue.",
   "wrongPin": "Wrong PIN, try again",
   "unlock": "Unlock",
+  "createAccount": "Create account",
+  "logIn": "Log in",
+  "logOut": "Log out",
+  "emailLabel": "Email",
+  "emailHint": "you@example.com",
+  "passwordLabel": "Password",
+  "passwordHint": "At least 6 characters",
+  "usePinInstead": "No account? Use a PIN",
+  "createAccountInstead": "Create an account instead",
+  "invalidEmail": "Enter a valid email",
+  "passwordTooShort": "Use at least 6 characters",
+  "wrongPassword": "Wrong password, try again",
+  "parentAccount": "Parent account",
+  "account": "Account",
+  "createAccountSubtitle": "So you can manage settings and save your child's progress.",
+  "signedInAs": "Signed in as {email}",
+  "@signedInAs": {
+    "placeholders": {
+      "email": { "type": "String" }
+    }
+  },
   "createChildTitle": "Add your child",
   "createChildSubtitle": "Pick a fun name and an animal buddy to learn with!",
   "childNickname": "Nickname",

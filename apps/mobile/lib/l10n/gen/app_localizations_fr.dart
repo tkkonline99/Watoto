@@ -161,6 +161,57 @@ class AppLocalizationsFr extends AppLocalizations {
   String get unlock => 'Déverrouiller';
 
   @override
+  String get createAccount => 'Créer un compte';
+
+  @override
+  String get logIn => 'Se connecter';
+
+  @override
+  String get logOut => 'Se déconnecter';
+
+  @override
+  String get emailLabel => 'E-mail';
+
+  @override
+  String get emailHint => 'toi@exemple.com';
+
+  @override
+  String get passwordLabel => 'Mot de passe';
+
+  @override
+  String get passwordHint => 'Au moins 6 caractères';
+
+  @override
+  String get usePinInstead => 'Pas de compte ? Utilise un code';
+
+  @override
+  String get createAccountInstead => 'Ou crée un compte';
+
+  @override
+  String get invalidEmail => 'Entre un e-mail valide';
+
+  @override
+  String get passwordTooShort => 'Utilise au moins 6 caractères';
+
+  @override
+  String get wrongPassword => 'Mot de passe incorrect, réessaie';
+
+  @override
+  String get parentAccount => 'Compte parent';
+
+  @override
+  String get account => 'Compte';
+
+  @override
+  String get createAccountSubtitle =>
+      'Pour gérer les réglages et sauvegarder les progrès de ton enfant.';
+
+  @override
+  String signedInAs(String email) {
+    return 'Connecté en tant que $email';
+  }
+
+  @override
   String get createChildTitle => 'Ajoute ton enfant';
 
   @override
