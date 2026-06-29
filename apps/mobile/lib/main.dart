@@ -8,6 +8,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'app.dart';
+import 'core/offline/desktop_migration_stub.dart'
+    if (dart.library.io) 'core/offline/desktop_migration_io.dart';
 import 'core/offline/offline_providers.dart';
 import 'core/offline/offline_store.dart';
 import 'features/auth/auth_service.dart';
@@ -58,6 +60,8 @@ Future<void> _initHive() async {
           defaultTargetPlatform == TargetPlatform.macOS);
   if (isDesktop) {
     final dir = await getApplicationSupportDirectory();
+    // Recover data orphaned by a past app-support path change (see the shim).
+    await migrateLegacyDesktopData(dir.path);
     Hive.init(dir.path);
   } else {
     await Hive.initFlutter('watoto');
