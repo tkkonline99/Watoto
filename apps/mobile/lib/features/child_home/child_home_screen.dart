@@ -415,7 +415,8 @@ class _AccountButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final loggedIn = ref.watch(sessionProvider.select((s) => s.loggedIn));
+    final loggedIn =
+        ref.watch(sessionProvider.select((s) => s.parentAccessAllowed));
     return Tooltip(
       message: tooltip,
       child: InkWell(

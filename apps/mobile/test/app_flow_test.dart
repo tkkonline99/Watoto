@@ -211,6 +211,32 @@ void main() {
     expect(find.text('Grown-ups only'), findsNothing);
   });
 
+  testWidgets('PIN family can log in and out from the account screen',
+      (tester) async {
+    await seedOnboarded(); // PIN 1234, no account
+    await tester.pumpWidget(buildApp());
+    await tester.pumpAndSettle();
+
+    goTo(tester, '/account');
+    await tester.pumpAndSettle();
+
+    // PIN-login view: enter the PIN and log in.
+    await tester.enterText(find.byType(TextField), '1234');
+    await tester.pump();
+    final logIn = find.text('Log in');
+    await tester.ensureVisible(logIn);
+    await tester.tap(logIn);
+    await tester.pumpAndSettle();
+
+    // Now signed in -> log out is offered; logging out returns to login.
+    final logOut = find.text('Log out');
+    expect(logOut, findsOneWidget);
+    await tester.ensureVisible(logOut);
+    await tester.tap(logOut);
+    await tester.pumpAndSettle();
+    expect(find.text('Log in'), findsOneWidget);
+  });
+
   testWidgets('home shows greeting, subjects, and daily challenge', (tester) async {
     await seedOnboarded();
     await tester.pumpWidget(buildApp());

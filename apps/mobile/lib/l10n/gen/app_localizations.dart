@@ -400,6 +400,12 @@ abstract class AppLocalizations {
   /// **'Log out'**
   String get logOut;
 
+  /// No description provided for @loggedInPin.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re signed in'**
+  String get loggedInPin;
+
   /// No description provided for @emailLabel.
   ///
   /// In en, this message translates to:

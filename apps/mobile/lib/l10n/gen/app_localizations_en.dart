@@ -169,6 +169,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get logOut => 'Log out';
 
   @override
+  String get loggedInPin => 'You\'re signed in';
+
+  @override
   String get emailLabel => 'Email';
 
   @override

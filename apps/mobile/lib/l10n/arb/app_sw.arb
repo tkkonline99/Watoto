@@ -50,6 +50,7 @@
   "createAccount": "Fungua akaunti",
   "logIn": "Ingia",
   "logOut": "Toka",
+  "loggedInPin": "Umeingia",
   "emailLabel": "Barua pepe",
   "emailHint": "wewe@mfano.com",
   "passwordLabel": "Nenosiri",

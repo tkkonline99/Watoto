@@ -66,6 +66,7 @@
   "createAccount": "Create account",
   "logIn": "Log in",
   "logOut": "Log out",
+  "loggedInPin": "You're signed in",
   "emailLabel": "Email",
   "emailHint": "you@example.com",
   "passwordLabel": "Password",

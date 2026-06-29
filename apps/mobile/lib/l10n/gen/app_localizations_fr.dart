@@ -170,6 +170,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get logOut => 'Se déconnecter';
 
   @override
+  String get loggedInPin => 'Tu es connecté';
+
+  @override
   String get emailLabel => 'E-mail';
 
   @override

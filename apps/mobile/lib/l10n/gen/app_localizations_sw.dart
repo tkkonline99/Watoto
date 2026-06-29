@@ -169,6 +169,9 @@ class AppLocalizationsSw extends AppLocalizations {
   String get logOut => 'Toka';
 
   @override
+  String get loggedInPin => 'Umeingia';
+
+  @override
   String get emailLabel => 'Barua pepe';
 
   @override

@@ -50,6 +50,7 @@
   "createAccount": "Créer un compte",
   "logIn": "Se connecter",
   "logOut": "Se déconnecter",
+  "loggedInPin": "Tu es connecté",
   "emailLabel": "E-mail",
   "emailHint": "toi@exemple.com",
   "passwordLabel": "Mot de passe",

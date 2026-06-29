@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -7,10 +8,13 @@ import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
 import '../onboarding/savanna_background.dart';
 
-/// Parent account: log in or create a local account. Families with an account
-/// skip the PIN and reach the parent zone without re-entering anything. Reached
-/// from the home (and usable any time). Local-only for now — a Firebase backend
-/// drops in behind [SessionController]/[OfflineStore] later.
+/// Parent session screen — every family gets a login/log-out option here,
+/// whichever grown-up gate they chose:
+///   * account families log in/out with email + password (persistent);
+///   * PIN families log in/out with their PIN (unlocks/locks the grown-up
+///     session for this run).
+/// Reached from the home account button (and any time). Local-only for now — a
+/// Firebase backend drops in behind [SessionController]/[OfflineStore] later.
 class AccountScreen extends ConsumerStatefulWidget {
   const AccountScreen({super.key});
 
@@ -21,13 +25,14 @@ class AccountScreen extends ConsumerStatefulWidget {
 class _AccountScreenState extends ConsumerState<AccountScreen> {
   final _email = TextEditingController();
   final _password = TextEditingController();
+  final _pin = TextEditingController();
   String? _error;
   bool _busy = false;
+  bool _showCreate = false; // PIN family upgrading to an account
 
   @override
   void initState() {
     super.initState();
-    // Pre-fill the email when logging back in to an existing account.
     _email.text = ref.read(offlineStoreProvider).accountEmail ?? '';
   }
 
@@ -35,6 +40,7 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
   void dispose() {
     _email.dispose();
     _password.dispose();
+    _pin.dispose();
     super.dispose();
   }
 
@@ -43,15 +49,11 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
     return e.contains('@') && e.contains('.') && e.length >= 5;
   }
 
-  Future<void> _submit({required bool creating}) async {
+  Future<void> _createOrLogin({required bool creating}) async {
     final l10n = AppLocalizations.of(context);
-    if (!_emailValid) {
-      setState(() => _error = l10n.invalidEmail);
-      return;
-    }
+    if (!_emailValid) return setState(() => _error = l10n.invalidEmail);
     if (_password.text.length < 6) {
-      setState(() => _error = l10n.passwordTooShort);
-      return;
+      return setState(() => _error = l10n.passwordTooShort);
     }
     setState(() {
       _error = null;
@@ -60,25 +62,57 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
     final session = ref.read(sessionProvider.notifier);
     if (creating) {
       await session.createAccount(_email.text, _password.text);
-    } else {
-      final ok = await session.signIn(_email.text, _password.text);
-      if (!ok) {
-        setState(() {
-          _error = l10n.wrongPassword;
-          _busy = false;
-        });
-        return;
-      }
+    } else if (!await session.signIn(_email.text, _password.text)) {
+      return setState(() {
+        _error = l10n.wrongPassword;
+        _busy = false;
+      });
     }
-    if (mounted) context.go('/');
+    // Session is now active -> the screen rebuilds into the signed-in view.
+    if (mounted) setState(() => _busy = false);
+  }
+
+  void _pinLogin() {
+    final l10n = AppLocalizations.of(context);
+    if (!ref.read(offlineStoreProvider).verifyPin(_pin.text)) {
+      return setState(() => _error = l10n.wrongPin);
+    }
+    ref.read(sessionProvider.notifier).unlockParent();
+    setState(() {
+      _error = null;
+      _pin.clear();
+    });
+  }
+
+  void _logOut() {
+    final session = ref.read(sessionProvider.notifier);
+    final store = ref.read(offlineStoreProvider);
+    if (store.hasAccount && ref.read(sessionProvider).loggedIn) {
+      session.signOutAccount();
+    } else {
+      session.lockParent(); // PIN session
+    }
+    setState(() => _error = null);
   }
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final loggedIn = ref.watch(sessionProvider.select((s) => s.loggedIn));
+    final s = ref.watch(sessionProvider);
     final store = ref.watch(offlineStoreProvider);
     final hasAccount = store.hasAccount;
+    final hasPin = store.hasPin;
+
+    final Widget view;
+    if (s.parentAccessAllowed) {
+      view = _signedIn(l10n, hasAccount && s.loggedIn, store.accountEmail ?? '');
+    } else if (_showCreate || (!hasAccount && !hasPin)) {
+      view = _createForm(l10n, canCancel: hasPin);
+    } else if (hasAccount) {
+      view = _accountLogin(l10n);
+    } else {
+      view = _pinLoginForm(l10n);
+    }
 
     return SavannaScaffold(
       topRight: _CloseButton(onTap: () => context.go('/')),
@@ -100,9 +134,7 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
                   ),
                 ],
               ),
-              child: loggedIn
-                  ? _signedIn(context, l10n, store.accountEmail ?? '')
-                  : _form(context, l10n, creating: !hasAccount),
+              child: view,
             ),
           ),
         ),
@@ -110,62 +142,120 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
     );
   }
 
-  Widget _signedIn(BuildContext context, AppLocalizations l10n, String email) {
+  Widget _header(String emoji, String title, [String? subtitle]) => Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _Avatar(emoji: emoji),
+          const SizedBox(height: 14),
+          Text(title,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                  fontFamily: 'Baloo2',
+                  fontSize: 24,
+                  fontWeight: FontWeight.w800,
+                  color: WatotoColors.deep)),
+          if (subtitle != null) ...[
+            const SizedBox(height: 8),
+            Text(subtitle,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 14, color: WatotoColors.deep.withValues(alpha: 0.6))),
+          ],
+          const SizedBox(height: 20),
+        ],
+      );
+
+  Widget _signedIn(AppLocalizations l10n, bool viaAccount, String email) {
     return Column(
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const _Avatar(emoji: '👋'),
+        _header('👋', l10n.parentAccount,
+            viaAccount ? l10n.signedInAs(email) : l10n.loggedInPin),
+        _OutlineButton(label: l10n.logOut, onTap: _logOut),
+      ],
+    );
+  }
+
+  Widget _accountLogin(AppLocalizations l10n) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _header('🔑', l10n.parentAccount),
+        TextField(
+          controller: _email,
+          enabled: false, // log back in to the stored account
+          decoration: accountFieldDecoration(l10n.emailLabel, l10n.emailHint),
+        ),
         const SizedBox(height: 14),
-        Text(l10n.parentAccount,
-            style: const TextStyle(
-                fontFamily: 'Baloo2',
-                fontSize: 24,
-                fontWeight: FontWeight.w800,
-                color: WatotoColors.deep)),
-        const SizedBox(height: 8),
-        Text(l10n.signedInAs(email),
-            textAlign: TextAlign.center,
-            style: TextStyle(color: WatotoColors.deep.withValues(alpha: 0.7))),
-        const SizedBox(height: 24),
-        _OutlineButton(
-          label: l10n.logOut,
-          onTap: () async {
-            await ref.read(sessionProvider.notifier).signOutAccount();
-            if (context.mounted) setState(() {});
-          },
+        TextField(
+          controller: _password,
+          obscureText: true,
+          enableSuggestions: false,
+          autocorrect: false,
+          decoration: accountFieldDecoration(l10n.passwordLabel, l10n.passwordHint)
+              .copyWith(errorText: _error),
+          onChanged: (_) => setState(() {}),
+          onSubmitted: (_) => _busy ? null : _createOrLogin(creating: false),
+        ),
+        const SizedBox(height: 20),
+        _FilledButton(
+          label: l10n.logIn,
+          onTap: _busy ? null : () => _createOrLogin(creating: false),
         ),
       ],
     );
   }
 
-  Widget _form(BuildContext context, AppLocalizations l10n,
-      {required bool creating}) {
+  Widget _pinLoginForm(AppLocalizations l10n) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const _Avatar(emoji: '🔑'),
-        const SizedBox(height: 14),
-        Text(
-          creating ? l10n.createAccount : l10n.logIn,
+        _header('🔢', l10n.parentAccount, l10n.enterPinSubtitle),
+        TextField(
+          controller: _pin,
+          keyboardType: TextInputType.number,
+          obscureText: true,
+          enableSuggestions: false,
+          autocorrect: false,
+          inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+          maxLength: 6,
           textAlign: TextAlign.center,
-          style: const TextStyle(
-              fontFamily: 'Baloo2',
-              fontSize: 24,
-              fontWeight: FontWeight.w800,
-              color: WatotoColors.deep),
+          style: const TextStyle(fontSize: 18, letterSpacing: 4),
+          decoration: accountFieldDecoration(l10n.parentPin, null)
+              .copyWith(errorText: _error),
+          onChanged: (_) => setState(() {}),
+          onSubmitted: (_) => _pinLogin(),
         ),
-        const SizedBox(height: 8),
-        Text(
-          l10n.createAccountSubtitle,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              fontSize: 14, color: WatotoColors.deep.withValues(alpha: 0.6)),
+        const SizedBox(height: 16),
+        _FilledButton(
+          label: l10n.logIn,
+          onTap: _pin.text.isEmpty ? null : _pinLogin,
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 4),
+        Center(
+          child: TextButton(
+            onPressed: () => setState(() {
+              _showCreate = true;
+              _error = null;
+            }),
+            child: Text(l10n.createAccountInstead),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _createForm(AppLocalizations l10n, {required bool canCancel}) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        _header('🔑', l10n.createAccount, l10n.createAccountSubtitle),
         TextField(
           controller: _email,
-          enabled: creating, // returning users log in with the stored email
           keyboardType: TextInputType.emailAddress,
           autocorrect: false,
           decoration: accountFieldDecoration(l10n.emailLabel, l10n.emailHint),
@@ -177,24 +267,35 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
           obscureText: true,
           enableSuggestions: false,
           autocorrect: false,
-          decoration:
-              accountFieldDecoration(l10n.passwordLabel, l10n.passwordHint)
-                  .copyWith(errorText: _error),
+          decoration: accountFieldDecoration(l10n.passwordLabel, l10n.passwordHint)
+              .copyWith(errorText: _error),
           onChanged: (_) => setState(() {}),
-          onSubmitted: (_) => _busy ? null : _submit(creating: creating),
+          onSubmitted: (_) => _busy ? null : _createOrLogin(creating: true),
         ),
         const SizedBox(height: 20),
         _FilledButton(
-          label: creating ? l10n.createAccount : l10n.logIn,
-          onTap: _busy ? null : () => _submit(creating: creating),
+          label: l10n.createAccount,
+          onTap: _busy ? null : () => _createOrLogin(creating: true),
         ),
+        if (canCancel) ...[
+          const SizedBox(height: 4),
+          Center(
+            child: TextButton(
+              onPressed: () => setState(() {
+                _showCreate = false;
+                _error = null;
+              }),
+              child: Text(l10n.usePinInstead),
+            ),
+          ),
+        ],
       ],
     );
   }
 }
 
 /// Shared field styling for the account screen (rounded, cream-filled).
-InputDecoration accountFieldDecoration(String label, String hint) =>
+InputDecoration accountFieldDecoration(String label, String? hint) =>
     InputDecoration(
       labelText: label,
       hintText: hint,
@@ -294,8 +395,7 @@ class _OutlineButton extends StatelessWidget {
         minimumSize: const Size.fromHeight(52),
         side: const BorderSide(color: WatotoColors.berry, width: 1.5),
         foregroundColor: WatotoColors.berry,
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
         textStyle: const TextStyle(
             fontFamily: 'Baloo2', fontSize: 18, fontWeight: FontWeight.w800),
       ),
