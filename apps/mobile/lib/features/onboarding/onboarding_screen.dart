@@ -5,8 +5,6 @@ import 'package:go_router/go_router.dart';
 
 import '../../core/offline/offline_providers.dart';
 import '../../core/theme/watoto_theme.dart';
-import '../../features/auth/auth_service.dart';
-import '../../features/auth/parent_gate.dart';
 import '../../l10n/gen/app_localizations.dart';
 import '../profiles/child_form.dart';
 import 'consent.dart';
@@ -27,10 +25,6 @@ class OnboardingScreen extends ConsumerStatefulWidget {
 class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   int _step = 0;
 
-  // grown-up gate (FTC parental gate)
-  final _gate = TextEditingController();
-  String? _gateError;
-
   // consent
   bool _aiFeatures = false;
   bool _voiceRecording = false;
@@ -45,14 +39,13 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
   @override
   void dispose() {
-    _gate.dispose();
     _pin.dispose();
     _pinConfirm.dispose();
     super.dispose();
   }
 
   void _next() => setState(() => _step++);
-  void _back() => setState(() => _step = (_step - 1).clamp(0, 4));
+  void _back() => setState(() => _step = (_step - 1).clamp(0, 3));
 
   Future<void> _finish() async {
     final consent = ConsentRecord(
@@ -79,22 +72,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     // steps share the card-on-savanna template below.
     return switch (_step) {
       0 => LanguageSelectScreen(onStart: _next),
-      1 => _GateStep(
-          challenge: ref.watch(parentGateChallengeProvider),
-          controller: _gate,
-          error: _gateError,
-          onBack: _back,
-          onNext: () {
-            if (checkParentGate(
-                _gate.text, ref.read(parentGateChallengeProvider))) {
-              setState(() => _gateError = null);
-              _next();
-            } else {
-              setState(() => _gateError = l10n.wrongNumbers);
-            }
-          },
-        ),
-      2 => _ConsentStep(
+      1 => _ConsentStep(
           aiFeatures: _aiFeatures,
           voiceRecording: _voiceRecording,
           onAi: (v) => setState(() => _aiFeatures = v),
@@ -102,7 +80,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           onBack: _back,
           onNext: _next,
         ),
-      3 => _PinStep(
+      2 => _PinStep(
           pin: _pin,
           confirm: _pinConfirm,
           error: _pinError,
@@ -133,7 +111,6 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 // ─────────────────────────────────────────────────────────────────────────────
 
 // Squircle icon accent colours (one per step).
-const _gateColor = Color(0xFF4DA6E5);
 const _consentColor = Color(0xFF4CB87B);
 const _pinColor = Color(0xFFF4A62A);
 const _childColor = Color(0xFF9D6FD8);
@@ -158,7 +135,7 @@ class _StepCard extends StatelessWidget {
     required this.button,
   });
 
-  static const stepCount = 4;
+  static const stepCount = 3;
 
   final int stepIndex;
   final VoidCallback onBack;
@@ -403,94 +380,6 @@ InputDecoration _fieldDecoration(String? hint) => InputDecoration(
 // Steps
 // ─────────────────────────────────────────────────────────────────────────────
 
-class _GateStep extends StatelessWidget {
-  const _GateStep({
-    required this.challenge,
-    required this.controller,
-    required this.error,
-    required this.onBack,
-    required this.onNext,
-  });
-
-  final ParentGateChallenge challenge;
-  final TextEditingController controller;
-  final String? error;
-  final VoidCallback onBack;
-  final VoidCallback onNext;
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    // The challenge is spelled-out words joined by " — "; show each as a chip.
-    final words =
-        challenge.prompt.split('—').map((w) => w.trim()).where((w) => w.isNotEmpty);
-    return _StepCard(
-      stepIndex: 0,
-      onBack: onBack,
-      emoji: '🔢',
-      iconColor: _gateColor,
-      title: l10n.grownupCheck,
-      subtitle: l10n.grownupCheckBody,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Wrap(
-            alignment: WrapAlignment.center,
-            spacing: 10,
-            runSpacing: 10,
-            children: [for (final w in words) _WordChip(w)],
-          ),
-          const SizedBox(height: 20),
-          TextField(
-            controller: controller,
-            keyboardType: TextInputType.number,
-            maxLength: 6,
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-            decoration: _fieldDecoration(l10n.gateAnswerHint).copyWith(
-              errorText: error,
-            ),
-          ),
-        ],
-      ),
-      button: ValueListenableBuilder<TextEditingValue>(
-        valueListenable: controller,
-        builder: (context, value, _) => _PrimaryButton(
-          label: l10n.next,
-          trailing: const Icon(Icons.arrow_forward_rounded,
-              size: 20, color: WatotoColors.deep),
-          onPressed: value.text.trim().isEmpty ? null : onNext,
-        ),
-      ),
-    );
-  }
-}
-
-class _WordChip extends StatelessWidget {
-  const _WordChip(this.word);
-  final String word;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
-      decoration: BoxDecoration(
-        color: const Color(0xFFDCEBF8),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Text(
-        word,
-        style: const TextStyle(
-          fontFamily: 'Baloo2',
-          fontSize: 20,
-          fontWeight: FontWeight.w800,
-          color: Color(0xFF2F86D6),
-        ),
-      ),
-    );
-  }
-}
-
 class _ConsentStep extends StatelessWidget {
   const _ConsentStep({
     required this.aiFeatures,
@@ -512,7 +401,7 @@ class _ConsentStep extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return _StepCard(
-      stepIndex: 1,
+      stepIndex: 0,
       onBack: onBack,
       emoji: '🛡️',
       iconColor: _consentColor,
@@ -652,7 +541,7 @@ class _PinStep extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return _StepCard(
-      stepIndex: 2,
+      stepIndex: 1,
       onBack: onBack,
       emoji: '🔐',
       iconColor: _pinColor,
@@ -737,7 +626,7 @@ class _ChildStep extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return _StepCard(
-      stepIndex: 3,
+      stepIndex: 2,
       onBack: onBack,
       emoji: '🧒',
       iconColor: _childColor,
