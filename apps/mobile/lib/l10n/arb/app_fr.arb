@@ -3,6 +3,7 @@
   "appTitle": "Watoto",
   "homeGreeting": "Bonjour, {name} !",
   "dailyChallenge": "Défi du jour",
+  "homeSubtitle": "On joue à quoi aujourd'hui ?",
   "startLearning": "Commencer",
   "subjects": "Matières",
   "selectAgeTitle": "Quel âge as-tu ?",

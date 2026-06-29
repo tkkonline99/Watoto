@@ -321,8 +321,8 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Changamoto ya Leo'), findsOneWidget); // dailyChallenge
-    expect(find.text('Masomo'), findsOneWidget); // "Subjects" header
-    // Note: subject names come from the curriculum content (English in the
+    expect(find.text('Jambo, Amani!'), findsOneWidget); // localized greeting
+    // Note: subject tile names come from the curriculum content (English in the
     // source deck), so they are not localized yet — only UI chrome is.
   });
 }

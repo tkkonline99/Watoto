@@ -118,6 +118,12 @@ abstract class AppLocalizations {
   /// **'Daily Challenge'**
   String get dailyChallenge;
 
+  /// No description provided for @homeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What shall we play today?'**
+  String get homeSubtitle;
+
   /// No description provided for @startLearning.
   ///
   /// In en, this message translates to:

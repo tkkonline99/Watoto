@@ -20,6 +20,9 @@ class AppLocalizationsSw extends AppLocalizations {
   String get dailyChallenge => 'Changamoto ya Leo';
 
   @override
+  String get homeSubtitle => 'Tucheze nini leo?';
+
+  @override
   String get startLearning => 'Anza';
 
   @override

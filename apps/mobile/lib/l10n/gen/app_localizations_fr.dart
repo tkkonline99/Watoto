@@ -20,6 +20,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get dailyChallenge => 'Défi du jour';
 
   @override
+  String get homeSubtitle => 'On joue à quoi aujourd\'hui ?';
+
+  @override
   String get startLearning => 'Commencer';
 
   @override

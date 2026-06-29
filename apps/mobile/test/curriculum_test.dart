@@ -11,6 +11,7 @@ import 'package:watoto_mobile/core/offline/sync_op.dart';
 import 'package:watoto_mobile/features/curriculum/curriculum_data.dart';
 import 'package:watoto_mobile/features/curriculum/subject_catalog.dart';
 import 'package:watoto_mobile/features/onboarding/consent.dart';
+import 'package:watoto_mobile/features/onboarding/savanna_background.dart';
 
 class _UnreachableApi implements SyncApi {
   @override
@@ -81,7 +82,11 @@ void main() {
   });
 
   group('curriculum screen', () {
-    setUpAll(() => Hive.init(Directory.systemTemp.path));
+    setUpAll(() {
+      Hive.init(Directory.systemTemp.path);
+      // Hold the perpetual savanna ambient drift still so pumpAndSettle works.
+      debugDisableSavannaAmbient = true;
+    });
 
     testWidgets('home subject card opens the age picker, then drills in',
         (tester) async {
@@ -105,7 +110,9 @@ void main() {
       await tester.pumpAndSettle();
 
       // There's no fixed stage now: tapping a subject asks for an age first.
-      await tester.tap(find.text('Math'));
+      final math = find.text('Math');
+      await tester.ensureVisible(math);
+      await tester.tap(math);
       await tester.pumpAndSettle();
       expect(find.text('How old are you?'), findsOneWidget);
 
