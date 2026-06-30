@@ -92,7 +92,7 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
     } else {
       session.lockParent(); // PIN session
     }
-    setState(() => _error = null);
+    context.go('/'); // logging out always returns to the home page
   }
 
   @override
