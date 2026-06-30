@@ -12,12 +12,19 @@ import 'package:watoto_mobile/features/curriculum/curriculum_data.dart';
 import 'package:watoto_mobile/features/curriculum/subject_catalog.dart';
 import 'package:watoto_mobile/features/onboarding/consent.dart';
 import 'package:watoto_mobile/features/onboarding/savanna_background.dart';
+import 'package:watoto_mobile/router/app_router.dart';
 
 class _UnreachableApi implements SyncApi {
   @override
   Future<Map<String, String>> syncBatch(List<SyncOp> ops) async =>
       throw SyncApiException('offline');
 }
+
+/// The app opens on the welcome screen; jump to the home to exercise the tiles.
+void _goHome(WidgetTester tester) =>
+    ProviderScope.containerOf(tester.element(find.byType(WatotoApp)))
+        .read(appRouterProvider)
+        .go('/');
 
 void main() {
   group('curriculum data (from curriculum.pptx)', () {
@@ -107,6 +114,8 @@ void main() {
         ],
         child: const WatotoApp(),
       ));
+      await tester.pumpAndSettle();
+      _goHome(tester); // app opens on the welcome screen; enter the home
       await tester.pumpAndSettle();
 
       // There's no fixed stage now: tapping a subject asks for an age first.

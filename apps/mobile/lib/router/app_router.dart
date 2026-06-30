@@ -32,9 +32,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
   });
 
   return GoRouter(
-    // Default '/'; a --dart-define=START=<route> allows deep-link launches
-    // for demos and manual testing (guards still apply).
-    initialLocation: const String.fromEnvironment('START', defaultValue: '/'),
+    // Open on the welcome / "Choose your language" landing; "Let's go" enters
+    // the home. A --dart-define=START=<route> overrides for demos/testing.
+    initialLocation:
+        const String.fromEnvironment('START', defaultValue: '/welcome'),
     refreshListenable: refresh,
     redirect: (context, state) {
       final s = ref.read(sessionProvider);
@@ -43,6 +44,9 @@ final appRouterProvider = Provider<GoRouter>((ref) {
 
       if (!s.onboardingComplete) return onboarding ? null : '/onboarding';
       if (onboarding) return '/';
+
+      // The welcome/landing screen is always reachable once onboarded.
+      if (loc == '/welcome') return null;
 
       if (loc.startsWith('/parent')) {
         if (loc == '/parent/pin') return null;

@@ -203,6 +203,8 @@ void main() {
     );
     await tester.pumpWidget(buildApp());
     await tester.pumpAndSettle();
+    goTo(tester, '/'); // app opens on the welcome screen; enter the home
+    await tester.pumpAndSettle();
 
     await tester.tap(find.byTooltip('Parent Zone'));
     await tester.pumpAndSettle();
@@ -241,6 +243,8 @@ void main() {
   testWidgets('home shows greeting, subjects, and daily challenge', (tester) async {
     await seedOnboarded();
     await tester.pumpWidget(buildApp());
+    await tester.pumpAndSettle();
+    goTo(tester, '/'); // app opens on the welcome screen; enter the home
     await tester.pumpAndSettle();
 
     expect(find.text('Hello, Amani!'), findsOneWidget);
@@ -332,6 +336,8 @@ void main() {
     await seedOnboarded();
     await tester.pumpWidget(buildApp());
     await tester.pumpAndSettle();
+    goTo(tester, '/'); // app opens on the welcome screen; enter the home
+    await tester.pumpAndSettle();
 
     await tester.tap(find.byTooltip('Parent Zone'));
     await tester.pumpAndSettle();
@@ -352,6 +358,8 @@ void main() {
   testWidgets('locale switches to Swahili', (tester) async {
     await seedOnboarded();
     await tester.pumpWidget(buildApp());
+    await tester.pumpAndSettle();
+    goTo(tester, '/'); // app opens on the welcome screen; enter the home
     await tester.pumpAndSettle();
 
     await tester.tap(find.byTooltip('Choose your language'));
