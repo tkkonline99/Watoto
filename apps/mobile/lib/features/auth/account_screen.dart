@@ -92,7 +92,8 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
     } else {
       session.lockParent(); // PIN session
     }
-    context.go('/'); // logging out always returns to the home page
+    // Signing out returns to the welcome / "Choose your language" screen.
+    context.go('/welcome');
   }
 
   @override

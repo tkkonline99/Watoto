@@ -228,13 +228,14 @@ void main() {
     await tester.tap(logIn);
     await tester.pumpAndSettle();
 
-    // Now signed in -> log out is offered; logging out returns to the home.
+    // Now signed in -> log out is offered; logging out returns to the
+    // welcome / "Choose your language" screen.
     final logOut = find.text('Log out');
     expect(logOut, findsOneWidget);
     await tester.ensureVisible(logOut);
     await tester.tap(logOut);
     await tester.pumpAndSettle();
-    expect(find.text('Hello, Amani!'), findsOneWidget); // back on the home page
+    expect(find.text('Choose your language'), findsOneWidget);
   });
 
   testWidgets('home shows greeting, subjects, and daily challenge', (tester) async {

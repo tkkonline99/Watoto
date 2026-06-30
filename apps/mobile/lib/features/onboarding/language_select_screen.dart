@@ -2,11 +2,23 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../core/state/app_state.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
 import 'savanna_background.dart';
+
+/// Standalone welcome/landing screen (route `/welcome`): the same language
+/// screen shown after signing out. Picking a language and tapping "Let's go"
+/// re-enters the app at the home.
+class WelcomeScreen extends StatelessWidget {
+  const WelcomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) =>
+      LanguageSelectScreen(onStart: () => context.go('/'));
+}
 
 /// First impression for children (many pre-readers): a bright savanna scene
 /// where a lion mascot asks the child to pick the language it should speak.

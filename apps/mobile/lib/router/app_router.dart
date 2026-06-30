@@ -10,6 +10,7 @@ import '../features/curriculum/subject_detail_screen.dart';
 import '../features/legal/legal_doc_screen.dart';
 import '../features/lesson_player/lesson_player_screen.dart';
 import '../features/library/library_play_screen.dart';
+import '../features/onboarding/language_select_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
 import '../features/parent/parent_dashboard_screen.dart';
 import '../features/parent/pin_gate_screen.dart';
@@ -71,6 +72,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         builder: (c, s) => const LegalDocScreen(doc: LegalDoc.terms),
       ),
       GoRoute(path: '/', builder: (c, s) => const ChildHomeScreen()),
+      GoRoute(path: '/welcome', builder: (c, s) => const WelcomeScreen()),
       GoRoute(path: '/account', builder: (c, s) => const AccountScreen()),
       GoRoute(
         path: '/lesson/:slug',
