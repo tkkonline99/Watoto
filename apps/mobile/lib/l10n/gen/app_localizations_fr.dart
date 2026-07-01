@@ -313,4 +313,72 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get legalDraftNote => 'Brouillon — en attente de révision juridique';
+
+  @override
+  String levelLabel(int level) {
+    return 'Niveau $level';
+  }
+
+  @override
+  String streakLabel(int days) {
+    return 'Série de $days jours';
+  }
+
+  @override
+  String get accessibility => 'Accessibilité';
+
+  @override
+  String get textSizeSmall => 'Petit';
+
+  @override
+  String get textSizeMedium => 'Moyen';
+
+  @override
+  String get textSizeLarge => 'Grand';
+
+  @override
+  String get readAloud => 'Lecture à voix haute';
+
+  @override
+  String get readAloudBody => 'Énoncer les consignes et la narration';
+
+  @override
+  String get achievements => 'Réalisations';
+
+  @override
+  String get noBadgesYet => 'Joue pour gagner des badges !';
+
+  @override
+  String get comingSoonTitle => 'Bientôt plus !';
+
+  @override
+  String get comingSoonBody =>
+      'De nouvelles activités arrivent pour cette matière.';
+
+  @override
+  String get tapToPlay => 'Touche pour jouer !';
+
+  @override
+  String get tapEachPrompt => 'Touche-les tous !';
+
+  @override
+  String get dragToBasket => 'Glisse-le dans le panier !';
+
+  @override
+  String get badgeFirstLesson => 'Première leçon';
+
+  @override
+  String get badgeFiveLessons => '5 leçons';
+
+  @override
+  String get badgeStreak3 => 'Série de 3 jours';
+
+  @override
+  String get badgeStreak7 => 'Série de 7 jours';
+
+  @override
+  String get badgeFirstStory => 'Première histoire';
+
+  @override
+  String get badgeLevel5 => 'Niveau 5';
 }

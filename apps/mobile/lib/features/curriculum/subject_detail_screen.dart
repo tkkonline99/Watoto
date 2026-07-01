@@ -15,7 +15,11 @@ import 'subject_i18n.dart';
 /// Shows a single subject for one stage — only that subject's playable items
 /// and topics, nothing else. Reached by tapping a subject on the home.
 class SubjectDetailScreen extends ConsumerWidget {
-  const SubjectDetailScreen({super.key, required this.stage, required this.subject});
+  const SubjectDetailScreen({
+    super.key,
+    required this.stage,
+    required this.subject,
+  });
 
   final int stage;
   final String subject; // canonical English subject name
@@ -30,9 +34,11 @@ class SubjectDetailScreen extends ConsumerWidget {
     final stageData = (stage >= 1 && stage <= curriculumStages.length)
         ? curriculumStages[stage - 1]
         : curriculumStages.first;
-    final CurriculumTopic? topic =
-        stageData.topics.where((t) => t.name == subject).firstOrNull;
-    final items = repo?.forStageSubject(stage, subject) ?? const <LibraryItem>[];
+    final CurriculumTopic? topic = stageData.topics
+        .where((t) => t.name == subject)
+        .firstOrNull;
+    final items =
+        repo?.forStageSubject(stage, subject) ?? const <LibraryItem>[];
 
     return Scaffold(
       appBar: AppBar(
@@ -41,8 +47,13 @@ class SubjectDetailScreen extends ConsumerWidget {
           icon: const Icon(Icons.arrow_back_rounded, color: WatotoColors.deep),
           onPressed: () => context.go('/'),
         ),
-        title: Text(localizedSubject(subject, lang),
-            style: const TextStyle(fontWeight: FontWeight.w800, color: WatotoColors.deep)),
+        title: Text(
+          localizedSubject(subject, lang),
+          style: const TextStyle(
+            fontWeight: FontWeight.w800,
+            color: WatotoColors.deep,
+          ),
+        ),
       ),
       body: SafeArea(
         child: ListView(
@@ -56,13 +67,21 @@ class SubjectDetailScreen extends ConsumerWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(localizedSubject(subject, lang),
-                          style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w800)),
-                      Text(l10n.stageOf(stage, stageData.ageRange),
-                          style: const TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w700,
-                              color: WatotoColors.sky)),
+                      Text(
+                        localizedSubject(subject, lang),
+                        style: const TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.w800,
+                        ),
+                      ),
+                      Text(
+                        l10n.stageOf(stage, stageData.ageRange),
+                        style: const TextStyle(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w700,
+                          color: WatotoColors.sky,
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -72,18 +91,35 @@ class SubjectDetailScreen extends ConsumerWidget {
 
             // Playable items for this subject, if any are authored yet.
             if (items.isNotEmpty) ...[
-              Text(l10n.startLearning,
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w800)),
+              Text(
+                l10n.startLearning,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
               const SizedBox(height: 8),
               for (final item in items)
                 _PlayTile(item: item, title: itemTitle(i18n, lang, item)),
+              const SizedBox(height: 16),
+            ] else ...[
+              // Never a dead-end: a friendly note when nothing is authored yet.
+              _ComingSoonCard(
+                title: l10n.comingSoonTitle,
+                body: l10n.comingSoonBody,
+              ),
               const SizedBox(height: 16),
             ],
 
             // The curriculum plan (what this subject covers) for this stage.
             if (topic != null) ...[
-              Text(l10n.subjects,
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w800)),
+              Text(
+                l10n.subjects,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
               const SizedBox(height: 8),
               for (final activity in topic.activities)
                 Padding(
@@ -91,14 +127,62 @@ class SubjectDetailScreen extends ConsumerWidget {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('•  ', style: TextStyle(fontWeight: FontWeight.bold)),
-                      Expanded(child: Text(activity, style: const TextStyle(fontSize: 15))),
+                      const Text(
+                        '•  ',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      Expanded(
+                        child: Text(
+                          activity,
+                          style: const TextStyle(fontSize: 15),
+                        ),
+                      ),
                     ],
                   ),
                 ),
             ],
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _ComingSoonCard extends StatelessWidget {
+  const _ComingSoonCard({required this.title, required this.body});
+
+  final String title;
+  final String body;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: WatotoColors.sky.withValues(alpha: 0.10),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Row(
+        children: [
+          const Text('🚧', style: TextStyle(fontSize: 32)),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(body, style: const TextStyle(fontSize: 14)),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -129,15 +213,29 @@ class _PlayTile extends StatelessWidget {
             color: WatotoColors.sun.withValues(alpha: 0.18),
             borderRadius: BorderRadius.circular(14),
           ),
-          child: Row(children: [
-            Text(_typeEmoji[item.type] ?? '⭐', style: const TextStyle(fontSize: 22)),
-            const SizedBox(width: 10),
-            Expanded(
-              child: Text(title,
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700)),
-            ),
-            const Icon(Icons.play_circle_fill, color: WatotoColors.mango, size: 28),
-          ]),
+          child: Row(
+            children: [
+              Text(
+                _typeEmoji[item.type] ?? '⭐',
+                style: const TextStyle(fontSize: 22),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ),
+              const Icon(
+                Icons.play_circle_fill,
+                color: WatotoColors.mango,
+                size: 28,
+              ),
+            ],
+          ),
         ),
       ),
     );

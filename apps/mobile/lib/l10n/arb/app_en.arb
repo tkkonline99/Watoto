@@ -136,5 +136,36 @@
       "stage": { "type": "int" },
       "ages": { "type": "String" }
     }
-  }
+  },
+  "levelLabel": "Level {level}",
+  "@levelLabel": {
+    "placeholders": {
+      "level": { "type": "int" }
+    }
+  },
+  "streakLabel": "{days}-day streak",
+  "@streakLabel": {
+    "placeholders": {
+      "days": { "type": "int" }
+    }
+  },
+  "accessibility": "Accessibility",
+  "textSizeSmall": "Small",
+  "textSizeMedium": "Medium",
+  "textSizeLarge": "Large",
+  "readAloud": "Read aloud",
+  "readAloudBody": "Speak instructions and narration",
+  "achievements": "Achievements",
+  "noBadgesYet": "Play to earn badges!",
+  "comingSoonTitle": "More coming soon!",
+  "comingSoonBody": "New activities for this subject are on the way.",
+  "tapToPlay": "Tap to play!",
+  "tapEachPrompt": "Tap them all!",
+  "dragToBasket": "Drag it into the basket!",
+  "badgeFirstLesson": "First lesson",
+  "badgeFiveLessons": "5 lessons",
+  "badgeStreak3": "3-day streak",
+  "badgeStreak7": "7-day streak",
+  "badgeFirstStory": "First story",
+  "badgeLevel5": "Level 5"
 }

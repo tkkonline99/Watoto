@@ -663,6 +663,132 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Draft — pending legal review'**
   String get legalDraftNote;
+
+  /// No description provided for @levelLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Level {level}'**
+  String levelLabel(int level);
+
+  /// No description provided for @streakLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{days}-day streak'**
+  String streakLabel(int days);
+
+  /// No description provided for @accessibility.
+  ///
+  /// In en, this message translates to:
+  /// **'Accessibility'**
+  String get accessibility;
+
+  /// No description provided for @textSizeSmall.
+  ///
+  /// In en, this message translates to:
+  /// **'Small'**
+  String get textSizeSmall;
+
+  /// No description provided for @textSizeMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get textSizeMedium;
+
+  /// No description provided for @textSizeLarge.
+  ///
+  /// In en, this message translates to:
+  /// **'Large'**
+  String get textSizeLarge;
+
+  /// No description provided for @readAloud.
+  ///
+  /// In en, this message translates to:
+  /// **'Read aloud'**
+  String get readAloud;
+
+  /// No description provided for @readAloudBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Speak instructions and narration'**
+  String get readAloudBody;
+
+  /// No description provided for @achievements.
+  ///
+  /// In en, this message translates to:
+  /// **'Achievements'**
+  String get achievements;
+
+  /// No description provided for @noBadgesYet.
+  ///
+  /// In en, this message translates to:
+  /// **'Play to earn badges!'**
+  String get noBadgesYet;
+
+  /// No description provided for @comingSoonTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'More coming soon!'**
+  String get comingSoonTitle;
+
+  /// No description provided for @comingSoonBody.
+  ///
+  /// In en, this message translates to:
+  /// **'New activities for this subject are on the way.'**
+  String get comingSoonBody;
+
+  /// No description provided for @tapToPlay.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to play!'**
+  String get tapToPlay;
+
+  /// No description provided for @tapEachPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap them all!'**
+  String get tapEachPrompt;
+
+  /// No description provided for @dragToBasket.
+  ///
+  /// In en, this message translates to:
+  /// **'Drag it into the basket!'**
+  String get dragToBasket;
+
+  /// No description provided for @badgeFirstLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'First lesson'**
+  String get badgeFirstLesson;
+
+  /// No description provided for @badgeFiveLessons.
+  ///
+  /// In en, this message translates to:
+  /// **'5 lessons'**
+  String get badgeFiveLessons;
+
+  /// No description provided for @badgeStreak3.
+  ///
+  /// In en, this message translates to:
+  /// **'3-day streak'**
+  String get badgeStreak3;
+
+  /// No description provided for @badgeStreak7.
+  ///
+  /// In en, this message translates to:
+  /// **'7-day streak'**
+  String get badgeStreak7;
+
+  /// No description provided for @badgeFirstStory.
+  ///
+  /// In en, this message translates to:
+  /// **'First story'**
+  String get badgeFirstStory;
+
+  /// No description provided for @badgeLevel5.
+  ///
+  /// In en, this message translates to:
+  /// **'Level 5'**
+  String get badgeLevel5;
 }
 
 class _AppLocalizationsDelegate

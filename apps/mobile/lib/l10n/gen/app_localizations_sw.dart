@@ -312,4 +312,71 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get legalDraftNote => 'Rasimu — inasubiri ukaguzi wa kisheria';
+
+  @override
+  String levelLabel(int level) {
+    return 'Kiwango $level';
+  }
+
+  @override
+  String streakLabel(int days) {
+    return 'Mfululizo wa siku $days';
+  }
+
+  @override
+  String get accessibility => 'Ufikivu';
+
+  @override
+  String get textSizeSmall => 'Ndogo';
+
+  @override
+  String get textSizeMedium => 'Wastani';
+
+  @override
+  String get textSizeLarge => 'Kubwa';
+
+  @override
+  String get readAloud => 'Soma kwa sauti';
+
+  @override
+  String get readAloudBody => 'Tamka maelekezo na masimulizi';
+
+  @override
+  String get achievements => 'Mafanikio';
+
+  @override
+  String get noBadgesYet => 'Cheza ili kupata beji!';
+
+  @override
+  String get comingSoonTitle => 'Mengi yanakuja hivi karibuni!';
+
+  @override
+  String get comingSoonBody => 'Shughuli mpya za somo hili zinakuja.';
+
+  @override
+  String get tapToPlay => 'Gusa ili kucheza!';
+
+  @override
+  String get tapEachPrompt => 'Zigusa zote!';
+
+  @override
+  String get dragToBasket => 'Iburute kwenye kikapu!';
+
+  @override
+  String get badgeFirstLesson => 'Somo la kwanza';
+
+  @override
+  String get badgeFiveLessons => 'Masomo 5';
+
+  @override
+  String get badgeStreak3 => 'Mfululizo wa siku 3';
+
+  @override
+  String get badgeStreak7 => 'Mfululizo wa siku 7';
+
+  @override
+  String get badgeFirstStory => 'Hadithi ya kwanza';
+
+  @override
+  String get badgeLevel5 => 'Kiwango 5';
 }

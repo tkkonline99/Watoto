@@ -312,4 +312,72 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get legalDraftNote => 'Draft — pending legal review';
+
+  @override
+  String levelLabel(int level) {
+    return 'Level $level';
+  }
+
+  @override
+  String streakLabel(int days) {
+    return '$days-day streak';
+  }
+
+  @override
+  String get accessibility => 'Accessibility';
+
+  @override
+  String get textSizeSmall => 'Small';
+
+  @override
+  String get textSizeMedium => 'Medium';
+
+  @override
+  String get textSizeLarge => 'Large';
+
+  @override
+  String get readAloud => 'Read aloud';
+
+  @override
+  String get readAloudBody => 'Speak instructions and narration';
+
+  @override
+  String get achievements => 'Achievements';
+
+  @override
+  String get noBadgesYet => 'Play to earn badges!';
+
+  @override
+  String get comingSoonTitle => 'More coming soon!';
+
+  @override
+  String get comingSoonBody =>
+      'New activities for this subject are on the way.';
+
+  @override
+  String get tapToPlay => 'Tap to play!';
+
+  @override
+  String get tapEachPrompt => 'Tap them all!';
+
+  @override
+  String get dragToBasket => 'Drag it into the basket!';
+
+  @override
+  String get badgeFirstLesson => 'First lesson';
+
+  @override
+  String get badgeFiveLessons => '5 lessons';
+
+  @override
+  String get badgeStreak3 => '3-day streak';
+
+  @override
+  String get badgeStreak7 => '7-day streak';
+
+  @override
+  String get badgeFirstStory => 'First story';
+
+  @override
+  String get badgeLevel5 => 'Level 5';
 }

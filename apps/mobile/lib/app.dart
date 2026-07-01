@@ -13,6 +13,7 @@ class WatotoApp extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final locale = ref.watch(localeProvider);
     final router = ref.watch(appRouterProvider);
+    final textScale = ref.watch(textScaleProvider);
     return MaterialApp.router(
       onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
       theme: buildWatotoTheme(),
@@ -21,9 +22,35 @@ class WatotoApp extends ConsumerWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       routerConfig: router,
       debugShowCheckedModeBanner: false,
-      builder: (context, child) => _PhoneFrame(child: child!),
+      builder: (context, child) {
+        final mq = MediaQuery.of(context);
+        return MediaQuery(
+          // Multiply the OS text scale by the family's chosen size so the
+          // accessibility setting stacks with, rather than replaces, the
+          // device's own text-scaling.
+          data: mq.copyWith(
+            textScaler: _ScaledTextScaler(mq.textScaler, textScale),
+          ),
+          child: _PhoneFrame(child: child!),
+        );
+      },
     );
   }
+}
+
+/// Multiplies an existing [TextScaler] (usually the OS one) by a fixed factor,
+/// so the in-app "Text size" control layers on top of the device setting.
+class _ScaledTextScaler extends TextScaler {
+  const _ScaledTextScaler(this._base, this._factor);
+
+  final TextScaler _base;
+  final double _factor;
+
+  @override
+  double scale(double fontSize) => _base.scale(fontSize) * _factor;
+
+  @override
+  double get textScaleFactor => _base.scale(1.0) * _factor;
 }
 
 /// Watoto is phone-first. On phones the app fills the screen; on wide screens

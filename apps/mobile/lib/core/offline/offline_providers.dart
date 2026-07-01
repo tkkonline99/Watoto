@@ -14,13 +14,15 @@ import 'sync_engine.dart';
 /// Opened during bootstrap (main.dart) and injected via override so widget
 /// tests can supply an in-memory store.
 final offlineStoreProvider = Provider<OfflineStore>(
-  (_) => throw StateError('offlineStoreProvider must be overridden at bootstrap'),
+  (_) =>
+      throw StateError('offlineStoreProvider must be overridden at bootstrap'),
 );
 
 final syncApiProvider = Provider<SyncApi>((_) => WatotoApi());
 
 final syncEngineProvider = Provider<SyncEngine>(
-  (ref) => SyncEngine(ref.watch(offlineStoreProvider), ref.watch(syncApiProvider)),
+  (ref) =>
+      SyncEngine(ref.watch(offlineStoreProvider), ref.watch(syncApiProvider)),
 );
 
 // --------------------------------------------------------------- session
@@ -52,28 +54,30 @@ class SessionState {
     bool? parentUnlocked,
     bool? loggedIn,
     int? profilesRev,
-  }) =>
-      SessionState(
-        onboardingComplete: onboardingComplete ?? this.onboardingComplete,
-        activeChildId:
-            activeChildId == _unset ? this.activeChildId : activeChildId as String?,
-        parentUnlocked: parentUnlocked ?? this.parentUnlocked,
-        loggedIn: loggedIn ?? this.loggedIn,
-        profilesRev: profilesRev ?? this.profilesRev,
-      );
+  }) => SessionState(
+    onboardingComplete: onboardingComplete ?? this.onboardingComplete,
+    activeChildId: activeChildId == _unset
+        ? this.activeChildId
+        : activeChildId as String?,
+    parentUnlocked: parentUnlocked ?? this.parentUnlocked,
+    loggedIn: loggedIn ?? this.loggedIn,
+    profilesRev: profilesRev ?? this.profilesRev,
+  );
 
   static const _unset = Object();
 }
 
 class SessionController extends StateNotifier<SessionState> {
   SessionController(this._store)
-      : super(SessionState(
+    : super(
+        SessionState(
           onboardingComplete: _store.onboardingComplete,
           activeChildId: _store.activeChildId,
           parentUnlocked: false,
           loggedIn: _store.isLoggedIn,
           profilesRev: 0,
-        ));
+        ),
+      );
 
   final OfflineStore _store;
 
@@ -128,7 +132,10 @@ class SessionController extends StateNotifier<SessionState> {
     required int birthYear,
   }) async {
     final child = await _store.addChild(
-        nickname: nickname, avatarKey: avatarKey, birthYear: birthYear);
+      nickname: nickname,
+      avatarKey: avatarKey,
+      birthYear: birthYear,
+    );
     state = state._copy(profilesRev: state.profilesRev + 1);
     return child;
   }
@@ -150,8 +157,7 @@ class SessionController extends StateNotifier<SessionState> {
   void lockParent() => state = state._copy(parentUnlocked: false);
 }
 
-final sessionProvider =
-    StateNotifierProvider<SessionController, SessionState>(
+final sessionProvider = StateNotifierProvider<SessionController, SessionState>(
   (ref) => SessionController(ref.watch(offlineStoreProvider)),
 );
 
@@ -173,6 +179,14 @@ final xpProvider = StateProvider<int>((ref) {
   final id = ref.watch(sessionProvider.select((s) => s.activeChildId));
   if (id == null) return 0;
   return ref.watch(offlineStoreProvider).xpFor(id);
+});
+
+/// Daily-learning streak for the active child, seeded from the store and
+/// refreshed on every completion (a completion rolls the streak forward).
+final streakProvider = StateProvider<int>((ref) {
+  final id = ref.watch(sessionProvider.select((s) => s.activeChildId));
+  if (id == null) return 0;
+  return ref.watch(offlineStoreProvider).streakFor(id);
 });
 
 // --------------------------------------------------------------- learning
@@ -231,7 +245,10 @@ class LearningService {
 
   // --- Playable content library (content/watoto_content_library.json) ---
 
-  Future<void> completeLibraryLesson(LibraryItem item, {required int timeSpentS}) async {
+  Future<void> completeLibraryLesson(
+    LibraryItem item, {
+    required int timeSpentS,
+  }) async {
     final childId = _ref.read(sessionProvider).activeChildId;
     if (childId == null) return;
     final store = _ref.read(offlineStoreProvider);
@@ -281,6 +298,7 @@ class LearningService {
 
   void _afterWrite(OfflineStore store, String childId) {
     _ref.read(xpProvider.notifier).state = store.xpFor(childId);
+    _ref.read(streakProvider.notifier).state = store.streakFor(childId);
     unawaited(_ref.read(syncEngineProvider).flush());
   }
 }

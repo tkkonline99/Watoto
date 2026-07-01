@@ -16,13 +16,29 @@ import 'sync_op.dart';
 ///
 /// Hive keeps this portable across Android/iOS/Web and trivially testable;
 /// the drift/SQLite + Firebase-auth upgrade slots in behind this interface.
+/// Pure streak arithmetic (unit-tested directly): the run continues on the
+/// same day, increments after exactly one day's gap, and resets otherwise.
+/// Day keys are 'yyyy-MM-dd' strings in the family's local time.
+int nextStreak({
+  required String? lastDayKey,
+  required String todayKey,
+  required String yesterdayKey,
+  required int current,
+}) {
+  if (lastDayKey == todayKey) return current == 0 ? 1 : current;
+  if (lastDayKey == yesterdayKey) return current + 1;
+  return 1;
+}
+
 class OfflineStore {
   OfflineStore._(this._progress, this._queue, this._stats, this._account);
 
-  final Box<String> _progress; // 'lesson:<child>:<id>' / 'quiz:<child>:<id>' -> JSON
+  final Box<String>
+  _progress; // 'lesson:<child>:<id>' / 'quiz:<child>:<id>' -> JSON
   final Box<String> _queue; // clientOpId -> SyncOp JSON
   final Box<int> _stats; // 'xp:<child>' -> balance
-  final Box<String> _account; // onboarding, pin, consent, profiles, active child
+  final Box<String>
+  _account; // onboarding, pin, consent, profiles, active child
 
   static const _uuid = Uuid();
 
@@ -110,10 +126,30 @@ class OfflineStore {
     return sha256.convert(utf8.encode('$salt:$password')).toString();
   }
 
+  // ------------------------------------------------------------- settings
+
+  /// App-wide text-size multiplier layered on top of the OS text scale, so
+  /// families can enlarge everything for young or low-vision readers. 1.0 =
+  /// default; the accessibility control offers 1.0 / 1.3 / 1.6.
+  double get textScale =>
+      double.tryParse(_account.get('textScale') ?? '') ?? 1.0;
+
+  Future<void> setTextScale(double scale) =>
+      _account.put('textScale', scale.toString());
+
+  /// Whether spoken narration (TTS) is on. Default on — the 0–5 band is
+  /// audio-first, so pre-readers depend on it.
+  bool get narrationEnabled => _account.get('narrationEnabled') != 'false';
+
+  Future<void> setNarrationEnabled(bool enabled) =>
+      _account.put('narrationEnabled', enabled ? 'true' : 'false');
+
   ConsentRecord get consent {
     final raw = _account.get('consent');
     if (raw == null) return ConsentRecord.empty;
-    return ConsentRecord.fromJson((jsonDecode(raw) as Map).cast<String, dynamic>());
+    return ConsentRecord.fromJson(
+      (jsonDecode(raw) as Map).cast<String, dynamic>(),
+    );
   }
 
   Future<void> saveConsent(ConsentRecord consent) =>
@@ -122,16 +158,23 @@ class OfflineStore {
   List<ChildProfile> get children {
     return _account.keys
         .where((k) => (k as String).startsWith('child:'))
-        .map((k) => ChildProfile.fromJson(
-            (jsonDecode(_account.get(k)!) as Map).cast<String, dynamic>()))
+        .map(
+          (k) => ChildProfile.fromJson(
+            (jsonDecode(_account.get(k)!) as Map).cast<String, dynamic>(),
+          ),
+        )
         .toList()
-      ..sort((a, b) => a.nickname.toLowerCase().compareTo(b.nickname.toLowerCase()));
+      ..sort(
+        (a, b) => a.nickname.toLowerCase().compareTo(b.nickname.toLowerCase()),
+      );
   }
 
   ChildProfile? childById(String id) {
     final raw = _account.get('child:$id');
     if (raw == null) return null;
-    return ChildProfile.fromJson((jsonDecode(raw) as Map).cast<String, dynamic>());
+    return ChildProfile.fromJson(
+      (jsonDecode(raw) as Map).cast<String, dynamic>(),
+    );
   }
 
   Future<ChildProfile> addChild({
@@ -182,6 +225,31 @@ class OfflineStore {
 
   int xpFor(String childId) => _stats.get('xp:$childId', defaultValue: 0)!;
 
+  /// Consecutive days [childId] has learned (today or yesterday keeps the run
+  /// alive; a longer gap resets it). Surfaced on the home 🔥 pill.
+  int streakFor(String childId) =>
+      _stats.get('streak:$childId', defaultValue: 0)!;
+
+  /// Records that [childId] was active "today" and rolls the streak forward.
+  /// Called from every learning write; idempotent within a calendar day.
+  Future<void> _touchStreak(String childId, DateTime now) async {
+    final todayKey = _dayKey(now);
+    final lastKey = _account.get('streakDate:$childId');
+    if (lastKey == todayKey) return; // already counted today
+    final next = nextStreak(
+      lastDayKey: lastKey,
+      todayKey: todayKey,
+      yesterdayKey: _dayKey(now.subtract(const Duration(days: 1))),
+      current: streakFor(childId),
+    );
+    await _stats.put('streak:$childId', next);
+    await _account.put('streakDate:$childId', todayKey);
+  }
+
+  static String _dayKey(DateTime d) =>
+      '${d.year.toString().padLeft(4, '0')}-'
+      '${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')}';
+
   Map<String, dynamic>? progressFor(String childId, String lessonId) =>
       _read('lesson:$childId:$lessonId');
 
@@ -200,8 +268,10 @@ class OfflineStore {
   /// Queued ops, oldest first.
   List<SyncOp> get pendingOps {
     final ops = _queue.values
-        .map((raw) =>
-            SyncOp.fromJson((jsonDecode(raw) as Map).cast<String, dynamic>()))
+        .map(
+          (raw) =>
+              SyncOp.fromJson((jsonDecode(raw) as Map).cast<String, dynamic>()),
+        )
         .toList();
     ops.sort((a, b) => a.clientUpdatedAt.compareTo(b.clientUpdatedAt));
     return ops;
@@ -227,17 +297,20 @@ class OfflineStore {
       }),
     );
     await _grantXp(childId, xpEarned);
-    await _enqueue(SyncOp(
-      clientOpId: _uuid.v4(),
-      opType: 'lesson_progress',
-      payload: {
-        'lessonId': lessonId,
-        'status': 'completed',
-        'scorePct': scorePct,
-        'timeSpentS': timeSpentS,
-      },
-      clientUpdatedAt: now,
-    ));
+    await _touchStreak(childId, DateTime.now());
+    await _enqueue(
+      SyncOp(
+        clientOpId: _uuid.v4(),
+        opType: 'lesson_progress',
+        payload: {
+          'lessonId': lessonId,
+          'status': 'completed',
+          'scorePct': scorePct,
+          'timeSpentS': timeSpentS,
+        },
+        clientUpdatedAt: now,
+      ),
+    );
   }
 
   /// Records a quiz attempt (pass or fail — attempts are data) and enqueues
@@ -262,18 +335,21 @@ class OfflineStore {
       }),
     );
     await _grantXp(childId, xpEarned);
-    await _enqueue(SyncOp(
-      clientOpId: _uuid.v4(),
-      opType: 'quiz_attempt',
-      payload: {
-        'quizId': quizId,
-        'answers': answers,
-        'durationS': durationS,
-        'scorePct': scorePct,
-        'passed': passed,
-      },
-      clientUpdatedAt: now,
-    ));
+    await _touchStreak(childId, DateTime.now());
+    await _enqueue(
+      SyncOp(
+        clientOpId: _uuid.v4(),
+        opType: 'quiz_attempt',
+        payload: {
+          'quizId': quizId,
+          'answers': answers,
+          'durationS': durationS,
+          'scorePct': scorePct,
+          'passed': passed,
+        },
+        clientUpdatedAt: now,
+      ),
+    );
   }
 
   /// Records that [childId] finished reading [storyId] (idempotent on the
@@ -290,12 +366,15 @@ class OfflineStore {
       jsonEncode({'storyId': storyId, 'readAt': now.toIso8601String()}),
     );
     await _grantXp(childId, xpEarned);
-    await _enqueue(SyncOp(
-      clientOpId: _uuid.v4(),
-      opType: 'story_read',
-      payload: {'storyId': storyId},
-      clientUpdatedAt: now,
-    ));
+    await _touchStreak(childId, DateTime.now());
+    await _enqueue(
+      SyncOp(
+        clientOpId: _uuid.v4(),
+        opType: 'story_read',
+        payload: {'storyId': storyId},
+        clientUpdatedAt: now,
+      ),
+    );
   }
 
   /// Counts for the parent dashboard.

@@ -30,5 +30,23 @@ class LocaleController extends Notifier<Locale> {
   }
 }
 
-final localeProvider =
-    NotifierProvider<LocaleController, Locale>(LocaleController.new);
+final localeProvider = NotifierProvider<LocaleController, Locale>(
+  LocaleController.new,
+);
+
+/// App-wide text-size multiplier (1.0 / 1.3 / 1.6), layered on top of the OS
+/// text scale in [WatotoApp] so grown-ups can enlarge every screen for young
+/// or low-vision readers. Persisted so the choice survives a restart.
+class TextScaleController extends Notifier<double> {
+  @override
+  double build() => ref.watch(offlineStoreProvider).textScale;
+
+  void set(double scale) {
+    ref.read(offlineStoreProvider).setTextScale(scale);
+    state = scale;
+  }
+}
+
+final textScaleProvider = NotifierProvider<TextScaleController, double>(
+  TextScaleController.new,
+);

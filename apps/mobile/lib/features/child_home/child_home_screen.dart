@@ -8,6 +8,7 @@ import '../../core/theme/watoto_theme.dart';
 import '../../features/curriculum/age_picker.dart';
 import '../../features/curriculum/subject_catalog.dart';
 import '../../features/curriculum/subject_i18n.dart';
+import '../../features/gamification/rewards.dart';
 import '../../features/onboarding/savanna_background.dart';
 import '../../l10n/gen/app_localizations.dart';
 
@@ -36,6 +37,7 @@ class ChildHomeScreen extends ConsumerWidget {
     final child = ref.watch(activeChildProvider);
     final nickname = child?.nickname ?? '';
     final xp = ref.watch(xpProvider);
+    final streak = ref.watch(streakProvider);
 
     return SavannaScaffold(
       topRight: Row(
@@ -62,9 +64,11 @@ class ChildHomeScreen extends ConsumerWidget {
                 greeting: l10n.homeGreeting(nickname),
                 subtitle: l10n.homeSubtitle,
                 xp: xp,
-                streak: 0, // TODO: wire to a real streak when the store tracks one
+                streak: streak,
+                level: levelForXp(xp),
                 onProfiles: () => context.go('/profiles'),
                 whoIsLearning: l10n.whoIsLearning,
+                levelLabel: l10n.levelLabel(levelForXp(xp)),
               ),
               const SizedBox(height: 18),
               _DailyChallengeCard(l10n: l10n, xp: xp),
@@ -81,12 +85,17 @@ class ChildHomeScreen extends ConsumerWidget {
                     _ActivityTile(
                       color: _tileColors[i % _tileColors.length],
                       emoji: subjectCatalog[i].emoji,
-                      label: localizedSubject(subjectCatalog[i].englishLabel, lang),
+                      label: localizedSubject(
+                        subjectCatalog[i].englishLabel,
+                        lang,
+                      ),
                       onTap: () => _openSubjectForAge(
                         context,
                         subject: subjectCatalog[i],
-                        heading:
-                            localizedSubject(subjectCatalog[i].englishLabel, lang),
+                        heading: localizedSubject(
+                          subjectCatalog[i].englishLabel,
+                          lang,
+                        ),
                       ),
                     ),
                   _ActivityTile(
@@ -129,8 +138,10 @@ class _WelcomeBar extends StatelessWidget {
     required this.subtitle,
     required this.xp,
     required this.streak,
+    required this.level,
     required this.onProfiles,
     required this.whoIsLearning,
+    required this.levelLabel,
   });
 
   final String emoji;
@@ -138,35 +149,75 @@ class _WelcomeBar extends StatelessWidget {
   final String subtitle;
   final int xp;
   final int streak;
+  final int level;
   final VoidCallback onProfiles;
   final String whoIsLearning;
+  final String levelLabel;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Tooltip(
-          message: whoIsLearning,
-          child: InkWell(
-            customBorder: const CircleBorder(),
-            onTap: onProfiles,
-            child: Container(
-              width: 56,
-              height: 56,
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.circle,
-                border: Border.all(color: WatotoColors.sun, width: 3),
-                boxShadow: [
-                  BoxShadow(
-                    color: WatotoColors.deep.withValues(alpha: 0.10),
-                    blurRadius: 10,
-                    offset: const Offset(0, 4),
+        Semantics(
+          button: true,
+          label: '$whoIsLearning · $levelLabel',
+          child: Tooltip(
+            message: whoIsLearning,
+            child: InkWell(
+              customBorder: const CircleBorder(),
+              onTap: onProfiles,
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Container(
+                    width: 56,
+                    height: 56,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                      border: Border.all(color: WatotoColors.sun, width: 3),
+                      boxShadow: [
+                        BoxShadow(
+                          color: WatotoColors.deep.withValues(alpha: 0.10),
+                          blurRadius: 10,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: ExcludeSemantics(
+                      child: Text(emoji, style: const TextStyle(fontSize: 28)),
+                    ),
+                  ),
+                  // Level ring badge, bottom-right of the avatar.
+                  Positioned(
+                    right: -4,
+                    bottom: -4,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 6,
+                        vertical: 2,
+                      ),
+                      decoration: BoxDecoration(
+                        color: WatotoColors.mango,
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.white, width: 2),
+                      ),
+                      child: ExcludeSemantics(
+                        child: Text(
+                          '$level',
+                          style: const TextStyle(
+                            fontFamily: 'Baloo2',
+                            fontSize: 12,
+                            fontWeight: FontWeight.w800,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
-              child: Text(emoji, style: const TextStyle(fontSize: 28)),
             ),
           ),
         ),
@@ -200,47 +251,61 @@ class _WelcomeBar extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 8),
-        _StatPill(emoji: '⭐', text: '$xp XP'),
+        _StatPill(emoji: '⭐', text: '$xp XP', semanticsLabel: '$xp XP'),
         const SizedBox(width: 8),
-        _StatPill(emoji: '🔥', text: '$streak'),
+        _StatPill(
+          emoji: '🔥',
+          text: '$streak',
+          semanticsLabel: AppLocalizations.of(context).streakLabel(streak),
+        ),
       ],
     );
   }
 }
 
 class _StatPill extends StatelessWidget {
-  const _StatPill({required this.emoji, required this.text});
+  const _StatPill({
+    required this.emoji,
+    required this.text,
+    required this.semanticsLabel,
+  });
   final String emoji;
   final String text;
+  final String semanticsLabel;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: WatotoColors.deep.withValues(alpha: 0.10),
-            blurRadius: 8,
-            offset: const Offset(0, 3),
+    return Semantics(
+      label: semanticsLabel,
+      child: ExcludeSemantics(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                color: WatotoColors.deep.withValues(alpha: 0.10),
+                blurRadius: 8,
+                offset: const Offset(0, 3),
+              ),
+            ],
           ),
-        ],
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(emoji, style: const TextStyle(fontSize: 16)),
-          const SizedBox(width: 4),
-          Text(
-            text,
-            style: const TextStyle(
-              fontWeight: FontWeight.w800,
-              color: WatotoColors.deep,
-            ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(emoji, style: const TextStyle(fontSize: 16)),
+              const SizedBox(width: 4),
+              Text(
+                text,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w800,
+                  color: WatotoColors.deep,
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
@@ -256,93 +321,103 @@ class _DailyChallengeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(28),
-      elevation: 0,
-      child: InkWell(
+    return Semantics(
+      button: true,
+      label: l10n.dailyChallenge,
+      child: Material(
+        color: Colors.white,
         borderRadius: BorderRadius.circular(28),
-        onTap: () => _openSubjectForAge(
-          context,
-          subject: dailyChallengeSubject,
-          heading: l10n.dailyChallenge,
-        ),
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(28),
-            boxShadow: [
-              BoxShadow(
-                color: WatotoColors.deep.withValues(alpha: 0.08),
-                blurRadius: 18,
-                offset: const Offset(0, 8),
-              ),
-            ],
+        elevation: 0,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(28),
+          onTap: () => _openSubjectForAge(
+            context,
+            subject: dailyChallengeSubjectFor(DateTime.now()),
+            heading: l10n.dailyChallenge,
           ),
-          child: Row(
-            children: [
-              Container(
-                width: 60,
-                height: 60,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  color: WatotoColors.sun.withValues(alpha: 0.2),
-                  borderRadius: BorderRadius.circular(18),
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(28),
+              boxShadow: [
+                BoxShadow(
+                  color: WatotoColors.deep.withValues(alpha: 0.08),
+                  blurRadius: 18,
+                  offset: const Offset(0, 8),
                 ),
-                child: const Text('🦁', style: TextStyle(fontSize: 34)),
-              ),
-              const SizedBox(width: 14),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      l10n.dailyChallenge,
-                      style: const TextStyle(
-                        fontFamily: 'Baloo2',
-                        fontSize: 22,
-                        fontWeight: FontWeight.w800,
-                        color: WatotoColors.deep,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(6),
-                      child: LinearProgressIndicator(
-                        value: (xp % 100) / 100,
-                        minHeight: 10,
-                        backgroundColor: WatotoColors.sun.withValues(alpha: 0.18),
-                        valueColor:
-                            const AlwaysStoppedAnimation(WatotoColors.sun),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(width: 14),
-              Container(
-                width: 56,
-                height: 56,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [WatotoColors.sun, WatotoColors.mango],
+              ],
+            ),
+            child: Row(
+              children: [
+                Container(
+                  width: 60,
+                  height: 60,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: WatotoColors.sun.withValues(alpha: 0.2),
+                    borderRadius: BorderRadius.circular(18),
                   ),
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: WatotoColors.mango.withValues(alpha: 0.45),
-                      blurRadius: 12,
-                      offset: const Offset(0, 5),
-                    ),
-                  ],
+                  child: const Text('🦁', style: TextStyle(fontSize: 34)),
                 ),
-                child: const Icon(Icons.play_arrow_rounded,
-                    size: 32, color: WatotoColors.deep),
-              ),
-            ],
+                const SizedBox(width: 14),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        l10n.dailyChallenge,
+                        style: const TextStyle(
+                          fontFamily: 'Baloo2',
+                          fontSize: 22,
+                          fontWeight: FontWeight.w800,
+                          color: WatotoColors.deep,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(6),
+                        child: LinearProgressIndicator(
+                          value: (xp % 100) / 100,
+                          minHeight: 10,
+                          backgroundColor: WatotoColors.sun.withValues(
+                            alpha: 0.18,
+                          ),
+                          valueColor: const AlwaysStoppedAnimation(
+                            WatotoColors.sun,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: 14),
+                Container(
+                  width: 56,
+                  height: 56,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [WatotoColors.sun, WatotoColors.mango],
+                    ),
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: WatotoColors.mango.withValues(alpha: 0.45),
+                        blurRadius: 12,
+                        offset: const Offset(0, 5),
+                      ),
+                    ],
+                  ),
+                  child: const Icon(
+                    Icons.play_arrow_rounded,
+                    size: 32,
+                    color: WatotoColors.deep,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -365,41 +440,48 @@ class _ActivityTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: color,
-      borderRadius: BorderRadius.circular(22),
-      child: InkWell(
+    // The label Text carries the accessible name; button:true gives it the
+    // right role and the emoji is decorative (excluded) so it isn't read out.
+    return Semantics(
+      button: true,
+      child: Material(
+        color: color,
         borderRadius: BorderRadius.circular(22),
-        onTap: onTap,
-        child: Container(
-          padding: const EdgeInsets.all(14),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(22),
-            boxShadow: [
-              BoxShadow(
-                color: color.withValues(alpha: 0.4),
-                blurRadius: 12,
-                offset: const Offset(0, 6),
-              ),
-            ],
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(emoji, style: const TextStyle(fontSize: 30)),
-              const Spacer(),
-              Text(
-                label,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(
-                  fontFamily: 'Baloo2',
-                  fontSize: 15,
-                  fontWeight: FontWeight.w800,
-                  color: Colors.white,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(22),
+          onTap: onTap,
+          child: Container(
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(22),
+              boxShadow: [
+                BoxShadow(
+                  color: color.withValues(alpha: 0.4),
+                  blurRadius: 12,
+                  offset: const Offset(0, 6),
                 ),
-              ),
-            ],
+              ],
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ExcludeSemantics(
+                  child: Text(emoji, style: const TextStyle(fontSize: 30)),
+                ),
+                const Spacer(),
+                Text(
+                  label,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                    fontFamily: 'Baloo2',
+                    fontSize: 15,
+                    fontWeight: FontWeight.w800,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -415,8 +497,9 @@ class _AccountButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final loggedIn =
-        ref.watch(sessionProvider.select((s) => s.parentAccessAllowed));
+    final loggedIn = ref.watch(
+      sessionProvider.select((s) => s.parentAccessAllowed),
+    );
     return Tooltip(
       message: tooltip,
       child: InkWell(

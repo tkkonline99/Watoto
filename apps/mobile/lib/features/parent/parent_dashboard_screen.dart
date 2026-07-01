@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/audio/narration.dart';
 import '../../core/offline/offline_providers.dart';
+import '../../core/state/app_state.dart';
 import '../../core/theme/watoto_theme.dart';
+import '../../features/gamification/rewards.dart';
 import '../../l10n/gen/app_localizations.dart';
 
 /// Parent dashboard: per-child progress, consent management, add child.
@@ -18,6 +21,7 @@ class ParentDashboardScreen extends ConsumerWidget {
     final store = ref.watch(offlineStoreProvider);
     final children = ref.watch(childrenProvider);
     final consent = store.consent;
+    final textScale = ref.watch(textScaleProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -40,27 +44,89 @@ class ParentDashboardScreen extends ConsumerWidget {
             Text(l10n.children, style: _section),
             const SizedBox(height: 8),
             for (final child in children)
-              Card(
-                child: ListTile(
-                  leading: CircleAvatar(
-                    backgroundColor: WatotoColors.sun,
-                    child: Text(child.emoji, style: const TextStyle(fontSize: 22)),
-                  ),
-                  title: Text(child.nickname,
-                      style: const TextStyle(fontWeight: FontWeight.w700)),
-                  subtitle: Text(l10n.ageBandLabel(child.ageBand.label)),
-                  trailing: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text('${store.xpFor(child.id)} XP',
-                          style: const TextStyle(
-                              fontWeight: FontWeight.w800, color: WatotoColors.mango)),
-                      Text(l10n.lessonsDone(store.completedLessonCount(child.id)),
-                          style: const TextStyle(fontSize: 12)),
-                    ],
-                  ),
-                ),
+              Builder(
+                builder: (context) {
+                  final xp = store.xpFor(child.id);
+                  final stats = BadgeStats(
+                    xp: xp,
+                    streak: store.streakFor(child.id),
+                    lessons: store.completedLessonCount(child.id),
+                    stories: store.completedStoryCount(child.id),
+                  );
+                  final badges = earnedBadges(stats);
+                  return Card(
+                    child: Column(
+                      children: [
+                        ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: WatotoColors.sun,
+                            child: Text(
+                              child.emoji,
+                              style: const TextStyle(fontSize: 22),
+                            ),
+                          ),
+                          title: Text(
+                            child.nickname,
+                            style: const TextStyle(fontWeight: FontWeight.w700),
+                          ),
+                          subtitle: Text(
+                            '${l10n.ageBandLabel(child.ageBand.label)} · '
+                            '${l10n.levelLabel(stats.level)}',
+                          ),
+                          trailing: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text(
+                                '$xp XP',
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w800,
+                                  color: WatotoColors.mango,
+                                ),
+                              ),
+                              Text(
+                                l10n.lessonsDone(
+                                  store.completedLessonCount(child.id),
+                                ),
+                                style: const TextStyle(fontSize: 12),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: badges.isEmpty
+                                ? Text(
+                                    l10n.noBadgesYet,
+                                    style: const TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.black54,
+                                    ),
+                                  )
+                                : Wrap(
+                                    spacing: 8,
+                                    runSpacing: 4,
+                                    children: [
+                                      for (final b in badges)
+                                        Tooltip(
+                                          message: badgeLabel(l10n, b.id),
+                                          child: Text(
+                                            b.emoji,
+                                            style: const TextStyle(
+                                              fontSize: 22,
+                                            ),
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
               ),
             OutlinedButton.icon(
               icon: const Icon(Icons.add),
@@ -85,6 +151,35 @@ class ParentDashboardScreen extends ConsumerWidget {
               onChanged: (v) => ref
                   .read(sessionProvider.notifier)
                   .saveConsent(consent.copyWith(voiceRecording: v)),
+            ),
+            const Divider(height: 32),
+            Text(l10n.accessibility, style: _section),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                const Icon(Icons.format_size, color: WatotoColors.deep),
+                const SizedBox(width: 12),
+                Text(
+                  l10n.textSize,
+                  style: const TextStyle(fontWeight: FontWeight.w600),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Wrap(
+              spacing: 8,
+              children: [
+                _sizeChip(ref, l10n.textSizeSmall, 1.0, textScale),
+                _sizeChip(ref, l10n.textSizeMedium, 1.3, textScale),
+                _sizeChip(ref, l10n.textSizeLarge, 1.6, textScale),
+              ],
+            ),
+            SwitchListTile(
+              contentPadding: EdgeInsets.zero,
+              value: ref.watch(narrationProvider),
+              title: Text(l10n.readAloud),
+              subtitle: Text(l10n.readAloudBody),
+              onChanged: (_) => ref.read(narrationProvider.notifier).toggle(),
             ),
             const Divider(height: 32),
             Text(l10n.legalSection, style: _section),
@@ -119,6 +214,29 @@ class ParentDashboardScreen extends ConsumerWidget {
     );
   }
 
-  static const _section =
-      TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: WatotoColors.deep);
+  static const _section = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w800,
+    color: WatotoColors.deep,
+  );
 }
+
+/// A selectable text-size chip; [value] is the multiplier it applies.
+Widget _sizeChip(WidgetRef ref, String label, double value, double current) {
+  return ChoiceChip(
+    label: Text(label),
+    selected: (current - value).abs() < 0.01,
+    onSelected: (_) => ref.read(textScaleProvider.notifier).set(value),
+  );
+}
+
+/// Localized label for a badge id (see [rewards.dart]).
+String badgeLabel(AppLocalizations l10n, String id) => switch (id) {
+  'firstLesson' => l10n.badgeFirstLesson,
+  'fiveLessons' => l10n.badgeFiveLessons,
+  'streak3' => l10n.badgeStreak3,
+  'streak7' => l10n.badgeStreak7,
+  'firstStory' => l10n.badgeFirstStory,
+  'level5' => l10n.badgeLevel5,
+  _ => id,
+};
