@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/audio/sound_effects.dart';
 import '../../core/l10n/content_key_resolver.dart';
 import '../../core/offline/offline_providers.dart';
 import '../../core/theme/watoto_theme.dart';
@@ -31,12 +32,17 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
     } else {
       setState(() => _finished = true);
       _elapsed.stop();
+      ref.read(soundEffectsProvider).celebrate();
       // Persist + enqueue sync; the celebration never waits on the network.
-      unawaited(ref.read(learningServiceProvider).completeLesson(
-            lesson,
-            scorePct: 100,
-            timeSpentS: _elapsed.elapsed.inSeconds,
-          ));
+      unawaited(
+        ref
+            .read(learningServiceProvider)
+            .completeLesson(
+              lesson,
+              scorePct: 100,
+              timeSpentS: _elapsed.elapsed.inSeconds,
+            ),
+      );
     }
   }
 
@@ -55,7 +61,10 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
         title: lessonAsync.maybeWhen(
           data: (lesson) => Text(
             resolveContentKey(l10n, lesson.titleKey),
-            style: const TextStyle(color: WatotoColors.deep, fontWeight: FontWeight.w800),
+            style: const TextStyle(
+              color: WatotoColors.deep,
+              fontWeight: FontWeight.w800,
+            ),
           ),
           orElse: () => null,
         ),
@@ -71,7 +80,10 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
               )
             : Column(
                 children: [
-                  _ProgressDots(count: lesson.blocks.length, active: _blockIndex),
+                  _ProgressDots(
+                    count: lesson.blocks.length,
+                    active: _blockIndex,
+                  ),
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.all(24),
@@ -79,6 +91,7 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
                         key: ValueKey(_blockIndex),
                         block: lesson.blocks[_blockIndex],
                         onCompleted: () => _advance(lesson),
+                        sfx: ref.watch(soundEffectsProvider),
                       ),
                     ),
                   ),
@@ -116,17 +129,31 @@ class _ProgressDots extends StatelessWidget {
 }
 
 class _BlockView extends StatelessWidget {
-  const _BlockView({super.key, required this.block, required this.onCompleted});
+  const _BlockView({
+    super.key,
+    required this.block,
+    required this.onCompleted,
+    required this.sfx,
+  });
 
   final LessonBlock block;
   final VoidCallback onCompleted;
+  final SoundEffects sfx;
 
   @override
   Widget build(BuildContext context) {
     return switch (block) {
       final ConceptBlock b => _ConceptView(block: b, onCompleted: onCompleted),
-      final TapToCountBlock b => _TapToCountView(block: b, onCompleted: onCompleted),
-      final CheckBlock b => _CheckView(block: b, onCompleted: onCompleted),
+      final TapToCountBlock b => _TapToCountView(
+        block: b,
+        onCompleted: onCompleted,
+        sfx: sfx,
+      ),
+      final CheckBlock b => _CheckView(
+        block: b,
+        onCompleted: onCompleted,
+        sfx: sfx,
+      ),
     };
   }
 }
@@ -158,10 +185,15 @@ class _ConceptView extends StatelessWidget {
 }
 
 class _TapToCountView extends StatefulWidget {
-  const _TapToCountView({required this.block, required this.onCompleted});
+  const _TapToCountView({
+    required this.block,
+    required this.onCompleted,
+    required this.sfx,
+  });
 
   final TapToCountBlock block;
   final VoidCallback onCompleted;
+  final SoundEffects sfx;
 
   @override
   State<_TapToCountView> createState() => _TapToCountViewState();
@@ -171,6 +203,16 @@ class _TapToCountViewState extends State<_TapToCountView> {
   late final List<bool> _counted = List.filled(widget.block.items, false);
 
   int get _count => _counted.where((c) => c).length;
+
+  void _tap(int i) {
+    setState(() => _counted[i] = true);
+    // A pop per counted mango; the final one lands a success chime.
+    if (_count == widget.block.items) {
+      widget.sfx.correct();
+    } else {
+      widget.sfx.tap();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -191,14 +233,16 @@ class _TapToCountViewState extends State<_TapToCountView> {
           children: [
             for (var i = 0; i < widget.block.items; i++)
               GestureDetector(
-                onTap: _counted[i] ? null : () => setState(() => _counted[i] = true),
+                onTap: _counted[i] ? null : () => _tap(i),
                 child: AnimatedScale(
                   scale: _counted[i] ? 1.2 : 1.0,
                   duration: const Duration(milliseconds: 150),
                   child: Badge(
                     isLabelVisible: _counted[i],
                     backgroundColor: WatotoColors.leaf,
-                    label: Text('${_counted.take(i + 1).where((c) => c).length}'),
+                    label: Text(
+                      '${_counted.take(i + 1).where((c) => c).length}',
+                    ),
                     child: const Text('🥭', style: TextStyle(fontSize: 64)),
                   ),
                 ),
@@ -216,10 +260,15 @@ class _TapToCountViewState extends State<_TapToCountView> {
 }
 
 class _CheckView extends StatefulWidget {
-  const _CheckView({required this.block, required this.onCompleted});
+  const _CheckView({
+    required this.block,
+    required this.onCompleted,
+    required this.sfx,
+  });
 
   final CheckBlock block;
   final VoidCallback onCompleted;
+  final SoundEffects sfx;
 
   @override
   State<_CheckView> createState() => _CheckViewState();
@@ -230,6 +279,7 @@ class _CheckViewState extends State<_CheckView> {
 
   void _select(int index) {
     if (widget.block.options[index].correct) {
+      widget.sfx.correct();
       widget.onCompleted();
     } else {
       setState(() => _wrongIndex = index);
@@ -265,10 +315,14 @@ class _CheckViewState extends State<_CheckView> {
                 height: 88,
                 child: FilledButton(
                   style: FilledButton.styleFrom(
-                    backgroundColor:
-                        _wrongIndex == i ? WatotoColors.berry : WatotoColors.sky,
+                    backgroundColor: _wrongIndex == i
+                        ? WatotoColors.berry
+                        : WatotoColors.sky,
                     foregroundColor: Colors.white,
-                    textStyle: const TextStyle(fontSize: 32, fontWeight: FontWeight.w800),
+                    textStyle: const TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.w800,
+                    ),
                   ),
                   onPressed: () => _select(i),
                   child: Text(widget.block.options[i].text),
@@ -282,7 +336,11 @@ class _CheckViewState extends State<_CheckView> {
 }
 
 class _CelebrationView extends StatelessWidget {
-  const _CelebrationView({required this.xp, required this.quizSlug, required this.onDone});
+  const _CelebrationView({
+    required this.xp,
+    required this.quizSlug,
+    required this.onDone,
+  });
 
   final int xp;
   final String? quizSlug;
