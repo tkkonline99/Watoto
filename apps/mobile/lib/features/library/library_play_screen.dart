@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/audio/narration.dart';
+import '../../core/audio/sound_effects.dart';
 import '../../core/offline/offline_providers.dart';
 import '../../core/state/app_state.dart';
 import '../../core/theme/watoto_theme.dart';
@@ -130,10 +131,11 @@ class _LessonViewState extends ConsumerState<_LessonView> {
   }
 
   /// The child finished the step's interaction (tap / count / drag) — reveal
-  /// the feedback and the Next button.
+  /// the feedback and the Next button, with a success chime.
   void _onInteracted() {
     if (_interacted) return;
     setState(() => _interacted = true);
+    ref.read(soundEffectsProvider).correct();
   }
 
   void _next() {
@@ -147,6 +149,7 @@ class _LessonViewState extends ConsumerState<_LessonView> {
     } else {
       _elapsed.stop();
       setState(() => _done = true);
+      ref.read(soundEffectsProvider).celebrate();
       unawaited(
         ref
             .read(learningServiceProvider)
@@ -216,6 +219,7 @@ class _LessonViewState extends ConsumerState<_LessonView> {
                       emoji: stageEmoji(widget.item),
                       count: countForStep(widget.item, _step),
                       onCompleted: _onInteracted,
+                      onTapSound: () => ref.read(soundEffectsProvider).tap(),
                     ),
                     if (_interacted) ...[
                       const SizedBox(height: 16),
@@ -315,12 +319,14 @@ class _InteractionStage extends StatelessWidget {
     required this.emoji,
     required this.count,
     required this.onCompleted,
+    required this.onTapSound,
   });
 
   final PlayKind kind;
   final String emoji;
   final int count;
   final VoidCallback onCompleted;
+  final VoidCallback onTapSound;
 
   @override
   Widget build(BuildContext context) {
@@ -330,6 +336,7 @@ class _InteractionStage extends StatelessWidget {
         emoji: '⭐',
         count: count,
         onCompleted: onCompleted,
+        onTapSound: onTapSound,
       ),
       PlayKind.drag => _DragStage(emoji: emoji, onCompleted: onCompleted),
     };
@@ -393,10 +400,12 @@ class _CountStage extends StatefulWidget {
     required this.emoji,
     required this.count,
     required this.onCompleted,
+    required this.onTapSound,
   });
   final String emoji;
   final int count;
   final VoidCallback onCompleted;
+  final VoidCallback onTapSound;
   @override
   State<_CountStage> createState() => _CountStageState();
 }
@@ -409,7 +418,11 @@ class _CountStageState extends State<_CountStage> {
     if (_counted[i]) return;
     setState(() => _counted[i] = true);
     HapticFeedback.lightImpact();
-    if (_n == widget.count) widget.onCompleted();
+    if (_n == widget.count) {
+      widget.onCompleted(); // completion chime handled by the parent
+    } else {
+      widget.onTapSound();
+    }
   }
 
   @override
@@ -582,6 +595,7 @@ class _QuizViewState extends ConsumerState<_QuizView> {
         _feedback = loc.questionCorrect(_q);
         _feedbackGood = true;
       });
+      ref.read(soundEffectsProvider).correct();
       Timer(const Duration(milliseconds: 700), _next);
     } else {
       setState(() {
@@ -612,6 +626,7 @@ class _QuizViewState extends ConsumerState<_QuizView> {
         _done = true;
         _stars = stars;
       });
+      ref.read(soundEffectsProvider).celebrate();
       unawaited(
         ref
             .read(learningServiceProvider)
@@ -739,6 +754,7 @@ class _StoryViewState extends ConsumerState<_StoryView> {
 
   void _finish() {
     setState(() => _done = true);
+    ref.read(soundEffectsProvider).celebrate();
     unawaited(
       ref.read(learningServiceProvider).completeLibraryStory(widget.item),
     );
