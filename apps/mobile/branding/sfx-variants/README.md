@@ -6,8 +6,8 @@ Each folder holds drop-in replacements for the shipped set:
 
 | Style | Character | Register |
 |---|---|---|
-| `bell/` | glassy, rounded — **the shipped default** | mid (C major) |
-| `warm-marimba/` | woodier, softer, strong 4th partial | low (G major) |
+| `bell/` | glassy, rounded | mid (C major) |
+| `warm-marimba/` | woodier, softer, strong 4th partial — **the shipped set** | low (G major) |
 | `bright-kalimba/` | plucky, sparkly, sparse harmonics | high (A major) |
 
 Each set contains:

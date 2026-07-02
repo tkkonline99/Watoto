@@ -3,7 +3,7 @@
 Synthesis: additive sine partials with a soft attack and exponential decay, so
 each note reads as a gentle bell/marimba rather than a beep. Three tonal
 styles are produced side by side for audition; the shipped set is whichever
-style is copied into assets/audio/sfx (bell, by default).
+style is copied into assets/audio/sfx (currently warm-marimba).
 
 Usage (from apps/mobile):
     python tool/generate_sfx.py branding/sfx-variants
@@ -65,7 +65,7 @@ def seq(*chunks):
 
 
 STYLES = {
-    # Glassy, rounded — the shipped default (C major, mid register).
+    # Glassy, rounded (C major, mid register).
     "bell": dict(
         harmonics=(1.0, 0.5, 0.25),
         tap_harmonics=(1.0, 0.35),  # softer partials for the little pop
@@ -74,7 +74,8 @@ STYLES = {
         celebrate=[(523.25, 0.13, 0.09), (659.25, 0.13, 0.09),
                    (783.99, 0.13, 0.09), (1046.50, 0.42, 0.22)],
     ),
-    # Woodier and softer; the strong 4th partial is marimba-like (G major, low).
+    # Woodier and softer; the strong 4th partial is marimba-like (G major,
+    # low register). This is the shipped set (assets/audio/sfx).
     "warm-marimba": dict(
         harmonics=(1.0, 0.25, 0.0, 0.18),
         tap=(392.00, 0.14, 0.035),
