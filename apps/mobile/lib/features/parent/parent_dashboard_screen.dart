@@ -134,6 +134,15 @@ class ParentDashboardScreen extends ConsumerWidget {
               onPressed: () => context.go('/profiles/add'),
             ),
             const Divider(height: 32),
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: const Icon(Icons.menu_book_outlined),
+              title: Text(l10n.curriculumGuides),
+              subtitle: Text(l10n.curriculumGuidesBody),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => context.push('/parent/guides'),
+            ),
+            const Divider(height: 32),
             Text(l10n.privacyData, style: _section),
             const SizedBox(height: 8),
             SwitchListTile(

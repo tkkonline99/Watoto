@@ -363,6 +363,17 @@ class AppLocalizationsSw extends AppLocalizations {
   String get dragToBasket => 'Iburute kwenye kikapu!';
 
   @override
+  String get curriculumGuides => 'Miongozo ya Mtaala';
+
+  @override
+  String get curriculumGuidesBody =>
+      'Mipango ya masomo, karatasi za mazoezi na miongozo ya kusoma kwa watu wazima';
+
+  @override
+  String get curriculumGuidesIntro =>
+      'Programu kamili ya ufundishaji nyuma ya shughuli za Watoto — mipango ya masomo, karatasi za mazoezi, majaribio yenye majibu, na miongozo ya kusoma, kwa kila umri.';
+
+  @override
   String get badgeFirstLesson => 'Somo la kwanza';
 
   @override

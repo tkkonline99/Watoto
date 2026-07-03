@@ -12,6 +12,7 @@ import '../features/lesson_player/lesson_player_screen.dart';
 import '../features/library/library_play_screen.dart';
 import '../features/onboarding/language_select_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
+import '../features/parent/guides_screen.dart';
 import '../features/parent/parent_dashboard_screen.dart';
 import '../features/parent/pin_gate_screen.dart';
 import '../features/profiles/add_child_screen.dart';
@@ -34,8 +35,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
   return GoRouter(
     // Open on the welcome / "Choose your language" landing; "Let's go" enters
     // the home. A --dart-define=START=<route> overrides for demos/testing.
-    initialLocation:
-        const String.fromEnvironment('START', defaultValue: '/welcome'),
+    initialLocation: const String.fromEnvironment(
+      'START',
+      defaultValue: '/welcome',
+    ),
     refreshListenable: refresh,
     redirect: (context, state) {
       final s = ref.read(sessionProvider);
@@ -53,7 +56,9 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         // Account families are let straight in (no PIN). Otherwise PIN families
         // unlock with the PIN; a signed-out account family logs back in.
         if (s.parentAccessAllowed) return null;
-        return ref.read(offlineStoreProvider).hasPin ? '/parent/pin' : '/account';
+        return ref.read(offlineStoreProvider).hasPin
+            ? '/parent/pin'
+            : '/account';
       }
 
       // Child surfaces require a selected profile; the picker is always allowed.
@@ -63,10 +68,21 @@ final appRouterProvider = Provider<GoRouter>((ref) {
     },
     routes: [
       GoRoute(path: '/onboarding', builder: (c, s) => const OnboardingScreen()),
-      GoRoute(path: '/profiles', builder: (c, s) => const ProfilePickerScreen()),
+      GoRoute(
+        path: '/profiles',
+        builder: (c, s) => const ProfilePickerScreen(),
+      ),
       GoRoute(path: '/profiles/add', builder: (c, s) => const AddChildScreen()),
       GoRoute(path: '/parent/pin', builder: (c, s) => const PinGateScreen()),
-      GoRoute(path: '/parent', builder: (c, s) => const ParentDashboardScreen()),
+      GoRoute(
+        path: '/parent',
+        builder: (c, s) => const ParentDashboardScreen(),
+      ),
+      GoRoute(path: '/parent/guides', builder: (c, s) => const GuidesScreen()),
+      GoRoute(
+        path: '/parent/guides/:id',
+        builder: (c, s) => GuideDocScreen(id: s.pathParameters['id']!),
+      ),
       GoRoute(
         path: '/parent/legal/privacy',
         builder: (c, s) => const LegalDocScreen(doc: LegalDoc.privacy),

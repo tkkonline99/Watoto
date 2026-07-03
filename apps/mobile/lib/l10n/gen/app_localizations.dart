@@ -754,6 +754,24 @@ abstract class AppLocalizations {
   /// **'Drag it into the basket!'**
   String get dragToBasket;
 
+  /// No description provided for @curriculumGuides.
+  ///
+  /// In en, this message translates to:
+  /// **'Curriculum Guides'**
+  String get curriculumGuides;
+
+  /// No description provided for @curriculumGuidesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Lesson plans, worksheets & reading guides for grown-ups'**
+  String get curriculumGuidesBody;
+
+  /// No description provided for @curriculumGuidesIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'The full teaching program behind Watoto\'s activities — lesson plans, printable worksheets, quizzes with answer keys, and reading guides, organized by age.'**
+  String get curriculumGuidesIntro;
+
   /// No description provided for @badgeFirstLesson.
   ///
   /// In en, this message translates to:

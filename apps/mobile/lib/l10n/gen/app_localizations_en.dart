@@ -364,6 +364,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dragToBasket => 'Drag it into the basket!';
 
   @override
+  String get curriculumGuides => 'Curriculum Guides';
+
+  @override
+  String get curriculumGuidesBody =>
+      'Lesson plans, worksheets & reading guides for grown-ups';
+
+  @override
+  String get curriculumGuidesIntro =>
+      'The full teaching program behind Watoto\'s activities — lesson plans, printable worksheets, quizzes with answer keys, and reading guides, organized by age.';
+
+  @override
   String get badgeFirstLesson => 'First lesson';
 
   @override

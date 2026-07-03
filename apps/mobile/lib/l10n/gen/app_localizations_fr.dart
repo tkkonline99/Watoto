@@ -365,6 +365,17 @@ class AppLocalizationsFr extends AppLocalizations {
   String get dragToBasket => 'Glisse-le dans le panier !';
 
   @override
+  String get curriculumGuides => 'Guides pédagogiques';
+
+  @override
+  String get curriculumGuidesBody =>
+      'Plans de leçons, fiches et guides de lecture pour les adultes';
+
+  @override
+  String get curriculumGuidesIntro =>
+      'Le programme complet derrière les activités de Watoto — plans de leçons, fiches imprimables, quiz avec corrigés et guides de lecture, classés par âge.';
+
+  @override
   String get badgeFirstLesson => 'Première leçon';
 
   @override
