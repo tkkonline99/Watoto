@@ -819,9 +819,11 @@ class _QuizViewState extends ConsumerState<_QuizView> {
                               children: [
                                 // Illustrate one-word answers ("Ball" → ⚽)
                                 // from the English source label.
-                                if (lexicon[question.options[i].label
-                                        .trim()
-                                        .toLowerCase()]
+                                if (lexiconLookup(
+                                      question.options[i].label
+                                          .trim()
+                                          .toLowerCase(),
+                                    )
                                     case final LexEntry e) ...[
                                   ExcludeSemantics(
                                     child: Text(

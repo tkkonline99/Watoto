@@ -52,6 +52,12 @@ const Map<String, LexEntry> lexicon = {
   'ant': LexEntry('🐜', _animal), 'spider': LexEntry('🕷️', _animal),
   'crab': LexEntry('🦀', _animal), 'whale': LexEntry('🐋', _animal),
   'shark': LexEntry('🦈', _animal), 'octopus': LexEntry('🐙', _animal),
+  'giraffe': LexEntry('🦒', _animal), 'zebra': LexEntry('🦓', _animal),
+  'penguin': LexEntry('🐧', _animal), 'owl': LexEntry('🦉', _animal),
+  'fox': LexEntry('🦊', _animal), 'deer': LexEntry('🦌', _animal),
+  'wolf': LexEntry('🐺', _animal), 'tiger': LexEntry('🐯', _animal),
+  'hippo': LexEntry('🦛', _animal), 'snail': LexEntry('🐌', _animal),
+  'worm': LexEntry('🪱', _animal), 'kangaroo': LexEntry('🦘', _animal),
   // Food
   'apple': LexEntry('🍎', _food), 'apples': LexEntry('🍎', _food),
   'banana': LexEntry('🍌', _food), 'mango': LexEntry('🥭', _food),
@@ -82,6 +88,8 @@ const Map<String, LexEntry> lexicon = {
   'boat': LexEntry('⛵', _object), 'plane': LexEntry('✈️', _object),
   'bike': LexEntry('🚲', _object), 'wheel': LexEntry('🛞', _object),
   'bubble': LexEntry('🫧', _object), 'bubbles': LexEntry('🫧', _object),
+  'cube': LexEntry('🎲', _object), 'curtains': LexEntry('🪟', _object),
+  'puzzle': LexEntry('🧩', _object), 'hug': LexEntry('🤗', _people),
   // Nature
   'sun': LexEntry('☀️', _nature), 'moon': LexEntry('🌙', _nature),
   'star': LexEntry('⭐', _nature), 'stars': LexEntry('⭐', _nature),
@@ -157,7 +165,73 @@ const Map<String, LexEntry> lexicon = {
   'light': LexEntry('💡', _concept, choice: false),
   'hot': LexEntry('🔥', _concept, choice: false),
   'cold': LexEntry('🧊', _concept, choice: false),
+  // Literacy concepts
+  'letter': LexEntry('🔤', _concept, choice: false),
+  'word': LexEntry('🔡', _concept, choice: false),
+  'sentence': LexEntry('📝', _concept, choice: false),
+  'story': LexEntry('📖', _concept, choice: false),
+  'stories': LexEntry('📖', _concept, choice: false),
+  'writing': LexEntry('✍️', _concept, choice: false),
+  'write': LexEntry('✍️', _concept, choice: false),
+  'idea': LexEntry('💡', _concept, choice: false),
+  'summary': LexEntry('📋', _concept, choice: false),
+  'quotation': LexEntry('💬', _concept, choice: false),
+  'paragraph': LexEntry('📄', _concept, choice: false),
+  'read': LexEntry('📖', _concept, choice: false),
+  'reading': LexEntry('📖', _concept, choice: false),
+  'clue': LexEntry('🔍', _concept, choice: false),
+  'sound': LexEntry('🔊', _concept, choice: false),
+  // Math concepts
+  'number': LexEntry('🔢', _concept, choice: false),
+  'add': LexEntry('➕', _concept, choice: false),
+  'plus': LexEntry('➕', _concept, choice: false),
+  'subtract': LexEntry('➖', _concept, choice: false),
+  'minus': LexEntry('➖', _concept, choice: false),
+  'multiply': LexEntry('✖️', _concept, choice: false),
+  'divide': LexEntry('➗', _concept, choice: false),
+  'equal': LexEntry('🟰', _concept, choice: false),
+  'tens': LexEntry('🔟', _concept, choice: false),
+  'dot': LexEntry('⚫', _concept, choice: false),
+  'half': LexEntry('🌓', _concept, choice: false),
+  'halves': LexEntry('🌓', _concept, choice: false),
+  // Comparatives
+  'big': LexEntry('🐘', _concept, choice: false),
+  'bigger': LexEntry('🐘', _concept, choice: false),
+  'small': LexEntry('🐭', _concept, choice: false),
+  'smaller': LexEntry('🐭', _concept, choice: false),
+  'tall': LexEntry('🦒', _concept, choice: false),
+  'fast': LexEntry('🏎️', _concept, choice: false),
+  'slow': LexEntry('🐢', _concept, choice: false),
+  // Civics & community
+  'law': LexEntry('⚖️', _concept, choice: false),
+  'laws': LexEntry('⚖️', _concept, choice: false),
+  'vote': LexEntry('🗳️', _concept, choice: false),
+  'government': LexEntry('🏛️', _concept, choice: false),
+  'community': LexEntry('🏘️', _concept, choice: false),
+  'money': LexEntry('💰', _concept, choice: false),
+  // More actions & misc
+  'paint': LexEntry('🎨', _concept, choice: false),
+  'color': LexEntry('🎨', _concept, choice: false),
+  'draw': LexEntry('🖍️', _concept, choice: false),
+  'trace': LexEntry('✏️', _concept, choice: false),
+  'breath': LexEntry('🧘', _concept, choice: false),
+  'breathe': LexEntry('🧘', _concept, choice: false),
+  'morning': LexEntry('🌅', _concept, choice: false),
+  'steam': LexEntry('♨️', _concept, choice: false),
+  'kind': LexEntry('💗', _concept, choice: false),
+  'message': LexEntry('💬', _concept, choice: false),
+  'shake': LexEntry('🪇', _concept, choice: false),
 };
+
+/// Lexicon lookup with a simple plural fallback ("bears" → "bear").
+LexEntry? lexiconLookup(String word) {
+  final e = lexicon[word];
+  if (e != null) return e;
+  if (word.length > 3 && word.endsWith('s')) {
+    return lexicon[word.substring(0, word.length - 1)];
+  }
+  return null;
+}
 
 final _wordSplit = RegExp(r'[^a-z]+');
 final _directive = RegExp(
@@ -168,13 +242,18 @@ final _directive = RegExp(
 List<String> _words(String text) =>
     text.toLowerCase().split(_wordSplit).where((w) => w.isNotEmpty).toList();
 
-/// Emoji for the first lexicon word mentioned in [text], or null.
+/// Emoji for the first lexicon word mentioned in [text], or null. Concrete
+/// words win over concepts ("Read the word cat" illustrates the cat, not
+/// reading), so the picture matches what the step is actually about.
 String? illustrationFor(String text) {
+  String? concept;
   for (final w in _words(text)) {
-    final e = lexicon[w];
-    if (e != null) return e.emoji;
+    final e = lexiconLookup(w);
+    if (e == null) continue;
+    if (e.category != _concept) return e.emoji;
+    concept ??= e.emoji;
   }
-  return null;
+  return concept;
 }
 
 /// One tappable answer in a choice stage.
@@ -211,10 +290,22 @@ ChoicePlan? choicePlanFor(String itemId, int step, String narration) {
   final clause = _directive.firstMatch(narration)?.group(1);
   if (clause == null) return null;
 
+  // "Tap the letter A" — stage the letter against two other letters.
+  final lm = RegExp(r'letter ([a-z])\b').firstMatch(clause.toLowerCase());
+  if (lm != null) {
+    return _symbolPlan(
+      itemId,
+      step,
+      target: lm.group(1)!.toUpperCase(),
+      pool: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''),
+      wordFor: (s) => 'letter $s',
+    );
+  }
+
   String? target;
   String? digitFallback;
   for (final w in _words(clause)) {
-    final e = lexicon[w];
+    final e = lexiconLookup(w);
     if (e == null || !e.choice) continue;
     if (e.category == _digit) {
       digitFallback ??= w;
@@ -224,9 +315,36 @@ ChoicePlan? choicePlanFor(String itemId, int step, String narration) {
     }
   }
   target ??= digitFallback;
-  if (target == null) return null;
 
-  final targetEntry = lexicon[target]!;
+  if (target == null) {
+    // "Tap the number 3" — stage the numeral against two other numerals.
+    final nm = RegExp(r'\b(10|[1-9])\b').firstMatch(clause);
+    if (nm != null) {
+      const keycaps = [
+        '1️⃣',
+        '2️⃣',
+        '3️⃣',
+        '4️⃣',
+        '5️⃣',
+        '6️⃣',
+        '7️⃣',
+        '8️⃣',
+        '9️⃣',
+        '🔟',
+      ];
+      final n = int.parse(nm.group(1)!);
+      return _symbolPlan(
+        itemId,
+        step,
+        target: keycaps[n - 1],
+        pool: keycaps,
+        wordFor: (s) => 'number ${keycaps.indexOf(s) + 1}',
+      );
+    }
+    return null;
+  }
+
+  final targetEntry = lexiconLookup(target)!;
   // Same-category pool, deduped by emoji, excluding the target's emoji.
   final seen = <String>{targetEntry.emoji};
   final pool = <ChoiceOption>[];
@@ -249,5 +367,28 @@ ChoicePlan? choicePlanFor(String itemId, int step, String narration) {
   final targetIndex = s % 3;
   final options = List.of(distractors)
     ..insert(targetIndex, ChoiceOption(target, targetEntry.emoji));
+  return ChoicePlan(options, targetIndex);
+}
+
+/// A choice among symbols (letters, numerals): [target] plus two seeded
+/// distractors from [pool]; [wordFor] supplies the accessibility label.
+ChoicePlan _symbolPlan(
+  String itemId,
+  int step, {
+  required String target,
+  required List<String> pool,
+  required String Function(String) wordFor,
+}) {
+  final rest = pool.where((c) => c != target).toList();
+  var s = _seed(itemId, step);
+  final options = <ChoiceOption>[];
+  while (options.length < 2 && rest.isNotEmpty) {
+    s = _next(s);
+    final c = rest.removeAt(s % rest.length);
+    options.add(ChoiceOption(wordFor(c), c));
+  }
+  s = _next(s);
+  final targetIndex = s % 3;
+  options.insert(targetIndex, ChoiceOption(wordFor(target), target));
   return ChoicePlan(options, targetIndex);
 }
