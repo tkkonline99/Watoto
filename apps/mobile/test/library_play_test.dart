@@ -9,6 +9,7 @@ import 'package:watoto_mobile/core/network/watoto_api.dart';
 import 'package:watoto_mobile/core/offline/offline_providers.dart';
 import 'package:watoto_mobile/core/offline/offline_store.dart';
 import 'package:watoto_mobile/core/offline/sync_op.dart';
+import 'package:watoto_mobile/features/library/content_lexicon.dart';
 import 'package:watoto_mobile/features/library/library_models.dart';
 import 'package:watoto_mobile/features/library/library_repository.dart';
 import 'package:watoto_mobile/features/onboarding/consent.dart';
@@ -47,6 +48,27 @@ final _tapLesson = LibraryItem(
   ],
 );
 
+// A directive step naming an object ("ball") — must stage a multiple choice.
+final _choiceLesson = LibraryItem(
+  id: 'test.choice.1',
+  stage: 4,
+  ages: '3-4',
+  subject: 'Language & Literacy',
+  type: LibraryType.lesson,
+  title: 'First Sounds',
+  objective: '',
+  designTier: 'guided',
+  reading: false,
+  interaction: 'tap',
+  steps: const [
+    LessonStep(
+      narration: 'Ball starts with /b/. Tap the ball.',
+      action: 'tap-correct',
+      feedback: 'Yes! Ball starts with /b/!',
+    ),
+  ],
+);
+
 void main() {
   late OfflineStore store;
 
@@ -72,7 +94,7 @@ void main() {
       offlineStoreProvider.overrideWithValue(store),
       syncApiProvider.overrideWithValue(_UnreachableApi()),
       libraryProvider.overrideWith(
-        (ref) async => LibraryRepository([_tapLesson]),
+        (ref) async => LibraryRepository([_tapLesson, _choiceLesson]),
       ),
     ],
     child: const WatotoApp(),
@@ -131,4 +153,46 @@ void main() {
       expect(store.streakFor(id), 1);
     },
   );
+
+  testWidgets('directive step ("Tap the ball") stages a real multiple choice', (
+    tester,
+  ) async {
+    await seed();
+    await tester.pumpWidget(buildApp());
+    await tester.pumpAndSettle();
+
+    goTo(tester, '/play/${_choiceLesson.id}');
+    await tester.pumpAndSettle();
+
+    // The plan is deterministic: the ball plus two same-category
+    // distractors, all rendered on screen.
+    final plan = choicePlanFor(
+      _choiceLesson.id,
+      0,
+      _choiceLesson.steps[0].narration,
+    )!;
+    expect(plan.options, hasLength(3));
+    expect(plan.options[plan.targetIndex].emoji, '⚽');
+    for (final o in plan.options) {
+      expect(find.text(o.emoji), findsOneWidget);
+    }
+
+    // A wrong pick does not advance: Done stays disabled, retry appears.
+    final wrong = plan.targetIndex == 0 ? 1 : 0;
+    await tester.tap(find.text(plan.options[wrong].emoji));
+    await tester.pumpAndSettle();
+    expect(find.text('So close! Try again!'), findsOneWidget);
+    final done = tester.widget<FilledButton>(
+      find.widgetWithText(FilledButton, 'Done'),
+    );
+    expect(done.onPressed, isNull);
+
+    // The right pick reveals feedback and unlocks Done.
+    await tester.tap(find.text('⚽'));
+    await tester.pumpAndSettle();
+    expect(find.text('Yes! Ball starts with /b/!'), findsOneWidget);
+    await tester.tap(find.text('Done'));
+    await tester.pumpAndSettle();
+    expect(find.text('Great job!'), findsOneWidget);
+  });
 }

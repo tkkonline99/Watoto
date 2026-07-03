@@ -12,6 +12,7 @@ import '../../core/state/app_state.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
 import 'content_i18n.dart';
+import 'content_lexicon.dart';
 import 'library_models.dart';
 import 'library_repository.dart';
 
@@ -186,6 +187,14 @@ class _LessonViewState extends ConsumerState<_LessonView> {
     }
     final isLast = _step == steps.length - 1;
     final kind = playKind(widget.item.interaction);
+    // Stage plan comes from the English source narration: a directive step
+    // ("Tap the ball…") becomes a multiple-choice stage; any step naming a
+    // known word gets that word's illustration instead of the subject icon.
+    final narrationEn = steps[_step].narration;
+    final choice = kind == PlayKind.tap
+        ? choicePlanFor(widget.item.id, _step, narrationEn)
+        : null;
+    final emoji = illustrationFor(narrationEn) ?? stageEmoji(widget.item);
     return Scaffold(
       appBar: _bar(context, loc.title),
       body: SafeArea(
@@ -216,7 +225,8 @@ class _LessonViewState extends ConsumerState<_LessonView> {
                     _InteractionStage(
                       key: ValueKey(_step),
                       kind: kind,
-                      emoji: stageEmoji(widget.item),
+                      emoji: emoji,
+                      choice: choice,
                       count: countForStep(widget.item, _step),
                       onCompleted: _onInteracted,
                       onTapSound: () => ref.read(soundEffectsProvider).tap(),
@@ -320,6 +330,7 @@ class _InteractionStage extends StatelessWidget {
     required this.count,
     required this.onCompleted,
     required this.onTapSound,
+    this.choice,
   });
 
   final PlayKind kind;
@@ -327,19 +338,127 @@ class _InteractionStage extends StatelessWidget {
   final int count;
   final VoidCallback onCompleted;
   final VoidCallback onTapSound;
+  final ChoicePlan? choice;
 
   @override
   Widget build(BuildContext context) {
+    final plan = choice;
+    if (plan != null) {
+      return _ChoiceStage(plan: plan, onCompleted: onCompleted);
+    }
     return switch (kind) {
       PlayKind.tap => _TapStage(emoji: emoji, onCompleted: onCompleted),
       PlayKind.count => _CountStage(
-        emoji: '⭐',
+        emoji: emoji,
         count: count,
         onCompleted: onCompleted,
         onTapSound: onTapSound,
       ),
       PlayKind.drag => _DragStage(emoji: emoji, onCompleted: onCompleted),
     };
+  }
+}
+
+/// A staged multiple-choice question: the narration names an object and the
+/// child picks it from look-alike distractors. Wrong picks shrink and grey
+/// out (with a gentle haptic) so the child can keep trying; the right pick
+/// pops and advances the step.
+class _ChoiceStage extends StatefulWidget {
+  const _ChoiceStage({required this.plan, required this.onCompleted});
+
+  final ChoicePlan plan;
+  final VoidCallback onCompleted;
+
+  @override
+  State<_ChoiceStage> createState() => _ChoiceStageState();
+}
+
+class _ChoiceStageState extends State<_ChoiceStage> {
+  final _wrong = <int>{};
+  bool _done = false;
+
+  void _pick(int i) {
+    if (_done) return;
+    if (i == widget.plan.targetIndex) {
+      setState(() => _done = true);
+      HapticFeedback.lightImpact();
+      widget.onCompleted();
+    } else if (_wrong.add(i)) {
+      setState(() {});
+      HapticFeedback.heavyImpact();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Column(
+      children: [
+        Wrap(
+          spacing: 14,
+          runSpacing: 14,
+          alignment: WrapAlignment.center,
+          children: [
+            for (var i = 0; i < widget.plan.options.length; i++)
+              Semantics(
+                button: true,
+                label: widget.plan.options[i].word,
+                child: GestureDetector(
+                  onTap: () => _pick(i),
+                  child: AnimatedScale(
+                    scale: _done && i == widget.plan.targetIndex
+                        ? 1.2
+                        : (_wrong.contains(i) ? 0.85 : 1.0),
+                    duration: const Duration(milliseconds: 180),
+                    curve: Curves.easeOutBack,
+                    child: AnimatedOpacity(
+                      opacity:
+                          _wrong.contains(i) ||
+                              (_done && i != widget.plan.targetIndex)
+                          ? 0.35
+                          : 1.0,
+                      duration: const Duration(milliseconds: 180),
+                      child: Container(
+                        width: 92,
+                        height: 92,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(22),
+                          border: Border.all(
+                            color: _done && i == widget.plan.targetIndex
+                                ? WatotoColors.leaf
+                                : WatotoColors.sky.withValues(alpha: 0.25),
+                            width: 3,
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: WatotoColors.deep.withValues(alpha: 0.08),
+                              blurRadius: 10,
+                              offset: const Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: Text(
+                          widget.plan.options[i].emoji,
+                          style: const TextStyle(fontSize: 48),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        ),
+        if (_wrong.isNotEmpty && !_done) ...[
+          const SizedBox(height: 12),
+          Text(
+            l10n.tryAgain,
+            style: const TextStyle(fontSize: 15, color: WatotoColors.berry),
+          ),
+        ],
+      ],
+    );
   }
 }
 
@@ -663,6 +782,14 @@ class _QuizViewState extends ConsumerState<_QuizView> {
             children: [
               _ProgressDots(count: widget.item.questions.length, active: _q),
               const SizedBox(height: 12),
+              // Illustrate the question when its (English) prompt names a
+              // known word — emoji are language-neutral.
+              if (illustrationFor(question.prompt) case final String e) ...[
+                ExcludeSemantics(
+                  child: Text(e, style: const TextStyle(fontSize: 56)),
+                ),
+                const SizedBox(height: 8),
+              ],
               Text(
                 loc.questionPrompt(_q),
                 textAlign: TextAlign.center,
@@ -687,7 +814,26 @@ class _QuizViewState extends ConsumerState<_QuizView> {
                               minimumSize: const Size.fromHeight(52),
                             ),
                             onPressed: () => _pick(i),
-                            child: Text(loc.optionLabel(_q, i)),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                // Illustrate one-word answers ("Ball" → ⚽)
+                                // from the English source label.
+                                if (lexicon[question.options[i].label
+                                        .trim()
+                                        .toLowerCase()]
+                                    case final LexEntry e) ...[
+                                  ExcludeSemantics(
+                                    child: Text(
+                                      e.emoji,
+                                      style: const TextStyle(fontSize: 22),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 8),
+                                ],
+                                Flexible(child: Text(loc.optionLabel(_q, i))),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -780,7 +926,11 @@ class _StoryViewState extends ConsumerState<_StoryView> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    _placeholder('📖'),
+                    // Illustrate the page from its (English) narration.
+                    _placeholder(
+                      illustrationFor(widget.item.pages[_page].narration) ??
+                          '📖',
+                    ),
                     const SizedBox(height: 24),
                     Text(
                       loc.pageNarration(_page),
