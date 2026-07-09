@@ -364,6 +364,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dragToBasket => 'Drag it into the basket!';
 
   @override
+  String get keepGoing => 'Keep going!';
+
+  @override
   String get curriculumGuides => 'Curriculum Guides';
 
   @override

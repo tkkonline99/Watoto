@@ -363,6 +363,9 @@ class AppLocalizationsSw extends AppLocalizations {
   String get dragToBasket => 'Iburute kwenye kikapu!';
 
   @override
+  String get keepGoing => 'Endelea!';
+
+  @override
   String get curriculumGuides => 'Miongozo ya Mtaala';
 
   @override

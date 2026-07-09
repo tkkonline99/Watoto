@@ -365,6 +365,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get dragToBasket => 'Glisse-le dans le panier !';
 
   @override
+  String get keepGoing => 'On continue !';
+
+  @override
   String get curriculumGuides => 'Guides pédagogiques';
 
   @override

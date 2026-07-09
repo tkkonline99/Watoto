@@ -48,6 +48,54 @@ final _tapLesson = LibraryItem(
   ],
 );
 
+// A quiz in the same stage+subject as _tapLesson: deterministic "next
+// activity" after the lesson (items sort lessons before quizzes).
+final _animalQuiz = LibraryItem(
+  id: 'test.quiz.1',
+  stage: 3,
+  ages: '2-3',
+  subject: 'Animals',
+  type: LibraryType.quiz,
+  title: 'Animal Quiz',
+  objective: '',
+  designTier: 'guided',
+  reading: false,
+  interaction: 'single-select',
+  questions: const [
+    LibQuestion(
+      prompt: 'Which one says woof?',
+      options: [
+        LibOption(label: 'Dog'),
+        LibOption(label: 'Cat'),
+      ],
+      answer: 0,
+      correctFeedback: 'Woof!',
+      retryFeedback: 'Try again!',
+    ),
+  ],
+);
+
+// A reading step that quotes the word to find — must stage TEXT choices.
+final _wordLesson = LibraryItem(
+  id: 'test.word.1',
+  stage: 7,
+  ages: '6-7',
+  subject: 'Reading',
+  type: LibraryType.lesson,
+  title: 'Short and Long Vowels',
+  objective: '',
+  designTier: 'guided',
+  reading: true,
+  interaction: 'tap',
+  steps: const [
+    LessonStep(
+      narration: "'cap' has a SHORT a. Tap 'cap'.",
+      action: 'tap-word',
+      feedback: 'Short a!',
+    ),
+  ],
+);
+
 // A directive step naming an object ("ball") — must stage a multiple choice.
 final _choiceLesson = LibraryItem(
   id: 'test.choice.1',
@@ -94,7 +142,12 @@ void main() {
       offlineStoreProvider.overrideWithValue(store),
       syncApiProvider.overrideWithValue(_UnreachableApi()),
       libraryProvider.overrideWith(
-        (ref) async => LibraryRepository([_tapLesson, _choiceLesson]),
+        (ref) async => LibraryRepository([
+          _tapLesson,
+          _animalQuiz,
+          _wordLesson,
+          _choiceLesson,
+        ]),
       ),
     ],
     child: const WatotoApp(),
@@ -194,5 +247,73 @@ void main() {
     await tester.tap(find.text('Done'));
     await tester.pumpAndSettle();
     expect(find.text('Great job!'), findsOneWidget);
+    // Last item of its subject — no chain offered.
+    expect(find.text('Keep going!'), findsNothing);
+  });
+
+  testWidgets('quoted-word step ("Tap \'cap\'") stages text choices', (
+    tester,
+  ) async {
+    await seed();
+    await tester.pumpWidget(buildApp());
+    await tester.pumpAndSettle();
+
+    goTo(tester, '/play/${_wordLesson.id}');
+    await tester.pumpAndSettle();
+
+    final plan = choicePlanFor(
+      _wordLesson.id,
+      0,
+      _wordLesson.steps[0].narration,
+    )!;
+    expect(plan.options[plan.targetIndex].emoji, 'cap');
+    // The silent-e minimal pair is the leading distractor.
+    expect(plan.options.map((o) => o.emoji), contains('cape'));
+    for (final o in plan.options) {
+      expect(find.text(o.emoji), findsOneWidget, reason: o.emoji);
+    }
+
+    // Picking the look-alike word does not advance.
+    await tester.tap(find.text('cape'));
+    await tester.pumpAndSettle();
+    expect(find.text('So close! Try again!'), findsOneWidget);
+    final done = tester.widget<FilledButton>(
+      find.widgetWithText(FilledButton, 'Done'),
+    );
+    expect(done.onPressed, isNull);
+
+    // Reading the right word completes the step.
+    await tester.tap(find.text('cap'));
+    await tester.pumpAndSettle();
+    expect(find.text('Short a!'), findsOneWidget);
+  });
+
+  testWidgets('celebration chains into the next activity in the subject', (
+    tester,
+  ) async {
+    await seed();
+    await tester.pumpWidget(buildApp());
+    await tester.pumpAndSettle();
+
+    // Complete the animals lesson (choice step, then fallback tap step).
+    goTo(tester, '/play/${_tapLesson.id}');
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('🐘'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Next'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('🐘'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Done'));
+    await tester.pumpAndSettle();
+
+    // The celebration offers the next item (the Animals quiz)…
+    expect(find.text('Keep going!'), findsOneWidget);
+    await tester.tap(find.text('Keep going!'));
+    await tester.pumpAndSettle();
+
+    // …which opens directly, with the illustrated option ("Dog" → 🐶).
+    expect(find.text('Which one says woof?'), findsOneWidget);
+    expect(find.text('🐶'), findsOneWidget);
   });
 }

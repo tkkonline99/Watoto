@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/offline/offline_providers.dart';
 import '../../core/state/app_state.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
@@ -30,6 +31,20 @@ class SubjectDetailScreen extends ConsumerWidget {
     final lang = ref.watch(localeProvider).languageCode;
     final repo = ref.watch(libraryProvider).asData?.value;
     final i18n = ref.watch(contentI18nProvider).asData?.value;
+
+    // Completion marks: which of this subject's items the active child has
+    // already done. xpProvider bumps on every completion, so the checkmarks
+    // refresh when the child returns from a lesson.
+    ref.watch(xpProvider);
+    final store = ref.watch(offlineStoreProvider);
+    final childId = ref.watch(sessionProvider.select((s) => s.activeChildId));
+    bool isDone(LibraryItem item) =>
+        childId != null &&
+        switch (item.type) {
+          LibraryType.lesson => store.progressFor(childId, item.id) != null,
+          LibraryType.quiz => store.lastQuizAttempt(childId, item.id) != null,
+          LibraryType.story => store.hasReadStory(childId, item.id),
+        };
 
     final stageData = (stage >= 1 && stage <= curriculumStages.length)
         ? curriculumStages[stage - 1]
@@ -100,7 +115,11 @@ class SubjectDetailScreen extends ConsumerWidget {
               ),
               const SizedBox(height: 8),
               for (final item in items)
-                _PlayTile(item: item, title: itemTitle(i18n, lang, item)),
+                _PlayTile(
+                  item: item,
+                  title: itemTitle(i18n, lang, item),
+                  done: isDone(item),
+                ),
               const SizedBox(height: 16),
             ] else ...[
               // Never a dead-end: a friendly note when nothing is authored yet.
@@ -189,10 +208,13 @@ class _ComingSoonCard extends StatelessWidget {
 }
 
 class _PlayTile extends StatelessWidget {
-  const _PlayTile({required this.item, required this.title});
+  const _PlayTile({required this.item, required this.title, this.done = false});
 
   final LibraryItem item;
   final String title;
+
+  /// Whether the active child has already completed this item.
+  final bool done;
 
   static const _typeEmoji = {
     LibraryType.lesson: '📘',
@@ -229,11 +251,15 @@ class _PlayTile extends StatelessWidget {
                   ),
                 ),
               ),
-              const Icon(
-                Icons.play_circle_fill,
-                color: WatotoColors.mango,
-                size: 28,
-              ),
+              // Emoji, not a conditional Icon: icon-font tree-shaking drops
+              // glyphs it can't prove are used, leaving a blank box.
+              done
+                  ? const Text('✅', style: TextStyle(fontSize: 22))
+                  : const Icon(
+                      Icons.play_circle_fill,
+                      color: WatotoColors.mango,
+                      size: 28,
+                    ),
             ],
           ),
         ),

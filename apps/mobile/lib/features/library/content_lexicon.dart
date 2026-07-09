@@ -302,6 +302,21 @@ ChoicePlan? choicePlanFor(String itemId, int step, String narration) {
     );
   }
 
+  // "Tap 'cap'" — reading steps quote the word itself: stage it as tappable
+  // TEXT against minimal-pair distractors (the other quoted words in the
+  // step, then silent-e / vowel-swap mutations — 'cap' vs 'cape' vs 'cop').
+  // A directive with only a pronoun ("This word is 'the'. Tap it.") falls
+  // back to the word quoted elsewhere in the narration.
+  final quoted =
+      RegExp(r"'([A-Za-z]+)'").firstMatch(clause) ??
+      (_isTrivialClause(clause)
+          ? RegExp(r"'([A-Za-z]+)'").firstMatch(narration)
+          : null);
+  if (quoted != null) {
+    final word = quoted.group(1)!.toLowerCase();
+    return _wordPlan(itemId, step, word, narration);
+  }
+
   String? target;
   String? digitFallback;
   for (final w in _words(clause)) {
@@ -367,6 +382,67 @@ ChoicePlan? choicePlanFor(String itemId, int step, String narration) {
   final targetIndex = s % 3;
   final options = List.of(distractors)
     ..insert(targetIndex, ChoiceOption(target, targetEntry.emoji));
+  return ChoicePlan(options, targetIndex);
+}
+
+/// A clause that names nothing itself ("Tap it."): only glue words remain.
+bool _isTrivialClause(String clause) {
+  const glue = {
+    'it',
+    'them',
+    'the',
+    'a',
+    'to',
+    'now',
+    'again',
+    'here',
+    'and',
+    'then',
+    'one',
+    'word',
+  };
+  final ws = _words(clause);
+  return ws.isNotEmpty && ws.every(glue.contains);
+}
+
+const _vowels = ['a', 'e', 'i', 'o', 'u'];
+
+/// A reading choice: the quoted [word] as text, against minimal-pair
+/// distractors. Prefers the step's other quoted words (the contrast the
+/// narration is actually teaching), then a silent-e toggle, then seeded
+/// vowel swaps.
+ChoicePlan _wordPlan(String itemId, int step, String word, String narration) {
+  final distractors = <String>[];
+  void add(String w) {
+    final c = w.toLowerCase();
+    if (c != word && c.isNotEmpty && !distractors.contains(c)) {
+      distractors.add(c);
+    }
+  }
+
+  for (final m in RegExp(r"'([A-Za-z]+)'").allMatches(narration)) {
+    add(m.group(1)!);
+  }
+  // Silent-e toggle: cap ↔ cape.
+  add(word.endsWith('e') ? word.substring(0, word.length - 1) : '${word}e');
+  // Seeded vowel swaps on the first vowel: cap → cop / cup…
+  var s = _seed(itemId, step);
+  final vi = word.split('').indexWhere(_vowels.contains);
+  if (vi >= 0) {
+    for (var i = 0; i < _vowels.length && distractors.length < 4; i++) {
+      s = _next(s);
+      final v = _vowels[s % _vowels.length];
+      add(word.replaceRange(vi, vi + 1, v));
+    }
+  }
+  while (distractors.length < 2) {
+    add('$word${distractors.length + 1}'); // unreachable for real words
+  }
+
+  s = _next(s);
+  final targetIndex = s % 3;
+  final options = [for (final d in distractors.take(2)) ChoiceOption(d, d)]
+    ..insert(targetIndex, ChoiceOption(word, word));
   return ChoicePlan(options, targetIndex);
 }
 

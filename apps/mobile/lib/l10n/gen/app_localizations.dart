@@ -754,6 +754,12 @@ abstract class AppLocalizations {
   /// **'Drag it into the basket!'**
   String get dragToBasket;
 
+  /// No description provided for @keepGoing.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep going!'**
+  String get keepGoing;
+
   /// No description provided for @curriculumGuides.
   ///
   /// In en, this message translates to:

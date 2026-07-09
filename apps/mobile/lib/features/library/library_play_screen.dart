@@ -171,6 +171,7 @@ class _LessonViewState extends ConsumerState<_LessonView> {
         emoji: '🎉',
         title: l10n.greatJob,
         xp: widget.item.xp,
+        nextId: _nextInSubject(ref, widget.item)?.id,
       );
     }
     final steps = widget.item.steps;
@@ -204,45 +205,52 @@ class _LessonViewState extends ConsumerState<_LessonView> {
             children: [
               _ProgressDots(count: steps.length, active: _step),
               Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    // Narration is always shown (it doubles as the caption for
-                    // the spoken line), in a live region so screen readers
-                    // announce each new step.
-                    Semantics(
-                      liveRegion: true,
-                      child: Text(
-                        loc.stepNarration(_step),
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.w800,
+                // Scroll-safe: large text sizes or tall word-choice cards
+                // must never overflow on small screens.
+                child: Center(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        // Narration is always shown (it doubles as the caption
+                        // for the spoken line), in a live region so screen
+                        // readers announce each new step.
+                        Semantics(
+                          liveRegion: true,
+                          child: Text(
+                            loc.stepNarration(_step),
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                    const SizedBox(height: 24),
-                    _InteractionStage(
-                      key: ValueKey(_step),
-                      kind: kind,
-                      emoji: emoji,
-                      choice: choice,
-                      count: countForStep(widget.item, _step),
-                      onCompleted: _onInteracted,
-                      onTapSound: () => ref.read(soundEffectsProvider).tap(),
-                    ),
-                    if (_interacted) ...[
-                      const SizedBox(height: 16),
-                      Text(
-                        loc.stepFeedback(_step),
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 17,
-                          color: WatotoColors.leaf,
+                        const SizedBox(height: 24),
+                        _InteractionStage(
+                          key: ValueKey(_step),
+                          kind: kind,
+                          emoji: emoji,
+                          choice: choice,
+                          count: countForStep(widget.item, _step),
+                          onCompleted: _onInteracted,
+                          onTapSound: () =>
+                              ref.read(soundEffectsProvider).tap(),
                         ),
-                      ),
-                    ],
-                  ],
+                        if (_interacted) ...[
+                          const SizedBox(height: 16),
+                          Text(
+                            loc.stepFeedback(_step),
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 17,
+                              color: WatotoColors.leaf,
+                            ),
+                          ),
+                        ],
+                      ],
+                    ),
+                  ),
                 ),
               ),
               SizedBox(
@@ -419,8 +427,11 @@ class _ChoiceStageState extends State<_ChoiceStage> {
                           : 1.0,
                       duration: const Duration(milliseconds: 180),
                       child: Container(
-                        width: 92,
-                        height: 92,
+                        constraints: const BoxConstraints(
+                          minWidth: 92,
+                          minHeight: 92,
+                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -439,10 +450,22 @@ class _ChoiceStageState extends State<_ChoiceStage> {
                             ),
                           ],
                         ),
-                        child: Text(
-                          widget.plan.options[i].emoji,
-                          style: const TextStyle(fontSize: 48),
-                        ),
+                        // Reading choices ("cap" vs "cape") render as words,
+                        // not emoji-sized glyphs.
+                        child: _isWordOption(widget.plan.options[i].emoji)
+                            ? Text(
+                                widget.plan.options[i].emoji,
+                                style: const TextStyle(
+                                  fontFamily: 'Baloo2',
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.w800,
+                                  color: WatotoColors.deep,
+                                ),
+                              )
+                            : Text(
+                                widget.plan.options[i].emoji,
+                                style: const TextStyle(fontSize: 48),
+                              ),
                       ),
                     ),
                   ),
@@ -461,6 +484,10 @@ class _ChoiceStageState extends State<_ChoiceStage> {
     );
   }
 }
+
+/// A multi-letter alphabetic option is a word to read, not an emoji/symbol.
+bool _isWordOption(String s) =>
+    s.length > 1 && RegExp(r'^[a-zA-Z]+$').hasMatch(s);
 
 Widget _bigEmoji(String emoji) =>
     Text(emoji, style: const TextStyle(fontSize: 88));
@@ -770,6 +797,7 @@ class _QuizViewState extends ConsumerState<_QuizView> {
         title: l10n.greatJob,
         xp: widget.item.xp,
         stars: _stars,
+        nextId: _nextInSubject(ref, widget.item)?.id,
       );
     }
     final question = widget.item.questions[_q];
@@ -913,7 +941,12 @@ class _StoryViewState extends ConsumerState<_StoryView> {
     final l10n = AppLocalizations.of(context);
     final loc = _localized(ref, widget.item);
     if (_done) {
-      return _Celebration(emoji: '📖✨', title: l10n.theEnd, xp: widget.item.xp);
+      return _Celebration(
+        emoji: '📖✨',
+        title: l10n.theEnd,
+        xp: widget.item.xp,
+        nextId: _nextInSubject(ref, widget.item)?.id,
+      );
     }
     final pages = widget.item.pages;
     final isLast = _page == pages.length - 1;
@@ -1006,11 +1039,16 @@ class _Celebration extends StatelessWidget {
     required this.title,
     required this.xp,
     this.stars = 0,
+    this.nextId,
   });
   final String emoji;
   final String title;
   final int xp;
   final int stars;
+
+  /// The next playable item in the same stage+subject, if any — keeps the
+  /// homework session going instead of dumping the child back at home.
+  final String? nextId;
 
   @override
   Widget build(BuildContext context) {
@@ -1044,9 +1082,19 @@ class _Celebration extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 40),
-              FilledButton(
-                onPressed: () => context.go('/'),
-                child: Text(l10n.done),
+              Wrap(
+                spacing: 16,
+                children: [
+                  if (nextId != null)
+                    FilledButton(
+                      onPressed: () => context.pushReplacement('/play/$nextId'),
+                      child: Text(l10n.keepGoing),
+                    ),
+                  FilledButton(
+                    onPressed: () => context.go('/'),
+                    child: Text(l10n.done),
+                  ),
+                ],
               ),
             ],
           ),
@@ -1054,4 +1102,15 @@ class _Celebration extends StatelessWidget {
       ),
     );
   }
+}
+
+/// The item after [item] within its stage+subject list (lessons → quizzes →
+/// stories), or null when [item] is the last one.
+LibraryItem? _nextInSubject(WidgetRef ref, LibraryItem item) {
+  final repo = ref.watch(libraryProvider).asData?.value;
+  if (repo == null) return null;
+  final list = repo.forStageSubject(item.stage, item.subject);
+  final i = list.indexWhere((x) => x.id == item.id);
+  if (i < 0 || i + 1 >= list.length) return null;
+  return list[i + 1];
 }
