@@ -956,27 +956,31 @@ class _StoryViewState extends ConsumerState<_StoryView> {
         child: Column(
           children: [
             Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(24),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    // Illustrate the page from its (English) narration.
-                    _placeholder(
-                      illustrationFor(widget.item.pages[_page].narration) ??
-                          '📖',
-                    ),
-                    const SizedBox(height: 24),
-                    Text(
-                      loc.pageNarration(_page),
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 20,
-                        height: 1.5,
-                        fontWeight: FontWeight.w600,
+              // Scroll-safe: long page narrations at large text sizes must
+              // never overflow on small screens.
+              child: Center(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.all(24),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      // Illustrate the page from its (English) narration.
+                      _placeholder(
+                        illustrationFor(widget.item.pages[_page].narration) ??
+                            '📖',
                       ),
-                    ),
-                  ],
+                      const SizedBox(height: 24),
+                      Text(
+                        loc.pageNarration(_page),
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          height: 1.5,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -1055,48 +1059,53 @@ class _Celebration extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     return Scaffold(
       body: SafeArea(
+        // Scroll-safe at large text sizes.
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(emoji, style: const TextStyle(fontSize: 96)),
-              const SizedBox(height: 16),
-              Text(
-                title,
-                style: const TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
-              if (stars > 0) ...[
-                const SizedBox(height: 8),
-                Text('⭐' * stars, style: const TextStyle(fontSize: 36)),
-              ],
-              const SizedBox(height: 8),
-              Text(
-                l10n.xpEarned(xp),
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w700,
-                  color: WatotoColors.mango,
-                ),
-              ),
-              const SizedBox(height: 40),
-              Wrap(
-                spacing: 16,
-                children: [
-                  if (nextId != null)
-                    FilledButton(
-                      onPressed: () => context.pushReplacement('/play/$nextId'),
-                      child: Text(l10n.keepGoing),
-                    ),
-                  FilledButton(
-                    onPressed: () => context.go('/'),
-                    child: Text(l10n.done),
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(emoji, style: const TextStyle(fontSize: 96)),
+                const SizedBox(height: 16),
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.w800,
                   ),
+                ),
+                if (stars > 0) ...[
+                  const SizedBox(height: 8),
+                  Text('⭐' * stars, style: const TextStyle(fontSize: 36)),
                 ],
-              ),
-            ],
+                const SizedBox(height: 8),
+                Text(
+                  l10n.xpEarned(xp),
+                  style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w700,
+                    color: WatotoColors.mango,
+                  ),
+                ),
+                const SizedBox(height: 40),
+                Wrap(
+                  spacing: 16,
+                  children: [
+                    if (nextId != null)
+                      FilledButton(
+                        onPressed: () =>
+                            context.pushReplacement('/play/$nextId'),
+                        child: Text(l10n.keepGoing),
+                      ),
+                    FilledButton(
+                      onPressed: () => context.go('/'),
+                      child: Text(l10n.done),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

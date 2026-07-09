@@ -49,41 +49,49 @@ class _PinGateScreenState extends ConsumerState<PinGateScreen> {
         ),
       ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text('🔐', style: TextStyle(fontSize: 56)),
-              const SizedBox(height: 12),
-              Text(l10n.enterPinTitle,
+        // Scroll-safe: keyboard + large text sizes must not overflow.
+        child: Center(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text('🔐', style: TextStyle(fontSize: 56)),
+                const SizedBox(height: 12),
+                Text(
+                  l10n.enterPinTitle,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w800)),
-              const SizedBox(height: 8),
-              Text(l10n.enterPinSubtitle, textAlign: TextAlign.center),
-              const SizedBox(height: 24),
-              TextField(
-                controller: _pin,
-                keyboardType: TextInputType.number,
-                obscureText: true,
-                // obscureText + number keyboard drops keystrokes on many
-                // Android IMEs unless suggestions/autocorrect are off
-                // (flutter#67391).
-                enableSuggestions: false,
-                autocorrect: false,
-                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                maxLength: 6,
-                textAlign: TextAlign.center,
-                autofocus: true,
-                onSubmitted: (_) => _submit(),
-                decoration: InputDecoration(
-                  border: const OutlineInputBorder(),
-                  errorText: _error ? l10n.wrongPin : null,
+                  style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w800,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 16),
-              FilledButton(onPressed: _submit, child: Text(l10n.unlock)),
-            ],
+                const SizedBox(height: 8),
+                Text(l10n.enterPinSubtitle, textAlign: TextAlign.center),
+                const SizedBox(height: 24),
+                TextField(
+                  controller: _pin,
+                  keyboardType: TextInputType.number,
+                  obscureText: true,
+                  // obscureText + number keyboard drops keystrokes on many
+                  // Android IMEs unless suggestions/autocorrect are off
+                  // (flutter#67391).
+                  enableSuggestions: false,
+                  autocorrect: false,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  maxLength: 6,
+                  textAlign: TextAlign.center,
+                  autofocus: true,
+                  onSubmitted: (_) => _submit(),
+                  decoration: InputDecoration(
+                    border: const OutlineInputBorder(),
+                    errorText: _error ? l10n.wrongPin : null,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                FilledButton(onPressed: _submit, child: Text(l10n.unlock)),
+              ],
+            ),
           ),
         ),
       ),

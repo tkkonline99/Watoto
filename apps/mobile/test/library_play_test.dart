@@ -204,6 +204,14 @@ void main() {
       expect(find.text('+10 XP'), findsOneWidget);
       expect(store.xpFor(id), 10);
       expect(store.streakFor(id), 1);
+
+      // Back on the subject page, the finished lesson wears the done mark;
+      // the untouched quiz keeps its play icon.
+      await tester.tap(find.text('Done'));
+      await tester.pumpAndSettle();
+      goTo(tester, '/subject/3/Animals');
+      await tester.pumpAndSettle();
+      expect(find.text('✅'), findsOneWidget);
     },
   );
 
