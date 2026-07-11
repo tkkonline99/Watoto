@@ -32,6 +32,8 @@ const _people = 'people';
 const _color = 'color';
 const _shape = 'shape';
 const _digit = 'digit';
+const _clothing = 'clothing';
+const _direction = 'direction';
 const _concept = 'concept';
 
 const Map<String, LexEntry> lexicon = {
@@ -58,6 +60,7 @@ const Map<String, LexEntry> lexicon = {
   'wolf': LexEntry('🐺', _animal), 'tiger': LexEntry('🐯', _animal),
   'hippo': LexEntry('🦛', _animal), 'snail': LexEntry('🐌', _animal),
   'worm': LexEntry('🪱', _animal), 'kangaroo': LexEntry('🦘', _animal),
+  'gecko': LexEntry('🦎', _animal), 'lizard': LexEntry('🦎', _animal),
   // Food
   'apple': LexEntry('🍎', _food), 'apples': LexEntry('🍎', _food),
   'banana': LexEntry('🍌', _food), 'mango': LexEntry('🥭', _food),
@@ -65,15 +68,14 @@ const Map<String, LexEntry> lexicon = {
   'milk': LexEntry('🥛', _food), 'cake': LexEntry('🍰', _food),
   'cookie': LexEntry('🍪', _food), 'pizza': LexEntry('🍕', _food),
   'carrot': LexEntry('🥕', _food), 'corn': LexEntry('🌽', _food),
+  'soup': LexEntry('🍲', _food),
   // Objects & vehicles
   'ball': LexEntry('⚽', _object), 'balloon': LexEntry('🎈', _object),
   'box': LexEntry('📦', _object), 'cup': LexEntry('🥤', _object),
   'spoon': LexEntry('🥄', _object), 'book': LexEntry('📖', _object),
   'books': LexEntry('📚', _object), 'pencil': LexEntry('✏️', _object),
   'crayon': LexEntry('🖍️', _object), 'drum': LexEntry('🥁', _object),
-  'bell': LexEntry('🔔', _object), 'hat': LexEntry('🎩', _object),
-  'shoe': LexEntry('👟', _object), 'shirt': LexEntry('👕', _object),
-  'sock': LexEntry('🧦', _object), 'robot': LexEntry('🤖', _object),
+  'bell': LexEntry('🔔', _object), 'robot': LexEntry('🤖', _object),
   'computer': LexEntry('💻', _object), 'phone': LexEntry('📱', _object),
   'clock': LexEntry('🕐', _object), 'key': LexEntry('🔑', _object),
   'door': LexEntry('🚪', _object), 'bed': LexEntry('🛏️', _object),
@@ -90,6 +92,22 @@ const Map<String, LexEntry> lexicon = {
   'bubble': LexEntry('🫧', _object), 'bubbles': LexEntry('🫧', _object),
   'cube': LexEntry('🎲', _object), 'curtains': LexEntry('🪟', _object),
   'puzzle': LexEntry('🧩', _object), 'hug': LexEntry('🤗', _people),
+  'globe': LexEntry('🌐', _object), 'lamp': LexEntry('🪔', _object),
+  'pen': LexEntry('🖊️', _object), 'quill': LexEntry('🪶', _object),
+  'bin': LexEntry('🗑️', _object), 'den': LexEntry('🛖', _object),
+  'wood': LexEntry('🪵', _object), 'shaker': LexEntry('🪇', _object),
+  'paperclip': LexEntry('📎', _object),
+  // Clothing ("Things We Wear" lessons get clothing distractors)
+  'hat': LexEntry('🎩', _clothing), 'shoe': LexEntry('👟', _clothing),
+  'shirt': LexEntry('👕', _clothing), 'sock': LexEntry('🧦', _clothing),
+  'coat': LexEntry('🧥', _clothing), 'jacket': LexEntry('🧥', _clothing),
+  'dress': LexEntry('👗', _clothing), 'pants': LexEntry('👖', _clothing),
+  'boot': LexEntry('👢', _clothing), 'scarf': LexEntry('🧣', _clothing),
+  'glove': LexEntry('🧤', _clothing), 'cap': LexEntry('🧢', _clothing),
+  'helmet': LexEntry('⛑️', _clothing),
+  // Compass directions ("Tap north" → arrows)
+  'north': LexEntry('⬆️', _direction), 'south': LexEntry('⬇️', _direction),
+  'east': LexEntry('➡️', _direction), 'west': LexEntry('⬅️', _direction),
   // Nature
   'sun': LexEntry('☀️', _nature), 'moon': LexEntry('🌙', _nature),
   'star': LexEntry('⭐', _nature), 'stars': LexEntry('⭐', _nature),
@@ -104,6 +122,12 @@ const Map<String, LexEntry> lexicon = {
   'seed': LexEntry('🌱', _nature), 'rainbow': LexEntry('🌈', _nature),
   'sky': LexEntry('🌌', _nature), 'night': LexEntry('🌃', _nature),
   'shell': LexEntry('🐚', _nature),
+  'spring': LexEntry('🌼', _nature), 'summer': LexEntry('☀️', _nature),
+  'fall': LexEntry('🍂', _nature), 'autumn': LexEntry('🍂', _nature),
+  'winter': LexEntry('❄️', _nature), 'shadow': LexEntry('👤', _nature),
+  'fossil': LexEntry('🦴', _nature), 'planet': LexEntry('🪐', _nature),
+  'jupiter': LexEntry('🪐', _nature), 'saturn': LexEntry('🪐', _nature),
+  'steam': LexEntry('♨️', _nature),
   // Places & people
   'house': LexEntry('🏠', _object), 'home': LexEntry('🏠', _object),
   'school': LexEntry('🏫', _object), 'farm': LexEntry('🚜', _object),
@@ -117,11 +141,18 @@ const Map<String, LexEntry> lexicon = {
   'friend': LexEntry('🧒', _people), 'friends': LexEntry('🧒', _people),
   'mom': LexEntry('👩', _people), 'mama': LexEntry('👩', _people),
   'dad': LexEntry('👨', _people), 'dada': LexEntry('👨', _people),
-  'grown': LexEntry('🧑', _people),
+  'grown': LexEntry('🧑', _people), 'parent': LexEntry('🧑', _people),
+  'girl': LexEntry('👧', _people), 'boy': LexEntry('👦', _people),
+  'mayor': LexEntry('🧑‍💼', _people),
   // Faces & body
   'face': LexEntry('😊', _people, choice: false),
   'happy': LexEntry('😊', _people), 'smiling': LexEntry('😊', _people),
   'sad': LexEntry('😢', _people), 'angry': LexEntry('😠', _people),
+  'scared': LexEntry('😨', _people), 'excited': LexEntry('🤩', _people),
+  'sleepy': LexEntry('😴', _people), 'proud': LexEntry('😌', _people),
+  'frustrated': LexEntry('😤', _people), 'worried': LexEntry('😟', _people),
+  'toes': LexEntry('🦶', _people), 'lungs': LexEntry('🫁', _people),
+  'tummy': LexEntry('🤗', _people, choice: false),
   'eyes': LexEntry('👀', _people), 'eye': LexEntry('👁️', _people),
   'nose': LexEntry('👃', _people), 'mouth': LexEntry('👄', _people),
   'ear': LexEntry('👂', _people), 'hand': LexEntry('✋', _people),
@@ -217,10 +248,27 @@ const Map<String, LexEntry> lexicon = {
   'breath': LexEntry('🧘', _concept, choice: false),
   'breathe': LexEntry('🧘', _concept, choice: false),
   'morning': LexEntry('🌅', _concept, choice: false),
-  'steam': LexEntry('♨️', _concept, choice: false),
   'kind': LexEntry('💗', _concept, choice: false),
   'message': LexEntry('💬', _concept, choice: false),
   'shake': LexEntry('🪇', _concept, choice: false),
+  'sneeze': LexEntry('🤧', _concept, choice: false),
+  'yawn': LexEntry('🥱', _concept, choice: false),
+  'kiss': LexEntry('😘', _concept, choice: false),
+  'pour': LexEntry('🫗', _concept, choice: false),
+  'patch': LexEntry('🟫', _concept, choice: false),
+  'cloth': LexEntry('🧣', _concept, choice: false),
+  'seatbelt': LexEntry('💺', _concept, choice: false),
+  'recycle': LexEntry('♻️', _concept, choice: false),
+  'recycling': LexEntry('♻️', _concept, choice: false),
+  'equator': LexEntry('🌍', _concept, choice: false),
+  'hieroglyphs': LexEntry('📜', _concept, choice: false),
+  'anthem': LexEntry('🎼', _concept, choice: false),
+  'note': LexEntry('🎵', _concept, choice: false),
+  'root': LexEntry('🌱', _concept, choice: false),
+  'fur': LexEntry('🐻', _concept, choice: false),
+  'pocket': LexEntry('👖', _concept, choice: false),
+  'largest': LexEntry('🐘', _concept, choice: false),
+  'smallest': LexEntry('🐭', _concept, choice: false),
 };
 
 /// Lexicon lookup with a simple plural fallback ("bears" → "bear").
@@ -289,18 +337,7 @@ int _next(int s) => (s * 1103515245 + 12345) & 0x7fffffff;
 ChoicePlan? choicePlanFor(String itemId, int step, String narration) {
   final clause = _directive.firstMatch(narration)?.group(1);
   if (clause == null) return null;
-
-  // "Tap the letter A" — stage the letter against two other letters.
-  final lm = RegExp(r'letter ([a-z])\b').firstMatch(clause.toLowerCase());
-  if (lm != null) {
-    return _symbolPlan(
-      itemId,
-      step,
-      target: lm.group(1)!.toUpperCase(),
-      pool: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''),
-      wordFor: (s) => 'letter $s',
-    );
-  }
+  final lower = clause.toLowerCase();
 
   // "Tap 'cap'" — reading steps quote the word itself: stage it as tappable
   // TEXT against minimal-pair distractors (the other quoted words in the
@@ -317,44 +354,108 @@ ChoicePlan? choicePlanFor(String itemId, int step, String narration) {
     return _wordPlan(itemId, step, word, narration);
   }
 
-  String? target;
-  String? digitFallback;
-  for (final w in _words(clause)) {
-    final e = lexiconLookup(w);
-    if (e == null || !e.choice) continue;
-    if (e.category == _digit) {
-      digitFallback ??= w;
-    } else {
-      target = w;
-      break;
+  // "Tap the letter A" / "Tap the capital T" / "Tap the little b" — stage
+  // the letter; the case variants pit it against its own other case.
+  final lm = RegExp(
+    r'\b(letter|capital|little|lowercase) ([a-z])\b',
+  ).firstMatch(lower);
+  if (lm != null) {
+    final kind = lm.group(1)!;
+    final c = lm.group(2)!;
+    if (kind == 'little' || kind == 'lowercase') {
+      return _casePlan(itemId, step, target: c, otherCase: c.toUpperCase());
     }
+    if (kind == 'capital') {
+      return _casePlan(itemId, step, target: c.toUpperCase(), otherCase: c);
+    }
+    return _symbolPlan(
+      itemId,
+      step,
+      target: c.toUpperCase(),
+      pool: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''),
+      wordFor: (s) => 'letter $s',
+    );
   }
-  target ??= digitFallback;
+
+  // "Tap the comma / question mark / quotation marks / period / dot".
+  final punct = _punctuationFor(lower);
+  if (punct != null) {
+    return _symbolPlan(
+      itemId,
+      step,
+      target: punct,
+      pool: _punctuation.keys.toList(),
+      wordFor: (s) => _punctuation[s]!,
+    );
+  }
+
+  // "Is that TRUE or FALSE? Tap true."
+  final tf = RegExp(r'\b(true|false)\b').firstMatch(lower);
+  if (tf != null) {
+    final t = tf.group(1)!;
+    final o = t == 'true' ? 'false' : 'true';
+    return _pairPlan(itemId, step, ChoiceOption(t, t), ChoiceOption(o, o));
+  }
+
+  var target = _scanForTarget(clause);
+
+  // "Tap the SMALL one" / "Tap what goes DOWN" — stage the opposite pair.
+  if (target == null) {
+    final opp = _oppositePlan(itemId, step, lower);
+    if (opp != null) return opp;
+  }
+
+  // Pronoun-only directive names the thing earlier in the step:
+  // "The rabbit is FAST. Tap it." → the rabbit.
+  if (target == null && _isTrivialClause(clause)) {
+    target = _scanForTarget(narration);
+  }
 
   if (target == null) {
-    // "Tap the number 3" — stage the numeral against two other numerals.
-    final nm = RegExp(r'\b(10|[1-9])\b').firstMatch(clause);
+    // "Tap the number 3" — keycaps up to ten, plain numerals beyond
+    // ("Ten and 3 more is 13. Tap 13."), with the step's other numbers as
+    // distractors.
+    final nm = RegExp(r'\b(\d{1,3})\b').firstMatch(clause);
     if (nm != null) {
-      const keycaps = [
-        '1️⃣',
-        '2️⃣',
-        '3️⃣',
-        '4️⃣',
-        '5️⃣',
-        '6️⃣',
-        '7️⃣',
-        '8️⃣',
-        '9️⃣',
-        '🔟',
-      ];
       final n = int.parse(nm.group(1)!);
-      return _symbolPlan(
-        itemId,
-        step,
-        target: keycaps[n - 1],
-        pool: keycaps,
-        wordFor: (s) => 'number ${keycaps.indexOf(s) + 1}',
-      );
+      if (n >= 1 && n <= 10) {
+        const keycaps = [
+          '1️⃣',
+          '2️⃣',
+          '3️⃣',
+          '4️⃣',
+          '5️⃣',
+          '6️⃣',
+          '7️⃣',
+          '8️⃣',
+          '9️⃣',
+          '🔟',
+        ];
+        return _symbolPlan(
+          itemId,
+          step,
+          target: keycaps[n - 1],
+          pool: keycaps,
+          wordFor: (s) => 'number ${keycaps.indexOf(s) + 1}',
+        );
+      }
+      final others = <String>[];
+      for (final m in RegExp(r'\b(\d{1,3})\b').allMatches(narration)) {
+        final v = m.group(1)!;
+        if (v != '$n' && !others.contains(v)) others.add(v);
+      }
+      var fill = n;
+      while (others.length < 2) {
+        fill++;
+        if (!others.contains('$fill')) others.add('$fill');
+      }
+      var s = _seed(itemId, step);
+      s = _next(s);
+      final ti = s % 3;
+      final opts = [
+        for (final d in others.take(2)) ChoiceOption('number $d', d),
+      ]..insert(ti, ChoiceOption('number $n', '$n'));
+      return ChoicePlan(opts, ti);
     }
     return null;
   }
@@ -400,9 +501,126 @@ bool _isTrivialClause(String clause) {
     'then',
     'one',
     'word',
+    'all',
+    'your',
+    'face',
+    'each',
   };
   final ws = _words(clause);
   return ws.isNotEmpty && ws.every(glue.contains);
+}
+
+/// First choice-eligible lexicon word in [text] (objects beat digits, so
+/// "tap the two dogs" targets the dog).
+String? _scanForTarget(String text) {
+  String? digitFallback;
+  for (final w in _words(text)) {
+    final e = lexiconLookup(w);
+    if (e == null || !e.choice) continue;
+    if (e.category == _digit) {
+      digitFallback ??= w;
+    } else {
+      return w;
+    }
+  }
+  return digitFallback;
+}
+
+const _punctuation = <String, String>{
+  ',': 'comma',
+  '.': 'period',
+  '?': 'question mark',
+  '!': 'exclamation mark',
+  '"': 'quotation mark',
+};
+
+/// Punctuation named in a directive clause ("Tap a comma", "Tap the dot").
+String? _punctuationFor(String lowerClause) {
+  if (lowerClause.contains('comma')) return ',';
+  if (lowerClause.contains('period') ||
+      RegExp(r'\bdot\b').hasMatch(lowerClause)) {
+    return '.';
+  }
+  if (lowerClause.contains('question mark')) return '?';
+  if (lowerClause.contains('exclamation')) return '!';
+  if (lowerClause.contains('quotation mark')) return '"';
+  return null;
+}
+
+/// Opposite pairs staged as a two-way choice. Only "the X (one/group/…)" and
+/// "what goes up/down" phrasings qualify — bare "tap fast, then slow" is an
+/// action instruction, not a question.
+const _opposites = [
+  ('big', '🐘', 'small', '🐭'),
+  ('hot', '🔥', 'cold', '🧊'),
+  ('fast', '🏎️', 'slow', '🐢'),
+  ('up', '⬆️', 'down', '⬇️'),
+];
+
+ChoicePlan? _oppositePlan(String itemId, int step, String lowerClause) {
+  final m = RegExp(
+    r'\b(?:the|a)\s+(?:\w+\s+)?(big(?:ger|gest)?|small(?:er|est)?|hot|cold|fast(?:er|est)?|slow(?:er|est)?)\b|what goes (up|down)',
+  ).firstMatch(lowerClause);
+  if (m == null) return null;
+  final word = (m.group(1) ?? m.group(2))!;
+  final base = word.startsWith('big')
+      ? 'big'
+      : word.startsWith('small')
+      ? 'small'
+      : word.startsWith('fast')
+      ? 'fast'
+      : word.startsWith('slow')
+      ? 'slow'
+      : word;
+  for (final (a, ae, b, be) in _opposites) {
+    if (base == a) {
+      return _pairPlan(itemId, step, ChoiceOption(a, ae), ChoiceOption(b, be));
+    }
+    if (base == b) {
+      return _pairPlan(itemId, step, ChoiceOption(b, be), ChoiceOption(a, ae));
+    }
+  }
+  return null;
+}
+
+/// A two-option plan (opposites, true/false) with a seeded target position.
+ChoicePlan _pairPlan(
+  String itemId,
+  int step,
+  ChoiceOption target,
+  ChoiceOption other,
+) {
+  var s = _seed(itemId, step);
+  s = _next(s);
+  final ti = s % 2;
+  return ChoicePlan(ti == 0 ? [target, other] : [other, target], ti);
+}
+
+/// "Tap the little b": the letter against its own other case plus one seeded
+/// letter in the target's case.
+ChoicePlan _casePlan(
+  String itemId,
+  int step, {
+  required String target,
+  required String otherCase,
+}) {
+  final isUpper = target != target.toLowerCase();
+  final pool = 'abcdefghijklmnopqrstuvwxyz'
+      .split('')
+      .where((c) => c != target.toLowerCase())
+      .toList();
+  var s = _seed(itemId, step);
+  s = _next(s);
+  var third = pool[s % pool.length];
+  if (isUpper) third = third.toUpperCase();
+  final options = [
+    ChoiceOption(otherCase, otherCase),
+    ChoiceOption(third, third),
+  ];
+  s = _next(s);
+  final targetIndex = s % 3;
+  options.insert(targetIndex, ChoiceOption(target, target));
+  return ChoicePlan(options, targetIndex);
 }
 
 const _vowels = ['a', 'e', 'i', 'o', 'u'];

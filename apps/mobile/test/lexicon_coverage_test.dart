@@ -47,10 +47,10 @@ void main() {
       );
 
       expect(steps, greaterThan(700));
-      // Floors measured on the v0.13 library (choice 186, illustrated 76%);
+      // Floors measured on the v0.13 library (choice 275, illustrated 81%);
       // set slightly below so routine content edits don't flake.
-      expect(choice, greaterThanOrEqualTo(180));
-      expect(illustrated / steps, greaterThanOrEqualTo(0.72));
+      expect(choice, greaterThanOrEqualTo(265));
+      expect(illustrated / steps, greaterThanOrEqualTo(0.78));
     },
   );
 
@@ -66,11 +66,20 @@ void main() {
       for (var i = 0; i < item.steps.length; i++) {
         final plan = choicePlanFor(item.id, i, item.steps[i].narration);
         if (plan == null) continue;
-        expect(plan.options, hasLength(3), reason: '${item.id} step $i');
-        expect(plan.targetIndex, inInclusiveRange(0, 2));
+        // Opposites and true/false stage two options; everything else three.
+        expect(
+          plan.options.length,
+          inInclusiveRange(2, 3),
+          reason: '${item.id} step $i',
+        );
+        expect(plan.targetIndex, inInclusiveRange(0, plan.options.length - 1));
         // Options must be visually distinct or the choice is unanswerable.
         final emoji = plan.options.map((o) => o.emoji).toSet();
-        expect(emoji, hasLength(3), reason: '${item.id} step $i: $emoji');
+        expect(
+          emoji,
+          hasLength(plan.options.length),
+          reason: '${item.id} step $i: $emoji',
+        );
         // Same step, same plan — stable across replays.
         final again = choicePlanFor(item.id, i, item.steps[i].narration)!;
         expect(again.targetIndex, plan.targetIndex);
