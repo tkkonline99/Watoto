@@ -1,11 +1,13 @@
 import 'dart:io';
 
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
 import 'package:watoto_mobile/app.dart';
 import 'package:watoto_mobile/core/network/watoto_api.dart';
 import 'package:watoto_mobile/core/offline/offline_providers.dart';
+import 'package:watoto_mobile/core/widgets/mascot_widget.dart';
 import 'package:watoto_mobile/core/offline/offline_store.dart';
 import 'package:watoto_mobile/core/offline/sync_op.dart';
 import 'package:watoto_mobile/features/curriculum/curriculum_data.dart';
@@ -24,6 +26,17 @@ class _UnreachableApi implements SyncApi {
 void _goHome(WidgetTester tester) => ProviderScope.containerOf(
   tester.element(find.byType(WatotoApp)),
 ).read(appRouterProvider).go('/');
+
+/// Scrolls the home list (the outermost Scrollable — the subject grid nests a
+/// non-scrolling one inside it) until [target] is on screen.
+Future<void> _scrollHomeTo(WidgetTester tester, Finder target) async {
+  await tester.scrollUntilVisible(
+    target,
+    200,
+    scrollable: find.byType(Scrollable).first,
+  );
+  await tester.pumpAndSettle();
+}
 
 void main() {
   group('curriculum data (from curriculum.pptx)', () {
@@ -113,6 +126,7 @@ void main() {
       Hive.init(Directory.systemTemp.path);
       // Hold the perpetual savanna ambient drift still so pumpAndSettle works.
       debugDisableSavannaAmbient = true;
+      debugDisableMascotAnimation = true;
     });
 
     testWidgets('home subject card opens the age picker, then drills in', (
@@ -145,10 +159,24 @@ void main() {
       _goHome(tester); // app opens on the welcome screen; enter the home
       await tester.pumpAndSettle();
 
-      // There's no fixed stage now: tapping a subject asks for an age first.
+      // The subject grid sits below the fold, and ensureVisible only reaches
+      // widgets the lazy home list has already built — scroll it into view.
       final math = find.text('Math');
-      await tester.ensureVisible(math);
+      await _scrollHomeTo(tester, math);
+
+      // A plain tap uses the stage inferred from the child's profile and goes
+      // straight into the subject detail ("Stage N · Ages …") — no picker.
       await tester.tap(math);
+      await tester.pumpAndSettle();
+      expect(find.text('How old are you?'), findsNothing);
+      expect(find.textContaining('Stage '), findsWidgets);
+
+      // Long-press forces the age picker so families can override the stage
+      // for multi-age siblings.
+      _goHome(tester);
+      await tester.pumpAndSettle();
+      await _scrollHomeTo(tester, math);
+      await tester.longPress(math);
       await tester.pumpAndSettle();
       expect(find.text('How old are you?'), findsOneWidget);
 

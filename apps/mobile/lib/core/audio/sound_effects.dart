@@ -30,6 +30,19 @@ class SoundEffects {
   Future<void> tap() => _play('audio/sfx/tap.wav');
   Future<void> correct() => _play('audio/sfx/correct.wav');
   Future<void> celebrate() => _play('audio/sfx/celebrate.wav');
+
+  /// Bigger than [celebrate] — reserved for reaching a new level.
+  Future<void> levelUp() => _play('audio/sfx/levelup.wav');
+
+  /// Coins landing.
+  Future<void> coin() => _play('audio/sfx/coin.wav');
+
+  /// A streak milestone or a streak rescued by the weekly shield.
+  Future<void> streak() => _play('audio/sfx/streak.wav');
+
+  /// A wrong pick. A soft downward step, never a buzzer: the child is five,
+  /// and the sound should read as "try again", not "you failed".
+  Future<void> retry() => _play('audio/sfx/retry.wav');
 }
 
 final soundEffectsProvider = Provider<SoundEffects>(SoundEffects.new);

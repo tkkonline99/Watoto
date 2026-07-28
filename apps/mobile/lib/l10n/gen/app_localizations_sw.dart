@@ -357,6 +357,9 @@ class AppLocalizationsSw extends AppLocalizations {
   String get tapToPlay => 'Gusa ili kucheza!';
 
   @override
+  String get gotIt => 'Nimeelewa!';
+
+  @override
   String get tapEachPrompt => 'Zigusa zote!';
 
   @override
@@ -393,4 +396,615 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get badgeLevel5 => 'Kiwango 5';
+
+  @override
+  String get badgeDailyChallenge => 'Shujaa wa leo';
+
+  @override
+  String get badgesTitle => 'Beji';
+
+  @override
+  String xpToNextLevel(int into, int total, int remaining) {
+    return '$into / $total XP · $remaining hadi kiwango kijacho';
+  }
+
+  @override
+  String get dailyChallengeDone => 'Imekamilika leo!';
+
+  @override
+  String dailyChallengeBonus(int xp) {
+    return '+$xp XP za ziada';
+  }
+
+  @override
+  String get changeAgeHint => 'Bonyeza kwa muda mrefu kubadilisha umri';
+
+  @override
+  String get playNow => 'Cheza sasa';
+
+  @override
+  String get continueLearning => 'Endelea';
+
+  @override
+  String get avatarShop => 'Duka la avatar';
+
+  @override
+  String get avatarShopBody =>
+      'Tumia sarafu kununua marafiki wa wanyama. Sarafu hazinunui masomo — sura tu!';
+
+  @override
+  String get freeAvatars => 'Wanyama wako';
+
+  @override
+  String get shopAvatars => 'Fungua zaidi';
+
+  @override
+  String get notEnoughCoins => 'Unahitaji sarafu zaidi — cheza ili upate!';
+
+  @override
+  String get screenTime => 'Muda wa skrini';
+
+  @override
+  String get screenTimeBody =>
+      'Kikomo laini cha kila siku. Muda ukiisha, Watoto inaonyesha pumziko.';
+
+  @override
+  String get screenTimeOff => 'Zima';
+
+  @override
+  String screenTimeMinutes(int minutes) {
+    return 'Dakika $minutes';
+  }
+
+  @override
+  String screenTimeUsed(int minutes) {
+    return 'Leo: dak $minutes';
+  }
+
+  @override
+  String get restTitle => 'Wakati wa kupumzika!';
+
+  @override
+  String get restBody =>
+      'Umejifunza mengi leo. Nyosha mwili, kunywa maji, rudi baadaye.';
+
+  @override
+  String get restGoHome => 'Tutaonana';
+
+  @override
+  String get restAskGrownUp => 'Mzazi: fungua eneo la mzazi';
+
+  @override
+  String get restGrace => '+Dakika 10';
+
+  @override
+  String get premiumTitle => 'Watoto Premium';
+
+  @override
+  String get premiumBody =>
+      'Fungua hatua zote, nje ya mtandao, na wasifu wa watoto wengi.';
+
+  @override
+  String get premiumBullet1 => 'Hatua zote kutoka kuzaliwa hadi darasa la 4';
+
+  @override
+  String get premiumBullet2 => 'Vipakuliwa nje ya mtandao';
+
+  @override
+  String get premiumBullet3 => 'Wasifu wa watoto hadi 4';
+
+  @override
+  String get premiumMonthly => 'Kila mwezi (sandbox)';
+
+  @override
+  String get premiumAnnual => 'Kila mwaka (sandbox)';
+
+  @override
+  String get premiumActive => 'Premium imewashwa kwenye kifaa hiki';
+
+  @override
+  String get premiumSandboxNote =>
+      'Sandbox hutoa Premium ya ndani hadi maduka yakiunganishwa.';
+
+  @override
+  String get restorePurchases => 'Rejesha ununuzi';
+
+  @override
+  String get restoreNone => 'Hakuna ununuzi wa kurejesha.';
+
+  @override
+  String get premiumAskGrownUp => 'Muulize mzazi afungue Premium';
+
+  @override
+  String get tourTitle => 'Tucheze pamoja!';
+
+  @override
+  String tourBody(String name) {
+    return 'Habari $name! Tujaribu shughuli fupi — nitakushangilia.';
+  }
+
+  @override
+  String get tourStart => 'Anza somo la kwanza';
+
+  @override
+  String get tourSkip => 'Baadaye';
+
+  @override
+  String get badgeUnlocked => 'Beji mpya!';
+
+  @override
+  String levelUp(int level) {
+    return 'Kiwango $level! Vizuri sana!';
+  }
+
+  @override
+  String get quizHint => 'Unahitaji kidokezo?';
+
+  @override
+  String get quizHintBody =>
+      'Angalia vizuri… chaguo moja limeondolewa. Unaweza!';
+
+  @override
+  String get quizNiceTry => 'Ndiyo! Umepata!';
+
+  @override
+  String get quizPerfect => 'Alama kamili!';
+
+  @override
+  String get weeklySnapshot => 'Wiki hii';
+
+  @override
+  String get weeklySnapshotEmpty =>
+      'Bado hakuna shughuli wiki hii — somo fupi ni mwanzo mzuri.';
+
+  @override
+  String weeklySnapshotBody(int lessons, int stars, int days) {
+    return 'Masomo $lessons · Nyota $stars · Siku $days';
+  }
+
+  @override
+  String get weeklyActivities => 'shughuli';
+
+  @override
+  String get parentInsights => 'Maarifa';
+
+  @override
+  String get parentInsightsEmpty => 'Ongeza wasifu wa mtoto ili uone maarifa.';
+
+  @override
+  String get certificateTitle => 'Cheti';
+
+  @override
+  String get certificateSubtitle => 'Sherehekea maendeleo kwa cheti';
+
+  @override
+  String get certificateHeading => 'CHETI CHA KUJIFUNZA';
+
+  @override
+  String get certificateNeedChild => 'Chagua wasifu wa mtoto kwanza.';
+
+  @override
+  String certificateBody(int level, int lessons, int stars) {
+    return 'Kiwango $level · Masomo $lessons · Nyota $stars';
+  }
+
+  @override
+  String get readingEase => 'Urahisi wa kusoma';
+
+  @override
+  String get readingEaseBody => 'Nafasi pana za herufi na mistari';
+
+  @override
+  String get highContrast => 'Tofauti kubwa ya rangi';
+
+  @override
+  String get highContrastBody => 'Rangi na mipaka thabiti zaidi';
+
+  @override
+  String get reducedMotion => 'Punguza mwendo';
+
+  @override
+  String get reducedMotionBody => 'Uhuishaji tulivu';
+
+  @override
+  String get analyticsOptIn => 'Saidia kuboresha Watoto';
+
+  @override
+  String get analyticsOptInBody => 'Takwimu za hiari, zinazolinda faragha';
+
+  @override
+  String get exportData => 'Hamisha data';
+
+  @override
+  String get exportDataBody => 'Nakili muhtasari wa JSON wa maendeleo';
+
+  @override
+  String get exportDataCopied => 'Data imenakiliwa';
+
+  @override
+  String deleteChild(String name) {
+    return 'Futa $name';
+  }
+
+  @override
+  String get deleteChildBody =>
+      'Inaondoa wasifu na maendeleo kwenye kifaa hiki';
+
+  @override
+  String get deleteChildConfirm =>
+      'Haiwezi kurekebishwa kwenye kifaa hiki. Endelea?';
+
+  @override
+  String get delete => 'Futa';
+
+  @override
+  String get cancel => 'Ghairi';
+
+  @override
+  String syncPending(int count) {
+    return 'Vipengee $count vinasubiri kusawazishwa';
+  }
+
+  @override
+  String get premiumMapFree => 'Bure: hatua 1–5. Premium: hatua 6–10.';
+
+  @override
+  String get badgeThreeLessons => 'Masomo 3';
+
+  @override
+  String get badgeTenLessons => 'Masomo 10';
+
+  @override
+  String get save => 'Hifadhi';
+
+  @override
+  String get editNicknameTitle => 'Badilisha jina';
+
+  @override
+  String get editNicknameBody => 'Chagua jina jipya la wasifu huu.';
+
+  @override
+  String get nicknameUpdated => 'Jina limebadilishwa';
+
+  @override
+  String get nicknameUpdateFailed => 'Imeshindwa kubadilisha jina';
+
+  @override
+  String nicknameCooldown(int days) {
+    return 'Unaweza kubadilisha jina hili tena baada ya siku $days';
+  }
+
+  @override
+  String get insightQuietWeek => 'Wiki tulivu';
+
+  @override
+  String insightQuietWeekDetail(String name) {
+    return '$name hajacheza wiki hii. Hadithi fupi ni njia nzuri ya kurudi.';
+  }
+
+  @override
+  String get insightStrongWeek => 'Wiki nzuri';
+
+  @override
+  String insightStrongWeekDetail(String name, int count) {
+    return '$name amemaliza masomo $count wiki hii. Mwambie umeona!';
+  }
+
+  @override
+  String insightStreak(int days) {
+    return 'Mfululizo wa siku $days';
+  }
+
+  @override
+  String get insightStreakDetail =>
+      'Kujifunza kila siku ndio tabia muhimu zaidi.';
+
+  @override
+  String get insightStars => 'Nyota zinaongezeka';
+
+  @override
+  String insightStarsDetail(int count) {
+    return 'Nyota $count zimepatikana wiki hii.';
+  }
+
+  @override
+  String get insightOneDay => 'Siku moja ya kucheza';
+
+  @override
+  String get insightOneDayDetail =>
+      'Vipindi vifupi viwili au vitatu kwa wiki ni bora kuliko kimoja kirefu.';
+
+  @override
+  String get syncStatusOk => 'Kila kitu kimehifadhiwa';
+
+  @override
+  String syncStatusPending(int count) {
+    return 'Vipengee $count vinasubiri kusawazishwa';
+  }
+
+  @override
+  String get syncStatusError => 'Usawazishaji umesimama — utajaribu tena';
+
+  @override
+  String get parentGateTitle => 'Kwa watu wazima tu';
+
+  @override
+  String parentGateBody(String question) {
+    return 'Ili kuendelea, jibu: $question';
+  }
+
+  @override
+  String get parentGateWrong => 'Sio sahihi — jaribu tena';
+
+  @override
+  String get forgotPinTitle => 'Umesahau PIN yako?';
+
+  @override
+  String get forgotPinBodyAccount =>
+      'Weka nenosiri la akaunti yako ili kuweka PIN mpya.';
+
+  @override
+  String get forgotPinBodyPinOnly =>
+      'Familia hii inatumia PIN pekee, hakuna nenosiri la kuthibitisha. Weka PIN mpya hapa chini.';
+
+  @override
+  String get newPinLabel => 'PIN mpya';
+
+  @override
+  String get confirmPinLabel => 'Thibitisha PIN mpya';
+
+  @override
+  String get pinLengthHint => 'Tumia angalau tarakimu 4';
+
+  @override
+  String get setNewPin => 'Weka PIN mpya';
+
+  @override
+  String get pinResetSuccess => 'PIN imebadilishwa';
+
+  @override
+  String get pinResetFailed => 'Imeshindwa kubadilisha PIN';
+
+  @override
+  String get forgotPasswordTitle => 'Umesahau nenosiri lako?';
+
+  @override
+  String get forgotPasswordBody =>
+      'Weka barua pepe yako na tutakutumia msimbo wa kuweka upya.';
+
+  @override
+  String get forgotPasswordEnterCodeBody =>
+      'Weka msimbo tuliokutumia, kisha chagua nenosiri jipya.';
+
+  @override
+  String get sendResetEmail => 'Tuma msimbo';
+
+  @override
+  String get resendResetEmail => 'Tuma msimbo tena';
+
+  @override
+  String get passwordResetEmailSent => 'Angalia barua pepe yako kwa msimbo.';
+
+  @override
+  String passwordResetDevCode(String code) {
+    return 'Msimbo wa majaribio: $code';
+  }
+
+  @override
+  String get passwordResetCodeLabel => 'Msimbo wa kuweka upya';
+
+  @override
+  String get passwordResetCodeHint =>
+      'Msimbo wa tarakimu 6 kutoka barua pepe yako';
+
+  @override
+  String get passwordResetCodeInvalid =>
+      'Msimbo huo si sahihi — angalia barua pepe yako';
+
+  @override
+  String get newPasswordLabel => 'Nenosiri jipya';
+
+  @override
+  String get confirmPasswordLabel => 'Thibitisha nenosiri jipya';
+
+  @override
+  String get passwordMismatch => 'Manenosiri hayalingani';
+
+  @override
+  String get setNewPassword => 'Weka nenosiri jipya';
+
+  @override
+  String get passwordResetSuccess => 'Nenosiri limebadilishwa';
+
+  @override
+  String get passwordResetFailed => 'Imeshindwa kuweka upya nenosiri';
+
+  @override
+  String get todayQuest => 'Lengo la leo';
+
+  @override
+  String todayQuestProgress(int done, int goal) {
+    return 'Shughuli $done kati ya $goal';
+  }
+
+  @override
+  String get todayQuestComplete => 'Lengo limefikiwa!';
+
+  @override
+  String get nextEasier => 'Rahisi kidogo sasa';
+
+  @override
+  String get nextHarder => 'Tayari kwa ngumu zaidi?';
+
+  @override
+  String get nextDiscover => 'Jaribu kitu kipya';
+
+  @override
+  String get streakSavedTitle => 'Mfululizo wako uko salama!';
+
+  @override
+  String streakSavedBody(int days) {
+    return 'Ulikosa siku moja, ngao yako ya wiki ikaokoa mfululizo wa siku $days.';
+  }
+
+  @override
+  String get streakShieldUsedNote => 'Ngao imetumika wiki hii';
+
+  @override
+  String coinsEarned(int count) {
+    return '+Sarafu $count';
+  }
+
+  @override
+  String get perfectRun => 'Kamili!';
+
+  @override
+  String get firstTimeHere => 'Yako ya kwanza hapa!';
+
+  @override
+  String get remindersTitle => 'Vikumbusho vya mazoezi';
+
+  @override
+  String get remindersBody =>
+      'Kikumbusho kwako — kamwe si kwa mtoto wako. Kimezimwa hadi ukiwasha.';
+
+  @override
+  String get remindersUnsupported =>
+      'Vikumbusho havipatikani kwenye kifaa hiki.';
+
+  @override
+  String get remindersDenied =>
+      'Arifa zimezuiwa. Ziruhusu katika mipangilio ya mfumo ili kutumia vikumbusho.';
+
+  @override
+  String get reminderTimeLabel => 'Saa ya kikumbusho';
+
+  @override
+  String reminderStreakTitle(String name) {
+    return 'Mfululizo wa $name unaisha leo';
+  }
+
+  @override
+  String reminderStreakBody(int days) {
+    return 'Shughuli moja fupi itaendeleza mfululizo wa siku $days.';
+  }
+
+  @override
+  String reminderInactiveTitle(String name) {
+    return '$name hajacheza kwa muda';
+  }
+
+  @override
+  String get reminderInactiveBody => 'Hadithi fupi ni njia nzuri ya kurudi.';
+
+  @override
+  String reminderKeepGoingTitle(String name) {
+    return 'Ni wakati wa kucheza na $name?';
+  }
+
+  @override
+  String get reminderKeepGoingBody =>
+      'Dakika tano leo ni bora kuliko saa moja Jumapili.';
+
+  @override
+  String get shopDecorations => 'Mapambo ya savana';
+
+  @override
+  String get shopDecorationsBody =>
+      'Tumia sarafu kukuza savana yako. Baadhi ya vitu huja kwa kucheza tu.';
+
+  @override
+  String get decorationOwned => 'Ipo savana yako';
+
+  @override
+  String get decorationEarned => 'Umeipata!';
+
+  @override
+  String decorationNeedsLevel(int level) {
+    return 'Kiwango $level';
+  }
+
+  @override
+  String decorationNeedsSubjects(int count) {
+    return 'Masomo $count';
+  }
+
+  @override
+  String get nameYourFriend => 'Mpe rafiki yako jina';
+
+  @override
+  String get mascotNameHint => 'Tumwite nani?';
+
+  @override
+  String get mascotDefaultName => 'Rafiki yako simba';
+
+  @override
+  String get mascotMissedYou => 'Nimekukumbuka! Tucheze?';
+
+  @override
+  String mascotProud(int days) {
+    return 'Siku $days mfululizo — ninajivunia!';
+  }
+
+  @override
+  String get mascotCurious => 'Umerudi! Tujifunze nini?';
+
+  @override
+  String get mascotReady => 'Niko tayari!';
+
+  @override
+  String get familyChallenge => 'Changamoto ya familia';
+
+  @override
+  String familyChallengeBody(int count) {
+    return 'Shughuli $count zaidi pamoja wiki hii.';
+  }
+
+  @override
+  String get familyChallengeDone => 'Imekamilika — familia nzima imefika!';
+
+  @override
+  String sendCheer(String name) {
+    return 'Mtumie $name pongezi';
+  }
+
+  @override
+  String get sendCheerBody => 'Ataona mara tu atakapofungua programu.';
+
+  @override
+  String cheerSent(String name) {
+    return 'Imetumwa kwa $name';
+  }
+
+  @override
+  String get cheerFromGrownUp => 'Ujumbe kwa ajili yako';
+
+  @override
+  String get cheerProud => 'Ninajivunia wewe!';
+
+  @override
+  String get cheerWow => 'Vyema, unaendelea vizuri!';
+
+  @override
+  String get cheerKeepGoing => 'Endelea, unaweza!';
+
+  @override
+  String get cheerLoveIt => 'Napenda kujifunza nawe!';
+
+  @override
+  String get certificateSave => 'Hifadhi picha';
+
+  @override
+  String get certificateSaving => 'Inahifadhi…';
+
+  @override
+  String certificateSaved(String path) {
+    return 'Imehifadhiwa kwenye $path';
+  }
+
+  @override
+  String get certificateCopied => 'Cheti kimenakiliwa';
+
+  @override
+  String get certificateSaveFailed => 'Imeshindwa kuhifadhi cheti';
 }

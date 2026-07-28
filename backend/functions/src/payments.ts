@@ -24,11 +24,52 @@ const PRODUCTS: Record<string, { tier: string; periodDays: number }> = {
 function b64urlJson(segment: string): any {
   return JSON.parse(Buffer.from(segment, "base64url").toString("utf8"));
 }
-// Decode a JWS payload (Apple sends signed transaction/renewal info as JWS).
-// NOTE (hardening): production should also verify the JWS signature against Apple's
-// certificate chain before trusting the payload.
-function decodeJWS(jws: string): any {
-  return b64urlJson(jws.split(".")[1]);
+
+/**
+ * Decode + optionally verify an Apple JWS (x5c chain).
+ *
+ * When APPLE_JWS_REQUIRE_VERIFY=true (recommended in production), the leaf
+ * certificate's public key must verify the ES256 signature. Full Apple Root CA
+ * pinning should still be added before hard launch (store the Apple Root CA G3
+ * PEM in secrets and walk x5c → root).
+ */
+function decodeJWS(jws: string, opts?: { requireVerify?: boolean }): any {
+  const parts = jws.split(".");
+  if (parts.length !== 3) throw new Error("Invalid JWS compact serialization");
+  const [headerB64, payloadB64, sigB64] = parts;
+  const header = b64urlJson(headerB64);
+  const requireVerify =
+    opts?.requireVerify ?? process.env.APPLE_JWS_REQUIRE_VERIFY === "true";
+
+  if (requireVerify) {
+    const x5c: string[] | undefined = header.x5c;
+    if (!x5c?.length) {
+      throw new Error("JWS missing x5c certificate chain");
+    }
+    if (header.alg !== "ES256") {
+      throw new Error(`Unsupported JWS alg: ${header.alg}`);
+    }
+    // Leaf cert (first x5c element) is DER base64.
+    const leafPem =
+      "-----BEGIN CERTIFICATE-----\n" +
+      x5c[0].match(/.{1,64}/g)!.join("\n") +
+      "\n-----END CERTIFICATE-----";
+    const signingInput = `${headerB64}.${payloadB64}`;
+    const sig = Buffer.from(sigB64, "base64url");
+    // Apple uses IEEE-P1363 (r||s) for ES256 in many payloads.
+    const verifyOnce = (dsaEncoding?: "ieee-p1363" | "der") => {
+      const v = crypto.createVerify("SHA256");
+      v.update(signingInput);
+      v.end();
+      return dsaEncoding
+        ? v.verify({ key: leafPem, dsaEncoding }, sig)
+        : v.verify(leafPem, sig);
+    };
+    const ok = verifyOnce("ieee-p1363") || verifyOnce("der") || verifyOnce();
+    if (!ok) throw new Error("JWS signature verification failed");
+  }
+
+  return b64urlJson(payloadB64);
 }
 
 async function setEntitlement(uid: string, plan: "premium" | "free", expiryMs: number | null) {

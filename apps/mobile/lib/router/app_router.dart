@@ -4,9 +4,12 @@ import 'package:go_router/go_router.dart';
 
 import '../core/offline/offline_providers.dart';
 import '../features/auth/account_screen.dart';
+import '../features/auth/paywall_screen.dart';
 import '../features/child_home/child_home_screen.dart';
 import '../features/curriculum/curriculum_screen.dart';
 import '../features/curriculum/subject_detail_screen.dart';
+import '../features/gamification/avatar_shop_screen.dart';
+import '../features/gamification/certificate_screen.dart';
 import '../features/legal/legal_doc_screen.dart';
 import '../features/lesson_player/lesson_player_screen.dart';
 import '../features/library/library_play_screen.dart';
@@ -15,10 +18,12 @@ import '../features/onboarding/onboarding_screen.dart';
 import '../features/parent/guides_screen.dart';
 import '../features/parent/parent_dashboard_screen.dart';
 import '../features/parent/pin_gate_screen.dart';
+import '../features/parent/rest_screen.dart';
 import '../features/profiles/add_child_screen.dart';
 import '../features/profiles/profile_picker_screen.dart';
 import '../features/quiz/quiz_runner_screen.dart';
 import '../features/stories/story_library_screen.dart';
+import 'return_to.dart';
 
 /// Router is provided (not a global) so each app instance — and each widget
 /// test — gets fresh navigation state. Guards enforce the deployment-required
@@ -27,8 +32,10 @@ import '../features/stories/story_library_screen.dart';
 final appRouterProvider = Provider<GoRouter>((ref) {
   final refresh = ValueNotifier(0);
   final sub = ref.listen(sessionProvider, (_, _) => refresh.value++);
+  final sub2 = ref.listen(screenTimeTickProvider, (_, _) => refresh.value++);
   ref.onDispose(() {
     sub.close();
+    sub2.close();
     refresh.dispose();
   });
 
@@ -51,19 +58,37 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       // The welcome/landing screen is always reachable once onboarded.
       if (loc == '/welcome') return null;
 
-      if (loc.startsWith('/parent')) {
+      if (loc.startsWith('/parent') || loc == '/paywall') {
         if (loc == '/parent/pin') return null;
         // Account families are let straight in (no PIN). Otherwise PIN families
         // unlock with the PIN; a signed-out account family logs back in.
         if (s.parentAccessAllowed) return null;
+        // Carry the full intended location (query included) through the gate,
+        // so unlocking hands the family back to the activity they came for
+        // instead of stranding them on the dashboard.
+        final intended = state.uri.toString();
         return ref.read(offlineStoreProvider).hasPin
-            ? '/parent/pin'
-            : '/account';
+            ? gateWithReturn('/parent/pin', intended)
+            : gateWithReturn('/account', intended);
       }
+
+      if (loc == '/rest') return null;
 
       // Child surfaces require a selected profile; the picker is always allowed.
       if (loc.startsWith('/profiles')) return null;
       if (s.activeChildId == null) return '/profiles';
+
+      // Soft screen-time lock on child learning surfaces.
+      final store = ref.read(offlineStoreProvider);
+      final learning = loc == '/' ||
+          loc.startsWith('/play') ||
+          loc.startsWith('/subject') ||
+          loc.startsWith('/stories') ||
+          loc.startsWith('/lesson') ||
+          loc.startsWith('/quiz') ||
+          loc.startsWith('/shop');
+      if (learning && store.isScreenTimeExceeded()) return '/rest';
+
       return null;
     },
     routes: [
@@ -90,6 +115,13 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/parent/legal/terms',
         builder: (c, s) => const LegalDocScreen(doc: LegalDoc.terms),
+      ),
+      GoRoute(path: '/paywall', builder: (c, s) => const PaywallScreen()),
+      GoRoute(path: '/rest', builder: (c, s) => const RestScreen()),
+      GoRoute(path: '/shop', builder: (c, s) => const AvatarShopScreen()),
+      GoRoute(
+        path: '/certificate',
+        builder: (c, s) => const CertificateScreen(),
       ),
       GoRoute(path: '/', builder: (c, s) => const ChildHomeScreen()),
       GoRoute(path: '/welcome', builder: (c, s) => const WelcomeScreen()),

@@ -25,9 +25,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE instance, _In_opt_ HINSTANCE prev,
   project.set_dart_entrypoint_arguments(std::move(command_line_arguments));
 
   FlutterWindow window(project);
-  Win32Window::Point origin(10, 10);
-  Win32Window::Size size(1280, 720);
-  if (!window.Create(L"Watoto", origin, size)) {
+  // Default size matches a tall phone frame + parent zone (not a wide
+  // landscape game window). Users can still maximize.
+  Win32Window::Point origin(80, 40);
+  Win32Window::Size size(520, 900);
+  if (!window.Create(L"Watoto — Learn & Grow", origin, size)) {
     return EXIT_FAILURE;
   }
   window.SetQuitOnClose(true);

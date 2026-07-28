@@ -77,6 +77,7 @@ void main() {
     expect(await engine.flush(), 0);
     expect(store.pendingOps, hasLength(2));
 
+    engine.resetBackoff(); // product: backoff skips hammering; tests force retry
     expect(await engine.flush(), 0); // retried, still queued
     expect(api.calls, 2);
     expect(store.pendingOps, hasLength(2));

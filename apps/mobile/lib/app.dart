@@ -1,22 +1,57 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'core/offline/offline_providers.dart';
 import 'core/state/app_state.dart';
 import 'core/theme/watoto_theme.dart';
 import 'l10n/gen/app_localizations.dart';
 import 'router/app_router.dart';
 
-class WatotoApp extends ConsumerWidget {
+class WatotoApp extends ConsumerStatefulWidget {
   const WatotoApp({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<WatotoApp> createState() => _WatotoAppState();
+}
+
+class _WatotoAppState extends ConsumerState<WatotoApp>
+    with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // Re-lock parent zone when the app backgrounds so siblings cannot walk
+    // into paywall / delete / export after a grown-up left the phone open.
+    // `paused` only — not `inactive` (that fires for dialogs / app switchers
+    // and would kick parents out mid-flow).
+    if (state == AppLifecycleState.paused) {
+      ref.read(sessionProvider.notifier).lockParent();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final locale = ref.watch(localeProvider);
     final router = ref.watch(appRouterProvider);
     final textScale = ref.watch(textScaleProvider);
+    final highContrast = ref.watch(highContrastProvider);
+    final reducedMotion = ref.watch(reducedMotionProvider);
+    final dyslexia = ref.watch(dyslexiaFriendlyProvider);
+
     return MaterialApp.router(
       onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
-      theme: buildWatotoTheme(),
+      theme: buildWatotoTheme(highContrast: highContrast),
       locale: locale,
       supportedLocales: AppLocalizations.supportedLocales,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
@@ -24,15 +59,25 @@ class WatotoApp extends ConsumerWidget {
       debugShowCheckedModeBanner: false,
       builder: (context, child) {
         final mq = MediaQuery.of(context);
-        return MediaQuery(
+        final data = mq.copyWith(
           // Multiply the OS text scale by the family's chosen size so the
           // accessibility setting stacks with, rather than replaces, the
           // device's own text-scaling.
-          data: mq.copyWith(
-            textScaler: _ScaledTextScaler(mq.textScaler, textScale),
-          ),
+          textScaler: _ScaledTextScaler(mq.textScaler, textScale),
+          // Prefer reduced motion when parent toggles it (or OS).
+          disableAnimations: mq.disableAnimations || reducedMotion,
+        );
+        Widget tree = MediaQuery(
+          data: data,
           child: _PhoneFrame(child: child!),
         );
+        if (dyslexia) {
+          tree = DefaultTextStyle.merge(
+            style: readingEaseStyle(const TextStyle()),
+            child: tree,
+          );
+        }
+        return tree;
       },
     );
   }
@@ -56,6 +101,9 @@ class _ScaledTextScaler extends TextScaler {
 /// Watoto is phone-first. On phones the app fills the screen; on wide screens
 /// (web/desktop) it's centered in a phone-width column so cards and layouts
 /// aren't stretched across the whole window.
+///
+/// Desktop gets a soft "device" chrome so the Windows window feels intentional
+/// rather than a floating column on empty beige.
 class _PhoneFrame extends StatelessWidget {
   const _PhoneFrame({required this.child});
 
@@ -66,12 +114,46 @@ class _PhoneFrame extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
+    // Phone / narrow tablet: fill the screen. Wide layouts get a centered
+    // phone-width column. Desktop chrome only when the window is tall enough
+    // for a real desktop shell (avoids test surfaces + short windows).
     if (size.width <= 600) return child;
+
+    final tallDesktopShell = !kIsWeb &&
+        size.height >= 720 &&
+        (defaultTargetPlatform == TargetPlatform.windows ||
+            defaultTargetPlatform == TargetPlatform.linux ||
+            defaultTargetPlatform == TargetPlatform.macOS);
+
+    final framed = tallDesktopShell
+        ? Container(
+            width: _maxWidth,
+            height: (size.height - 40).clamp(0.0, size.height),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(28),
+              border: Border.all(
+                color: WatotoColors.deep.withValues(alpha: 0.12),
+                width: 2,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: WatotoColors.deep.withValues(alpha: 0.14),
+                  blurRadius: 28,
+                  offset: const Offset(0, 12),
+                ),
+              ],
+            ),
+            clipBehavior: Clip.antiAlias,
+            child: child,
+          )
+        : SizedBox(width: _maxWidth, height: size.height, child: child);
+
     return ColoredBox(
-      color: const Color(0xFFDED5C7),
-      child: Center(
-        child: SizedBox(width: _maxWidth, height: size.height, child: child),
-      ),
+      color: tallDesktopShell
+          ? const Color(0xFFE8DFD2)
+          : const Color(0xFFDED5C7),
+      child: Center(child: framed),
     );
   }
 }

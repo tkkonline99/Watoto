@@ -104,7 +104,7 @@ Minimum rules so a parent can only touch their own data:
 rules_version = '2';
 service cloud.firestore {
   match /databases/{db}/documents {
-    match /parents/{uid} {
+    match /accounts/{uid} {
       allow read, write: if request.auth != null && request.auth.uid == uid;
       match /children/{childId} {
         allow read, write: if request.auth != null && request.auth.uid == uid;

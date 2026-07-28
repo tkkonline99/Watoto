@@ -6,9 +6,8 @@
  * name), an age band that maps to a curriculum stage, and an avatar id. No
  * email, no birthdate, no contact info, no free-text that could carry PII.
  *
- * Firestore layout:  parents/{parentUid}/children/{childId}
- * Lock this down with Security Rules so a parent can only read/write their own
- * children (see AUTH_README.md).
+ * Firestore layout:  accounts/{parentUid}/profiles/{profileId}
+ * Matches backend/firestore.rules. Do not use parents/children — rules deny it.
  */
 import {
   collection,
@@ -43,7 +42,7 @@ export type ChildProfile = {
 };
 
 function childrenCol(parentUid: string) {
-  return collection(db, "parents", parentUid, "children");
+  return collection(db, "accounts", parentUid, "profiles");
 }
 
 function requireParentUid(): string {
@@ -79,10 +78,10 @@ export async function updateChild(
   patch: Partial<{ displayName: string; ageBand: AgeBand; avatarId: string }>,
 ): Promise<void> {
   const parentUid = requireParentUid();
-  await updateDoc(doc(db, "parents", parentUid, "children", childId), patch);
+  await updateDoc(doc(db, "accounts", parentUid, "profiles", childId), patch);
 }
 
 export async function removeChild(childId: string): Promise<void> {
   const parentUid = requireParentUid();
-  await deleteDoc(doc(db, "parents", parentUid, "children", childId));
+  await deleteDoc(doc(db, "accounts", parentUid, "profiles", childId));
 }

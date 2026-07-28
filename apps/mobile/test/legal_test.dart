@@ -15,10 +15,10 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Privacy Policy'), findsOneWidget); // app bar title
-    // The Markdown H1 (top of doc) proves the asset loaded and rendered;
-    // deeper sections live below the fold in the lazy ListView.
-    expect(find.textContaining('Privacy Policy & Data-Retention'), findsOneWidget);
-    expect(find.textContaining('working draft', findRichText: true), findsWidgets);
+    expect(find.textContaining('Privacy Policy — Watoto'), findsOneWidget);
+    // Production publish copy (not "working draft").
+    expect(find.textContaining('working draft', findRichText: true), findsNothing);
+    expect(find.textContaining('privacy@watoto.app', findRichText: true), findsWidgets);
   });
 
   testWidgets('terms of service bundles and renders from assets', (tester) async {
@@ -26,6 +26,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Terms of Service'), findsOneWidget);
-    expect(find.textContaining('Terms of Service (DRAFT)'), findsOneWidget); // H1
+    expect(find.textContaining('Terms of Service — Watoto'), findsOneWidget);
+    expect(find.textContaining('DRAFT'), findsNothing);
   });
 }

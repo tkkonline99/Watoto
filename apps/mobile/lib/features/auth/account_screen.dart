@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../core/offline/offline_providers.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
+import '../../router/return_to.dart';
 import '../onboarding/savanna_background.dart';
 
 /// Parent session screen — every family gets a login/log-out option here,
@@ -68,13 +69,24 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
         _busy = false;
       });
     }
-    // Session is now active -> the screen rebuilds into the signed-in view.
-    if (mounted) setState(() => _busy = false);
+    // Session is now active -> the screen rebuilds into the signed-in view,
+    // unless the family was sent here by a gate, in which case hand them back
+    // to what they were opening.
+    if (!mounted) return;
+    setState(() => _busy = false);
+    _resumeIfGated();
   }
 
-  void _pinLogin() {
+  Future<void> _pinLogin() async {
     final l10n = AppLocalizations.of(context);
-    if (!ref.read(offlineStoreProvider).verifyPin(_pin.text)) {
+    final store = ref.read(offlineStoreProvider);
+    final result = await store.tryPin(_pin.text);
+    if (!mounted) return;
+    if (result == 'locked') {
+      final secs = store.pinLockRemaining?.inSeconds ?? 0;
+      return setState(() => _error = 'Too many tries. Wait ${secs}s.');
+    }
+    if (result != 'ok') {
       return setState(() => _error = l10n.wrongPin);
     }
     ref.read(sessionProvider.notifier).unlockParent();
@@ -82,6 +94,14 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
       _error = null;
       _pin.clear();
     });
+    _resumeIfGated();
+  }
+
+  /// The router sends signed-out families here with `?from=…` when they try to
+  /// open something parent-gated. Once they are in, continue to it.
+  void _resumeIfGated() {
+    final back = returnTo(context);
+    if (back != null) context.go(back);
   }
 
   void _logOut() {

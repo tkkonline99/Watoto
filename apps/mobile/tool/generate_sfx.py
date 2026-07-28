@@ -82,6 +82,19 @@ STYLES = {
         correct=[(783.99, 0.16, 0.07), (987.77, 0.32, 0.11)],
         celebrate=[(392.00, 0.13, 0.06), (493.88, 0.13, 0.06),
                    (587.33, 0.13, 0.06), (783.99, 0.40, 0.15)],
+        # A rising fifth-to-octave fanfare, longer and brighter than the
+        # per-activity celebration so a level genuinely feels bigger.
+        levelup=[(392.00, 0.12, 0.06), (587.33, 0.12, 0.06),
+                 (783.99, 0.12, 0.07), (1174.66, 0.55, 0.22)],
+        # Coins: two quick high taps, the "it landed" confirmation.
+        coin=[(1174.66, 0.09, 0.045), (1567.98, 0.18, 0.07)],
+        # Streak: a warm ascending triad, proud rather than urgent.
+        streak=[(493.88, 0.14, 0.08), (587.33, 0.14, 0.08),
+                (739.99, 0.36, 0.16)],
+        # Not-quite: a gentle *downward* step. Deliberately soft and short —
+        # a wrong answer from a five-year-old should sound like "try again",
+        # never like a buzzer.
+        retry=[(440.00, 0.12, 0.06), (392.00, 0.20, 0.09)],
     ),
     # Plucky and sparkly; sparse harmonics, longer ring (A major, high).
     "bright-kalimba": dict(
@@ -106,6 +119,15 @@ def main(outdir):
                   seq(*[note(f, dur, h, dec) for f, dur, dec in r["correct"]]))
         write_wav(os.path.join(d, "celebrate.wav"),
                   seq(*[note(f, dur, h, dec) for f, dur, dec in r["celebrate"]]))
+        # Optional per-style extras: only the shipped style defines these, so
+        # auditioning a new tonal style does not require redrawing all of them.
+        for key in ("levelup", "coin", "streak", "retry"):
+            if key not in r:
+                continue
+            write_wav(
+                os.path.join(d, f"{key}.wav"),
+                seq(*[note(f, dur, h, dec) for f, dur, dec in r[key]]),
+            )
 
 
 if __name__ == "__main__":

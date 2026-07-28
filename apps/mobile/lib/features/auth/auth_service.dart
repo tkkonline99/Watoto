@@ -1,67 +1,62 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
 
+import '../../core/offline/offline_store.dart';
+import '../../domain/ports/auth_port.dart';
 import 'parent_gate.dart';
 
-/// Authentication seam — Dart port of the design in `auth/` (auth.ts).
+export '../../domain/models/consent.dart' show consentPolicyVersion;
+export '../../domain/ports/auth_port.dart' show AuthPort, AuthUser;
+
+/// Authentication seam — implements [AuthPort] (domain).
 ///
 /// COPPA-aware: children never create credentialed accounts. The app runs an
 /// ANONYMOUS session so a child can play offline immediately; when a PARENT
 /// later signs up, that session is UPGRADED in place (progress preserved).
-/// `getIdToken()` is what replaces the dev token on backend calls.
 ///
-/// The default [LocalAuthService] keeps the app fully working offline with no
-/// accounts and no network. A `FirebaseAuthService` drops in behind this same
-/// interface once a Firebase project exists — see
-/// `auth/FIREBASE_SETUP_FLUTTER.md` (the only thing that needs *your* project).
-const consentPolicyVersion = '2026-06-01';
+/// [LocalAuthService] is the offline default. Firebase drops in behind the
+/// same interface once a project exists (see firebase_auth_service.dart).
+typedef AuthService = AuthPort;
 
-class AuthUser {
-  const AuthUser({
-    required this.uid,
-    this.email,
-    required this.isAnonymous,
-    this.emailVerified = false,
+/// Result of requesting a password reset (for UI messaging).
+class PasswordResetRequestResult {
+  const PasswordResetRequestResult({
+    required this.email,
+    this.localResetCode,
+    this.mailtoUri,
   });
 
-  final String uid;
-  final String? email;
-  final bool isAnonymous;
-  final bool emailVerified;
+  final String email;
+
+  /// Only populated in offline mode so the device owner can complete reset
+  /// if the mail client did not open. Never log this in production analytics.
+  final String? localResetCode;
+
+  /// Optional `mailto:` URI the UI can launch.
+  final Uri? mailtoUri;
 }
 
-abstract interface class AuthService {
-  AuthUser? get current;
-
-  /// Start (or resume) an anonymous session — safe to call on app launch.
-  Future<AuthUser> ensureAnonymousSession();
-
-  /// Create a parent account. Upgrades the anonymous session in place so the
-  /// child's progress carries over. `consent` must be true (collected behind
-  /// the parent gate) and is recorded with [consentPolicyVersion].
-  Future<AuthUser> signUpParent({
-    required String email,
-    required String password,
-    required bool consent,
-    String? displayName,
-  });
-
-  Future<AuthUser> signInParent({required String email, required String password});
-
-  Future<void> signOut();
-
-  /// Token to send to the AWS backend (Authorization: Bearer …). Null in local
-  /// mode; a Firebase ID token once Firebase is wired.
-  Future<String?> getIdToken({bool forceRefresh = false});
-}
-
-/// Offline default: an in-memory anonymous session that can be upgraded to a
-/// local parent record. No network, no real token — the app keeps using its
-/// dev-token API path until Firebase is configured.
+/// Offline default: in-memory anonymous session + local password reset via
+/// one-time codes emailed with a mailto: handoff (and OfflineStore).
 class LocalAuthService implements AuthService {
+  LocalAuthService({OfflineStore? store}) : _store = store;
+
   static const _uuid = Uuid();
 
   AuthUser? _user;
+  OfflineStore? _store;
+
+  /// Bound after bootstrap when the Hive store is open.
+  void bindStore(OfflineStore store) => _store = store;
+
+  OfflineStore get _requireStore {
+    final s = _store;
+    if (s == null) {
+      throw StateError('LocalAuthService has no OfflineStore bound.');
+    }
+    return s;
+  }
 
   @override
   AuthUser? get current => _user;
@@ -85,7 +80,10 @@ class LocalAuthService implements AuthService {
   }
 
   @override
-  Future<AuthUser> signInParent({required String email, required String password}) async {
+  Future<AuthUser> signInParent({
+    required String email,
+    required String password,
+  }) async {
     final uid = _user?.uid.isNotEmpty == true ? _user!.uid : _uuid.v4();
     return _user = AuthUser(uid: uid, email: email, isAnonymous: false);
   }
@@ -95,8 +93,62 @@ class LocalAuthService implements AuthService {
 
   @override
   Future<String?> getIdToken({bool forceRefresh = false}) async => null;
+
+  @override
+  Future<void> sendPasswordResetEmail(String email) async {
+    // Prefer OfflineStore path (authoritative local credentials).
+    await requestLocalPasswordReset(email);
+  }
+
+  /// Offline password reset: create code + mailto payload.
+  Future<PasswordResetRequestResult> requestLocalPasswordReset(
+    String email,
+  ) async {
+    final store = _requireStore;
+    final code = await store.beginPasswordReset(email);
+    final uri = _mailtoReset(email.trim(), code);
+    if (kDebugMode) {
+      // Help desktop/web QA without a mail server.
+      debugPrint('Watoto local password reset code for $email: $code');
+    }
+    return PasswordResetRequestResult(
+      email: email.trim(),
+      localResetCode: code,
+      mailtoUri: uri,
+    );
+  }
+
+  @override
+  Future<void> confirmPasswordReset({
+    required String code,
+    required String newPassword,
+  }) async {
+    final store = _requireStore;
+    final email = store.accountEmail;
+    if (email == null) throw StateError('No account on this device.');
+    await store.completePasswordReset(
+      email: email,
+      code: code.trim(),
+      newPassword: newPassword,
+    );
+  }
+
+  Uri _mailtoReset(String email, String code) {
+    final subject = Uri.encodeComponent('Watoto password reset code');
+    final body = Uri.encodeComponent(
+      'Hi,\n\n'
+      'Your Watoto password reset code is:\n\n'
+      '  $code\n\n'
+      'Enter this code in the app (Account → Forgot password) within 1 hour.\n'
+      'If you did not request this, you can ignore this message.\n\n'
+      '— Watoto\n',
+    );
+    return Uri.parse('mailto:$email?subject=$subject&body=$body');
+  }
 }
 
+/// Defaults to offline [LocalAuthService]. Bootstrap may override with
+/// [createAuthService] from firebase_auth_service.dart.
 final authServiceProvider = Provider<AuthService>((_) => LocalAuthService());
 
 /// One spelled-out parental-gate challenge per app session. Overridable in

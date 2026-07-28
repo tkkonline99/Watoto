@@ -52,6 +52,8 @@ $cleanTmp = if ($env:WATOTO_TMP)   { $env:WATOTO_TMP }   else { 'C:\dev\tmp' }
 $jdkHome  = if ($env:JAVA_HOME)    { $env:JAVA_HOME }    else { 'C:\dev\jdk-21' }
 $flutter  = if ($env:FLUTTER_BIN)  { $env:FLUTTER_BIN }  else { 'C:\dev\flutter\bin\flutter.bat' }
 $work     = if ($env:WATOTO_BUILD) { $env:WATOTO_BUILD } else { 'C:\dev\watoto-build' }
+# flutter_tts Windows plugin requires nuget.exe on PATH during CMake configure.
+$nugetDir = if ($env:WATOTO_NUGET) { $env:WATOTO_NUGET } else { 'C:\dev\nuget' }
 
 $repoMobile = Split-Path $PSScriptRoot -Parent          # apps/mobile (script is in tool/)
 
@@ -73,10 +75,19 @@ $rc = robocopy $repoMobile $work /E /XD build .dart_tool .git ephemeral .idea /X
 # robocopy exit codes < 8 are success (files copied / nothing to do).
 if ($LASTEXITCODE -ge 8) { throw "robocopy failed syncing source (code $LASTEXITCODE)" }
 
-# --- 2. Toolchain env (AF_UNIX + JDK workarounds) ---------------------------
+# --- 2. Toolchain env (AF_UNIX + JDK + nuget workarounds) -------------------
 $env:TMP = $cleanTmp
 $env:TEMP = $cleanTmp
 $env:JAVA_HOME = $jdkHome
+# Ensure nuget.exe is available for Windows plugin packages (flutter_tts).
+New-Item -ItemType Directory -Force $nugetDir | Out-Null
+$nugetExe = Join-Path $nugetDir 'nuget.exe'
+if (-not (Test-Path $nugetExe)) {
+  Write-Host "Downloading nuget.exe -> $nugetExe"
+  Invoke-WebRequest -Uri 'https://dist.nuget.org/win-x86-commandline/latest/nuget.exe' `
+    -OutFile $nugetExe -UseBasicParsing
+}
+$env:Path = "$nugetDir;$env:Path"
 
 Push-Location $work
 try {
@@ -154,8 +165,8 @@ Write-Host "  ios        SKIPPED (needs macOS - build on a Mac or in CI)"
 Write-Host ('=' * 70)
 
 # Non-zero exit if any requested build failed.
-if ($results.Values -contains 'OK' -and -not ($results.Values | Where-Object { $_ -ne 'OK' })) {
-  exit 0
-} elseif ($results.Values | Where-Object { $_ -ne 'OK' }) {
+$failed = @($results.Values | Where-Object { $_ -ne 'OK' })
+if ($failed.Count -gt 0) {
   exit 1
 }
+exit 0

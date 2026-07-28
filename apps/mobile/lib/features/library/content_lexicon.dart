@@ -290,19 +290,26 @@ final _directive = RegExp(
 List<String> _words(String text) =>
     text.toLowerCase().split(_wordSplit).where((w) => w.isNotEmpty).toList();
 
-/// Emoji for the first lexicon word mentioned in [text], or null. Concrete
-/// words win over concepts ("Read the word cat" illustrates the cat, not
-/// reading), so the picture matches what the step is actually about.
-String? illustrationFor(String text) {
-  String? concept;
+/// The lexicon entry that best illustrates [text], or null. Concrete words win
+/// over concepts ("Read the word cat" illustrates the cat, not reading), so the
+/// picture matches what the step is actually about.
+LexEntry? lexiconEntryFor(String text) {
+  LexEntry? concept;
   for (final w in _words(text)) {
     final e = lexiconLookup(w);
     if (e == null) continue;
-    if (e.category != _concept) return e.emoji;
-    concept ??= e.emoji;
+    if (e.category != _concept) return e;
+    concept ??= e;
   }
   return concept;
 }
+
+/// Emoji for the first lexicon word mentioned in [text], or null.
+String? illustrationFor(String text) => lexiconEntryFor(text)?.emoji;
+
+/// Category name used for bare numerals, so callers can prefer a topic picture
+/// over "2️⃣" when the step is about drawing a face rather than about two.
+const String lexDigitCategory = _digit;
 
 /// One tappable answer in a choice stage.
 class ChoiceOption {
@@ -344,10 +351,9 @@ ChoicePlan? choicePlanFor(String itemId, int step, String narration) {
   // step, then silent-e / vowel-swap mutations — 'cap' vs 'cape' vs 'cop').
   // A directive with only a pronoun ("This word is 'the'. Tap it.") falls
   // back to the word quoted elsewhere in the narration.
-  final quoted =
-      RegExp(r"'([A-Za-z]+)'").firstMatch(clause) ??
+  final quoted = _quotedWord.firstMatch(clause) ??
       (_isTrivialClause(clause)
-          ? RegExp(r"'([A-Za-z]+)'").firstMatch(narration)
+          ? _quotedWord.firstMatch(narration)
           : null);
   if (quoted != null) {
     final word = quoted.group(1)!.toLowerCase();
@@ -625,6 +631,14 @@ ChoicePlan _casePlan(
 
 const _vowels = ['a', 'e', 'i', 'o', 'u'];
 
+/// A word the content quotes as the thing to read.
+///
+/// The closing quote must not be followed by a letter: in "Tap to say 'I'm
+/// sorry.'" the apostrophe inside "I'm" would otherwise close the quote and
+/// stage the letter "i", whose mutations came out as the meaningless buttons
+/// "ie" / "o" / "i". Two letters minimum for the same reason.
+final _quotedWord = RegExp(r"'([A-Za-z]{2,})'(?![A-Za-z])");
+
 /// A reading choice: the quoted [word] as text, against minimal-pair
 /// distractors. Prefers the step's other quoted words (the contrast the
 /// narration is actually teaching), then a silent-e toggle, then seeded
@@ -638,7 +652,7 @@ ChoicePlan _wordPlan(String itemId, int step, String word, String narration) {
     }
   }
 
-  for (final m in RegExp(r"'([A-Za-z]+)'").allMatches(narration)) {
+  for (final m in _quotedWord.allMatches(narration)) {
     add(m.group(1)!);
   }
   // Silent-e toggle: cap ↔ cape.

@@ -359,6 +359,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get tapToPlay => 'Touche pour jouer !';
 
   @override
+  String get gotIt => 'Compris !';
+
+  @override
   String get tapEachPrompt => 'Touche-les tous !';
 
   @override
@@ -395,4 +398,620 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get badgeLevel5 => 'Niveau 5';
+
+  @override
+  String get badgeDailyChallenge => 'Héros du jour';
+
+  @override
+  String get badgesTitle => 'Badges';
+
+  @override
+  String xpToNextLevel(int into, int total, int remaining) {
+    return '$into / $total XP · $remaining jusqu\'au prochain niveau';
+  }
+
+  @override
+  String get dailyChallengeDone => 'Terminé pour aujourd\'hui !';
+
+  @override
+  String dailyChallengeBonus(int xp) {
+    return '+$xp XP bonus';
+  }
+
+  @override
+  String get changeAgeHint => 'Appui long pour changer l\'âge';
+
+  @override
+  String get playNow => 'Jouer';
+
+  @override
+  String get continueLearning => 'Continuer';
+
+  @override
+  String get avatarShop => 'Boutique d\'avatars';
+
+  @override
+  String get avatarShopBody =>
+      'Dépense des pièces pour de nouveaux animaux. Les pièces n\'achètent jamais d\'apprentissage — seulement le look !';
+
+  @override
+  String get freeAvatars => 'Tes animaux';
+
+  @override
+  String get shopAvatars => 'En débloquer plus';
+
+  @override
+  String get notEnoughCoins => 'Il faut plus de pièces — joue pour en gagner !';
+
+  @override
+  String get screenTime => 'Temps d\'écran';
+
+  @override
+  String get screenTimeBody =>
+      'Limite douce par jour. Quand c\'est fini, Watoto propose une pause (jamais au milieu d\'une activité).';
+
+  @override
+  String get screenTimeOff => 'Off';
+
+  @override
+  String screenTimeMinutes(int minutes) {
+    return '$minutes min';
+  }
+
+  @override
+  String screenTimeUsed(int minutes) {
+    return 'Aujourd\'hui : $minutes min';
+  }
+
+  @override
+  String get restTitle => 'C\'est l\'heure de se reposer !';
+
+  @override
+  String get restBody =>
+      'Tu as bien appris aujourd\'hui. Étire-toi, bois de l\'eau, et reviens plus tard.';
+
+  @override
+  String get restGoHome => 'À plus tard';
+
+  @override
+  String get restAskGrownUp => 'Adulte : zone parent';
+
+  @override
+  String get restGrace => '+10 minutes';
+
+  @override
+  String get premiumTitle => 'Watoto Premium';
+
+  @override
+  String get premiumBody =>
+      'Débloque tous les niveaux, le hors-ligne et plusieurs profils.';
+
+  @override
+  String get premiumBullet1 => 'Tous les niveaux, de la naissance au CE1';
+
+  @override
+  String get premiumBullet2 => 'Téléchargements hors-ligne';
+
+  @override
+  String get premiumBullet3 => 'Jusqu\'à 4 profils enfants';
+
+  @override
+  String get premiumMonthly => 'Mensuel (sandbox)';
+
+  @override
+  String get premiumAnnual => 'Annuel (sandbox)';
+
+  @override
+  String get premiumActive => 'Premium est actif sur cet appareil';
+
+  @override
+  String get premiumSandboxNote =>
+      'Le mode sandbox active Premium localement jusqu\'à la connexion des boutiques.';
+
+  @override
+  String get restorePurchases => 'Restaurer les achats';
+
+  @override
+  String get restoreNone => 'Aucun achat à restaurer.';
+
+  @override
+  String get premiumAskGrownUp => 'Demande à un adulte de débloquer Premium';
+
+  @override
+  String get tourTitle => 'On joue ensemble !';
+
+  @override
+  String tourBody(String name) {
+    return 'Salut $name ! Faisons une petite activité — je t\'encourage.';
+  }
+
+  @override
+  String get tourStart => 'Première leçon';
+
+  @override
+  String get tourSkip => 'Plus tard';
+
+  @override
+  String get badgeUnlocked => 'Nouveau badge !';
+
+  @override
+  String levelUp(int level) {
+    return 'Niveau $level ! Bravo !';
+  }
+
+  @override
+  String get quizHint => 'Un indice ?';
+
+  @override
+  String get quizHintBody =>
+      'Regarde bien… un choix a disparu. Tu peux le faire !';
+
+  @override
+  String get quizNiceTry => 'Oui ! Tu as trouvé !';
+
+  @override
+  String get quizPerfect => 'Score parfait !';
+
+  @override
+  String get weeklySnapshot => 'Cette semaine';
+
+  @override
+  String get weeklySnapshotEmpty =>
+      'Pas encore d\'activité cette semaine — une courte leçon est un super début.';
+
+  @override
+  String weeklySnapshotBody(int lessons, int stars, int days) {
+    return '$lessons leçons · $stars étoiles · $days jours actifs';
+  }
+
+  @override
+  String get weeklyActivities => 'activités';
+
+  @override
+  String get parentInsights => 'Apercus';
+
+  @override
+  String get parentInsightsEmpty =>
+      'Ajoutez un profil enfant pour voir les apercus.';
+
+  @override
+  String get certificateTitle => 'Certificat';
+
+  @override
+  String get certificateSubtitle => 'Celebrez les progres avec un certificat';
+
+  @override
+  String get certificateHeading => 'CERTIFICAT D APPRENTISSAGE';
+
+  @override
+  String get certificateNeedChild => 'Choisissez d abord un profil enfant.';
+
+  @override
+  String certificateBody(int level, int lessons, int stars) {
+    return 'Niveau $level - $lessons lecons - $stars etoiles';
+  }
+
+  @override
+  String get readingEase => 'Lecture facilitee';
+
+  @override
+  String get readingEaseBody =>
+      'Espacement plus large pour une lecture plus aisee';
+
+  @override
+  String get highContrast => 'Contraste eleve';
+
+  @override
+  String get highContrastBody => 'Couleurs et bordures plus fortes';
+
+  @override
+  String get reducedMotion => 'Moins de mouvement';
+
+  @override
+  String get reducedMotionBody => 'Animations plus calmes';
+
+  @override
+  String get analyticsOptIn => 'Ameliorer Watoto';
+
+  @override
+  String get analyticsOptInBody => 'Statistiques produit optionnelles';
+
+  @override
+  String get exportData => 'Exporter les donnees';
+
+  @override
+  String get exportDataBody => 'Copier un resume JSON des progres locaux';
+
+  @override
+  String get exportDataCopied => 'Donnees copiees';
+
+  @override
+  String deleteChild(String name) {
+    return 'Supprimer $name';
+  }
+
+  @override
+  String get deleteChildBody =>
+      'Supprime ce profil et ses progres sur cet appareil';
+
+  @override
+  String get deleteChildConfirm => 'Action irreversible. Continuer?';
+
+  @override
+  String get delete => 'Supprimer';
+
+  @override
+  String get cancel => 'Annuler';
+
+  @override
+  String syncPending(int count) {
+    return '$count elements en attente de sync';
+  }
+
+  @override
+  String get premiumMapFree => 'Gratuit: etapes 1-5. Premium: etapes 6-10.';
+
+  @override
+  String get badgeThreeLessons => '3 leçons';
+
+  @override
+  String get badgeTenLessons => '10 leçons';
+
+  @override
+  String get save => 'Enregistrer';
+
+  @override
+  String get editNicknameTitle => 'Modifier le nom';
+
+  @override
+  String get editNicknameBody => 'Choisissez un nouveau nom pour ce profil.';
+
+  @override
+  String get nicknameUpdated => 'Nom mis à jour';
+
+  @override
+  String get nicknameUpdateFailed => 'Impossible de mettre à jour le nom';
+
+  @override
+  String nicknameCooldown(int days) {
+    return 'Vous pourrez changer ce nom dans $days jours';
+  }
+
+  @override
+  String get insightQuietWeek => 'Une semaine calme';
+
+  @override
+  String insightQuietWeekDetail(String name) {
+    return '$name n\'a pas joué cette semaine. Une courte histoire est une façon douce de reprendre.';
+  }
+
+  @override
+  String get insightStrongWeek => 'Une belle semaine';
+
+  @override
+  String insightStrongWeekDetail(String name, int count) {
+    return '$name a terminé $count leçons cette semaine. Dites-lui que vous l\'avez remarqué !';
+  }
+
+  @override
+  String insightStreak(int days) {
+    return 'Série de $days jours';
+  }
+
+  @override
+  String get insightStreakDetail =>
+      'Venir chaque jour est l\'habitude qui compte le plus.';
+
+  @override
+  String get insightStars => 'Les étoiles s\'accumulent';
+
+  @override
+  String insightStarsDetail(int count) {
+    return '$count étoiles gagnées cette semaine.';
+  }
+
+  @override
+  String get insightOneDay => 'Un jour de jeu';
+
+  @override
+  String get insightOneDayDetail =>
+      'Deux ou trois courtes séances par semaine valent mieux qu\'une longue.';
+
+  @override
+  String get syncStatusOk => 'Tout est enregistré';
+
+  @override
+  String syncStatusPending(int count) {
+    return '$count éléments en attente de synchronisation';
+  }
+
+  @override
+  String get syncStatusError =>
+      'Synchronisation en pause — nouvelle tentative automatique';
+
+  @override
+  String get parentGateTitle => 'Adultes uniquement';
+
+  @override
+  String parentGateBody(String question) {
+    return 'Pour continuer, répondez : $question';
+  }
+
+  @override
+  String get parentGateWrong => 'Pas tout à fait — réessayez';
+
+  @override
+  String get forgotPinTitle => 'Code PIN oublié ?';
+
+  @override
+  String get forgotPinBodyAccount =>
+      'Saisissez le mot de passe de votre compte pour définir un nouveau code PIN.';
+
+  @override
+  String get forgotPinBodyPinOnly =>
+      'Cette famille utilise uniquement un code PIN, il n\'y a donc pas de mot de passe à vérifier. Définissez un nouveau code PIN ci-dessous.';
+
+  @override
+  String get newPinLabel => 'Nouveau code PIN';
+
+  @override
+  String get confirmPinLabel => 'Confirmez le nouveau code PIN';
+
+  @override
+  String get pinLengthHint => 'Utilisez au moins 4 chiffres';
+
+  @override
+  String get setNewPin => 'Définir le nouveau code PIN';
+
+  @override
+  String get pinResetSuccess => 'Code PIN mis à jour';
+
+  @override
+  String get pinResetFailed => 'Impossible de mettre à jour le code PIN';
+
+  @override
+  String get forgotPasswordTitle => 'Mot de passe oublié ?';
+
+  @override
+  String get forgotPasswordBody =>
+      'Saisissez votre e-mail et nous vous enverrons un code de réinitialisation.';
+
+  @override
+  String get forgotPasswordEnterCodeBody =>
+      'Saisissez le code envoyé, puis choisissez un nouveau mot de passe.';
+
+  @override
+  String get sendResetEmail => 'Envoyer le code';
+
+  @override
+  String get resendResetEmail => 'Renvoyer le code';
+
+  @override
+  String get passwordResetEmailSent =>
+      'Consultez votre e-mail pour le code de réinitialisation.';
+
+  @override
+  String passwordResetDevCode(String code) {
+    return 'Code de débogage : $code';
+  }
+
+  @override
+  String get passwordResetCodeLabel => 'Code de réinitialisation';
+
+  @override
+  String get passwordResetCodeHint => 'Le code à 6 chiffres reçu par e-mail';
+
+  @override
+  String get passwordResetCodeInvalid =>
+      'Ce code est incorrect — vérifiez votre e-mail';
+
+  @override
+  String get newPasswordLabel => 'Nouveau mot de passe';
+
+  @override
+  String get confirmPasswordLabel => 'Confirmez le nouveau mot de passe';
+
+  @override
+  String get passwordMismatch => 'Les mots de passe ne correspondent pas';
+
+  @override
+  String get setNewPassword => 'Définir le nouveau mot de passe';
+
+  @override
+  String get passwordResetSuccess => 'Mot de passe mis à jour';
+
+  @override
+  String get passwordResetFailed =>
+      'Impossible de réinitialiser le mot de passe';
+
+  @override
+  String get todayQuest => 'Quête du jour';
+
+  @override
+  String todayQuestProgress(int done, int goal) {
+    return '$done activités sur $goal';
+  }
+
+  @override
+  String get todayQuestComplete => 'Quête terminée !';
+
+  @override
+  String get nextEasier => 'Une plus douce ensuite';
+
+  @override
+  String get nextHarder => 'Prêt pour un défi ?';
+
+  @override
+  String get nextDiscover => 'Essaie quelque chose de nouveau';
+
+  @override
+  String get streakSavedTitle => 'Ta série est sauvée !';
+
+  @override
+  String streakSavedBody(int days) {
+    return 'Tu as manqué un jour : ton bouclier de la semaine a sauvé ta série de $days jours.';
+  }
+
+  @override
+  String get streakShieldUsedNote => 'Bouclier utilisé cette semaine';
+
+  @override
+  String coinsEarned(int count) {
+    return '+$count pièces';
+  }
+
+  @override
+  String get perfectRun => 'Parfait !';
+
+  @override
+  String get firstTimeHere => 'Ta première ici !';
+
+  @override
+  String get remindersTitle => 'Rappels de pratique';
+
+  @override
+  String get remindersBody =>
+      'Un rappel discret pour vous — jamais pour votre enfant. Désactivé par défaut.';
+
+  @override
+  String get remindersUnsupported =>
+      'Les rappels ne sont pas disponibles sur cet appareil.';
+
+  @override
+  String get remindersDenied =>
+      'Les notifications sont bloquées. Autorisez-les dans les réglages du système.';
+
+  @override
+  String get reminderTimeLabel => 'Heure du rappel';
+
+  @override
+  String reminderStreakTitle(String name) {
+    return 'La série de $name se termine aujourd\'hui';
+  }
+
+  @override
+  String reminderStreakBody(int days) {
+    return 'Une courte activité suffit à préserver la série de $days jours.';
+  }
+
+  @override
+  String reminderInactiveTitle(String name) {
+    return '$name n\'a pas joué depuis un moment';
+  }
+
+  @override
+  String get reminderInactiveBody =>
+      'Une courte histoire est une façon douce de reprendre.';
+
+  @override
+  String reminderKeepGoingTitle(String name) {
+    return 'Envie de jouer avec $name ?';
+  }
+
+  @override
+  String get reminderKeepGoingBody =>
+      'Cinq minutes aujourd\'hui valent mieux qu\'une heure dimanche.';
+
+  @override
+  String get shopDecorations => 'Décorations de la savane';
+
+  @override
+  String get shopDecorationsBody =>
+      'Dépense des pièces pour agrandir ta savane. Certaines choses arrivent en jouant.';
+
+  @override
+  String get decorationOwned => 'Dans ta savane';
+
+  @override
+  String get decorationEarned => 'Gagné !';
+
+  @override
+  String decorationNeedsLevel(int level) {
+    return 'Niveau $level';
+  }
+
+  @override
+  String decorationNeedsSubjects(int count) {
+    return '$count matières';
+  }
+
+  @override
+  String get nameYourFriend => 'Donne un nom à ton ami';
+
+  @override
+  String get mascotNameHint => 'Comment l\'appelle-t-on ?';
+
+  @override
+  String get mascotDefaultName => 'Ton ami le lion';
+
+  @override
+  String get mascotMissedYou => 'Tu m\'as manqué ! On joue ?';
+
+  @override
+  String mascotProud(int days) {
+    return '$days jours d\'affilée — je suis fier !';
+  }
+
+  @override
+  String get mascotCurious => 'Te voilà ! Qu\'apprend-on ?';
+
+  @override
+  String get mascotReady => 'Je suis prêt quand tu veux !';
+
+  @override
+  String get familyChallenge => 'Défi de la famille';
+
+  @override
+  String familyChallengeBody(int count) {
+    return 'Encore $count activités ensemble cette semaine.';
+  }
+
+  @override
+  String get familyChallengeDone => 'Réussi — toute la famille y est arrivée !';
+
+  @override
+  String sendCheer(String name) {
+    return 'Envoyer un encouragement à $name';
+  }
+
+  @override
+  String get sendCheerBody =>
+      'Il ou elle le verra à la prochaine ouverture de l\'application.';
+
+  @override
+  String cheerSent(String name) {
+    return 'Envoyé à $name';
+  }
+
+  @override
+  String get cheerFromGrownUp => 'Un message pour toi';
+
+  @override
+  String get cheerProud => 'Je suis fier de toi !';
+
+  @override
+  String get cheerWow => 'Waouh, quel progrès !';
+
+  @override
+  String get cheerKeepGoing => 'Continue, tu vas y arriver !';
+
+  @override
+  String get cheerLoveIt => 'J\'adore apprendre avec toi !';
+
+  @override
+  String get certificateSave => 'Enregistrer l\'image';
+
+  @override
+  String get certificateSaving => 'Enregistrement…';
+
+  @override
+  String certificateSaved(String path) {
+    return 'Enregistré dans $path';
+  }
+
+  @override
+  String get certificateCopied => 'Certificat copié dans le presse-papiers';
+
+  @override
+  String get certificateSaveFailed => 'Impossible d\'enregistrer le certificat';
 }

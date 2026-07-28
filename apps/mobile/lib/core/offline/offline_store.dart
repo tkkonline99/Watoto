@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
 
@@ -5,9 +6,15 @@ import 'package:crypto/crypto.dart';
 import 'package:hive/hive.dart';
 import 'package:uuid/uuid.dart';
 
-import '../../features/onboarding/consent.dart';
-import '../../features/profiles/child_profile.dart';
+import '../../domain/models/consent.dart';
+import '../../domain/models/child_profile.dart';
+import '../../domain/rules/streak.dart';
+import '../../domain/rules/username.dart';
 import 'sync_op.dart';
+
+export '../../domain/rules/streak.dart'
+    show nextStreak, nextStreakTick, StreakTick, isoWeekKey;
+export '../../domain/rules/username.dart';
 
 /// Offline-first local store: account/profiles/consent, per-child progress and
 /// reward balances, and the outbound sync queue. Every learning write lands
@@ -16,19 +23,6 @@ import 'sync_op.dart';
 ///
 /// Hive keeps this portable across Android/iOS/Web and trivially testable;
 /// the drift/SQLite + Firebase-auth upgrade slots in behind this interface.
-/// Pure streak arithmetic (unit-tested directly): the run continues on the
-/// same day, increments after exactly one day's gap, and resets otherwise.
-/// Day keys are 'yyyy-MM-dd' strings in the family's local time.
-int nextStreak({
-  required String? lastDayKey,
-  required String todayKey,
-  required String yesterdayKey,
-  required int current,
-}) {
-  if (lastDayKey == todayKey) return current == 0 ? 1 : current;
-  if (lastDayKey == yesterdayKey) return current + 1;
-  return 1;
-}
 
 class OfflineStore {
   OfflineStore._(this._progress, this._queue, this._stats, this._account);
@@ -70,17 +64,154 @@ class OfflineStore {
 
   Future<void> setLocaleCode(String code) => _account.put('localeCode', code);
 
+  /// Stable device id for sync headers (generated once, persisted).
+  String get deviceId {
+    final existing = _account.get('deviceId');
+    if (existing != null && existing.isNotEmpty) return existing;
+    final id = _uuid.v4();
+    // Fire-and-forget persist; getter stays sync for API construction.
+    unawaited(_account.put('deviceId', id));
+    return id;
+  }
+
+  Future<void> ensureDeviceId() async {
+    if (_account.get('deviceId') != null) return;
+    await _account.put('deviceId', _uuid.v4());
+  }
+
+  /// Last curriculum stage (1–10) the child used. Lets home skip the age
+  /// picker on subsequent taps so play starts in one touch.
+  int? preferredStage(String childId) {
+    final raw = _account.get('preferredStage:$childId');
+    return raw == null ? null : int.tryParse(raw);
+  }
+
+  Future<void> setPreferredStage(String childId, int stage) =>
+      _account.put('preferredStage:$childId', '$stage');
+
+  /// Bonus XP for finishing today's daily challenge (design doc §12.1: 5).
+  static const int dailyChallengeBonusXp = 5;
+
+  /// Whether [childId] already claimed today's daily-challenge bonus.
+  bool isDailyChallengeDone(String childId, {DateTime? now}) =>
+      _account.get(_dailyDoneKey(childId, now ?? DateTime.now())) != null;
+
+  /// Item id that earned today's daily-challenge bonus, if any.
+  String? dailyChallengeCompletedItemId(String childId, {DateTime? now}) =>
+      _account.get(_dailyDoneKey(childId, now ?? DateTime.now()));
+
+  /// The pinned target activity for today (stable for the whole day once set).
+  String? dailyChallengeTargetId(String childId, {DateTime? now}) =>
+      _account.get(_dailyTargetKey(childId, now ?? DateTime.now()));
+
+  /// Pins [itemId] as today's challenge the first time it is resolved.
+  Future<void> setDailyChallengeTarget(
+    String childId,
+    String itemId, {
+    DateTime? now,
+  }) async {
+    final key = _dailyTargetKey(childId, now ?? DateTime.now());
+    if (_account.get(key) != null) return;
+    await _account.put(key, itemId);
+  }
+
+  /// Marks the daily challenge complete and grants bonus XP once per day.
+  /// Returns the XP granted (0 if already claimed).
+  Future<int> markDailyChallengeDone(
+    String childId,
+    String itemId, {
+    DateTime? now,
+  }) async {
+    final when = now ?? DateTime.now();
+    final key = _dailyDoneKey(childId, when);
+    if (_account.get(key) != null) return 0;
+    await _account.put(key, itemId);
+    // Keep target pinned so the home card stays on the same activity.
+    await setDailyChallengeTarget(childId, itemId, now: when);
+    await _grantXp(childId, dailyChallengeBonusXp);
+    return dailyChallengeBonusXp;
+  }
+
+  /// Lifetime count of daily challenges completed (for badges).
+  int dailyChallengeTotalCount(String childId) => _account.keys
+      .where((k) => (k as String).startsWith('dailyDone:$childId:'))
+      .length;
+
+  String _dailyDoneKey(String childId, DateTime now) =>
+      'dailyDone:$childId:${_dayKey(now)}';
+
+  String _dailyTargetKey(String childId, DateTime now) =>
+      'dailyTarget:$childId:${_dayKey(now)}';
+
   bool get hasPin => _account.get('pinHash') != null;
 
   /// Local parent gate. A salted SHA-256 keeps the PIN out of plaintext on
   /// device; the production design uses argon2id server-side (docs/16 §16.1).
+  /// Soft gate only — not high-security authentication.
   Future<void> setPin(String pin) async {
     await _account.put('pinSalt', _uuid.v4());
     await _account.put('pinHash', _hashPin(pin));
+    await clearPinFailures();
   }
 
   bool verifyPin(String pin) =>
       hasPin && _hashPin(pin) == _account.get('pinHash');
+
+  /// Max wrong PIN tries before a temporary lockout.
+  static const int pinMaxAttempts = 5;
+
+  /// Lockout duration after [pinMaxAttempts] failures.
+  static const Duration pinLockoutDuration = Duration(minutes: 2);
+
+  int get pinFailCount =>
+      int.tryParse(_account.get('pinFailCount') ?? '') ?? 0;
+
+  DateTime? get pinLockedUntil {
+    final raw = _account.get('pinLockedUntil');
+    if (raw == null) return null;
+    return DateTime.tryParse(raw);
+  }
+
+  bool get isPinLocked {
+    final until = pinLockedUntil;
+    if (until == null) return false;
+    return until.isAfter(DateTime.now());
+  }
+
+  Duration? get pinLockRemaining {
+    final until = pinLockedUntil;
+    if (until == null) return null;
+    final left = until.difference(DateTime.now());
+    return left.isNegative ? null : left;
+  }
+
+  Future<void> clearPinFailures() async {
+    await _account.delete('pinFailCount');
+    await _account.delete('pinLockedUntil');
+  }
+
+  /// Verifies PIN with lockout. Returns:
+  /// - `ok` on success
+  /// - `wrong` on bad PIN (increments fail count)
+  /// - `locked` when still in lockout window
+  Future<String> tryPin(String pin) async {
+    if (isPinLocked) return 'locked';
+    // Clear expired lockout.
+    if (pinLockedUntil != null && !isPinLocked) {
+      await clearPinFailures();
+    }
+    if (verifyPin(pin)) {
+      await clearPinFailures();
+      return 'ok';
+    }
+    final fails = pinFailCount + 1;
+    await _account.put('pinFailCount', '$fails');
+    if (fails >= pinMaxAttempts) {
+      final until = DateTime.now().add(pinLockoutDuration);
+      await _account.put('pinLockedUntil', until.toIso8601String());
+    }
+    return isPinLocked ? 'locked' : 'wrong';
+  }
 
   String _hashPin(String pin) {
     final salt = _account.get('pinSalt') ?? '';
@@ -100,7 +231,7 @@ class OfflineStore {
   bool get isLoggedIn => _account.get('loggedIn') == 'true';
 
   Future<void> createAccount(String email, String password) async {
-    await _account.put('accountEmail', email.trim());
+    await _account.put('accountEmail', email.trim().toLowerCase());
     await _account.put('accountSalt', _uuid.v4());
     await _account.put('accountHash', _hashAccount(password));
     await _account.put('loggedIn', 'true');
@@ -126,6 +257,96 @@ class OfflineStore {
     return sha256.convert(utf8.encode('$salt:$password')).toString();
   }
 
+  /// Password reset codes expire after 1 hour.
+  static const Duration passwordResetTtl = Duration(hours: 1);
+
+  /// Begins a local password reset: stores a hashed one-time code and returns
+  /// the plain code for the reset email body. Throws if email is unknown.
+  Future<String> beginPasswordReset(String email) async {
+    final registered = (accountEmail ?? '').toLowerCase();
+    if (!hasAccount || email.trim().toLowerCase() != registered) {
+      throw StateError('No account for that email on this device.');
+    }
+    final code = _sixDigitCode();
+    final salt = _uuid.v4();
+    final hash = sha256.convert(utf8.encode('$salt:$code')).toString();
+    final exp =
+        DateTime.now().toUtc().add(passwordResetTtl).toIso8601String();
+    await _account.put('pwResetSalt', salt);
+    await _account.put('pwResetHash', hash);
+    await _account.put('pwResetExp', exp);
+    await _account.put('pwResetEmail', registered);
+    return code;
+  }
+
+  /// Completes local password reset when [code] matches a non-expired token.
+  Future<void> completePasswordReset({
+    required String email,
+    required String code,
+    required String newPassword,
+  }) async {
+    if (newPassword.length < 6) {
+      throw StateError('Password too short.');
+    }
+    final registered = (accountEmail ?? '').toLowerCase();
+    final target = email.trim().toLowerCase();
+    if (!hasAccount || target != registered) {
+      throw StateError('Invalid reset request.');
+    }
+    if ((_account.get('pwResetEmail') ?? '') != registered) {
+      throw StateError('Invalid or expired reset code.');
+    }
+    final expRaw = _account.get('pwResetExp');
+    final exp = expRaw == null ? null : DateTime.tryParse(expRaw);
+    if (exp == null || exp.isBefore(DateTime.now().toUtc())) {
+      await _clearPasswordReset();
+      throw StateError('Reset code expired. Request a new one.');
+    }
+    final salt = _account.get('pwResetSalt') ?? '';
+    final expected = _account.get('pwResetHash');
+    final got = sha256.convert(utf8.encode('$salt:$code')).toString();
+    if (expected == null || got != expected) {
+      throw StateError('Invalid reset code.');
+    }
+    await _account.put('accountSalt', _uuid.v4());
+    await _account.put('accountHash', _hashAccount(newPassword));
+    await _clearPasswordReset();
+  }
+
+  Future<void> _clearPasswordReset() async {
+    await _account.delete('pwResetSalt');
+    await _account.delete('pwResetHash');
+    await _account.delete('pwResetExp');
+    await _account.delete('pwResetEmail');
+  }
+
+  String _sixDigitCode() {
+    final n = DateTime.now().microsecondsSinceEpoch ^ _uuid.v4().hashCode;
+    final code = (n.abs() % 1000000).toString().padLeft(6, '0');
+    return code;
+  }
+
+  /// Sets a new parent PIN after the caller has verified adult authority
+  /// (password and/or parent gate).
+  Future<void> resetPin(String newPin) async {
+    final digits = newPin.replaceAll(RegExp(r'\D'), '');
+    if (digits.length < 4 || digits.length > 6) {
+      throw StateError('PIN must be 4–6 digits.');
+    }
+    await setPin(digits);
+  }
+
+  /// Resets PIN only when the current account password is correct.
+  Future<void> resetPinWithPassword({
+    required String password,
+    required String newPin,
+  }) async {
+    if (!verifyAccount(password)) {
+      throw StateError('Wrong password.');
+    }
+    await resetPin(newPin);
+  }
+
   // ------------------------------------------------------------- settings
 
   /// App-wide text-size multiplier layered on top of the OS text scale, so
@@ -143,6 +364,30 @@ class OfflineStore {
 
   Future<void> setNarrationEnabled(bool enabled) =>
       _account.put('narrationEnabled', enabled ? 'true' : 'false');
+
+  /// Reading-ease mode: larger letter-spacing + line height (no extra font asset).
+  bool get dyslexiaFriendly => _account.get('dyslexiaFriendly') == 'true';
+
+  Future<void> setDyslexiaFriendly(bool v) =>
+      _account.put('dyslexiaFriendly', v ? 'true' : 'false');
+
+  /// High-contrast theme tokens for low-vision readers.
+  bool get highContrast => _account.get('highContrast') == 'true';
+
+  Future<void> setHighContrast(bool v) =>
+      _account.put('highContrast', v ? 'true' : 'false');
+
+  /// Prefer reduced motion (mascot idle, celebrations).
+  bool get reducedMotion => _account.get('reducedMotion') == 'true';
+
+  Future<void> setReducedMotion(bool v) =>
+      _account.put('reducedMotion', v ? 'true' : 'false');
+
+  /// Parent opt-in for privacy-preserving product analytics (default off).
+  bool get analyticsOptIn => _account.get('analyticsOptIn') == 'true';
+
+  Future<void> setAnalyticsOptIn(bool v) =>
+      _account.put('analyticsOptIn', v ? 'true' : 'false');
 
   ConsentRecord get consent {
     final raw = _account.get('consent');
@@ -188,9 +433,46 @@ class OfflineStore {
       avatarKey: avatarKey,
       birthYear: birthYear,
       ageBand: ageBandForBirthYear(birthYear),
+      // Null until first rename — parents may fix the initial nickname once.
     );
     await _account.put('child:${child.id}', jsonEncode(child.toJson()));
     return child;
+  }
+
+  Future<void> updateChild(ChildProfile child) =>
+      _account.put('child:${child.id}', jsonEncode(child.toJson()));
+
+  /// Renames a child profile if the 90-day cooldown has elapsed.
+  /// Returns the updated profile. Throws [StateError] when blocked.
+  Future<ChildProfile> updateChildNickname({
+    required String childId,
+    required String nickname,
+    DateTime? now,
+  }) async {
+    final child = childById(childId);
+    if (child == null) throw StateError('Child not found.');
+    final name = nickname.trim();
+    if (name.isEmpty) throw StateError('Nickname required.');
+    if (name == child.nickname) return child;
+    final when = now ?? DateTime.now().toUtc();
+    if (!canChangeNickname(child.nicknameChangedAt, now: when)) {
+      final days =
+          nicknameCooldownDaysRemaining(child.nicknameChangedAt, now: when);
+      throw StateError('Nickname can be changed again in $days days.');
+    }
+    final updated = child.copyWith(
+      nickname: name,
+      nicknameChangedAt: when,
+    );
+    await updateChild(updated);
+    return updated;
+  }
+
+  /// Whether the parent may edit this child's nickname now.
+  bool canEditChildNickname(String childId, {DateTime? now}) {
+    final child = childById(childId);
+    if (child == null) return false;
+    return canChangeNickname(child.nicknameChangedAt, now: now);
   }
 
   /// Persists the full first-run result atomically enough for local use:
@@ -232,18 +514,48 @@ class OfflineStore {
 
   /// Records that [childId] was active "today" and rolls the streak forward.
   /// Called from every learning write; idempotent within a calendar day.
+  /// Uses one free weekly **streak shield** if the child missed exactly one day.
   Future<void> _touchStreak(String childId, DateTime now) async {
     final todayKey = _dayKey(now);
     final lastKey = _account.get('streakDate:$childId');
     if (lastKey == todayKey) return; // already counted today
-    final next = nextStreak(
+    final week = isoWeekKey(now);
+    final shieldUsedThisWeek =
+        _account.get('streakShieldWeek:$childId') == week;
+    final tick = nextStreakTick(
       lastDayKey: lastKey,
       todayKey: todayKey,
       yesterdayKey: _dayKey(now.subtract(const Duration(days: 1))),
+      dayBeforeYesterdayKey:
+          _dayKey(now.subtract(const Duration(days: 2))),
       current: streakFor(childId),
+      shieldAvailable: !shieldUsedThisWeek,
     );
-    await _stats.put('streak:$childId', next);
+    await _stats.put('streak:$childId', tick.streak);
     await _account.put('streakDate:$childId', todayKey);
+    if (tick.usedShield) {
+      await _account.put('streakShieldWeek:$childId', week);
+      await _account.put('streakShieldUsedAt:$childId', todayKey);
+      _shieldJustUsed = true;
+    }
+  }
+
+  /// Set when the last learning write spent the weekly shield to cover a
+  /// missed day. Silently rescuing a streak wastes the best moment the streak
+  /// system has, so the reward pipeline reads this and tells the child.
+  bool _shieldJustUsed = false;
+
+  /// Reads *and clears* the "a shield just saved this run" flag.
+  bool takeShieldJustUsed() {
+    final used = _shieldJustUsed;
+    _shieldJustUsed = false;
+    return used;
+  }
+
+  /// True if a streak shield already protected this child in the current ISO week.
+  bool streakShieldUsedThisWeek(String childId, {DateTime? now}) {
+    final week = isoWeekKey(now ?? DateTime.now());
+    return _account.get('streakShieldWeek:$childId') == week;
   }
 
   static String _dayKey(DateTime d) =>
@@ -314,7 +626,7 @@ class OfflineStore {
   }
 
   /// Records a quiz attempt (pass or fail — attempts are data) and enqueues
-  /// it for server-side authoritative re-grading.
+  /// it for server-side authoritative re-grading. [stars] is 0–3 quality.
   Future<void> recordQuizAttempt({
     required String childId,
     required String quizId,
@@ -323,17 +635,26 @@ class OfflineStore {
     required List<Map<String, dynamic>> answers,
     required int durationS,
     required int xpEarned,
+    int stars = 0,
   }) async {
     final now = DateTime.now().toUtc();
+    final prev = lastQuizAttempt(childId, quizId);
+    final prevStars = (prev?['stars'] as int?) ?? 0;
+    final bestStars = stars > prevStars ? stars : prevStars;
     await _progress.put(
       'quiz:$childId:$quizId',
       jsonEncode({
         'quizId': quizId,
         'scorePct': scorePct,
         'passed': passed,
+        'stars': bestStars,
         'attemptedAt': now.toIso8601String(),
       }),
     );
+    final delta = bestStars - prevStars;
+    if (delta > 0) {
+      await _stats.put('stars:$childId', totalStars(childId) + delta);
+    }
     await _grantXp(childId, xpEarned);
     await _touchStreak(childId, DateTime.now());
     await _enqueue(
@@ -346,6 +667,7 @@ class OfflineStore {
           'durationS': durationS,
           'scorePct': scorePct,
           'passed': passed,
+          'stars': bestStars,
         },
         clientUpdatedAt: now,
       ),
@@ -386,8 +708,534 @@ class OfflineStore {
       .where((k) => (k as String).startsWith('story:$childId:'))
       .length;
 
+  /// True when the child has finished a library item of any type (used by the
+  /// daily challenge and "continue learning" surfaces).
+  bool hasCompletedLibraryItem(String childId, String itemId, String type) {
+    switch (type) {
+      case 'lesson':
+        return progressFor(childId, itemId) != null;
+      case 'quiz':
+        return lastQuizAttempt(childId, itemId) != null;
+      case 'story':
+        return hasReadStory(childId, itemId);
+      default:
+        return false;
+    }
+  }
+
+  /// Flattened progress rows for weekly parent snapshots.
+  List<({String kind, DateTime? at, int? timeSpentS, int? stars})>
+      progressEntriesFor(String childId) {
+    final out =
+        <({String kind, DateTime? at, int? timeSpentS, int? stars})>[];
+    for (final key in _progress.keys) {
+      final k = key as String;
+      if (!k.contains(':$childId:')) continue;
+      final m = _read(k);
+      if (m == null) continue;
+      DateTime? at;
+      for (final field in ['clientUpdatedAt', 'attemptedAt', 'readAt']) {
+        final raw = m[field] as String?;
+        if (raw != null) {
+          at = DateTime.tryParse(raw)?.toLocal();
+          break;
+        }
+      }
+      if (k.startsWith('lesson:')) {
+        out.add((
+          kind: 'lesson',
+          at: at,
+          timeSpentS: m['timeSpentS'] as int?,
+          stars: null,
+        ));
+      } else if (k.startsWith('quiz:')) {
+        out.add((
+          kind: 'quiz',
+          at: at,
+          timeSpentS: null,
+          stars: m['stars'] as int?,
+        ));
+      } else if (k.startsWith('story:')) {
+        out.add((kind: 'story', at: at, timeSpentS: null, stars: null));
+      }
+    }
+    return out;
+  }
+
+  // --------------------------------------------------------------- tour / badges
+
+  /// First-session guided tour not yet finished for this child.
+  bool needsGuidedTour(String childId) =>
+      _account.get('tourDone:$childId') != 'true';
+
+  Future<void> markGuidedTourDone(String childId) =>
+      _account.put('tourDone:$childId', 'true');
+
+  /// Whether home should open the "Let's play!" tour card once.
+  bool tourPromptPending(String childId) =>
+      needsGuidedTour(childId) &&
+      _account.get('tourPrompted:$childId') != 'true';
+
+  Future<void> markTourPrompted(String childId) =>
+      _account.put('tourPrompted:$childId', 'true');
+
+  Set<String> seenBadgeIds(String childId) {
+    final raw = _account.get('seenBadges:$childId');
+    if (raw == null || raw.isEmpty) return {};
+    return raw.split(',').where((s) => s.isNotEmpty).toSet();
+  }
+
+  Future<void> markBadgesSeen(String childId, Iterable<String> ids) async {
+    final set = seenBadgeIds(childId)..addAll(ids);
+    await _account.put('seenBadges:$childId', set.join(','));
+  }
+
+  int lastKnownLevel(String childId) =>
+      _stats.get('lastLevel:$childId', defaultValue: 1)!;
+
+  Future<void> setLastKnownLevel(String childId, int level) =>
+      _stats.put('lastLevel:$childId', level);
+
   Future<void> _grantXp(String childId, int amount) async {
     if (amount > 0) await _stats.put('xp:$childId', xpFor(childId) + amount);
+  }
+
+  // ------------------------------------------------------------ reminders
+
+  /// Practice reminders. **Off unless a grown-up turns them on** — docs/12
+  /// §12.6 forbids pushing anything to a child, so these are parent-facing
+  /// and opt-in, never a default.
+  bool get remindersEnabled => _account.get('remindersEnabled') == 'true';
+
+  Future<void> setRemindersEnabled(bool on) =>
+      _account.put('remindersEnabled', on ? 'true' : 'false');
+
+  /// Local wall-clock hour for the daily reminder (default early evening).
+  int get reminderHour =>
+      int.tryParse(_account.get('reminderHour') ?? '') ?? 18;
+
+  int get reminderMinute =>
+      int.tryParse(_account.get('reminderMinute') ?? '') ?? 30;
+
+  Future<void> setReminderTime(int hour, int minute) async {
+    await _account.put('reminderHour', '${hour.clamp(0, 23)}');
+    await _account.put('reminderMinute', '${minute.clamp(0, 59)}');
+  }
+
+  /// The last day [childId] finished anything, as 'yyyy-MM-dd', or null.
+  String? lastActiveDayKey(String childId) =>
+      _account.get('streakDate:$childId');
+
+  // ------------------------------------------------------------- subjects
+
+  /// Subjects this child has finished at least one activity in.
+  ///
+  /// Progress rows are keyed by item id only, so "have they been here before?"
+  /// is not answerable from them — this keeps a small explicit set instead.
+  Set<String> completedSubjects(String childId) {
+    final raw = _account.get('subjects:$childId') as String?;
+    if (raw == null || raw.isEmpty) return const {};
+    return raw.split('\n').where((s) => s.isNotEmpty).toSet();
+  }
+
+  bool hasCompletedAnyInSubject(String childId, String subject) =>
+      completedSubjects(childId).contains(subject);
+
+  Future<void> markSubjectCompleted(String childId, String subject) async {
+    if (subject.isEmpty) return;
+    final set = {...completedSubjects(childId), subject};
+    await _account.put('subjects:$childId', set.join('\n'));
+  }
+
+  // --------------------------------------------------------------- coins
+
+  int coinsFor(String childId) =>
+      _stats.get('coins:$childId', defaultValue: 0)!;
+
+  int coinsEarnedToday(String childId, {DateTime? now}) {
+    final day = _dayKey(now ?? DateTime.now());
+    if (_account.get('coinsDay:$childId') != day) return 0;
+    return _stats.get('coinsToday:$childId', defaultValue: 0)!;
+  }
+
+  /// Grants [amount] coins subject to the daily cap. Returns coins actually
+  /// granted.
+  Future<int> grantCoins(
+    String childId,
+    int amount, {
+    DateTime? now,
+  }) async {
+    if (amount <= 0) return 0;
+    final when = now ?? DateTime.now();
+    final day = _dayKey(when);
+    if (_account.get('coinsDay:$childId') != day) {
+      await _account.put('coinsDay:$childId', day);
+      await _stats.put('coinsToday:$childId', 0);
+    }
+    final earned = coinsEarnedToday(childId, now: when);
+    final room = 30 - earned; // matches economy.dailyCoinCap
+    if (room <= 0) return 0;
+    final grant = amount > room ? room : amount;
+    await _stats.put('coins:$childId', coinsFor(childId) + grant);
+    await _stats.put('coinsToday:$childId', earned + grant);
+    return grant;
+  }
+
+  Future<bool> spendCoins(String childId, int amount) async {
+    if (amount <= 0) return true;
+    final bal = coinsFor(childId);
+    if (bal < amount) return false;
+    await _stats.put('coins:$childId', bal - amount);
+    return true;
+  }
+
+  // --------------------------------------------------------------- avatars
+
+  Set<String> unlockedAvatars(String childId) {
+    final raw = _account.get('avatars:$childId');
+    if (raw == null || raw.isEmpty) return {};
+    return raw.split(',').where((s) => s.isNotEmpty).toSet();
+  }
+
+  Future<void> unlockAvatar(String childId, String key) async {
+    final set = unlockedAvatars(childId)..add(key);
+    await _account.put('avatars:$childId', set.join(','));
+  }
+
+  bool isAvatarUnlocked(String childId, String key) =>
+      unlockedAvatars(childId).contains(key);
+
+  // ---------------------------------------------------- savanna decorations
+
+  /// Decorations this child has bought with coins. Earned decorations are
+  /// derived from progress and are not stored.
+  Set<String> unlockedDecorations(String childId) {
+    final raw = _account.get('decor:$childId');
+    if (raw == null || raw.isEmpty) return {};
+    return raw.split(',').where((s) => s.isNotEmpty).toSet();
+  }
+
+  Future<void> unlockDecoration(String childId, String key) async {
+    final set = unlockedDecorations(childId)..add(key);
+    await _account.put('decor:$childId', set.join(','));
+  }
+
+  bool isDecorationUnlocked(String childId, String key) =>
+      unlockedDecorations(childId).contains(key);
+
+  // ---------------------------------------------------------------- cheers
+
+  /// A cheer a grown-up left for this child, as 'kind|iso8601', or null.
+  /// Read by the child's home screen and cleared once seen.
+  String? pendingCheer(String childId) => _account.get('cheer:$childId');
+
+  Future<void> sendCheer(String childId, String encoded) =>
+      _account.put('cheer:$childId', encoded);
+
+  Future<void> clearCheer(String childId) =>
+      _account.delete('cheer:$childId');
+
+  // ---------------------------------------------------------------- mascot
+
+  /// The name the child gave their companion, or null while it is still just
+  /// "the lion". A named companion is a relationship; an unnamed one is a
+  /// decoration.
+  String? mascotName(String childId) {
+    final raw = _account.get('mascotName:$childId');
+    return (raw == null || raw.trim().isEmpty) ? null : raw;
+  }
+
+  Future<void> setMascotName(String childId, String name) async {
+    final clean = name.trim();
+    if (clean.isEmpty) {
+      await _account.delete('mascotName:$childId');
+      return;
+    }
+    // Same ceiling as a child nickname — long enough to be theirs, short
+    // enough to fit a speech bubble.
+    await _account.put(
+      'mascotName:$childId',
+      clean.length > 16 ? clean.substring(0, 16) : clean,
+    );
+  }
+
+  // --------------------------------------------------------------- stars
+
+  int totalStars(String childId) =>
+      _stats.get('stars:$childId', defaultValue: 0)!;
+
+  /// Best star rating recorded for a quiz (0–3).
+  int starsForQuiz(String childId, String quizId) {
+    final m = lastQuizAttempt(childId, quizId);
+    if (m == null) return 0;
+    return (m['stars'] as int?) ?? 0;
+  }
+
+  // --------------------------------------------------------------- continue
+
+  /// Last library item the child opened/finished: {itemId, stage, subject}.
+  Map<String, dynamic>? lastPlayed(String childId) {
+    final raw = _account.get('lastPlayed:$childId');
+    if (raw == null) return null;
+    return (jsonDecode(raw) as Map).cast<String, dynamic>();
+  }
+
+  Future<void> setLastPlayed({
+    required String childId,
+    required String itemId,
+    required int stage,
+    required String subject,
+  }) =>
+      _account.put(
+        'lastPlayed:$childId',
+        jsonEncode({
+          'itemId': itemId,
+          'stage': stage,
+          'subject': subject,
+        }),
+      );
+
+  // --------------------------------------------------------------- screen time
+
+  /// Daily limit in minutes; 0 = unlimited (default).
+  int screenTimeLimitMinutes() {
+    final raw = _account.get('screenTimeLimit');
+    return raw == null ? 0 : int.tryParse(raw) ?? 0;
+  }
+
+  Future<void> setScreenTimeLimitMinutes(int minutes) =>
+      _account.put('screenTimeLimit', '${minutes < 0 ? 0 : minutes}');
+
+  /// Seconds of learning time used today (all children, family device).
+  int screenTimeUsedSeconds({DateTime? now}) {
+    final day = _dayKey(now ?? DateTime.now());
+    if (_account.get('screenTimeDay') != day) return 0;
+    return _stats.get('screenTimeUsed', defaultValue: 0)!;
+  }
+
+  Future<void> addScreenTimeSeconds(int seconds, {DateTime? now}) async {
+    if (seconds <= 0) return;
+    final when = now ?? DateTime.now();
+    final day = _dayKey(when);
+    if (_account.get('screenTimeDay') != day) {
+      await _account.put('screenTimeDay', day);
+      await _stats.put('screenTimeUsed', 0);
+    }
+    await _stats.put(
+      'screenTimeUsed',
+      screenTimeUsedSeconds(now: when) + seconds,
+    );
+  }
+
+  /// Soft-lock when a limit is set and today's usage is at/over it.
+  bool isScreenTimeExceeded({DateTime? now}) {
+    final limit = screenTimeLimitMinutes();
+    if (limit <= 0) return false;
+    return screenTimeUsedSeconds(now: now) >= limit * 60;
+  }
+
+  /// Parent grants a 10-minute grace extension (adds to limit for the day via
+  /// reducing used time, or bumping a one-shot extension counter).
+  Future<void> grantScreenTimeGrace({int minutes = 10}) async {
+    final used = screenTimeUsedSeconds();
+    final reduce = minutes * 60;
+    await _stats.put(
+      'screenTimeUsed',
+      used > reduce ? used - reduce : 0,
+    );
+  }
+
+  // --------------------------------------------------------------- premium
+
+  /// Local entitlement mirror (sandbox + offline). Real source of truth is
+  /// the Firebase account doc once payments are live.
+  bool get hadPremiumBefore => _account.get('hadPremium') == 'true';
+
+  /// Current entitlement from local storage.
+  /// Import cycle avoided: returns a simple record consumed by entitlements.dart.
+  ({String plan, DateTime? expiry, bool isPremium}) get entitlementRaw {
+    final plan = _account.get('plan') ?? 'free';
+    final expRaw = _account.get('entitlementExpiry');
+    DateTime? exp;
+    if (expRaw != null) exp = DateTime.tryParse(expRaw);
+    final premium = plan == 'premium' &&
+        (exp == null || exp.isAfter(DateTime.now()));
+    return (plan: premium ? 'premium' : 'free', expiry: exp, isPremium: premium);
+  }
+
+  Future<void> setLocalPremium(
+    bool premium, {
+    DateTime? expiry,
+    String source = 'local',
+  }) async {
+    if (premium) {
+      await _account.put('plan', 'premium');
+      await _account.put(
+        'entitlementExpiry',
+        (expiry ?? DateTime.now().add(const Duration(days: 30)))
+            .toIso8601String(),
+      );
+      await _account.put('hadPremium', 'true');
+      await _account.put('premiumSource', source);
+    } else {
+      await _account.put('plan', 'free');
+      await _account.delete('entitlementExpiry');
+    }
+  }
+
+  // --------------------------------------------------------------- adaptive
+
+  /// Append a graded attempt for adaptive difficulty (capped list in JSON).
+  Future<void> recordAttemptOutcome({
+    required String childId,
+    required int scorePct,
+    required int retries,
+  }) async {
+    final key = 'attempts:$childId';
+    final raw = _account.get(key);
+    final list = <Map<String, dynamic>>[];
+    if (raw != null) {
+      final decoded = jsonDecode(raw);
+      if (decoded is List) {
+        for (final e in decoded) {
+          if (e is Map) list.add(e.cast<String, dynamic>());
+        }
+      }
+    }
+    list.add({
+      'scorePct': scorePct,
+      'retries': retries,
+      'at': DateTime.now().toUtc().toIso8601String(),
+    });
+    while (list.length > 20) {
+      list.removeAt(0);
+    }
+    await _account.put(key, jsonEncode(list));
+  }
+
+  List<({int scorePct, int retries, DateTime at})> attemptHistory(
+    String childId,
+  ) {
+    final raw = _account.get('attempts:$childId');
+    if (raw == null) return const [];
+    final decoded = jsonDecode(raw);
+    if (decoded is! List) return const [];
+    final out = <({int scorePct, int retries, DateTime at})>[];
+    for (final e in decoded) {
+      if (e is! Map) continue;
+      final m = e.cast<String, dynamic>();
+      final at = DateTime.tryParse(m['at'] as String? ?? '');
+      if (at == null) continue;
+      out.add((
+        scorePct: (m['scorePct'] as num?)?.toInt() ?? 0,
+        retries: (m['retries'] as num?)?.toInt() ?? 0,
+        at: at,
+      ));
+    }
+    return out;
+  }
+
+  /// Adaptive history as [AttemptOutcome]-compatible records (score/retries/at).
+  List<({int scorePct, int retries, DateTime at})> recentAttemptOutcomes(
+    String childId,
+  ) =>
+      attemptHistory(childId);
+
+  // --------------------------------------------------------------- export / erase
+
+  /// Parent data export (local JSON) — no network. Suitable for "download my data".
+  Map<String, dynamic> exportFamilyData() {
+    final children = this.children.map((c) {
+      final id = c.id;
+      return {
+        'profile': c.toJson(),
+        'xp': xpFor(id),
+        'streak': streakFor(id),
+        'coins': coinsFor(id),
+        'stars': totalStars(id),
+        'lessonsCompleted': completedLessonCount(id),
+        'storiesRead': completedStoryCount(id),
+        'progress': [
+          for (final e in progressEntriesFor(id))
+            {
+              'kind': e.kind,
+              'at': e.at?.toIso8601String(),
+              'timeSpentS': e.timeSpentS,
+              'stars': e.stars,
+            },
+        ],
+      };
+    }).toList();
+    return {
+      'exportedAt': DateTime.now().toUtc().toIso8601String(),
+      'locale': localeCode,
+      'consent': consent.toJson(),
+      'plan': entitlementRaw.plan,
+      'pendingSyncOps': pendingOps.length,
+      'children': children,
+    };
+  }
+
+  /// Soft-delete a child profile and all per-child learning keys on device.
+  Future<void> deleteChild(String childId) async {
+    await _account.delete('child:$childId');
+    final accountKeys = _account.keys
+        .where((k) => (k as String).contains(childId))
+        .toList();
+    for (final k in accountKeys) {
+      await _account.delete(k);
+    }
+    final progressKeys = _progress.keys
+        .where((k) => (k as String).contains(':$childId:'))
+        .toList();
+    await _progress.deleteAll(progressKeys);
+    final statKeys = _stats.keys.where((k) {
+      final key = k as String;
+      return key.endsWith(':$childId') || key.contains(':$childId');
+    }).toList();
+    await _stats.deleteAll(statKeys);
+    if (activeChildId == childId) {
+      await _account.delete('activeChildId');
+    }
+  }
+
+  /// Factory-reset local learning data for all children (keeps PIN/account).
+  Future<void> eraseAllLearningData() async {
+    await _progress.clear();
+    await _queue.clear();
+    await _stats.clear();
+    for (final child in children) {
+      final id = child.id;
+      for (final prefix in [
+        'preferredStage:',
+        'dailyDone:',
+        'dailyTarget:',
+        'tourDone:',
+        'tourPrompted:',
+        'seenBadges:',
+        'lastPlayed:',
+        'avatars:',
+        'attempts:',
+        'streakDate:',
+        'coinsDay:',
+        // Progress-derived personalisation: erasing learning data has to take
+        // the savanna and the companion with it, or a "cleared" profile still
+        // remembers what the child did.
+        'decor:',
+        'mascotName:',
+        'subjects:',
+        'cheer:',
+        'streakShieldWeek:',
+        'streakShieldUsedAt:',
+      ]) {
+        final keys = _account.keys
+            .where((k) => (k as String).startsWith('$prefix$id'))
+            .toList();
+        for (final k in keys) {
+          await _account.delete(k);
+        }
+      }
+    }
   }
 
   Future<void> _enqueue(SyncOp op) =>

@@ -1,21 +1,12 @@
-/// Pure reward maths for levels and badges (unit-tested directly; no Flutter
-/// imports). The UI in the home and parent dashboard renders these; labels are
-/// localized there, keyed by [Badge.id].
+/// Pure reward maths for levels and badges.
+///
+/// Levels use the design-doc curve (`100 × n^1.4` cumulative). Badges stay
+/// here (UI labels keyed by [Badge.id]).
 library;
 
-/// Every level is one more [xpPerLevel] block of XP. Level 1 starts at 0 XP.
-const int xpPerLevel = 100;
+export '../../domain/rules/levels.dart';
 
-int levelForXp(int xp) => (xp < 0 ? 0 : xp) ~/ xpPerLevel + 1;
-
-/// XP earned inside the current level (0..xpPerLevel-1).
-int xpIntoLevel(int xp) => (xp < 0 ? 0 : xp) % xpPerLevel;
-
-/// XP still needed to reach the next level.
-int xpToNextLevel(int xp) => xpPerLevel - xpIntoLevel(xp);
-
-/// 0..1 progress toward the next level, for the home progress ring/bar.
-double levelProgress(int xp) => xpIntoLevel(xp) / xpPerLevel;
+import '../../domain/rules/levels.dart';
 
 /// A snapshot of one child's achievements, fed to [earnedBadges].
 class BadgeStats {
@@ -24,12 +15,14 @@ class BadgeStats {
     required this.streak,
     required this.lessons,
     required this.stories,
+    this.dailyChallenges = 0,
   });
 
   final int xp;
   final int streak;
   final int lessons;
   final int stories;
+  final int dailyChallenges;
 
   int get level => levelForXp(xp);
 }
@@ -48,22 +41,37 @@ class Badge {
 /// The full badge catalogue, in display order.
 const List<Badge> allBadges = [
   Badge('firstLesson', '🌱', _firstLesson),
+  Badge('threeLessons', '🎯', _threeLessons),
   Badge('fiveLessons', '🖐️', _fiveLessons),
+  Badge('tenLessons', '🔟', _tenLessons),
   Badge('streak3', '🔥', _streak3),
   Badge('streak7', '🗓️', _streak7),
   Badge('firstStory', '📖', _firstStory),
   Badge('level5', '🏅', _level5),
+  Badge('dailyChallenge', '🦁', _dailyChallenge),
+  // Expanded catalog (design doc ~40 launch target — seed more here over time)
+  Badge('twentyLessons', '🌟', _twentyLessons),
+  Badge('streak14', '💪', _streak14),
+  Badge('level10', '👑', _level10),
+  Badge('threeStories', '📚', _threeStories),
 ];
 
 bool _firstLesson(BadgeStats s) => s.lessons >= 1;
+bool _threeLessons(BadgeStats s) => s.lessons >= 3;
 bool _fiveLessons(BadgeStats s) => s.lessons >= 5;
+bool _tenLessons(BadgeStats s) => s.lessons >= 10;
+bool _twentyLessons(BadgeStats s) => s.lessons >= 20;
 bool _streak3(BadgeStats s) => s.streak >= 3;
 bool _streak7(BadgeStats s) => s.streak >= 7;
+bool _streak14(BadgeStats s) => s.streak >= 14;
 bool _firstStory(BadgeStats s) => s.stories >= 1;
+bool _threeStories(BadgeStats s) => s.stories >= 3;
 bool _level5(BadgeStats s) => s.level >= 5;
+bool _level10(BadgeStats s) => s.level >= 10;
+bool _dailyChallenge(BadgeStats s) => s.dailyChallenges >= 1;
 
 /// The badges [s] has earned, in catalogue order.
 List<Badge> earnedBadges(BadgeStats s) => [
-  for (final b in allBadges)
-    if (b.earnedBy(s)) b,
-];
+      for (final b in allBadges)
+        if (b.earnedBy(s)) b,
+    ];

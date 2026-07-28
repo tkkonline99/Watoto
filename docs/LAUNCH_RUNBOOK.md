@@ -14,12 +14,12 @@ The product is built. The curriculum is complete and validated — **565 activit
 | 2 | Content engine | ✅ Done | 3 players, validators, pipelines | — |
 | 3 | Content volume | ✅ Done | 565 items, all stages, validated | — |
 | 4 | Translation FR/SW | ✅ Done | 3,348/3,348 each, 100% | Reauthor language-specific lines before audio (see flags) |
-| 5 | Auth | 🟡 Code ready | `auth/` + `AUTH_README.md` | Create Firebase project (~10 min) |
-| 6 | Backend | 🟡 Code ready | `backend/` + `BACKEND_README.md` | Deploy to your Firebase project; set Blaze billing |
-| 7 | Payments | 🟡 Code ready | `payments.ts`, `entitlements.ts`, `PAYMENTS_README.md` | Create store products; add API key/service account; register notification endpoints |
-| 8 | Compliance | 🟠 Drafts | `PRIVACY_POLICY.md`, `TERMS_OF_SERVICE.md`, `COMPLIANCE_SIGNOFF.md` | Licensed attorney review; fill bracketed values; publish pages |
-| 9 | Store listings | 🟡 Kit ready | `STORE_LISTING.md` | Developer accounts; upload assets; submit forms |
-| 10 | iOS/Android build | 🟡 Config ready | `.github/workflows/build.yml`, `codemagic.yaml`, rules tests | Developer accounts; add signing secrets; run pipeline |
+| 5 | Auth | 🟢 Free-only offline ready | Local auth + Firebase seam (`setup_firebase.md`) | Optional: create Firebase for cloud accounts |
+| 6 | Backend | 🟢 Optional for free-only | `backend/` deployable | Optional: deploy Firebase project |
+| 7 | Payments | ⏸ Deferred | Free-only launch (`PUBLISH_FREE_ONLY=true`) | Later: store products + IAP bridge |
+| 8 | Compliance | 🟢 Publish copy in app | Production privacy/terms + `docs/site/` | Host site on your domain; attorney review recommended |
+| 9 | Store listings | 🟡 Kit ready | `STORE_LISTING.md` + package ids fixed | Developer accounts; screenshots; submit forms |
+| 10 | iOS/Android build | 🟡 Config ready | Bundle ids + signing hooks | Signing secrets; tag release |
 
 Gates 1–4 are finished outright. Gates 5–10 are finished on the code/document side and gated only on your external actions.
 
@@ -60,13 +60,13 @@ Grouped by type, with rough cost and effort. This is the whole list; nothing her
 
 ## Open flags to resolve before release
 
-- **FR listing typo:** the French long description in `STORE_LISTING.md` opens with a deliberately visible placeholder `Watoz...` — change it to `Watoto`.
 - **Language-specific audio:** reading/writing lines that teach phonics, verb tenses, quotation punctuation, and idioms keep English examples on purpose and are flagged `review_for_locale` in `audio_manifest.csv`. Reauthor these per language before recording FR/SW; everything else records as-is.
 - **Image text:** 59 images flagged `text_risk` in `image_manifest.csv` imply embedded words/letters — keep text as a separate overlay or supply per-locale variants.
-- **Attorney sign-off:** every bracketed value in the three legal docs, the consent method, retention intervals, hosting regions, and the analytics opt-in/opt-out default must be set and reviewed; the privacy-form answers in the store kit must match the final build.
-- **Payments hardening:** add JWS signature verification against Apple's certificate chain (flagged in `payments.ts`), and make sure the native purchase bridge sets the store account token to the Firebase uid.
+- **Attorney sign-off:** every bracketed value in the three legal docs, the consent method, retention intervals, hosting regions, and the analytics opt-in/opt-out default must be set and reviewed; the privacy-form answers in the store kit must match the final build. Analytics opt-in is now **off by default** in the app (parent toggle).
+- **Payments:** JWS leaf-cert verification is implemented when `APPLE_JWS_REQUIRE_VERIFY=true`; still pin Apple Root CA G3 before hard launch. Native purchase bridge must set store account token to Firebase uid. **Sandbox IAP is blocked in release** unless `ALLOW_SANDBOX_IAP=true`.
 - **Placeholders:** replace `[com.company.watoto]` (bundle id / package name) and the `[https://company/...]` URLs throughout the configs and listing.
-- **Content gating:** decide the exact free vs Premium split proposed in `PAYMENTS_README.md`.
+- **Content gating:** Free = stages **1–5**, Premium = **6–10** (wired in `entitlements.dart` as `freeStageMax = 5`). Confirm this matches store marketing copy.
+- **FR listing typo:** fixed (`Watoz` → `Watoto` in `STORE_LISTING.md`).
 
 ## File index
 

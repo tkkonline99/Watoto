@@ -59,6 +59,24 @@ class LocalizedItem {
   String stepNarration(int i) => _t('steps.$i.narration', item.steps[i].narration);
   String stepFeedback(int i) => _t('steps.$i.feedback', item.steps[i].feedback);
 
+  /// The question a choice step puts to the child. Null when the step has
+  /// none (the narration is the question).
+  String? stepPrompt(int i) {
+    final english = item.steps[i].prompt;
+    if (english == null) return null;
+    return _t('steps.$i.prompt', english);
+  }
+
+  /// The answer options, each translated on its own key so the order — and
+  /// therefore the recorded correct index — is identical in every language.
+  List<String> stepChoices(int i) {
+    final english = item.steps[i].choices;
+    return [
+      for (var o = 0; o < english.length; o++)
+        _t('steps.$i.choices.$o', english[o]),
+    ];
+  }
+
   String questionPrompt(int i) => _t('questions.$i.prompt', item.questions[i].prompt);
   String questionCorrect(int i) =>
       _t('questions.$i.correctFeedback', item.questions[i].correctFeedback);

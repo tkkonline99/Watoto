@@ -3,6 +3,8 @@
 /// server remains authoritative when attempts sync (docs/04 §4.6).
 library;
 
+import '../../domain/rules/stars.dart';
+
 class QuizBody {
   const QuizBody({
     required this.id,
@@ -36,8 +38,7 @@ class QuizBody {
       );
 
   /// Grades one attempt; `selected[i]` is the chosen option index for
-  /// question i. Star thresholds per docs/12-gamification.md: ≥70% = 1★,
-  /// ≥90% = 2★, 100% = 3★.
+  /// question i. Stars use [starsFromScorePct] (single source of truth).
   QuizGrade grade(List<int> selected) {
     var correct = 0;
     for (var i = 0; i < questions.length && i < selected.length; i++) {
@@ -50,20 +51,17 @@ class QuizBody {
     final total = questions.length;
     final scorePct = total == 0 ? 0 : ((correct / total) * 100).round();
     final passed = scorePct >= passPct;
-    final stars = scorePct >= 100
-        ? 3
-        : scorePct >= 90
-            ? 2
-            : passed
-                ? 1
-                : 0;
+    final stars = starsFromScorePct(scorePct);
+    final xp = !passed || stars < 1
+        ? 0
+        : xpByStars[(stars - 1).clamp(0, xpByStars.length - 1)];
     return QuizGrade(
       correct: correct,
       total: total,
       scorePct: scorePct,
       passed: passed,
       stars: stars,
-      xp: passed ? xpByStars[stars - 1] : 0,
+      xp: xp,
     );
   }
 }

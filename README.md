@@ -6,7 +6,9 @@ This repository contains the complete production-ready design package: architect
 
 ## Launch status
 
-The product is built and the launch package is assembled. **[docs/LAUNCH_RUNBOOK.md](docs/LAUNCH_RUNBOOK.md)** is the authoritative gate-by-gate status and the consolidated "what only you can do" list (accounts, billing, legal sign-off, assets). Delivered alongside the blueprint:
+**Free-only store path** is the default (`PUBLISH_FREE_ONLY=true`): all stages unlock, no IAP required. See **[docs/PUBLISH_CHECKLIST.md](docs/PUBLISH_CHECKLIST.md)** for the remaining human steps (domain, developer accounts, signing, screenshots).
+
+The product is built and the launch package is assembled. **[docs/LAUNCH_RUNBOOK.md](docs/LAUNCH_RUNBOOK.md)** remains the full gate map. Delivered alongside the blueprint:
 
 - **Backend (`backend/`)** — a deployable **Firebase + Cloud Firestore + Security Rules + Cloud Functions** backend (consent ledger, account export/deletion, scheduled purge) that reuses the existing Firebase Auth project. Recommended over running a second cloud backend; the AWS/NestJS design in `docs/` remains the documented alternative. See [`backend/BACKEND_README.md`](backend/BACKEND_README.md).
 - **Payments (`backend/functions/src/payments.ts`, `auth/entitlements.ts`)** — Apple IAP + Google Play Billing with server-side receipt verification and renewal/refund sync; entitlement is server-only, so clients can never set paid status. See [`backend/PAYMENTS_README.md`](backend/PAYMENTS_README.md).
@@ -70,10 +72,12 @@ watoto/
 ├── content/             # Content library, i18n, validators, generators
 ├── packages/            # (target) OpenAPI-generated clients, content JSON Schemas
 ├── infra/               # Terraform (envs: dev, staging, prod)
-├── docs/                # Design package + LAUNCH_RUNBOOK, STORE_LISTING
+├── docs/                # Design package + LAUNCH_RUNBOOK, STORE_LISTING, BACKEND_PATH
 ├── codemagic.yaml       # iOS/Android CI (Codemagic)
-└── .github/workflows/   # CI/CD (rules tests, signed builds)
+└── .github/workflows/   # CI/CD (rules tests, Flutter analyze/test, signed builds)
 ```
+
+**Backend for v1:** use Firebase (`backend/`). NestJS (`apps/api`) is the documented alternate for later CMS/scale — see [`docs/BACKEND_PATH.md`](docs/BACKEND_PATH.md).
 
 ## Getting Started (current scaffold)
 

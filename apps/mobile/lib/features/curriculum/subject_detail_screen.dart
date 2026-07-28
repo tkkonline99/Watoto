@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../core/state/app_state.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
+import '../auth/entitlements.dart';
 import '../library/completion.dart';
 import '../library/content_i18n.dart';
 import '../library/library_models.dart';
@@ -12,6 +13,7 @@ import '../library/library_repository.dart';
 import 'curriculum_data.dart';
 import 'curriculum_models.dart';
 import 'subject_i18n.dart';
+import '../../router/return_to.dart';
 
 /// Shows a single subject for one stage — only that subject's playable items
 /// and topics, nothing else. Reached by tapping a subject on the home.
@@ -31,6 +33,12 @@ class SubjectDetailScreen extends ConsumerWidget {
     final lang = ref.watch(localeProvider).languageCode;
     final repo = ref.watch(libraryProvider).asData?.value;
     final i18n = ref.watch(contentI18nProvider).asData?.value;
+    final entitlement = ref.watch(entitlementProvider);
+    final locked = !isStageUnlocked(
+      stage,
+      entitlement,
+      freeMax: ref.watch(freeStageMaxProvider),
+    );
 
     final stageData = (stage >= 1 && stage <= curriculumStages.length)
         ? curriculumStages[stage - 1]
@@ -88,6 +96,21 @@ class SubjectDetailScreen extends ConsumerWidget {
                 ),
               ],
             ),
+            if (locked) ...[
+              const SizedBox(height: 16),
+              Card(
+                color: WatotoColors.sun.withValues(alpha: 0.15),
+                child: ListTile(
+                  leading: const Icon(Icons.lock_rounded),
+                  title: Text(l10n.premiumLocked),
+                  subtitle: Text(l10n.premiumAskGrownUp),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () => context.go(
+                    gateWithReturn('/paywall', hereLocation(context)),
+                  ),
+                ),
+              ),
+            ],
             const SizedBox(height: 16),
 
             // Playable items for this subject, if any are authored yet.
@@ -105,6 +128,7 @@ class SubjectDetailScreen extends ConsumerWidget {
                   item: item,
                   title: itemTitle(i18n, lang, item),
                   done: isItemDone(ref, item),
+                  locked: locked,
                 ),
               const SizedBox(height: 16),
             ] else ...[
@@ -194,13 +218,19 @@ class _ComingSoonCard extends StatelessWidget {
 }
 
 class _PlayTile extends StatelessWidget {
-  const _PlayTile({required this.item, required this.title, this.done = false});
+  const _PlayTile({
+    required this.item,
+    required this.title,
+    this.done = false,
+    this.locked = false,
+  });
 
   final LibraryItem item;
   final String title;
 
   /// Whether the active child has already completed this item.
   final bool done;
+  final bool locked;
 
   static const _typeEmoji = {
     LibraryType.lesson: '📘',
@@ -214,7 +244,13 @@ class _PlayTile extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: InkWell(
         borderRadius: BorderRadius.circular(14),
-        onTap: () => context.push('/play/${item.id}'),
+        onTap: () {
+          if (locked) {
+            context.go(gateWithReturn('/paywall', hereLocation(context)));
+            return;
+          }
+          context.push('/play/${item.id}');
+        },
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
           decoration: BoxDecoration(
@@ -224,7 +260,7 @@ class _PlayTile extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                _typeEmoji[item.type] ?? '⭐',
+                locked ? '🔒' : (_typeEmoji[item.type] ?? '⭐'),
                 style: const TextStyle(fontSize: 22),
               ),
               const SizedBox(width: 10),

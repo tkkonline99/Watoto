@@ -74,14 +74,55 @@ class LibraryItem {
 }
 
 class LessonStep {
-  const LessonStep({required this.narration, required this.action, required this.feedback});
+  const LessonStep({
+    required this.narration,
+    required this.action,
+    required this.feedback,
+    this.mechanic,
+    this.prompt,
+    this.answer,
+    this.choices = const [],
+    this.choiceIndex,
+    this.count,
+    this.rows,
+    this.cols,
+  });
+
   final String narration;
   final String action;
   final String feedback;
+
+  /// Optional explicit mechanic (locale-safe). When set, the player prefers
+  /// this over English-keyword heuristics in [planStep].
+  /// Values: tap | count | drag | numberAnswer | multiChoice | buildArray |
+  /// celebrate | codeRun
+  final String? mechanic;
+
+  /// The question put to the child when the step stages a choice. The
+  /// narration is the teaching line; this is what they are actually being
+  /// asked ("What does the bottom number tell us?").
+  final String? prompt;
+  final int? answer;
+  final List<String> choices;
+  final int? choiceIndex;
+  final int? count;
+  final int? rows;
+  final int? cols;
+
   factory LessonStep.fromJson(Map<String, dynamic> j) => LessonStep(
         narration: j['narration'] as String? ?? '',
         action: j['action'] as String? ?? '',
         feedback: j['feedback'] as String? ?? '',
+        mechanic: j['mechanic'] as String?,
+        prompt: j['prompt'] as String?,
+        answer: (j['answer'] as num?)?.toInt(),
+        choices: ((j['choices'] as List?) ?? const [])
+            .map((e) => '$e')
+            .toList(),
+        choiceIndex: (j['choiceIndex'] as num?)?.toInt(),
+        count: (j['count'] as num?)?.toInt(),
+        rows: (j['rows'] as num?)?.toInt(),
+        cols: (j['cols'] as num?)?.toInt(),
       );
 }
 

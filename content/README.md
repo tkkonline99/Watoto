@@ -9,21 +9,19 @@ lessons, quizzes, and stories, structured against that plan.
 
 | File | What it is |
 |------|------------|
-| `watoto_content_library.json` | Source of truth. Curriculum taxonomy + 39 authored, ready-to-wire content items + the build-out plan. |
-| `validate_content.py` | Schema + design-rule checker. `--assets` exports the art/audio manifest. Put it in CI. |
+| `watoto_content_library.json` | Source of truth. Curriculum taxonomy + **565** playable items + build plan. |
+| `validate_content.py` | Schema + design-rule checker. Put it in CI. |
+| `i18n/en.json`, `fr.json`, `sw.json` | Content string overlays (full coverage target). |
+| `check_i18n.py` | Translation completeness gate (CI fails on missing keys). |
 | `README.md` | This file. |
 
-## What's in the seed (v0.1.0)
+## What's in the library (v0.13.0)
 
-39 items: **23 lessons, 10 quizzes, 6 stories.**
+**565 items: 342 lessons, 166 quizzes, 57 stories** across stages 1–10 (Birth → Grade 4).
 
-- **Stages 1–3 (ages 0–3)** built to good depth — the foundation band and highest daily use.
-- **Stages 5, 6, 8, 10** seeded with representative items so every content *type* and every
-  *design tier* (parent-led → encourage-effort → gamify-gently → grant-autonomy) is proven to
-  fit the same schema, from a single-tap baby cause-and-effect lesson up to a first-Python lesson.
-
-The estimated full library (6 lessons + 4 quizzes + 2 stories per subject, across all 57
-stage-subjects) is **~684 items**. The seed locks the shape; the rest is authoring at volume.
+- Full EN / FR / SW content strings (see `i18n/`).
+- Design tiers from parent-led (0–2) through autonomy (older bands).
+- Target full library remains ~**684** items (6 lessons + 4 quizzes + 2 stories per stage-subject).
 
 ## Design rules baked into the schema
 

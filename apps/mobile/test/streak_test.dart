@@ -53,6 +53,32 @@ void main() {
         1,
       );
     });
+
+    test('weekly shield saves a one-day miss', () {
+      final tick = nextStreakTick(
+        lastDayKey: '2026-06-29', // day before yesterday
+        todayKey: '2026-07-01',
+        yesterdayKey: '2026-06-30',
+        dayBeforeYesterdayKey: '2026-06-29',
+        current: 4,
+        shieldAvailable: true,
+      );
+      expect(tick.streak, 5);
+      expect(tick.usedShield, isTrue);
+    });
+
+    test('without shield a one-day miss resets', () {
+      final tick = nextStreakTick(
+        lastDayKey: '2026-06-29',
+        todayKey: '2026-07-01',
+        yesterdayKey: '2026-06-30',
+        dayBeforeYesterdayKey: '2026-06-29',
+        current: 4,
+        shieldAvailable: false,
+      );
+      expect(tick.streak, 1);
+      expect(tick.usedShield, isFalse);
+    });
   });
 
   group('store streak', () {

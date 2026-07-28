@@ -1,4 +1,12 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+﻿<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- Practice reminders (opt-in, parent-facing). POST_NOTIFICATIONS and
+         VIBRATE are merged in by the flutter_local_notifications manifest;
+         this one lets a queued reminder survive a reboot. Deliberately NOT
+         requesting SCHEDULE_EXACT_ALARM / USE_EXACT_ALARM: a practice nudge
+         does not need to be exact, and those permissions draw extra store
+         review, which matters for a Kids-category app. -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <application
         android:label="Watoto"
         android:name="${applicationName}"
@@ -25,6 +33,21 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <!-- flutter_local_notifications: delivers a scheduled reminder, and
+             re-registers the queue after a reboot. -->
+        <receiver
+            android:exported="false"
+            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver" />
+        <receiver
+            android:exported="false"
+            android:name="com.dexterous.flutterlocalnotifications.ScheduledNotificationBootReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+                <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/>
+            </intent-filter>
+        </receiver>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data
@@ -43,3 +66,4 @@
         </intent>
     </queries>
 </manifest>
+

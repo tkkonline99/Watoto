@@ -3,18 +3,26 @@ import 'package:watoto_mobile/features/gamification/rewards.dart';
 
 void main() {
   group('levels', () {
-    test('level increments every 100 XP', () {
+    test('curve: enter Ln at floor(100×n^1.4)', () {
       expect(levelForXp(0), 1);
-      expect(levelForXp(99), 1);
-      expect(levelForXp(100), 2);
-      expect(levelForXp(250), 3);
+      final l2 = cumulativeXpToEnterLevel(2);
+      final l5 = cumulativeXpToEnterLevel(5);
+      final l10 = cumulativeXpToEnterLevel(10);
+      // Anchors ≈ design doc (L2≈264, L5≈951, L10≈2512).
+      expect(l2, inInclusiveRange(260, 265));
+      expect(l5, inInclusiveRange(948, 955));
+      expect(l10, inInclusiveRange(2508, 2515));
+      expect(levelForXp(l2 - 1), 1);
+      expect(levelForXp(l2), 2);
+      expect(levelForXp(l5), 5);
     });
 
     test('progress within a level', () {
       expect(xpIntoLevel(0), 0);
-      expect(xpIntoLevel(150), 50);
-      expect(xpToNextLevel(150), 50);
-      expect(levelProgress(150), 0.5);
+      final l2 = cumulativeXpToEnterLevel(2);
+      expect(xpIntoLevel(l2), 0);
+      expect(xpToNextLevel(l2), cumulativeXpToEnterLevel(3) - l2);
+      expect(levelProgress(l2), 0);
     });
 
     test('negative XP is treated as zero', () {
@@ -30,7 +38,13 @@ void main() {
     });
 
     test('a well-rounded child earns the full set', () {
-      const rich = BadgeStats(xp: 500, streak: 7, lessons: 5, stories: 1);
+      const rich = BadgeStats(
+        xp: 1000, // past L5 threshold (~951)
+        streak: 7,
+        lessons: 5,
+        stories: 1,
+        dailyChallenges: 1,
+      );
       final ids = earnedBadges(rich).map((b) => b.id).toSet();
       expect(
         ids,
@@ -41,6 +55,7 @@ void main() {
           'streak7',
           'firstStory',
           'level5',
+          'dailyChallenge',
         ]),
       );
     });
