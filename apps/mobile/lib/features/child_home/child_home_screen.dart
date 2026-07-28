@@ -623,7 +623,9 @@ class _TodayQuestCard extends ConsumerWidget {
                   ),
                 ),
                 Text(
-                  '${quest.done}/${quest.goal}',
+                  // Clamped: a busy afternoon can push the raw count past the
+                  // goal, and "7/3" reads as a bug rather than as a win.
+                  '${quest.done.clamp(0, quest.goal)}/${quest.goal}',
                   style: TextStyle(
                     fontFamily: 'Baloo2',
                     fontSize: 16,

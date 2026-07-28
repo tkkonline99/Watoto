@@ -2385,34 +2385,36 @@ class _Celebration extends ConsumerStatefulWidget {
 }
 
 class _CelebrationState extends ConsumerState<_Celebration> {
-  /// Snapshot of what this completion earned.
+  /// What this completion earned, latched the moment it arrives.
   ///
-  /// Taken once on entry and the provider cleared straight away: the outcome
-  /// belongs to *this* celebration, and leaving must not carry it into the
-  /// next one. (Clearing on dispose instead would mean touching the provider
-  /// through a deactivated element.)
+  /// It cannot simply be read in [initState]: the player marks itself done and
+  /// builds this screen *before* the unawaited write that produces the reward
+  /// has finished. On a fast in-memory store the write usually wins the race,
+  /// which is why tests never saw it — but against real IndexedDB the frame
+  /// renders first and the reward reads as null, silently dropping the coins,
+  /// stars and badges. So watch the provider and latch the first non-null
+  /// value instead of sampling once.
   RewardOutcome? _reward;
 
-  @override
-  void initState() {
-    super.initState();
-    _reward = ref.read(pendingRewardProvider);
+  /// Latches [outcome] and consumes it, so leaving cannot carry the reward
+  /// into the next celebration.
+  void _takeReward(RewardOutcome outcome) {
+    _reward = outcome;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       // Escalate the sound to match the moment: a new level and a rescued
       // streak should not sound identical to finishing a routine activity.
-      final r = _reward;
       final sfx = ref.read(soundEffectsProvider);
-      if (r != null && r.levelUp > 0) {
+      if (outcome.levelUp > 0) {
         sfx.levelUp();
-      } else if (r != null && r.streakSavedDays > 0) {
+      } else if (outcome.streakSavedDays > 0) {
         sfx.streak();
-      } else if (r != null && r.coins > 0) {
+      } else if (outcome.coins > 0) {
         sfx.coin();
       }
       // Badges are revealed here now, so drop the queue that would otherwise
       // re-announce them as a toast on the next visit to the home screen.
-      if (_reward?.badgeIds.isNotEmpty ?? false) {
+      if (outcome.badgeIds.isNotEmpty) {
         ref.read(pendingBadgeToastProvider.notifier).state = [];
       }
       ref.read(pendingRewardProvider.notifier).state = null;
@@ -2432,6 +2434,13 @@ class _CelebrationState extends ConsumerState<_Celebration> {
     final totalXp = ref.watch(xpProvider);
     final level = rewards.levelForXp(totalXp);
     final progress = rewards.levelProgress(totalXp);
+
+    // Latch the outcome whenever the completion write lands — which may be
+    // several frames after this screen first appeared.
+    final incoming = ref.watch(pendingRewardProvider);
+    if (incoming != null && _reward == null) {
+      _takeReward(incoming);
+    }
 
     // Everything the completion just earned. Null on the paths that have not
     // been migrated (or in tests that build this view directly), in which case

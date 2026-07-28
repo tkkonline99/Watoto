@@ -107,14 +107,22 @@ class _SavannaSceneState extends State<SavannaScene>
   }
 }
 
-/// The child's own savanna, laid out over the lower half of the scene.
+/// The child's own savanna, laid out along the grass at the foot of the scene.
 ///
 /// Decorative only — it never takes pointer events, so the content above it
 /// stays fully tappable.
+///
+/// Confined to the grass band deliberately. An earlier version spread these
+/// across the lower 45% of the screen, which is exactly where the home's card
+/// stack sits: animals ended up floating over the cards and reading as render
+/// bugs rather than as scenery.
 class _EarnedDecorLayer extends StatelessWidget {
   const _EarnedDecorLayer({required this.extras});
 
   final List<SceneDecoration> extras;
+
+  /// Height of the painted ground, matching the `_Ground` box below.
+  static const double _groundHeight = 200;
 
   @override
   Widget build(BuildContext context) {
@@ -124,21 +132,22 @@ class _EarnedDecorLayer extends StatelessWidget {
           builder: (context, constraints) {
             final w = constraints.maxWidth;
             final h = constraints.maxHeight;
-            // Decorations live in the bottom 45% of the scene, above the
-            // ground line — the sky stays clear for the app's own chrome.
-            final bandTop = h * 0.55;
-            final bandHeight = h * 0.38;
+            // Sit on the grass: the top of the band is the ground line, and
+            // decorations spread through its upper two-thirds so none of them
+            // hang off the bottom of the screen.
+            final bandTop = (h - _groundHeight * 0.82).clamp(0.0, h);
+            final bandHeight = _groundHeight * 0.52;
             return Stack(
               children: [
                 for (final d in extras)
                   Positioned(
-                    left: (w * d.x).clamp(0.0, w - 8),
+                    left: (w * d.x).clamp(0.0, w - 40),
                     top: bandTop + bandHeight * d.y,
                     child: Opacity(
                       opacity: 0.92,
                       child: Text(
                         d.emoji,
-                        style: TextStyle(fontSize: 34 * d.scale),
+                        style: TextStyle(fontSize: 30 * d.scale),
                       ),
                     ),
                   ),
