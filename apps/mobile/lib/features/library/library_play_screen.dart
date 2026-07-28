@@ -20,6 +20,7 @@ import 'content_art.dart';
 import 'content_i18n.dart';
 import 'content_lexicon.dart';
 import 'library_models.dart';
+import 'lesson_recap.dart';
 import 'library_repository.dart';
 import 'step_play.dart';
 import 'step_visuals.dart';
@@ -237,6 +238,17 @@ class _LessonViewState extends ConsumerState<_LessonView> {
   int _mistakes = 0; // wrong picks across the run — rates the finish
   int? _shownAnswer; // digit they just got right (for workspace)
 
+  /// The end-of-lesson recap, built from this lesson's own content. Empty for
+  /// pre-reader lessons and for lessons that teach no crisp checkable fact.
+  late final List<RecapQuestion> _recap = buildLessonRecap(widget.item);
+
+  /// True while the recap is on screen (after the last step, before the
+  /// celebration).
+  bool _inRecap = false;
+
+  /// Recap questions answered wrong on the first attempt.
+  int _recapWrong = 0;
+
   /// Steps that present a real choice, so a wrong answer is even possible.
   ///
   /// Rating a run only makes sense against these: a lesson made entirely of
@@ -337,38 +349,60 @@ class _LessonViewState extends ConsumerState<_LessonView> {
         _shownAnswer = null;
       });
       _speakStep();
+    } else if (_recap.isNotEmpty && !_inRecap) {
+      // One more beat before the confetti: ask the child to retrieve what they
+      // just saw. Retrieval is what makes it stick, and it is the only honest
+      // read on whether the lesson landed.
+      setState(() => _inRecap = true);
     } else {
-      _elapsed.stop();
-      setState(() => _done = true);
-      ref.read(soundEffectsProvider).celebrate();
-      // Rate the run from what actually happened. Reporting a flat 100% for
-      // every lesson (as this used to) left the adaptive engine blind. Runs
-      // with nothing gradeable in them are still completions, just unrated.
-      final graded = _gradeableSteps;
-      unawaited(
-        ref
-            .read(learningServiceProvider)
-            .completeLibraryLesson(
-              widget.item,
-              timeSpentS: _elapsed.elapsed.inSeconds,
-              scorePct: scorePctForLessonRun(
-                steps: graded,
-                mistakes: _mistakes,
-              ),
-              mistakes: _mistakes,
-              graded: graded > 0,
-              stars: graded == 0
-                  ? 0
-                  : starsForLessonRun(steps: graded, mistakes: _mistakes),
-            ),
-      );
+      _finishLesson();
     }
+  }
+
+  /// Banks the completion once the lesson (and its recap, if any) is done.
+  void _finishLesson() {
+    _elapsed.stop();
+    setState(() {
+      _inRecap = false;
+      _done = true;
+    });
+    ref.read(soundEffectsProvider).celebrate();
+    // Rate the run from what actually happened. Reporting a flat 100% for
+    // every lesson (as this used to) left the adaptive engine blind. Runs
+    // with nothing gradeable in them are still completions, just unrated.
+    // Recap questions count as gradeable work: they are the part that
+    // actually measures learning rather than tapping.
+    final graded = _gradeableSteps + _recap.length;
+    final mistakes = _mistakes + _recapWrong;
+    unawaited(
+      ref.read(learningServiceProvider).completeLibraryLesson(
+            widget.item,
+            timeSpentS: _elapsed.elapsed.inSeconds,
+            scorePct: scorePctForLessonRun(
+              steps: graded,
+              mistakes: mistakes,
+            ),
+            mistakes: mistakes,
+            graded: graded > 0,
+            stars: graded == 0
+                ? 0
+                : starsForLessonRun(steps: graded, mistakes: mistakes),
+          ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final loc = _localized(ref, widget.item);
+    if (_inRecap) {
+      return _LessonRecapView(
+        title: loc.title,
+        questions: _recap,
+        onWrong: () => _recapWrong++,
+        onFinished: _finishLesson,
+      );
+    }
     if (_done) {
       return _Celebration(
         emoji: '🎉',
@@ -1554,10 +1588,19 @@ String stageEmoji(LibraryItem item) => itemIllustration(item);
 /// out (with a gentle haptic) so the child can keep trying; the right pick
 /// pops and advances the step.
 class _ChoiceStage extends StatefulWidget {
-  const _ChoiceStage({required this.plan, required this.onCompleted});
+  const _ChoiceStage({
+    super.key,
+    required this.plan,
+    required this.onCompleted,
+    this.onWrong,
+  });
 
   final ChoicePlan plan;
   final VoidCallback onCompleted;
+
+  /// Fired on each new wrong pick, so callers can score first-attempt
+  /// accuracy. The child is never blocked — they keep trying either way.
+  final VoidCallback? onWrong;
 
   @override
   State<_ChoiceStage> createState() => _ChoiceStageState();
@@ -1575,6 +1618,7 @@ class _ChoiceStageState extends State<_ChoiceStage> {
       widget.onCompleted();
     } else if (_wrong.add(i)) {
       setState(() {});
+      widget.onWrong?.call();
       HapticFeedback.heavyImpact();
     }
   }
@@ -2570,6 +2614,157 @@ class _CelebrationState extends ConsumerState<_Celebration> {
                   ],
                 ),
               ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// "What did we learn?" — the recap that closes a lesson.
+///
+/// One question at a time, drawn from the lesson's own content. Wrong picks
+/// grey out and the child keeps trying, exactly as they do mid-lesson: the
+/// recap measures learning, it does not gate the celebration behind a pass
+/// mark. Only first-attempt errors are counted.
+class _LessonRecapView extends ConsumerStatefulWidget {
+  const _LessonRecapView({
+    required this.title,
+    required this.questions,
+    required this.onWrong,
+    required this.onFinished,
+  });
+
+  final String title;
+  final List<RecapQuestion> questions;
+  final VoidCallback onWrong;
+  final VoidCallback onFinished;
+
+  @override
+  ConsumerState<_LessonRecapView> createState() => _LessonRecapViewState();
+}
+
+class _LessonRecapViewState extends ConsumerState<_LessonRecapView> {
+  int _index = 0;
+  bool _answered = false;
+  Timer? _advance;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _speak());
+  }
+
+  @override
+  void dispose() {
+    _advance?.cancel();
+    super.dispose();
+  }
+
+  void _speak() {
+    if (!mounted) return;
+    final lang = ref.read(localeProvider).languageCode;
+    ref.read(narrationProvider.notifier).speak(
+          widget.questions[_index].prompt,
+          lang,
+          style: SpeakStyle.hint,
+        );
+  }
+
+  void _onCorrect() {
+    if (_answered) return;
+    setState(() => _answered = true);
+    ref.read(soundEffectsProvider).correct();
+    _advance?.cancel();
+    _advance = Timer(const Duration(milliseconds: 900), _goNext);
+  }
+
+  void _goNext() {
+    if (!mounted) return;
+    _advance?.cancel();
+    if (_index >= widget.questions.length - 1) {
+      widget.onFinished();
+      return;
+    }
+    setState(() {
+      _index++;
+      _answered = false;
+    });
+    _speak();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final q = widget.questions[_index];
+    final total = widget.questions.length;
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+        automaticallyImplyLeading: false,
+        actions: const [_NarrationButton()],
+      ),
+      body: SafeArea(
+        child: Center(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(20),
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 520),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    l10n.recapTitle,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontFamily: 'Baloo2',
+                      fontSize: 24,
+                      fontWeight: FontWeight.w800,
+                      color: WatotoColors.deep,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    l10n.recapProgress(_index + 1, total),
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: WatotoColors.deep.withValues(alpha: 0.6),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  _ProgressDots(count: total, active: _index),
+                  const SizedBox(height: 20),
+                  Text(
+                    q.prompt,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 19,
+                      fontWeight: FontWeight.w700,
+                      color: WatotoColors.deep,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  _ChoiceStage(
+                    key: ValueKey('recap-$_index'),
+                    plan: ChoicePlan(
+                      [for (final o in q.options) ChoiceOption(o, o)],
+                      q.answerIndex,
+                    ),
+                    onCompleted: _onCorrect,
+                    onWrong: widget.onWrong,
+                  ),
+                  const SizedBox(height: 24),
+                  FilledButton(
+                    onPressed: _answered ? _goNext : null,
+                    child: Text(
+                      _index >= total - 1 ? l10n.done : l10n.next,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

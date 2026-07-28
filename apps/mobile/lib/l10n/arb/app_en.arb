@@ -515,5 +515,13 @@
     }
   },
   "certificateCopied": "Certificate copied to the clipboard",
-  "certificateSaveFailed": "Could not save the certificate"
+  "certificateSaveFailed": "Could not save the certificate",
+  "recapTitle": "What did we learn?",
+  "recapProgress": "Question {current} of {total}",
+  "@recapProgress": {
+    "placeholders": {
+      "current": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  }
 }

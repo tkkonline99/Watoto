@@ -31,13 +31,20 @@ class LibraryRepository {
       _items.any((i) => i.stage == stage && i.subject == subject);
 
   static Future<LibraryRepository> load() async {
-    final raw = await rootBundle.loadString('assets/content/watoto_content_library.json');
-    final json = jsonDecode(raw) as Map<String, dynamic>;
-    final items = (json['content'] as List)
-        .map((c) => LibraryItem.fromJson(c as Map<String, dynamic>))
-        .toList();
-    return LibraryRepository(items);
+    final raw = await rootBundle.loadString(
+      'assets/content/watoto_content_library.json',
+    );
+    return LibraryRepository(parseLibraryItems(raw));
   }
+}
+
+/// Decodes the bundled catalogue. Split out so tests can measure things
+/// against the *real* content rather than a handful of fixtures.
+List<LibraryItem> parseLibraryItems(String rawJson) {
+  final json = jsonDecode(rawJson) as Map<String, dynamic>;
+  return (json['content'] as List)
+      .map((c) => LibraryItem.fromJson(c as Map<String, dynamic>))
+      .toList();
 }
 
 final libraryProvider = FutureProvider<LibraryRepository>((_) => LibraryRepository.load());

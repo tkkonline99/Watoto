@@ -294,5 +294,7 @@
   "certificateSaving": "Enregistrement…",
   "certificateSaved": "Enregistré dans {path}",
   "certificateCopied": "Certificat copié dans le presse-papiers",
-  "certificateSaveFailed": "Impossible d'enregistrer le certificat"
+  "certificateSaveFailed": "Impossible d'enregistrer le certificat",
+  "recapTitle": "Qu'avons-nous appris ?",
+  "recapProgress": "Question {current} sur {total}"
 }

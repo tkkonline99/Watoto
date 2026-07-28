@@ -294,5 +294,7 @@
   "certificateSaving": "Inahifadhi…",
   "certificateSaved": "Imehifadhiwa kwenye {path}",
   "certificateCopied": "Cheti kimenakiliwa",
-  "certificateSaveFailed": "Imeshindwa kuhifadhi cheti"
+  "certificateSaveFailed": "Imeshindwa kuhifadhi cheti",
+  "recapTitle": "Tumejifunza nini?",
+  "recapProgress": "Swali {current} kati ya {total}"
 }
