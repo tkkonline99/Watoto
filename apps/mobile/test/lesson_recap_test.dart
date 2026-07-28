@@ -192,10 +192,14 @@ void main() {
       expect(readable, isNotEmpty);
       // A floor, not a target: if a content change drops recap coverage
       // through this, the feature has quietly stopped existing.
+      // Every readable lesson now has a recap: derived where the content
+      // states a checkable fact, authored in content/lesson_recaps.json where
+      // it does not. A new lesson without one should fail this.
+      final missing = readable.where((i) => !hasLessonRecap(i)).toList();
       expect(
-        withRecap.length / readable.length,
-        greaterThan(0.25),
-        reason: 'recap should reach a meaningful share of readable lessons',
+        missing.map((i) => i.id).toList(),
+        isEmpty,
+        reason: 'every readable lesson needs a recap',
       );
     });
   });

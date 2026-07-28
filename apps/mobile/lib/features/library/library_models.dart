@@ -21,6 +21,7 @@ class LibraryItem {
     this.steps = const [],
     this.questions = const [],
     this.pages = const [],
+    this.recap = const [],
   });
 
   final String id;
@@ -34,6 +35,9 @@ class LibraryItem {
   final bool reading;
   final String interaction;
   final String? parentNote;
+
+  /// Authored recap questions, when the lesson carries its own.
+  final List<RecapItem> recap;
 
   final List<LessonStep> steps; // lesson
   final List<LibQuestion> questions; // quiz
@@ -69,8 +73,47 @@ class LibraryItem {
       pages: ((j['pages'] as List?) ?? const [])
           .map((p) => LibPage.fromJson(p as Map<String, dynamic>))
           .toList(),
+      recap: ((j['recap'] as List?) ?? const [])
+          .map((r) => RecapItem.fromJson(r as Map<String, dynamic>))
+          .toList(),
     );
   }
+}
+
+/// An authored end-of-lesson recap question.
+///
+/// Lessons that state a crisp fact can have their recap derived from their own
+/// steps, but most short lessons ("Tap each sound: /c/ /a/ /t/") teach through
+/// doing and state nothing extractable. Those carry their question here
+/// instead, written against the lesson they belong to.
+class RecapItem {
+  const RecapItem({
+    required this.prompt,
+    required this.options,
+    required this.answer,
+  });
+
+  final String prompt;
+  final List<String> options;
+
+  /// Index into [options].
+  final int answer;
+
+  factory RecapItem.fromJson(Map<String, dynamic> j) => RecapItem(
+        prompt: j['prompt'] as String,
+        options: ((j['options'] as List?) ?? const [])
+            .map((o) => '$o')
+            .toList(),
+        answer: j['answer'] as int? ?? 0,
+      );
+
+  /// Guards against a malformed authored entry reaching a child.
+  bool get isValid =>
+      prompt.trim().isNotEmpty &&
+      options.length >= 2 &&
+      answer >= 0 &&
+      answer < options.length &&
+      options.every((o) => o.trim().isNotEmpty);
 }
 
 class LessonStep {

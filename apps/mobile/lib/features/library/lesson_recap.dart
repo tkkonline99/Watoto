@@ -85,6 +85,23 @@ List<RecapQuestion> buildLessonRecap(
   // Pre-readers get spoken play, not a written quiz. The content marks this.
   if (!item.reading) return const [];
 
+  // Authored questions win. Most short lessons teach by doing and state no
+  // extractable fact, so the content carries their recap directly; extraction
+  // stays as the path for lessons that do state one.
+  final authored = <RecapQuestion>[];
+  for (var i = 0; i < item.recap.length && authored.length < max; i++) {
+    final r = item.recap[i];
+    if (!r.isValid) continue;
+    authored.add(
+      RecapQuestion(
+        stepIndex: i,
+        check: StepCheck(options: r.options, answerIndex: r.answer),
+        prompt: r.prompt.trim(),
+      ),
+    );
+  }
+  if (authored.length >= minRecapQuestions) return authored;
+
   final out = <RecapQuestion>[];
   final seenAnswers = <String>{};
 
