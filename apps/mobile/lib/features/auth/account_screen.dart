@@ -225,6 +225,13 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
           label: l10n.logIn,
           onTap: _busy ? null : () => _createOrLogin(creating: false),
         ),
+        const SizedBox(height: 4),
+        Center(
+          child: TextButton(
+            onPressed: () => context.push('/password-reset'),
+            child: Text(l10n.forgotPasswordTitle),
+          ),
+        ),
       ],
     );
   }
@@ -256,6 +263,12 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
           onTap: _pin.text.isEmpty ? null : _pinLogin,
         ),
         const SizedBox(height: 4),
+        Center(
+          child: TextButton(
+            onPressed: () => context.push('/pin-reset'),
+            child: Text(l10n.forgotPinTitle),
+          ),
+        ),
         Center(
           child: TextButton(
             onPressed: () => setState(() {

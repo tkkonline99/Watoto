@@ -4,7 +4,9 @@ import 'package:go_router/go_router.dart';
 
 import '../core/offline/offline_providers.dart';
 import '../features/auth/account_screen.dart';
+import '../features/auth/password_reset_screen.dart';
 import '../features/auth/paywall_screen.dart';
+import '../features/auth/pin_reset_screen.dart';
 import '../features/child_home/child_home_screen.dart';
 import '../features/curriculum/curriculum_screen.dart';
 import '../features/curriculum/subject_detail_screen.dart';
@@ -58,6 +60,13 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       // The welcome/landing screen is always reachable once onboarded.
       if (loc == '/welcome') return null;
 
+      // Recovery is always reachable. These deliberately sit outside /parent:
+      // a grown-up who has forgotten the PIN cannot be asked to pass the gate
+      // they are trying to reset, and a signed-out account family cannot log
+      // in to reach their own password reset. Both screens run their own adult
+      // check (parent gate, and an emailed code) before changing anything.
+      if (loc == '/pin-reset' || loc == '/password-reset') return null;
+
       if (loc.startsWith('/parent') || loc == '/paywall') {
         if (loc == '/parent/pin') return null;
         // Account families are let straight in (no PIN). Otherwise PIN families
@@ -99,6 +108,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(path: '/profiles/add', builder: (c, s) => const AddChildScreen()),
       GoRoute(path: '/parent/pin', builder: (c, s) => const PinGateScreen()),
+      GoRoute(path: '/pin-reset', builder: (c, s) => const PinResetScreen()),
+      GoRoute(
+        path: '/password-reset',
+        builder: (c, s) => const PasswordResetScreen(),
+      ),
       GoRoute(
         path: '/parent',
         builder: (c, s) => const ParentDashboardScreen(),

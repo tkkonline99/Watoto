@@ -147,6 +147,13 @@ class _PinGateScreenState extends ConsumerState<PinGateScreen> {
                       : _submit,
                   child: Text(l10n.unlock),
                 ),
+                const SizedBox(height: 4),
+                // Stays enabled while the PIN is locked out: a lockout is
+                // exactly when a grown-up needs the way back in.
+                TextButton(
+                  onPressed: () => context.push('/pin-reset'),
+                  child: Text(l10n.forgotPinTitle),
+                ),
               ],
             ),
           ),
