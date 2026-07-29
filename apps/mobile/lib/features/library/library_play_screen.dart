@@ -2689,8 +2689,13 @@ class _LessonRecapViewState extends ConsumerState<_LessonRecapView> {
   void _speak() {
     if (!mounted) return;
     final lang = ref.read(localeProvider).languageCode;
+    // Read the choices out after the question. A child who is still learning
+    // to read can hear the options rather than having to decode three written
+    // answers under time pressure — the recap is testing what they learned in
+    // the lesson, not how fast they read.
+    final options = _optionsFor(_index).join('. ');
     ref.read(narrationProvider.notifier).speak(
-          _promptFor(_index),
+          '${_promptFor(_index)} $options',
           lang,
           style: SpeakStyle.hint,
         );

@@ -86,11 +86,15 @@ class _ChildHomeScreenState extends ConsumerState<ChildHomeScreen> {
             if (catalog[id] != null) catalog[id]!,
         ],
       );
+      // Spoken in the child's language. This used to read a hardcoded English
+      // sentence aloud whatever the app was set to, and used the badge's
+      // internal id ("threeLessons") as its name.
+      final l10n = AppLocalizations.of(context);
       final lang = ref.read(localeProvider).languageCode;
       final first = badges.first;
-      final label = catalog[first]?.id ?? first;
+      final label = badgeLabel(l10n, first);
       ref.read(narrationProvider.notifier).speak(
-            'New badge! $label',
+            '${l10n.badgeUnlocked} $label',
             lang,
             style: SpeakStyle.cheer,
           );
@@ -99,9 +103,10 @@ class _ChildHomeScreenState extends ConsumerState<ChildHomeScreen> {
     final level = ref.read(pendingLevelUpProvider);
     if (level > 0) {
       showLevelUpToast(context, level: level);
+      final l10n = AppLocalizations.of(context);
       final lang = ref.read(localeProvider).languageCode;
       ref.read(narrationProvider.notifier).speak(
-            'Level $level! Amazing work!',
+            l10n.levelUp(level),
             lang,
             style: SpeakStyle.cheer,
           );
