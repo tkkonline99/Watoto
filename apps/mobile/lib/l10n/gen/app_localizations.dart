@@ -1947,6 +1947,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This device has no installed voice for {language}. Captions still show every word. To add a voice, open your device settings and install {language} text-to-speech.'**
   String narrationUnavailableBody(String language);
+
+  /// No description provided for @nextReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s practise this one again'**
+  String get nextReview;
+
+  /// No description provided for @badgeTwentyLessons.
+  ///
+  /// In en, this message translates to:
+  /// **'20 lessons'**
+  String get badgeTwentyLessons;
+
+  /// No description provided for @badgeStreak14.
+  ///
+  /// In en, this message translates to:
+  /// **'14-day streak'**
+  String get badgeStreak14;
+
+  /// No description provided for @badgeThreeStories.
+  ///
+  /// In en, this message translates to:
+  /// **'3 stories'**
+  String get badgeThreeStories;
+
+  /// No description provided for @badgeLevel10.
+  ///
+  /// In en, this message translates to:
+  /// **'Level 10'**
+  String get badgeLevel10;
+
+  /// No description provided for @badgeFirstQuiz.
+  ///
+  /// In en, this message translates to:
+  /// **'First quiz'**
+  String get badgeFirstQuiz;
+
+  /// No description provided for @badgePerfectQuiz.
+  ///
+  /// In en, this message translates to:
+  /// **'All correct!'**
+  String get badgePerfectQuiz;
+
+  /// No description provided for @highFiveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'High five!'**
+  String get highFiveTitle;
+
+  /// No description provided for @highFiveBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}, that\'s your first activity today. Well done!'**
+  String highFiveBody(String name);
+
+  /// No description provided for @highFiveGrownUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Grown-ups: a short daily habit beats a long weekly one.'**
+  String get highFiveGrownUp;
+
+  /// No description provided for @highFiveButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep playing'**
+  String get highFiveButton;
+
+  /// No description provided for @stretchTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Wiggle break!'**
+  String get stretchTitle;
+
+  /// No description provided for @stretchBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You have been learning for a while. Stand up, stretch tall, and shake your hands.'**
+  String get stretchBody;
+
+  /// No description provided for @stretchKeepPlaying.
+  ///
+  /// In en, this message translates to:
+  /// **'I stretched — keep playing'**
+  String get stretchKeepPlaying;
+
+  /// No description provided for @stretchGoHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Go home'**
+  String get stretchGoHome;
+
+  /// No description provided for @whatsNewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s new'**
+  String get whatsNewTitle;
+
+  /// No description provided for @whatsNewSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You are on version {version}'**
+  String whatsNewSubtitle(String version);
+
+  /// No description provided for @whatsNewFooter.
+  ///
+  /// In en, this message translates to:
+  /// **'Watoto works offline. Progress stays on this device unless you export a backup.'**
+  String get whatsNewFooter;
 }
 
 class _AppLocalizationsDelegate

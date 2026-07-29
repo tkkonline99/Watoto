@@ -16,6 +16,8 @@ class BadgeStats {
     required this.lessons,
     required this.stories,
     this.dailyChallenges = 0,
+    this.quizzes = 0,
+    this.perfectQuizzes = 0,
   });
 
   final int xp;
@@ -23,6 +25,10 @@ class BadgeStats {
   final int lessons;
   final int stories;
   final int dailyChallenges;
+  final int quizzes;
+
+  /// Quizzes answered fully correctly (best score, not first attempt).
+  final int perfectQuizzes;
 
   int get level => levelForXp(xp);
 }
@@ -54,6 +60,8 @@ const List<Badge> allBadges = [
   Badge('streak14', '💪', _streak14),
   Badge('level10', '👑', _level10),
   Badge('threeStories', '📚', _threeStories),
+  Badge('firstQuiz', '✅', _firstQuiz),
+  Badge('perfectQuiz', '💯', _perfectQuiz),
 ];
 
 bool _firstLesson(BadgeStats s) => s.lessons >= 1;
@@ -69,6 +77,8 @@ bool _threeStories(BadgeStats s) => s.stories >= 3;
 bool _level5(BadgeStats s) => s.level >= 5;
 bool _level10(BadgeStats s) => s.level >= 10;
 bool _dailyChallenge(BadgeStats s) => s.dailyChallenges >= 1;
+bool _firstQuiz(BadgeStats s) => s.quizzes >= 1;
+bool _perfectQuiz(BadgeStats s) => s.perfectQuizzes >= 1;
 
 /// The badges [s] has earned, in catalogue order.
 List<Badge> earnedBadges(BadgeStats s) => [

@@ -1057,4 +1057,65 @@ class AppLocalizationsSw extends AppLocalizations {
   String narrationUnavailableBody(String language) {
     return 'Kifaa hiki hakina sauti iliyosakinishwa kwa $language. Manukuu bado yanaonyesha kila neno. Ili kuongeza sauti, fungua mipangilio ya kifaa chako na usakinishe sauti ya $language.';
   }
+
+  @override
+  String get nextReview => 'Tujaribu hii tena';
+
+  @override
+  String get badgeTwentyLessons => 'Masomo 20';
+
+  @override
+  String get badgeStreak14 => 'Mfululizo wa siku 14';
+
+  @override
+  String get badgeThreeStories => 'Hadithi 3';
+
+  @override
+  String get badgeLevel10 => 'Kiwango 10';
+
+  @override
+  String get badgeFirstQuiz => 'Jaribio la kwanza';
+
+  @override
+  String get badgePerfectQuiz => 'Zote sahihi!';
+
+  @override
+  String get highFiveTitle => 'Tupige tano!';
+
+  @override
+  String highFiveBody(String name) {
+    return '$name, hii ni shughuli yako ya kwanza leo. Hongera!';
+  }
+
+  @override
+  String get highFiveGrownUp =>
+      'Kwa wazazi: mazoezi mafupi ya kila siku ni bora kuliko marefu ya kila wiki.';
+
+  @override
+  String get highFiveButton => 'Endelea kucheza';
+
+  @override
+  String get stretchTitle => 'Mapumziko ya kujinyoosha!';
+
+  @override
+  String get stretchBody =>
+      'Umekuwa ukijifunza kwa muda. Simama, jinyooshe juu, na kunja mikono yako.';
+
+  @override
+  String get stretchKeepPlaying => 'Nimejinyoosha — endelea';
+
+  @override
+  String get stretchGoHome => 'Nenda nyumbani';
+
+  @override
+  String get whatsNewTitle => 'Mambo mapya';
+
+  @override
+  String whatsNewSubtitle(String version) {
+    return 'Unatumia toleo $version';
+  }
+
+  @override
+  String get whatsNewFooter =>
+      'Watoto hufanya kazi bila intaneti. Maendeleo yanabaki kwenye kifaa hiki isipokuwa uhifadhi nakala rudufu.';
 }

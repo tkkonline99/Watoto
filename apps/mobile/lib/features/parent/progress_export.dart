@@ -4,6 +4,7 @@
 library;
 
 import '../../core/offline/offline_store.dart';
+import '../gamification/badge_stats_source.dart';
 import '../gamification/rewards.dart';
 import '../profiles/child_profile.dart';
 import 'weekly_snapshot.dart';
@@ -75,17 +76,7 @@ String _childSection(OfflineStore store, ChildProfile child, DateTime when) {
   final lessons = store.completedLessonCount(child.id);
   final stories = store.completedStoryCount(child.id);
   final quizzes = store.completedQuizCount(child.id);
-  final badges = earnedBadges(
-    BadgeStats(
-      xp: xp,
-      streak: streak,
-      lessons: lessons,
-      stories: stories,
-      dailyChallenges: store.dailyChallengeTotalCount(child.id),
-      quizzes: quizzes,
-      perfectQuizzes: store.perfectQuizCount(child.id),
-    ),
-  );
+  final badges = earnedBadges(badgeStatsFor(store, child.id));
 
   final buf = StringBuffer()
     ..writeln('—— ${child.nickname} ${child.emoji} ——')

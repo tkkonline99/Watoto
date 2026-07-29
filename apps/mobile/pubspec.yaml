@@ -69,10 +69,25 @@ flutter:
     - assets/audio/sfx/
     - assets/guides/
     - assets/images/
-    # Asset directories are NOT recursive: without this line the whole stage-1
+    # Asset directories are NOT recursive: without a line per stage the
     # illustration pack sits on disk unbundled and every item falls back to an
-    # emoji placeholder.
+    # emoji placeholder. test/media_assets_test.dart samples one hero per stage
+    # so a forgotten line here fails the suite instead of shipping.
     - assets/images/img/s01/
+    - assets/images/img/s02/
+    - assets/images/img/s03/
+    - assets/images/img/s04/
+    - assets/images/img/s05/
+    - assets/images/img/s06/
+    - assets/images/img/s07/
+    - assets/images/img/s08/
+    - assets/images/img/s09/
+    - assets/images/img/s10/
+    # The rendered VO pack (assets/audio/{en,fr,sw}) is deliberately NOT listed.
+    # It is 184 MB — past Play's base-download ceiling — and is not in git, so a
+    # fresh clone would fail `flutter pub get` on a missing directory. Narration
+    # falls back to on-device TTS without it. To build the VO edition, render the
+    # pack (tool/export_tts_vo.py) and add the three lines; see tool/MEDIA_README.md.
   # Bundled variable fonts (offline-safe; no runtime fetch). Baloo 2 for the
   # rounded headings/buttons, Nunito for body. Both expose a `wght` axis.
   fonts:

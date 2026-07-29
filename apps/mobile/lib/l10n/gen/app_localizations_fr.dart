@@ -1064,4 +1064,65 @@ class AppLocalizationsFr extends AppLocalizations {
   String narrationUnavailableBody(String language) {
     return 'Cet appareil n\'a pas de voix installée pour $language. Les sous-titres affichent toujours chaque mot. Pour ajouter une voix, ouvrez les paramètres de votre appareil et installez la synthèse vocale $language.';
   }
+
+  @override
+  String get nextReview => 'On refait celui-là ensemble';
+
+  @override
+  String get badgeTwentyLessons => '20 leçons';
+
+  @override
+  String get badgeStreak14 => 'Série de 14 jours';
+
+  @override
+  String get badgeThreeStories => '3 histoires';
+
+  @override
+  String get badgeLevel10 => 'Niveau 10';
+
+  @override
+  String get badgeFirstQuiz => 'Premier quiz';
+
+  @override
+  String get badgePerfectQuiz => 'Tout juste !';
+
+  @override
+  String get highFiveTitle => 'Tape m\'en cinq !';
+
+  @override
+  String highFiveBody(String name) {
+    return '$name, c\'est ta première activité aujourd\'hui. Bravo !';
+  }
+
+  @override
+  String get highFiveGrownUp =>
+      'Pour les adultes : une courte habitude quotidienne vaut mieux qu\'une longue séance hebdomadaire.';
+
+  @override
+  String get highFiveButton => 'Continuer à jouer';
+
+  @override
+  String get stretchTitle => 'Pause étirement !';
+
+  @override
+  String get stretchBody =>
+      'Tu apprends depuis un moment. Lève-toi, étire-toi bien haut et secoue les mains.';
+
+  @override
+  String get stretchKeepPlaying => 'Je me suis étiré — on continue';
+
+  @override
+  String get stretchGoHome => 'Retour à l\'accueil';
+
+  @override
+  String get whatsNewTitle => 'Nouveautés';
+
+  @override
+  String whatsNewSubtitle(String version) {
+    return 'Vous utilisez la version $version';
+  }
+
+  @override
+  String get whatsNewFooter =>
+      'Watoto fonctionne hors ligne. La progression reste sur cet appareil, sauf si vous exportez une sauvegarde.';
 }

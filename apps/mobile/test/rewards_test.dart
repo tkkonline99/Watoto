@@ -1,5 +1,9 @@
+import 'package:flutter/material.dart' hide Badge;
 import 'package:flutter_test/flutter_test.dart';
+import 'package:watoto_mobile/features/gamification/achievements_sheet.dart'
+    show badgeLabel;
 import 'package:watoto_mobile/features/gamification/rewards.dart';
+import 'package:watoto_mobile/l10n/gen/app_localizations.dart';
 
 void main() {
   group('levels', () {
@@ -66,6 +70,72 @@ void main() {
       expect(ids, contains('firstLesson'));
       expect(ids, isNot(contains('fiveLessons')));
       expect(ids, isNot(contains('streak3')));
+    });
+
+    test('quiz badges read the quiz counters', () {
+      const none = BadgeStats(xp: 0, streak: 0, lessons: 0, stories: 0);
+      expect(earnedBadges(none).map((b) => b.id), isNot(contains('firstQuiz')));
+
+      const tried = BadgeStats(
+        xp: 0,
+        streak: 0,
+        lessons: 0,
+        stories: 0,
+        quizzes: 1,
+      );
+      final triedIds = earnedBadges(tried).map((b) => b.id).toSet();
+      expect(triedIds, contains('firstQuiz'));
+      // Attempting is not acing.
+      expect(triedIds, isNot(contains('perfectQuiz')));
+
+      const aced = BadgeStats(
+        xp: 0,
+        streak: 0,
+        lessons: 0,
+        stories: 0,
+        quizzes: 1,
+        perfectQuizzes: 1,
+      );
+      expect(earnedBadges(aced).map((b) => b.id), contains('perfectQuiz'));
+    });
+  });
+
+  group('badge labels', () {
+    // Every badge in the catalogue must have a case in badgeLabel(). The
+    // fallback there returns the raw id, so a miss shows a child a camelCase
+    // debug string ("twentyLessons") as the name of their achievement. Six
+    // badges were doing exactly that before this test existed.
+    testWidgets('every badge has a localized label, in every language',
+        (tester) async {
+      for (final locale in AppLocalizations.supportedLocales) {
+        late AppLocalizations l10n;
+        await tester.pumpWidget(
+          MaterialApp(
+            locale: locale,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            home: Builder(
+              builder: (context) {
+                l10n = AppLocalizations.of(context);
+                return const SizedBox.shrink();
+              },
+            ),
+          ),
+        );
+        await tester.pumpAndSettle();
+
+        for (final badge in allBadges) {
+          final label = badgeLabel(l10n, badge.id);
+          expect(
+            label,
+            isNot(badge.id),
+            reason:
+                'badge "${badge.id}" has no label in ${locale.languageCode} — '
+                'add a case to badgeLabel() and a key to the .arb files',
+          );
+          expect(label.trim(), isNotEmpty, reason: badge.id);
+        }
+      }
     });
   });
 }

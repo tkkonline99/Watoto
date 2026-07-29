@@ -4,19 +4,31 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/offline/offline_providers.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
+import 'badge_stats_source.dart';
 import 'rewards.dart';
 
 /// Localized label for a badge id (shared by parent dashboard + child sheet).
+///
+/// The fallback returns the raw id, which is a camelCase debug string — six
+/// badges in the expanded catalogue used to reach it, so children were shown
+/// "twentyLessons" as an achievement name. `badgeLabelCoverage` in
+/// test/rewards_test.dart now fails if a badge is added without a label here.
 String badgeLabel(AppLocalizations l10n, String id) => switch (id) {
       'firstLesson' => l10n.badgeFirstLesson,
       'threeLessons' => l10n.badgeThreeLessons,
       'fiveLessons' => l10n.badgeFiveLessons,
       'tenLessons' => l10n.badgeTenLessons,
+      'twentyLessons' => l10n.badgeTwentyLessons,
       'streak3' => l10n.badgeStreak3,
       'streak7' => l10n.badgeStreak7,
+      'streak14' => l10n.badgeStreak14,
       'firstStory' => l10n.badgeFirstStory,
+      'threeStories' => l10n.badgeThreeStories,
       'level5' => l10n.badgeLevel5,
+      'level10' => l10n.badgeLevel10,
       'dailyChallenge' => l10n.badgeDailyChallenge,
+      'firstQuiz' => l10n.badgeFirstQuiz,
+      'perfectQuiz' => l10n.badgePerfectQuiz,
       _ => id,
     };
 
@@ -27,13 +39,7 @@ Future<void> showAchievementsSheet(BuildContext context, WidgetRef ref) {
   final child = ref.read(activeChildProvider);
   final childId = child?.id;
   final xp = childId == null ? 0 : store.xpFor(childId);
-  final stats = BadgeStats(
-    xp: xp,
-    streak: childId == null ? 0 : store.streakFor(childId),
-    lessons: childId == null ? 0 : store.completedLessonCount(childId),
-    stories: childId == null ? 0 : store.completedStoryCount(childId),
-    dailyChallenges: childId == null ? 0 : store.dailyChallengeTotalCount(childId),
-  );
+  final stats = badgeStatsFor(store, childId);
 
   return showModalBottomSheet<void>(
     context: context,

@@ -990,10 +990,17 @@ class _ContinueLearningCard extends ConsumerWidget {
   final AppLocalizations l10n;
 
   /// Headline for why this activity was picked.
+  ///
+  /// Deliberately exhaustive with no default arm: adding a reason to
+  /// [NextBestReason] should fail the build until someone decides what a child
+  /// is told about it, rather than silently reading "Keep going".
   String _headline(NextBestReason reason) => switch (reason) {
         NextBestReason.adaptiveEasier => l10n.nextEasier,
         NextBestReason.adaptiveHarder => l10n.nextHarder,
         NextBestReason.discover => l10n.nextDiscover,
+        // "Again", never "you got this wrong" — the ladder is invisible to the
+        // child by design (docs/12 §12.6: no shame mechanics).
+        NextBestReason.review => l10n.nextReview,
         // The daily challenge has its own card; continue/resume read the same
         // to a child, who only wants to know where the play button is.
         NextBestReason.dailyChallenge ||

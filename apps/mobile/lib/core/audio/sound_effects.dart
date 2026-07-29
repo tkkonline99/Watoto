@@ -40,6 +40,10 @@ class SoundEffects {
   /// A streak milestone or a streak rescued by the weekly shield.
   Future<void> streak() => _play('audio/sfx/streak.wav');
 
+  /// A single warm chime. Smaller than [celebrate] — a star landing, or an
+  /// interruption we want to feel like a reward (the stretch break).
+  Future<void> star() => _play('audio/sfx/star.wav');
+
   /// A wrong pick. A soft downward step, never a buzzer: the child is five,
   /// and the sound should read as "try again", not "you failed".
   Future<void> retry() => _play('audio/sfx/retry.wav');

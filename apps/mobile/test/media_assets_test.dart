@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -32,11 +34,33 @@ void main() {
     }
   });
 
-  test('bundled VO sample exists', () async {
-    final vo = await rootBundle.load(
-      'assets/audio/en/s01.cause.lesson.01.steps.0.narration.mp3',
+  // The rendered VO pack is 184 MB, is not committed, and is not in the default
+  // asset bundle (see the note in pubspec.yaml). So the invariant worth guarding
+  // is not "the mp3 is bundled" — it is "the script still knows to render it,
+  // and if a build DOES bundle the pack, the file is not a zero-byte stub".
+  const voSample = 's01.cause.lesson.01.steps.0.narration';
+
+  test('VO manifest still covers the stage-1 sample', () {
+    final manifest = File(
+      '../../content/production/audio/audio_manifest.csv',
     );
-    expect(vo.lengthInBytes, greaterThan(100));
+    expect(
+      manifest.existsSync(),
+      isTrue,
+      reason: 'audio_manifest.csv is the source of truth for what is spoken',
+    );
+    expect(manifest.readAsStringSync(), contains(voSample));
+  });
+
+  test('a rendered VO file, when present, is real audio', () async {
+    final onDisk = File('assets/audio/en/$voSample.mp3');
+    if (!onDisk.existsSync()) {
+      markTestSkipped(
+        'VO pack not rendered here — run tool/export_tts_vo.py to build it',
+      );
+      return;
+    }
+    expect(onDisk.lengthSync(), greaterThan(100));
   });
 
   test('stage 10 dense heroes exist', () async {

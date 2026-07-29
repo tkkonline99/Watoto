@@ -709,6 +709,24 @@ class OfflineStore {
       .where((k) => (k as String).startsWith('story:$childId:'))
       .length;
 
+  int completedQuizCount(String childId) => _progress.keys
+      .where((k) => (k as String).startsWith('quiz:$childId:'))
+      .length;
+
+  /// Quizzes finished with every question right. Reads the stored best score,
+  /// so a child who returns and aces a quiz they first fumbled is counted —
+  /// the badge rewards mastery, not first-attempt luck.
+  int perfectQuizCount(String childId) {
+    var n = 0;
+    for (final k in _progress.keys) {
+      if (!(k as String).startsWith('quiz:$childId:')) continue;
+      final m = _read(k);
+      if (m == null) continue;
+      if (((m['scorePct'] as num?)?.toInt() ?? 0) >= 100) n++;
+    }
+    return n;
+  }
+
   /// True when the child has finished a library item of any type (used by the
   /// daily challenge and "continue learning" surfaces).
   bool hasCompletedLibraryItem(String childId, String itemId, String type) {
@@ -905,6 +923,77 @@ class OfflineStore {
 
   bool isAvatarUnlocked(String childId, String key) =>
       unlockedAvatars(childId).contains(key);
+
+  // ------------------------------------------------------------- home themes
+
+  /// Home backdrop themes bought with coins. Same shape as avatars: cosmetic
+  /// only — a theme never gates an activity (docs/12: coins buy looks, never
+  /// lessons).
+  Set<String> unlockedHomeThemes(String childId) {
+    final raw = _account.get('themes:$childId');
+    if (raw == null || raw.isEmpty) return {};
+    return raw.split(',').where((s) => s.isNotEmpty).toSet();
+  }
+
+  Future<void> unlockHomeTheme(String childId, String key) async {
+    final set = unlockedHomeThemes(childId)..add(key);
+    await _account.put('themes:$childId', set.join(','));
+  }
+
+  bool isHomeThemeUnlocked(String childId, String key) =>
+      unlockedHomeThemes(childId).contains(key);
+
+  /// The theme currently worn, or null for the default savanna.
+  String? homeTheme(String childId) {
+    final key = _account.get('theme:$childId');
+    return (key == null || key.isEmpty) ? null : key;
+  }
+
+  /// Wears [key]. Passing null (or a locked key) returns to the default, so a
+  /// content update that drops a theme cannot leave a child on a blank home.
+  Future<void> setHomeTheme(String childId, String? key) async {
+    if (key == null || key.isEmpty || !isHomeThemeUnlocked(childId, key)) {
+      await _account.delete('theme:$childId');
+      return;
+    }
+    await _account.put('theme:$childId', key);
+  }
+
+  // ------------------------------------------------- first-of-day high five
+
+  /// Local date stamp of the last first-of-day celebration, or null.
+  ///
+  /// Stored as a local `YYYY-MM-DD` string rather than an epoch: the question
+  /// asked is "was that today, where the child is", and a timezone-naive date
+  /// answers it without the midnight-boundary bugs an epoch invites.
+  String? firstDayHighFiveOn(String childId) =>
+      _account.get('highfive:$childId');
+
+  bool hasFirstDayHighFiveToday(String childId, {DateTime? now}) =>
+      firstDayHighFiveOn(childId) == _localDay(now ?? DateTime.now());
+
+  Future<void> markFirstDayHighFive(String childId, {DateTime? now}) =>
+      _account.put('highfive:$childId', _localDay(now ?? DateTime.now()));
+
+  // ------------------------------------------------------------ stretch break
+
+  /// When the stretch prompt was last shown, in epoch seconds, or null.
+  int? lastStretchAtEpochS(String childId) {
+    final raw = _account.get('stretch:$childId');
+    if (raw == null || raw.isEmpty) return null;
+    return int.tryParse(raw);
+  }
+
+  Future<void> markStretchShown(String childId, {DateTime? now}) =>
+      _account.put(
+        'stretch:$childId',
+        ((now ?? DateTime.now()).millisecondsSinceEpoch ~/ 1000).toString(),
+      );
+
+  static String _localDay(DateTime at) =>
+      '${at.year.toString().padLeft(4, '0')}-'
+      '${at.month.toString().padLeft(2, '0')}-'
+      '${at.day.toString().padLeft(2, '0')}';
 
   // ---------------------------------------------------- savanna decorations
 
@@ -1498,6 +1587,10 @@ class OfflineStore {
         'seenBadges:',
         'lastPlayed:',
         'avatars:',
+        'themes:',
+        'theme:',
+        'highfive:',
+        'stretch:',
         'attempts:',
         'review:',
         'streakDate:',

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../features/gamification/badge_stats_source.dart';
 import '../../features/gamification/daily_challenge.dart';
 import '../../features/gamification/economy.dart';
 import '../../features/gamification/reward_outcome.dart';
@@ -563,13 +564,7 @@ class LearningService {
     }
 
     final streak = store.streakFor(childId);
-    final stats = BadgeStats(
-      xp: totalXp,
-      streak: streak,
-      lessons: store.completedLessonCount(childId),
-      stories: store.completedStoryCount(childId),
-      dailyChallenges: store.dailyChallengeTotalCount(childId),
-    );
+    final stats = badgeStatsFor(store, childId);
     final earned = earnedBadges(stats).map((b) => b.id).toSet();
     final seen = store.seenBadgeIds(childId);
     final fresh = earned.difference(seen).toList();

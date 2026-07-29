@@ -1061,4 +1061,65 @@ class AppLocalizationsEn extends AppLocalizations {
   String narrationUnavailableBody(String language) {
     return 'This device has no installed voice for $language. Captions still show every word. To add a voice, open your device settings and install $language text-to-speech.';
   }
+
+  @override
+  String get nextReview => 'Let\'s practise this one again';
+
+  @override
+  String get badgeTwentyLessons => '20 lessons';
+
+  @override
+  String get badgeStreak14 => '14-day streak';
+
+  @override
+  String get badgeThreeStories => '3 stories';
+
+  @override
+  String get badgeLevel10 => 'Level 10';
+
+  @override
+  String get badgeFirstQuiz => 'First quiz';
+
+  @override
+  String get badgePerfectQuiz => 'All correct!';
+
+  @override
+  String get highFiveTitle => 'High five!';
+
+  @override
+  String highFiveBody(String name) {
+    return '$name, that\'s your first activity today. Well done!';
+  }
+
+  @override
+  String get highFiveGrownUp =>
+      'Grown-ups: a short daily habit beats a long weekly one.';
+
+  @override
+  String get highFiveButton => 'Keep playing';
+
+  @override
+  String get stretchTitle => 'Wiggle break!';
+
+  @override
+  String get stretchBody =>
+      'You have been learning for a while. Stand up, stretch tall, and shake your hands.';
+
+  @override
+  String get stretchKeepPlaying => 'I stretched — keep playing';
+
+  @override
+  String get stretchGoHome => 'Go home';
+
+  @override
+  String get whatsNewTitle => 'What\'s new';
+
+  @override
+  String whatsNewSubtitle(String version) {
+    return 'You are on version $version';
+  }
+
+  @override
+  String get whatsNewFooter =>
+      'Watoto works offline. Progress stays on this device unless you export a backup.';
 }
