@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/analytics/analytics.dart';
 import '../../core/audio/narration.dart';
 import '../../core/audio/sound_effects.dart';
 import '../../core/offline/offline_providers.dart';
@@ -22,6 +23,7 @@ import 'content_lexicon.dart';
 import 'library_models.dart';
 import 'lesson_recap.dart';
 import 'library_repository.dart';
+import 'quiz_review.dart';
 import 'step_play.dart';
 import 'step_visuals.dart';
 import '../../router/return_to.dart';
@@ -280,15 +282,36 @@ class _LessonViewState extends ConsumerState<_LessonView> {
   final _elapsed = Stopwatch()..start();
   Timer? _autoAdvance; // pending "move on a beat after the interaction"
 
+  /// Held directly rather than read through `ref` in [dispose], where the
+  /// element is already torn down and `ref.read` throws.
+  late final AnalyticsService _analytics;
+
   @override
   void initState() {
     super.initState();
+    _analytics = ref.read(analyticsProvider);
+    _analytics.log(AnalyticsEvents.activityStart, {
+      'stage': widget.item.stage,
+      'type': widget.item.type.name,
+      'steps': widget.item.steps.length,
+    });
     WidgetsBinding.instance.addPostFrameCallback((_) => _speakStep());
   }
 
   @override
   void dispose() {
     _autoAdvance?.cancel();
+    // Leaving before the celebration is the drop-off signal: which step and
+    // how far in tells us where activities lose children.
+    if (!_done) {
+      _analytics.log(AnalyticsEvents.activityAbandon, {
+        'stage': widget.item.stage,
+        'type': widget.item.type.name,
+        'atStep': _step,
+        'ofSteps': widget.item.steps.length,
+        'secondsIn': _elapsed.elapsed.inSeconds,
+      });
+    }
     super.dispose();
   }
 
@@ -2020,6 +2043,25 @@ class _QuizViewState extends ConsumerState<_QuizView> {
   final _answers = <Map<String, dynamic>>[];
   final _elapsed = Stopwatch()..start();
 
+  /// The questions actually played, already localized.
+  ///
+  /// Most quizzes ship a single question, which is not a check on anything, so
+  /// this tops them up with review questions from the same subject's lessons
+  /// (see quiz_review.dart). Resolved once per run: rebuilding it mid-quiz
+  /// could change the question under a child's finger.
+  List<LibQuestion>? _questionsCache;
+
+  List<LibQuestion> get _questions {
+    return _questionsCache ??= localizedQuizQuestions(
+      quiz: widget.item,
+      library: ref.read(libraryProvider).asData?.value.all ?? const [],
+      i18n: ref.read(contentI18nProvider).asData?.value,
+      lang: ref.read(localeProvider).languageCode,
+      correctFeedback: AppLocalizations.of(context).quizPerfect,
+      retryFeedback: AppLocalizations.of(context).quizNiceTry,
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -2028,20 +2070,15 @@ class _QuizViewState extends ConsumerState<_QuizView> {
 
   void _speakPrompt() {
     final lang = ref.read(localeProvider).languageCode;
-    final loc = LocalizedItem(
-      widget.item,
-      ref.read(contentI18nProvider).asData?.value,
-      lang,
-    );
     ref.read(narrationProvider.notifier).speak(
-          loc.questionPrompt(_q),
+          _questions[_q].prompt,
           lang,
           style: SpeakStyle.lesson,
         );
   }
 
   void _offerHint() {
-    final question = widget.item.questions[_q];
+    final question = _questions[_q];
     final lang = ref.read(localeProvider).languageCode;
     final l10n = AppLocalizations.of(context);
     // Hide one incorrect option (first wrong index).
@@ -2066,13 +2103,8 @@ class _QuizViewState extends ConsumerState<_QuizView> {
   }
 
   void _pick(int index) {
-    final question = widget.item.questions[_q];
+    final question = _questions[_q];
     final lang = ref.read(localeProvider).languageCode;
-    final loc = LocalizedItem(
-      widget.item,
-      ref.read(contentI18nProvider).asData?.value,
-      lang,
-    );
     final l10n = AppLocalizations.of(context);
     if (index == question.answer) {
       _answers.add({
@@ -2080,7 +2112,7 @@ class _QuizViewState extends ConsumerState<_QuizView> {
         'selectedIndex': index,
       });
       if (!_wrongThisQ) _firstTryCorrect++;
-      final praise = _wrongThisQ ? l10n.quizNiceTry : loc.questionCorrect(_q);
+      final praise = _wrongThisQ ? l10n.quizNiceTry : question.correctFeedback;
       setState(() {
         _feedback = praise;
         _feedbackGood = true;
@@ -2095,11 +2127,11 @@ class _QuizViewState extends ConsumerState<_QuizView> {
     } else {
       setState(() {
         _wrongThisQ = true;
-        _feedback = loc.questionRetry(_q);
+        _feedback = question.retryFeedback;
         _feedbackGood = false;
       });
       ref.read(narrationProvider.notifier).speak(
-            loc.questionRetry(_q),
+            question.retryFeedback,
             lang,
             style: SpeakStyle.hint,
           );
@@ -2108,7 +2140,7 @@ class _QuizViewState extends ConsumerState<_QuizView> {
 
   void _next() {
     if (!mounted) return;
-    if (_q < widget.item.questions.length - 1) {
+    if (_q < _questions.length - 1) {
       setState(() {
         _q++;
         _wrongThisQ = false;
@@ -2119,7 +2151,7 @@ class _QuizViewState extends ConsumerState<_QuizView> {
       _speakPrompt();
     } else {
       _elapsed.stop();
-      final total = widget.item.questions.length;
+      final total = _questions.length;
       final scorePct = total == 0
           ? 0
           : ((_firstTryCorrect / total) * 100).round();
@@ -2166,7 +2198,7 @@ class _QuizViewState extends ConsumerState<_QuizView> {
         nextId: _nextInSubject(ref, widget.item)?.id,
       );
     }
-    final question = widget.item.questions[_q];
+    final question = _questions[_q];
     return Scaffold(
       appBar: _bar(context, loc.title),
       body: SafeArea(
@@ -2174,7 +2206,7 @@ class _QuizViewState extends ConsumerState<_QuizView> {
           padding: const EdgeInsets.all(24),
           child: Column(
             children: [
-              _ProgressDots(count: widget.item.questions.length, active: _q),
+              _ProgressDots(count: _questions.length, active: _q),
               const SizedBox(height: 12),
               // Prefer bundled art, then emoji illustration.
               ExcludeSemantics(
@@ -2185,7 +2217,7 @@ class _QuizViewState extends ConsumerState<_QuizView> {
               ),
               const SizedBox(height: 8),
               Text(
-                loc.questionPrompt(_q),
+                question.prompt,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 22,

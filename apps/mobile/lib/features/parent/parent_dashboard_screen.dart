@@ -10,11 +10,11 @@ import '../../core/audio/narration.dart';
 import '../../core/offline/desktop_export_stub.dart'
     if (dart.library.io) '../../core/offline/desktop_export_io.dart';
 import '../../core/offline/offline_providers.dart';
+import '../../core/offline/offline_store.dart';
 import '../../core/state/app_state.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../data/cloud/cloud_sync.dart';
 import '../../domain/models/child_profile.dart';
-import '../../domain/rules/username.dart';
 import '../../features/auth/entitlements.dart';
 import '../../features/auth/parent_gate_dialog.dart';
 import '../../features/gamification/achievements_sheet.dart';
@@ -323,6 +323,9 @@ Future<void> _editNickname(
       childId: child.id,
       nickname: controller.text,
     );
+    // The name itself is child PII and never leaves the device — only the
+    // fact that a rename happened is recorded.
+    ref.read(analyticsProvider).log(AnalyticsEvents.nicknameChange);
     ref.read(sessionProvider.notifier).touchProfiles();
     if (context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -366,6 +369,145 @@ String _insightDetail(
       InsightKind.stars => l10n.insightStarsDetail(insight.count),
       InsightKind.oneDay => l10n.insightOneDayDetail,
     };
+
+/// Tells a parent why the app went quiet.
+///
+/// Swahili in particular ships on very few devices, so an audio-first family
+/// could open the app and simply get silence with no explanation. Shows only
+/// once the engine has actually been probed and come back empty.
+class _NarrationAvailabilityNotice extends ConsumerWidget {
+  const _NarrationAvailabilityNotice();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final lang = ref.watch(localeProvider).languageCode;
+    final narration = ref.watch(narrationProvider.notifier);
+    if (!ref.watch(narrationProvider) || !narration.isKnownUnavailable(lang)) {
+      return const SizedBox.shrink();
+    }
+    final languageName = switch (lang) {
+      'sw' => 'Kiswahili',
+      'fr' => 'Français',
+      _ => 'English',
+    };
+    return Padding(
+      padding: const EdgeInsets.only(top: 4, bottom: 4),
+      child: Semantics(
+        container: true,
+        label: '${l10n.narrationUnavailableTitle}. '
+            '${l10n.narrationUnavailableBody(languageName)}',
+        child: ExcludeSemantics(
+          child: Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: WatotoColors.sun.withValues(alpha: 0.16),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Icon(Icons.volume_off_outlined, size: 20),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        l10n.narrationUnavailableTitle,
+                        style: const TextStyle(fontWeight: FontWeight.w700),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(l10n.narrationUnavailableBody(languageName)),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Restore a previously exported backup.
+///
+/// This build keeps everything on device, so a reinstall or a lost phone used
+/// to mean a child started from zero — the export existed but nothing could
+/// read it back. Paste-based rather than file-picker-based so it works
+/// identically on web, mobile and desktop without another plugin.
+Future<void> _restoreBackupFlow(
+  BuildContext context,
+  WidgetRef ref,
+  OfflineStore store,
+) async {
+  final l10n = AppLocalizations.of(context);
+  if (!await showParentGateDialog(context, ref)) return;
+  if (!context.mounted) return;
+
+  final controller = TextEditingController();
+  final confirmed = await showDialog<bool>(
+    context: context,
+    builder: (ctx) => AlertDialog(
+      title: Text(l10n.restoreBackup),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(l10n.restoreBackupPaste),
+          const SizedBox(height: 12),
+          TextField(
+            controller: controller,
+            maxLines: 5,
+            minLines: 3,
+            autofocus: true,
+            decoration: const InputDecoration(border: OutlineInputBorder()),
+          ),
+        ],
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(ctx, false),
+          child: Text(l10n.cancel),
+        ),
+        FilledButton(
+          onPressed: () => Navigator.pop(ctx, true),
+          child: Text(l10n.restoreBackupAction),
+        ),
+      ],
+    ),
+  );
+
+  final raw = controller.text;
+  controller.dispose();
+  if (confirmed != true || raw.trim().isEmpty) return;
+
+  String message;
+  var restored = false;
+  try {
+    final result = await restoreFamilyBackup(store, raw);
+    restored = !result.isEmpty;
+    message = result.isEmpty
+        ? l10n.restoreBackupNothing
+        : l10n.restoreBackupDone(
+            result.childrenRestored,
+            result.progressRestored,
+          );
+  } on FormatException {
+    message = l10n.restoreBackupInvalid;
+  }
+
+  ref.read(analyticsProvider).log(AnalyticsEvents.backupRestore, {
+    'restored': restored,
+  });
+  if (restored) {
+    // Profiles and balances changed underneath the UI.
+    ref.read(sessionProvider.notifier).touchProfiles();
+    ref.read(economyTickProvider.notifier).state++;
+  }
+  if (!context.mounted) return;
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+}
 
 class _SyncStatusCard extends ConsumerWidget {
   const _SyncStatusCard({required this.l10n});
@@ -724,6 +866,7 @@ class ParentDashboardScreen extends ConsumerWidget {
               subtitle: Text(l10n.readAloudBody),
               onChanged: (_) => ref.read(narrationProvider.notifier).toggle(),
             ),
+            const _NarrationAvailabilityNotice(),
             SwitchListTile(
               contentPadding: EdgeInsets.zero,
               value: ref.watch(dyslexiaFriendlyProvider),
@@ -772,6 +915,10 @@ class ParentDashboardScreen extends ConsumerWidget {
                 // On Windows/macOS/Linux also write a file parents can open.
                 final path = await writeFamilyExportFile(bundle);
                 ref.read(analyticsProvider).log(AnalyticsEvents.exportData);
+                ref.read(analyticsProvider).log(AnalyticsEvents.backupExport, {
+                  'children': children.length,
+                  'toFile': path != null,
+                });
                 if (!context.mounted) return;
                 final msg = path == null
                     ? l10n.exportDataCopied
@@ -780,6 +927,13 @@ class ParentDashboardScreen extends ConsumerWidget {
                   SnackBar(content: Text(msg)),
                 );
               },
+            ),
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: const Icon(Icons.upload_outlined),
+              title: Text(l10n.restoreBackup),
+              subtitle: Text(l10n.restoreBackupBody),
+              onTap: () => _restoreBackupFlow(context, ref, store),
             ),
             for (final child in children)
               ListTile(

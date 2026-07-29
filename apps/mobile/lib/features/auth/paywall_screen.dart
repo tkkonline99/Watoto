@@ -21,6 +21,14 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
   bool _busy = false;
   String? _message;
 
+  @override
+  void initState() {
+    super.initState();
+    // The view half of the purchase funnel; without it the attempt/success
+    // events have no denominator.
+    ref.read(analyticsProvider).log(AnalyticsEvents.paywallView);
+  }
+
   Future<void> _buy(String productId) async {
     setState(() {
       _busy = true;

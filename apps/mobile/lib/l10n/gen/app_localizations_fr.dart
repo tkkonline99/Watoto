@@ -1014,4 +1014,54 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get certificateSaveFailed => 'Impossible d\'enregistrer le certificat';
+
+  @override
+  String get recapTitle => 'Qu\'avons-nous appris ?';
+
+  @override
+  String recapProgress(int current, int total) {
+    return 'Question $current sur $total';
+  }
+
+  @override
+  String get restoreBackup => 'Restaurer depuis une sauvegarde';
+
+  @override
+  String get restoreBackupBody =>
+      'Récupérer la progression après une réinstallation ou sur un nouvel appareil';
+
+  @override
+  String get restoreBackupPaste =>
+      'Collez le texte de sauvegarde que vous avez enregistré';
+
+  @override
+  String get restoreBackupAction => 'Restaurer';
+
+  @override
+  String restoreBackupDone(int children, int items) {
+    return '$children profil(s) et $items activités restaurés';
+  }
+
+  @override
+  String get restoreBackupNothing =>
+      'Rien de nouveau à restaurer — cet appareil est déjà à jour';
+
+  @override
+  String get restoreBackupInvalid =>
+      'Ceci ne ressemble pas à une sauvegarde Watoto';
+
+  @override
+  String get backupReminderTitle => 'Gardez une sauvegarde';
+
+  @override
+  String get backupReminderBody =>
+      'La progression n\'existe que sur cet appareil. Exportez une sauvegarde pour ne pas la perdre si le téléphone est perdu ou réinitialisé.';
+
+  @override
+  String get narrationUnavailableTitle => 'Voix indisponible';
+
+  @override
+  String narrationUnavailableBody(String language) {
+    return 'Cet appareil n\'a pas de voix installée pour $language. Les sous-titres affichent toujours chaque mot. Pour ajouter une voix, ouvrez les paramètres de votre appareil et installez la synthèse vocale $language.';
+  }
 }

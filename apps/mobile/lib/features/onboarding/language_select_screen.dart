@@ -307,6 +307,19 @@ class _LanguageCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Read as-is, this card announces an animal emoji, a country code and a
+    // decorative check before the language name. State (chosen or not) was not
+    // conveyed at all — the only cue was a green fill.
+    return Semantics(
+      button: true,
+      inMutuallyExclusiveGroup: true,
+      selected: selected,
+      label: '${lang.name}. ${lang.greeting}',
+      child: ExcludeSemantics(child: _card()),
+    );
+  }
+
+  Widget _card() {
     return _Pressable(
       onTap: onTap,
       child: AnimatedScale(
@@ -473,6 +486,17 @@ class _LetsGoButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // The label carries a rocket emoji; strip it so the button is announced as
+    // an action rather than "Let's go rocket".
+    return Semantics(
+      button: true,
+      label: label.replaceAll(RegExp(r'[^\p{L}\p{N}\s!?.,\x27-]', unicode: true), '')
+          .trim(),
+      child: ExcludeSemantics(child: _pill()),
+    );
+  }
+
+  Widget _pill() {
     return _Pressable(
       onTap: onTap,
       hoverScale: 1.04,

@@ -43,14 +43,47 @@ class FamilyBackup {
 }
 
 /// Builds a parent-facing backup from the offline store.
+///
+/// The payload is [OfflineStore.exportBackupBundle] — the raw, restorable box
+/// contents — not [OfflineStore.exportFamilyData]. Those are different jobs:
+/// the family export is a readable "download my data" answer that flattens
+/// progress into summaries, which is exactly what a restore cannot use. This
+/// used to carry the readable one, so "backup for reinstall handoff" produced
+/// a file no code could read back.
 FamilyBackup buildFamilyBackup(OfflineStore store, {String? email}) {
-  final data = store.exportFamilyData();
   final hint = email ?? store.accountEmail ?? 'local-device';
   return FamilyBackup(
     exportedAt: DateTime.now().toUtc(),
-    payload: data,
+    payload: store.exportBackupBundle(),
     recoveryHint: hint,
   );
+}
+
+/// Restores a [FamilyBackup] produced by [buildFamilyBackup].
+///
+/// Accepts either the wrapped backup envelope or a bare bundle, because a
+/// parent pasting from a text file will not reliably keep the wrapper.
+Future<BackupRestoreResult> restoreFamilyBackup(
+  OfflineStore store,
+  String raw, {
+  bool overwrite = false,
+}) async {
+  // The export writes "<backup>\n---\n<readable json>"; take the first half.
+  final head = raw.split('\n---\n').first.trim();
+  final Object? decoded;
+  try {
+    decoded = jsonDecode(head);
+  } on FormatException {
+    throw const FormatException('That does not look like a Watoto backup.');
+  }
+  if (decoded is! Map) {
+    throw const FormatException('That does not look like a Watoto backup.');
+  }
+  final map = decoded.cast<String, dynamic>();
+  final payload = map['payload'] is Map
+      ? (map['payload'] as Map).cast<String, dynamic>()
+      : map;
+  return store.restoreBackupBundle(payload, overwrite: overwrite);
 }
 
 /// Maps pending offline sync ops into a cloud-shaped batch (for future

@@ -296,5 +296,16 @@
   "certificateCopied": "Cheti kimenakiliwa",
   "certificateSaveFailed": "Imeshindwa kuhifadhi cheti",
   "recapTitle": "Tumejifunza nini?",
-  "recapProgress": "Swali {current} kati ya {total}"
+  "recapProgress": "Swali {current} kati ya {total}",
+  "restoreBackup": "Rejesha kutoka nakala rudufu",
+  "restoreBackupBody": "Rudisha maendeleo baada ya kusakinisha upya au kwenye kifaa kipya",
+  "restoreBackupPaste": "Bandika maandishi ya nakala rudufu uliyohifadhi",
+  "restoreBackupAction": "Rejesha",
+  "restoreBackupDone": "Zimerejeshwa wasifu {children} na shughuli {items}",
+  "restoreBackupNothing": "Hakuna kipya cha kurejesha — kifaa hiki tayari kina taarifa mpya",
+  "restoreBackupInvalid": "Hii haionekani kuwa nakala rudufu ya Watoto",
+  "backupReminderTitle": "Weka nakala rudufu",
+  "backupReminderBody": "Maendeleo yapo kwenye kifaa hiki pekee. Hifadhi nakala rudufu ili simu ikipotea au ikifutwa usipoteze.",
+  "narrationUnavailableTitle": "Sauti haipatikani",
+  "narrationUnavailableBody": "Kifaa hiki hakina sauti iliyosakinishwa kwa {language}. Manukuu bado yanaonyesha kila neno. Ili kuongeza sauti, fungua mipangilio ya kifaa chako na usakinishe sauti ya {language}."
 }

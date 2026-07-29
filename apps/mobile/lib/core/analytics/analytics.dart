@@ -8,6 +8,8 @@
 /// Analytics only emit when the parent has opted in (see OfflineStore).
 library;
 
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -34,6 +36,42 @@ abstract final class AnalyticsEvents {
   static const questComplete = 'quest_complete';
   static const badgeUnlock = 'badge_unlock';
   static const levelUp = 'level_up';
+  static const appOpen = 'app_open';
+  static const activityStart = 'activity_start';
+  static const activityAbandon = 'activity_abandon';
+  static const backupExport = 'backup_export';
+  static const backupRestore = 'backup_restore';
+  static const narrationUnavailable = 'narration_unavailable';
+
+  /// Every event this build can emit. Used by the coverage test that keeps
+  /// declared events and real call sites from drifting apart again.
+  static const all = <String>[
+    onboardingComplete,
+    lessonComplete,
+    quizComplete,
+    storyComplete,
+    dailyChallengeComplete,
+    paywallView,
+    purchaseAttempt,
+    purchaseSuccess,
+    parentUnlock,
+    screenTimeLimitHit,
+    syncFlush,
+    exportData,
+    playNowTap,
+    nicknameChange,
+    passwordResetRequest,
+    pinReset,
+    questComplete,
+    badgeUnlock,
+    levelUp,
+    appOpen,
+    activityStart,
+    activityAbandon,
+    backupExport,
+    backupRestore,
+    narrationUnavailable,
+  ];
 }
 
 /// Coarse, non-PII parameters only (stage ints, content type names, booleans).
@@ -82,10 +120,51 @@ class DebugAnalyticsBackend implements AnalyticsBackend {
   }
 }
 
+/// Durable sink: appends to the local diagnostics log in the offline store.
+///
+/// This build ships no third-party analytics SDK, so without a persistent sink
+/// a release build recorded **nothing at all** — the in-memory list died with
+/// the process. Writing to the store means the parent can see what was
+/// recorded, support bundles carry it, and the funnel exists on day one. When
+/// Firebase Analytics is wired later, compose the two rather than replacing:
+/// `MultiAnalyticsBackend([StoreAnalyticsBackend(...), FirebaseBackend()])`.
+class StoreAnalyticsBackend implements AnalyticsBackend {
+  StoreAnalyticsBackend(this._append);
+
+  final Future<void> Function(String, Map<String, Object?>) _append;
+
+  @override
+  void log(String name, Map<String, Object?> params) {
+    // Fire-and-forget: telemetry must never block or fail a learning write.
+    unawaited(Future(() => _append(name, params)).catchError((_) {}));
+  }
+}
+
+/// Fans one event out to several sinks; a throwing sink never blocks the rest.
+class MultiAnalyticsBackend implements AnalyticsBackend {
+  MultiAnalyticsBackend(this.sinks);
+
+  final List<AnalyticsBackend> sinks;
+
+  @override
+  void log(String name, Map<String, Object?> params) {
+    for (final s in sinks) {
+      try {
+        s.log(name, params);
+      } on Object {
+        // One bad sink must not cost the others their event.
+      }
+    }
+  }
+}
+
 final analyticsProvider = Provider<AnalyticsService>((ref) {
   final store = ref.watch(offlineStoreProvider);
   return AnalyticsService(
     isOptedIn: () => store.analyticsOptIn,
-    backend: kDebugMode ? DebugAnalyticsBackend() : null,
+    backend: MultiAnalyticsBackend([
+      StoreAnalyticsBackend(store.appendAnalyticsEvent),
+      if (kDebugMode) DebugAnalyticsBackend(),
+    ]),
   );
 });

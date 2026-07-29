@@ -40,6 +40,7 @@ class ProfilePickerScreen extends ConsumerWidget {
               _ProfileTile(
                 emoji: child.emoji,
                 label: child.nickname,
+                semanticLabel: '${child.nickname}. ${l10n.whoIsLearning}',
                 onTap: () async {
                   await ref.read(sessionProvider.notifier).selectChild(child.id);
                   if (context.mounted) context.go('/');
@@ -48,6 +49,7 @@ class ProfilePickerScreen extends ConsumerWidget {
             _ProfileTile(
               emoji: '➕',
               label: l10n.addChild,
+              semanticLabel: l10n.addChild,
               onTap: () => context.go('/profiles/add'),
             ),
           ],
@@ -58,27 +60,44 @@ class ProfilePickerScreen extends ConsumerWidget {
 }
 
 class _ProfileTile extends StatelessWidget {
-  const _ProfileTile({required this.emoji, required this.label, required this.onTap});
+  const _ProfileTile({
+    required this.emoji,
+    required this.label,
+    required this.onTap,
+    required this.semanticLabel,
+  });
 
   final String emoji;
   final String label;
   final VoidCallback onTap;
 
+  /// Spoken instead of the tile's contents. Read verbatim, a tile announces
+  /// the avatar emoji by its Unicode name ("lion face") before the child's
+  /// name, which is noise; the label says what the button does.
+  final String semanticLabel;
+
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(24),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(emoji, style: const TextStyle(fontSize: 64)),
-            const SizedBox(height: 8),
-            Text(label,
-                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w800)),
-          ],
+    return Semantics(
+      button: true,
+      label: semanticLabel,
+      child: ExcludeSemantics(
+        child: Card(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+          child: InkWell(
+            onTap: onTap,
+            borderRadius: BorderRadius.circular(24),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(emoji, style: const TextStyle(fontSize: 64)),
+                const SizedBox(height: 8),
+                Text(label,
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.w800)),
+              ],
+            ),
+          ),
         ),
       ),
     );

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
+import '../analytics/analytics.dart';
 import '../offline/offline_providers.dart';
 
 /// Spoken narration for audio-first bands. Wraps [FlutterTts] with:
@@ -17,10 +18,32 @@ class NarrationController extends Notifier<bool> {
   String? _langReady;
   final Map<String, Map<String, String>> _preferredVoice = {};
 
+  /// Resolved engine locale per app language, or null when this device has no
+  /// voice for it. Populated on first speak; `containsKey` distinguishes
+  /// "not probed yet" from "probed, nothing there".
+  final Map<String, String?> _resolvedLocale = {};
+
+  /// Languages we have already reported as unavailable, so the parent notice
+  /// and the analytics event fire once per session rather than per sentence.
+  final Set<String> _reportedMissing = {};
+
   @override
   bool build() => ref.watch(offlineStoreProvider).narrationEnabled;
 
   static const _locale = {'en': 'en-US', 'sw': 'sw-KE', 'fr': 'fr-FR'};
+
+  /// Locales to try, best first, before giving up on a language.
+  ///
+  /// The old code set `sw-KE` and assumed it worked. Almost no Android device
+  /// and no iOS device ships a Swahili voice, so on a real phone the engine
+  /// either refused the call or kept the previous (English) voice and read
+  /// Swahili sentences with English phonetics. Both outcomes were invisible
+  /// from the code — nothing checked, nothing reported.
+  static const localeChain = <String, List<String>>{
+    'en': ['en-US', 'en-GB', 'en-KE', 'en-ZA', 'en'],
+    'sw': ['sw-KE', 'sw-TZ', 'sw'],
+    'fr': ['fr-FR', 'fr-CA', 'fr-BE', 'fr'],
+  };
 
   /// Slightly different pacing per language (research: FR/SW benefit from
   /// a touch slower for clarity on stock engines).
@@ -56,10 +79,77 @@ class NarrationController extends Notifier<bool> {
     return tts;
   }
 
+  /// Picks the engine locale to use for [langCode] given what the device
+  /// actually offers, or null when nothing matches.
+  ///
+  /// Pure and separately tested: matching is the part that was wrong, and it
+  /// should not need a TTS engine to verify.
+  ///
+  /// [available] is whatever the engine reports — tags vary wildly in case and
+  /// separator (`sw_KE`, `sw-ke`, `swa`), so comparison is normalised and a
+  /// bare-language match counts.
+  static String? resolveLocale(String langCode, Iterable<String> available) {
+    String norm(String s) => s.toLowerCase().replaceAll('_', '-').trim();
+    final have = available.map(norm).toSet();
+    if (have.isEmpty) return null;
+
+    final chain = localeChain[langCode] ?? [_locale[langCode] ?? langCode];
+    // Exact match on the preferred chain first.
+    for (final tag in chain) {
+      if (have.contains(norm(tag))) return tag;
+    }
+    // Then any locale of the right language ("sw-UG" we did not think to list).
+    final prefix = '${norm(langCode)}-';
+    for (final tag in have) {
+      if (tag == norm(langCode) || tag.startsWith(prefix)) return tag;
+    }
+    return null;
+  }
+
+  /// Engine locales this device reports, normalised. Empty when the engine is
+  /// missing or refuses to enumerate (tests, some desktop shells).
+  Future<List<String>> _deviceLocales(FlutterTts tts) async {
+    try {
+      final raw = await tts.getLanguages;
+      if (raw is List) return [for (final l in raw) '$l'];
+    } catch (_) {
+      // Enumeration unsupported.
+    }
+    return const [];
+  }
+
+  /// Whether this device can speak [langCode] at all. Cached after the first
+  /// probe; null result means "no voice installed for this language".
+  Future<String?> resolvedLocaleFor(String langCode) async {
+    if (_resolvedLocale.containsKey(langCode)) return _resolvedLocale[langCode];
+    String? resolved;
+    try {
+      final tts = await _engine();
+      final locales = await _deviceLocales(tts);
+      if (locales.isEmpty) {
+        // Engine cannot enumerate. Trust the preferred tag rather than going
+        // silent on a device that may well be fine.
+        resolved = _locale[langCode] ?? 'en-US';
+      } else {
+        resolved = resolveLocale(langCode, locales);
+      }
+    } catch (_) {
+      resolved = null;
+    }
+    _resolvedLocale[langCode] = resolved;
+    return resolved;
+  }
+
+  /// True once we know this device has no voice for [langCode]. Drives the
+  /// parent-facing notice; captions carry the lesson either way.
+  bool isKnownUnavailable(String langCode) =>
+      _resolvedLocale.containsKey(langCode) && _resolvedLocale[langCode] == null;
+
   /// Picks the most "natural" available voice for [localeTag].
   /// Prefers names containing neural / natural / premium / enhanced / google.
   Future<void> _ensureVoice(FlutterTts tts, String langCode) async {
-    final localeTag = _locale[langCode] ?? 'en-US';
+    final localeTag =
+        _resolvedLocale[langCode] ?? _locale[langCode] ?? 'en-US';
     if (_langReady == localeTag && _preferredVoice.containsKey(langCode)) {
       try {
         await tts.setVoice(_preferredVoice[langCode]!);
@@ -383,6 +473,15 @@ class NarrationController extends Notifier<bool> {
   }) async {
     if (!state || text.trim().isEmpty) return;
     try {
+      final resolved = await resolvedLocaleFor(langCode);
+      if (resolved == null) {
+        // No voice for this language on this device. Speaking the text with
+        // whatever voice happens to be loaded reads Swahili with English
+        // phonetics — worse than silence, and it hides the problem. Captions
+        // already carry every word.
+        _reportMissingVoice(langCode);
+        return;
+      }
       final tts = await _engine();
       await tts.stop();
       await _ensureVoice(tts, langCode);
@@ -416,6 +515,22 @@ class NarrationController extends Notifier<bool> {
       // No TTS engine available (desktop/test) — degrade to silent captions.
     }
   }
+
+  /// Records a missing voice once per language per session.
+  void _reportMissingVoice(String langCode) {
+    if (!_reportedMissing.add(langCode)) return;
+    // A silent audio-first band is a product emergency, not a detail — this is
+    // the event that tells us how many families are affected.
+    ref.read(analyticsProvider).log(AnalyticsEvents.narrationUnavailable, {
+      'language': langCode,
+    });
+  }
+
+  /// Languages found to have no voice on this device, for the Parent Zone.
+  Set<String> get unavailableLanguages => {
+        for (final e in _resolvedLocale.entries)
+          if (e.value == null) e.key,
+      };
 
   Future<void> stop() async {
     try {

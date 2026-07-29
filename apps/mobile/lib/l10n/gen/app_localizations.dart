@@ -1869,6 +1869,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Could not save the certificate'**
   String get certificateSaveFailed;
+
+  /// No description provided for @recapTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What did we learn?'**
+  String get recapTitle;
+
+  /// No description provided for @recapProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Question {current} of {total}'**
+  String recapProgress(int current, int total);
+
+  /// No description provided for @restoreBackup.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore from a backup'**
+  String get restoreBackup;
+
+  /// No description provided for @restoreBackupBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Bring progress back after a reinstall or on a new device'**
+  String get restoreBackupBody;
+
+  /// No description provided for @restoreBackupPaste.
+  ///
+  /// In en, this message translates to:
+  /// **'Paste the backup text you saved'**
+  String get restoreBackupPaste;
+
+  /// No description provided for @restoreBackupAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore'**
+  String get restoreBackupAction;
+
+  /// No description provided for @restoreBackupDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Restored {children} profile(s) and {items} activities'**
+  String restoreBackupDone(int children, int items);
+
+  /// No description provided for @restoreBackupNothing.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing new to restore — this device is already up to date'**
+  String get restoreBackupNothing;
+
+  /// No description provided for @restoreBackupInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'That does not look like a Watoto backup'**
+  String get restoreBackupInvalid;
+
+  /// No description provided for @backupReminderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep a backup'**
+  String get backupReminderTitle;
+
+  /// No description provided for @backupReminderBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress lives on this device only. Export a backup so a lost or reset phone does not lose it.'**
+  String get backupReminderBody;
+
+  /// No description provided for @narrationUnavailableTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Voice not available'**
+  String get narrationUnavailableTitle;
+
+  /// No description provided for @narrationUnavailableBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This device has no installed voice for {language}. Captions still show every word. To add a voice, open your device settings and install {language} text-to-speech.'**
+  String narrationUnavailableBody(String language);
 }
 
 class _AppLocalizationsDelegate

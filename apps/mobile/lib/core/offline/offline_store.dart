@@ -833,7 +833,7 @@ class OfflineStore {
   /// Progress rows are keyed by item id only, so "have they been here before?"
   /// is not answerable from them — this keeps a small explicit set instead.
   Set<String> completedSubjects(String childId) {
-    final raw = _account.get('subjects:$childId') as String?;
+    final raw = _account.get('subjects:$childId');
     if (raw == null || raw.isEmpty) return const {};
     return raw.split('\n').where((s) => s.isNotEmpty).toSet();
   }
@@ -1176,6 +1176,193 @@ class OfflineStore {
     };
   }
 
+  // ---------------------------------------------------------- diagnostics
+
+  /// Rolling on-device log of product events and non-fatal errors.
+  ///
+  /// The app ships without a third-party analytics SDK, so this box *is* the
+  /// telemetry: it survives restarts, the parent can read it, and it rides
+  /// along in the support bundle. Capped so it can never grow unbounded.
+  static const diagnosticsCap = 200;
+
+  List<Map<String, dynamic>> _diagList(String key) {
+    final raw = _account.get(key);
+    if (raw == null || raw.isEmpty) return const [];
+    try {
+      return (jsonDecode(raw) as List)
+          .map((e) => (e as Map).cast<String, dynamic>())
+          .toList();
+    } on FormatException {
+      return const [];
+    }
+  }
+
+  Future<void> _appendDiag(String key, Map<String, dynamic> entry) async {
+    final list = [..._diagList(key), entry];
+    if (list.length > diagnosticsCap) {
+      list.removeRange(0, list.length - diagnosticsCap);
+    }
+    await _account.put(key, jsonEncode(list));
+  }
+
+  /// Product events recorded since install (newest last).
+  List<Map<String, dynamic>> get analyticsLog => _diagList('analyticsLog');
+
+  Future<void> appendAnalyticsEvent(
+    String name,
+    Map<String, Object?> params, {
+    DateTime? at,
+  }) =>
+      _appendDiag('analyticsLog', {
+        'name': name,
+        'params': params,
+        'at': (at ?? DateTime.now().toUtc()).toIso8601String(),
+      });
+
+  /// Non-fatal / fatal errors recorded on this device (newest last).
+  List<Map<String, dynamic>> get crashLog => _diagList('crashLog');
+
+  Future<void> appendCrashEvent({
+    required String error,
+    String? stack,
+    bool fatal = false,
+    DateTime? at,
+  }) =>
+      _appendDiag('crashLog', {
+        // Truncated: a stack trace is diagnostic, not an archive.
+        'error': error.length > 400 ? error.substring(0, 400) : error,
+        if (stack != null)
+          'stack': stack.length > 2000 ? stack.substring(0, 2000) : stack,
+        'fatal': fatal,
+        'at': (at ?? DateTime.now().toUtc()).toIso8601String(),
+      });
+
+  Future<void> clearDiagnostics() async {
+    await _account.delete('analyticsLog');
+    await _account.delete('crashLog');
+  }
+
+  // ------------------------------------------------------- backup / restore
+
+  /// Bump when the key layout changes in a way older bundles cannot satisfy.
+  static const backupFormatVersion = 1;
+
+  /// Keys deliberately excluded from a backup file.
+  ///
+  /// A backup lands in Downloads, a chat thread, a cloud drive. Credentials and
+  /// reset tokens must not travel with it, and session/device identity must not
+  /// be cloned onto a second device.
+  static const _backupExcludedKeys = {
+    'pinHash',
+    'pinSalt',
+    'pinFailCount',
+    'pinLockedUntil',
+    'accountHash',
+    'accountSalt',
+    'pwResetHash',
+    'pwResetSalt',
+    'pwResetExp',
+    'pwResetEmail',
+    'loggedIn',
+    'deviceId',
+    'analyticsLog',
+    'crashLog',
+  };
+
+  /// A **restorable** snapshot of this device's learning data.
+  ///
+  /// [exportFamilyData] is the human-readable "download my data" answer and
+  /// deliberately flattens things; it cannot rebuild a device. This keeps the
+  /// raw box contents so a reinstall or a replacement phone can be brought
+  /// back to where the child left off — the closest thing to cloud backup an
+  /// offline build can offer.
+  Map<String, dynamic> exportBackupBundle() {
+    final account = <String, String>{};
+    for (final k in _account.keys) {
+      final key = k as String;
+      if (_backupExcludedKeys.contains(key)) continue;
+      final v = _account.get(key);
+      if (v != null) account[key] = v;
+    }
+    final progress = <String, String>{};
+    for (final k in _progress.keys) {
+      final v = _progress.get(k as String);
+      if (v != null) progress[k] = v;
+    }
+    final stats = <String, int>{};
+    for (final k in _stats.keys) {
+      final v = _stats.get(k as String);
+      if (v != null) stats[k] = v;
+    }
+    return {
+      'format': 'watoto.backup',
+      'version': backupFormatVersion,
+      'createdAt': DateTime.now().toUtc().toIso8601String(),
+      'childCount': children.length,
+      'account': account,
+      'progress': progress,
+      'stats': stats,
+    };
+  }
+
+  /// Restores a bundle produced by [exportBackupBundle].
+  ///
+  /// Merge semantics, not replace: existing keys are kept unless
+  /// [overwrite] is set, and XP/coin counters take the **higher** of the two
+  /// values. Restoring a stale backup should never cost a child progress they
+  /// have already made on this device.
+  ///
+  /// Throws [FormatException] on anything that is not a Watoto backup, so a
+  /// parent who picks the wrong file gets told rather than silently nothing.
+  Future<BackupRestoreResult> restoreBackupBundle(
+    Map<String, dynamic> bundle, {
+    bool overwrite = false,
+  }) async {
+    if (bundle['format'] != 'watoto.backup') {
+      throw const FormatException('Not a Watoto backup file.');
+    }
+    final version = (bundle['version'] as num?)?.toInt() ?? 0;
+    if (version > backupFormatVersion) {
+      throw const FormatException(
+        'This backup was made by a newer version of Watoto. Update the app first.',
+      );
+    }
+    final account = (bundle['account'] as Map?)?.cast<String, dynamic>() ?? {};
+    final progress = (bundle['progress'] as Map?)?.cast<String, dynamic>() ?? {};
+    final stats = (bundle['stats'] as Map?)?.cast<String, dynamic>() ?? {};
+
+    var childrenRestored = 0;
+    var progressRestored = 0;
+
+    for (final e in account.entries) {
+      if (_backupExcludedKeys.contains(e.key)) continue;
+      final value = e.value;
+      if (value is! String) continue;
+      final exists = _account.get(e.key) != null;
+      if (exists && !overwrite) continue;
+      await _account.put(e.key, value);
+      if (e.key.startsWith('child:')) childrenRestored++;
+    }
+    for (final e in progress.entries) {
+      final value = e.value;
+      if (value is! String) continue;
+      if (_progress.get(e.key) != null && !overwrite) continue;
+      await _progress.put(e.key, value);
+      progressRestored++;
+    }
+    // Counters merge by max so a restore never subtracts.
+    for (final e in stats.entries) {
+      final value = (e.value as num?)?.toInt();
+      if (value == null) continue;
+      final current = _stats.get(e.key) ?? 0;
+      await _stats.put(e.key, value > current ? value : current);
+    }
+    return BackupRestoreResult(
+      childrenRestored: childrenRestored,
+      progressRestored: progressRestored,
+    );
+  }
+
   /// Soft-delete a child profile and all per-child learning keys on device.
   Future<void> deleteChild(String childId) async {
     await _account.delete('child:$childId');
@@ -1250,4 +1437,18 @@ class OfflineStore {
     await _stats.close();
     await _account.close();
   }
+}
+
+/// What a [OfflineStore.restoreBackupBundle] call actually put back, so the
+/// parent screen can say "2 children, 47 activities" instead of "done".
+class BackupRestoreResult {
+  const BackupRestoreResult({
+    required this.childrenRestored,
+    required this.progressRestored,
+  });
+
+  final int childrenRestored;
+  final int progressRestored;
+
+  bool get isEmpty => childrenRestored == 0 && progressRestored == 0;
 }

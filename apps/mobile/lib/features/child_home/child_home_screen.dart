@@ -4,6 +4,7 @@ import 'package:flutter/material.dart' hide Badge;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/analytics/analytics.dart';
 import '../../core/audio/narration.dart';
 import '../../core/offline/offline_providers.dart';
 import '../../core/offline/offline_store.dart';
@@ -1032,7 +1033,15 @@ class _ContinueLearningCard extends ConsumerWidget {
         borderRadius: BorderRadius.circular(20),
         child: InkWell(
           borderRadius: BorderRadius.circular(20),
-          onTap: () => context.push('/play/${target.itemId}'),
+          onTap: () {
+            // Which recommendation reason actually gets tapped is the signal
+            // that tells us whether the adaptive engine is helping.
+            ref.read(analyticsProvider).log(AnalyticsEvents.playNowTap, {
+              'reason': target.reason.name,
+              'stage': target.item.stage,
+            });
+            context.push('/play/${target.itemId}');
+          },
           child: ExcludeSemantics(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),

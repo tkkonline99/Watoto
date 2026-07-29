@@ -523,5 +523,27 @@
       "current": { "type": "int" },
       "total": { "type": "int" }
     }
+  },
+  "restoreBackup": "Restore from a backup",
+  "restoreBackupBody": "Bring progress back after a reinstall or on a new device",
+  "restoreBackupPaste": "Paste the backup text you saved",
+  "restoreBackupAction": "Restore",
+  "restoreBackupDone": "Restored {children} profile(s) and {items} activities",
+  "@restoreBackupDone": {
+    "placeholders": {
+      "children": { "type": "int" },
+      "items": { "type": "int" }
+    }
+  },
+  "restoreBackupNothing": "Nothing new to restore — this device is already up to date",
+  "restoreBackupInvalid": "That does not look like a Watoto backup",
+  "backupReminderTitle": "Keep a backup",
+  "backupReminderBody": "Progress lives on this device only. Export a backup so a lost or reset phone does not lose it.",
+  "narrationUnavailableTitle": "Voice not available",
+  "narrationUnavailableBody": "This device has no installed voice for {language}. Captions still show every word. To add a voice, open your device settings and install {language} text-to-speech.",
+  "@narrationUnavailableBody": {
+    "placeholders": {
+      "language": { "type": "String" }
+    }
   }
 }
