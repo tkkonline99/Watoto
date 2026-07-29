@@ -77,6 +77,19 @@ class LocalizedItem {
     ];
   }
 
+  /// An authored recap question, translated.
+  String recapPrompt(int i) => _t('recap.$i.prompt', item.recap[i].prompt);
+
+  /// Recap options, each on its own key so the order — and therefore the
+  /// authored answer index — is identical in every language.
+  List<String> recapOptions(int i) {
+    final english = item.recap[i].options;
+    return [
+      for (var o = 0; o < english.length; o++)
+        _t('recap.$i.options.$o', english[o]),
+    ];
+  }
+
   String questionPrompt(int i) => _t('questions.$i.prompt', item.questions[i].prompt);
   String questionCorrect(int i) =>
       _t('questions.$i.correctFeedback', item.questions[i].correctFeedback);

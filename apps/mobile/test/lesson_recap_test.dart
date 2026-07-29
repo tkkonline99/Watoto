@@ -2,8 +2,11 @@ library;
 
 /// The end-of-lesson recap. Coverage against the real content library matters
 /// as much as the logic: a recap that almost never appears is not a feature.
+import 'dart:convert';
+
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:watoto_mobile/features/library/content_i18n.dart';
 import 'package:watoto_mobile/features/library/lesson_recap.dart';
 import 'package:watoto_mobile/features/library/library_models.dart';
 import 'package:watoto_mobile/features/library/library_repository.dart';
@@ -165,6 +168,123 @@ void main() {
       expect(recapScorePct(correct: 0, total: 3), 0);
       // No questions asked is not a failure.
       expect(recapScorePct(correct: 0, total: 0), 100);
+    });
+  });
+
+  group('translations', () {
+    test('every authored recap is translated into Swahili and French',
+        () async {
+      final raw = await rootBundle
+          .loadString('assets/content/watoto_content_library.json');
+      final items = parseLibraryItems(raw);
+      final i18n = await ContentI18n.load();
+
+      // Assert the key is *present*, not that the text differs from English:
+      // "10 - 4 = ?" is correctly identical in all three languages, and a
+      // string comparison would flag every arithmetic prompt as untranslated.
+      final bundles = <String, Map<String, dynamic>>{};
+      for (final lang in ['sw', 'fr']) {
+        bundles[lang] = jsonDecode(
+          await rootBundle.loadString('assets/i18n/$lang.json'),
+        ) as Map<String, dynamic>;
+      }
+
+      final missing = <String>[];
+      for (final item in items) {
+        if (item.recap.isEmpty) continue;
+        for (var i = 0; i < item.recap.length; i++) {
+          final english = item.recap[i];
+          for (final lang in ['sw', 'fr']) {
+            final promptKey = '${item.id}.recap.$i.prompt';
+            if (!bundles[lang]!.containsKey(promptKey)) {
+              missing.add('$lang $promptKey');
+            }
+            for (var o = 0; o < english.options.length; o++) {
+              final optKey = '${item.id}.recap.$i.options.$o';
+              if (!bundles[lang]!.containsKey(optKey)) {
+                missing.add('$lang $optKey');
+              }
+            }
+            // The option count must survive translation, or the authored
+            // answer index stops pointing at the answer.
+            expect(
+              LocalizedItem(item, i18n, lang).recapOptions(i).length,
+              english.options.length,
+              reason: '$lang ${item.id}.recap.$i option count must match',
+            );
+          }
+        }
+      }
+      expect(missing, isEmpty, reason: 'untranslated recap strings');
+    });
+
+    test('an untranslated language falls back rather than breaking', () {
+      // Partial bundles must stay safe: a language with no recap keys shows
+      // the English source rather than an empty question.
+      final item = LibraryItem(
+        id: 'test.fallback',
+        stage: 6,
+        ages: '6-7',
+        subject: 'Math',
+        type: LibraryType.lesson,
+        title: 'T',
+        objective: '',
+        designTier: '',
+        reading: true,
+        interaction: 'tap',
+        recap: const [
+          RecapItem(prompt: 'How many?', options: ['1', '2'], answer: 0),
+        ],
+      );
+      final loc = LocalizedItem(item, ContentI18n(const {}), 'sw');
+      expect(loc.recapPrompt(0), 'How many?');
+      expect(loc.recapOptions(0), ['1', '2']);
+    });
+
+    test('derived recaps are withheld outside English', () {
+      // They are extracted from English prose, so a Swahili-speaking child
+      // would meet a wall of English right after a Swahili lesson.
+      final item = _lesson(
+        steps: const [
+          LessonStep(
+            narration: 'Two groups of four.',
+            action: 'tap',
+            feedback: '2 x 4 = 8.',
+          ),
+          LessonStep(
+            narration: 'Three groups of four.',
+            action: 'tap',
+            feedback: '3 x 4 = 12.',
+          ),
+        ],
+      );
+      expect(buildLessonRecap(item, lang: 'en'), isNotEmpty);
+      expect(buildLessonRecap(item, lang: 'sw'), isEmpty);
+      expect(buildLessonRecap(item, lang: 'fr'), isEmpty);
+    });
+
+    test('authored recaps are offered in every language', () {
+      final item = LibraryItem(
+        id: 'test.authored',
+        stage: 6,
+        ages: '6-7',
+        subject: 'Math',
+        type: LibraryType.lesson,
+        title: 'T',
+        objective: '',
+        designTier: '',
+        reading: true,
+        interaction: 'tap',
+        recap: const [
+          RecapItem(prompt: 'A?', options: ['1', '2'], answer: 0),
+          RecapItem(prompt: 'B?', options: ['3', '4'], answer: 1),
+        ],
+      );
+      for (final lang in ['en', 'sw', 'fr']) {
+        final recap = buildLessonRecap(item, lang: lang);
+        expect(recap.length, 2, reason: lang);
+        expect(recap.every((q) => q.isAuthored), isTrue, reason: lang);
+      }
     });
   });
 

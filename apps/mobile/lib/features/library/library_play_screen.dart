@@ -239,8 +239,12 @@ class _LessonViewState extends ConsumerState<_LessonView> {
   int? _shownAnswer; // digit they just got right (for workspace)
 
   /// The end-of-lesson recap, built from this lesson's own content. Empty for
-  /// pre-reader lessons and for lessons that teach no crisp checkable fact.
-  late final List<RecapQuestion> _recap = buildLessonRecap(widget.item);
+  /// pre-reader lessons, for lessons that teach no crisp checkable fact, and —
+  /// outside English — for lessons whose recap is derived rather than authored.
+  late final List<RecapQuestion> _recap = buildLessonRecap(
+    widget.item,
+    lang: ref.read(localeProvider).languageCode,
+  );
 
   /// True while the recap is on screen (after the last step, before the
   /// celebration).
@@ -398,6 +402,7 @@ class _LessonViewState extends ConsumerState<_LessonView> {
     if (_inRecap) {
       return _LessonRecapView(
         title: loc.title,
+        localized: loc,
         questions: _recap,
         onWrong: () => _recapWrong++,
         onFinished: _finishLesson,
@@ -2631,12 +2636,17 @@ class _CelebrationState extends ConsumerState<_Celebration> {
 class _LessonRecapView extends ConsumerStatefulWidget {
   const _LessonRecapView({
     required this.title,
+    required this.localized,
     required this.questions,
     required this.onWrong,
     required this.onFinished,
   });
 
   final String title;
+
+  /// Supplies the translated prompt and options for authored questions.
+  final LocalizedItem localized;
+
   final List<RecapQuestion> questions;
   final VoidCallback onWrong;
   final VoidCallback onFinished;
@@ -2662,11 +2672,25 @@ class _LessonRecapViewState extends ConsumerState<_LessonRecapView> {
     super.dispose();
   }
 
+  /// The question as the child sees it: translated when authored, the English
+  /// extraction otherwise (which only ever reaches an English-speaking child).
+  String _promptFor(int i) {
+    final q = widget.questions[i];
+    final r = q.recapIndex;
+    return r == null ? q.prompt : widget.localized.recapPrompt(r);
+  }
+
+  List<String> _optionsFor(int i) {
+    final q = widget.questions[i];
+    final r = q.recapIndex;
+    return r == null ? q.options : widget.localized.recapOptions(r);
+  }
+
   void _speak() {
     if (!mounted) return;
     final lang = ref.read(localeProvider).languageCode;
     ref.read(narrationProvider.notifier).speak(
-          widget.questions[_index].prompt,
+          _promptFor(_index),
           lang,
           style: SpeakStyle.hint,
         );
@@ -2738,7 +2762,7 @@ class _LessonRecapViewState extends ConsumerState<_LessonRecapView> {
                   _ProgressDots(count: total, active: _index),
                   const SizedBox(height: 20),
                   Text(
-                    q.prompt,
+                    _promptFor(_index),
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       fontSize: 19,
@@ -2750,7 +2774,7 @@ class _LessonRecapViewState extends ConsumerState<_LessonRecapView> {
                   _ChoiceStage(
                     key: ValueKey('recap-$_index'),
                     plan: ChoicePlan(
-                      [for (final o in q.options) ChoiceOption(o, o)],
+                      [for (final o in _optionsFor(_index)) ChoiceOption(o, o)],
                       q.answerIndex,
                     ),
                     onCompleted: _onCorrect,

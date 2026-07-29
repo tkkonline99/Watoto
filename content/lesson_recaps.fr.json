@@ -1,0 +1,414 @@
+{
+  "_meta": {
+    "language": "fr",
+    "note": "French recap questions. Same ids, same question order, same option order as lesson_recaps.json — the authored answer index must stay valid, so options must never be reordered.",
+    "review": "Machine-authored, NOT yet reviewed by a native speaker."
+  },
+
+  "s05.reading.lesson.01": [
+    {"prompt": "Assemble les sons /c/ /a/ /t/. Quel mot forment-ils ?", "options": ["cat", "cap", "tap"]},
+    {"prompt": "Faire glisser les sons ensemble pour lire un mot, c'est…", "options": ["assembler", "compter"]}
+  ],
+  "s05.math.lesson.01": [
+    {"prompt": "2 pommes et 1 de plus. Combien en tout ?", "options": ["3", "2", "4"]},
+    {"prompt": "Réunir des groupes, c'est…", "options": ["additionner", "partager"]}
+  ],
+  "s05.social.lesson.01": [
+    {"prompt": "Sur une carte, que montre la partie bleue ?", "options": ["L'eau", "La terre", "Le ciel"]},
+    {"prompt": "Sur une carte, que montre la partie verte ?", "options": ["La terre", "L'eau", "Les nuages"]}
+  ],
+  "s06.social.lesson.01": [
+    {"prompt": "Qu'est-ce qu'un drapeau ?", "options": ["Un symbole du pays", "Une sorte de plat"]},
+    {"prompt": "Qu'est-ce qu'un hymne ?", "options": ["Le chant spécial d'un pays", "La carte d'un pays"]}
+  ],
+  "s07.science.lesson.01": [
+    {"prompt": "Qu'est-ce qui vient en premier dans la vie du papillon ?", "options": ["L'œuf", "Le papillon", "La chrysalide"]},
+    {"prompt": "Après la chenille et la chrysalide vient un…", "options": ["papillon", "oiseau"]}
+  ],
+  "s07.social.lesson.01": [
+    {"prompt": "Une immense étendue de terre sur le globe s'appelle un…", "options": ["continent", "pays", "village"]},
+    {"prompt": "Combien y a-t-il d'océans ?", "options": ["Cinq", "Vingt", "Un"]}
+  ],
+  "s08.science.lesson.01": [
+    {"prompt": "D'où vient d'abord l'énergie d'une chaîne alimentaire ?", "options": ["Du soleil", "Du renard", "Du lapin"]},
+    {"prompt": "L'herbe, puis le lapin, puis…", "options": ["le renard", "l'herbe"]}
+  ],
+  "s08.social.lesson.01": [
+    {"prompt": "À quoi servaient les pyramides ?", "options": ["De tombeaux aux pharaons", "D'écoles", "De marchés"]},
+    {"prompt": "Les Égyptiens écrivaient avec des symboles-images appelés…", "options": ["hiéroglyphes", "chiffres"]}
+  ],
+  "s09.writing.lesson.01": [
+    {"prompt": "Quel mot introduit une raison ?", "options": ["parce que", "au lieu de"]},
+    {"prompt": "Dans quel ordre va un paragraphe d'opinion ?", "options": ["Opinion, raisons, conclusion", "Conclusion, raisons, opinion"]}
+  ],
+  "s09.science.lesson.01": [
+    {"prompt": "Pousser ou tirer, c'est une sorte de…", "options": ["force", "couleur"]},
+    {"prompt": "Qu'attirent les aimants ?", "options": ["Certains métaux", "Tout"]}
+  ],
+  "s09.social.lesson.01": [
+    {"prompt": "Quelle branche fait les lois ?", "options": ["Législative", "Judiciaire"]},
+    {"prompt": "Quelle branche décide si les lois sont justes ?", "options": ["Judiciaire", "Législative"]}
+  ],
+  "s09.coding.lesson.01": [
+    {"prompt": "Pour dessiner un carré, combien de fois répètes-tu ?", "options": ["4", "3", "6"]},
+    {"prompt": "Pourquoi les codeurs utilisent-ils une boucle ?", "options": ["Pour répéter sans réécrire", "Pour effacer le code"]}
+  ],
+  "s10.science.lesson.01": [
+    {"prompt": "Qu'est-ce qui allume l'ampoule ?", "options": ["Une boucle complète", "Un fil coupé"]},
+    {"prompt": "Que se passe-t-il si tu coupes le fil ?", "options": ["La lumière s'éteint", "La lumière brille plus fort"]}
+  ],
+  "s10.social.lesson.01": [
+    {"prompt": "Quelles lignes vont d'un côté à l'autre sur une carte ?", "options": ["La latitude", "La longitude"]},
+    {"prompt": "Comment s'appelle la ligne qui fait le tour du milieu de la Terre ?", "options": ["L'équateur", "Le pôle"]}
+  ],
+
+  "s05.reading.lesson.03": [
+    {"prompt": "Quand tu traces la lettre a, où commences-tu ?", "options": ["En haut", "En bas"]},
+    {"prompt": "Quelle lettre as-tu écrite après le a ?", "options": ["b", "z", "m"]}
+  ],
+  "s05.math.lesson.04": [
+    {"prompt": "4 et 1 font…", "options": ["5", "6", "3"]},
+    {"prompt": "3 et 2 font…", "options": ["5", "4", "7"]}
+  ],
+  "s05.math.lesson.06": [
+    {"prompt": "Quelle était la longueur du crayon à papier ?", "options": ["Quatre cubes", "Dix cubes"]},
+    {"prompt": "Lequel était le plus court ?", "options": ["Le crayon de couleur", "Le crayon à papier"]}
+  ],
+  "s05.science.lesson.03": [
+    {"prompt": "Quelle partie de la plante boit l'eau sous la terre ?", "options": ["Les racines", "La fleur", "La feuille"]},
+    {"prompt": "Lequel est une partie de la plante ?", "options": ["La tige", "La roue"]}
+  ],
+  "s05.science.lesson.04": [
+    {"prompt": "Où vit un oiseau ?", "options": ["Dans un nid", "Dans une toile"]},
+    {"prompt": "Où vit une araignée ?", "options": ["Dans une toile", "Dans une tanière"]}
+  ],
+  "s05.science.lesson.05": [
+    {"prompt": "Lequel éloigne un objet de toi ?", "options": ["Une poussée", "Une traction"]},
+    {"prompt": "Lequel rapproche un objet ?", "options": ["Une traction", "Une poussée"]}
+  ],
+  "s05.social.lesson.02": [
+    {"prompt": "Pourquoi se tient-on la main pour traverser la rue ?", "options": ["Pour rester en sécurité", "Pour aller plus vite"]},
+    {"prompt": "Pourquoi attend-on son tour au toboggan ?", "options": ["Pour être prudents et justes", "Pour gagner"]}
+  ],
+  "s05.social.lesson.04": [
+    {"prompt": "Qui cultive notre nourriture ?", "options": ["Un agriculteur", "Un pilote"]},
+    {"prompt": "À quoi servent les métiers des gens ?", "options": ["À aider les autres", "À n'aider personne"]}
+  ],
+  "s05.social.lesson.05": [
+    {"prompt": "Qu'est-ce que chaque pays possède ?", "options": ["Un drapeau", "Un train"]},
+    {"prompt": "Qu'y a-t-il sur les drapeaux ?", "options": ["Des couleurs et des formes", "Seulement des mots"]}
+  ],
+  "s05.social.lesson.06": [
+    {"prompt": "Autrefois, sur quoi les gens se déplaçaient-ils ?", "options": ["Des chevaux", "Des voitures"]},
+    {"prompt": "Aujourd'hui, dans quoi se déplace-t-on ?", "options": ["Des voitures", "Des chevaux"]}
+  ],
+  "s05.coding.lesson.02": [
+    {"prompt": "Des étapes mises dans le bon ordre forment une…", "options": ["séquence", "énigme"]},
+    {"prompt": "Pour faire une tartine grillée, qu'est-ce qui vient d'abord ?", "options": ["Le pain", "Manger"]}
+  ],
+  "s05.coding.lesson.03": [
+    {"prompt": "Que fait une boucle ?", "options": ["Elle répète des étapes", "Elle efface des étapes"]},
+    {"prompt": "Pour taper 3 fois dans les mains, qu'utilise-t-on ?", "options": ["Une boucle", "Un crayon"]}
+  ],
+  "s05.coding.lesson.04": [
+    {"prompt": "Une erreur dans le code s'appelle un…", "options": ["bogue", "bloc"]},
+    {"prompt": "Corriger une erreur dans le code, c'est…", "options": ["déboguer", "dessiner"]}
+  ],
+  "s05.coding.lesson.05": [
+    {"prompt": "Quelle commande a déplacé la bestiole deux cases plus haut ?", "options": ["HAUT", "BAS"]},
+    {"prompt": "Quelle commande l'a menée vers la feuille ?", "options": ["DROITE", "GAUCHE"]}
+  ],
+  "s05.coding.lesson.06": [
+    {"prompt": "Tambour, clochette, tambour, clochette, c'est un…", "options": ["motif", "casse-tête"]},
+    {"prompt": "Comment le rejoue-t-on ?", "options": ["En le mettant dans une boucle", "En l'effaçant"]}
+  ],
+
+  "s06.reading.lesson.04": [
+    {"prompt": "Quel mot indique la taille du poisson ?", "options": ["big", "see", "I"]},
+    {"prompt": "Dans la phrase sur le chien, que pouvait-il faire ?", "options": ["run", "sleep"]}
+  ],
+  "s06.math.lesson.02": [
+    {"prompt": "6 + 3 = ?", "options": ["9", "10", "11"]},
+    {"prompt": "En comptant trois de plus à partir de 6, on arrive à…", "options": ["9", "8"]}
+  ],
+  "s06.math.lesson.03": [
+    {"prompt": "10 - 4 = ?", "options": ["6", "7", "8"]},
+    {"prompt": "Si 4 oiseaux sur 10 s'envolent, combien en reste-t-il ?", "options": ["6", "14"]}
+  ],
+  "s06.math.lesson.06": [
+    {"prompt": "Un cercle est quelle sorte de forme ?", "options": ["Plate (2D)", "Solide (3D)"]},
+    {"prompt": "Un cube est quelle sorte de forme ?", "options": ["Solide (3D)", "Plate (2D)"]}
+  ],
+  "s06.science.lesson.04": [
+    {"prompt": "Que portes-tu par temps froid et neigeux ?", "options": ["Un manteau chaud", "Un chapeau de soleil"]},
+    {"prompt": "Que portes-tu par temps chaud et ensoleillé ?", "options": ["Un chapeau de soleil", "Un manteau chaud"]}
+  ],
+  "s06.social.lesson.03": [
+    {"prompt": "Une carte montre les choses vues…", "options": ["d'en haut", "d'en bas"]},
+    {"prompt": "À quoi servent les cartes ?", "options": ["À trouver des lieux", "À cuisiner"]}
+  ],
+  "s06.social.lesson.05": [
+    {"prompt": "Les enfants du monde entier mangent…", "options": ["des plats différents", "exactement la même chose"]},
+    {"prompt": "Les gens du monde entier sont…", "options": ["tous uniques", "tous pareils"]}
+  ],
+  "s06.social.lesson.06": [
+    {"prompt": "Autrefois, avec quoi écrivait-on les lettres ?", "options": ["Une plume", "Un téléphone"]},
+    {"prompt": "Que font les outils avec le temps ?", "options": ["Ils changent", "Ils restent pareils"]}
+  ],
+  "s06.tech.lesson.02": [
+    {"prompt": "Tu as trié les formes qui étaient rouges ET…", "options": ["rondes", "carrées"]},
+    {"prompt": "Avec combien de règles as-tu trié ?", "options": ["Deux", "Aucune"]}
+  ],
+  "s06.tech.lesson.03": [
+    {"prompt": "Des étapes dans le bon ordre forment un…", "options": ["algorithme", "accident"]},
+    {"prompt": "Pour se brosser les dents, qu'est-ce qui vient d'abord ?", "options": ["Mouiller la brosse", "Rincer"]}
+  ],
+  "s06.tech.lesson.04": [
+    {"prompt": "Dans le motif rouge, rouge, ___, rouge, rouge, ___ qu'est-ce qui remplit les trous ?", "options": ["bleu", "vert"]},
+    {"prompt": "Que font les motifs ?", "options": ["Ils se répètent", "Ils disparaissent"]}
+  ],
+  "s06.tech.lesson.06": [
+    {"prompt": "Si un écran demande ton nom ou ta photo, tu dois…", "options": ["t'arrêter et demander à un adulte", "l'écrire"]},
+    {"prompt": "Qui t'aide à rester en sécurité en ligne ?", "options": ["Un adulte", "Un inconnu"]}
+  ],
+
+  "s07.reading.lesson.05": [
+    {"prompt": "Un résumé oral suit le début, le milieu et…", "options": ["la fin", "le début"]},
+    {"prompt": "Raconter une histoire à nouveau montre que tu…", "options": ["l'as comprise", "l'as oubliée"]}
+  ],
+  "s07.reading.lesson.06": [
+    {"prompt": "Un texte raconte comment un animal mange, joue et dort. L'idée principale, c'est…", "options": ["l'animal", "sa gamelle"]},
+    {"prompt": "L'idée principale, c'est…", "options": ["le point important", "un petit détail"]}
+  ],
+  "s07.writing.lesson.04": [
+    {"prompt": "Comment commence une phrase ?", "options": ["Par une majuscule", "Par une virgule"]},
+    {"prompt": "Chaque phrase a besoin d'un sujet et d'un mot…", "options": ["d'action", "de couleur"]}
+  ],
+  "s07.writing.lesson.05": [
+    {"prompt": "Touche le signe qui termine une phrase qui interroge.", "options": ["?", "."]},
+    {"prompt": "Que font les questions ?", "options": ["Elles demandent", "Elles racontent"]}
+  ],
+  "s07.math.lesson.02": [
+    {"prompt": "8 + 7 = ?", "options": ["15", "16", "25"]},
+    {"prompt": "Quelle astuce t'a aidé à calculer 8 + 7 ?", "options": ["Faire dix d'abord", "Compter à rebours"]}
+  ],
+  "s07.math.lesson.03": [
+    {"prompt": "15 - 6 = ?", "options": ["9", "8", "19"]},
+    {"prompt": "Quelle astuce t'a aidé à soustraire ?", "options": ["Compter à rebours", "Compter par dix"]}
+  ],
+  "s07.math.lesson.05": [
+    {"prompt": "La grande aiguille sur le 12 veut dire…", "options": ["pile", "et demie"]},
+    {"prompt": "Petite aiguille sur 3, grande sur 12. Quelle heure est-il ?", "options": ["3 heures pile", "12 heures pile"]}
+  ],
+  "s07.science.lesson.02": [
+    {"prompt": "Quelle étape vient juste après l'œuf ?", "options": ["La chenille", "Le papillon"]},
+    {"prompt": "Un cycle qui recommence sans cesse s'appelle un…", "options": ["cycle de vie", "trait droit"]}
+  ],
+  "s07.science.lesson.03": [
+    {"prompt": "Quel organe pompe le sang ?", "options": ["Le cœur", "Les poumons"]},
+    {"prompt": "Quel organe nous aide à respirer ?", "options": ["Les poumons", "Le cœur"]}
+  ],
+  "s07.science.lesson.04": [
+    {"prompt": "Une ombre apparaît là où la lumière est…", "options": ["bloquée", "vive"]},
+    {"prompt": "Que se passe-t-il si tu déplaces la lumière ?", "options": ["L'ombre bouge", "L'ombre reste immobile"]}
+  ],
+  "s07.science.lesson.05": [
+    {"prompt": "Les sons apparaissent quand les choses…", "options": ["vibrent", "gèlent"]},
+    {"prompt": "Qu'a fait la corde pincée ?", "options": ["Elle a frémi", "Elle a fondu"]}
+  ],
+  "s07.science.lesson.06": [
+    {"prompt": "De quelles trois choses les plantes ont-elles besoin ?", "options": ["D'eau, de lumière et d'air", "De sucre, de sable et de neige"]},
+    {"prompt": "Qu'as-tu donné à la plante en plus de l'eau ?", "options": ["De la lumière du soleil", "Du sel"]}
+  ],
+  "s07.social.lesson.03": [
+    {"prompt": "Marcher au lieu de courir à l'école, c'est une…", "options": ["règle", "loi"]},
+    {"prompt": "Les voitures qui s'arrêtent au feu rouge, c'est une…", "options": ["loi", "jeu"]}
+  ],
+  "s07.social.lesson.04": [
+    {"prompt": "Qui utilise un stéthoscope ?", "options": ["Un médecin", "Un pompier"]},
+    {"prompt": "Qui utilise une lance pour éteindre les incendies ?", "options": ["Un pompier", "Un médecin"]}
+  ],
+  "s07.social.lesson.05": [
+    {"prompt": "Autrefois, avec quoi lavait-on le linge ?", "options": ["Une planche à laver", "Une machine"]},
+    {"prompt": "Que fait la vie de famille avec le temps ?", "options": ["Elle change", "Elle reste pareille"]}
+  ],
+  "s07.social.lesson.06": [
+    {"prompt": "Deux amis et une seule balançoire. Qu'est-ce qui est juste ?", "options": ["Attendre son tour", "Passer devant"]},
+    {"prompt": "Partager le temps équitablement, c'est de la…", "options": ["justice", "injustice"]}
+  ],
+  "s07.health.lesson.02": [
+    {"prompt": "Combien de temps faut-il frotter ses mains ?", "options": ["Le temps de compter jusqu'à 20", "Le temps de compter jusqu'à 2"]},
+    {"prompt": "Que font des mains propres ?", "options": ["Elles nous gardent en bonne santé", "Elles nous rendent malades"]}
+  ],
+  "s07.health.lesson.04": [
+    {"prompt": "Courir et sauter rendent notre cœur…", "options": ["fort", "fatigué"]},
+    {"prompt": "À quelle fréquence faut-il bouger ?", "options": ["Tous les jours", "Une fois par an"]}
+  ],
+  "s07.health.lesson.05": [
+    {"prompt": "Le sommeil aide notre corps et notre cerveau à…", "options": ["se reposer et grandir", "courir plus vite"]},
+    {"prompt": "Qu'est-ce qui aide à bien dormir ?", "options": ["Un coucher calme", "Une pièce bruyante"]}
+  ],
+  "s07.health.lesson.06": [
+    {"prompt": "Que portes-tu pour faire du vélo ?", "options": ["Un casque", "Une casquette"]},
+    {"prompt": "Que fais-tu en voiture ?", "options": ["Attacher ta ceinture", "Rester debout"]}
+  ],
+
+  "s08.reading.lesson.03": [
+    {"prompt": "« Le chien assoiffé a bu dans sa gamelle. » Que veut dire assoiffé ?", "options": ["Qui a besoin de boire", "Qui a sommeil"]},
+    {"prompt": "Où trouve-t-on des indices sur un mot nouveau ?", "options": ["Dans les mots voisins", "Sur la couverture"]}
+  ],
+  "s08.reading.lesson.06": [
+    {"prompt": "Un paragraphe raconte ce qu'un insecte mange et comment il aide les plantes. L'idée principale, c'est…", "options": ["l'insecte", "la terre"]},
+    {"prompt": "Que font les détails ?", "options": ["Ils en disent plus", "Ils changent de sujet"]}
+  ],
+  "s08.writing.lesson.03": [
+    {"prompt": "Qu'est-ce qui sépare les éléments d'une liste ?", "options": ["Les virgules", "Les points d'interrogation"]},
+    {"prompt": "Quel mot vient avant le dernier élément d'une liste ?", "options": ["et", "mais"]}
+  ],
+  "s08.writing.lesson.05": [
+    {"prompt": "Dans « le chien ___ », quel mot décrit ?", "options": ["duveteux", "courait", "le"]},
+    {"prompt": "Que font les adjectifs ?", "options": ["Ils décrivent", "Ils comptent"]}
+  ],
+  "s08.writing.lesson.06": [
+    {"prompt": "Quelle phrase donne l'idée principale d'un paragraphe ?", "options": ["La phrase-sujet", "La dernière phrase"]},
+    {"prompt": "Que met-on sous la phrase-sujet ?", "options": ["Des détails", "Rien"]}
+  ],
+  "s08.math.lesson.05": [
+    {"prompt": "3 rangées de 4 points, cela fait combien en tout ?", "options": ["12", "7", "34"]},
+    {"prompt": "Des rangées et des colonnes de points montrent…", "options": ["la multiplication", "l'orthographe"]}
+  ],
+  "s08.math.lesson.06": [
+    {"prompt": "Combien de minutes séparent chaque chiffre de l'horloge ?", "options": ["5", "1", "10"]},
+    {"prompt": "La grande aiguille sur le 3, cela fait combien de minutes ?", "options": ["15", "3"]}
+  ],
+  "s08.science.lesson.03": [
+    {"prompt": "À partir de quoi les plantes fabriquent-elles leur nourriture ?", "options": ["De la lumière du soleil", "Des cailloux"]},
+    {"prompt": "Soleil, herbe, lapin, renard est un exemple de…", "options": ["chaîne alimentaire", "cycle de l'eau"]}
+  ],
+  "s08.social.lesson.02": [
+    {"prompt": "Sur une carte, quelle direction est en haut ?", "options": ["Le nord", "Le sud"]},
+    {"prompt": "Sur une carte, quelle direction est à droite ?", "options": ["L'est", "L'ouest"]}
+  ],
+  "s08.social.lesson.03": [
+    {"prompt": "Comment appelle-t-on le chef d'une ville ?", "options": ["Un maire", "Un capitaine"]},
+    {"prompt": "Qui fait les choix pour toute la communauté ?", "options": ["Les dirigeants", "Personne"]}
+  ],
+  "s08.social.lesson.04": [
+    {"prompt": "Quel relief est haut et rocheux ?", "options": ["Une montagne", "Une rivière"]},
+    {"prompt": "Lequel est une terre entourée d'eau ?", "options": ["Une île", "Une montagne"]}
+  ],
+  "s08.social.lesson.06": [
+    {"prompt": "Comment fête-t-on dans le monde ?", "options": ["Avec des plats, de la musique et des danses", "D'une seule façon"]},
+    {"prompt": "Découvrir les autres nous aide à…", "options": ["les respecter", "les ignorer"]}
+  ],
+  "s08.tech.lesson.02": [
+    {"prompt": "Combien de fois répètes-tu « avance, tourne » pour un carré ?", "options": ["4", "2", "8"]},
+    {"prompt": "Pourquoi utiliser une boucle ?", "options": ["Pour économiser des étapes", "Pour ralentir"]}
+  ],
+  "s08.tech.lesson.03": [
+    {"prompt": "SI il pleut, ALORS le robot prend le…", "options": ["parapluie", "cerf-volant"]},
+    {"prompt": "À quoi servent les conditions dans un programme ?", "options": ["À décider", "À oublier"]}
+  ],
+  "s08.tech.lesson.05": [
+    {"prompt": "Comment faut-il parler aux gens en ligne ?", "options": ["Avec des mots gentils", "Avec des mots méchants"]},
+    {"prompt": "Si quelque chose en ligne te fait peur, que fais-tu ?", "options": ["Le dire à un adulte", "Garder le secret"]}
+  ],
+  "s08.tech.lesson.06": [
+    {"prompt": "Les petits carrés qui forment une image d'ordinateur s'appellent des…", "options": ["pixels", "crayons"]},
+    {"prompt": "Comment as-tu fait l'image ?", "options": ["En coloriant une grille", "En tapant des mots"]}
+  ],
+
+  "s09.reading.lesson.02": [
+    {"prompt": "« Mia a attrapé son parapluie en fronçant les sourcils devant la fenêtre. » Que peux-tu déduire ?", "options": ["Il pleut", "Il fait beau"]},
+    {"prompt": "Quand l'auteur ne dit pas tout, les bons lecteurs…", "options": ["le devinent", "passent à côté"]}
+  ],
+  "s09.reading.lesson.05": [
+    {"prompt": "Un bon résumé garde les points essentiels et laisse de côté…", "options": ["les petits détails", "la fin"]},
+    {"prompt": "Résumer montre que tu…", "options": ["as compris", "as appris par cœur"]}
+  ],
+  "s09.writing.lesson.03": [
+    {"prompt": "Qu'est-ce qui entoure les mots exacts de quelqu'un ?", "options": ["Les guillemets", "Les crochets"]},
+    {"prompt": "Où se place le point ?", "options": ["À l'intérieur des guillemets", "Après les guillemets"]}
+  ],
+  "s09.writing.lesson.06": [
+    {"prompt": "« mon chien court vite » manque une majuscule et un…", "options": ["point", "virgule"]},
+    {"prompt": "Que font toujours les bons auteurs ?", "options": ["Ils relisent leur travail", "Ils ne relisent jamais"]}
+  ],
+  "s09.math.lesson.02": [
+    {"prompt": "Une pizza coupée en 4 parts égales : chaque part est…", "options": ["1/4", "1/2"]},
+    {"prompt": "Que montre le chiffre du bas d'une fraction ?", "options": ["Le nombre total de parts", "Les parts que l'on a"]}
+  ],
+  "s09.math.lesson.03": [
+    {"prompt": "Laquelle est la plus grande ?", "options": ["1/2", "1/4"]},
+    {"prompt": "Plus on coupe de parts, plus chaque part est…", "options": ["petite", "grande"]}
+  ],
+  "s09.math.lesson.06": [
+    {"prompt": "Sur un diagramme en barres, quelle barre montre le plus ?", "options": ["La plus haute", "La plus basse"]},
+    {"prompt": "Comment trouve-t-on « combien de plus » ?", "options": ["En soustrayant", "En additionnant"]}
+  ],
+  "s09.science.lesson.02": [
+    {"prompt": "L'épaisse fourrure de l'ours polaire l'aide à rester…", "options": ["au chaud", "au frais"]},
+    {"prompt": "Qu'est-ce qui aide un animal à se cacher ?", "options": ["Le camouflage", "Un cri puissant"]}
+  ],
+  "s09.science.lesson.03": [
+    {"prompt": "Plusieurs chaînes alimentaires reliées forment un…", "options": ["réseau alimentaire", "bol de nourriture"]},
+    {"prompt": "Si un animal disparaît, le reste du réseau est…", "options": ["touché", "inchangé"]}
+  ],
+  "s09.science.lesson.04": [
+    {"prompt": "Comment appelle-t-on la trace conservée d'un être vivant d'autrefois ?", "options": ["Un fossile", "Un caillou"]},
+    {"prompt": "Que nous montrent les fossiles ?", "options": ["Des animaux très anciens", "Les animaux d'aujourd'hui"]}
+  ],
+  "s09.science.lesson.06": [
+    {"prompt": "Combien de planètes tournent autour du Soleil ?", "options": ["Huit", "Trois"]},
+    {"prompt": "Quelle est la plus grande planète ?", "options": ["Jupiter", "La Terre"]}
+  ],
+  "s09.social.lesson.04": [
+    {"prompt": "Tu as 10 pièces et un jouet coûte 7. Combien en gardes-tu ?", "options": ["3", "7", "10"]},
+    {"prompt": "Que planifie un budget ?", "options": ["Les dépenses et l'épargne", "Seulement les dépenses"]}
+  ],
+  "s09.social.lesson.05": [
+    {"prompt": "Que montre une frise chronologique ?", "options": ["Des événements dans l'ordre", "Des lieux sur une carte"]},
+    {"prompt": "Les événements plus à droite se sont passés…", "options": ["plus tard", "plus tôt"]}
+  ],
+  "s09.coding.lesson.02": [
+    {"prompt": "SI le portail est ouvert tu passes. SINON tu…", "options": ["frappes", "cours"]},
+    {"prompt": "Que permet le si-sinon à un programme ?", "options": ["De choisir une option", "De répéter sans fin"]}
+  ],
+  "s09.coding.lesson.06": [
+    {"prompt": "Une tâche découpée en étapes claires et ordonnées est un…", "options": ["algorithme", "argument"]},
+    {"prompt": "Qu'est-ce qui rend un algorithme bon ?", "options": ["Des étapes dans le bon ordre", "Des étapes mélangées"]}
+  ],
+
+  "s10.reading.lesson.05": [
+    {"prompt": "Un résumé garde les idées les plus importantes et saute…", "options": ["les tout petits détails", "les événements principaux"]},
+    {"prompt": "Comment vont les événements dans un résumé ?", "options": ["Dans l'ordre", "À l'envers"]}
+  ],
+  "s10.reading.lesson.06": [
+    {"prompt": "« Mateo a fermé son manteau et tapé ses bottes dans la neige. » Que peux-tu déduire sur le temps ?", "options": ["Il gèle", "Il fait chaud"]},
+    {"prompt": "Une déduction, c'est…", "options": ["une supposition fondée sur des indices", "une supposition au hasard"]}
+  ],
+  "s10.science.lesson.02": [
+    {"prompt": "Quelle planète a les célèbres anneaux ?", "options": ["Saturne", "Mars"]},
+    {"prompt": "Les planètes les plus éloignées du Soleil mettent combien de temps pour une année ?", "options": ["Plus longtemps", "Moins longtemps"]}
+  ],
+  "s10.science.lesson.04": [
+    {"prompt": "Qu'est-ce qui commence chaque réseau alimentaire ?", "options": ["Les producteurs", "Les prédateurs"]},
+    {"prompt": "Si tu retires un animal du réseau, les autres sont…", "options": ["touchés", "inchangés"]}
+  ],
+  "s10.social.lesson.04": [
+    {"prompt": "Combien de continents la Terre compte-t-elle ?", "options": ["Sept", "Cinq"]},
+    {"prompt": "Quel est le plus grand océan ?", "options": ["Le Pacifique", "L'Atlantique"]}
+  ],
+  "s10.social.lesson.05": [
+    {"prompt": "L'empire du Mali s'est enrichi en échangeant de l'or et…", "options": ["du sel", "de la soie"]},
+    {"prompt": "Quelle ville est devenue un célèbre centre de savoir ?", "options": ["Tombouctou", "Le Caire"]}
+  ],
+  "s10.coding.lesson.06": [
+    {"prompt": "Un mot de passe solide est long et mélange lettres, chiffres et…", "options": ["symboles", "espaces"]},
+    {"prompt": "Avant de faire confiance à un site, que faut-il vérifier ?", "options": ["Qui l'a écrit", "Ses couleurs"]}
+  ],
+  "s10.writing.lesson.04": [
+    {"prompt": "Qu'est-ce qui entoure les mots exactement prononcés ?", "options": ["Les guillemets", "Les tirets"]},
+    {"prompt": "Quand commence-t-on une nouvelle ligne dans un dialogue ?", "options": ["Quand une nouvelle personne parle", "Après chaque mot"]}
+  ]
+}

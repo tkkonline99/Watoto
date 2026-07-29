@@ -20,10 +20,18 @@ class RecapQuestion {
     required this.stepIndex,
     required this.check,
     required this.prompt,
+    this.recapIndex,
   });
 
   final int stepIndex;
   final StepCheck check;
+
+  /// Index into the item's authored `recap` array, or null when this question
+  /// was derived from the lesson's steps. Only authored questions have
+  /// translations, so this is what the UI localizes against.
+  final int? recapIndex;
+
+  bool get isAuthored => recapIndex != null;
 
   /// What the child is asked. Falls back to the step's own prompt when the
   /// check does not carry one of its own.
@@ -77,9 +85,15 @@ const int maxRecapQuestions = 3;
 /// Deliberately conservative: a recap that asks vague or repeated questions is
 /// worse than no recap, so questions with duplicate answers are dropped and
 /// anything under [minRecapQuestions] is abandoned entirely.
+/// [lang] gates the derived path. Derived questions are extracted from the
+/// English narration and feedback by [comprehensionCheck], so they exist only
+/// in English — showing them to a child who just did the lesson in Swahili
+/// would be worse than showing no recap at all. Authored questions carry
+/// translations and are offered in every language.
 List<RecapQuestion> buildLessonRecap(
   LibraryItem item, {
   int max = maxRecapQuestions,
+  String lang = 'en',
 }) {
   if (item.type != LibraryType.lesson) return const [];
   // Pre-readers get spoken play, not a written quiz. The content marks this.
@@ -95,12 +109,16 @@ List<RecapQuestion> buildLessonRecap(
     authored.add(
       RecapQuestion(
         stepIndex: i,
+        recapIndex: i,
         check: StepCheck(options: r.options, answerIndex: r.answer),
         prompt: r.prompt.trim(),
       ),
     );
   }
   if (authored.length >= minRecapQuestions) return authored;
+
+  // No authored set: extraction is English-only.
+  if (lang != 'en') return const [];
 
   final out = <RecapQuestion>[];
   final seenAnswers = <String>{};
