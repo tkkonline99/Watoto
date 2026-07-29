@@ -1,0 +1,1928 @@
+{
+ "_meta": {
+  "purpose": "Authored recaps, part 2 — the 104 lessons that previously fell back to extraction.",
+  "why": "Derived questions exist only in English (comprehension_check parses English prose), so a Swahili or French child got no recap at all. Authoring them makes every readable lesson's recap translatable.",
+  "rules": "Same as part 1: a prompt never contains its own answer, two questions minimum, options short and plausible."
+ },
+ "s05.reading.lesson.02": [
+  {
+   "prompt": "Which word did you tap first?",
+   "options": [
+    "the",
+    "I",
+    "a"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Which word means yourself: I or the?",
+   "options": [
+    "I",
+    "the"
+   ],
+   "answer": 0
+  }
+ ],
+ "s05.reading.lesson.04": [
+  {
+   "prompt": "Blend d-o-g. What word is it?",
+   "options": [
+    "dog",
+    "map",
+    "dig"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Blend m-a-p. What word is it?",
+   "options": [
+    "map",
+    "dog",
+    "mop"
+   ],
+   "answer": 0
+  }
+ ],
+ "s05.reading.lesson.05": [
+  {
+   "prompt": "p + ig makes which word?",
+   "options": [
+    "pig",
+    "big",
+    "dig"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Which ending sound do pig, big and dig share?",
+   "options": [
+    "-ig",
+    "-op"
+   ],
+   "answer": 0
+  }
+ ],
+ "s05.reading.lesson.06": [
+  {
+   "prompt": "How many words are in 'I see a cat'?",
+   "options": [
+    "4",
+    "2",
+    "6"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "In 'The cat is big', which word tells the size?",
+   "options": [
+    "big",
+    "cat",
+    "is"
+   ],
+   "answer": 0
+  }
+ ],
+ "s05.science.lesson.01": [
+  {
+   "prompt": "Is a dog living or non-living?",
+   "options": [
+    "Living",
+    "Non-living"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "A rock does not grow or eat, so it is…",
+   "options": [
+    "non-living",
+    "living"
+   ],
+   "answer": 0
+  }
+ ],
+ "s05.science.lesson.02": [
+  {
+   "prompt": "In which season do flowers bloom?",
+   "options": [
+    "Spring",
+    "Winter",
+    "Fall"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "How many seasons are there?",
+   "options": [
+    "Four",
+    "Two",
+    "Seven"
+   ],
+   "answer": 0
+  }
+ ],
+ "s05.science.lesson.06": [
+  {
+   "prompt": "What does cold do to water?",
+   "options": [
+    "Freezes it into ice",
+    "Boils it away"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "What does warmth do to ice?",
+   "options": [
+    "Melts it into water",
+    "Makes it harder"
+   ],
+   "answer": 0
+  }
+ ],
+ "s05.math.lesson.02": [
+  {
+   "prompt": "5 apples, take away 1. How many are left?",
+   "options": [
+    "4",
+    "5",
+    "3"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "4 apples, then 2 are eaten. How many remain?",
+   "options": [
+    "Two",
+    "Three",
+    "Six"
+   ],
+   "answer": 0
+  }
+ ],
+ "s05.math.lesson.03": [
+  {
+   "prompt": "Which number comes right after 19?",
+   "options": [
+    "20",
+    "18",
+    "12"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Counting on from 11, which comes next?",
+   "options": [
+    "12",
+    "10",
+    "21"
+   ],
+   "answer": 0
+  }
+ ],
+ "s05.math.lesson.05": [
+  {
+   "prompt": "Two groups with the same number are…",
+   "options": [
+    "equal",
+    "more"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "The group with the bigger number has…",
+   "options": [
+    "more",
+    "less"
+   ],
+   "answer": 0
+  }
+ ],
+ "s05.social.lesson.03": [
+  {
+   "prompt": "Food and water are things we…",
+   "options": [
+    "need",
+    "want"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "A toy is nice to have, so it is a…",
+   "options": [
+    "want",
+    "need"
+   ],
+   "answer": 0
+  }
+ ],
+ "s05.coding.lesson.01": [
+  {
+   "prompt": "Which block moves the duck one step ahead?",
+   "options": [
+    "FORWARD",
+    "TURN LEFT"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Which block changes the direction it faces?",
+   "options": [
+    "TURN LEFT",
+    "FORWARD"
+   ],
+   "answer": 0
+  }
+ ],
+ "s06.reading.lesson.01": [
+  {
+   "prompt": "How many sounds do the letters s and h make together?",
+   "options": [
+    "One",
+    "Two"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Which word ends with that shhh sound?",
+   "options": [
+    "fish",
+    "ship"
+   ],
+   "answer": 0
+  }
+ ],
+ "s06.reading.lesson.02": [
+  {
+   "prompt": "Which word starts with the ch sound?",
+   "options": [
+    "chip",
+    "lunch"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Which word ends with the ch sound?",
+   "options": [
+    "lunch",
+    "chip"
+   ],
+   "answer": 0
+  }
+ ],
+ "s06.reading.lesson.03": [
+  {
+   "prompt": "Which of these is a sight word from this lesson?",
+   "options": [
+    "you",
+    "cat"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Sight words are ones we should read…",
+   "options": [
+    "quickly, without sounding out",
+    "very slowly"
+   ],
+   "answer": 0
+  }
+ ],
+ "s06.reading.lesson.05": [
+  {
+   "prompt": "Which letters spell cat, in order?",
+   "options": [
+    "c, a, t",
+    "t, a, c"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Which letters spell sun, in order?",
+   "options": [
+    "s, u, n",
+    "n, u, s"
+   ],
+   "answer": 0
+  }
+ ],
+ "s06.reading.lesson.06": [
+  {
+   "prompt": "How does a sentence start?",
+   "options": [
+    "With a capital letter",
+    "With a small letter"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "What does a period tell the reader to do?",
+   "options": [
+    "Stop",
+    "Shout"
+   ],
+   "answer": 0
+  }
+ ],
+ "s06.math.lesson.01": [
+  {
+   "prompt": "2 ten-rods and 3 ones make which number?",
+   "options": [
+    "23",
+    "32",
+    "5"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "1 ten and 4 ones make which number?",
+   "options": [
+    "14",
+    "41",
+    "5"
+   ],
+   "answer": 0
+  }
+ ],
+ "s06.math.lesson.04": [
+  {
+   "prompt": "Ten and 3 more is…",
+   "options": [
+    "13",
+    "30",
+    "23"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Ten and 6 more is…",
+   "options": [
+    "16",
+    "60",
+    "26"
+   ],
+   "answer": 0
+  }
+ ],
+ "s06.math.lesson.05": [
+  {
+   "prompt": "Break 14 into tens and ones. How many ones?",
+   "options": [
+    "Four",
+    "One",
+    "Fourteen"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "1 ten and 2 ones make which number?",
+   "options": [
+    "12",
+    "21",
+    "3"
+   ],
+   "answer": 0
+  }
+ ],
+ "s06.science.lesson.01": [
+  {
+   "prompt": "Ice is hard and keeps its shape. Which state is it?",
+   "options": [
+    "Solid",
+    "Liquid",
+    "Gas"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Steam floats away into the air. Which state is it?",
+   "options": [
+    "Gas",
+    "Solid",
+    "Liquid"
+   ],
+   "answer": 0
+  }
+ ],
+ "s06.science.lesson.02": [
+  {
+   "prompt": "Which two things do animals need to live?",
+   "options": [
+    "Food and water",
+    "Toys and books"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "A den or a nest gives an animal…",
+   "options": [
+    "shelter",
+    "food"
+   ],
+   "answer": 0
+  }
+ ],
+ "s06.science.lesson.03": [
+  {
+   "prompt": "What gives us daytime and warmth?",
+   "options": [
+    "The sun",
+    "The moon"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "What do we see shining at night?",
+   "options": [
+    "The moon and stars",
+    "The sun"
+   ],
+   "answer": 0
+  }
+ ],
+ "s06.science.lesson.05": [
+  {
+   "prompt": "A chair can be made of which material?",
+   "options": [
+    "Wood",
+    "Water"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Which material is a spoon often made of?",
+   "options": [
+    "Metal",
+    "Paper"
+   ],
+   "answer": 0
+  }
+ ],
+ "s06.science.lesson.06": [
+  {
+   "prompt": "How does a race car move?",
+   "options": [
+    "Fast",
+    "Slowly"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "How does a snail move?",
+   "options": [
+    "Slowly",
+    "Fast"
+   ],
+   "answer": 0
+  }
+ ],
+ "s06.social.lesson.02": [
+  {
+   "prompt": "What does a good citizen do for others?",
+   "options": [
+    "Helps them",
+    "Ignores them"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Taking turns and giving some to a friend is called…",
+   "options": [
+    "sharing",
+    "keeping"
+   ],
+   "answer": 0
+  }
+ ],
+ "s06.social.lesson.04": [
+  {
+   "prompt": "Bread is something you can hold, so it is a…",
+   "options": [
+    "good",
+    "service"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "A haircut is work done for you, so it is a…",
+   "options": [
+    "service",
+    "good"
+   ],
+   "answer": 0
+  }
+ ],
+ "s06.tech.lesson.01": [
+  {
+   "prompt": "Which block moves the robot ahead?",
+   "options": [
+    "FORWARD",
+    "TURN LEFT"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "What must you press to run your blocks?",
+   "options": [
+    "PLAY",
+    "DELETE"
+   ],
+   "answer": 0
+  }
+ ],
+ "s06.tech.lesson.05": [
+  {
+   "prompt": "Which part of a tablet do you see and tap?",
+   "options": [
+    "The screen",
+    "The button"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Which part turns it on and off?",
+   "options": [
+    "The button",
+    "The screen"
+   ],
+   "answer": 0
+  }
+ ],
+ "s07.reading.lesson.01": [
+  {
+   "prompt": "Add silent-e to cap. What word do you get?",
+   "options": [
+    "cape",
+    "capping"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Which sound do the letters a and i make in rain?",
+   "options": [
+    "/ay/",
+    "/oo/"
+   ],
+   "answer": 0
+  }
+ ],
+ "s07.reading.lesson.02": [
+  {
+   "prompt": "Which word has the short a sound?",
+   "options": [
+    "cap",
+    "cape"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "What does silent-e do to the vowel?",
+   "options": [
+    "Makes it say its name",
+    "Makes it silent"
+   ],
+   "answer": 0
+  }
+ ],
+ "s07.reading.lesson.03": [
+  {
+   "prompt": "How many sounds does the blend bl make?",
+   "options": [
+    "Two",
+    "One"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Which blend begins the word star: st or bl?",
+   "options": [
+    "st",
+    "bl"
+   ],
+   "answer": 0
+  }
+ ],
+ "s07.reading.lesson.04": [
+  {
+   "prompt": "'The girl kicks the ball.' Who does the kicking?",
+   "options": [
+    "The girl",
+    "The ball"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "In that sentence, what gets kicked?",
+   "options": [
+    "The ball",
+    "The girl"
+   ],
+   "answer": 0
+  }
+ ],
+ "s07.writing.lesson.01": [
+  {
+   "prompt": "In 'The happy dog runs', which word is the naming word?",
+   "options": [
+    "dog",
+    "runs",
+    "happy"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "In that sentence, which word is the action?",
+   "options": [
+    "runs",
+    "dog",
+    "happy"
+   ],
+   "answer": 0
+  }
+ ],
+ "s07.writing.lesson.02": [
+  {
+   "prompt": "What does a noun name?",
+   "options": [
+    "A person, place or thing",
+    "An action"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "In 'I go to school', which word is the noun?",
+   "options": [
+    "school",
+    "go"
+   ],
+   "answer": 0
+  }
+ ],
+ "s07.writing.lesson.03": [
+  {
+   "prompt": "What does a verb tell you?",
+   "options": [
+    "An action",
+    "A colour"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "In 'She runs fast', which word is the verb?",
+   "options": [
+    "runs",
+    "fast"
+   ],
+   "answer": 0
+  }
+ ],
+ "s07.writing.lesson.06": [
+  {
+   "prompt": "One cat, two…?",
+   "options": [
+    "cats",
+    "cat"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Which ending do you add to make most words plural?",
+   "options": [
+    "-s",
+    "-e"
+   ],
+   "answer": 0
+  }
+ ],
+ "s07.math.lesson.01": [
+  {
+   "prompt": "8 + 5 = ?",
+   "options": [
+    "13",
+    "12",
+    "14"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "13 - 4 = ?",
+   "options": [
+    "9",
+    "8",
+    "10"
+   ],
+   "answer": 0
+  }
+ ],
+ "s07.math.lesson.04": [
+  {
+   "prompt": "In the number 47, how many tens?",
+   "options": [
+    "Four",
+    "Seven",
+    "Forty-seven"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "In the number 47, how many ones?",
+   "options": [
+    "Seven",
+    "Four",
+    "Forty"
+   ],
+   "answer": 0
+  }
+ ],
+ "s07.math.lesson.06": [
+  {
+   "prompt": "Two coins worth 5 each make…",
+   "options": [
+    "10",
+    "5",
+    "15"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "What is one of those coins worth on its own?",
+   "options": [
+    "5",
+    "1",
+    "10"
+   ],
+   "answer": 0
+  }
+ ],
+ "s07.social.lesson.02": [
+  {
+   "prompt": "Which one is round like Earth?",
+   "options": [
+    "A globe",
+    "A map"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Which one is flat and easy to carry?",
+   "options": [
+    "A map",
+    "A globe"
+   ],
+   "answer": 0
+  }
+ ],
+ "s07.health.lesson.01": [
+  {
+   "prompt": "Which food group does an apple belong to?",
+   "options": [
+    "Fruits",
+    "Grains"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "When should you wash your hands?",
+   "options": [
+    "Before eating",
+    "Never"
+   ],
+   "answer": 0
+  }
+ ],
+ "s07.health.lesson.03": [
+  {
+   "prompt": "Which foods help us grow every day?",
+   "options": [
+    "Fruits and vegetables",
+    "Sweets"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Sweets are foods for…",
+   "options": [
+    "sometimes",
+    "every meal"
+   ],
+   "answer": 0
+  }
+ ],
+ "s08.reading.lesson.01": [
+  {
+   "prompt": "cup + cake makes which word?",
+   "options": [
+    "cupcake",
+    "cakecup"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Two small words joined into one make a…",
+   "options": [
+    "compound word",
+    "rhyme"
+   ],
+   "answer": 0
+  }
+ ],
+ "s08.reading.lesson.02": [
+  {
+   "prompt": "What does the prefix un- mean?",
+   "options": [
+    "not",
+    "again"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "What does the prefix re- mean?",
+   "options": [
+    "again",
+    "not"
+   ],
+   "answer": 0
+  }
+ ],
+ "s08.reading.lesson.04": [
+  {
+   "prompt": "'Maya played at the beach.' Who is the character?",
+   "options": [
+    "Maya",
+    "The beach"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "In that sentence, where is the setting?",
+   "options": [
+    "The beach",
+    "Maya"
+   ],
+   "answer": 0
+  }
+ ],
+ "s08.reading.lesson.05": [
+  {
+   "prompt": "'The sky is blue' can be checked, so it is a…",
+   "options": [
+    "fact",
+    "opinion"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "'Blue is the best colour' is what someone feels, so it is an…",
+   "options": [
+    "opinion",
+    "fact"
+   ],
+   "answer": 0
+  }
+ ],
+ "s08.writing.lesson.01": [
+  {
+   "prompt": "One box, two…?",
+   "options": [
+    "boxes",
+    "boxs"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Today I walk. Yesterday I…?",
+   "options": [
+    "walked",
+    "walking"
+   ],
+   "answer": 0
+  }
+ ],
+ "s08.writing.lesson.02": [
+  {
+   "prompt": "How should a person's name be written?",
+   "options": [
+    "With a capital letter",
+    "All in small letters"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Which of these also needs a capital?",
+   "options": [
+    "A city name",
+    "A colour"
+   ],
+   "answer": 0
+  }
+ ],
+ "s08.writing.lesson.04": [
+  {
+   "prompt": "do + not shortens to which word?",
+   "options": [
+    "don't",
+    "dont"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "What does the apostrophe stand for?",
+   "options": [
+    "The missing letter",
+    "A full stop"
+   ],
+   "answer": 0
+  }
+ ],
+ "s08.math.lesson.02": [
+  {
+   "prompt": "24 + 18 = ?",
+   "options": [
+    "42",
+    "32",
+    "52"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "When the ones add up past ten, what do you do?",
+   "options": [
+    "Carry a ten",
+    "Ignore it"
+   ],
+   "answer": 0
+  }
+ ],
+ "s08.math.lesson.03": [
+  {
+   "prompt": "52 - 27 = ?",
+   "options": [
+    "25",
+    "35",
+    "26"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "When the top digit is too small, what do you do?",
+   "options": [
+    "Borrow a ten",
+    "Skip it"
+   ],
+   "answer": 0
+  }
+ ],
+ "s08.math.lesson.04": [
+  {
+   "prompt": "Counting by 5s: 5, 10, 15, then…",
+   "options": [
+    "20",
+    "16",
+    "25"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Counting by 10s: 10, 20, 30, then…",
+   "options": [
+    "40",
+    "31",
+    "35"
+   ],
+   "answer": 0
+  }
+ ],
+ "s08.science.lesson.02": [
+  {
+   "prompt": "Where is a fish's habitat?",
+   "options": [
+    "In water",
+    "In the desert"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "What does a habitat give an animal?",
+   "options": [
+    "What it needs to live",
+    "A name"
+   ],
+   "answer": 0
+  }
+ ],
+ "s08.science.lesson.04": [
+  {
+   "prompt": "A rock keeps its shape, so it is a…",
+   "options": [
+    "solid",
+    "liquid"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Juice flows and fills its cup, so it is a…",
+   "options": [
+    "liquid",
+    "gas"
+   ],
+   "answer": 0
+  }
+ ],
+ "s08.science.lesson.05": [
+  {
+   "prompt": "The sun heats water and it rises into the air. That is…",
+   "options": [
+    "evaporation",
+    "freezing"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Water vapour cools into clouds. That is…",
+   "options": [
+    "condensation",
+    "evaporation"
+   ],
+   "answer": 0
+  }
+ ],
+ "s08.science.lesson.06": [
+  {
+   "prompt": "What do magnets do to some metals?",
+   "options": [
+    "Pull them",
+    "Melt them"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "What do two of the same poles do?",
+   "options": [
+    "Push apart",
+    "Stick together"
+   ],
+   "answer": 0
+  }
+ ],
+ "s08.social.lesson.05": [
+  {
+   "prompt": "A baker who makes bread is a…",
+   "options": [
+    "producer",
+    "consumer"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "A shopper who buys the bread is a…",
+   "options": [
+    "consumer",
+    "producer"
+   ],
+   "answer": 0
+  }
+ ],
+ "s08.tech.lesson.01": [
+  {
+   "prompt": "Which block makes the cat move sideways?",
+   "options": [
+    "MOVE RIGHT",
+    "JUMP"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Blocks in a row run in which order?",
+   "options": [
+    "Top to bottom",
+    "Any order"
+   ],
+   "answer": 0
+  }
+ ],
+ "s08.tech.lesson.04": [
+  {
+   "prompt": "The robot should go up but a step says down. That mistake is a…",
+   "options": [
+    "bug",
+    "loop"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Finding and fixing that mistake is called…",
+   "options": [
+    "debugging",
+    "designing"
+   ],
+   "answer": 0
+  }
+ ],
+ "s09.reading.lesson.01": [
+  {
+   "prompt": "'As brave as a lion' uses the word as, so it is a…",
+   "options": [
+    "simile",
+    "metaphor"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "'The classroom was a zoo' says one thing IS another, so it is a…",
+   "options": [
+    "metaphor",
+    "simile"
+   ],
+   "answer": 0
+  }
+ ],
+ "s09.reading.lesson.03": [
+  {
+   "prompt": "It rained all night and the river flooded. Which is the effect?",
+   "options": [
+    "The river flooded",
+    "It rained"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Which word signals a cause?",
+   "options": [
+    "because",
+    "beautiful"
+   ],
+   "answer": 0
+  }
+ ],
+ "s09.reading.lesson.04": [
+  {
+   "prompt": "What does a heading tell you?",
+   "options": [
+    "What a section is about",
+    "Who drew the picture"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "What does a caption explain?",
+   "options": [
+    "A picture",
+    "The cover"
+   ],
+   "answer": 0
+  }
+ ],
+ "s09.reading.lesson.06": [
+  {
+   "prompt": "A funny story is written to…",
+   "options": [
+    "entertain",
+    "persuade"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "An advert saying 'Buy this!' is written to…",
+   "options": [
+    "persuade",
+    "entertain"
+   ],
+   "answer": 0
+  }
+ ],
+ "s09.writing.lesson.02": [
+  {
+   "prompt": "Which word tells the reader a step comes at the beginning?",
+   "options": [
+    "First",
+    "Finally"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "What do transition words do for the reader?",
+   "options": [
+    "Guide them through",
+    "Confuse them"
+   ],
+   "answer": 0
+  }
+ ],
+ "s09.writing.lesson.04": [
+  {
+   "prompt": "Which of these is a proper noun?",
+   "options": [
+    "Monday",
+    "day"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "'river' is common, but which one is proper?",
+   "options": [
+    "Nile",
+    "water"
+   ],
+   "answer": 0
+  }
+ ],
+ "s09.writing.lesson.05": [
+  {
+   "prompt": "'I will walk' is which tense?",
+   "options": [
+    "Future",
+    "Past"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "'I walked' is which tense?",
+   "options": [
+    "Past",
+    "Present"
+   ],
+   "answer": 0
+  }
+ ],
+ "s09.math.lesson.01": [
+  {
+   "prompt": "6 × 4 = ?",
+   "options": [
+    "24",
+    "25",
+    "34"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "24 ÷ 4 = ?",
+   "options": [
+    "6",
+    "5",
+    "16"
+   ],
+   "answer": 0
+  }
+ ],
+ "s09.math.lesson.04": [
+  {
+   "prompt": "3 × 10 = ?",
+   "options": [
+    "30",
+    "13",
+    "300"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "3 × 20 = ?",
+   "options": [
+    "60",
+    "50",
+    "70"
+   ],
+   "answer": 0
+  }
+ ],
+ "s09.math.lesson.05": [
+  {
+   "prompt": "Round 47 to the nearest ten.",
+   "options": [
+    "50",
+    "40",
+    "47"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Round 230 to the nearest hundred.",
+   "options": [
+    "200",
+    "300",
+    "230"
+   ],
+   "answer": 0
+  }
+ ],
+ "s09.science.lesson.05": [
+  {
+   "prompt": "A ramp is which simple machine?",
+   "options": [
+    "An inclined plane",
+    "A pulley"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "What do simple machines do for us?",
+   "options": [
+    "Make work easier",
+    "Make work harder"
+   ],
+   "answer": 0
+  }
+ ],
+ "s09.social.lesson.02": [
+  {
+   "prompt": "What does a map's legend explain?",
+   "options": [
+    "What the symbols mean",
+    "Who drew it"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "What does the scale show?",
+   "options": [
+    "Real distance",
+    "The date"
+   ],
+   "answer": 0
+  }
+ ],
+ "s09.social.lesson.03": [
+  {
+   "prompt": "Going to school is an example of a…",
+   "options": [
+    "right",
+    "responsibility"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Following fair rules is an example of a…",
+   "options": [
+    "responsibility",
+    "right"
+   ],
+   "answer": 0
+  }
+ ],
+ "s09.social.lesson.06": [
+  {
+   "prompt": "An area with farms and open land is…",
+   "options": [
+    "rural",
+    "urban"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "A busy city area is…",
+   "options": [
+    "urban",
+    "rural"
+   ],
+   "answer": 0
+  }
+ ],
+ "s09.coding.lesson.03": [
+  {
+   "prompt": "What does a variable do?",
+   "options": [
+    "Holds a value",
+    "Draws a picture"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "score is 5, then you add 3. What does it hold now?",
+   "options": [
+    "8",
+    "5",
+    "53"
+   ],
+   "answer": 0
+  }
+ ],
+ "s09.coding.lesson.04": [
+  {
+   "prompt": "What does a function do?",
+   "options": [
+    "Names a group of steps",
+    "Deletes steps"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Why is a function useful?",
+   "options": [
+    "You can reuse it",
+    "It runs once only"
+   ],
+   "answer": 0
+  }
+ ],
+ "s09.coding.lesson.05": [
+  {
+   "prompt": "'5 is greater than 3' is…",
+   "options": [
+    "true",
+    "false"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "'A cat has wings' is…",
+   "options": [
+    "false",
+    "true"
+   ],
+   "answer": 0
+  }
+ ],
+ "s10.math.lesson.01": [
+  {
+   "prompt": "84 ÷ 4 = ?",
+   "options": [
+    "21",
+    "11",
+    "31"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Which step comes first in long division?",
+   "options": [
+    "Divide",
+    "Subtract"
+   ],
+   "answer": 0
+  }
+ ],
+ "s10.math.lesson.02": [
+  {
+   "prompt": "23 × 4 = ?",
+   "options": [
+    "92",
+    "82",
+    "94"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Breaking 23 into 20 + 3 to multiply each part gives you…",
+   "options": [
+    "partial products",
+    "a remainder"
+   ],
+   "answer": 0
+  }
+ ],
+ "s10.math.lesson.03": [
+  {
+   "prompt": "Which fraction names the same amount as 1/2?",
+   "options": [
+    "2/4",
+    "1/4",
+    "3/4"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "To make an equal fraction, multiply the top and bottom by…",
+   "options": [
+    "the same number",
+    "different numbers"
+   ],
+   "answer": 0
+  }
+ ],
+ "s10.math.lesson.04": [
+  {
+   "prompt": "1/5 + 2/5 = ?",
+   "options": [
+    "3/5",
+    "3/10",
+    "2/5"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "When you add fractions with the same bottom, what changes?",
+   "options": [
+    "Only the top",
+    "Only the bottom"
+   ],
+   "answer": 0
+  }
+ ],
+ "s10.math.lesson.05": [
+  {
+   "prompt": "How many tenths does 0.7 mean?",
+   "options": [
+    "Seven",
+    "Seventy",
+    "One"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Which is bigger, 0.5 or 0.45?",
+   "options": [
+    "0.5",
+    "0.45"
+   ],
+   "answer": 0
+  }
+ ],
+ "s10.math.lesson.06": [
+  {
+   "prompt": "A rectangle is 5 long and 3 wide. What is its perimeter?",
+   "options": [
+    "16",
+    "15",
+    "8"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "What is the area of that rectangle?",
+   "options": [
+    "15",
+    "16",
+    "8"
+   ],
+   "answer": 0
+  }
+ ],
+ "s10.reading.lesson.01": [
+  {
+   "prompt": "'Brave as a lion' is which kind of comparison?",
+   "options": [
+    "A simile",
+    "A metaphor"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "'Her smile was sunshine' is which kind?",
+   "options": [
+    "A metaphor",
+    "A simile"
+   ],
+   "answer": 0
+  }
+ ],
+ "s10.reading.lesson.02": [
+  {
+   "prompt": "'It's raining cats and dogs' means…",
+   "options": [
+    "it is raining hard",
+    "animals are falling"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "'A piece of cake' means something is…",
+   "options": [
+    "very easy",
+    "very tasty"
+   ],
+   "answer": 0
+  }
+ ],
+ "s10.reading.lesson.03": [
+  {
+   "prompt": "What is a theme?",
+   "options": [
+    "The big lesson of a story",
+    "The list of characters"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "A slow tortoise wins by trying hard. What is the theme?",
+   "options": [
+    "Steady effort wins",
+    "Tortoises are fast"
+   ],
+   "answer": 0
+  }
+ ],
+ "s10.reading.lesson.04": [
+  {
+   "prompt": "'I ran home' is told in which point of view?",
+   "options": [
+    "First person",
+    "Third person"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "'She ran home' is told in which point of view?",
+   "options": [
+    "Third person",
+    "First person"
+   ],
+   "answer": 0
+  }
+ ],
+ "s10.science.lesson.03": [
+  {
+   "prompt": "A lamp gives which form of energy?",
+   "options": [
+    "Light",
+    "Sound"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "A vibrating drum gives which form of energy?",
+   "options": [
+    "Sound",
+    "Light"
+   ],
+   "answer": 0
+  }
+ ],
+ "s10.science.lesson.05": [
+  {
+   "prompt": "Heating ice until it becomes water is called…",
+   "options": [
+    "melting",
+    "freezing"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Cooling water until it becomes ice is called…",
+   "options": [
+    "freezing",
+    "melting"
+   ],
+   "answer": 0
+  }
+ ],
+ "s10.science.lesson.06": [
+  {
+   "prompt": "What is the first step of the scientific method?",
+   "options": [
+    "Ask a question",
+    "Draw a conclusion"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "A smart guess you then test is called a…",
+   "options": [
+    "hypothesis",
+    "conclusion"
+   ],
+   "answer": 0
+  }
+ ],
+ "s10.social.lesson.02": [
+  {
+   "prompt": "Which branch carries out the laws?",
+   "options": [
+    "Executive",
+    "Judicial"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Which branch decides what laws mean?",
+   "options": [
+    "Judicial",
+    "Legislative"
+   ],
+   "answer": 0
+  }
+ ],
+ "s10.social.lesson.03": [
+  {
+   "prompt": "When many people want a scarce item, the price often…",
+   "options": [
+    "rises",
+    "falls"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "A haircut is helpful work, so it is a…",
+   "options": [
+    "service",
+    "good"
+   ],
+   "answer": 0
+  }
+ ],
+ "s10.social.lesson.06": [
+  {
+   "prompt": "How do citizens help choose their leaders?",
+   "options": [
+    "By voting",
+    "By guessing"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Following fair rules and helping others are citizens'…",
+   "options": [
+    "responsibilities",
+    "rights"
+   ],
+   "answer": 0
+  }
+ ],
+ "s10.coding.lesson.01": [
+  {
+   "prompt": "Which Python command shows text on the screen?",
+   "options": [
+    "print()",
+    "erase()"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Two print() lines produce how many lines of output?",
+   "options": [
+    "2",
+    "1"
+   ],
+   "answer": 0
+  }
+ ],
+ "s10.coding.lesson.02": [
+  {
+   "prompt": "After name = \"Ada\", what does printing name show?",
+   "options": [
+    "Ada",
+    "name"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Can one variable hold different values at different times?",
+   "options": [
+    "Yes",
+    "No"
+   ],
+   "answer": 0
+  }
+ ],
+ "s10.coding.lesson.03": [
+  {
+   "prompt": "for i in range(5) repeats how many times?",
+   "options": [
+    "Five",
+    "One",
+    "Four"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Why use a for loop?",
+   "options": [
+    "It saves typing the same line",
+    "It slows the program"
+   ],
+   "answer": 0
+  }
+ ],
+ "s10.coding.lesson.04": [
+  {
+   "prompt": "score = 12 and the rule is score >= 10. Which path runs?",
+   "options": [
+    "The if path",
+    "The else path"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "What runs when the condition is false?",
+   "options": [
+    "The else path",
+    "Nothing at all"
+   ],
+   "answer": 0
+  }
+ ],
+ "s10.coding.lesson.05": [
+  {
+   "prompt": "prnt(\"Hello\") does not work. What is wrong?",
+   "options": [
+    "The command is misspelled",
+    "The quotes are missing"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "What is the best way to fix errors?",
+   "options": [
+    "One thing at a time",
+    "Change everything at once"
+   ],
+   "answer": 0
+  }
+ ],
+ "s10.writing.lesson.01": [
+  {
+   "prompt": "Which part of an essay comes first?",
+   "options": [
+    "The introduction",
+    "The conclusion"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Which part gives the reasons and details?",
+   "options": [
+    "The body",
+    "The introduction"
+   ],
+   "answer": 0
+  }
+ ],
+ "s10.writing.lesson.02": [
+  {
+   "prompt": "What does a topic sentence do?",
+   "options": [
+    "States the main idea",
+    "Ends the paragraph"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "A strong paragraph has…",
+   "options": [
+    "one clear idea plus reasons",
+    "many different topics"
+   ],
+   "answer": 0
+  }
+ ],
+ "s10.writing.lesson.03": [
+  {
+   "prompt": "Which word shows a contrast?",
+   "options": [
+    "However",
+    "First"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Which word shows cause and effect?",
+   "options": [
+    "Because",
+    "Next"
+   ],
+   "answer": 0
+  }
+ ],
+ "s10.writing.lesson.05": [
+  {
+   "prompt": "Writing that tells a story is…",
+   "options": [
+    "narrative",
+    "persuasive"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Writing that tries to convince you is…",
+   "options": [
+    "persuasive",
+    "informative"
+   ],
+   "answer": 0
+  }
+ ],
+ "s10.writing.lesson.06": [
+  {
+   "prompt": "Which comes first when improving a draft?",
+   "options": [
+    "Revising",
+    "Editing"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "Fixing spelling, capitals and punctuation is…",
+   "options": [
+    "editing",
+    "revising"
+   ],
+   "answer": 0
+  }
+ ],
+ "s08.math.lesson.01": [
+  {
+   "prompt": "3 rows of 4 dots make how many altogether?",
+   "options": [
+    "12",
+    "7",
+    "34"
+   ],
+   "answer": 0
+  },
+  {
+   "prompt": "2 rows of 5 make how many?",
+   "options": [
+    "10",
+    "7",
+    "25"
+   ],
+   "answer": 0
+  }
+ ]
+}

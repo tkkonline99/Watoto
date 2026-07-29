@@ -16,7 +16,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 REPO = ROOT.parent
-RECAPS = ROOT / "lesson_recaps.json"
+# Authored recaps are split across parts to keep each file reviewable. Part 1
+# covers lessons that could never derive a recap; part 2 covers the ones that
+# used to derive one in English only.
+PARTS = ["", ".part2"]
 TARGETS = [
     ROOT / "watoto_content_library.json",
     REPO / "apps" / "mobile" / "assets" / "content" / "watoto_content_library.json",
@@ -53,17 +56,46 @@ def validate(item_id, questions):
         if len(set(str(o).lower() for o in options)) != len(options):
             problems.append(f"{where}: duplicate options")
         # The rule that matters: a recap must not hand over its own answer.
-        if str(options[answer]).lower() in prompt.lower():
-            problems.append(
-                f"{where}: prompt gives away the answer "
-                f"({options[answer]!r} appears in {prompt!r})"
-            )
+        #
+        # One exception, and only one: a "pick it out of this material"
+        # question has to show the material, and the answer is necessarily
+        # inside it -- "In 'The happy dog runs', which word is the noun?"
+        # names dog, runs and happy. That is not a giveaway, because the child
+        # still has to choose. It only counts as fair when *every* option is
+        # present; if just the answer appears, the prompt is doing the work.
+        low = prompt.lower()
+        if str(options[answer]).lower() in low:
+            all_present = all(str(o).lower() in low for o in options)
+            if not all_present:
+                problems.append(
+                    f"{where}: prompt gives away the answer "
+                    f"({options[answer]!r} appears in {prompt!r}, "
+                    f"but the other options do not)"
+                )
     return problems
 
 
+def load_parts(suffix=""):
+    """Merges every part file for a language into one id -> questions map."""
+    merged = {}
+    for part in PARTS:
+        path = ROOT / f"lesson_recaps{suffix}{part}.json"
+        if not path.exists():
+            continue
+        data = json.loads(path.read_text(encoding="utf-8"))
+        data.pop("_meta", None)
+        overlap = merged.keys() & data.keys()
+        if overlap:
+            raise SystemExit(
+                f"{path.name}: ids already defined in an earlier part: "
+                f"{sorted(overlap)}"
+            )
+        merged.update(data)
+    return merged
+
+
 def main():
-    recaps = json.loads(RECAPS.read_text(encoding="utf-8"))
-    recaps.pop("_meta", None)
+    recaps = load_parts()
 
     problems = []
     for item_id, questions in recaps.items():
@@ -113,12 +145,10 @@ def emit_translations(recaps):
     options array as a block would let a reordering silently move the answer.
     """
     for lang in LANGS:
-        path = ROOT / f"lesson_recaps.{lang}.json"
-        if not path.exists():
-            print(f"! no translations for {lang} ({path.name} missing)")
+        translated = load_parts(f".{lang}")
+        if not translated:
+            print(f"! no translations for {lang}")
             continue
-        translated = json.loads(path.read_text(encoding="utf-8"))
-        translated.pop("_meta", None)
 
         problems = []
         keys = {}

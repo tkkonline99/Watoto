@@ -152,11 +152,19 @@ void main() {
           .where((i) => i.type == LibraryType.lesson);
       for (final item in lessons) {
         for (final q in buildLessonRecap(item)) {
+          final prompt = q.prompt.toLowerCase();
           final answer = q.options[q.answerIndex].toLowerCase();
+          if (!prompt.contains(answer)) continue;
+          // Allowed only for "pick it out of this material" questions, which
+          // must quote the material: the answer may appear as long as every
+          // other option does too, so the child still has to choose.
+          final allPresent =
+              q.options.every((o) => prompt.contains(o.toLowerCase()));
           expect(
-            q.prompt.toLowerCase().contains(answer),
-            isFalse,
-            reason: '${item.id}: "${q.prompt}" gives away "$answer"',
+            allPresent,
+            isTrue,
+            reason: '${item.id}: "${q.prompt}" gives away "$answer" '
+                'without offering the other options in the text',
           );
         }
       }
@@ -239,6 +247,25 @@ void main() {
       final loc = LocalizedItem(item, ContentI18n(const {}), 'sw');
       expect(loc.recapPrompt(0), 'How many?');
       expect(loc.recapOptions(0), ['1', '2']);
+    });
+
+    test('every readable lesson has a recap in every language', () async {
+      // The point of authoring them all: a Swahili or French child gets the
+      // same coverage as an English one. Derived recaps are English-only, so
+      // any lesson still relying on extraction shows up here as a gap.
+      final raw = await rootBundle
+          .loadString('assets/content/watoto_content_library.json');
+      final readable = parseLibraryItems(raw)
+          .where((i) => i.type == LibraryType.lesson && i.reading)
+          .toList();
+
+      for (final lang in ['en', 'sw', 'fr']) {
+        final missing = readable
+            .where((i) => buildLessonRecap(i, lang: lang).isEmpty)
+            .map((i) => i.id)
+            .toList();
+        expect(missing, isEmpty, reason: '$lang lessons without a recap');
+      }
     });
 
     test('derived recaps are withheld outside English', () {
