@@ -16,6 +16,16 @@ build/
 .packages
 .pub-cache/
 
+# Rendered voiceover (~184 MB, 7,983 files). Generated, not authored: the
+# script is tool/export_tts_vo.py and the source of truth for *what is said* is
+# content/production/audio/audio_manifest.csv, which IS tracked. Re-render with
+#   cd apps/mobile && python tool/export_tts_vo.py --all
+# Keeping the blobs out of history is what lets this repo live inside OneDrive.
+# apps/mobile/tool/MEDIA_README.md documents the backup location.
+apps/mobile/assets/audio/en/
+apps/mobile/assets/audio/fr/
+apps/mobile/assets/audio/sw/
+
 # IDE
 .idea/
 .vscode/
