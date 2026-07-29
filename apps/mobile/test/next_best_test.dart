@@ -7,7 +7,6 @@ import 'package:watoto_mobile/features/gamification/adaptive.dart';
 import 'package:watoto_mobile/features/gamification/next_best.dart';
 import 'package:watoto_mobile/features/library/library_models.dart';
 import 'package:watoto_mobile/features/library/library_repository.dart';
-import 'package:watoto_mobile/features/profiles/child_profile.dart';
 
 void main() {
   late OfflineStore store;

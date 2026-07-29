@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/analytics/analytics.dart';
 import '../../core/offline/offline_providers.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
@@ -65,6 +66,9 @@ class _PinResetScreenState extends ConsumerState<PinResetScreen> {
         // PIN-only: physical device + adult gate is the recovery path.
         await store.resetPin(pin);
       }
+      ref.read(analyticsProvider).log(AnalyticsEvents.pinReset, {
+        'viaPassword': store.hasAccount,
+      });
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(l10n.pinResetSuccess)),

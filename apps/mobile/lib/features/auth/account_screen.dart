@@ -387,6 +387,17 @@ class _FilledButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final enabled = onTap != null;
+    // A bare GestureDetector has no role: this reads as plain text, and its
+    // disabled state was invisible to assistive tech.
+    return Semantics(
+      button: true,
+      enabled: enabled,
+      label: label,
+      child: ExcludeSemantics(child: _button(enabled)),
+    );
+  }
+
+  Widget _button(bool enabled) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -444,6 +455,14 @@ class _CloseButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Semantics(
+      button: true,
+      label: MaterialLocalizations.of(context).closeButtonTooltip,
+      child: ExcludeSemantics(child: _button()),
+    );
+  }
+
+  Widget _button() {
     return Material(
       color: Colors.white,
       shape: const CircleBorder(),

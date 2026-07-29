@@ -240,6 +240,21 @@ class _PlayTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    // Locked / done state lives in a 🔒 or ✓ glyph, which assistive tech
+    // either skips or reads as its Unicode name.
+    final state = locked
+        ? l10n.premiumLocked
+        : (done ? l10n.done : l10n.tapToPlay);
+    return Semantics(
+      button: true,
+      enabled: !locked,
+      label: '$title. ${item.type.name}. $state',
+      child: ExcludeSemantics(child: _tile(context)),
+    );
+  }
+
+  Widget _tile(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: InkWell(

@@ -6,7 +6,6 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
 import 'package:watoto_mobile/core/offline/offline_store.dart';
-import 'package:watoto_mobile/core/widgets/mascot_widget.dart';
 import 'package:watoto_mobile/features/gamification/economy.dart';
 import 'package:watoto_mobile/features/gamification/mascot_mood.dart';
 import 'package:watoto_mobile/features/gamification/savanna_world.dart';

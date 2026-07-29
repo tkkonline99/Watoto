@@ -1,4 +1,4 @@
-﻿{
+{
   "@@locale": "fr",
   "appTitle": "Watoto",
   "homeGreeting": "Bonjour, {name} !",
@@ -296,5 +296,16 @@
   "certificateCopied": "Certificat copié dans le presse-papiers",
   "certificateSaveFailed": "Impossible d'enregistrer le certificat",
   "recapTitle": "Qu'avons-nous appris ?",
-  "recapProgress": "Question {current} sur {total}"
+  "recapProgress": "Question {current} sur {total}",
+  "restoreBackup": "Restaurer depuis une sauvegarde",
+  "restoreBackupBody": "Récupérer la progression après une réinstallation ou sur un nouvel appareil",
+  "restoreBackupPaste": "Collez le texte de sauvegarde que vous avez enregistré",
+  "restoreBackupAction": "Restaurer",
+  "restoreBackupDone": "{children} profil(s) et {items} activités restaurés",
+  "restoreBackupNothing": "Rien de nouveau à restaurer — cet appareil est déjà à jour",
+  "restoreBackupInvalid": "Ceci ne ressemble pas à une sauvegarde Watoto",
+  "backupReminderTitle": "Gardez une sauvegarde",
+  "backupReminderBody": "La progression n'existe que sur cet appareil. Exportez une sauvegarde pour ne pas la perdre si le téléphone est perdu ou réinitialisé.",
+  "narrationUnavailableTitle": "Voix indisponible",
+  "narrationUnavailableBody": "Cet appareil n'a pas de voix installée pour {language}. Les sous-titres affichent toujours chaque mot. Pour ajouter une voix, ouvrez les paramètres de votre appareil et installez la synthèse vocale {language}."
 }

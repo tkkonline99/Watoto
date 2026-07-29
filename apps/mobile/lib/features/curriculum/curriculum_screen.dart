@@ -242,6 +242,7 @@ class _TopicCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: Padding(
@@ -270,7 +271,15 @@ class _TopicCard extends ConsumerWidget {
               for (final item in items)
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 3),
-                  child: InkWell(
+                  child: Semantics(
+                    button: true,
+                    // Done-ness is shown with a ✓ glyph and type with an emoji;
+                    // both are silent to a screen reader without this.
+                    label: '${itemTitle(i18n, lang, item)}. '
+                        '${item.type.name}. '
+                        '${isItemDone(ref, item) ? l10n.done : l10n.tapToPlay}',
+                    child: ExcludeSemantics(
+                      child: InkWell(
                     borderRadius: BorderRadius.circular(12),
                     onTap: () => context.push('/play/${item.id}'),
                     child: Container(
@@ -304,6 +313,8 @@ class _TopicCard extends ConsumerWidget {
                                   color: WatotoColors.mango,
                                 ),
                         ],
+                      ),
+                    ),
                       ),
                     ),
                   ),

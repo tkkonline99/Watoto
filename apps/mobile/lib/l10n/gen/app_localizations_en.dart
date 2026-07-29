@@ -1013,4 +1013,52 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get certificateSaveFailed => 'Could not save the certificate';
+
+  @override
+  String get recapTitle => 'What did we learn?';
+
+  @override
+  String recapProgress(int current, int total) {
+    return 'Question $current of $total';
+  }
+
+  @override
+  String get restoreBackup => 'Restore from a backup';
+
+  @override
+  String get restoreBackupBody =>
+      'Bring progress back after a reinstall or on a new device';
+
+  @override
+  String get restoreBackupPaste => 'Paste the backup text you saved';
+
+  @override
+  String get restoreBackupAction => 'Restore';
+
+  @override
+  String restoreBackupDone(int children, int items) {
+    return 'Restored $children profile(s) and $items activities';
+  }
+
+  @override
+  String get restoreBackupNothing =>
+      'Nothing new to restore — this device is already up to date';
+
+  @override
+  String get restoreBackupInvalid => 'That does not look like a Watoto backup';
+
+  @override
+  String get backupReminderTitle => 'Keep a backup';
+
+  @override
+  String get backupReminderBody =>
+      'Progress lives on this device only. Export a backup so a lost or reset phone does not lose it.';
+
+  @override
+  String get narrationUnavailableTitle => 'Voice not available';
+
+  @override
+  String narrationUnavailableBody(String language) {
+    return 'This device has no installed voice for $language. Captions still show every word. To add a voice, open your device settings and install $language text-to-speech.';
+  }
 }

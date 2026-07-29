@@ -64,6 +64,7 @@ class AvatarShopScreen extends ConsumerWidget {
                   _AvatarTile(
                     emoji: e.value,
                     label: e.key,
+                    name: e.key,
                     selected: child?.avatarKey == e.key,
                     locked: false,
                     onTap: childId == null
@@ -97,6 +98,7 @@ class AvatarShopScreen extends ConsumerWidget {
                       return _AvatarTile(
                         emoji: s.emoji,
                         label: unlocked ? s.key : '${s.cost} 🪙',
+                        name: s.key,
                         selected: child?.avatarKey == s.key,
                         locked: !unlocked,
                         onTap: childId == null
@@ -205,6 +207,7 @@ class _DecorationGrid extends ConsumerWidget {
                   isEarned(d, level: level, subjectsExplored: explored);
               return _AvatarTile(
                 emoji: d.emoji,
+                name: d.key,
                 label: unlocked
                     ? l10n.decorationEarned
                     : (d.requiredLevel > 0
@@ -222,6 +225,7 @@ class _DecorationGrid extends ConsumerWidget {
               final owned = purchased.contains(d.key);
               return _AvatarTile(
                 emoji: d.emoji,
+                name: d.key,
                 label: owned ? l10n.decorationOwned : '${d.cost} 🪙',
                 selected: false,
                 locked: !owned,
@@ -241,6 +245,7 @@ class _AvatarTile extends StatelessWidget {
     required this.selected,
     required this.locked,
     required this.onTap,
+    this.name,
   });
 
   final String emoji;
@@ -249,8 +254,29 @@ class _AvatarTile extends StatelessWidget {
   final bool locked;
   final VoidCallback? onTap;
 
+  /// Human name of the item, since the visual identity is an emoji a screen
+  /// reader would otherwise announce by its Unicode name — or skip entirely.
+  final String? name;
+
   @override
   Widget build(BuildContext context) {
+    // State matters as much as identity here: locked, owned and selected tiles
+    // look different but sounded identical.
+    final spoken = [
+      if (name != null && name!.isNotEmpty) name!,
+      label,
+    ].join('. ');
+
+    return Semantics(
+      button: onTap != null,
+      enabled: onTap != null,
+      selected: selected,
+      label: spoken,
+      child: ExcludeSemantics(child: _tile()),
+    );
+  }
+
+  Widget _tile() {
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(16),

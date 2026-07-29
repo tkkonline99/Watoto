@@ -9,6 +9,7 @@ import 'package:path_provider/path_provider.dart';
 
 import 'core/offline/desktop_migration_stub.dart'
     if (dart.library.io) 'core/offline/desktop_migration_io.dart';
+import 'core/analytics/analytics.dart';
 import 'core/offline/offline_providers.dart';
 import 'core/offline/offline_store.dart';
 import 'core/offline/sync_lifecycle.dart';
@@ -33,6 +34,9 @@ Future<ProviderContainer> bootstrapWatoto({
   await initWatotoHive();
   final store = await OfflineStore.open();
   await store.ensureDeviceId();
+  // Upgrade from the boot-time debug/no-op backend now that a durable sink
+  // exists. Release builds recorded nothing before this line.
+  crashReportingBackend = StoreCrashBackend(store.appendCrashEvent);
   crashReportingBackend.setCustomKey('deviceId', store.deviceId);
 
   if (seedDemoFamily && !store.onboardingComplete) {
@@ -80,6 +84,13 @@ Future<ProviderContainer> bootstrapWatoto({
   }());
   unawaited(container.read(syncEngineProvider).flush());
   container.read(syncLifecycleProvider).attach();
+
+  // Session denominator: every funnel rate above is meaningless without it.
+  container.read(analyticsProvider).log(AnalyticsEvents.appOpen, {
+    'locale': store.localeCode ?? 'unset',
+    'onboarded': store.onboardingComplete,
+    'children': store.children.length,
+  });
 
   return container;
 }

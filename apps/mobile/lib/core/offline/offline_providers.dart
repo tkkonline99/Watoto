@@ -7,6 +7,7 @@ import '../../features/gamification/economy.dart';
 import '../../features/gamification/reward_outcome.dart';
 import '../../features/gamification/rewards.dart';
 import '../../features/gamification/stars.dart';
+import '../../features/gamification/today_quest.dart';
 import '../../features/lesson_player/lesson_models.dart';
 import '../../features/library/library_models.dart';
 import '../../features/library/library_repository.dart';
@@ -14,6 +15,7 @@ import '../../features/onboarding/consent.dart';
 import '../../features/profiles/child_profile.dart';
 import '../../features/quiz/quiz_models.dart';
 import '../../features/auth/auth_service.dart';
+import '../analytics/analytics.dart';
 import '../network/watoto_api.dart';
 import 'offline_store.dart';
 import 'sync_engine.dart';
@@ -85,7 +87,7 @@ class SessionState {
 }
 
 class SessionController extends StateNotifier<SessionState> {
-  SessionController(this._store)
+  SessionController(this._store, this._analytics)
     : super(
         SessionState(
           onboardingComplete: _store.onboardingComplete,
@@ -97,6 +99,7 @@ class SessionController extends StateNotifier<SessionState> {
       );
 
   final OfflineStore _store;
+  final AnalyticsService _analytics;
 
   Future<ChildProfile> completeOnboarding({
     required ConsentRecord consent,
@@ -124,7 +127,21 @@ class SessionController extends StateNotifier<SessionState> {
       parentUnlocked: true,
       profilesRev: state.profilesRev + 1,
     );
+    // Activation is the funnel step that matters most; no PII in the params.
+    _analytics.log(AnalyticsEvents.onboardingComplete, {
+      'authMode': accountEmail != null ? 'account' : 'pin',
+      'ageBand': _ageBandOf(birthYear),
+    });
     return child;
+  }
+
+  /// Coarse age bucket — never the birth year itself, which is child PII.
+  static String _ageBandOf(int birthYear) {
+    final age = DateTime.now().year - birthYear;
+    if (age <= 2) return '0-2';
+    if (age <= 5) return '3-5';
+    if (age <= 7) return '6-7';
+    return '8-10';
   }
 
   /// Creates a local parent account and starts the session.
@@ -172,7 +189,11 @@ class SessionController extends StateNotifier<SessionState> {
     state = state._copy(); // nudge listeners
   }
 
-  void unlockParent() => state = state._copy(parentUnlocked: true);
+  void unlockParent() {
+    _analytics.log(AnalyticsEvents.parentUnlock);
+    state = state._copy(parentUnlocked: true);
+  }
+
   void lockParent() => state = state._copy(parentUnlocked: false);
 
   /// Bumps [profilesRev] so avatar/equip changes refresh home/picker.
@@ -184,7 +205,10 @@ class SessionController extends StateNotifier<SessionState> {
 }
 
 final sessionProvider = StateNotifierProvider<SessionController, SessionState>(
-  (ref) => SessionController(ref.watch(offlineStoreProvider)),
+  (ref) => SessionController(
+    ref.watch(offlineStoreProvider),
+    ref.watch(analyticsProvider),
+  ),
 );
 
 /// The currently-selected child profile, or null at the picker.
@@ -257,6 +281,8 @@ class LearningService {
 
   final Ref _ref;
 
+  AnalyticsService get _analytics => _ref.read(analyticsProvider);
+
   Future<void> completeLesson(
     LessonBody lesson, {
     required int scorePct,
@@ -272,6 +298,11 @@ class LearningService {
       timeSpentS: timeSpentS,
       xpEarned: lesson.completion.xp,
     );
+    _analytics.log(AnalyticsEvents.lessonComplete, {
+      'source': 'player',
+      'scorePct': scorePct,
+      'timeSpentS': timeSpentS,
+    });
     _afterWrite(store, childId);
   }
 
@@ -296,6 +327,12 @@ class LearningService {
       durationS: durationS,
       xpEarned: grade.xp,
     );
+    _analytics.log(AnalyticsEvents.quizComplete, {
+      'source': 'player',
+      'scorePct': grade.scorePct,
+      'passed': grade.passed,
+      'durationS': durationS,
+    });
     _afterWrite(store, childId);
   }
 
@@ -343,7 +380,23 @@ class LearningService {
         childId: childId,
         scorePct: scorePct,
         retries: mistakes,
+        itemId: item.id,
+        type: item.type.name,
+        subject: item.subject,
+        stage: item.stage,
       );
+    }
+    _analytics.log(AnalyticsEvents.lessonComplete, {
+      'stage': item.stage,
+      'scorePct': scorePct,
+      'timeSpentS': timeSpentS,
+      'graded': graded,
+      'firstInSubject': firstInSubject,
+    });
+    if (bonusCoins > 0) {
+      _analytics.log(AnalyticsEvents.dailyChallengeComplete, {
+        'stage': item.stage,
+      });
     }
     _afterWrite(
       store,
@@ -407,7 +460,18 @@ class LearningService {
       childId: childId,
       scorePct: scorePct,
       retries: retries,
+      itemId: item.id,
+      type: item.type.name,
+      subject: item.subject,
+      stage: item.stage,
     );
+    _analytics.log(AnalyticsEvents.quizComplete, {
+      'stage': item.stage,
+      'scorePct': scorePct,
+      'passed': passed,
+      'retries': retries,
+      'durationS': durationS,
+    });
     _afterWrite(
       store,
       childId,
@@ -436,6 +500,10 @@ class LearningService {
       subject: item.subject,
     );
     coins += await _maybeDailyChallengeBonus(store, childId, item.id);
+    _analytics.log(AnalyticsEvents.storyComplete, {
+      'stage': item.stage,
+      'firstInSubject': firstInSubject,
+    });
     _afterWrite(
       store,
       childId,
@@ -484,6 +552,14 @@ class LearningService {
       unawaited(store.setLastKnownLevel(childId, level));
       _ref.read(pendingLevelUpProvider.notifier).state = level;
       levelUp = level;
+      _analytics.log(AnalyticsEvents.levelUp, {'level': level});
+    }
+
+    // Exactly-crossing the daily goal is the "quest done" moment; later
+    // completions the same day must not re-fire it.
+    final quest = todayQuestFor(store, childId);
+    if (quest.done == quest.goal) {
+      _analytics.log(AnalyticsEvents.questComplete, {'goal': quest.goal});
     }
 
     final streak = store.streakFor(childId);
@@ -503,6 +579,10 @@ class LearningService {
         ..._ref.read(pendingBadgeToastProvider),
         ...fresh,
       ];
+      for (final id in fresh) {
+        // Badge ids are short fixed slugs, not free text — safe to record.
+        _analytics.log(AnalyticsEvents.badgeUnlock, {'badge': id});
+      }
     }
 
     // Hand the celebration everything worth showing, in one object. The

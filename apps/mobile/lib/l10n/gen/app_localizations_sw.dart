@@ -1007,4 +1007,54 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get certificateSaveFailed => 'Imeshindwa kuhifadhi cheti';
+
+  @override
+  String get recapTitle => 'Tumejifunza nini?';
+
+  @override
+  String recapProgress(int current, int total) {
+    return 'Swali $current kati ya $total';
+  }
+
+  @override
+  String get restoreBackup => 'Rejesha kutoka nakala rudufu';
+
+  @override
+  String get restoreBackupBody =>
+      'Rudisha maendeleo baada ya kusakinisha upya au kwenye kifaa kipya';
+
+  @override
+  String get restoreBackupPaste =>
+      'Bandika maandishi ya nakala rudufu uliyohifadhi';
+
+  @override
+  String get restoreBackupAction => 'Rejesha';
+
+  @override
+  String restoreBackupDone(int children, int items) {
+    return 'Zimerejeshwa wasifu $children na shughuli $items';
+  }
+
+  @override
+  String get restoreBackupNothing =>
+      'Hakuna kipya cha kurejesha — kifaa hiki tayari kina taarifa mpya';
+
+  @override
+  String get restoreBackupInvalid =>
+      'Hii haionekani kuwa nakala rudufu ya Watoto';
+
+  @override
+  String get backupReminderTitle => 'Weka nakala rudufu';
+
+  @override
+  String get backupReminderBody =>
+      'Maendeleo yapo kwenye kifaa hiki pekee. Hifadhi nakala rudufu ili simu ikipotea au ikifutwa usipoteze.';
+
+  @override
+  String get narrationUnavailableTitle => 'Sauti haipatikani';
+
+  @override
+  String narrationUnavailableBody(String language) {
+    return 'Kifaa hiki hakina sauti iliyosakinishwa kwa $language. Manukuu bado yanaonyesha kila neno. Ili kuongeza sauti, fungua mipangilio ya kifaa chako na usakinishe sauti ya $language.';
+  }
 }

@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/analytics/analytics.dart';
 import '../../core/offline/offline_providers.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
@@ -93,6 +94,9 @@ class _PasswordResetScreenState extends ConsumerState<PasswordResetScreen> {
           _info = l10n.passwordResetEmailSent;
         });
       }
+      // The email address is stripped by the service's PII filter; only the
+      // fact that recovery was attempted is useful anyway.
+      ref.read(analyticsProvider).log(AnalyticsEvents.passwordResetRequest);
     } catch (e) {
       // Generic copy — avoid account enumeration in UI for cloud; local may fail.
       setState(() {
