@@ -380,6 +380,10 @@ class LearningService {
         childId: childId,
         scorePct: scorePct,
         retries: mistakes,
+        itemId: item.id,
+        type: item.type.name,
+        subject: item.subject,
+        stage: item.stage,
       );
     }
     _analytics.log(AnalyticsEvents.lessonComplete, {
@@ -456,6 +460,10 @@ class LearningService {
       childId: childId,
       scorePct: scorePct,
       retries: retries,
+      itemId: item.id,
+      type: item.type.name,
+      subject: item.subject,
+      stage: item.stage,
     );
     _analytics.log(AnalyticsEvents.quizComplete, {
       'stage': item.stage,

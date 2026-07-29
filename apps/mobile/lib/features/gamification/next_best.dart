@@ -12,6 +12,10 @@ import 'daily_challenge.dart';
 /// Why we picked this activity (analytics + UI copy).
 enum NextBestReason {
   dailyChallenge,
+
+  /// Something the child has met before and not held onto — see
+  /// `domain/rules/review.dart`.
+  review,
   continueNext,
   continueResume,
   adaptiveEasier,
@@ -84,7 +88,26 @@ NextBestTarget? resolveNextBestForChild({
       : null;
   bool usable(LibraryItem i) => i.id != excludeId;
 
-  // 2) Adaptive stage shift when the child is struggling or flying.
+  // 2) Anything due back on the review ladder.
+  //
+  // This sits above the adaptive shift on purpose. Both fire when a child is
+  // struggling, but only one of them offers the material they struggled with;
+  // the adaptive branch answers "something easier", which is worth reaching
+  // for only once the thing they actually missed has been re-met.
+  final due = store.dueReviewsFor(child.id, now: when);
+  for (final rec in due) {
+    final item = library.byId[rec.itemId];
+    // A record can outlive its item across a content update; the schedule is
+    // not worth crashing a child's home screen over.
+    if (item == null || !usable(item)) continue;
+    return NextBestTarget(
+      item: item,
+      reason: NextBestReason.review,
+      nudge: nudge,
+    );
+  }
+
+  // 3) Adaptive stage shift when the child is struggling or flying.
   if (nudge != DifficultyNudge.same) {
     final adaptedStage = clampStage(preferred, stageOffsetFor(nudge));
     final pool = library.all
@@ -110,7 +133,7 @@ NextBestTarget? resolveNextBestForChild({
     }
   }
 
-  // 3) Continue in last subject.
+  // 4) Continue in last subject.
   final cont = resolveContinueLearning(
     childId: child.id,
     store: store,
@@ -128,7 +151,7 @@ NextBestTarget? resolveNextBestForChild({
     );
   }
 
-  // 4) Discover any incomplete item.
+  // 5) Discover any incomplete item.
   for (final item in library.all) {
     if (!usable(item)) continue;
     if (!store.hasCompletedLibraryItem(child.id, item.id, item.type.name)) {
@@ -138,6 +161,21 @@ NextBestTarget? resolveNextBestForChild({
         nudge: nudge,
       );
     }
+  }
+
+  // 6) Nothing new left. Before this existed the resolver returned null here
+  // and the home screen simply dropped its "keep going" card — a child who
+  // finished the library was shown less than one who had not started. Offer
+  // the weakest unmastered item instead, even if it is not due yet: an early
+  // review is a better answer than an empty screen.
+  for (final rec in store.needsPracticeFor(child.id)) {
+    final item = library.byId[rec.itemId];
+    if (item == null || !usable(item)) continue;
+    return NextBestTarget(
+      item: item,
+      reason: NextBestReason.review,
+      nudge: nudge,
+    );
   }
   return null;
 }
