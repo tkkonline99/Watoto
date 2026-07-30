@@ -149,8 +149,8 @@ void main() {
         birthYear: 2020,
       );
       final data = store.exportFamilyData();
-      expect(data['children'], isA<List>());
-      expect((data['children'] as List).length, 1);
+      expect(data['children'], isA<List<dynamic>>());
+      expect((data['children'] as List<dynamic>).length, 1);
       expect(data['exportedAt'], isNotNull);
     });
 
