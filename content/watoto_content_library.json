@@ -4591,7 +4591,7 @@
      "answer": 0
     },
     {
-     "prompt": "'The classroom was a zoo' says one thing IS another, so it is a…",
+     "prompt": "'The classroom was a zoo' says one thing is another, so it is a…",
      "options": [
       "metaphor",
       "simile"
@@ -15183,7 +15183,7 @@
    ],
    "recap": [
     {
-     "prompt": "You sorted shapes that were red AND…",
+     "prompt": "You sorted shapes that were red and…",
      "options": [
       "round",
       "square"
@@ -20620,7 +20620,7 @@
    ],
    "recap": [
     {
-     "prompt": "IF it rains, THEN the robot grabs the…",
+     "prompt": "If it rains, then the robot grabs the…",
      "options": [
       "umbrella",
       "kite"
@@ -22918,7 +22918,7 @@
    ],
    "recap": [
     {
-     "prompt": "IF the gate is open you go through. ELSE you…",
+     "prompt": "If the gate is open you go through. Else you…",
      "options": [
       "knock",
       "run"
