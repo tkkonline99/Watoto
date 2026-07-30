@@ -200,8 +200,7 @@ void main() {
     expect(plan.choices[plan.choiceIndex], '80 and 12');
   });
 
-  test('every lesson step past the parent-led stage asks the child something',
-      () {
+  test('a short lesson has no step with nothing to answer', () {
     // A passive continue button tells nobody whether the child understood, so
     // steps the planner cannot make checkable carry authored `choices` in
     // watoto_content_library.json instead.
@@ -210,18 +209,58 @@ void main() {
     // the child is pre-verbal (0–1). A grown-up reads the line and does the
     // action with the baby; offering "Under the cloth / All gone" would be a
     // question to the parent, not a check on the child.
+    //
+    // The length condition is the other exception, and it is why this test is
+    // no longer "every step". When a lesson is two or three steps long, a
+    // passive step is half the lesson and the child is just watching. Once a
+    // lesson is a real teaching arc, exposition is the point: you cannot ask a
+    // child to apply silent-e before you have shown them silent-e. Depth is
+    // covered by the companion rule below, not by banning explanation.
     final passive = <String>[];
     for (final item in lessons) {
+      if (item.stage <= 1 || item.steps.length > 3) continue;
       for (var i = 0; i < item.steps.length; i++) {
         final plan = planStep(item: item, stepIndex: i, step: item.steps[i]);
-        if (plan.mechanic == StepMechanic.explain && item.stage > 1) {
-          passive.add('${item.id} (stage ${item.stage}) step$i: '
-              '"${item.steps[i].narration}"');
+        if (plan.mechanic == StepMechanic.explain) {
+          passive.add('${item.id} (stage ${item.stage}, ${item.steps.length} '
+              'steps) step$i: "${item.steps[i].narration}"');
         }
       }
     }
     expect(passive, isEmpty, reason: 'steps with nothing to answer:\n'
         '${passive.take(20).join('\n')}');
+  });
+
+  test('a long lesson is still mostly interactive, and never lectures', () {
+    // The replacement for the blanket ban above. Two properties keep a deep
+    // lesson from turning into a slideshow:
+    //   - at least half its steps ask the child something, and
+    //   - it never runs more than two explanations back to back.
+    final bad = <String>[];
+    for (final item in lessons) {
+      if (item.stage <= 1 || item.steps.length <= 3) continue;
+      var asked = 0;
+      var run = 0;
+      var longestRun = 0;
+      for (var i = 0; i < item.steps.length; i++) {
+        final plan = planStep(item: item, stepIndex: i, step: item.steps[i]);
+        if (plan.mechanic == StepMechanic.explain) {
+          run++;
+          if (run > longestRun) longestRun = run;
+        } else {
+          run = 0;
+          asked++;
+        }
+      }
+      if (asked * 2 < item.steps.length) {
+        bad.add('${item.id}: only $asked of ${item.steps.length} steps ask '
+            'the child anything');
+      }
+      if (longestRun > 2) {
+        bad.add('${item.id}: $longestRun explanations in a row');
+      }
+    }
+    expect(bad, isEmpty, reason: bad.take(20).join('\n'));
   });
 
   test('the answer is not always in the same slot', () {
@@ -249,12 +288,19 @@ void main() {
   test('no option is a fragment chopped out of its sentence', () {
     // A length cap once matched a prefix instead of failing, shipping
     // "the message behind th" as an answer.
+    //
+    // Short options are exempt, because in a phonics lesson the fragment IS
+    // the answer: "which blend starts black?" has to offer "bl", and "bl"
+    // will always sit inside "black". The bug this guards against produced a
+    // chopped phrase, not a two-letter blend.
+    const fragmentIsPlausiblyDeliberate = 4;
     final bad = <String>[];
     for (final item in lessons) {
       for (var i = 0; i < item.steps.length; i++) {
         final step = item.steps[i];
         final source = '${step.narration} ${step.feedback}';
         for (final option in step.choices) {
+          if (option.length <= fragmentIsPlausiblyDeliberate) continue;
           final at = source.indexOf(option);
           if (at < 0) continue;
           final after = at + option.length;

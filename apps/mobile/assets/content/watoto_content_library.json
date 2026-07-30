@@ -3600,14 +3600,99 @@
    ],
    "steps": [
     {
-     "narration": "Read 'cap'. Now add silent-e: 'cape'. Tap to hear.",
-     "action": "tap-read",
-     "feedback": "The e is silent but makes a say its name: 'cape'."
+     "narration": "Read this word slowly: cap. /c/ /a/ /p/.",
+     "action": "tap",
+     "feedback": "Short and quick — the a says /a/.",
+     "mechanic": "explain"
     },
     {
-     "narration": "Read the vowel team 'ai' in 'rain'.",
-     "action": "tap-read",
-     "feedback": "'ai' says /ay/ — 'rain'. Great reading!"
+     "narration": "Now watch. We add one letter at the end: cape.",
+     "action": "tap",
+     "feedback": "The word changed, and so did the middle sound.",
+     "mechanic": "explain"
+    },
+    {
+     "narration": "Read it again: cape. The new e is silent — you never say it out loud.",
+     "action": "tap",
+     "feedback": "cape. The e is there but stays quiet.",
+     "mechanic": "multiChoice",
+     "prompt": "cap + e makes which word?",
+     "choices": [
+      "cape",
+      "capp",
+      "caper"
+     ],
+     "choiceIndex": 0
+    },
+    {
+     "narration": "Here is the magic: silent e makes the vowel read its own name. A says 'ay'.",
+     "action": "tap",
+     "feedback": "cap becomes cape. hop becomes hope.",
+     "mechanic": "explain"
+    },
+    {
+     "narration": "Look for the quiet e at the end of the word.",
+     "action": "tap",
+     "feedback": "hope has it. hop and hopping do not.",
+     "mechanic": "multiChoice",
+     "prompt": "Which word has a silent e?",
+     "choices": [
+      "hop",
+      "hope",
+      "hopping"
+     ],
+     "choiceIndex": 1
+    },
+    {
+     "narration": "There is a second way vowels help each other. Two vowels together, one sound: rain.",
+     "action": "tap",
+     "feedback": "That is called a vowel team.",
+     "mechanic": "explain"
+    },
+    {
+     "narration": "Find the two letters doing the work in rain.",
+     "action": "tap",
+     "feedback": "a and i together say /ay/.",
+     "mechanic": "multiChoice",
+     "prompt": "In 'rain', which letters work together?",
+     "choices": [
+      "r and n",
+      "a and i",
+      "i and n"
+     ],
+     "choiceIndex": 1
+    },
+    {
+     "narration": "Listen for that same /ay/ sound in another word.",
+     "action": "tap",
+     "feedback": "train! Same team, same sound.",
+     "mechanic": "multiChoice",
+     "prompt": "Which word has the same sound as rain?",
+     "choices": [
+      "train",
+      "ran",
+      "run"
+     ],
+     "choiceIndex": 0
+    },
+    {
+     "narration": "Once you spot a team you can read a whole family: rain, pain, mail, tail.",
+     "action": "tap",
+     "feedback": "Four new words from one pattern.",
+     "mechanic": "explain"
+    },
+    {
+     "narration": "Read this sentence: 'The tail is long.'",
+     "action": "tap",
+     "feedback": "tail — a and i again. You are reading with patterns now.",
+     "mechanic": "multiChoice",
+     "prompt": "Which word has a vowel team?",
+     "choices": [
+      "The",
+      "tail",
+      "long"
+     ],
+     "choiceIndex": 1
     }
    ],
    "recap": [
@@ -15553,20 +15638,88 @@
    ],
    "steps": [
     {
-     "narration": "'bl' blends two sounds: b-l. Tap 'blue'.",
+     "narration": "Sometimes two letters stand side by side and you hear both. Listen: bl in black.",
      "action": "tap",
-     "feedback": "'bl-ue — blue!'"
+     "feedback": "/b/ and /l/, close together but both there.",
+     "mechanic": "explain"
     },
     {
-     "narration": "Now 'st' in 'star'.",
+     "narration": "Say black slowly and listen to the very start.",
      "action": "tap",
-     "feedback": "'st-ar — star!'",
+     "feedback": "bl — that is a blend.",
      "mechanic": "multiChoice",
+     "prompt": "Which blend starts 'black'?",
      "choices": [
-      "st",
-      "bl"
+      "bl",
+      "ck",
+      "la"
      ],
      "choiceIndex": 0
+    },
+    {
+     "narration": "A blend is two sounds, not one new sound.",
+     "action": "tap",
+     "feedback": "2 sounds. You can hear them both if you go slowly.",
+     "mechanic": "numberAnswer",
+     "prompt": "How many sounds do you hear in 'bl'?",
+     "answer": 2
+    },
+    {
+     "narration": "Blends come in families too: st in stop, star, stand.",
+     "action": "tap",
+     "feedback": "Learn one blend, unlock many words.",
+     "mechanic": "explain"
+    },
+    {
+     "narration": "Which of these begins with that st sound?",
+     "action": "tap",
+     "feedback": "star. sun starts with just /s/.",
+     "mechanic": "multiChoice",
+     "prompt": "Which word starts with 'st'?",
+     "choices": [
+      "sun",
+      "star",
+      "tap"
+     ],
+     "choiceIndex": 1
+    },
+    {
+     "narration": "Blends can hide at the end of a word too. Listen to the end of hand: /n/ /d/.",
+     "action": "tap",
+     "feedback": "nd — both sounds, right at the finish.",
+     "mechanic": "explain"
+    },
+    {
+     "narration": "Say each one and listen to the last part.",
+     "action": "tap",
+     "feedback": "sand ends with nd.",
+     "mechanic": "multiChoice",
+     "prompt": "Which word ends with 'nd'?",
+     "choices": [
+      "sat",
+      "sand",
+      "san"
+     ],
+     "choiceIndex": 1
+    },
+    {
+     "narration": "Here is a new word to sound out: frog.",
+     "action": "tap",
+     "feedback": "fr at the front. /f/ then /r/.",
+     "mechanic": "multiChoice",
+     "prompt": "Which blend do you see in 'frog'?",
+     "choices": [
+      "fr",
+      "og",
+      "ro"
+     ],
+     "choiceIndex": 0
+    },
+    {
+     "narration": "bl, st, nd, fr — you can now sound out words you have never seen before.",
+     "action": "tap",
+     "feedback": "That is what blends are for.",
+     "mechanic": "explain"
     }
    ],
    "recap": [
@@ -15715,28 +15868,97 @@
    ],
    "steps": [
     {
-     "narration": "The text talks about dogs: how they eat, play, and sleep. What is it MOSTLY about?",
+     "narration": "Listen to this little story. 'Bees live together in a hive.'",
      "action": "tap",
-     "feedback": "Dogs — the main idea!",
-     "mechanic": "multiChoice",
-     "choices": [
-      "Eat",
-      "Play",
-      "MOSTLY"
-     ],
-     "choiceIndex": 2
+     "feedback": "One sentence so far. Keep listening.",
+     "mechanic": "explain"
     },
     {
-     "narration": "The main idea is the big point.",
+     "narration": "'Some bees find flowers. Some bees make honey. Some keep the hive clean.'",
      "action": "tap",
-     "feedback": "Well thought out!",
+     "feedback": "Three more sentences. Notice what they are all about.",
+     "mechanic": "explain"
+    },
+    {
+     "narration": "Before we think about the whole story, check one thing you heard.",
+     "action": "tap",
+     "feedback": "Honey. That is a detail — one fact from one sentence.",
+     "mechanic": "multiChoice",
+     "prompt": "What do some bees make?",
+     "choices": [
+      "Honey",
+      "Bread",
+      "Shoes"
+     ],
+     "choiceIndex": 0
+    },
+    {
+     "narration": "Now the whole story. Every sentence talked about bees doing a job.",
+     "action": "tap",
+     "feedback": "Yes — it is mostly about bees working together.",
+     "mechanic": "multiChoice",
+     "prompt": "What is this story mostly about?",
+     "choices": [
+      "How bees work together",
+      "How to bake a cake",
+      "One bee's name"
+     ],
+     "choiceIndex": 0
+    },
+    {
+     "narration": "That is the main idea: what most of the sentences are about.",
+     "action": "tap",
+     "feedback": "It is the whole story in a few words.",
+     "mechanic": "explain"
+    },
+    {
+     "narration": "The other sentences are details. They fill in the picture.",
+     "action": "tap",
+     "feedback": "'Some bees make honey' is one small detail, not the whole idea.",
+     "mechanic": "multiChoice",
+     "prompt": "Which one is a detail, not the main idea?",
+     "choices": [
+      "Bees work together",
+      "Some bees make honey"
+     ],
+     "choiceIndex": 1
+    },
+    {
+     "narration": "A good title is the main idea, made short.",
+     "action": "tap",
+     "feedback": "Titles are a clue to what a story is about.",
+     "mechanic": "explain"
+    },
+    {
+     "narration": "Pick the title that fits our bee story.",
+     "action": "tap",
+     "feedback": "'Busy Bees' — short, and it says the main idea.",
+     "mechanic": "multiChoice",
+     "prompt": "Which title fits best?",
+     "choices": [
+      "Busy Bees",
+      "My Red Bike"
+     ],
+     "choiceIndex": 0
+    },
+    {
+     "narration": "Now a brand new story. 'Rain fills the river. Plants drink. Animals come to the water.'",
+     "action": "tap",
+     "feedback": "Ask yourself: what are all three about?",
+     "mechanic": "explain"
+    },
+    {
+     "narration": "Find the idea that holds all three sentences together.",
+     "action": "tap",
+     "feedback": "Rain helps life grow. You found a main idea on your own!",
      "mechanic": "multiChoice",
      "prompt": "What is the main idea?",
      "choices": [
-      "A small detail",
-      "The big point"
+      "Rain helps life grow",
+      "Rivers are cold",
+      "Animals can run"
      ],
-     "choiceIndex": 1
+     "choiceIndex": 0
     }
    ],
    "recap": [
@@ -15940,14 +16162,90 @@
    ],
    "steps": [
     {
-     "narration": "A verb is an action. Tap the verb: 'jump'.",
+     "narration": "Some words are things. Some words are doings. A doing word is a verb.",
      "action": "tap",
-     "feedback": "'jump' — an action, a verb!"
+     "feedback": "run, jump, eat — all verbs.",
+     "mechanic": "explain"
     },
     {
-     "narration": "Tap the verb in 'She runs fast'. (runs)",
+     "narration": "One of these you can do. The other you sit on.",
      "action": "tap",
-     "feedback": "'runs' — a verb!"
+     "feedback": "jump is the action. A chair is a thing.",
+     "mechanic": "multiChoice",
+     "prompt": "Which word is an action?",
+     "choices": [
+      "chair",
+      "jump"
+     ],
+     "choiceIndex": 1
+    },
+    {
+     "narration": "Every sentence needs a verb, or nothing happens in it.",
+     "action": "tap",
+     "feedback": "'The girl runs.' Without runs, the girl just stands there.",
+     "mechanic": "explain"
+    },
+    {
+     "narration": "Find the doing word in this sentence: 'The dog barks.'",
+     "action": "tap",
+     "feedback": "barks. That is what the dog does.",
+     "mechanic": "multiChoice",
+     "prompt": "Which word is the verb?",
+     "choices": [
+      "dog",
+      "barks"
+     ],
+     "choiceIndex": 1
+    },
+    {
+     "narration": "Verbs are not always loud or fast. Quiet things are verbs too: think, sleep, wait.",
+     "action": "tap",
+     "feedback": "If it is something you do, it is a verb.",
+     "mechanic": "explain"
+    },
+    {
+     "narration": "You lie still when you do this one — but you are still doing it.",
+     "action": "tap",
+     "feedback": "Yes, sleep is a verb.",
+     "mechanic": "multiChoice",
+     "prompt": "Is 'sleep' a verb?",
+     "choices": [
+      "Yes",
+      "No"
+     ],
+     "choiceIndex": 0
+    },
+    {
+     "narration": "Try a longer sentence: 'Amina reads a book.'",
+     "action": "tap",
+     "feedback": "reads. Amina is the person, book is the thing, reads is the doing.",
+     "mechanic": "multiChoice",
+     "prompt": "Pick the verb.",
+     "choices": [
+      "Amina",
+      "reads",
+      "book"
+     ],
+     "choiceIndex": 1
+    },
+    {
+     "narration": "Change the verb and you change what happens. 'The bird sings.' 'The bird flies.'",
+     "action": "tap",
+     "feedback": "Same bird, two different actions.",
+     "mechanic": "explain"
+    },
+    {
+     "narration": "Only one of these can finish the sentence 'The bird ___.'",
+     "action": "tap",
+     "feedback": "flies. Blue and table are not doings.",
+     "mechanic": "multiChoice",
+     "prompt": "Which verb fits?",
+     "choices": [
+      "flies",
+      "blue",
+      "table"
+     ],
+     "choiceIndex": 0
     }
    ],
    "recap": [
@@ -16268,29 +16566,91 @@
    ],
    "steps": [
     {
-     "narration": "8 + 7. Make ten first: 8 + 2 = 10, then 5 more.",
+     "narration": "Big sums can be easy. Watch this one: 8 + 7.",
      "action": "tap",
-     "feedback": "'10 and 5 is 15!'",
-     "mechanic": "multiChoice",
-     "choices": [
-      "25",
-      "16",
-      "15"
-     ],
-     "choiceIndex": 2
+     "feedback": "Let's find a trick.",
+     "mechanic": "explain"
     },
     {
-     "narration": "8 + 7 = 15.",
+     "narration": "Ten is our friend. It is easy to add to ten.",
      "action": "tap",
-     "feedback": "Making ten helps!",
+     "feedback": "So let's make a ten first.",
+     "mechanic": "explain"
+    },
+    {
+     "narration": "Eight is nearly ten. How much more does it need? 8 + ? = 10.",
+     "action": "tap",
+     "feedback": "Yes! 8 + 2 = 10.",
      "mechanic": "multiChoice",
-     "prompt": "8 + 7 = ?",
+     "prompt": "8 + ? = 10",
      "choices": [
+      "1",
+      "2",
+      "3"
+     ],
+     "choiceIndex": 1
+    },
+    {
+     "narration": "We borrowed that 2 from the 7. Now take it away: 7 - 2.",
+     "action": "tap",
+     "feedback": "Let's see how much is left.",
+     "mechanic": "explain"
+    },
+    {
+     "narration": "7 - 2. Seven, give away two.",
+     "action": "tap",
+     "feedback": "5 is left.",
+     "mechanic": "numberAnswer",
+     "prompt": "7 − 2 = ?",
+     "answer": 5
+    },
+    {
+     "narration": "Now the hard sum has become an easy one: 10 + 5.",
+     "action": "tap",
+     "feedback": "10 and 5 is 15!",
+     "mechanic": "multiChoice",
+     "prompt": "10 + 5 = ?",
+     "choices": [
+      "12",
       "15",
-      "25",
-      "16"
+      "50"
+     ],
+     "choiceIndex": 1
+    },
+    {
+     "narration": "So 8 + 7 = 15. Making ten turned a hard sum into an easy one.",
+     "action": "tap",
+     "feedback": "That trick works every time.",
+     "mechanic": "explain"
+    },
+    {
+     "narration": "Your turn. We want to add 9 + 6.",
+     "action": "tap",
+     "feedback": "Right — 9 needs just 1 more.",
+     "mechanic": "multiChoice",
+     "prompt": "What does 9 need to make ten?",
+     "choices": [
+      "1",
+      "2",
+      "6"
      ],
      "choiceIndex": 0
+    },
+    {
+     "narration": "Take 1 from the 6 to make ten, then add what is left.",
+     "action": "tap",
+     "feedback": "10 and 5 is 15. You did it the clever way!",
+     "mechanic": "numberAnswer",
+     "prompt": "9 + 6 = ?",
+     "answer": 15
+    },
+    {
+     "narration": "Last one, all by yourself: 7 + 5.",
+     "action": "tap",
+     "feedback": "12! Making ten works every single time.",
+     "mechanic": "numberAnswer",
+     "prompt": "7 + 5 = ?",
+     "answer": 12
     }
    ],
    "recap": [
@@ -16336,29 +16696,78 @@
    ],
    "steps": [
     {
-     "narration": "15 - 6. Count back from 15.",
+     "narration": "Taking away can use the same ten trick. Try 15 − 7.",
      "action": "tap",
-     "feedback": "'14, 13, 12, 11, 10, 9 — it's 9!'",
-     "mechanic": "multiChoice",
-     "choices": [
-      "19",
-      "8",
-      "9"
-     ],
-     "choiceIndex": 2
+     "feedback": "Watch how we do it.",
+     "mechanic": "explain"
     },
     {
-     "narration": "15 - 6 = 9.",
+     "narration": "Instead of taking all 7 at once, we step down to ten first.",
      "action": "tap",
-     "feedback": "Counting back works!",
+     "feedback": "Ten is an easy place to stand.",
+     "mechanic": "explain"
+    },
+    {
+     "narration": "How far is 15 from 10?",
+     "action": "tap",
+     "feedback": "Yes — 5 steps down.",
      "mechanic": "multiChoice",
-     "prompt": "15 - 6 = ?",
+     "prompt": "15 − ? = 10",
      "choices": [
-      "19",
-      "9",
-      "8"
+      "4",
+      "5",
+      "7"
      ],
      "choiceIndex": 1
+    },
+    {
+     "narration": "We have taken 5 of the 7 away. Two more still to go.",
+     "action": "tap",
+     "feedback": "7 is 5 and 2.",
+     "mechanic": "explain"
+    },
+    {
+     "narration": "Take the last 2 from our ten.",
+     "action": "tap",
+     "feedback": "8! And 15 − 7 = 8.",
+     "mechanic": "numberAnswer",
+     "prompt": "10 − 2 = ?",
+     "answer": 8
+    },
+    {
+     "narration": "Down to ten, then down again. That is the whole trick.",
+     "action": "tap",
+     "feedback": "Now you try some.",
+     "mechanic": "explain"
+    },
+    {
+     "narration": "This one lands on ten in a single step.",
+     "action": "tap",
+     "feedback": "16 − 6 = 10. Straight to ten!",
+     "mechanic": "multiChoice",
+     "prompt": "16 − 6 = ?",
+     "choices": [
+      "9",
+      "10",
+      "12"
+     ],
+     "choiceIndex": 1
+    },
+    {
+     "narration": "14 − 5. Step down to ten, then take what is left.",
+     "action": "tap",
+     "feedback": "9! Four to reach ten, then one more.",
+     "mechanic": "numberAnswer",
+     "prompt": "14 − 5 = ?",
+     "answer": 9
+    },
+    {
+     "narration": "One more on your own: 13 − 4.",
+     "action": "tap",
+     "feedback": "9! You are subtracting like a mathematician.",
+     "mechanic": "numberAnswer",
+     "prompt": "13 − 4 = ?",
+     "answer": 9
     }
    ],
    "recap": [
@@ -16404,14 +16813,84 @@
    ],
    "steps": [
     {
-     "narration": "47 is 4 tens and 7 ones. Tap the tens.",
+     "narration": "Big numbers are made of tens and ones. Look at 47.",
      "action": "tap",
-     "feedback": "'4 tens — that's 40!'"
+     "feedback": "Two digits, two jobs.",
+     "mechanic": "explain"
     },
     {
-     "narration": "Tap the ones.",
+     "narration": "The 4 is not really four. It means four bundles of ten: 40.",
      "action": "tap",
-     "feedback": "'7 ones. 40 and 7 is 47!'"
+     "feedback": "Where a digit stands changes what it is worth.",
+     "mechanic": "explain"
+    },
+    {
+     "narration": "Count the bundles of ten in 47.",
+     "action": "tap",
+     "feedback": "Four tens — that is 40.",
+     "mechanic": "multiChoice",
+     "prompt": "How many tens are in 47?",
+     "choices": [
+      "4",
+      "7",
+      "40"
+     ],
+     "choiceIndex": 0
+    },
+    {
+     "narration": "The loose ones are the leftovers that could not make a bundle.",
+     "action": "tap",
+     "feedback": "7 ones. So 47 is 40 and 7.",
+     "mechanic": "numberAnswer",
+     "prompt": "How many ones are in 47?",
+     "answer": 7
+    },
+    {
+     "narration": "Say it out loud: forty… seven. The number tells you its own parts.",
+     "action": "tap",
+     "feedback": "Every two-digit number works this way.",
+     "mechanic": "explain"
+    },
+    {
+     "narration": "Now backwards: build the number from its parts.",
+     "action": "tap",
+     "feedback": "6 tens and 2 ones is 62.",
+     "mechanic": "multiChoice",
+     "prompt": "Which number has 6 tens and 2 ones?",
+     "choices": [
+      "26",
+      "62",
+      "620"
+     ],
+     "choiceIndex": 1
+    },
+    {
+     "narration": "Careful with this one — there are no loose ones at all.",
+     "action": "tap",
+     "feedback": "80. A zero holds the ones place open.",
+     "mechanic": "numberAnswer",
+     "prompt": "8 tens and 0 ones = ?",
+     "answer": 80
+    },
+    {
+     "narration": "Tens are worth more than ones, so look at the tens first.",
+     "action": "tap",
+     "feedback": "85 has 8 tens; 58 has only 5.",
+     "mechanic": "multiChoice",
+     "prompt": "Which is bigger, 58 or 85?",
+     "choices": [
+      "58",
+      "85"
+     ],
+     "choiceIndex": 1
+    },
+    {
+     "narration": "Last one: build 5 tens and 9 ones.",
+     "action": "tap",
+     "feedback": "59! You can read any number now.",
+     "mechanic": "numberAnswer",
+     "prompt": "5 tens and 9 ones = ?",
+     "answer": 59
     }
    ],
    "recap": [
@@ -16517,14 +16996,83 @@
    ],
    "steps": [
     {
-     "narration": "This coin is worth 5. Tap the 5-coin.",
+     "narration": "Coins are small, but each one is worth a different amount.",
      "action": "tap",
-     "feedback": "'Five!'"
+     "feedback": "Size does not tell you the value — the number does.",
+     "mechanic": "explain"
     },
     {
-     "narration": "Two 5-coins make 10. Tap to add them.",
+     "narration": "Read the number on each coin.",
      "action": "tap",
-     "feedback": "'5 and 5 is 10!'"
+     "feedback": "10 is worth more than 5, even if the coin looks smaller.",
+     "mechanic": "multiChoice",
+     "prompt": "Which is worth more, a 5 or a 10?",
+     "choices": [
+      "5",
+      "10"
+     ],
+     "choiceIndex": 1
+    },
+    {
+     "narration": "Tap each coin in the pile to count them.",
+     "action": "tap",
+     "feedback": "Three coins — but we still do not know how much money that is.",
+     "mechanic": "count",
+     "count": 3
+    },
+    {
+     "narration": "Counting coins is not the same as counting money.",
+     "action": "tap",
+     "feedback": "To find the money, add the values.",
+     "mechanic": "explain"
+    },
+    {
+     "narration": "Two coins marked 5.",
+     "action": "tap",
+     "feedback": "10! Two fives make a ten.",
+     "mechanic": "numberAnswer",
+     "prompt": "5 + 5 = ?",
+     "answer": 10
+    },
+    {
+     "narration": "Now a 10, a 5 and a 1 together.",
+     "action": "tap",
+     "feedback": "16. Add the big ones first — it is easier.",
+     "mechanic": "numberAnswer",
+     "prompt": "10 + 5 + 1 = ?",
+     "answer": 16
+    },
+    {
+     "narration": "You have 20. The mango costs 15.",
+     "action": "tap",
+     "feedback": "Yes — 20 is more than 15, so you can buy it.",
+     "mechanic": "multiChoice",
+     "prompt": "Do you have enough to buy the mango?",
+     "choices": [
+      "Yes",
+      "No"
+     ],
+     "choiceIndex": 0
+    },
+    {
+     "narration": "The seller gives back what is left over. That is your change.",
+     "action": "tap",
+     "feedback": "5 back. Now you know how to check your change.",
+     "mechanic": "numberAnswer",
+     "prompt": "20 − 15 = ?",
+     "answer": 5
+    },
+    {
+     "narration": "Sometimes different coins make the same amount.",
+     "action": "tap",
+     "feedback": "10 + 1 makes 11. 5 + 5 only makes 10.",
+     "mechanic": "multiChoice",
+     "prompt": "Which coins make 11?",
+     "choices": [
+      "10 + 1",
+      "5 + 5"
+     ],
+     "choiceIndex": 0
     }
    ],
    "recap": [
@@ -16682,14 +17230,79 @@
    ],
    "steps": [
     {
-     "narration": "Egg, then caterpillar, then chrysalis, then butterfly. Put them in order.",
-     "action": "drag",
-     "feedback": "'Egg, caterpillar, chrysalis, butterfly!'"
+     "narration": "A butterfly does not start as a butterfly. It starts as a tiny egg on a leaf.",
+     "action": "tap",
+     "feedback": "Smaller than a seed.",
+     "mechanic": "explain"
     },
     {
-     "narration": "This is a life cycle — it repeats.",
+     "narration": "Out of the egg comes a caterpillar. It eats and eats and grows.",
      "action": "tap",
-     "feedback": "Amazing change!"
+     "feedback": "Eating is its whole job.",
+     "mechanic": "explain"
+    },
+    {
+     "narration": "Put the first two stages in order in your head.",
+     "action": "tap",
+     "feedback": "Caterpillar comes right after the egg.",
+     "mechanic": "multiChoice",
+     "prompt": "What comes right after the egg?",
+     "choices": [
+      "Caterpillar",
+      "Butterfly"
+     ],
+     "choiceIndex": 0
+    },
+    {
+     "narration": "Then the caterpillar makes a hard case around itself. That case is a chrysalis.",
+     "action": "tap",
+     "feedback": "From outside, nothing seems to happen.",
+     "mechanic": "explain"
+    },
+    {
+     "narration": "Inside the chrysalis it is very busy indeed.",
+     "action": "tap",
+     "feedback": "It is changing its whole body.",
+     "mechanic": "multiChoice",
+     "prompt": "What is happening inside the chrysalis?",
+     "choices": [
+      "It is changing shape",
+      "It is only sleeping",
+      "Nothing at all"
+     ],
+     "choiceIndex": 0
+    },
+    {
+     "narration": "The case opens and a butterfly climbs out with new wings.",
+     "action": "tap",
+     "feedback": "The same animal — a completely new shape.",
+     "mechanic": "explain"
+    },
+    {
+     "narration": "Now you put all four in order: egg, caterpillar, chrysalis, butterfly.",
+     "action": "drag-order",
+     "feedback": "Egg, caterpillar, chrysalis, butterfly!",
+     "mechanic": "drag"
+    },
+    {
+     "narration": "Count the stages we named.",
+     "action": "tap",
+     "feedback": "4 stages, always in the same order.",
+     "mechanic": "numberAnswer",
+     "prompt": "How many stages are there?",
+     "answer": 4
+    },
+    {
+     "narration": "Then the butterfly lays eggs, and it all begins again.",
+     "action": "tap",
+     "feedback": "A cycle — it goes round and round for ever.",
+     "mechanic": "multiChoice",
+     "prompt": "What do we call something that repeats like this?",
+     "choices": [
+      "A life cycle",
+      "A straight line"
+     ],
+     "choiceIndex": 0
     }
    ],
    "recap": [
@@ -17423,19 +18036,82 @@
    ],
    "steps": [
     {
-     "narration": "Wet, soap, and scrub for a count of 20! Tap to scrub.",
+     "narration": "Germs are living things far too small to see. They can sit on your hands.",
      "action": "tap",
-     "feedback": "Scrub-scrub — washing germs away!"
+     "feedback": "Clean-looking hands can still carry them.",
+     "mechanic": "explain"
     },
     {
-     "narration": "Rinse and dry. Clean hands keep us healthy!",
+     "narration": "Germs get inside you through your mouth, so one moment matters most.",
      "action": "tap",
-     "feedback": "All clean!",
+     "feedback": "Before eating. That is when hands go near your mouth.",
      "mechanic": "multiChoice",
-     "prompt": "What do clean hands do?",
+     "prompt": "When is it most important to wash?",
      "choices": [
-      "Keep us healthy",
-      "Make us sick"
+      "Before eating",
+      "After sleeping",
+      "Before running"
+     ],
+     "choiceIndex": 0
+    },
+    {
+     "narration": "Three steps: wet your hands, rub on soap, then scrub.",
+     "action": "tap",
+     "feedback": "The scrubbing is the part that works.",
+     "mechanic": "explain"
+    },
+    {
+     "narration": "Scrubbing takes longer than you think. Tap a bubble for each slow count.",
+     "action": "tap",
+     "feedback": "Five slow counts — keep going that long every time.",
+     "mechanic": "count",
+     "count": 5
+    },
+    {
+     "narration": "Do not forget between your fingers, and under your nails.",
+     "action": "tap",
+     "feedback": "Germs hide in the places we rush past.",
+     "mechanic": "explain"
+    },
+    {
+     "narration": "Water alone only pushes germs about. Soap lifts them off.",
+     "action": "tap",
+     "feedback": "Soap and water together. That is the pair that cleans.",
+     "mechanic": "multiChoice",
+     "prompt": "What washes germs away best?",
+     "choices": [
+      "Water alone",
+      "Soap and water"
+     ],
+     "choiceIndex": 1
+    },
+    {
+     "narration": "You have been playing outside in the dirt. What now?",
+     "action": "tap",
+     "feedback": "Wash your hands — before you touch food or your face.",
+     "mechanic": "multiChoice",
+     "prompt": "What should you do first?",
+     "choices": [
+      "Wash your hands",
+      "Eat a snack"
+     ],
+     "choiceIndex": 0
+    },
+    {
+     "narration": "Last step: dry with a clean cloth. Wet hands pick germs up again.",
+     "action": "tap",
+     "feedback": "Clean, scrubbed, dry.",
+     "mechanic": "explain"
+    },
+    {
+     "narration": "You know the whole routine now.",
+     "action": "tap",
+     "feedback": "Wet, soap, scrub, rinse, dry. Every time.",
+     "mechanic": "multiChoice",
+     "prompt": "Which step actually removes the germs?",
+     "choices": [
+      "Scrubbing with soap",
+      "Looking at your hands"
      ],
      "choiceIndex": 0
     }
