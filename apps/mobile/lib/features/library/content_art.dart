@@ -127,6 +127,23 @@ String? artAssetForItem(LibraryItem item) {
 /// Highest stage the bundled starter artwork actually depicts.
 const int _artStageMax = 3;
 
+/// Where a per-step illustration lives, if one has been drawn for it.
+///
+/// The starter pack is item-level and stops at stage 3, so most steps show no
+/// picture of what their sentence describes. `image_manifest.csv` carries an
+/// `art_brief` per step under `usage=step-scene`, and this is the path those
+/// briefs name: drop the rendered PNG in and the step picks it up, no code
+/// change. Nothing exists at these paths yet, so callers must tolerate a miss
+/// — [Image.asset]'s errorBuilder collapses it to nothing.
+String stepArtAsset(LibraryItem item, int stepIndex) {
+  final stage = item.stage.toString().padLeft(2, '0');
+  final slug = item.id
+      .replaceFirst(RegExp(r'^s\d\d\.'), '')
+      .toLowerCase()
+      .replaceAll(RegExp(r'[^a-z0-9]+'), '_');
+  return 'assets/images/img/s$stage/step_${slug}_$stepIndex.png';
+}
+
 /// Cache of assets that exist (checked once).
 final _missing = <String>{};
 final _present = <String>{};
