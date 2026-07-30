@@ -15,6 +15,9 @@ jobs:
       - name: Cloud Functions typecheck
         working-directory: backend/functions
         run: npm ci && npx tsc --noEmit
+      # The Firestore emulator runs on the JVM, and firebase-tools requires JDK 21+.
+      - uses: actions/setup-java@v4
+        with: { distribution: 'temurin', java-version: '21' }
       - name: Firestore rules tests
         working-directory: backend
         run: |
@@ -63,6 +66,9 @@ jobs:
 
   android:
     needs: [verify, flutter]
+    # Signed release build: needs the keystore secrets, and its upload step is
+    # already tag-only. Nothing to gain from attempting it on every push or PR.
+    if: github.ref_type == 'tag'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -92,6 +98,9 @@ jobs:
 
   ios:
     needs: [verify, flutter]
+    # Same: no Apple signing assets outside a release, and a macOS runner is the
+    # most expensive thing here to spend on a build that cannot be signed.
+    if: github.ref_type == 'tag'
     runs-on: macos-14   # the cloud Mac — you do not need to own one
     steps:
       - uses: actions/checkout@v4

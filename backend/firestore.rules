@@ -16,7 +16,12 @@ service cloud.firestore {
     function existing() { return resource.data; }
     // last-write-wins: accept only if there is no prior doc or the update is newer
     function isNewer() {
-      return !('updatedAt' in existing()) || incoming().updatedAt >= existing().updatedAt;
+      // On a create there is no prior document at all, so `resource` is null and
+      // reaching into `existing()` raises a null-value error rather than passing.
+      // Check the document before the field.
+      return resource == null
+             || !('updatedAt' in existing())
+             || incoming().updatedAt >= existing().updatedAt;
     }
 
     // ---- account holder (parent) ----
