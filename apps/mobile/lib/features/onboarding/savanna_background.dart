@@ -21,10 +21,37 @@ const _groundFront = Color(0xFFA7CE7C);
 /// of a [Stack] (it sizes to its parent). Shared by the language, onboarding and
 /// home screens via [SavannaScaffold].
 class SavannaScene extends StatefulWidget {
-  const SavannaScene({super.key});
+  const SavannaScene({super.key, this.extras = const []});
+
+  /// Decorations the child has earned or bought. Onboarding passes none; the
+  /// home passes the child's world so the backdrop reflects their progress
+  /// instead of being the same wallpaper for everyone.
+  final List<SceneDecoration> extras;
 
   @override
   State<SavannaScene> createState() => _SavannaSceneState();
+}
+
+/// A decoration to draw, in scene-relative coordinates.
+///
+/// Deliberately a plain value type rather than the gamification model: this
+/// file stays a dumb renderer with no dependency on progress rules, which
+/// keeps it usable from onboarding (where there is no child yet).
+class SceneDecoration {
+  const SceneDecoration({
+    required this.emoji,
+    required this.x,
+    required this.y,
+    this.scale = 1.0,
+  });
+
+  /// 0..1 across the scene.
+  final double x;
+
+  /// 0..1 down the ground band.
+  final double y;
+  final String emoji;
+  final double scale;
 }
 
 class _SavannaSceneState extends State<SavannaScene>
@@ -71,7 +98,64 @@ class _SavannaSceneState extends State<SavannaScene>
           animation: _ambient,
           builder: (context, _) => _SavannaDecor(t: _ambient.value),
         ),
+        if (widget.extras.isNotEmpty)
+          Positioned.fill(
+            child: _EarnedDecorLayer(extras: widget.extras),
+          ),
       ],
+    );
+  }
+}
+
+/// The child's own savanna, laid out along the grass at the foot of the scene.
+///
+/// Decorative only — it never takes pointer events, so the content above it
+/// stays fully tappable.
+///
+/// Confined to the grass band deliberately. An earlier version spread these
+/// across the lower 45% of the screen, which is exactly where the home's card
+/// stack sits: animals ended up floating over the cards and reading as render
+/// bugs rather than as scenery.
+class _EarnedDecorLayer extends StatelessWidget {
+  const _EarnedDecorLayer({required this.extras});
+
+  final List<SceneDecoration> extras;
+
+  /// Height of the painted ground, matching the `_Ground` box below.
+  static const double _groundHeight = 200;
+
+  @override
+  Widget build(BuildContext context) {
+    return IgnorePointer(
+      child: ExcludeSemantics(
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final w = constraints.maxWidth;
+            final h = constraints.maxHeight;
+            // Sit on the grass: the top of the band is the ground line, and
+            // decorations spread through its upper two-thirds so none of them
+            // hang off the bottom of the screen.
+            final bandTop = (h - _groundHeight * 0.82).clamp(0.0, h);
+            final bandHeight = _groundHeight * 0.52;
+            return Stack(
+              children: [
+                for (final d in extras)
+                  Positioned(
+                    left: (w * d.x).clamp(0.0, w - 40),
+                    top: bandTop + bandHeight * d.y,
+                    child: Opacity(
+                      opacity: 0.92,
+                      child: Text(
+                        d.emoji,
+                        style: TextStyle(fontSize: 30 * d.scale),
+                      ),
+                    ),
+                  ),
+              ],
+            );
+          },
+        ),
+      ),
     );
   }
 }
@@ -80,19 +164,27 @@ class _SavannaSceneState extends State<SavannaScene>
 /// wordmark on the left, an optional [topRight] action) and [child] filling the
 /// space below. Used by every full-screen savanna screen.
 class SavannaScaffold extends StatelessWidget {
-  const SavannaScaffold({super.key, required this.child, this.topRight});
+  const SavannaScaffold({
+    super.key,
+    required this.child,
+    this.topRight,
+    this.extras = const [],
+  });
 
   final Widget child;
 
   /// Optional top-right action (e.g. the parent-zone lock on the home).
   final Widget? topRight;
 
+  /// The child's earned/bought savanna decorations. Empty during onboarding.
+  final List<SceneDecoration> extras;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          const Positioned.fill(child: SavannaScene()),
+          Positioned.fill(child: SavannaScene(extras: extras)),
           SafeArea(
             child: Column(
               children: [

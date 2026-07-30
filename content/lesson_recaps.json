@@ -1,0 +1,419 @@
+{
+  "_meta": {
+    "purpose": "Authored end-of-lesson recap questions, keyed by library item id.",
+    "why": "Most short lessons teach by doing and state no extractable fact, so a recap cannot be derived from their steps. These are written against each lesson's own content and merged into the library by tool/merge_recaps.py.",
+    "rules": [
+      "A prompt must never contain its own answer (enforced by lesson_recap_test.dart).",
+      "Two questions minimum, options short enough to tap on a phone.",
+      "Distractors must be plausible but clearly wrong to a child who understood."
+    ],
+    "translation": "English source. Locale bundles overlay by key and fall back to English, so untranslated recaps are safe to ship."
+  },
+
+  "s05.reading.lesson.01": [
+    {"prompt": "Blend the sounds /c/ /a/ /t/. What word do they make?", "options": ["cat", "cap", "tap"], "answer": 0},
+    {"prompt": "Sliding sounds together to read a word is called…", "options": ["blending", "counting"], "answer": 0}
+  ],
+  "s05.math.lesson.01": [
+    {"prompt": "2 apples and 1 more. How many altogether?", "options": ["3", "2", "4"], "answer": 0},
+    {"prompt": "Putting groups together is called…", "options": ["adding", "sharing"], "answer": 0}
+  ],
+  "s05.social.lesson.01": [
+    {"prompt": "On a map, what does the blue part show?", "options": ["Water", "Land", "Sky"], "answer": 0},
+    {"prompt": "On a map, what does the green part show?", "options": ["Land", "Water", "Clouds"], "answer": 0}
+  ],
+  "s06.social.lesson.01": [
+    {"prompt": "What is a flag?", "options": ["A symbol of a country", "A kind of food"], "answer": 0},
+    {"prompt": "What is an anthem?", "options": ["A country's special song", "A country's map"], "answer": 0}
+  ],
+  "s07.science.lesson.01": [
+    {"prompt": "Which comes first in a butterfly's life?", "options": ["Egg", "Butterfly", "Chrysalis"], "answer": 0},
+    {"prompt": "After the caterpillar and chrysalis comes a…", "options": ["butterfly", "bird"], "answer": 0}
+  ],
+  "s07.social.lesson.01": [
+    {"prompt": "A huge piece of land on a globe is called a…", "options": ["continent", "country", "city"], "answer": 0},
+    {"prompt": "How many oceans are there?", "options": ["Five", "Twenty", "One"], "answer": 0}
+  ],
+  "s08.science.lesson.01": [
+    {"prompt": "Where does a food chain get its energy first?", "options": ["The sun", "The fox", "The rabbit"], "answer": 0},
+    {"prompt": "Grass, then rabbit, then…", "options": ["fox", "grass"], "answer": 0}
+  ],
+  "s08.social.lesson.01": [
+    {"prompt": "What were the pyramids built to be?", "options": ["Tombs for pharaohs", "Schools", "Markets"], "answer": 0},
+    {"prompt": "Egyptians wrote with picture-symbols called…", "options": ["hieroglyphs", "numbers"], "answer": 0}
+  ],
+  "s09.writing.lesson.01": [
+    {"prompt": "Which word introduces a reason?", "options": ["because", "instead"], "answer": 0},
+    {"prompt": "What order does an opinion paragraph go in?", "options": ["Opinion, reasons, closing", "Closing, reasons, opinion"], "answer": 0}
+  ],
+  "s09.science.lesson.01": [
+    {"prompt": "A push or a pull is a kind of…", "options": ["force", "colour"], "answer": 0},
+    {"prompt": "What do magnets pull?", "options": ["Some metals", "Everything"], "answer": 0}
+  ],
+  "s09.social.lesson.01": [
+    {"prompt": "Which branch makes the laws?", "options": ["Legislative", "Judicial"], "answer": 0},
+    {"prompt": "Which branch decides if laws are fair?", "options": ["Judicial", "Legislative"], "answer": 0}
+  ],
+  "s09.coding.lesson.01": [
+    {"prompt": "To draw a square, how many times do you repeat?", "options": ["4", "3", "6"], "answer": 0},
+    {"prompt": "Why do coders use a loop?", "options": ["To repeat without rewriting", "To erase code"], "answer": 0}
+  ],
+  "s10.science.lesson.01": [
+    {"prompt": "What makes the bulb light up?", "options": ["A complete loop", "A broken wire"], "answer": 0},
+    {"prompt": "What happens when you open a gap in the wire?", "options": ["The light goes out", "The light gets brighter"], "answer": 0}
+  ],
+  "s10.social.lesson.01": [
+    {"prompt": "Which lines run side to side across a map?", "options": ["Latitude", "Longitude"], "answer": 0},
+    {"prompt": "What is the line around the middle of Earth called?", "options": ["The equator", "The pole"], "answer": 0}
+  ],
+
+  "s05.reading.lesson.03": [
+    {"prompt": "When you trace the letter a, where do you start?", "options": ["At the top", "At the bottom"], "answer": 0},
+    {"prompt": "Which letter did you write after a?", "options": ["b", "z", "m"], "answer": 0}
+  ],
+  "s05.math.lesson.04": [
+    {"prompt": "4 and 1 make…", "options": ["5", "6", "3"], "answer": 0},
+    {"prompt": "3 and 2 make…", "options": ["5", "4", "7"], "answer": 0}
+  ],
+  "s05.math.lesson.06": [
+    {"prompt": "How long was the pencil?", "options": ["Four cubes", "Ten cubes"], "answer": 0},
+    {"prompt": "Which was shorter?", "options": ["The crayon", "The pencil"], "answer": 0}
+  ],
+  "s05.science.lesson.03": [
+    {"prompt": "Which part of a plant drinks water underground?", "options": ["Roots", "Flower", "Leaf"], "answer": 0},
+    {"prompt": "Which of these is a part of a plant?", "options": ["Stem", "Wheel"], "answer": 0}
+  ],
+  "s05.science.lesson.04": [
+    {"prompt": "Where does a bird live?", "options": ["In a nest", "In a web"], "answer": 0},
+    {"prompt": "Where does a spider live?", "options": ["In a web", "In a den"], "answer": 0}
+  ],
+  "s05.science.lesson.05": [
+    {"prompt": "Which one moves something away from you?", "options": ["A push", "A pull"], "answer": 0},
+    {"prompt": "Which one brings something closer?", "options": ["A pull", "A push"], "answer": 0}
+  ],
+  "s05.social.lesson.02": [
+    {"prompt": "Why do we hold hands to cross the street?", "options": ["To stay safe", "To go faster"], "answer": 0},
+    {"prompt": "Why do we take turns on the slide?", "options": ["To be safe and fair", "To win"], "answer": 0}
+  ],
+  "s05.social.lesson.04": [
+    {"prompt": "Who grows our food?", "options": ["A farmer", "A pilot"], "answer": 0},
+    {"prompt": "What do people's jobs do?", "options": ["Help others", "Help nobody"], "answer": 0}
+  ],
+  "s05.social.lesson.05": [
+    {"prompt": "What does every country have?", "options": ["A flag", "A train"], "answer": 0},
+    {"prompt": "What do flags have on them?", "options": ["Colors and shapes", "Only words"], "answer": 0}
+  ],
+  "s05.social.lesson.06": [
+    {"prompt": "Long ago, what did people ride?", "options": ["Horses", "Cars"], "answer": 0},
+    {"prompt": "What do we ride today?", "options": ["Cars", "Horses"], "answer": 0}
+  ],
+  "s05.coding.lesson.02": [
+    {"prompt": "Steps put in the right order make a…", "options": ["sequence", "puzzle"], "answer": 0},
+    {"prompt": "To make toast, which comes first?", "options": ["Bread", "Eating"], "answer": 0}
+  ],
+  "s05.coding.lesson.03": [
+    {"prompt": "What does a loop do?", "options": ["Repeats steps", "Deletes steps"], "answer": 0},
+    {"prompt": "To clap 3 times, what do we use?", "options": ["A loop", "A pencil"], "answer": 0}
+  ],
+  "s05.coding.lesson.04": [
+    {"prompt": "A mistake in code is called a…", "options": ["bug", "block"], "answer": 0},
+    {"prompt": "Fixing a mistake in code is called…", "options": ["debugging", "drawing"], "answer": 0}
+  ],
+  "s05.coding.lesson.05": [
+    {"prompt": "Which command moved the bug two squares higher?", "options": ["UP", "DOWN"], "answer": 0},
+    {"prompt": "Which command moved it toward the leaf?", "options": ["RIGHT", "LEFT"], "answer": 0}
+  ],
+  "s05.coding.lesson.06": [
+    {"prompt": "Drum, bell, drum, bell is a…", "options": ["pattern", "puzzle"], "answer": 0},
+    {"prompt": "How do we play the pattern again?", "options": ["Put it in a loop", "Erase it"], "answer": 0}
+  ],
+
+  "s06.reading.lesson.04": [
+    {"prompt": "Which word tells you the size of the fish?", "options": ["big", "see", "I"], "answer": 0},
+    {"prompt": "In the sentence about the dog, what could it do?", "options": ["run", "sleep"], "answer": 0}
+  ],
+  "s06.math.lesson.02": [
+    {"prompt": "6 + 3 = ?", "options": ["9", "10", "11"], "answer": 0},
+    {"prompt": "Counting on from 6 by three gets you to…", "options": ["9", "8"], "answer": 0}
+  ],
+  "s06.math.lesson.03": [
+    {"prompt": "10 - 4 = ?", "options": ["6", "7", "8"], "answer": 0},
+    {"prompt": "If 4 of 10 birds fly away, how many are left?", "options": ["6", "14"], "answer": 0}
+  ],
+  "s06.math.lesson.06": [
+    {"prompt": "A circle is which kind of shape?", "options": ["Flat (2D)", "Solid (3D)"], "answer": 0},
+    {"prompt": "A cube is which kind of shape?", "options": ["Solid (3D)", "Flat (2D)"], "answer": 0}
+  ],
+  "s06.science.lesson.04": [
+    {"prompt": "What do you wear on a cold, snowy day?", "options": ["A warm coat", "A sun hat"], "answer": 0},
+    {"prompt": "What do you wear on a hot, sunny day?", "options": ["A sun hat", "A warm coat"], "answer": 0}
+  ],
+  "s06.social.lesson.03": [
+    {"prompt": "A map shows things from…", "options": ["above", "below"], "answer": 0},
+    {"prompt": "What do maps help us do?", "options": ["Find places", "Cook food"], "answer": 0}
+  ],
+  "s06.social.lesson.05": [
+    {"prompt": "Children around the world eat…", "options": ["different foods", "exactly the same food"], "answer": 0},
+    {"prompt": "People around the world are…", "options": ["all special", "all the same"], "answer": 0}
+  ],
+  "s06.social.lesson.06": [
+    {"prompt": "Long ago, people wrote letters with a…", "options": ["quill pen", "phone"], "answer": 0},
+    {"prompt": "What happens to tools over time?", "options": ["They change", "They stay the same"], "answer": 0}
+  ],
+  "s06.tech.lesson.02": [
+    {"prompt": "You sorted shapes that were red AND…", "options": ["round", "square"], "answer": 0},
+    {"prompt": "How many rules did you sort by?", "options": ["Two", "None"], "answer": 0}
+  ],
+  "s06.tech.lesson.03": [
+    {"prompt": "Steps in the right order make an…", "options": ["algorithm", "accident"], "answer": 0},
+    {"prompt": "When brushing teeth, what comes first?", "options": ["Wet the brush", "Rinse"], "answer": 0}
+  ],
+  "s06.tech.lesson.04": [
+    {"prompt": "In the pattern red, red, ___, red, red, ___ what fills the gaps?", "options": ["blue", "green"], "answer": 0},
+    {"prompt": "What do patterns do?", "options": ["Repeat", "Disappear"], "answer": 0}
+  ],
+  "s06.tech.lesson.06": [
+    {"prompt": "If a screen asks for your name or photo, you should…", "options": ["stop and ask a grown-up", "type it in"], "answer": 0},
+    {"prompt": "Who helps keep you safe online?", "options": ["A grown-up", "A stranger"], "answer": 0}
+  ],
+
+  "s07.reading.lesson.05": [
+    {"prompt": "A retelling goes beginning, middle, and…", "options": ["end", "start"], "answer": 0},
+    {"prompt": "Retelling a story shows that you…", "options": ["understood it", "forgot it"], "answer": 0}
+  ],
+  "s07.reading.lesson.06": [
+    {"prompt": "A text tells how an animal eats, plays and sleeps. The main idea is…", "options": ["the animal", "its bowl"], "answer": 0},
+    {"prompt": "The main idea is…", "options": ["the big point", "a small detail"], "answer": 0}
+  ],
+  "s07.writing.lesson.04": [
+    {"prompt": "How does a sentence begin?", "options": ["With a capital letter", "With a comma"], "answer": 0},
+    {"prompt": "Every sentence needs a who and a…", "options": ["doing-word", "colour"], "answer": 0}
+  ],
+  "s07.writing.lesson.05": [
+    {"prompt": "Tap the mark that ends an asking sentence.", "options": ["?", "."], "answer": 0},
+    {"prompt": "What do questions do?", "options": ["They ask", "They tell"], "answer": 0}
+  ],
+  "s07.math.lesson.02": [
+    {"prompt": "8 + 7 = ?", "options": ["15", "16", "25"], "answer": 0},
+    {"prompt": "Which trick helped you add 8 + 7?", "options": ["Make ten first", "Count backwards"], "answer": 0}
+  ],
+  "s07.math.lesson.03": [
+    {"prompt": "15 - 6 = ?", "options": ["9", "8", "19"], "answer": 0},
+    {"prompt": "Which trick helped you subtract?", "options": ["Count back", "Count up by ten"], "answer": 0}
+  ],
+  "s07.math.lesson.05": [
+    {"prompt": "The big hand pointing to 12 means…", "options": ["o'clock", "half past"], "answer": 0},
+    {"prompt": "Little hand on 3, big hand on 12. What time is it?", "options": ["3 o'clock", "12 o'clock"], "answer": 0}
+  ],
+  "s07.science.lesson.02": [
+    {"prompt": "Which stage comes right after the egg?", "options": ["Caterpillar", "Butterfly"], "answer": 0},
+    {"prompt": "A cycle that repeats over and over is called a…", "options": ["life cycle", "straight line"], "answer": 0}
+  ],
+  "s07.science.lesson.03": [
+    {"prompt": "Which body part pumps blood?", "options": ["The heart", "The lungs"], "answer": 0},
+    {"prompt": "Which body part helps us breathe?", "options": ["The lungs", "The heart"], "answer": 0}
+  ],
+  "s07.science.lesson.04": [
+    {"prompt": "A shadow appears where light is…", "options": ["blocked", "bright"], "answer": 0},
+    {"prompt": "What happens when you move the light?", "options": ["The shadow moves", "The shadow stays still"], "answer": 0}
+  ],
+  "s07.science.lesson.05": [
+    {"prompt": "Sounds happen when things…", "options": ["vibrate", "freeze"], "answer": 0},
+    {"prompt": "What did the plucked string do?", "options": ["Wiggled", "Melted"], "answer": 0}
+  ],
+  "s07.science.lesson.06": [
+    {"prompt": "Which three things do plants need?", "options": ["Water, light, air", "Sugar, sand, snow"], "answer": 0},
+    {"prompt": "What did you give the plant besides water?", "options": ["Sunlight", "Salt"], "answer": 0}
+  ],
+  "s07.social.lesson.03": [
+    {"prompt": "Walking instead of running inside school is a…", "options": ["rule", "law"], "answer": 0},
+    {"prompt": "Cars stopping at red lights is a…", "options": ["law", "game"], "answer": 0}
+  ],
+  "s07.social.lesson.04": [
+    {"prompt": "Who uses a stethoscope?", "options": ["A doctor", "A firefighter"], "answer": 0},
+    {"prompt": "Who uses a hose to put out fires?", "options": ["A firefighter", "A doctor"], "answer": 0}
+  ],
+  "s07.social.lesson.05": [
+    {"prompt": "Long ago, families washed clothes with a…", "options": ["washboard", "machine"], "answer": 0},
+    {"prompt": "What does family life do over time?", "options": ["It changes", "It stays the same"], "answer": 0}
+  ],
+  "s07.social.lesson.06": [
+    {"prompt": "Two friends and one swing. What is fair?", "options": ["Take turns", "Push in"], "answer": 0},
+    {"prompt": "Sharing time fairly is called…", "options": ["fairness", "unfairness"], "answer": 0}
+  ],
+  "s07.health.lesson.02": [
+    {"prompt": "How long should you scrub your hands?", "options": ["A count of 20", "A count of 2"], "answer": 0},
+    {"prompt": "What do clean hands do?", "options": ["Keep us healthy", "Make us sick"], "answer": 0}
+  ],
+  "s07.health.lesson.04": [
+    {"prompt": "Running and jumping make our hearts…", "options": ["strong", "tired"], "answer": 0},
+    {"prompt": "How often should we move our bodies?", "options": ["Every day", "Once a year"], "answer": 0}
+  ],
+  "s07.health.lesson.05": [
+    {"prompt": "What does sleep help our body and brain do?", "options": ["Rest and grow", "Run faster"], "answer": 0},
+    {"prompt": "What helps us sleep well?", "options": ["A calm bedtime", "A loud room"], "answer": 0}
+  ],
+  "s07.health.lesson.06": [
+    {"prompt": "What should you wear to ride a bike?", "options": ["A helmet", "A hat"], "answer": 0},
+    {"prompt": "What should you do in a car?", "options": ["Buckle your seatbelt", "Stand up"], "answer": 0}
+  ],
+
+  "s08.reading.lesson.03": [
+    {"prompt": "'The thirsty dog drank from its bowl.' What does thirsty mean?", "options": ["Needing a drink", "Feeling sleepy"], "answer": 0},
+    {"prompt": "Where do you find clues about a new word?", "options": ["In nearby words", "On the cover"], "answer": 0}
+  ],
+  "s08.reading.lesson.06": [
+    {"prompt": "A paragraph tells what an insect eats and how it helps plants. The main idea is…", "options": ["the insect", "the soil"], "answer": 0},
+    {"prompt": "What do details do?", "options": ["Tell us more", "Change the topic"], "answer": 0}
+  ],
+  "s08.writing.lesson.03": [
+    {"prompt": "What separates the items in a list?", "options": ["Commas", "Question marks"], "answer": 0},
+    {"prompt": "Which word goes before the last item in a list?", "options": ["and", "but"], "answer": 0}
+  ],
+  "s08.writing.lesson.05": [
+    {"prompt": "In 'the ___ dog', which word describes?", "options": ["fluffy", "ran", "the"], "answer": 0},
+    {"prompt": "What do adjectives do?", "options": ["Describe", "Count"], "answer": 0}
+  ],
+  "s08.writing.lesson.06": [
+    {"prompt": "Which sentence tells the big idea of a paragraph?", "options": ["The topic sentence", "The last sentence"], "answer": 0},
+    {"prompt": "What goes under the topic sentence?", "options": ["Details", "Nothing"], "answer": 0}
+  ],
+  "s08.math.lesson.05": [
+    {"prompt": "3 rows of 4 dots is how many altogether?", "options": ["12", "7", "34"], "answer": 0},
+    {"prompt": "Rows and columns of dots show…", "options": ["multiplication", "spelling"], "answer": 0}
+  ],
+  "s08.math.lesson.06": [
+    {"prompt": "How many minutes apart is each number on a clock?", "options": ["5", "1", "10"], "answer": 0},
+    {"prompt": "Big hand on 3 means how many minutes?", "options": ["15", "3"], "answer": 0}
+  ],
+  "s08.science.lesson.03": [
+    {"prompt": "What do plants make their food from?", "options": ["Sunlight", "Rocks"], "answer": 0},
+    {"prompt": "Sun, grass, rabbit, fox is an example of a…", "options": ["food chain", "water cycle"], "answer": 0}
+  ],
+  "s08.social.lesson.02": [
+    {"prompt": "On a map, which direction is up?", "options": ["North", "South"], "answer": 0},
+    {"prompt": "On a map, which direction is to the right?", "options": ["East", "West"], "answer": 0}
+  ],
+  "s08.social.lesson.03": [
+    {"prompt": "What is a town's leader called?", "options": ["A mayor", "A captain"], "answer": 0},
+    {"prompt": "Who makes choices for the whole community?", "options": ["Leaders", "Nobody"], "answer": 0}
+  ],
+  "s08.social.lesson.04": [
+    {"prompt": "Which landform is tall and rocky?", "options": ["A mountain", "A river"], "answer": 0},
+    {"prompt": "Which of these is land surrounded by water?", "options": ["An island", "A mountain"], "answer": 0}
+  ],
+  "s08.social.lesson.06": [
+    {"prompt": "How do people celebrate around the world?", "options": ["With food, music and dance", "In exactly one way"], "answer": 0},
+    {"prompt": "Learning about others helps us…", "options": ["respect them", "ignore them"], "answer": 0}
+  ],
+  "s08.tech.lesson.02": [
+    {"prompt": "How many times do you repeat 'forward, turn' for a square?", "options": ["4", "2", "8"], "answer": 0},
+    {"prompt": "Why use a loop?", "options": ["To save steps", "To slow down"], "answer": 0}
+  ],
+  "s08.tech.lesson.03": [
+    {"prompt": "IF it rains, THEN the robot grabs the…", "options": ["umbrella", "kite"], "answer": 0},
+    {"prompt": "What do conditions help a program do?", "options": ["Decide", "Forget"], "answer": 0}
+  ],
+  "s08.tech.lesson.05": [
+    {"prompt": "How should we speak to people online?", "options": ["With kind words", "With mean words"], "answer": 0},
+    {"prompt": "If something online feels scary, what do you do?", "options": ["Tell a grown-up", "Keep it secret"], "answer": 0}
+  ],
+  "s08.tech.lesson.06": [
+    {"prompt": "Tiny squares that make up a computer picture are called…", "options": ["pixels", "pencils"], "answer": 0},
+    {"prompt": "How did you make the picture?", "options": ["By colouring a grid", "By typing words"], "answer": 0}
+  ],
+
+  "s09.reading.lesson.02": [
+    {"prompt": "'Mia grabbed her umbrella and frowned at the window.' What can you infer?", "options": ["It is raining", "It is sunny"], "answer": 0},
+    {"prompt": "When an author does not say something outright, good readers…", "options": ["figure it out", "skip it"], "answer": 0}
+  ],
+  "s09.reading.lesson.05": [
+    {"prompt": "A good summary keeps the main points and drops…", "options": ["small details", "the ending"], "answer": 0},
+    {"prompt": "Summarizing shows that you…", "options": ["understood it", "memorized it"], "answer": 0}
+  ],
+  "s09.writing.lesson.03": [
+    {"prompt": "What goes around the exact words someone says?", "options": ["Quotation marks", "Brackets"], "answer": 0},
+    {"prompt": "Where does the period go?", "options": ["Inside the quotes", "After the quotes"], "answer": 0}
+  ],
+  "s09.writing.lesson.06": [
+    {"prompt": "'my dog runs fast' is missing a capital and a…", "options": ["period", "comma"], "answer": 0},
+    {"prompt": "What do good writers always do?", "options": ["Edit their work", "Never reread"], "answer": 0}
+  ],
+  "s09.math.lesson.02": [
+    {"prompt": "A pizza cut into 4 equal parts: each piece is…", "options": ["1/4", "1/2"], "answer": 0},
+    {"prompt": "What does the bottom number of a fraction show?", "options": ["Total parts", "Parts we have"], "answer": 0}
+  ],
+  "s09.math.lesson.03": [
+    {"prompt": "Which is bigger?", "options": ["1/2", "1/4"], "answer": 0},
+    {"prompt": "The more parts you cut, the smaller each part is. So more parts means…", "options": ["smaller pieces", "bigger pieces"], "answer": 0}
+  ],
+  "s09.math.lesson.06": [
+    {"prompt": "On a bar graph, which bar shows the most?", "options": ["The tallest", "The shortest"], "answer": 0},
+    {"prompt": "How do you find 'how many more'?", "options": ["Subtract", "Add"], "answer": 0}
+  ],
+  "s09.science.lesson.02": [
+    {"prompt": "A polar bear's thick fur helps it stay…", "options": ["warm", "cool"], "answer": 0},
+    {"prompt": "What helps an animal hide?", "options": ["Camouflage", "A loud call"], "answer": 0}
+  ],
+  "s09.science.lesson.03": [
+    {"prompt": "Many food chains linked together make a…", "options": ["food web", "food bowl"], "answer": 0},
+    {"prompt": "If one animal disappears, the rest of the web is…", "options": ["affected", "unchanged"], "answer": 0}
+  ],
+  "s09.science.lesson.04": [
+    {"prompt": "What is the preserved trace of a living thing from long ago?", "options": ["A fossil", "A rock"], "answer": 0},
+    {"prompt": "What do fossils show us?", "options": ["Ancient animals", "Today's pets"], "answer": 0}
+  ],
+  "s09.science.lesson.06": [
+    {"prompt": "How many planets orbit the Sun?", "options": ["Eight", "Three"], "answer": 0},
+    {"prompt": "Which planet is the largest?", "options": ["Jupiter", "Earth"], "answer": 0}
+  ],
+  "s09.social.lesson.04": [
+    {"prompt": "You have 10 coins and a toy costs 7. How many do you save?", "options": ["3", "7", "10"], "answer": 0},
+    {"prompt": "What does a budget plan?", "options": ["Spending and saving", "Only spending"], "answer": 0}
+  ],
+  "s09.social.lesson.05": [
+    {"prompt": "What does a timeline show?", "options": ["Events in order", "Places on a map"], "answer": 0},
+    {"prompt": "Events further right on a timeline happened…", "options": ["later", "earlier"], "answer": 0}
+  ],
+  "s09.coding.lesson.02": [
+    {"prompt": "IF the gate is open you go through. ELSE you…", "options": ["knock", "run"], "answer": 0},
+    {"prompt": "What does if-else let a program do?", "options": ["Pick an option", "Repeat forever"], "answer": 0}
+  ],
+  "s09.coding.lesson.06": [
+    {"prompt": "A task broken into clear steps in order is an…", "options": ["algorithm", "argument"], "answer": 0},
+    {"prompt": "What makes an algorithm good?", "options": ["Steps in the right order", "Steps mixed up"], "answer": 0}
+  ],
+
+  "s10.reading.lesson.05": [
+    {"prompt": "A summary keeps the most important ideas and skips…", "options": ["tiny details", "the main events"], "answer": 0},
+    {"prompt": "How do events go in a summary?", "options": ["In order", "Backwards"], "answer": 0}
+  ],
+  "s10.reading.lesson.06": [
+    {"prompt": "'Mateo zipped his coat and stamped his boots in the snow.' What can you infer about the weather?", "options": ["It is freezing", "It is hot"], "answer": 0},
+    {"prompt": "An inference is…", "options": ["a smart guess from evidence", "a wild guess"], "answer": 0}
+  ],
+  "s10.science.lesson.02": [
+    {"prompt": "Which planet has the famous rings?", "options": ["Saturn", "Mars"], "answer": 0},
+    {"prompt": "Planets farther from the Sun take how long for one year?", "options": ["Longer", "Shorter"], "answer": 0}
+  ],
+  "s10.science.lesson.04": [
+    {"prompt": "What starts every food web?", "options": ["Producers", "Predators"], "answer": 0},
+    {"prompt": "Remove one animal from a web and the others are…", "options": ["affected", "unchanged"], "answer": 0}
+  ],
+  "s10.social.lesson.04": [
+    {"prompt": "How many continents does Earth have?", "options": ["Seven", "Five"], "answer": 0},
+    {"prompt": "Which is the largest ocean?", "options": ["The Pacific", "The Atlantic"], "answer": 0}
+  ],
+  "s10.social.lesson.05": [
+    {"prompt": "The Empire of Mali grew rich trading gold and…", "options": ["salt", "silk"], "answer": 0},
+    {"prompt": "Which city became a famous centre of learning?", "options": ["Timbuktu", "Cairo"], "answer": 0}
+  ],
+  "s10.coding.lesson.06": [
+    {"prompt": "A strong password is long and mixes letters, numbers and…", "options": ["symbols", "spaces"], "answer": 0},
+    {"prompt": "Before trusting a website, what should you check?", "options": ["Who wrote it", "Its colours"], "answer": 0}
+  ],
+  "s10.writing.lesson.04": [
+    {"prompt": "What goes around the exact words spoken?", "options": ["Quotation marks", "Dashes"], "answer": 0},
+    {"prompt": "When do you start a new line in dialogue?", "options": ["When a new person speaks", "After every word"], "answer": 0}
+  ]
+}

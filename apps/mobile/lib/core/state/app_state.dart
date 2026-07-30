@@ -30,5 +30,81 @@ class LocaleController extends Notifier<Locale> {
   }
 }
 
-final localeProvider =
-    NotifierProvider<LocaleController, Locale>(LocaleController.new);
+final localeProvider = NotifierProvider<LocaleController, Locale>(
+  LocaleController.new,
+);
+
+/// App-wide text-size multiplier (1.0 / 1.3 / 1.6), layered on top of the OS
+/// text scale in [WatotoApp] so grown-ups can enlarge every screen for young
+/// or low-vision readers. Persisted so the choice survives a restart.
+class TextScaleController extends Notifier<double> {
+  @override
+  double build() => ref.watch(offlineStoreProvider).textScale;
+
+  void set(double scale) {
+    ref.read(offlineStoreProvider).setTextScale(scale);
+    state = scale;
+  }
+}
+
+final textScaleProvider = NotifierProvider<TextScaleController, double>(
+  TextScaleController.new,
+);
+
+class DyslexiaFriendlyController extends Notifier<bool> {
+  @override
+  bool build() => ref.watch(offlineStoreProvider).dyslexiaFriendly;
+
+  Future<void> set(bool value) async {
+    await ref.read(offlineStoreProvider).setDyslexiaFriendly(value);
+    state = value;
+  }
+}
+
+final dyslexiaFriendlyProvider =
+    NotifierProvider<DyslexiaFriendlyController, bool>(
+  DyslexiaFriendlyController.new,
+);
+
+class HighContrastController extends Notifier<bool> {
+  @override
+  bool build() => ref.watch(offlineStoreProvider).highContrast;
+
+  Future<void> set(bool value) async {
+    await ref.read(offlineStoreProvider).setHighContrast(value);
+    state = value;
+  }
+}
+
+final highContrastProvider = NotifierProvider<HighContrastController, bool>(
+  HighContrastController.new,
+);
+
+class ReducedMotionController extends Notifier<bool> {
+  @override
+  bool build() => ref.watch(offlineStoreProvider).reducedMotion;
+
+  Future<void> set(bool value) async {
+    await ref.read(offlineStoreProvider).setReducedMotion(value);
+    state = value;
+  }
+}
+
+final reducedMotionProvider = NotifierProvider<ReducedMotionController, bool>(
+  ReducedMotionController.new,
+);
+
+class AnalyticsOptInController extends Notifier<bool> {
+  @override
+  bool build() => ref.watch(offlineStoreProvider).analyticsOptIn;
+
+  Future<void> set(bool value) async {
+    await ref.read(offlineStoreProvider).setAnalyticsOptIn(value);
+    state = value;
+  }
+}
+
+final analyticsOptInProvider =
+    NotifierProvider<AnalyticsOptInController, bool>(
+  AnalyticsOptInController.new,
+);

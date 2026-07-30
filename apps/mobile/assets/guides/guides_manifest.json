@@ -1,0 +1,257 @@
+{
+  "version": 1,
+  "groups": [
+    {
+      "band": "overview",
+      "title": "Overview — Ages 0–10",
+      "docs": [
+        {
+          "id": "overview",
+          "title": "Master Curriculum Overview",
+          "emoji": "🗺️",
+          "asset": "assets/guides/overview.md"
+        }
+      ]
+    },
+    {
+      "band": "early",
+      "title": "Early Years — Ages 0–5",
+      "docs": [
+        {
+          "id": "ages-0-1",
+          "title": "Ages 0–1 — Development & Play Guide",
+          "emoji": "🌱",
+          "asset": "assets/guides/ages-0-1.md"
+        },
+        {
+          "id": "ages-2-3",
+          "title": "Ages 2–3 — Development & Play Guide",
+          "emoji": "🌱",
+          "asset": "assets/guides/ages-2-3.md"
+        },
+        {
+          "id": "ages-3-4",
+          "title": "Ages 3–4 — Preschool Learning Guide",
+          "emoji": "🌱",
+          "asset": "assets/guides/ages-3-4.md"
+        },
+        {
+          "id": "ages-4-5",
+          "title": "Ages 4–5 — PreK School Readiness Guide",
+          "emoji": "🌱",
+          "asset": "assets/guides/ages-4-5.md"
+        },
+        {
+          "id": "milestones",
+          "title": "Milestones & Activities (Ages 0–5)",
+          "emoji": "🧸",
+          "asset": "assets/guides/milestones.md"
+        }
+      ]
+    },
+    {
+      "band": "k",
+      "title": "Kindergarten — Ages 5–6",
+      "docs": [
+        {
+          "id": "k-reading-writing",
+          "title": "Reading & Writing",
+          "emoji": "📖",
+          "asset": "assets/guides/k-reading-writing.md"
+        },
+        {
+          "id": "k-science",
+          "title": "Science",
+          "emoji": "🔬",
+          "asset": "assets/guides/k-science.md"
+        },
+        {
+          "id": "k-social-studies",
+          "title": "Social Studies",
+          "emoji": "🌍",
+          "asset": "assets/guides/k-social-studies.md"
+        },
+        {
+          "id": "k-technology-logic",
+          "title": "Technology & Logic",
+          "emoji": "🤖",
+          "asset": "assets/guides/k-technology-logic.md"
+        },
+        {
+          "id": "k-storybooks",
+          "title": "Storybooks — Reading Guide",
+          "emoji": "📚",
+          "asset": "assets/guides/k-storybooks.md"
+        }
+      ]
+    },
+    {
+      "band": "g1",
+      "title": "Grade 1 — Ages 6–7",
+      "docs": [
+        {
+          "id": "g1-reading-writing",
+          "title": "Reading & Writing",
+          "emoji": "📖",
+          "asset": "assets/guides/g1-reading-writing.md"
+        },
+        {
+          "id": "g1-math",
+          "title": "Math",
+          "emoji": "🔢",
+          "asset": "assets/guides/g1-math.md"
+        },
+        {
+          "id": "g1-science",
+          "title": "Science",
+          "emoji": "🔬",
+          "asset": "assets/guides/g1-science.md"
+        },
+        {
+          "id": "g1-social-studies",
+          "title": "Social Studies",
+          "emoji": "🌍",
+          "asset": "assets/guides/g1-social-studies.md"
+        },
+        {
+          "id": "g1-technology-logic",
+          "title": "Technology & Logic",
+          "emoji": "🤖",
+          "asset": "assets/guides/g1-technology-logic.md"
+        },
+        {
+          "id": "g1-storybooks",
+          "title": "Storybooks — Reading Guide",
+          "emoji": "📚",
+          "asset": "assets/guides/g1-storybooks.md"
+        }
+      ]
+    },
+    {
+      "band": "g2",
+      "title": "Grade 2 — Ages 7–8",
+      "docs": [
+        {
+          "id": "g2-reading-writing",
+          "title": "Reading & Writing",
+          "emoji": "📖",
+          "asset": "assets/guides/g2-reading-writing.md"
+        },
+        {
+          "id": "g2-math",
+          "title": "Math",
+          "emoji": "🔢",
+          "asset": "assets/guides/g2-math.md"
+        },
+        {
+          "id": "g2-science",
+          "title": "Science",
+          "emoji": "🔬",
+          "asset": "assets/guides/g2-science.md"
+        },
+        {
+          "id": "g2-social-studies",
+          "title": "Social Studies",
+          "emoji": "🌍",
+          "asset": "assets/guides/g2-social-studies.md"
+        },
+        {
+          "id": "g2-technology-logic",
+          "title": "Technology & Logic",
+          "emoji": "🤖",
+          "asset": "assets/guides/g2-technology-logic.md"
+        },
+        {
+          "id": "g2-storybooks",
+          "title": "Storybooks — Reading Guide",
+          "emoji": "📚",
+          "asset": "assets/guides/g2-storybooks.md"
+        }
+      ]
+    },
+    {
+      "band": "g3",
+      "title": "Grade 3 — Ages 8–9",
+      "docs": [
+        {
+          "id": "g3-reading-writing",
+          "title": "Reading & Writing",
+          "emoji": "📖",
+          "asset": "assets/guides/g3-reading-writing.md"
+        },
+        {
+          "id": "g3-math",
+          "title": "Math",
+          "emoji": "🔢",
+          "asset": "assets/guides/g3-math.md"
+        },
+        {
+          "id": "g3-science",
+          "title": "Science",
+          "emoji": "🔬",
+          "asset": "assets/guides/g3-science.md"
+        },
+        {
+          "id": "g3-social-studies",
+          "title": "Social Studies",
+          "emoji": "🌍",
+          "asset": "assets/guides/g3-social-studies.md"
+        },
+        {
+          "id": "g3-technology-logic",
+          "title": "Technology & Logic",
+          "emoji": "🤖",
+          "asset": "assets/guides/g3-technology-logic.md"
+        },
+        {
+          "id": "g3-storybooks",
+          "title": "Storybooks — Reading Guide",
+          "emoji": "📚",
+          "asset": "assets/guides/g3-storybooks.md"
+        }
+      ]
+    },
+    {
+      "band": "g4",
+      "title": "Grade 4 — Ages 9–10",
+      "docs": [
+        {
+          "id": "g4-reading-writing",
+          "title": "Reading & Writing",
+          "emoji": "📖",
+          "asset": "assets/guides/g4-reading-writing.md"
+        },
+        {
+          "id": "g4-math",
+          "title": "Math",
+          "emoji": "🔢",
+          "asset": "assets/guides/g4-math.md"
+        },
+        {
+          "id": "g4-science",
+          "title": "Science",
+          "emoji": "🔬",
+          "asset": "assets/guides/g4-science.md"
+        },
+        {
+          "id": "g4-social-studies",
+          "title": "Social Studies",
+          "emoji": "🌍",
+          "asset": "assets/guides/g4-social-studies.md"
+        },
+        {
+          "id": "g4-technology-logic",
+          "title": "Technology & Logic",
+          "emoji": "🤖",
+          "asset": "assets/guides/g4-technology-logic.md"
+        },
+        {
+          "id": "g4-storybooks",
+          "title": "Storybooks — Reading Guide",
+          "emoji": "📚",
+          "asset": "assets/guides/g4-storybooks.md"
+        }
+      ]
+    }
+  ]
+}

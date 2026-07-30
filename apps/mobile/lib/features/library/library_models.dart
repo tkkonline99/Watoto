@@ -21,6 +21,7 @@ class LibraryItem {
     this.steps = const [],
     this.questions = const [],
     this.pages = const [],
+    this.recap = const [],
   });
 
   final String id;
@@ -34,6 +35,9 @@ class LibraryItem {
   final bool reading;
   final String interaction;
   final String? parentNote;
+
+  /// Authored recap questions, when the lesson carries its own.
+  final List<RecapItem> recap;
 
   final List<LessonStep> steps; // lesson
   final List<LibQuestion> questions; // quiz
@@ -69,19 +73,99 @@ class LibraryItem {
       pages: ((j['pages'] as List?) ?? const [])
           .map((p) => LibPage.fromJson(p as Map<String, dynamic>))
           .toList(),
+      recap: ((j['recap'] as List?) ?? const [])
+          .map((r) => RecapItem.fromJson(r as Map<String, dynamic>))
+          .toList(),
     );
   }
 }
 
+/// An authored end-of-lesson recap question.
+///
+/// Lessons that state a crisp fact can have their recap derived from their own
+/// steps, but most short lessons ("Tap each sound: /c/ /a/ /t/") teach through
+/// doing and state nothing extractable. Those carry their question here
+/// instead, written against the lesson they belong to.
+class RecapItem {
+  const RecapItem({
+    required this.prompt,
+    required this.options,
+    required this.answer,
+  });
+
+  final String prompt;
+  final List<String> options;
+
+  /// Index into [options].
+  final int answer;
+
+  factory RecapItem.fromJson(Map<String, dynamic> j) => RecapItem(
+        prompt: j['prompt'] as String,
+        options: ((j['options'] as List?) ?? const [])
+            .map((o) => '$o')
+            .toList(),
+        answer: j['answer'] as int? ?? 0,
+      );
+
+  /// Guards against a malformed authored entry reaching a child.
+  bool get isValid =>
+      prompt.trim().isNotEmpty &&
+      options.length >= 2 &&
+      answer >= 0 &&
+      answer < options.length &&
+      options.every((o) => o.trim().isNotEmpty);
+}
+
 class LessonStep {
-  const LessonStep({required this.narration, required this.action, required this.feedback});
+  const LessonStep({
+    required this.narration,
+    required this.action,
+    required this.feedback,
+    this.mechanic,
+    this.prompt,
+    this.answer,
+    this.choices = const [],
+    this.choiceIndex,
+    this.count,
+    this.rows,
+    this.cols,
+  });
+
   final String narration;
   final String action;
   final String feedback;
+
+  /// Optional explicit mechanic (locale-safe). When set, the player prefers
+  /// this over English-keyword heuristics in [planStep].
+  /// Values: tap | count | drag | numberAnswer | multiChoice | buildArray |
+  /// celebrate | codeRun
+  final String? mechanic;
+
+  /// The question put to the child when the step stages a choice. The
+  /// narration is the teaching line; this is what they are actually being
+  /// asked ("What does the bottom number tell us?").
+  final String? prompt;
+  final int? answer;
+  final List<String> choices;
+  final int? choiceIndex;
+  final int? count;
+  final int? rows;
+  final int? cols;
+
   factory LessonStep.fromJson(Map<String, dynamic> j) => LessonStep(
         narration: j['narration'] as String? ?? '',
         action: j['action'] as String? ?? '',
         feedback: j['feedback'] as String? ?? '',
+        mechanic: j['mechanic'] as String?,
+        prompt: j['prompt'] as String?,
+        answer: (j['answer'] as num?)?.toInt(),
+        choices: ((j['choices'] as List?) ?? const [])
+            .map((e) => '$e')
+            .toList(),
+        choiceIndex: (j['choiceIndex'] as num?)?.toInt(),
+        count: (j['count'] as num?)?.toInt(),
+        rows: (j['rows'] as num?)?.toInt(),
+        cols: (j['cols'] as num?)?.toInt(),
       );
 }
 

@@ -34,8 +34,10 @@ class SubjectCategory {
   }
 
   /// Every stage (age band) whose curriculum includes this subject.
-  List<CurriculumStage> stagesAvailable() =>
-      [for (final s in curriculumStages) if (topicNameFor(s) != null) s];
+  List<CurriculumStage> stagesAvailable() => [
+    for (final s in curriculumStages)
+      if (topicNameFor(s) != null) s,
+  ];
 }
 
 /// The subjects offered on the home grid, independent of the child's age.
@@ -44,7 +46,15 @@ const subjectCatalog = <SubjectCategory>[
     key: 'literacy',
     englishLabel: 'Reading & Writing',
     emoji: '📖',
-    keywords: ['read', 'writ', 'literacy', 'language', 'vocab', 'phon', 'tracing'],
+    keywords: [
+      'read',
+      'writ',
+      'literacy',
+      'language',
+      'vocab',
+      'phon',
+      'tracing',
+    ],
   ),
   SubjectCategory(
     key: 'math',
@@ -56,7 +66,15 @@ const subjectCatalog = <SubjectCategory>[
     key: 'science',
     englishLabel: 'Science',
     emoji: '🔬',
-    keywords: ['science', 'nature', 'sensory', 'animal', 'body', 'object perman', 'cause'],
+    keywords: [
+      'science',
+      'nature',
+      'sensory',
+      'animal',
+      'body',
+      'object perman',
+      'cause',
+    ],
   ),
   SubjectCategory(
     key: 'social',
@@ -72,5 +90,10 @@ const subjectCatalog = <SubjectCategory>[
   ),
 ];
 
-/// The math subject, used by the Daily Challenge.
-final dailyChallengeSubject = subjectCatalog[1];
+/// The subject featured as today's Daily Challenge. It rotates through the
+/// catalogue by calendar day so the challenge feels fresh each morning while
+/// staying stable within a single day.
+SubjectCategory dailyChallengeSubjectFor(DateTime date) {
+  final dayOfYear = date.difference(DateTime(date.year)).inDays;
+  return subjectCatalog[dayOfYear % subjectCatalog.length];
+}

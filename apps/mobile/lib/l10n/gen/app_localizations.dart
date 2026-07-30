@@ -631,7 +631,7 @@ abstract class AppLocalizations {
   /// No description provided for @wrongNumbers.
   ///
   /// In en, this message translates to:
-  /// **'Those numbers don\'t match — try again'**
+  /// **'Those numbers don\'t match. Try again'**
   String get wrongNumbers;
 
   /// No description provided for @stageOf.
@@ -663,6 +663,1398 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Draft — pending legal review'**
   String get legalDraftNote;
+
+  /// No description provided for @levelLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Level {level}'**
+  String levelLabel(int level);
+
+  /// No description provided for @streakLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{days}-day streak'**
+  String streakLabel(int days);
+
+  /// No description provided for @accessibility.
+  ///
+  /// In en, this message translates to:
+  /// **'Accessibility'**
+  String get accessibility;
+
+  /// No description provided for @textSizeSmall.
+  ///
+  /// In en, this message translates to:
+  /// **'Small'**
+  String get textSizeSmall;
+
+  /// No description provided for @textSizeMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get textSizeMedium;
+
+  /// No description provided for @textSizeLarge.
+  ///
+  /// In en, this message translates to:
+  /// **'Large'**
+  String get textSizeLarge;
+
+  /// No description provided for @readAloud.
+  ///
+  /// In en, this message translates to:
+  /// **'Read aloud'**
+  String get readAloud;
+
+  /// No description provided for @readAloudBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Speak instructions and narration'**
+  String get readAloudBody;
+
+  /// No description provided for @achievements.
+  ///
+  /// In en, this message translates to:
+  /// **'Achievements'**
+  String get achievements;
+
+  /// No description provided for @noBadgesYet.
+  ///
+  /// In en, this message translates to:
+  /// **'Play to earn badges!'**
+  String get noBadgesYet;
+
+  /// No description provided for @comingSoonTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'More coming soon!'**
+  String get comingSoonTitle;
+
+  /// No description provided for @comingSoonBody.
+  ///
+  /// In en, this message translates to:
+  /// **'New activities for this subject are on the way.'**
+  String get comingSoonBody;
+
+  /// No description provided for @tapToPlay.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to play!'**
+  String get tapToPlay;
+
+  /// No description provided for @gotIt.
+  ///
+  /// In en, this message translates to:
+  /// **'Got it!'**
+  String get gotIt;
+
+  /// No description provided for @tapEachPrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap them all!'**
+  String get tapEachPrompt;
+
+  /// No description provided for @dragToBasket.
+  ///
+  /// In en, this message translates to:
+  /// **'Drag it into the basket!'**
+  String get dragToBasket;
+
+  /// No description provided for @keepGoing.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep going!'**
+  String get keepGoing;
+
+  /// No description provided for @curriculumGuides.
+  ///
+  /// In en, this message translates to:
+  /// **'Curriculum Guides'**
+  String get curriculumGuides;
+
+  /// No description provided for @curriculumGuidesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Lesson plans, worksheets & reading guides for grown-ups'**
+  String get curriculumGuidesBody;
+
+  /// No description provided for @curriculumGuidesIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'The full teaching program behind Watoto\'s activities — lesson plans, printable worksheets, quizzes with answer keys, and reading guides, organized by age.'**
+  String get curriculumGuidesIntro;
+
+  /// No description provided for @badgeFirstLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'First lesson'**
+  String get badgeFirstLesson;
+
+  /// No description provided for @badgeFiveLessons.
+  ///
+  /// In en, this message translates to:
+  /// **'5 lessons'**
+  String get badgeFiveLessons;
+
+  /// No description provided for @badgeStreak3.
+  ///
+  /// In en, this message translates to:
+  /// **'3-day streak'**
+  String get badgeStreak3;
+
+  /// No description provided for @badgeStreak7.
+  ///
+  /// In en, this message translates to:
+  /// **'7-day streak'**
+  String get badgeStreak7;
+
+  /// No description provided for @badgeFirstStory.
+  ///
+  /// In en, this message translates to:
+  /// **'First story'**
+  String get badgeFirstStory;
+
+  /// No description provided for @badgeLevel5.
+  ///
+  /// In en, this message translates to:
+  /// **'Level 5'**
+  String get badgeLevel5;
+
+  /// No description provided for @badgeDailyChallenge.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily hero'**
+  String get badgeDailyChallenge;
+
+  /// No description provided for @badgesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Badges'**
+  String get badgesTitle;
+
+  /// No description provided for @xpToNextLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'{into} / {total} XP · {remaining} to next level'**
+  String xpToNextLevel(int into, int total, int remaining);
+
+  /// No description provided for @dailyChallengeDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done for today!'**
+  String get dailyChallengeDone;
+
+  /// No description provided for @dailyChallengeBonus.
+  ///
+  /// In en, this message translates to:
+  /// **'+{xp} bonus XP'**
+  String dailyChallengeBonus(int xp);
+
+  /// No description provided for @changeAgeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Long-press to change age'**
+  String get changeAgeHint;
+
+  /// No description provided for @playNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Play now'**
+  String get playNow;
+
+  /// No description provided for @continueLearning.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep going'**
+  String get continueLearning;
+
+  /// No description provided for @avatarShop.
+  ///
+  /// In en, this message translates to:
+  /// **'Avatar shop'**
+  String get avatarShop;
+
+  /// No description provided for @avatarShopBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Spend coins on fun animal friends. Coins never buy learning, only looks!'**
+  String get avatarShopBody;
+
+  /// No description provided for @freeAvatars.
+  ///
+  /// In en, this message translates to:
+  /// **'Your animals'**
+  String get freeAvatars;
+
+  /// No description provided for @shopAvatars.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock more'**
+  String get shopAvatars;
+
+  /// No description provided for @notEnoughCoins.
+  ///
+  /// In en, this message translates to:
+  /// **'Need more coins. Play to earn!'**
+  String get notEnoughCoins;
+
+  /// No description provided for @screenTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Screen time'**
+  String get screenTime;
+
+  /// No description provided for @screenTimeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Soft daily limit. When time is up, Watoto shows a rest screen (no hard lock-outs mid-activity).'**
+  String get screenTimeBody;
+
+  /// No description provided for @screenTimeOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get screenTimeOff;
+
+  /// No description provided for @screenTimeMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min'**
+  String screenTimeMinutes(int minutes);
+
+  /// No description provided for @screenTimeUsed.
+  ///
+  /// In en, this message translates to:
+  /// **'Used today: {minutes} min'**
+  String screenTimeUsed(int minutes);
+
+  /// No description provided for @restTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Time for a rest!'**
+  String get restTitle;
+
+  /// No description provided for @restBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You learned a lot today. Stretch, drink water, and come back later.'**
+  String get restBody;
+
+  /// No description provided for @restGoHome.
+  ///
+  /// In en, this message translates to:
+  /// **'See you later'**
+  String get restGoHome;
+
+  /// No description provided for @restAskGrownUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Grown-up: open parent zone'**
+  String get restAskGrownUp;
+
+  /// No description provided for @restGrace.
+  ///
+  /// In en, this message translates to:
+  /// **'+10 more minutes'**
+  String get restGrace;
+
+  /// No description provided for @premiumTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Watoto Premium'**
+  String get premiumTitle;
+
+  /// No description provided for @premiumBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock every stage, offline packs, and full multi-child access.'**
+  String get premiumBody;
+
+  /// No description provided for @premiumBullet1.
+  ///
+  /// In en, this message translates to:
+  /// **'All stages Birth–Grade 4'**
+  String get premiumBullet1;
+
+  /// No description provided for @premiumBullet2.
+  ///
+  /// In en, this message translates to:
+  /// **'Offline downloads'**
+  String get premiumBullet2;
+
+  /// No description provided for @premiumBullet3.
+  ///
+  /// In en, this message translates to:
+  /// **'Up to 4 child profiles'**
+  String get premiumBullet3;
+
+  /// No description provided for @premiumMonthly.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly (sandbox)'**
+  String get premiumMonthly;
+
+  /// No description provided for @premiumAnnual.
+  ///
+  /// In en, this message translates to:
+  /// **'Annual (sandbox)'**
+  String get premiumAnnual;
+
+  /// No description provided for @premiumActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Premium is on for this device'**
+  String get premiumActive;
+
+  /// No description provided for @premiumSandboxNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Sandbox mode grants local Premium until store products are connected. Real IAP uses Apple/Google only (parent zone).'**
+  String get premiumSandboxNote;
+
+  /// No description provided for @restorePurchases.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore purchases'**
+  String get restorePurchases;
+
+  /// No description provided for @restoreNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No purchases to restore yet.'**
+  String get restoreNone;
+
+  /// No description provided for @premiumAskGrownUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask a grown-up to unlock Premium'**
+  String get premiumAskGrownUp;
+
+  /// No description provided for @tourTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s play together!'**
+  String get tourTitle;
+
+  /// No description provided for @tourBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Hi {name}! Try one short activity with me. I\'ll cheer you on.'**
+  String tourBody(String name);
+
+  /// No description provided for @tourStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Start first lesson'**
+  String get tourStart;
+
+  /// No description provided for @tourSkip.
+  ///
+  /// In en, this message translates to:
+  /// **'Maybe later'**
+  String get tourSkip;
+
+  /// No description provided for @badgeUnlocked.
+  ///
+  /// In en, this message translates to:
+  /// **'New badge!'**
+  String get badgeUnlocked;
+
+  /// No description provided for @levelUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Level {level}! Amazing!'**
+  String levelUp(int level);
+
+  /// No description provided for @quizHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Need a hint?'**
+  String get quizHint;
+
+  /// No description provided for @quizHintBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Look carefully… one choice is gone. You\'ve got this!'**
+  String get quizHintBody;
+
+  /// No description provided for @quizNiceTry.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes! You figured it out!'**
+  String get quizNiceTry;
+
+  /// No description provided for @quizPerfect.
+  ///
+  /// In en, this message translates to:
+  /// **'Perfect score!'**
+  String get quizPerfect;
+
+  /// No description provided for @weeklySnapshot.
+  ///
+  /// In en, this message translates to:
+  /// **'This week'**
+  String get weeklySnapshot;
+
+  /// No description provided for @weeklySnapshotEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No activity yet this week — a short lesson is a great start.'**
+  String get weeklySnapshotEmpty;
+
+  /// No description provided for @weeklySnapshotBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{lessons} lessons · {stars} quiz stars · {days} active days'**
+  String weeklySnapshotBody(int lessons, int stars, int days);
+
+  /// No description provided for @weeklyActivities.
+  ///
+  /// In en, this message translates to:
+  /// **'activities'**
+  String get weeklyActivities;
+
+  /// No description provided for @parentInsights.
+  ///
+  /// In en, this message translates to:
+  /// **'Insights'**
+  String get parentInsights;
+
+  /// No description provided for @parentInsightsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a child profile to see weekly insights.'**
+  String get parentInsightsEmpty;
+
+  /// No description provided for @certificateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Certificate'**
+  String get certificateTitle;
+
+  /// No description provided for @certificateSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Celebrate progress with a shareable certificate'**
+  String get certificateSubtitle;
+
+  /// No description provided for @certificateHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'CERTIFICATE OF LEARNING'**
+  String get certificateHeading;
+
+  /// No description provided for @certificateNeedChild.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a child profile first.'**
+  String get certificateNeedChild;
+
+  /// No description provided for @certificateBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Reached level {level} · {lessons} lessons · {stars} stars'**
+  String certificateBody(int level, int lessons, int stars);
+
+  /// No description provided for @readingEase.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading ease'**
+  String get readingEase;
+
+  /// No description provided for @readingEaseBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Wider letter spacing and line height for easier reading'**
+  String get readingEaseBody;
+
+  /// No description provided for @highContrast.
+  ///
+  /// In en, this message translates to:
+  /// **'High contrast'**
+  String get highContrast;
+
+  /// No description provided for @highContrastBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Stronger colors and borders for low vision'**
+  String get highContrastBody;
+
+  /// No description provided for @reducedMotion.
+  ///
+  /// In en, this message translates to:
+  /// **'Reduce motion'**
+  String get reducedMotion;
+
+  /// No description provided for @reducedMotionBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Calmer animations and mascot movement'**
+  String get reducedMotionBody;
+
+  /// No description provided for @analyticsOptIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Help improve Watoto'**
+  String get analyticsOptIn;
+
+  /// No description provided for @analyticsOptInBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional, privacy-preserving product analytics (no ads, no child free text)'**
+  String get analyticsOptInBody;
+
+  /// No description provided for @exportData.
+  ///
+  /// In en, this message translates to:
+  /// **'Export family data'**
+  String get exportData;
+
+  /// No description provided for @exportDataBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy a JSON summary of local progress to the clipboard'**
+  String get exportDataBody;
+
+  /// No description provided for @exportDataCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Data copied to clipboard'**
+  String get exportDataCopied;
+
+  /// No description provided for @deleteChild.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete {name}'**
+  String deleteChild(String name);
+
+  /// No description provided for @deleteChildBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Removes this profile and their progress on this device'**
+  String get deleteChildBody;
+
+  /// No description provided for @deleteChildConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'This cannot be undone on this device. Continue?'**
+  String get deleteChildConfirm;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @syncPending.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} items waiting to sync'**
+  String syncPending(int count);
+
+  /// No description provided for @premiumMapFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Free includes stages 1–5. Premium unlocks stages 6–10.'**
+  String get premiumMapFree;
+
+  /// No description provided for @badgeThreeLessons.
+  ///
+  /// In en, this message translates to:
+  /// **'3 lessons'**
+  String get badgeThreeLessons;
+
+  /// No description provided for @badgeTenLessons.
+  ///
+  /// In en, this message translates to:
+  /// **'10 lessons'**
+  String get badgeTenLessons;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @editNicknameTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit name'**
+  String get editNicknameTitle;
+
+  /// No description provided for @editNicknameBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a new name for this profile.'**
+  String get editNicknameBody;
+
+  /// No description provided for @nicknameUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Name updated'**
+  String get nicknameUpdated;
+
+  /// No description provided for @nicknameUpdateFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not update the name'**
+  String get nicknameUpdateFailed;
+
+  /// No description provided for @nicknameCooldown.
+  ///
+  /// In en, this message translates to:
+  /// **'You can change this name again in {days} days'**
+  String nicknameCooldown(int days);
+
+  /// No description provided for @insightQuietWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'A quiet week'**
+  String get insightQuietWeek;
+
+  /// No description provided for @insightQuietWeekDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} has not played this week. A short story is a gentle way back in.'**
+  String insightQuietWeekDetail(String name);
+
+  /// No description provided for @insightStrongWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'A strong week'**
+  String get insightStrongWeek;
+
+  /// No description provided for @insightStrongWeekDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} finished {count} lessons this week. Tell them you noticed!'**
+  String insightStrongWeekDetail(String name, int count);
+
+  /// No description provided for @insightStreak.
+  ///
+  /// In en, this message translates to:
+  /// **'{days}-day streak'**
+  String insightStreak(int days);
+
+  /// No description provided for @insightStreakDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Showing up daily is the habit that matters most.'**
+  String get insightStreakDetail;
+
+  /// No description provided for @insightStars.
+  ///
+  /// In en, this message translates to:
+  /// **'Stars are adding up'**
+  String get insightStars;
+
+  /// No description provided for @insightStarsDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} stars earned this week.'**
+  String insightStarsDetail(int count);
+
+  /// No description provided for @insightOneDay.
+  ///
+  /// In en, this message translates to:
+  /// **'One day of play'**
+  String get insightOneDay;
+
+  /// No description provided for @insightOneDayDetail.
+  ///
+  /// In en, this message translates to:
+  /// **'Two or three short sessions a week beat one long one.'**
+  String get insightOneDayDetail;
+
+  /// No description provided for @syncStatusOk.
+  ///
+  /// In en, this message translates to:
+  /// **'Everything is saved'**
+  String get syncStatusOk;
+
+  /// No description provided for @syncStatusPending.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} items waiting to sync'**
+  String syncStatusPending(int count);
+
+  /// No description provided for @syncStatusError.
+  ///
+  /// In en, this message translates to:
+  /// **'Sync paused — it will retry automatically'**
+  String get syncStatusError;
+
+  /// No description provided for @parentGateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Grown-ups only'**
+  String get parentGateTitle;
+
+  /// No description provided for @parentGateBody.
+  ///
+  /// In en, this message translates to:
+  /// **'To continue, answer: {question}'**
+  String parentGateBody(String question);
+
+  /// No description provided for @parentGateWrong.
+  ///
+  /// In en, this message translates to:
+  /// **'Not quite. Try again'**
+  String get parentGateWrong;
+
+  /// No description provided for @forgotPinTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot your PIN?'**
+  String get forgotPinTitle;
+
+  /// No description provided for @forgotPinBodyAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your account password to set a new PIN.'**
+  String get forgotPinBodyAccount;
+
+  /// No description provided for @forgotPinBodyPinOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'This family uses a PIN only, so there is no password to check. Set a new PIN below.'**
+  String get forgotPinBodyPinOnly;
+
+  /// No description provided for @newPinLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'New PIN'**
+  String get newPinLabel;
+
+  /// No description provided for @confirmPinLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm new PIN'**
+  String get confirmPinLabel;
+
+  /// No description provided for @pinLengthHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Use at least 4 digits'**
+  String get pinLengthHint;
+
+  /// No description provided for @setNewPin.
+  ///
+  /// In en, this message translates to:
+  /// **'Set new PIN'**
+  String get setNewPin;
+
+  /// No description provided for @pinResetSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'PIN updated'**
+  String get pinResetSuccess;
+
+  /// No description provided for @pinResetFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not update the PIN'**
+  String get pinResetFailed;
+
+  /// No description provided for @forgotPasswordTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot your password?'**
+  String get forgotPasswordTitle;
+
+  /// No description provided for @forgotPasswordBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email and we will send you a reset code.'**
+  String get forgotPasswordBody;
+
+  /// No description provided for @forgotPasswordEnterCodeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the code we sent, then choose a new password.'**
+  String get forgotPasswordEnterCodeBody;
+
+  /// No description provided for @sendResetEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Send reset code'**
+  String get sendResetEmail;
+
+  /// No description provided for @resendResetEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Send the code again'**
+  String get resendResetEmail;
+
+  /// No description provided for @passwordResetEmailSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Check your email for the reset code.'**
+  String get passwordResetEmailSent;
+
+  /// No description provided for @passwordResetDevCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Debug code: {code}'**
+  String passwordResetDevCode(String code);
+
+  /// No description provided for @passwordResetCodeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset code'**
+  String get passwordResetCodeLabel;
+
+  /// No description provided for @passwordResetCodeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'The 6-digit code from your email'**
+  String get passwordResetCodeHint;
+
+  /// No description provided for @passwordResetCodeInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'That code is not right — check your email'**
+  String get passwordResetCodeInvalid;
+
+  /// No description provided for @newPasswordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'New password'**
+  String get newPasswordLabel;
+
+  /// No description provided for @confirmPasswordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm new password'**
+  String get confirmPasswordLabel;
+
+  /// No description provided for @passwordMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords do not match'**
+  String get passwordMismatch;
+
+  /// No description provided for @setNewPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Set new password'**
+  String get setNewPassword;
+
+  /// No description provided for @passwordResetSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Password updated'**
+  String get passwordResetSuccess;
+
+  /// No description provided for @passwordResetFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not reset the password'**
+  String get passwordResetFailed;
+
+  /// No description provided for @todayQuest.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s quest'**
+  String get todayQuest;
+
+  /// No description provided for @todayQuestProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{done} of {goal} activities'**
+  String todayQuestProgress(int done, int goal);
+
+  /// No description provided for @todayQuestComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Quest complete!'**
+  String get todayQuestComplete;
+
+  /// No description provided for @nextEasier.
+  ///
+  /// In en, this message translates to:
+  /// **'A gentle one next'**
+  String get nextEasier;
+
+  /// No description provided for @nextHarder.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready for a tougher one?'**
+  String get nextHarder;
+
+  /// No description provided for @nextDiscover.
+  ///
+  /// In en, this message translates to:
+  /// **'Try something new'**
+  String get nextDiscover;
+
+  /// No description provided for @streakSavedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your streak is safe!'**
+  String get streakSavedTitle;
+
+  /// No description provided for @streakSavedBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You missed a day, so your weekly shield kept the {days}-day streak going.'**
+  String streakSavedBody(int days);
+
+  /// No description provided for @streakShieldUsedNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Shield used this week'**
+  String get streakShieldUsedNote;
+
+  /// No description provided for @coinsEarned.
+  ///
+  /// In en, this message translates to:
+  /// **'+{count} coins'**
+  String coinsEarned(int count);
+
+  /// No description provided for @perfectRun.
+  ///
+  /// In en, this message translates to:
+  /// **'Perfect!'**
+  String get perfectRun;
+
+  /// No description provided for @firstTimeHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Your first one here!'**
+  String get firstTimeHere;
+
+  /// No description provided for @remindersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Practice reminders'**
+  String get remindersTitle;
+
+  /// No description provided for @remindersBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A quiet nudge to you — never to your child. Off unless you turn it on.'**
+  String get remindersBody;
+
+  /// No description provided for @remindersUnsupported.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders are not available on this device.'**
+  String get remindersUnsupported;
+
+  /// No description provided for @remindersDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications are blocked. Allow them in system settings to use reminders.'**
+  String get remindersDenied;
+
+  /// No description provided for @reminderTimeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder time'**
+  String get reminderTimeLabel;
+
+  /// No description provided for @reminderStreakTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'s streak ends today'**
+  String reminderStreakTitle(String name);
+
+  /// No description provided for @reminderStreakBody.
+  ///
+  /// In en, this message translates to:
+  /// **'One short activity keeps the {days}-day run alive.'**
+  String reminderStreakBody(int days);
+
+  /// No description provided for @reminderInactiveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} hasn\'t played in a while'**
+  String reminderInactiveTitle(String name);
+
+  /// No description provided for @reminderInactiveBody.
+  ///
+  /// In en, this message translates to:
+  /// **'A short story is a gentle way back in.'**
+  String get reminderInactiveBody;
+
+  /// No description provided for @reminderKeepGoingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Time to play with {name}?'**
+  String reminderKeepGoingTitle(String name);
+
+  /// No description provided for @reminderKeepGoingBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Five minutes today is worth more than an hour on Sunday.'**
+  String get reminderKeepGoingBody;
+
+  /// No description provided for @shopDecorations.
+  ///
+  /// In en, this message translates to:
+  /// **'Savanna decorations'**
+  String get shopDecorations;
+
+  /// No description provided for @shopDecorationsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Spend coins to grow your savanna. Some things arrive just by playing.'**
+  String get shopDecorationsBody;
+
+  /// No description provided for @decorationOwned.
+  ///
+  /// In en, this message translates to:
+  /// **'In your savanna'**
+  String get decorationOwned;
+
+  /// No description provided for @decorationEarned.
+  ///
+  /// In en, this message translates to:
+  /// **'Earned!'**
+  String get decorationEarned;
+
+  /// No description provided for @decorationNeedsLevel.
+  ///
+  /// In en, this message translates to:
+  /// **'Level {level}'**
+  String decorationNeedsLevel(int level);
+
+  /// No description provided for @decorationNeedsSubjects.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} subjects'**
+  String decorationNeedsSubjects(int count);
+
+  /// No description provided for @nameYourFriend.
+  ///
+  /// In en, this message translates to:
+  /// **'Name your friend'**
+  String get nameYourFriend;
+
+  /// No description provided for @mascotNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'What shall we call them?'**
+  String get mascotNameHint;
+
+  /// No description provided for @mascotDefaultName.
+  ///
+  /// In en, this message translates to:
+  /// **'Your lion friend'**
+  String get mascotDefaultName;
+
+  /// No description provided for @mascotMissedYou.
+  ///
+  /// In en, this message translates to:
+  /// **'I missed you! Shall we play?'**
+  String get mascotMissedYou;
+
+  /// No description provided for @mascotProud.
+  ///
+  /// In en, this message translates to:
+  /// **'{days} days in a row. I\'m so proud!'**
+  String mascotProud(int days);
+
+  /// No description provided for @mascotCurious.
+  ///
+  /// In en, this message translates to:
+  /// **'There you are! What shall we learn?'**
+  String get mascotCurious;
+
+  /// No description provided for @mascotReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready when you are!'**
+  String get mascotReady;
+
+  /// No description provided for @familyChallenge.
+  ///
+  /// In en, this message translates to:
+  /// **'Family challenge'**
+  String get familyChallenge;
+
+  /// No description provided for @familyChallengeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} more activities together this week.'**
+  String familyChallengeBody(int count);
+
+  /// No description provided for @familyChallengeDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done. The whole family got there!'**
+  String get familyChallengeDone;
+
+  /// No description provided for @sendCheer.
+  ///
+  /// In en, this message translates to:
+  /// **'Send {name} a cheer'**
+  String sendCheer(String name);
+
+  /// No description provided for @sendCheerBody.
+  ///
+  /// In en, this message translates to:
+  /// **'They will see it next time they open the app.'**
+  String get sendCheerBody;
+
+  /// No description provided for @cheerSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent to {name}'**
+  String cheerSent(String name);
+
+  /// No description provided for @cheerFromGrownUp.
+  ///
+  /// In en, this message translates to:
+  /// **'A message for you'**
+  String get cheerFromGrownUp;
+
+  /// No description provided for @cheerProud.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'m proud of you!'**
+  String get cheerProud;
+
+  /// No description provided for @cheerWow.
+  ///
+  /// In en, this message translates to:
+  /// **'Wow, look at you go!'**
+  String get cheerWow;
+
+  /// No description provided for @cheerKeepGoing.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep going, you\'ve got this!'**
+  String get cheerKeepGoing;
+
+  /// No description provided for @cheerLoveIt.
+  ///
+  /// In en, this message translates to:
+  /// **'I love learning with you!'**
+  String get cheerLoveIt;
+
+  /// No description provided for @certificateSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save picture'**
+  String get certificateSave;
+
+  /// No description provided for @certificateSaving.
+  ///
+  /// In en, this message translates to:
+  /// **'Saving…'**
+  String get certificateSaving;
+
+  /// No description provided for @certificateSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved to {path}'**
+  String certificateSaved(String path);
+
+  /// No description provided for @certificateCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Certificate copied to the clipboard'**
+  String get certificateCopied;
+
+  /// No description provided for @certificateSaveFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not save the certificate'**
+  String get certificateSaveFailed;
+
+  /// No description provided for @recapTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What did we learn?'**
+  String get recapTitle;
+
+  /// No description provided for @recapProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'Question {current} of {total}'**
+  String recapProgress(int current, int total);
+
+  /// No description provided for @restoreBackup.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore from a backup'**
+  String get restoreBackup;
+
+  /// No description provided for @restoreBackupBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Bring progress back after a reinstall or on a new device'**
+  String get restoreBackupBody;
+
+  /// No description provided for @restoreBackupPaste.
+  ///
+  /// In en, this message translates to:
+  /// **'Paste the backup text you saved'**
+  String get restoreBackupPaste;
+
+  /// No description provided for @restoreBackupAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore'**
+  String get restoreBackupAction;
+
+  /// No description provided for @restoreBackupDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Restored {children} profile(s) and {items} activities'**
+  String restoreBackupDone(int children, int items);
+
+  /// No description provided for @restoreBackupNothing.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing new to restore — this device is already up to date'**
+  String get restoreBackupNothing;
+
+  /// No description provided for @restoreBackupInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'That does not look like a Watoto backup'**
+  String get restoreBackupInvalid;
+
+  /// No description provided for @backupReminderTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep a backup'**
+  String get backupReminderTitle;
+
+  /// No description provided for @backupReminderBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress lives on this device only. Export a backup so a lost or reset phone does not lose it.'**
+  String get backupReminderBody;
+
+  /// No description provided for @narrationUnavailableTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Voice not available'**
+  String get narrationUnavailableTitle;
+
+  /// No description provided for @narrationUnavailableBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This device has no installed voice for {language}. Captions still show every word. To add a voice, open your device settings and install {language} text-to-speech.'**
+  String narrationUnavailableBody(String language);
+
+  /// No description provided for @nextReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s practice this one again'**
+  String get nextReview;
+
+  /// No description provided for @badgeTwentyLessons.
+  ///
+  /// In en, this message translates to:
+  /// **'20 lessons'**
+  String get badgeTwentyLessons;
+
+  /// No description provided for @badgeStreak14.
+  ///
+  /// In en, this message translates to:
+  /// **'14-day streak'**
+  String get badgeStreak14;
+
+  /// No description provided for @badgeThreeStories.
+  ///
+  /// In en, this message translates to:
+  /// **'3 stories'**
+  String get badgeThreeStories;
+
+  /// No description provided for @badgeLevel10.
+  ///
+  /// In en, this message translates to:
+  /// **'Level 10'**
+  String get badgeLevel10;
+
+  /// No description provided for @badgeFirstQuiz.
+  ///
+  /// In en, this message translates to:
+  /// **'First quiz'**
+  String get badgeFirstQuiz;
+
+  /// No description provided for @badgePerfectQuiz.
+  ///
+  /// In en, this message translates to:
+  /// **'All correct!'**
+  String get badgePerfectQuiz;
+
+  /// No description provided for @highFiveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'High five!'**
+  String get highFiveTitle;
+
+  /// No description provided for @highFiveBody.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}, that\'s your first activity today. Well done!'**
+  String highFiveBody(String name);
+
+  /// No description provided for @highFiveGrownUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Grown-ups: a short daily habit beats a long weekly one.'**
+  String get highFiveGrownUp;
+
+  /// No description provided for @highFiveButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep playing'**
+  String get highFiveButton;
+
+  /// No description provided for @stretchTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Wiggle break!'**
+  String get stretchTitle;
+
+  /// No description provided for @stretchBody.
+  ///
+  /// In en, this message translates to:
+  /// **'You have been learning for a while. Stand up, stretch tall, and shake your hands.'**
+  String get stretchBody;
+
+  /// No description provided for @stretchKeepPlaying.
+  ///
+  /// In en, this message translates to:
+  /// **'I stretched. Keep playing'**
+  String get stretchKeepPlaying;
+
+  /// No description provided for @stretchGoHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Go home'**
+  String get stretchGoHome;
+
+  /// No description provided for @whatsNewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s new'**
+  String get whatsNewTitle;
+
+  /// No description provided for @whatsNewSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You are on version {version}'**
+  String whatsNewSubtitle(String version);
+
+  /// No description provided for @whatsNewFooter.
+  ///
+  /// In en, this message translates to:
+  /// **'Watoto works offline. Progress stays on this device unless you export a backup.'**
+  String get whatsNewFooter;
 }
 
 class _AppLocalizationsDelegate

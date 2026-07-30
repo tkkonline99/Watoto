@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/audio/sound_effects.dart';
 import '../../core/l10n/content_key_resolver.dart';
 import '../../core/offline/offline_providers.dart';
 import '../../core/theme/watoto_theme.dart';
@@ -29,6 +30,9 @@ class _QuizRunnerScreenState extends ConsumerState<QuizRunnerScreen> {
   void _pick(QuizBody quiz, int optionIndex) {
     if (_justPicked != null || _grade != null) return;
     setState(() => _justPicked = optionIndex);
+    // Neutral pop only — quizzes are assessments, so no per-question
+    // right/wrong audio cue (mirrors the visual acknowledgement below).
+    ref.read(soundEffectsProvider).tap();
     // Brief visual acknowledgement, then advance — quizzes are assessments,
     // so there is no retry within a question (docs/11 §11.5).
     Timer(const Duration(milliseconds: 350), () {
@@ -47,12 +51,17 @@ class _QuizRunnerScreenState extends ConsumerState<QuizRunnerScreen> {
     _elapsed.stop();
     final grade = quiz.grade(_selected);
     _grade = grade;
-    unawaited(ref.read(learningServiceProvider).completeQuiz(
-          quiz,
-          selected: List.of(_selected),
-          grade: grade,
-          durationS: _elapsed.elapsed.inSeconds,
-        ));
+    if (grade.passed) ref.read(soundEffectsProvider).celebrate();
+    unawaited(
+      ref
+          .read(learningServiceProvider)
+          .completeQuiz(
+            quiz,
+            selected: List.of(_selected),
+            grade: grade,
+            durationS: _elapsed.elapsed.inSeconds,
+          ),
+    );
   }
 
   void _retry() {
@@ -79,7 +88,10 @@ class _QuizRunnerScreenState extends ConsumerState<QuizRunnerScreen> {
         title: quizAsync.maybeWhen(
           data: (quiz) => Text(
             resolveContentKey(l10n, quiz.titleKey),
-            style: const TextStyle(color: WatotoColors.deep, fontWeight: FontWeight.w800),
+            style: const TextStyle(
+              color: WatotoColors.deep,
+              fontWeight: FontWeight.w800,
+            ),
           ),
           orElse: () => null,
         ),
@@ -90,7 +102,11 @@ class _QuizRunnerScreenState extends ConsumerState<QuizRunnerScreen> {
         data: (quiz) {
           final grade = _grade;
           if (grade != null) {
-            return _QuizResultView(grade: grade, onRetry: _retry, onDone: () => context.go('/'));
+            return _QuizResultView(
+              grade: grade,
+              onRetry: _retry,
+              onDone: () => context.go('/'),
+            );
           }
           final question = quiz.questions[_selected.length];
           return _QuestionView(
@@ -131,8 +147,14 @@ class _QuestionView extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('${index + 1} / $total',
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: WatotoColors.sky)),
+          Text(
+            '${index + 1} / $total',
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
+              color: WatotoColors.sky,
+            ),
+          ),
           const SizedBox(height: 16),
           Text(
             resolveContentKey(l10n, question.promptKey),
@@ -158,9 +180,14 @@ class _QuestionView extends StatelessWidget {
                   height: 88,
                   child: FilledButton(
                     style: FilledButton.styleFrom(
-                      backgroundColor: justPicked == i ? WatotoColors.mango : WatotoColors.sky,
+                      backgroundColor: justPicked == i
+                          ? WatotoColors.mango
+                          : WatotoColors.sky,
                       foregroundColor: Colors.white,
-                      textStyle: const TextStyle(fontSize: 32, fontWeight: FontWeight.w800),
+                      textStyle: const TextStyle(
+                        fontSize: 32,
+                        fontWeight: FontWeight.w800,
+                      ),
                     ),
                     onPressed: () => onPick(i),
                     child: Text(question.options[i].text),
@@ -175,7 +202,11 @@ class _QuestionView extends StatelessWidget {
 }
 
 class _QuizResultView extends StatelessWidget {
-  const _QuizResultView({required this.grade, required this.onRetry, required this.onDone});
+  const _QuizResultView({
+    required this.grade,
+    required this.onRetry,
+    required this.onDone,
+  });
 
   final QuizGrade grade;
   final VoidCallback onRetry;
@@ -188,7 +219,10 @@ class _QuizResultView extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(grade.passed ? '🎉' : '🌱', style: const TextStyle(fontSize: 96)),
+          Text(
+            grade.passed ? '🎉' : '🌱',
+            style: const TextStyle(fontSize: 96),
+          ),
           const SizedBox(height: 16),
           Text(
             grade.passed ? l10n.greatJob : l10n.tryAgain,
@@ -206,7 +240,10 @@ class _QuizResultView extends StatelessWidget {
             Text(
               l10n.xpEarned(grade.xp),
               style: const TextStyle(
-                  fontSize: 24, fontWeight: FontWeight.w700, color: WatotoColors.mango),
+                fontSize: 24,
+                fontWeight: FontWeight.w700,
+                color: WatotoColors.mango,
+              ),
             ),
           ],
           const SizedBox(height: 40),
@@ -219,7 +256,9 @@ class _QuizResultView extends StatelessWidget {
                 style: grade.passed
                     ? null
                     : FilledButton.styleFrom(
-                        backgroundColor: Colors.white, foregroundColor: WatotoColors.deep),
+                        backgroundColor: Colors.white,
+                        foregroundColor: WatotoColors.deep,
+                      ),
                 onPressed: onDone,
                 child: Text(l10n.done),
               ),

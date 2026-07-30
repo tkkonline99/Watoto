@@ -125,7 +125,7 @@
   "grownupCheck": "Grown-up check",
   "grownupCheckBody": "Ask a grown-up to continue. Type these numbers:",
   "gateAnswerHint": "Type the answer",
-  "wrongNumbers": "Those numbers don't match — try again",
+  "wrongNumbers": "Those numbers don't match. Try again",
   "stageOf": "Stage {stage} · Ages {ages}",
   "legalSection": "About & legal",
   "privacyPolicy": "Privacy Policy",
@@ -136,5 +136,442 @@
       "stage": { "type": "int" },
       "ages": { "type": "String" }
     }
-  }
+  },
+  "levelLabel": "Level {level}",
+  "@levelLabel": {
+    "placeholders": {
+      "level": { "type": "int" }
+    }
+  },
+  "streakLabel": "{days}-day streak",
+  "@streakLabel": {
+    "placeholders": {
+      "days": { "type": "int" }
+    }
+  },
+  "accessibility": "Accessibility",
+  "textSizeSmall": "Small",
+  "textSizeMedium": "Medium",
+  "textSizeLarge": "Large",
+  "readAloud": "Read aloud",
+  "readAloudBody": "Speak instructions and narration",
+  "achievements": "Achievements",
+  "noBadgesYet": "Play to earn badges!",
+  "comingSoonTitle": "More coming soon!",
+  "comingSoonBody": "New activities for this subject are on the way.",
+  "tapToPlay": "Tap to play!",
+  "gotIt": "Got it!",
+  "tapEachPrompt": "Tap them all!",
+  "dragToBasket": "Drag it into the basket!",
+  "keepGoing": "Keep going!",
+  "curriculumGuides": "Curriculum Guides",
+  "curriculumGuidesBody": "Lesson plans, worksheets & reading guides for grown-ups",
+  "curriculumGuidesIntro": "The full teaching program behind Watoto's activities — lesson plans, printable worksheets, quizzes with answer keys, and reading guides, organized by age.",
+  "badgeFirstLesson": "First lesson",
+  "badgeFiveLessons": "5 lessons",
+  "badgeStreak3": "3-day streak",
+  "badgeStreak7": "7-day streak",
+  "badgeFirstStory": "First story",
+  "badgeLevel5": "Level 5",
+  "badgeDailyChallenge": "Daily hero",
+  "badgesTitle": "Badges",
+  "xpToNextLevel": "{into} / {total} XP · {remaining} to next level",
+  "@xpToNextLevel": {
+    "placeholders": {
+      "into": { "type": "int" },
+      "total": { "type": "int" },
+      "remaining": { "type": "int" }
+    }
+  },
+  "dailyChallengeDone": "Done for today!",
+  "dailyChallengeBonus": "+{xp} bonus XP",
+  "@dailyChallengeBonus": {
+    "placeholders": {
+      "xp": { "type": "int" }
+    }
+  },
+  "changeAgeHint": "Long-press to change age",
+  "playNow": "Play now",
+  "continueLearning": "Keep going",
+  "avatarShop": "Avatar shop",
+  "avatarShopBody": "Spend coins on fun animal friends. Coins never buy learning, only looks!",
+  "freeAvatars": "Your animals",
+  "shopAvatars": "Unlock more",
+  "notEnoughCoins": "Need more coins. Play to earn!",
+  "screenTime": "Screen time",
+  "screenTimeBody": "Soft daily limit. When time is up, Watoto shows a rest screen (no hard lock-outs mid-activity).",
+  "screenTimeOff": "Off",
+  "screenTimeMinutes": "{minutes} min",
+  "@screenTimeMinutes": {
+    "placeholders": {
+      "minutes": { "type": "int" }
+    }
+  },
+  "screenTimeUsed": "Used today: {minutes} min",
+  "@screenTimeUsed": {
+    "placeholders": {
+      "minutes": { "type": "int" }
+    }
+  },
+  "restTitle": "Time for a rest!",
+  "restBody": "You learned a lot today. Stretch, drink water, and come back later.",
+  "restGoHome": "See you later",
+  "restAskGrownUp": "Grown-up: open parent zone",
+  "restGrace": "+10 more minutes",
+  "premiumTitle": "Watoto Premium",
+  "premiumBody": "Unlock every stage, offline packs, and full multi-child access.",
+  "premiumBullet1": "All stages Birth–Grade 4",
+  "premiumBullet2": "Offline downloads",
+  "premiumBullet3": "Up to 4 child profiles",
+  "premiumMonthly": "Monthly (sandbox)",
+  "premiumAnnual": "Annual (sandbox)",
+  "premiumActive": "Premium is on for this device",
+  "premiumSandboxNote": "Sandbox mode grants local Premium until store products are connected. Real IAP uses Apple/Google only (parent zone).",
+  "restorePurchases": "Restore purchases",
+  "restoreNone": "No purchases to restore yet.",
+  "premiumAskGrownUp": "Ask a grown-up to unlock Premium",
+  "tourTitle": "Let's play together!",
+  "tourBody": "Hi {name}! Try one short activity with me. I'll cheer you on.",
+  "@tourBody": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "tourStart": "Start first lesson",
+  "tourSkip": "Maybe later",
+  "badgeUnlocked": "New badge!",
+  "levelUp": "Level {level}! Amazing!",
+  "@levelUp": {
+    "placeholders": {
+      "level": { "type": "int" }
+    }
+  },
+  "quizHint": "Need a hint?",
+  "quizHintBody": "Look carefully… one choice is gone. You've got this!",
+  "quizNiceTry": "Yes! You figured it out!",
+  "quizPerfect": "Perfect score!",
+  "weeklySnapshot": "This week",
+  "weeklySnapshotEmpty": "No activity yet this week — a short lesson is a great start.",
+  "weeklySnapshotBody": "{lessons} lessons · {stars} quiz stars · {days} active days",
+  "@weeklySnapshotBody": {
+    "placeholders": {
+      "lessons": { "type": "int" },
+      "stars": { "type": "int" },
+      "days": { "type": "int" }
+    }
+  },
+  "weeklyActivities": "activities",
+  "parentInsights": "Insights",
+  "parentInsightsEmpty": "Add a child profile to see weekly insights.",
+  "certificateTitle": "Certificate",
+  "certificateSubtitle": "Celebrate progress with a shareable certificate",
+  "certificateHeading": "CERTIFICATE OF LEARNING",
+  "certificateNeedChild": "Select a child profile first.",
+  "certificateBody": "Reached level {level} · {lessons} lessons · {stars} stars",
+  "@certificateBody": {
+    "placeholders": {
+      "level": { "type": "int" },
+      "lessons": { "type": "int" },
+      "stars": { "type": "int" }
+    }
+  },
+  "readingEase": "Reading ease",
+  "readingEaseBody": "Wider letter spacing and line height for easier reading",
+  "highContrast": "High contrast",
+  "highContrastBody": "Stronger colors and borders for low vision",
+  "reducedMotion": "Reduce motion",
+  "reducedMotionBody": "Calmer animations and mascot movement",
+  "analyticsOptIn": "Help improve Watoto",
+  "analyticsOptInBody": "Optional, privacy-preserving product analytics (no ads, no child free text)",
+  "exportData": "Export family data",
+  "exportDataBody": "Copy a JSON summary of local progress to the clipboard",
+  "exportDataCopied": "Data copied to clipboard",
+  "deleteChild": "Delete {name}",
+  "@deleteChild": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "deleteChildBody": "Removes this profile and their progress on this device",
+  "deleteChildConfirm": "This cannot be undone on this device. Continue?",
+  "delete": "Delete",
+  "cancel": "Cancel",
+  "syncPending": "{count} items waiting to sync",
+  "@syncPending": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "premiumMapFree": "Free includes stages 1–5. Premium unlocks stages 6–10.",
+  "badgeThreeLessons": "3 lessons",
+  "badgeTenLessons": "10 lessons",
+  "save": "Save",
+  "editNicknameTitle": "Edit name",
+  "editNicknameBody": "Choose a new name for this profile.",
+  "nicknameUpdated": "Name updated",
+  "nicknameUpdateFailed": "Could not update the name",
+  "nicknameCooldown": "You can change this name again in {days} days",
+  "@nicknameCooldown": {
+    "placeholders": {
+      "days": { "type": "int" }
+    }
+  },
+  "insightQuietWeek": "A quiet week",
+  "insightQuietWeekDetail": "{name} has not played this week. A short story is a gentle way back in.",
+  "@insightQuietWeekDetail": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "insightStrongWeek": "A strong week",
+  "insightStrongWeekDetail": "{name} finished {count} lessons this week. Tell them you noticed!",
+  "@insightStrongWeekDetail": {
+    "placeholders": {
+      "name": { "type": "String" },
+      "count": { "type": "int" }
+    }
+  },
+  "insightStreak": "{days}-day streak",
+  "@insightStreak": {
+    "placeholders": {
+      "days": { "type": "int" }
+    }
+  },
+  "insightStreakDetail": "Showing up daily is the habit that matters most.",
+  "insightStars": "Stars are adding up",
+  "insightStarsDetail": "{count} stars earned this week.",
+  "@insightStarsDetail": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "insightOneDay": "One day of play",
+  "insightOneDayDetail": "Two or three short sessions a week beat one long one.",
+  "syncStatusOk": "Everything is saved",
+  "syncStatusPending": "{count} items waiting to sync",
+  "@syncStatusPending": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "syncStatusError": "Sync paused — it will retry automatically",
+  "parentGateTitle": "Grown-ups only",
+  "parentGateBody": "To continue, answer: {question}",
+  "@parentGateBody": {
+    "placeholders": {
+      "question": { "type": "String" }
+    }
+  },
+  "parentGateWrong": "Not quite. Try again",
+  "forgotPinTitle": "Forgot your PIN?",
+  "forgotPinBodyAccount": "Enter your account password to set a new PIN.",
+  "forgotPinBodyPinOnly": "This family uses a PIN only, so there is no password to check. Set a new PIN below.",
+  "newPinLabel": "New PIN",
+  "confirmPinLabel": "Confirm new PIN",
+  "pinLengthHint": "Use at least 4 digits",
+  "setNewPin": "Set new PIN",
+  "pinResetSuccess": "PIN updated",
+  "pinResetFailed": "Could not update the PIN",
+  "forgotPasswordTitle": "Forgot your password?",
+  "forgotPasswordBody": "Enter your email and we will send you a reset code.",
+  "forgotPasswordEnterCodeBody": "Enter the code we sent, then choose a new password.",
+  "sendResetEmail": "Send reset code",
+  "resendResetEmail": "Send the code again",
+  "passwordResetEmailSent": "Check your email for the reset code.",
+  "passwordResetDevCode": "Debug code: {code}",
+  "@passwordResetDevCode": {
+    "placeholders": {
+      "code": { "type": "String" }
+    }
+  },
+  "passwordResetCodeLabel": "Reset code",
+  "passwordResetCodeHint": "The 6-digit code from your email",
+  "passwordResetCodeInvalid": "That code is not right — check your email",
+  "newPasswordLabel": "New password",
+  "confirmPasswordLabel": "Confirm new password",
+  "passwordMismatch": "Passwords do not match",
+  "setNewPassword": "Set new password",
+  "passwordResetSuccess": "Password updated",
+  "passwordResetFailed": "Could not reset the password",
+  "todayQuest": "Today's quest",
+  "todayQuestProgress": "{done} of {goal} activities",
+  "@todayQuestProgress": {
+    "placeholders": {
+      "done": { "type": "int" },
+      "goal": { "type": "int" }
+    }
+  },
+  "todayQuestComplete": "Quest complete!",
+  "nextEasier": "A gentle one next",
+  "nextHarder": "Ready for a tougher one?",
+  "nextDiscover": "Try something new",
+  "streakSavedTitle": "Your streak is safe!",
+  "streakSavedBody": "You missed a day, so your weekly shield kept the {days}-day streak going.",
+  "@streakSavedBody": {
+    "placeholders": {
+      "days": { "type": "int" }
+    }
+  },
+  "streakShieldUsedNote": "Shield used this week",
+  "coinsEarned": "+{count} coins",
+  "@coinsEarned": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "perfectRun": "Perfect!",
+  "firstTimeHere": "Your first one here!",
+  "remindersTitle": "Practice reminders",
+  "remindersBody": "A quiet nudge to you — never to your child. Off unless you turn it on.",
+  "remindersUnsupported": "Reminders are not available on this device.",
+  "remindersDenied": "Notifications are blocked. Allow them in system settings to use reminders.",
+  "reminderTimeLabel": "Reminder time",
+  "reminderStreakTitle": "{name}'s streak ends today",
+  "@reminderStreakTitle": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "reminderStreakBody": "One short activity keeps the {days}-day run alive.",
+  "@reminderStreakBody": {
+    "placeholders": {
+      "days": { "type": "int" }
+    }
+  },
+  "reminderInactiveTitle": "{name} hasn't played in a while",
+  "@reminderInactiveTitle": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "reminderInactiveBody": "A short story is a gentle way back in.",
+  "reminderKeepGoingTitle": "Time to play with {name}?",
+  "@reminderKeepGoingTitle": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "reminderKeepGoingBody": "Five minutes today is worth more than an hour on Sunday.",
+  "shopDecorations": "Savanna decorations",
+  "shopDecorationsBody": "Spend coins to grow your savanna. Some things arrive just by playing.",
+  "decorationOwned": "In your savanna",
+  "decorationEarned": "Earned!",
+  "decorationNeedsLevel": "Level {level}",
+  "@decorationNeedsLevel": {
+    "placeholders": {
+      "level": { "type": "int" }
+    }
+  },
+  "decorationNeedsSubjects": "{count} subjects",
+  "@decorationNeedsSubjects": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "nameYourFriend": "Name your friend",
+  "mascotNameHint": "What shall we call them?",
+  "mascotDefaultName": "Your lion friend",
+  "mascotMissedYou": "I missed you! Shall we play?",
+  "mascotProud": "{days} days in a row. I'm so proud!",
+  "@mascotProud": {
+    "placeholders": {
+      "days": { "type": "int" }
+    }
+  },
+  "mascotCurious": "There you are! What shall we learn?",
+  "mascotReady": "Ready when you are!",
+  "familyChallenge": "Family challenge",
+  "familyChallengeBody": "{count} more activities together this week.",
+  "@familyChallengeBody": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "familyChallengeDone": "Done. The whole family got there!",
+  "sendCheer": "Send {name} a cheer",
+  "@sendCheer": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "sendCheerBody": "They will see it next time they open the app.",
+  "cheerSent": "Sent to {name}",
+  "@cheerSent": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "cheerFromGrownUp": "A message for you",
+  "cheerProud": "I'm proud of you!",
+  "cheerWow": "Wow, look at you go!",
+  "cheerKeepGoing": "Keep going, you've got this!",
+  "cheerLoveIt": "I love learning with you!",
+  "certificateSave": "Save picture",
+  "certificateSaving": "Saving…",
+  "certificateSaved": "Saved to {path}",
+  "@certificateSaved": {
+    "placeholders": {
+      "path": { "type": "String" }
+    }
+  },
+  "certificateCopied": "Certificate copied to the clipboard",
+  "certificateSaveFailed": "Could not save the certificate",
+  "recapTitle": "What did we learn?",
+  "recapProgress": "Question {current} of {total}",
+  "@recapProgress": {
+    "placeholders": {
+      "current": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
+  "restoreBackup": "Restore from a backup",
+  "restoreBackupBody": "Bring progress back after a reinstall or on a new device",
+  "restoreBackupPaste": "Paste the backup text you saved",
+  "restoreBackupAction": "Restore",
+  "restoreBackupDone": "Restored {children} profile(s) and {items} activities",
+  "@restoreBackupDone": {
+    "placeholders": {
+      "children": { "type": "int" },
+      "items": { "type": "int" }
+    }
+  },
+  "restoreBackupNothing": "Nothing new to restore — this device is already up to date",
+  "restoreBackupInvalid": "That does not look like a Watoto backup",
+  "backupReminderTitle": "Keep a backup",
+  "backupReminderBody": "Progress lives on this device only. Export a backup so a lost or reset phone does not lose it.",
+  "narrationUnavailableTitle": "Voice not available",
+  "narrationUnavailableBody": "This device has no installed voice for {language}. Captions still show every word. To add a voice, open your device settings and install {language} text-to-speech.",
+  "@narrationUnavailableBody": {
+    "placeholders": {
+      "language": { "type": "String" }
+    }
+  },
+  "nextReview": "Let's practice this one again",
+  "badgeTwentyLessons": "20 lessons",
+  "badgeStreak14": "14-day streak",
+  "badgeThreeStories": "3 stories",
+  "badgeLevel10": "Level 10",
+  "badgeFirstQuiz": "First quiz",
+  "badgePerfectQuiz": "All correct!",
+  "highFiveTitle": "High five!",
+  "highFiveBody": "{name}, that's your first activity today. Well done!",
+  "@highFiveBody": {
+    "placeholders": {
+      "name": { "type": "String" }
+    }
+  },
+  "highFiveGrownUp": "Grown-ups: a short daily habit beats a long weekly one.",
+  "highFiveButton": "Keep playing",
+  "stretchTitle": "Wiggle break!",
+  "stretchBody": "You have been learning for a while. Stand up, stretch tall, and shake your hands.",
+  "stretchKeepPlaying": "I stretched. Keep playing",
+  "stretchGoHome": "Go home",
+  "whatsNewTitle": "What's new",
+  "whatsNewSubtitle": "You are on version {version}",
+  "@whatsNewSubtitle": {
+    "placeholders": {
+      "version": { "type": "String" }
+    }
+  },
+  "whatsNewFooter": "Watoto works offline. Progress stays on this device unless you export a backup."
 }

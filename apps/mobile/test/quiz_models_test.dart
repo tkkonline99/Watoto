@@ -43,11 +43,12 @@ void main() {
     expect(grade.xp, 20);
   });
 
-  test('2 of 3 (67%) fails a 70% gate — no stars, no xp', () {
+  test('2 of 3 (67%) fails a 70% gate — stars from score, no xp', () {
     final grade = parse().grade([0, 1, 0]);
     expect(grade.scorePct, 67);
     expect(grade.passed, isFalse);
-    expect(grade.stars, 0);
+    // Kinder star thresholds still award 2★ at 67%; XP only when passed.
+    expect(grade.stars, 2);
     expect(grade.xp, 0);
   });
 

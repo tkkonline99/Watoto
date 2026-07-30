@@ -1,0 +1,1720 @@
+{
+ "_meta": {
+  "language": "sw",
+  "note": "Kiswahili for lesson_recaps.part2.json. Same ids, same question order, same option order — the answer index must stay valid.",
+  "review": "Machine-authored, NOT yet reviewed by a native speaker."
+ },
+ "s05.reading.lesson.02": [
+  {
+   "prompt": "Ni neno lipi uligusa kwanza?",
+   "options": [
+    "the",
+    "I",
+    "a"
+   ]
+  },
+  {
+   "prompt": "Ni neno lipi linamaanisha wewe mwenyewe: I au the?",
+   "options": [
+    "I",
+    "the"
+   ]
+  }
+ ],
+ "s05.reading.lesson.04": [
+  {
+   "prompt": "Unganisha d-o-g. Ni neno gani?",
+   "options": [
+    "dog",
+    "map",
+    "dig"
+   ]
+  },
+  {
+   "prompt": "Unganisha m-a-p. Ni neno gani?",
+   "options": [
+    "map",
+    "dog",
+    "mop"
+   ]
+  }
+ ],
+ "s05.reading.lesson.05": [
+  {
+   "prompt": "p + ig hutengeneza neno lipi?",
+   "options": [
+    "pig",
+    "big",
+    "dig"
+   ]
+  },
+  {
+   "prompt": "Ni sauti ipi ya mwisho inayoshirikiwa na pig, big na dig?",
+   "options": [
+    "-ig",
+    "-op"
+   ]
+  }
+ ],
+ "s05.reading.lesson.06": [
+  {
+   "prompt": "Kuna maneno mangapi katika 'I see a cat'?",
+   "options": [
+    "4",
+    "2",
+    "6"
+   ]
+  },
+  {
+   "prompt": "Katika 'The cat is big', ni neno lipi linaloonyesha ukubwa?",
+   "options": [
+    "big",
+    "cat",
+    "is"
+   ]
+  }
+ ],
+ "s05.science.lesson.01": [
+  {
+   "prompt": "Je, mbwa ni kiumbe hai au si hai?",
+   "options": [
+    "Kiumbe hai",
+    "Si hai"
+   ]
+  },
+  {
+   "prompt": "Jiwe halikui wala halili, kwa hivyo ni…",
+   "options": [
+    "si hai",
+    "hai"
+   ]
+  }
+ ],
+ "s05.science.lesson.02": [
+  {
+   "prompt": "Ni msimu upi maua huchanua?",
+   "options": [
+    "Majira ya machipuko",
+    "Majira ya baridi",
+    "Majira ya pukutiko"
+   ]
+  },
+  {
+   "prompt": "Kuna misimu mingapi?",
+   "options": [
+    "Minne",
+    "Miwili",
+    "Saba"
+   ]
+  }
+ ],
+ "s05.science.lesson.06": [
+  {
+   "prompt": "Baridi hufanya nini kwa maji?",
+   "options": [
+    "Hugandisha kuwa barafu",
+    "Huyachemsha"
+   ]
+  },
+  {
+   "prompt": "Joto hufanya nini kwa barafu?",
+   "options": [
+    "Huiyeyusha kuwa maji",
+    "Huifanya ngumu zaidi"
+   ]
+  }
+ ],
+ "s05.math.lesson.02": [
+  {
+   "prompt": "Tufaha 5, ondoa 1. Yamebaki mangapi?",
+   "options": [
+    "4",
+    "5",
+    "3"
+   ]
+  },
+  {
+   "prompt": "Tufaha 4, kisha 2 yanaliwa. Yamebaki mangapi?",
+   "options": [
+    "Mawili",
+    "Matatu",
+    "Sita"
+   ]
+  }
+ ],
+ "s05.math.lesson.03": [
+  {
+   "prompt": "Ni namba ipi inayofuata baada ya 19?",
+   "options": [
+    "20",
+    "18",
+    "12"
+   ]
+  },
+  {
+   "prompt": "Ukihesabu kutoka 11, inayofuata ni ipi?",
+   "options": [
+    "12",
+    "10",
+    "21"
+   ]
+  }
+ ],
+ "s05.math.lesson.05": [
+  {
+   "prompt": "Makundi mawili yenye idadi sawa ni…",
+   "options": [
+    "sawa",
+    "zaidi"
+   ]
+  },
+  {
+   "prompt": "Kundi lenye idadi kubwa lina…",
+   "options": [
+    "zaidi",
+    "pungufu"
+   ]
+  }
+ ],
+ "s05.social.lesson.03": [
+  {
+   "prompt": "Chakula na maji ni vitu tunavyo…",
+   "options": [
+    "hitaji",
+    "taka"
+   ]
+  },
+  {
+   "prompt": "Kichezeo ni kizuri kuwa nacho, kwa hivyo ni…",
+   "options": [
+    "hitaji la hiari",
+    "lazima"
+   ]
+  }
+ ],
+ "s05.coding.lesson.01": [
+  {
+   "prompt": "Ni kizuizi kipi husogeza bata hatua moja mbele?",
+   "options": [
+    "MBELE",
+    "GEUKA KUSHOTO"
+   ]
+  },
+  {
+   "prompt": "Ni kizuizi kipi hubadilisha upande anaoelekea?",
+   "options": [
+    "GEUKA KUSHOTO",
+    "MBELE"
+   ]
+  }
+ ],
+ "s06.reading.lesson.01": [
+  {
+   "prompt": "Herufi s na h pamoja hutoa sauti ngapi?",
+   "options": [
+    "Moja",
+    "Mbili"
+   ]
+  },
+  {
+   "prompt": "Ni neno lipi linaishia na sauti hiyo ya shhh?",
+   "options": [
+    "fish",
+    "ship"
+   ]
+  }
+ ],
+ "s06.reading.lesson.02": [
+  {
+   "prompt": "Ni neno lipi linaanza na sauti ya ch?",
+   "options": [
+    "chip",
+    "lunch"
+   ]
+  },
+  {
+   "prompt": "Ni neno lipi linaishia na sauti ya ch?",
+   "options": [
+    "lunch",
+    "chip"
+   ]
+  }
+ ],
+ "s06.reading.lesson.03": [
+  {
+   "prompt": "Ni lipi kati ya haya ni neno la kutambua haraka kutoka somo hili?",
+   "options": [
+    "you",
+    "cat"
+   ]
+  },
+  {
+   "prompt": "Maneno ya kutambua haraka tunapaswa kuyasoma…",
+   "options": [
+    "haraka, bila kutamka herufi",
+    "polepole sana"
+   ]
+  }
+ ],
+ "s06.reading.lesson.05": [
+  {
+   "prompt": "Ni herufi zipi zinazoandika cat, kwa mpangilio?",
+   "options": [
+    "c, a, t",
+    "t, a, c"
+   ]
+  },
+  {
+   "prompt": "Ni herufi zipi zinazoandika sun, kwa mpangilio?",
+   "options": [
+    "s, u, n",
+    "n, u, s"
+   ]
+  }
+ ],
+ "s06.reading.lesson.06": [
+  {
+   "prompt": "Sentensi huanzaje?",
+   "options": [
+    "Kwa herufi kubwa",
+    "Kwa herufi ndogo"
+   ]
+  },
+  {
+   "prompt": "Nukta humwambia msomaji afanye nini?",
+   "options": [
+    "Asimame",
+    "Apige kelele"
+   ]
+  }
+ ],
+ "s06.math.lesson.01": [
+  {
+   "prompt": "Vijiti 2 vya kumi na vitu 3 hutengeneza namba ipi?",
+   "options": [
+    "23",
+    "32",
+    "5"
+   ]
+  },
+  {
+   "prompt": "Kumi 1 na vitu 4 hutengeneza namba ipi?",
+   "options": [
+    "14",
+    "41",
+    "5"
+   ]
+  }
+ ],
+ "s06.math.lesson.04": [
+  {
+   "prompt": "Kumi na 3 zaidi ni…",
+   "options": [
+    "13",
+    "30",
+    "23"
+   ]
+  },
+  {
+   "prompt": "Kumi na 6 zaidi ni…",
+   "options": [
+    "16",
+    "60",
+    "26"
+   ]
+  }
+ ],
+ "s06.math.lesson.05": [
+  {
+   "prompt": "Gawa 14 kuwa makumi na vitu. Kuna vitu vingapi?",
+   "options": [
+    "Vinne",
+    "Kimoja",
+    "Kumi na vinne"
+   ]
+  },
+  {
+   "prompt": "Kumi 1 na vitu 2 hutengeneza namba ipi?",
+   "options": [
+    "12",
+    "21",
+    "3"
+   ]
+  }
+ ],
+ "s06.science.lesson.01": [
+  {
+   "prompt": "Barafu ni ngumu na hushika umbo lake. Ni hali ipi?",
+   "options": [
+    "Kigumu",
+    "Kiowevu",
+    "Gesi"
+   ]
+  },
+  {
+   "prompt": "Mvuke huelea hewani. Ni hali ipi?",
+   "options": [
+    "Gesi",
+    "Kigumu",
+    "Kiowevu"
+   ]
+  }
+ ],
+ "s06.science.lesson.02": [
+  {
+   "prompt": "Ni vitu vipi viwili wanyama wanahitaji ili kuishi?",
+   "options": [
+    "Chakula na maji",
+    "Vichezeo na vitabu"
+   ]
+  },
+  {
+   "prompt": "Pango au kiota humpa mnyama…",
+   "options": [
+    "makazi",
+    "chakula"
+   ]
+  }
+ ],
+ "s06.science.lesson.03": [
+  {
+   "prompt": "Ni nini hutupa mchana na joto?",
+   "options": [
+    "Jua",
+    "Mwezi"
+   ]
+  },
+  {
+   "prompt": "Tunaona nini kikiangaza usiku?",
+   "options": [
+    "Mwezi na nyota",
+    "Jua"
+   ]
+  }
+ ],
+ "s06.science.lesson.05": [
+  {
+   "prompt": "Kiti kinaweza kutengenezwa kwa nyenzo ipi?",
+   "options": [
+    "Mbao",
+    "Maji"
+   ]
+  },
+  {
+   "prompt": "Kijiko mara nyingi hutengenezwa kwa nyenzo ipi?",
+   "options": [
+    "Chuma",
+    "Karatasi"
+   ]
+  }
+ ],
+ "s06.science.lesson.06": [
+  {
+   "prompt": "Gari la mbio husogeaje?",
+   "options": [
+    "Haraka",
+    "Polepole"
+   ]
+  },
+  {
+   "prompt": "Konokono husogeaje?",
+   "options": [
+    "Polepole",
+    "Haraka"
+   ]
+  }
+ ],
+ "s06.social.lesson.02": [
+  {
+   "prompt": "Raia mwema hufanya nini kwa wengine?",
+   "options": [
+    "Huwasaidia",
+    "Huwapuuza"
+   ]
+  },
+  {
+   "prompt": "Kupokezana na kumpa rafiki sehemu kunaitwa…",
+   "options": [
+    "kugawana",
+    "kunyima"
+   ]
+  }
+ ],
+ "s06.social.lesson.04": [
+  {
+   "prompt": "Mkate ni kitu unachoweza kushika, kwa hivyo ni…",
+   "options": [
+    "bidhaa",
+    "huduma"
+   ]
+  },
+  {
+   "prompt": "Kunyoa nywele ni kazi unayofanyiwa, kwa hivyo ni…",
+   "options": [
+    "huduma",
+    "bidhaa"
+   ]
+  }
+ ],
+ "s06.tech.lesson.01": [
+  {
+   "prompt": "Ni kizuizi kipi husogeza roboti mbele?",
+   "options": [
+    "MBELE",
+    "GEUKA KUSHOTO"
+   ]
+  },
+  {
+   "prompt": "Unapaswa kubonyeza nini ili kuendesha vizuizi vyako?",
+   "options": [
+    "CHEZA",
+    "FUTA"
+   ]
+  }
+ ],
+ "s06.tech.lesson.05": [
+  {
+   "prompt": "Ni sehemu ipi ya kompyuta kibao unayoona na kugusa?",
+   "options": [
+    "Skrini",
+    "Kitufe"
+   ]
+  },
+  {
+   "prompt": "Ni sehemu ipi huiwasha na kuizima?",
+   "options": [
+    "Kitufe",
+    "Skrini"
+   ]
+  }
+ ],
+ "s07.reading.lesson.01": [
+  {
+   "prompt": "Ongeza silent-e kwenye cap. Unapata neno gani?",
+   "options": [
+    "cape",
+    "capping"
+   ]
+  },
+  {
+   "prompt": "Herufi a na i hutoa sauti gani katika rain?",
+   "options": [
+    "/ay/",
+    "/oo/"
+   ]
+  }
+ ],
+ "s07.reading.lesson.02": [
+  {
+   "prompt": "Ni neno lipi lina sauti fupi ya a?",
+   "options": [
+    "cap",
+    "cape"
+   ]
+  },
+  {
+   "prompt": "Silent-e hufanya nini kwa irabu?",
+   "options": [
+    "Huifanya itamke jina lake",
+    "Huinyamazisha"
+   ]
+  }
+ ],
+ "s07.reading.lesson.03": [
+  {
+   "prompt": "Mwambatano bl hutoa sauti ngapi?",
+   "options": [
+    "Mbili",
+    "Moja"
+   ]
+  },
+  {
+   "prompt": "Ni mwambatano upi huanza neno star: st au bl?",
+   "options": [
+    "st",
+    "bl"
+   ]
+  }
+ ],
+ "s07.reading.lesson.04": [
+  {
+   "prompt": "'The girl kicks the ball.' Nani anapiga teke?",
+   "options": [
+    "Msichana",
+    "Mpira"
+   ]
+  },
+  {
+   "prompt": "Katika sentensi hiyo, ni nini kinapigwa teke?",
+   "options": [
+    "Mpira",
+    "Msichana"
+   ]
+  }
+ ],
+ "s07.writing.lesson.01": [
+  {
+   "prompt": "Katika 'The happy dog runs', ni neno lipi ni jina?",
+   "options": [
+    "dog",
+    "runs",
+    "happy"
+   ]
+  },
+  {
+   "prompt": "Katika sentensi hiyo, ni neno lipi ni kitendo?",
+   "options": [
+    "runs",
+    "dog",
+    "happy"
+   ]
+  }
+ ],
+ "s07.writing.lesson.02": [
+  {
+   "prompt": "Nomino hutaja nini?",
+   "options": [
+    "Mtu, mahali au kitu",
+    "Kitendo"
+   ]
+  },
+  {
+   "prompt": "Katika 'I go to school', ni neno lipi ni nomino?",
+   "options": [
+    "school",
+    "go"
+   ]
+  }
+ ],
+ "s07.writing.lesson.03": [
+  {
+   "prompt": "Kitenzi hukuambia nini?",
+   "options": [
+    "Kitendo",
+    "Rangi"
+   ]
+  },
+  {
+   "prompt": "Katika 'She runs fast', ni neno lipi ni kitenzi?",
+   "options": [
+    "runs",
+    "fast"
+   ]
+  }
+ ],
+ "s07.writing.lesson.06": [
+  {
+   "prompt": "Paka mmoja, wawili…?",
+   "options": [
+    "cats",
+    "cat"
+   ]
+  },
+  {
+   "prompt": "Ni mwisho upi huongezwa kufanya maneno mengi kuwa wingi?",
+   "options": [
+    "-s",
+    "-e"
+   ]
+  }
+ ],
+ "s07.math.lesson.01": [
+  {
+   "prompt": "8 + 5 = ?",
+   "options": [
+    "13",
+    "12",
+    "14"
+   ]
+  },
+  {
+   "prompt": "13 - 4 = ?",
+   "options": [
+    "9",
+    "8",
+    "10"
+   ]
+  }
+ ],
+ "s07.math.lesson.04": [
+  {
+   "prompt": "Katika namba 47, kuna makumi mangapi?",
+   "options": [
+    "Manne",
+    "Saba",
+    "Arobaini na saba"
+   ]
+  },
+  {
+   "prompt": "Katika namba 47, kuna vitu vingapi?",
+   "options": [
+    "Saba",
+    "Vinne",
+    "Arobaini"
+   ]
+  }
+ ],
+ "s07.math.lesson.06": [
+  {
+   "prompt": "Sarafu mbili za thamani 5 kila moja hufanya…",
+   "options": [
+    "10",
+    "5",
+    "15"
+   ]
+  },
+  {
+   "prompt": "Sarafu moja kati ya hizo ina thamani gani peke yake?",
+   "options": [
+    "5",
+    "1",
+    "10"
+   ]
+  }
+ ],
+ "s07.social.lesson.02": [
+  {
+   "prompt": "Ni kipi ni duara kama Dunia?",
+   "options": [
+    "Tufe",
+    "Ramani"
+   ]
+  },
+  {
+   "prompt": "Ni kipi ni bapa na rahisi kubeba?",
+   "options": [
+    "Ramani",
+    "Tufe"
+   ]
+  }
+ ],
+ "s07.health.lesson.01": [
+  {
+   "prompt": "Tufaha ni la kundi lipi la chakula?",
+   "options": [
+    "Matunda",
+    "Nafaka"
+   ]
+  },
+  {
+   "prompt": "Unapaswa kunawa mikono lini?",
+   "options": [
+    "Kabla ya kula",
+    "Kamwe"
+   ]
+  }
+ ],
+ "s07.health.lesson.03": [
+  {
+   "prompt": "Ni vyakula vipi hutusaidia kukua kila siku?",
+   "options": [
+    "Matunda na mboga",
+    "Peremende"
+   ]
+  },
+  {
+   "prompt": "Peremende ni vyakula vya…",
+   "options": [
+    "mara chache",
+    "kila mlo"
+   ]
+  }
+ ],
+ "s08.reading.lesson.01": [
+  {
+   "prompt": "cup + cake hutengeneza neno lipi?",
+   "options": [
+    "cupcake",
+    "cakecup"
+   ]
+  },
+  {
+   "prompt": "Maneno mawili madogo yaliyounganishwa kuwa moja huitwa…",
+   "options": [
+    "neno ambatani",
+    "kibwagizo"
+   ]
+  }
+ ],
+ "s08.reading.lesson.02": [
+  {
+   "prompt": "Kiambishi un- kinamaanisha nini?",
+   "options": [
+    "si",
+    "tena"
+   ]
+  },
+  {
+   "prompt": "Kiambishi re- kinamaanisha nini?",
+   "options": [
+    "tena",
+    "si"
+   ]
+  }
+ ],
+ "s08.reading.lesson.04": [
+  {
+   "prompt": "'Maya played at the beach.' Nani ni mhusika?",
+   "options": [
+    "Maya",
+    "Ufukwe"
+   ]
+  },
+  {
+   "prompt": "Katika sentensi hiyo, mandhari ni wapi?",
+   "options": [
+    "Ufukwe",
+    "Maya"
+   ]
+  }
+ ],
+ "s08.reading.lesson.05": [
+  {
+   "prompt": "'Anga ni buluu' inaweza kuthibitishwa, kwa hivyo ni…",
+   "options": [
+    "ukweli",
+    "maoni"
+   ]
+  },
+  {
+   "prompt": "'Buluu ndiyo rangi bora' ni hisia ya mtu, kwa hivyo ni…",
+   "options": [
+    "maoni",
+    "ukweli"
+   ]
+  }
+ ],
+ "s08.writing.lesson.01": [
+  {
+   "prompt": "Sanduku moja, mawili…?",
+   "options": [
+    "boxes",
+    "boxs"
+   ]
+  },
+  {
+   "prompt": "Leo natembea. Jana ni…?",
+   "options": [
+    "walked",
+    "walking"
+   ]
+  }
+ ],
+ "s08.writing.lesson.02": [
+  {
+   "prompt": "Jina la mtu linapaswa kuandikwaje?",
+   "options": [
+    "Kwa herufi kubwa",
+    "Kwa herufi ndogo zote"
+   ]
+  },
+  {
+   "prompt": "Ni kipi kingine kinahitaji herufi kubwa?",
+   "options": [
+    "Jina la mji",
+    "Rangi"
+   ]
+  }
+ ],
+ "s08.writing.lesson.04": [
+  {
+   "prompt": "do + not hufupishwa kuwa neno lipi?",
+   "options": [
+    "don't",
+    "dont"
+   ]
+  },
+  {
+   "prompt": "Alama ya kibainishi inasimama badala ya nini?",
+   "options": [
+    "Herufi iliyoondolewa",
+    "Nukta"
+   ]
+  }
+ ],
+ "s08.math.lesson.02": [
+  {
+   "prompt": "24 + 18 = ?",
+   "options": [
+    "42",
+    "32",
+    "52"
+   ]
+  },
+  {
+   "prompt": "Vitu vikizidi kumi, unafanya nini?",
+   "options": [
+    "Unabeba kumi",
+    "Unapuuza"
+   ]
+  }
+ ],
+ "s08.math.lesson.03": [
+  {
+   "prompt": "52 - 27 = ?",
+   "options": [
+    "25",
+    "35",
+    "26"
+   ]
+  },
+  {
+   "prompt": "Tarakimu ya juu ikiwa ndogo sana, unafanya nini?",
+   "options": [
+    "Unakopa kumi",
+    "Unairuka"
+   ]
+  }
+ ],
+ "s08.math.lesson.04": [
+  {
+   "prompt": "Kuhesabu kwa 5: 5, 10, 15, kisha…",
+   "options": [
+    "20",
+    "16",
+    "25"
+   ]
+  },
+  {
+   "prompt": "Kuhesabu kwa 10: 10, 20, 30, kisha…",
+   "options": [
+    "40",
+    "31",
+    "35"
+   ]
+  }
+ ],
+ "s08.science.lesson.02": [
+  {
+   "prompt": "Makazi ya samaki ni wapi?",
+   "options": [
+    "Majini",
+    "Jangwani"
+   ]
+  },
+  {
+   "prompt": "Makazi humpa mnyama nini?",
+   "options": [
+    "Vitu anavyohitaji kuishi",
+    "Jina"
+   ]
+  }
+ ],
+ "s08.science.lesson.04": [
+  {
+   "prompt": "Jiwe hushika umbo lake, kwa hivyo ni…",
+   "options": [
+    "kigumu",
+    "kiowevu"
+   ]
+  },
+  {
+   "prompt": "Juisi hutiririka na kujaza kikombe, kwa hivyo ni…",
+   "options": [
+    "kiowevu",
+    "gesi"
+   ]
+  }
+ ],
+ "s08.science.lesson.05": [
+  {
+   "prompt": "Jua huyapasha maji na yakapanda hewani. Hiyo ni…",
+   "options": [
+    "uvukizaji",
+    "kuganda"
+   ]
+  },
+  {
+   "prompt": "Mvuke wa maji hupoa na kuwa mawingu. Hiyo ni…",
+   "options": [
+    "ugandamizaji",
+    "uvukizaji"
+   ]
+  }
+ ],
+ "s08.science.lesson.06": [
+  {
+   "prompt": "Sumaku hufanya nini kwa baadhi ya madini?",
+   "options": [
+    "Huyavuta",
+    "Huyayeyusha"
+   ]
+  },
+  {
+   "prompt": "Ncha mbili zinazofanana hufanya nini?",
+   "options": [
+    "Husukumana",
+    "Hushikamana"
+   ]
+  }
+ ],
+ "s08.social.lesson.05": [
+  {
+   "prompt": "Mwokaji anayetengeneza mkate ni…",
+   "options": [
+    "mzalishaji",
+    "mlaji"
+   ]
+  },
+  {
+   "prompt": "Mnunuzi anayenunua mkate ni…",
+   "options": [
+    "mlaji",
+    "mzalishaji"
+   ]
+  }
+ ],
+ "s08.tech.lesson.01": [
+  {
+   "prompt": "Ni kizuizi kipi humfanya paka asogee upande?",
+   "options": [
+    "SOGEA KULIA",
+    "RUKA"
+   ]
+  },
+  {
+   "prompt": "Vizuizi vilivyopangwa hukimbia kwa mpangilio upi?",
+   "options": [
+    "Juu hadi chini",
+    "Mpangilio wowote"
+   ]
+  }
+ ],
+ "s08.tech.lesson.04": [
+  {
+   "prompt": "Roboti inapaswa kwenda juu lakini hatua moja inasema chini. Kosa hilo ni…",
+   "options": [
+    "hitilafu",
+    "kitanzi"
+   ]
+  },
+  {
+   "prompt": "Kutafuta na kurekebisha kosa hilo kunaitwa…",
+   "options": [
+    "kuondoa hitilafu",
+    "kubuni"
+   ]
+  }
+ ],
+ "s09.reading.lesson.01": [
+  {
+   "prompt": "'As brave as a lion' hutumia neno as, kwa hivyo ni…",
+   "options": [
+    "tashbihi",
+    "sitiari"
+   ]
+  },
+  {
+   "prompt": "'The classroom was a zoo' husema kitu NI kingine, kwa hivyo ni…",
+   "options": [
+    "sitiari",
+    "tashbihi"
+   ]
+  }
+ ],
+ "s09.reading.lesson.03": [
+  {
+   "prompt": "Mvua ilinyesha usiku kucha na mto ukafurika. Ni lipi ni tokeo?",
+   "options": [
+    "Mto ulifurika",
+    "Mvua ilinyesha"
+   ]
+  },
+  {
+   "prompt": "Ni neno lipi linaashiria sababu?",
+   "options": [
+    "kwa sababu",
+    "nzuri"
+   ]
+  }
+ ],
+ "s09.reading.lesson.04": [
+  {
+   "prompt": "Kichwa cha habari hukuambia nini?",
+   "options": [
+    "Sehemu inahusu nini",
+    "Nani alichora picha"
+   ]
+  },
+  {
+   "prompt": "Maelezo chini ya picha hufafanua nini?",
+   "options": [
+    "Picha",
+    "Jalada"
+   ]
+  }
+ ],
+ "s09.reading.lesson.06": [
+  {
+   "prompt": "Hadithi ya kuchekesha imeandikwa ili…",
+   "options": [
+    "kuburudisha",
+    "kushawishi"
+   ]
+  },
+  {
+   "prompt": "Tangazo linalosema 'Nunua hii!' limeandikwa ili…",
+   "options": [
+    "kushawishi",
+    "kuburudisha"
+   ]
+  }
+ ],
+ "s09.writing.lesson.02": [
+  {
+   "prompt": "Ni neno lipi humwambia msomaji kuwa hatua inakuja mwanzoni?",
+   "options": [
+    "Kwanza",
+    "Mwishowe"
+   ]
+  },
+  {
+   "prompt": "Maneno ya mpito humfanyia nini msomaji?",
+   "options": [
+    "Humwongoza",
+    "Humchanganya"
+   ]
+  }
+ ],
+ "s09.writing.lesson.04": [
+  {
+   "prompt": "Ni lipi kati ya haya ni nomino ya pekee?",
+   "options": [
+    "Jumatatu",
+    "siku"
+   ]
+  },
+  {
+   "prompt": "'mto' ni la kawaida, lakini ni lipi ni la pekee?",
+   "options": [
+    "Nile",
+    "maji"
+   ]
+  }
+ ],
+ "s09.writing.lesson.05": [
+  {
+   "prompt": "'I will walk' ni wakati upi?",
+   "options": [
+    "Ujao",
+    "Uliopita"
+   ]
+  },
+  {
+   "prompt": "'I walked' ni wakati upi?",
+   "options": [
+    "Uliopita",
+    "Uliopo"
+   ]
+  }
+ ],
+ "s09.math.lesson.01": [
+  {
+   "prompt": "6 × 4 = ?",
+   "options": [
+    "24",
+    "25",
+    "34"
+   ]
+  },
+  {
+   "prompt": "24 ÷ 4 = ?",
+   "options": [
+    "6",
+    "5",
+    "16"
+   ]
+  }
+ ],
+ "s09.math.lesson.04": [
+  {
+   "prompt": "3 × 10 = ?",
+   "options": [
+    "30",
+    "13",
+    "300"
+   ]
+  },
+  {
+   "prompt": "3 × 20 = ?",
+   "options": [
+    "60",
+    "50",
+    "70"
+   ]
+  }
+ ],
+ "s09.math.lesson.05": [
+  {
+   "prompt": "Kadiria 47 hadi kumi iliyo karibu.",
+   "options": [
+    "50",
+    "40",
+    "47"
+   ]
+  },
+  {
+   "prompt": "Kadiria 230 hadi mia iliyo karibu.",
+   "options": [
+    "200",
+    "300",
+    "230"
+   ]
+  }
+ ],
+ "s09.science.lesson.05": [
+  {
+   "prompt": "Mteremko ni mashine rahisi ipi?",
+   "options": [
+    "Tambarare inayoinama",
+    "Kapi"
+   ]
+  },
+  {
+   "prompt": "Mashine rahisi hutufanyia nini?",
+   "options": [
+    "Hurahisisha kazi",
+    "Huifanya kazi ngumu"
+   ]
+  }
+ ],
+ "s09.social.lesson.02": [
+  {
+   "prompt": "Ufunguo wa ramani hufafanua nini?",
+   "options": [
+    "Maana ya alama",
+    "Nani aliichora"
+   ]
+  },
+  {
+   "prompt": "Kipimo huonyesha nini?",
+   "options": [
+    "Umbali halisi",
+    "Tarehe"
+   ]
+  }
+ ],
+ "s09.social.lesson.03": [
+  {
+   "prompt": "Kwenda shule ni mfano wa…",
+   "options": [
+    "haki",
+    "wajibu"
+   ]
+  },
+  {
+   "prompt": "Kufuata sheria za haki ni mfano wa…",
+   "options": [
+    "wajibu",
+    "haki"
+   ]
+  }
+ ],
+ "s09.social.lesson.06": [
+  {
+   "prompt": "Eneo lenye mashamba na ardhi wazi ni…",
+   "options": [
+    "mashambani",
+    "mjini"
+   ]
+  },
+  {
+   "prompt": "Eneo lenye shughuli nyingi za jiji ni…",
+   "options": [
+    "mjini",
+    "mashambani"
+   ]
+  }
+ ],
+ "s09.coding.lesson.03": [
+  {
+   "prompt": "Kigezo hufanya nini?",
+   "options": [
+    "Hushika thamani",
+    "Huchora picha"
+   ]
+  },
+  {
+   "prompt": "score ni 5, kisha unaongeza 3. Sasa inashika nini?",
+   "options": [
+    "8",
+    "5",
+    "53"
+   ]
+  }
+ ],
+ "s09.coding.lesson.04": [
+  {
+   "prompt": "Kazi (function) hufanya nini?",
+   "options": [
+    "Hupa jina kundi la hatua",
+    "Hufuta hatua"
+   ]
+  },
+  {
+   "prompt": "Kwa nini kazi ni muhimu?",
+   "options": [
+    "Unaweza kuitumia tena",
+    "Hukimbia mara moja tu"
+   ]
+  }
+ ],
+ "s09.coding.lesson.05": [
+  {
+   "prompt": "'5 ni kubwa kuliko 3' ni…",
+   "options": [
+    "kweli",
+    "uongo"
+   ]
+  },
+  {
+   "prompt": "'Paka ana mabawa' ni…",
+   "options": [
+    "uongo",
+    "kweli"
+   ]
+  }
+ ],
+ "s10.math.lesson.01": [
+  {
+   "prompt": "84 ÷ 4 = ?",
+   "options": [
+    "21",
+    "11",
+    "31"
+   ]
+  },
+  {
+   "prompt": "Ni hatua ipi huja kwanza katika kugawanya kwa urefu?",
+   "options": [
+    "Kugawanya",
+    "Kutoa"
+   ]
+  }
+ ],
+ "s10.math.lesson.02": [
+  {
+   "prompt": "23 × 4 = ?",
+   "options": [
+    "92",
+    "82",
+    "94"
+   ]
+  },
+  {
+   "prompt": "Kugawa 23 kuwa 20 + 3 na kuzidisha kila sehemu hukupa…",
+   "options": [
+    "matokeo ya sehemu",
+    "baki"
+   ]
+  }
+ ],
+ "s10.math.lesson.03": [
+  {
+   "prompt": "Ni sehemu ipi ina thamani sawa na 1/2?",
+   "options": [
+    "2/4",
+    "1/4",
+    "3/4"
+   ]
+  },
+  {
+   "prompt": "Kupata sehemu sawa, zidisha juu na chini kwa…",
+   "options": [
+    "namba ile ile",
+    "namba tofauti"
+   ]
+  }
+ ],
+ "s10.math.lesson.04": [
+  {
+   "prompt": "1/5 + 2/5 = ?",
+   "options": [
+    "3/5",
+    "3/10",
+    "2/5"
+   ]
+  },
+  {
+   "prompt": "Unapojumlisha sehemu zenye chini sawa, ni nini hubadilika?",
+   "options": [
+    "Juu pekee",
+    "Chini pekee"
+   ]
+  }
+ ],
+ "s10.math.lesson.05": [
+  {
+   "prompt": "0.7 inamaanisha sehemu ngapi za kumi?",
+   "options": [
+    "Saba",
+    "Sabini",
+    "Moja"
+   ]
+  },
+  {
+   "prompt": "Ni ipi kubwa zaidi, 0.5 au 0.45?",
+   "options": [
+    "0.5",
+    "0.45"
+   ]
+  }
+ ],
+ "s10.math.lesson.06": [
+  {
+   "prompt": "Mstatili una urefu 5 na upana 3. Mzingo wake ni upi?",
+   "options": [
+    "16",
+    "15",
+    "8"
+   ]
+  },
+  {
+   "prompt": "Eneo la mstatili huo ni lipi?",
+   "options": [
+    "15",
+    "16",
+    "8"
+   ]
+  }
+ ],
+ "s10.reading.lesson.01": [
+  {
+   "prompt": "'Jasiri kama simba' ni aina ipi ya kulinganisha?",
+   "options": [
+    "Tashbihi",
+    "Sitiari"
+   ]
+  },
+  {
+   "prompt": "'Tabasamu lake lilikuwa jua' ni aina ipi?",
+   "options": [
+    "Sitiari",
+    "Tashbihi"
+   ]
+  }
+ ],
+ "s10.reading.lesson.02": [
+  {
+   "prompt": "'Inanyesha paka na mbwa' inamaanisha…",
+   "options": [
+    "inanyesha sana",
+    "wanyama wanaanguka"
+   ]
+  },
+  {
+   "prompt": "'Kipande cha keki' inamaanisha kitu ni…",
+   "options": [
+    "rahisi sana",
+    "kitamu sana"
+   ]
+  }
+ ],
+ "s10.reading.lesson.03": [
+  {
+   "prompt": "Dhamira ni nini?",
+   "options": [
+    "Funzo kuu la hadithi",
+    "Orodha ya wahusika"
+   ]
+  },
+  {
+   "prompt": "Kobe wa polepole hushinda kwa kujitahidi. Dhamira ni ipi?",
+   "options": [
+    "Bidii ya kudumu hushinda",
+    "Kobe ni wepesi"
+   ]
+  }
+ ],
+ "s10.reading.lesson.04": [
+  {
+   "prompt": "'Nilikimbia nyumbani' imesimuliwa kwa mtazamo upi?",
+   "options": [
+    "Nafsi ya kwanza",
+    "Nafsi ya tatu"
+   ]
+  },
+  {
+   "prompt": "'Alikimbia nyumbani' imesimuliwa kwa mtazamo upi?",
+   "options": [
+    "Nafsi ya tatu",
+    "Nafsi ya kwanza"
+   ]
+  }
+ ],
+ "s10.science.lesson.03": [
+  {
+   "prompt": "Taa hutoa aina ipi ya nishati?",
+   "options": [
+    "Mwanga",
+    "Sauti"
+   ]
+  },
+  {
+   "prompt": "Ngoma inayotetemeka hutoa aina ipi ya nishati?",
+   "options": [
+    "Sauti",
+    "Mwanga"
+   ]
+  }
+ ],
+ "s10.science.lesson.05": [
+  {
+   "prompt": "Kupasha barafu hadi iwe maji kunaitwa…",
+   "options": [
+    "kuyeyuka",
+    "kuganda"
+   ]
+  },
+  {
+   "prompt": "Kupoza maji hadi yawe barafu kunaitwa…",
+   "options": [
+    "kuganda",
+    "kuyeyuka"
+   ]
+  }
+ ],
+ "s10.science.lesson.06": [
+  {
+   "prompt": "Ni hatua ipi ya kwanza ya mbinu ya kisayansi?",
+   "options": [
+    "Kuuliza swali",
+    "Kutoa hitimisho"
+   ]
+  },
+  {
+   "prompt": "Ubashiri wa busara unaoujaribu unaitwa…",
+   "options": [
+    "dhana tete",
+    "hitimisho"
+   ]
+  }
+ ],
+ "s10.social.lesson.02": [
+  {
+   "prompt": "Ni tawi lipi hutekeleza sheria?",
+   "options": [
+    "Utendaji",
+    "Mahakama"
+   ]
+  },
+  {
+   "prompt": "Ni tawi lipi huamua maana ya sheria?",
+   "options": [
+    "Mahakama",
+    "Bunge"
+   ]
+  }
+ ],
+ "s10.social.lesson.03": [
+  {
+   "prompt": "Watu wengi wakitaka kitu adimu, bei mara nyingi…",
+   "options": [
+    "hupanda",
+    "hushuka"
+   ]
+  },
+  {
+   "prompt": "Kunyoa nywele ni kazi ya kusaidia, kwa hivyo ni…",
+   "options": [
+    "huduma",
+    "bidhaa"
+   ]
+  }
+ ],
+ "s10.social.lesson.06": [
+  {
+   "prompt": "Raia huchaguaje viongozi wao?",
+   "options": [
+    "Kwa kupiga kura",
+    "Kwa kubahatisha"
+   ]
+  },
+  {
+   "prompt": "Kufuata sheria za haki na kusaidia wengine ni…",
+   "options": [
+    "wajibu wa raia",
+    "haki za raia"
+   ]
+  }
+ ],
+ "s10.coding.lesson.01": [
+  {
+   "prompt": "Ni amri ipi ya Python huonyesha maandishi skrinini?",
+   "options": [
+    "print()",
+    "erase()"
+   ]
+  },
+  {
+   "prompt": "Mistari miwili ya print() hutoa mistari mingapi ya matokeo?",
+   "options": [
+    "2",
+    "1"
+   ]
+  }
+ ],
+ "s10.coding.lesson.02": [
+  {
+   "prompt": "Baada ya name = \"Ada\", kuchapisha name huonyesha nini?",
+   "options": [
+    "Ada",
+    "name"
+   ]
+  },
+  {
+   "prompt": "Je, kigezo kimoja kinaweza kushika thamani tofauti nyakati tofauti?",
+   "options": [
+    "Ndiyo",
+    "Hapana"
+   ]
+  }
+ ],
+ "s10.coding.lesson.03": [
+  {
+   "prompt": "for i in range(5) hurudia mara ngapi?",
+   "options": [
+    "Tano",
+    "Moja",
+    "Nne"
+   ]
+  },
+  {
+   "prompt": "Kwa nini kutumia kitanzi cha for?",
+   "options": [
+    "Huokoa kuandika mstari uleule",
+    "Hupunguza kasi"
+   ]
+  }
+ ],
+ "s10.coding.lesson.04": [
+  {
+   "prompt": "score = 12 na sheria ni score >= 10. Ni njia ipi hukimbia?",
+   "options": [
+    "Njia ya if",
+    "Njia ya else"
+   ]
+  },
+  {
+   "prompt": "Ni nini hukimbia sharti likiwa si kweli?",
+   "options": [
+    "Njia ya else",
+    "Hakuna kitu"
+   ]
+  }
+ ],
+ "s10.coding.lesson.05": [
+  {
+   "prompt": "prnt(\"Hello\") haifanyi kazi. Kosa ni lipi?",
+   "options": [
+    "Amri imeandikwa vibaya",
+    "Alama za nukuu hazipo"
+   ]
+  },
+  {
+   "prompt": "Ni njia ipi bora ya kurekebisha makosa?",
+   "options": [
+    "Moja baada ya jingine",
+    "Kubadilisha yote kwa mara moja"
+   ]
+  }
+ ],
+ "s10.writing.lesson.01": [
+  {
+   "prompt": "Ni sehemu ipi ya insha huja kwanza?",
+   "options": [
+    "Utangulizi",
+    "Hitimisho"
+   ]
+  },
+  {
+   "prompt": "Ni sehemu ipi hutoa sababu na maelezo?",
+   "options": [
+    "Kiini",
+    "Utangulizi"
+   ]
+  }
+ ],
+ "s10.writing.lesson.02": [
+  {
+   "prompt": "Sentensi ya mada hufanya nini?",
+   "options": [
+    "Hueleza wazo kuu",
+    "Humaliza aya"
+   ]
+  },
+  {
+   "prompt": "Aya imara ina…",
+   "options": [
+    "wazo moja wazi na sababu",
+    "mada nyingi tofauti"
+   ]
+  }
+ ],
+ "s10.writing.lesson.03": [
+  {
+   "prompt": "Ni neno lipi linaonyesha tofauti?",
+   "options": [
+    "Hata hivyo",
+    "Kwanza"
+   ]
+  },
+  {
+   "prompt": "Ni neno lipi linaonyesha sababu na tokeo?",
+   "options": [
+    "Kwa sababu",
+    "Kisha"
+   ]
+  }
+ ],
+ "s10.writing.lesson.05": [
+  {
+   "prompt": "Uandishi unaosimulia hadithi ni…",
+   "options": [
+    "masimulizi",
+    "ushawishi"
+   ]
+  },
+  {
+   "prompt": "Uandishi unaojaribu kukushawishi ni…",
+   "options": [
+    "ushawishi",
+    "maelezo"
+   ]
+  }
+ ],
+ "s10.writing.lesson.06": [
+  {
+   "prompt": "Ni kipi huja kwanza unapoboresha rasimu?",
+   "options": [
+    "Kupitia upya",
+    "Kuhariri"
+   ]
+  },
+  {
+   "prompt": "Kurekebisha tahajia, herufi kubwa na alama ni…",
+   "options": [
+    "kuhariri",
+    "kupitia upya"
+   ]
+  }
+ ],
+ "s08.math.lesson.01": [
+  {
+   "prompt": "Safu 3 za vitone 4 ni jumla ngapi?",
+   "options": [
+    "12",
+    "7",
+    "34"
+   ]
+  },
+  {
+   "prompt": "Safu 2 za 5 ni ngapi?",
+   "options": [
+    "10",
+    "7",
+    "25"
+   ]
+  }
+ ]
+}

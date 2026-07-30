@@ -7,7 +7,7 @@ Design stance: gamification reinforces *learning behaviors* (effort, consistency
 | Currency | Earned by | Spent on | Notes |
 |---|---|---|---|
 | **XP** | Any completed learning item (lesson 10, quiz 5–20 by score, story read 8, challenge 15) | Never spent — drives Level | Mastery bonus ×1.5 when a skill crosses 0.95 |
-| **Stars** | Quality: quiz ≥70% = 1★, ≥90% = 2★, 100% = 3★ per item | Never spent — fill course constellations → certificates | Visible quality signal for parents |
+| **Stars** | Quality: quiz ≥40% = 1★, ≥67% = 2★, 100% = 3★ per item (**MVP kinder thresholds** for ages 0–10; design originally used 70/90) | Never spent — fill course constellations → certificates | Visible quality signal for parents; single source in `domain/rules/stars.dart` |
 | **Coins** | Daily challenge (5), streak milestones, badge unlocks | Avatar shop: outfits, mascot accessories, home themes | Cosmetic only; earn rate capped 30/day |
 
 All grants flow through `reward_ledger` (append-only, idempotent by `client_op_id`); balances cached in Redis, reconciled nightly.

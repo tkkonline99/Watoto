@@ -22,6 +22,19 @@ dependencies:
   uuid: ^4.4.0
   crypto: ^3.0.3
   path_provider: ^2.1.5
+  # On-device text-to-speech for spoken narration (audio-first 0–5 band). All
+  # calls are guarded so unsupported platforms / tests degrade to silence.
+  flutter_tts: ^4.2.0
+  # Short bundled sound effects (tap / success / celebration). Guarded like
+  # TTS. On web the plugin's global event channel is broken, so sound plays
+  # through an HTMLAudioElement instead (core/audio/sfx_backend_web.dart).
+  audioplayers: ^6.1.0
+  web: ^1.1.0
+  # Parent-facing practice reminders (docs/12 §12.6 — opt-in, never to a
+  # child). Guarded like TTS/SFX: unsupported platforms degrade to silence.
+  # Web has no local-notification path, so the seam stubs out there.
+  flutter_local_notifications: ^22.2.0
+  timezone: ^0.11.1
 
 dev_dependencies:
   flutter_test:
@@ -53,6 +66,28 @@ flutter:
     - assets/i18n/
     - assets/legal/
     - assets/licenses/
+    - assets/audio/sfx/
+    - assets/guides/
+    - assets/images/
+    # Asset directories are NOT recursive: without a line per stage the
+    # illustration pack sits on disk unbundled and every item falls back to an
+    # emoji placeholder. test/media_assets_test.dart samples one hero per stage
+    # so a forgotten line here fails the suite instead of shipping.
+    - assets/images/img/s01/
+    - assets/images/img/s02/
+    - assets/images/img/s03/
+    - assets/images/img/s04/
+    - assets/images/img/s05/
+    - assets/images/img/s06/
+    - assets/images/img/s07/
+    - assets/images/img/s08/
+    - assets/images/img/s09/
+    - assets/images/img/s10/
+    # The rendered VO pack (assets/audio/{en,fr,sw}) is deliberately NOT listed.
+    # It is 184 MB — past Play's base-download ceiling — and is not in git, so a
+    # fresh clone would fail `flutter pub get` on a missing directory. Narration
+    # falls back to on-device TTS without it. To build the VO edition, render the
+    # pack (tool/export_tts_vo.py) and add the three lines; see tool/MEDIA_README.md.
   # Bundled variable fonts (offline-safe; no runtime fetch). Baloo 2 for the
   # rounded headings/buttons, Nunito for body. Both expose a `wght` axis.
   fonts:

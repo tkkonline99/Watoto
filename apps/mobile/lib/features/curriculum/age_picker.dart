@@ -70,6 +70,14 @@ class _AgeTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final subtitle = stage.grade ?? stage.band;
+    return Semantics(
+      button: true,
+      label: '$label. $subtitle',
+      child: ExcludeSemantics(child: _tile(subtitle)),
+    );
+  }
+
+  Widget _tile(String subtitle) {
     return InkWell(
       borderRadius: BorderRadius.circular(16),
       onTap: onTap,

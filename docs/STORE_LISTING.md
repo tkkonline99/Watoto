@@ -18,9 +18,9 @@ List under **Education** as the primary category on both stores. Watoto spans Bi
 | Promotional text | 170 | `A safe, ad-free learning world for ages 0–10 — lessons, quizzes, and stories in English, French, and Swahili. Works offline. Built for parents to trust.` |
 | Keywords | 100 | `kids,learning,toddler,preschool,phonics,math,reading,educational,offline,french,swahili,children,ad-free` |
 | Description | 4000 | *(see EN long description below)* |
-| Support URL | — | `[https://company/support]` |
+| Support URL | — | `https://watoto.app/privacy` |
 | Marketing URL | — | `[https://company]` |
-| Privacy Policy URL | — | `[https://company/privacy]` |
+| Privacy Policy URL | — | `https://watoto.app/privacy` |
 
 ## Google Play — metadata
 
@@ -52,7 +52,7 @@ List under **Education** as the primary category on both stores. Watoto spans Bi
 - Title: `Watoto : apprendre et grandir`
 - Subtitle (30): `Naissance à 10 ans, sans pub`
 - Short description (80): `Apprentissage sans pub, 0–10 ans, en anglais, français et swahili. Hors ligne.`
-- Long (short form): `Watoz... Un espace calme et sans publicité où les enfants de 0 à 10 ans apprennent et grandissent : leçons interactives, quiz sans pression et histoires lues à voix haute, en lecture, maths, sciences, et premiers pas en code. Pensé pour rassurer les parents : aucune publicité, aucun pistage, aucun minuteur. Tout fonctionne hors ligne. Disponible en anglais, français et swahili, avec audio et sous-titres.`
+- Long (short form): `Watoto Un espace calme et sans publicité où les enfants de 0 à 10 ans apprennent et grandissent : leçons interactives, quiz sans pression et histoires lues à voix haute, en lecture, maths, sciences, et premiers pas en code. Pensé pour rassurer les parents : aucune publicité, aucun pistage, aucun minuteur. Tout fonctionne hors ligne. Disponible en anglais, français et swahili, avec audio et sous-titres.`
 
 **Swahili**
 - Title: `Watoto: Jifunze na Ukue`
@@ -60,7 +60,7 @@ List under **Education** as the primary category on both stores. Watoto spans Bi
 - Short description (80): `Kujifunza bila matangazo, miaka 0–10, kwa Kiingereza, Kifaransa na Kiswahili.`
 - Long (short form): `Watoto ni mahali tulivu, bila matangazo, ambapo watoto kuanzia kuzaliwa hadi miaka 10 hujifunza na kukua: masomo shirikishi, maswali bila shinikizo, na hadithi za kusomwa kwa sauti — kusoma, hisabati, sayansi, na misingi ya kupanga programu. Imeundwa ili wazazi waamini: hakuna matangazo, hakuna ufuatiliaji, hakuna saa za kubana. Hufanya kazi nje ya mtandao. Inapatikana kwa Kiingereza, Kifaransa na Kiswahili, ikiwa na sauti na manukuu.`
 
-*(Fix the FR long-description opening word "Watoz..." to "Watoto" — placeholder typo left visible so it isn't missed.)*
+*(Fix the FR long-description opening word "Watoto" to "Watoto" — placeholder typo left visible so it isn't missed.)*
 
 ## Age rating
 
@@ -87,7 +87,7 @@ No data is collected from children beyond the parent-created profile and progres
 - **Is data collected/shared?** Collected: yes. **Shared with third parties for their own use:** No. (Cloud hosting, payment, and crash reporting act as our processors, not for their own purposes.)
 - **Is data sold?** No.
 - **Encrypted in transit?** Yes.
-- **Can users request deletion?** Yes — in-app parent area and [privacy@company]; deletion runbook in `PRIVACY_POLICY.md`.
+- **Can users request deletion?** Yes — in-app parent area and [privacy@watoto.app]; deletion runbook in `PRIVACY_POLICY.md`.
 - **Committed to Play Families policy?** Yes.
 
 | Data type | Collected | Purpose | Optional? |

@@ -6,6 +6,7 @@ import '../../core/offline/offline_providers.dart';
 import '../../core/state/app_state.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
+import '../library/completion.dart';
 import '../library/content_i18n.dart';
 import '../library/library_models.dart';
 import '../library/library_repository.dart';
@@ -33,8 +34,9 @@ class _CurriculumScreenState extends ConsumerState<CurriculumScreen> {
     final child = ref.watch(activeChildProvider);
     final repo = ref.watch(libraryProvider).asData?.value;
     final i18n = ref.watch(contentI18nProvider).asData?.value;
-    final defaultStage =
-        child == null ? 1 : stageForBirthYear(child.birthYear).stage;
+    final defaultStage = child == null
+        ? 1
+        : stageForBirthYear(child.birthYear).stage;
     final selected = _selectedStage ?? defaultStage;
     final stage = curriculumStages[selected - 1];
 
@@ -45,8 +47,13 @@ class _CurriculumScreenState extends ConsumerState<CurriculumScreen> {
           icon: const Icon(Icons.arrow_back_rounded, color: WatotoColors.deep),
           onPressed: () => context.go('/'),
         ),
-        title: Text(l10n.curriculum,
-            style: const TextStyle(fontWeight: FontWeight.w800, color: WatotoColors.deep)),
+        title: Text(
+          l10n.curriculum,
+          style: const TextStyle(
+            fontWeight: FontWeight.w800,
+            color: WatotoColors.deep,
+          ),
+        ),
       ),
       body: SafeArea(
         child: Column(
@@ -69,7 +76,9 @@ class _CurriculumScreenState extends ConsumerState<CurriculumScreen> {
                       topic: topic,
                       lang: lang,
                       i18n: i18n,
-                      items: repo?.forStageSubject(stage.stage, topic.name) ?? const [],
+                      items:
+                          repo?.forStageSubject(stage.stage, topic.name) ??
+                          const [],
                     ),
                 ],
               ),
@@ -82,8 +91,11 @@ class _CurriculumScreenState extends ConsumerState<CurriculumScreen> {
 }
 
 class _StageSelector extends StatelessWidget {
-  const _StageSelector(
-      {required this.selected, required this.childStage, required this.onSelect});
+  const _StageSelector({
+    required this.selected,
+    required this.childStage,
+    required this.onSelect,
+  });
 
   final int selected;
   final int childStage;
@@ -107,10 +119,13 @@ class _StageSelector extends StatelessWidget {
             onSelected: (_) => onSelect(stage.stage),
             selectedColor: WatotoColors.sun,
             avatar: isChild ? const Text('⭐') : null,
-            label: Text(stage.ageRange,
-                style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    color: isSelected ? WatotoColors.deep : Colors.black54)),
+            label: Text(
+              stage.ageRange,
+              style: TextStyle(
+                fontWeight: FontWeight.w700,
+                color: isSelected ? WatotoColors.deep : Colors.black54,
+              ),
+            ),
           );
         },
       ),
@@ -126,7 +141,9 @@ class _StageHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final sub = stage.grade == null ? stage.band : '${stage.band} · ${stage.grade}';
+    final sub = stage.grade == null
+        ? stage.band
+        : '${stage.band} · ${stage.grade}';
     return Card(
       color: WatotoColors.sky.withValues(alpha: 0.12),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -135,15 +152,28 @@ class _StageHeader extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(l10n.stageOf(stage.stage, stage.ageRange),
-                style: const TextStyle(
-                    fontSize: 13, fontWeight: FontWeight.w700, color: WatotoColors.sky)),
+            Text(
+              l10n.stageOf(stage.stage, stage.ageRange),
+              style: const TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w700,
+                color: WatotoColors.sky,
+              ),
+            ),
             const SizedBox(height: 4),
-            Text(stage.title,
-                style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w800)),
-            Text(sub, style: const TextStyle(fontSize: 13, color: Colors.black54)),
+            Text(
+              stage.title,
+              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w800),
+            ),
+            Text(
+              sub,
+              style: const TextStyle(fontSize: 13, color: Colors.black54),
+            ),
             const SizedBox(height: 8),
-            Text(stage.theme, style: const TextStyle(fontSize: 15, height: 1.4)),
+            Text(
+              stage.theme,
+              style: const TextStyle(fontSize: 15, height: 1.4),
+            ),
           ],
         ),
       ),
@@ -169,13 +199,20 @@ class _DesignTip extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(children: [
-            const Text('🛟', style: TextStyle(fontSize: 16)),
-            const SizedBox(width: 6),
-            Text(label,
+          Row(
+            children: [
+              const Text('🛟', style: TextStyle(fontSize: 16)),
+              const SizedBox(width: 6),
+              Text(
+                label,
                 style: const TextStyle(
-                    fontSize: 12, fontWeight: FontWeight.w800, color: WatotoColors.deep)),
-          ]),
+                  fontSize: 12,
+                  fontWeight: FontWeight.w800,
+                  color: WatotoColors.deep,
+                ),
+              ),
+            ],
+          ),
           const SizedBox(height: 4),
           Text(text, style: const TextStyle(fontSize: 14, height: 1.3)),
         ],
@@ -184,9 +221,13 @@ class _DesignTip extends StatelessWidget {
   }
 }
 
-class _TopicCard extends StatelessWidget {
-  const _TopicCard(
-      {required this.topic, required this.lang, required this.i18n, required this.items});
+class _TopicCard extends ConsumerWidget {
+  const _TopicCard({
+    required this.topic,
+    required this.lang,
+    required this.i18n,
+    required this.items,
+  });
 
   final CurriculumTopic topic;
   final String lang;
@@ -200,7 +241,8 @@ class _TopicCard extends StatelessWidget {
   };
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: Padding(
@@ -208,38 +250,72 @@ class _TopicCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(children: [
-              Text(topic.emoji, style: const TextStyle(fontSize: 28)),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Text(localizedSubject(topic.name, lang),
-                    style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800)),
-              ),
-            ]),
+            Row(
+              children: [
+                Text(topic.emoji, style: const TextStyle(fontSize: 28)),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    localizedSubject(topic.name, lang),
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ),
+              ],
+            ),
             // Playable items from the content library, if any exist yet.
             if (items.isNotEmpty) ...[
               const SizedBox(height: 10),
               for (final item in items)
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 3),
-                  child: InkWell(
+                  child: Semantics(
+                    button: true,
+                    // Done-ness is shown with a ✓ glyph and type with an emoji;
+                    // both are silent to a screen reader without this.
+                    label: '${itemTitle(i18n, lang, item)}. '
+                        '${item.type.name}. '
+                        '${isItemDone(ref, item) ? l10n.done : l10n.tapToPlay}',
+                    child: ExcludeSemantics(
+                      child: InkWell(
                     borderRadius: BorderRadius.circular(12),
                     onTap: () => context.push('/play/${item.id}'),
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 10,
+                      ),
                       decoration: BoxDecoration(
                         color: WatotoColors.sun.withValues(alpha: 0.16),
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: Row(children: [
-                        Text(_typeEmoji[item.type] ?? '⭐'),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: Text(itemTitle(i18n, lang, item),
-                              style: const TextStyle(fontWeight: FontWeight.w700)),
-                        ),
-                        const Icon(Icons.play_circle_fill, color: WatotoColors.mango),
-                      ]),
+                      child: Row(
+                        children: [
+                          Text(_typeEmoji[item.type] ?? '⭐'),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Text(
+                              itemTitle(i18n, lang, item),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                          isItemDone(ref, item)
+                              ? const Text(
+                                  doneMark,
+                                  style: TextStyle(fontSize: 20),
+                                )
+                              : const Icon(
+                                  Icons.play_circle_fill,
+                                  color: WatotoColors.mango,
+                                ),
+                        ],
+                      ),
+                    ),
+                      ),
                     ),
                   ),
                 ),
@@ -251,8 +327,16 @@ class _TopicCard extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('•  ', style: TextStyle(fontWeight: FontWeight.bold)),
-                    Expanded(child: Text(activity, style: const TextStyle(fontSize: 15))),
+                    const Text(
+                      '•  ',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Expanded(
+                      child: Text(
+                        activity,
+                        style: const TextStyle(fontSize: 15),
+                      ),
+                    ),
                   ],
                 ),
               ),

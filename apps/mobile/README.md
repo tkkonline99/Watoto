@@ -1,17 +1,74 @@
 # watoto_mobile
 
-A new Flutter project.
+Flutter client for **Watoto** — multilingual (EN / FR / SW), offline-first learning for ages 0–10.
 
-## Getting Started
+## Prerequisites
 
-This project is a starting point for a Flutter application.
+- Flutter stable (this machine: `C:\dev\flutter`)
+- For Android: Android SDK + JDK 21
+- On this Windows PC, prefer developing from `C:\dev\watoto` if OneDrive Controlled Folder Access blocks Hive/Gradle (see root `README.md`)
 
-A few resources to get you started if this is your first Flutter project:
+## Run
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+```powershell
+cd apps/mobile
+flutter pub get
+flutter gen-l10n
+flutter run -d chrome          # web
+flutter run -d windows         # desktop (same lib/ as mobile)
+# Android (use build script on this machine):
+pwsh tool/build-android.ps1 apk --debug
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Windows desktop install (recommended on this PC)
+
+One shared Flutter codebase — desktop is not a separate app. After any `lib/`
+change, rebuild and install the shortcut:
+
+```powershell
+pwsh tool/build-all.ps1 -Platforms windows -Install
+```
+
+That installs to `%LOCALAPPDATA%\Programs\Watoto` and refreshes the Desktop
+**Watoto** shortcut. Progress is stored under the app-support directory (not
+OneDrive Documents), with a one-time migration if the folder name changed.
+
+
+## Tests & analysis
+
+```powershell
+flutter analyze
+flutter test
+```
+
+## Feature flags (`--dart-define`)
+
+| Define | Default | Meaning |
+|--------|---------|---------|
+| `USE_FIREBASE` | `false` | Use `createAuthService()` Firebase path (requires packages + options) |
+| `ALLOW_SANDBOX_IAP` | `false` | Allow local sandbox Premium in **release** (debug always allows sandbox) |
+| `WATOTO_API_URL` | `http://localhost:3000/v1` | Nest sync API base (optional; Firebase is v1 backend) |
+| `START` | `/welcome` | Initial route for demos |
+
+## Project layout
+
+- `lib/features/` — screens (home, library play, parent, auth, …)
+- `lib/core/offline/` — Hive store, sync queue, lifecycle flush
+- `lib/core/widgets/` — design-system buttons, mascot, subject islands
+- `lib/core/analytics/` — privacy-preserving, opt-in analytics seam
+- `assets/content/` — playable library JSON
+- `assets/guides/` — parent curriculum guides
+
+## Parent zone highlights
+
+- PIN gate with lockout after failed attempts
+- Screen-time soft lock → `/rest`
+- Weekly insights (rule-based), export JSON, delete child
+- Accessibility: text scale, reading ease, high contrast, reduced motion
+- Premium map: free stages 1–5; Premium 6–10 (sandbox only outside store IAP)
+
+## Related docs
+
+- Root `README.md` — monorepo overview  
+- `docs/LAUNCH_RUNBOOK.md` — what only you can do (accounts, legal, assets)  
+- `docs/BACKEND_PATH.md` — Firebase vs Nest for v1  

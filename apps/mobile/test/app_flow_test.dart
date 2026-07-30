@@ -7,6 +7,7 @@ import 'package:hive/hive.dart';
 import 'package:watoto_mobile/app.dart';
 import 'package:watoto_mobile/core/network/watoto_api.dart';
 import 'package:watoto_mobile/core/offline/offline_providers.dart';
+import 'package:watoto_mobile/core/widgets/mascot_widget.dart';
 import 'package:watoto_mobile/core/offline/offline_store.dart';
 import 'package:watoto_mobile/core/offline/sync_op.dart';
 import 'package:watoto_mobile/features/lesson_player/lesson_models.dart';
@@ -74,6 +75,22 @@ void goTo(WidgetTester tester, String location) {
       .go(location);
 }
 
+/// The home XP counter is a stat pill that renders the bare number ("⭐ 10");
+/// the readable `<n> XP · Level <l>` string lives only on its semantics label,
+/// so assert against the semantics tree rather than the pill's digits.
+void expectXp(WidgetTester tester, int xp) {
+  final handle = tester.ensureSemantics();
+  expect(find.bySemanticsLabel(RegExp('^$xp XP')), findsOneWidget);
+  handle.dispose();
+}
+
+/// The subject grid sits below the fold on the test surface, so scroll the home
+/// list until the tile is on screen.
+Future<void> scrollToSubjects(WidgetTester tester, Finder tile) async {
+  await tester.scrollUntilVisible(tile, 200);
+  await tester.pumpAndSettle();
+}
+
 void main() {
   late OfflineStore store;
 
@@ -82,6 +99,7 @@ void main() {
     // Hold the perpetual savanna ambient drift still so pumpAndSettle (used
     // throughout) doesn't wait forever on an animation that never completes.
     debugDisableSavannaAmbient = true;
+    debugDisableMascotAnimation = true;
   });
 
   setUp(() async {
@@ -248,9 +266,10 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Hello, Amani!'), findsOneWidget);
-    expect(find.text('Math'), findsOneWidget);
     expect(find.text('Daily Challenge'), findsOneWidget);
-    expect(find.text('0 XP'), findsOneWidget);
+    expectXp(tester, 0);
+    await scrollToSubjects(tester, find.text('Math'));
+    expect(find.text('Math'), findsOneWidget);
   });
 
   testWidgets('child completes the lesson offline: XP banked, op queued',
@@ -285,7 +304,7 @@ void main() {
 
     await tester.tap(find.text('Done'));
     await tester.pumpAndSettle();
-    expect(find.text('10 XP'), findsOneWidget);
+    expectXp(tester, 10);
 
     expect(store.xpFor(id), 10);
     expect(store.progressFor(id, _lesson.id)?['status'], 'completed');
@@ -321,7 +340,7 @@ void main() {
 
     await tester.tap(find.text('Done'));
     await tester.pumpAndSettle();
-    expect(find.text('30 XP'), findsOneWidget);
+    expectXp(tester, 30);
 
     final ops = store.pendingOps;
     expect(ops, hasLength(3));
@@ -352,7 +371,9 @@ void main() {
     await tester.tap(find.text('Unlock'));
     await tester.pumpAndSettle();
     expect(find.text('Children'), findsOneWidget);
-    expect(find.text('Amani'), findsOneWidget);
+    // The dashboard names the child in both the weekly snapshot and the
+    // children list, so more than one match is expected here.
+    expect(find.text('Amani'), findsWidgets);
   });
 
   testWidgets('locale switches to Swahili', (tester) async {

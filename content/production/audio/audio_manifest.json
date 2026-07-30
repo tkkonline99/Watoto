@@ -29,11 +29,11 @@
       "10": 405
     },
     "est_minutes_per_language": {
-      "en": 156.6,
-      "fr": 185.7,
-      "sw": 142.3
+      "en": 154.1,
+      "fr": 179.9,
+      "sw": 138.2
     },
-    "est_minutes_all_languages": 484.6,
+    "est_minutes_all_languages": 472.1,
     "review_for_locale_lines": 284,
     "pace_wpm": 130
   },

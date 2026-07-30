@@ -62,7 +62,7 @@ class WatotoAuth {
     if (displayName != null) await user.updateDisplayName(displayName);
     await user.sendEmailVerification();
 
-    await _db.collection('parents').doc(user.uid).set({
+    await _db.collection('accounts').doc(user.uid).set({
       'email': email,
       'displayName': displayName,
       'consent': {
@@ -166,7 +166,7 @@ class ChildProfiles {
   }
 
   static CollectionReference<Map<String, dynamic>> _col(String uid) =>
-      _db.collection('parents').doc(uid).collection('children');
+      _db.collection('accounts').doc(uid).collection('profiles');
 
   static Future<ChildProfile> addChild({
     required String displayName,

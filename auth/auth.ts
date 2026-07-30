@@ -75,9 +75,10 @@ export async function signUpParent(
   if (opts.displayName) await updateProfile(user, { displayName: opts.displayName });
   await sendEmailVerification(user);
 
-  // consent + parent record (no child PII here)
+  // consent + account record (no child PII here).
+  // Path MUST match backend/firestore.rules: accounts/{uid}
   await setDoc(
-    doc(db, "parents", user.uid),
+    doc(db, "accounts", user.uid),
     {
       email,
       displayName: opts.displayName ?? null,

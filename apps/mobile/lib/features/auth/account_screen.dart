@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../core/offline/offline_providers.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
+import '../../router/return_to.dart';
 import '../onboarding/savanna_background.dart';
 
 /// Parent session screen — every family gets a login/log-out option here,
@@ -68,13 +69,24 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
         _busy = false;
       });
     }
-    // Session is now active -> the screen rebuilds into the signed-in view.
-    if (mounted) setState(() => _busy = false);
+    // Session is now active -> the screen rebuilds into the signed-in view,
+    // unless the family was sent here by a gate, in which case hand them back
+    // to what they were opening.
+    if (!mounted) return;
+    setState(() => _busy = false);
+    _resumeIfGated();
   }
 
-  void _pinLogin() {
+  Future<void> _pinLogin() async {
     final l10n = AppLocalizations.of(context);
-    if (!ref.read(offlineStoreProvider).verifyPin(_pin.text)) {
+    final store = ref.read(offlineStoreProvider);
+    final result = await store.tryPin(_pin.text);
+    if (!mounted) return;
+    if (result == 'locked') {
+      final secs = store.pinLockRemaining?.inSeconds ?? 0;
+      return setState(() => _error = 'Too many tries. Wait ${secs}s.');
+    }
+    if (result != 'ok') {
       return setState(() => _error = l10n.wrongPin);
     }
     ref.read(sessionProvider.notifier).unlockParent();
@@ -82,6 +94,14 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
       _error = null;
       _pin.clear();
     });
+    _resumeIfGated();
+  }
+
+  /// The router sends signed-out families here with `?from=…` when they try to
+  /// open something parent-gated. Once they are in, continue to it.
+  void _resumeIfGated() {
+    final back = returnTo(context);
+    if (back != null) context.go(back);
   }
 
   void _logOut() {
@@ -205,6 +225,13 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
           label: l10n.logIn,
           onTap: _busy ? null : () => _createOrLogin(creating: false),
         ),
+        const SizedBox(height: 4),
+        Center(
+          child: TextButton(
+            onPressed: () => context.push('/password-reset'),
+            child: Text(l10n.forgotPasswordTitle),
+          ),
+        ),
       ],
     );
   }
@@ -236,6 +263,12 @@ class _AccountScreenState extends ConsumerState<AccountScreen> {
           onTap: _pin.text.isEmpty ? null : _pinLogin,
         ),
         const SizedBox(height: 4),
+        Center(
+          child: TextButton(
+            onPressed: () => context.push('/pin-reset'),
+            child: Text(l10n.forgotPinTitle),
+          ),
+        ),
         Center(
           child: TextButton(
             onPressed: () => setState(() {
@@ -354,6 +387,17 @@ class _FilledButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final enabled = onTap != null;
+    // A bare GestureDetector has no role: this reads as plain text, and its
+    // disabled state was invisible to assistive tech.
+    return Semantics(
+      button: true,
+      enabled: enabled,
+      label: label,
+      child: ExcludeSemantics(child: _button(enabled)),
+    );
+  }
+
+  Widget _button(bool enabled) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -411,6 +455,14 @@ class _CloseButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Semantics(
+      button: true,
+      label: MaterialLocalizations.of(context).closeButtonTooltip,
+      child: ExcludeSemantics(child: _button()),
+    );
+  }
+
+  Widget _button() {
     return Material(
       color: Colors.white,
       shape: const CircleBorder(),

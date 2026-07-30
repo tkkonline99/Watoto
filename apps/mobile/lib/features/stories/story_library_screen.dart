@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../core/state/app_state.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
+import '../library/completion.dart';
 import '../library/content_i18n.dart';
 import '../library/library_models.dart';
 import '../library/library_repository.dart';
@@ -26,8 +27,13 @@ class StoryLibraryScreen extends ConsumerWidget {
           icon: const Icon(Icons.arrow_back_rounded, color: WatotoColors.deep),
           onPressed: () => context.go('/'),
         ),
-        title: Text(l10n.storybooks,
-            style: const TextStyle(fontWeight: FontWeight.w800, color: WatotoColors.deep)),
+        title: Text(
+          l10n.storybooks,
+          style: const TextStyle(
+            fontWeight: FontWeight.w800,
+            color: WatotoColors.deep,
+          ),
+        ),
       ),
       body: SafeArea(
         child: libAsync.when(
@@ -43,7 +49,11 @@ class StoryLibraryScreen extends ConsumerWidget {
               padding: const EdgeInsets.all(16),
               children: [
                 for (final story in stories)
-                  _StoryTile(story: story, title: itemTitle(i18n, lang, story)),
+                  _StoryTile(
+                    story: story,
+                    title: itemTitle(i18n, lang, story),
+                    done: isItemDone(ref, story),
+                  ),
               ],
             );
           },
@@ -54,10 +64,17 @@ class StoryLibraryScreen extends ConsumerWidget {
 }
 
 class _StoryTile extends StatelessWidget {
-  const _StoryTile({required this.story, required this.title});
+  const _StoryTile({
+    required this.story,
+    required this.title,
+    this.done = false,
+  });
 
   final LibraryItem story;
   final String title;
+
+  /// Whether the active child has already read this story.
+  final bool done;
 
   @override
   Widget build(BuildContext context) {
@@ -66,10 +83,14 @@ class _StoryTile extends StatelessWidget {
       child: ListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         leading: const Text('📖', style: TextStyle(fontSize: 36)),
-        title: Text(title,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800)),
+        title: Text(
+          title,
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+        ),
         subtitle: Text('${story.subject} · ${story.ages}'),
-        trailing: const Icon(Icons.play_circle_fill, color: WatotoColors.mango),
+        trailing: done
+            ? const Text(doneMark, style: TextStyle(fontSize: 22))
+            : const Icon(Icons.play_circle_fill, color: WatotoColors.mango),
         onTap: () => context.push('/play/${story.id}'),
       ),
     );

@@ -90,7 +90,7 @@ class FirebaseAuthService implements AuthService {
     }
     if (displayName != null) await user.updateDisplayName(displayName);
     await user.sendEmailVerification();
-    // also write parents/{uid} consent doc via cloud_firestore (policy version)
+    // also write accounts/{uid} consent doc via cloud_firestore (policy version)
     return _map(user);
   }
 
@@ -114,7 +114,7 @@ class FirebaseAuthService implements AuthService {
 rules_version = '2';
 service cloud.firestore {
   match /databases/{db}/documents {
-    match /parents/{uid} {
+    match /accounts/{uid} {
       allow read, write: if request.auth != null && request.auth.uid == uid;
       match /children/{childId} {
         allow read, write: if request.auth != null && request.auth.uid == uid;

@@ -1,11 +1,13 @@
 import 'dart:io';
 
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
 import 'package:watoto_mobile/app.dart';
 import 'package:watoto_mobile/core/network/watoto_api.dart';
 import 'package:watoto_mobile/core/offline/offline_providers.dart';
+import 'package:watoto_mobile/core/widgets/mascot_widget.dart';
 import 'package:watoto_mobile/core/offline/offline_store.dart';
 import 'package:watoto_mobile/core/offline/sync_op.dart';
 import 'package:watoto_mobile/features/curriculum/curriculum_data.dart';
@@ -21,10 +23,20 @@ class _UnreachableApi implements SyncApi {
 }
 
 /// The app opens on the welcome screen; jump to the home to exercise the tiles.
-void _goHome(WidgetTester tester) =>
-    ProviderScope.containerOf(tester.element(find.byType(WatotoApp)))
-        .read(appRouterProvider)
-        .go('/');
+void _goHome(WidgetTester tester) => ProviderScope.containerOf(
+  tester.element(find.byType(WatotoApp)),
+).read(appRouterProvider).go('/');
+
+/// Scrolls the home list (the outermost Scrollable — the subject grid nests a
+/// non-scrolling one inside it) until [target] is on screen.
+Future<void> _scrollHomeTo(WidgetTester tester, Finder target) async {
+  await tester.scrollUntilVisible(
+    target,
+    200,
+    scrollable: find.byType(Scrollable).first,
+  );
+  await tester.pumpAndSettle();
+}
 
 void main() {
   group('curriculum data (from curriculum.pptx)', () {
@@ -72,20 +84,41 @@ void main() {
         expect(stages, isNotEmpty, reason: 'no stage offers ${subject.key}');
         for (final stage in stages) {
           final topic = subject.topicNameFor(stage);
-          expect(topic, isNotNull, reason: '${subject.key} @ stage ${stage.stage}');
+          expect(
+            topic,
+            isNotNull,
+            reason: '${subject.key} @ stage ${stage.stage}',
+          );
           // The resolved topic must actually exist in that stage's curriculum.
           expect(stage.topics.map((t) => t.name), contains(topic));
         }
       }
     });
 
-    test('catalog keys are unique and the daily challenge is Math', () {
+    test('catalog keys are unique', () {
       final keys = subjectCatalog.map((s) => s.key).toList();
       expect(keys.toSet(), hasLength(keys.length));
-      expect(dailyChallengeSubject.key, 'math');
-      // Math is a through-line: it should be offered across many age bands.
-      expect(dailyChallengeSubject.stagesAvailable().length, greaterThan(5));
     });
+
+    test(
+      'daily challenge always resolves to a catalog subject and rotates',
+      () {
+        final start = DateTime(2026, 1, 1);
+        // Every day maps to a real catalog subject...
+        for (var d = 0; d < 14; d++) {
+          final subject = dailyChallengeSubjectFor(
+            start.add(Duration(days: d)),
+          );
+          expect(subjectCatalog, contains(subject));
+        }
+        // ...and the challenge is not the same subject every day.
+        final picks = {
+          for (var d = 0; d < subjectCatalog.length; d++)
+            dailyChallengeSubjectFor(start.add(Duration(days: d))).key,
+        };
+        expect(picks.length, greaterThan(1));
+      },
+    );
   });
 
   group('curriculum screen', () {
@@ -93,35 +126,57 @@ void main() {
       Hive.init(Directory.systemTemp.path);
       // Hold the perpetual savanna ambient drift still so pumpAndSettle works.
       debugDisableSavannaAmbient = true;
+      debugDisableMascotAnimation = true;
     });
 
-    testWidgets('home subject card opens the age picker, then drills in',
-        (tester) async {
+    testWidgets('home subject card opens the age picker, then drills in', (
+      tester,
+    ) async {
       final store = await OfflineStore.open(inMemory: true);
       await store.completeOnboarding(
         consent: const ConsentRecord(
-            coreData: true, aiFeatures: false, voiceRecording: false, recordedAt: null),
+          coreData: true,
+          aiFeatures: false,
+          voiceRecording: false,
+          recordedAt: null,
+        ),
         pin: '1234',
         nickname: 'Amani',
         avatarKey: 'lion',
         birthYear: DateTime.now().year - 7,
       );
 
-      await tester.pumpWidget(ProviderScope(
-        overrides: [
-          offlineStoreProvider.overrideWithValue(store),
-          syncApiProvider.overrideWithValue(_UnreachableApi()),
-        ],
-        child: const WatotoApp(),
-      ));
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [
+            offlineStoreProvider.overrideWithValue(store),
+            syncApiProvider.overrideWithValue(_UnreachableApi()),
+          ],
+          child: const WatotoApp(),
+        ),
+      );
       await tester.pumpAndSettle();
       _goHome(tester); // app opens on the welcome screen; enter the home
       await tester.pumpAndSettle();
 
-      // There's no fixed stage now: tapping a subject asks for an age first.
+      // The subject grid sits below the fold, and ensureVisible only reaches
+      // widgets the lazy home list has already built — scroll it into view.
       final math = find.text('Math');
-      await tester.ensureVisible(math);
+      await _scrollHomeTo(tester, math);
+
+      // A plain tap uses the stage inferred from the child's profile and goes
+      // straight into the subject detail ("Stage N · Ages …") — no picker.
       await tester.tap(math);
+      await tester.pumpAndSettle();
+      expect(find.text('How old are you?'), findsNothing);
+      expect(find.textContaining('Stage '), findsWidgets);
+
+      // Long-press forces the age picker so families can override the stage
+      // for multi-age siblings.
+      _goHome(tester);
+      await tester.pumpAndSettle();
+      await _scrollHomeTo(tester, math);
+      await tester.longPress(math);
       await tester.pumpAndSettle();
       expect(find.text('How old are you?'), findsOneWidget);
 

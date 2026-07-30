@@ -1,0 +1,1720 @@
+{
+ "_meta": {
+  "language": "fr",
+  "note": "French for lesson_recaps.part2.json. Same ids, same question order, same option order — the answer index must stay valid.",
+  "review": "Machine-authored, NOT yet reviewed by a native speaker."
+ },
+ "s05.reading.lesson.02": [
+  {
+   "prompt": "Quel mot as-tu touché en premier ?",
+   "options": [
+    "the",
+    "I",
+    "a"
+   ]
+  },
+  {
+   "prompt": "Quel mot veut dire toi-même : I ou the ?",
+   "options": [
+    "I",
+    "the"
+   ]
+  }
+ ],
+ "s05.reading.lesson.04": [
+  {
+   "prompt": "Assemble d-o-g. Quel mot est-ce ?",
+   "options": [
+    "dog",
+    "map",
+    "dig"
+   ]
+  },
+  {
+   "prompt": "Assemble m-a-p. Quel mot est-ce ?",
+   "options": [
+    "map",
+    "dog",
+    "mop"
+   ]
+  }
+ ],
+ "s05.reading.lesson.05": [
+  {
+   "prompt": "p + ig donne quel mot ?",
+   "options": [
+    "pig",
+    "big",
+    "dig"
+   ]
+  },
+  {
+   "prompt": "Quelle fin de mot partagent pig, big et dig ?",
+   "options": [
+    "-ig",
+    "-op"
+   ]
+  }
+ ],
+ "s05.reading.lesson.06": [
+  {
+   "prompt": "Combien de mots y a-t-il dans 'I see a cat' ?",
+   "options": [
+    "4",
+    "2",
+    "6"
+   ]
+  },
+  {
+   "prompt": "Dans 'The cat is big', quel mot dit la taille ?",
+   "options": [
+    "big",
+    "cat",
+    "is"
+   ]
+  }
+ ],
+ "s05.science.lesson.01": [
+  {
+   "prompt": "Un chien est vivant ou non vivant ?",
+   "options": [
+    "Vivant",
+    "Non vivant"
+   ]
+  },
+  {
+   "prompt": "Un caillou ne grandit pas et ne mange pas, il est donc…",
+   "options": [
+    "non vivant",
+    "vivant"
+   ]
+  }
+ ],
+ "s05.science.lesson.02": [
+  {
+   "prompt": "À quelle saison les fleurs s'ouvrent-elles ?",
+   "options": [
+    "Au printemps",
+    "En hiver",
+    "En automne"
+   ]
+  },
+  {
+   "prompt": "Combien y a-t-il de saisons ?",
+   "options": [
+    "Quatre",
+    "Deux",
+    "Sept"
+   ]
+  }
+ ],
+ "s05.science.lesson.06": [
+  {
+   "prompt": "Que fait le froid à l'eau ?",
+   "options": [
+    "Il la transforme en glace",
+    "Il la fait bouillir"
+   ]
+  },
+  {
+   "prompt": "Que fait la chaleur à la glace ?",
+   "options": [
+    "Elle la fait fondre en eau",
+    "Elle la durcit"
+   ]
+  }
+ ],
+ "s05.math.lesson.02": [
+  {
+   "prompt": "5 pommes, on en enlève 1. Combien en reste-t-il ?",
+   "options": [
+    "4",
+    "5",
+    "3"
+   ]
+  },
+  {
+   "prompt": "4 pommes, puis 2 sont mangées. Combien en reste-t-il ?",
+   "options": [
+    "Deux",
+    "Trois",
+    "Six"
+   ]
+  }
+ ],
+ "s05.math.lesson.03": [
+  {
+   "prompt": "Quel nombre vient juste après 19 ?",
+   "options": [
+    "20",
+    "18",
+    "12"
+   ]
+  },
+  {
+   "prompt": "En comptant à partir de 11, lequel vient ensuite ?",
+   "options": [
+    "12",
+    "10",
+    "21"
+   ]
+  }
+ ],
+ "s05.math.lesson.05": [
+  {
+   "prompt": "Deux groupes qui ont le même nombre sont…",
+   "options": [
+    "égaux",
+    "plus grands"
+   ]
+  },
+  {
+   "prompt": "Le groupe qui a le plus grand nombre en a…",
+   "options": [
+    "plus",
+    "moins"
+   ]
+  }
+ ],
+ "s05.social.lesson.03": [
+  {
+   "prompt": "La nourriture et l'eau sont des choses dont on a…",
+   "options": [
+    "besoin",
+    "envie"
+   ]
+  },
+  {
+   "prompt": "Un jouet est agréable, c'est donc une…",
+   "options": [
+    "envie",
+    "nécessité"
+   ]
+  }
+ ],
+ "s05.coding.lesson.01": [
+  {
+   "prompt": "Quel bloc fait avancer le canard d'un pas ?",
+   "options": [
+    "AVANCER",
+    "TOURNER À GAUCHE"
+   ]
+  },
+  {
+   "prompt": "Quel bloc change la direction où il regarde ?",
+   "options": [
+    "TOURNER À GAUCHE",
+    "AVANCER"
+   ]
+  }
+ ],
+ "s06.reading.lesson.01": [
+  {
+   "prompt": "Combien de sons les lettres s et h font-elles ensemble ?",
+   "options": [
+    "Un",
+    "Deux"
+   ]
+  },
+  {
+   "prompt": "Quel mot finit par ce son chhh ?",
+   "options": [
+    "fish",
+    "ship"
+   ]
+  }
+ ],
+ "s06.reading.lesson.02": [
+  {
+   "prompt": "Quel mot commence par le son ch ?",
+   "options": [
+    "chip",
+    "lunch"
+   ]
+  },
+  {
+   "prompt": "Quel mot finit par le son ch ?",
+   "options": [
+    "lunch",
+    "chip"
+   ]
+  }
+ ],
+ "s06.reading.lesson.03": [
+  {
+   "prompt": "Lequel est un mot-outil de cette leçon ?",
+   "options": [
+    "you",
+    "cat"
+   ]
+  },
+  {
+   "prompt": "Les mots-outils doivent se lire…",
+   "options": [
+    "vite, sans déchiffrer",
+    "très lentement"
+   ]
+  }
+ ],
+ "s06.reading.lesson.05": [
+  {
+   "prompt": "Quelles lettres écrivent cat, dans l'ordre ?",
+   "options": [
+    "c, a, t",
+    "t, a, c"
+   ]
+  },
+  {
+   "prompt": "Quelles lettres écrivent sun, dans l'ordre ?",
+   "options": [
+    "s, u, n",
+    "n, u, s"
+   ]
+  }
+ ],
+ "s06.reading.lesson.06": [
+  {
+   "prompt": "Comment commence une phrase ?",
+   "options": [
+    "Par une majuscule",
+    "Par une minuscule"
+   ]
+  },
+  {
+   "prompt": "Que dit le point au lecteur ?",
+   "options": [
+    "De s'arrêter",
+    "De crier"
+   ]
+  }
+ ],
+ "s06.math.lesson.01": [
+  {
+   "prompt": "2 barres de dix et 3 unités font quel nombre ?",
+   "options": [
+    "23",
+    "32",
+    "5"
+   ]
+  },
+  {
+   "prompt": "1 dizaine et 4 unités font quel nombre ?",
+   "options": [
+    "14",
+    "41",
+    "5"
+   ]
+  }
+ ],
+ "s06.math.lesson.04": [
+  {
+   "prompt": "Dix et 3 de plus font…",
+   "options": [
+    "13",
+    "30",
+    "23"
+   ]
+  },
+  {
+   "prompt": "Dix et 6 de plus font…",
+   "options": [
+    "16",
+    "60",
+    "26"
+   ]
+  }
+ ],
+ "s06.math.lesson.05": [
+  {
+   "prompt": "Décompose 14 en dizaines et unités. Combien d'unités ?",
+   "options": [
+    "Quatre",
+    "Une",
+    "Quatorze"
+   ]
+  },
+  {
+   "prompt": "1 dizaine et 2 unités font quel nombre ?",
+   "options": [
+    "12",
+    "21",
+    "3"
+   ]
+  }
+ ],
+ "s06.science.lesson.01": [
+  {
+   "prompt": "La glace est dure et garde sa forme. Quel état est-ce ?",
+   "options": [
+    "Solide",
+    "Liquide",
+    "Gazeux"
+   ]
+  },
+  {
+   "prompt": "La vapeur s'envole dans l'air. Quel état est-ce ?",
+   "options": [
+    "Gazeux",
+    "Solide",
+    "Liquide"
+   ]
+  }
+ ],
+ "s06.science.lesson.02": [
+  {
+   "prompt": "De quelles deux choses les animaux ont-ils besoin pour vivre ?",
+   "options": [
+    "De nourriture et d'eau",
+    "De jouets et de livres"
+   ]
+  },
+  {
+   "prompt": "Une tanière ou un nid donne à l'animal…",
+   "options": [
+    "un abri",
+    "de la nourriture"
+   ]
+  }
+ ],
+ "s06.science.lesson.03": [
+  {
+   "prompt": "Qu'est-ce qui nous donne le jour et la chaleur ?",
+   "options": [
+    "Le soleil",
+    "La lune"
+   ]
+  },
+  {
+   "prompt": "Que voit-on briller la nuit ?",
+   "options": [
+    "La lune et les étoiles",
+    "Le soleil"
+   ]
+  }
+ ],
+ "s06.science.lesson.05": [
+  {
+   "prompt": "Une chaise peut être faite de quelle matière ?",
+   "options": [
+    "Du bois",
+    "De l'eau"
+   ]
+  },
+  {
+   "prompt": "Une cuillère est souvent faite de quelle matière ?",
+   "options": [
+    "Du métal",
+    "Du papier"
+   ]
+  }
+ ],
+ "s06.science.lesson.06": [
+  {
+   "prompt": "Comment se déplace une voiture de course ?",
+   "options": [
+    "Vite",
+    "Lentement"
+   ]
+  },
+  {
+   "prompt": "Comment se déplace un escargot ?",
+   "options": [
+    "Lentement",
+    "Vite"
+   ]
+  }
+ ],
+ "s06.social.lesson.02": [
+  {
+   "prompt": "Que fait un bon citoyen pour les autres ?",
+   "options": [
+    "Il les aide",
+    "Il les ignore"
+   ]
+  },
+  {
+   "prompt": "Attendre son tour et donner une part à un ami, c'est…",
+   "options": [
+    "partager",
+    "garder"
+   ]
+  }
+ ],
+ "s06.social.lesson.04": [
+  {
+   "prompt": "Le pain est une chose qu'on peut tenir, c'est donc un…",
+   "options": [
+    "bien",
+    "service"
+   ]
+  },
+  {
+   "prompt": "Une coupe de cheveux est un travail fait pour toi, c'est donc un…",
+   "options": [
+    "service",
+    "bien"
+   ]
+  }
+ ],
+ "s06.tech.lesson.01": [
+  {
+   "prompt": "Quel bloc fait avancer le robot ?",
+   "options": [
+    "AVANCER",
+    "TOURNER À GAUCHE"
+   ]
+  },
+  {
+   "prompt": "Sur quoi faut-il appuyer pour lancer tes blocs ?",
+   "options": [
+    "LECTURE",
+    "SUPPRIMER"
+   ]
+  }
+ ],
+ "s06.tech.lesson.05": [
+  {
+   "prompt": "Quelle partie de la tablette regardes-tu et touches-tu ?",
+   "options": [
+    "L'écran",
+    "Le bouton"
+   ]
+  },
+  {
+   "prompt": "Quelle partie l'allume et l'éteint ?",
+   "options": [
+    "Le bouton",
+    "L'écran"
+   ]
+  }
+ ],
+ "s07.reading.lesson.01": [
+  {
+   "prompt": "Ajoute le e muet à cap. Quel mot obtiens-tu ?",
+   "options": [
+    "cape",
+    "capping"
+   ]
+  },
+  {
+   "prompt": "Quel son font les lettres a et i dans rain ?",
+   "options": [
+    "/ay/",
+    "/oo/"
+   ]
+  }
+ ],
+ "s07.reading.lesson.02": [
+  {
+   "prompt": "Quel mot a le son a bref ?",
+   "options": [
+    "cap",
+    "cape"
+   ]
+  },
+  {
+   "prompt": "Que fait le e muet à la voyelle ?",
+   "options": [
+    "Il lui fait dire son nom",
+    "Il la rend muette"
+   ]
+  }
+ ],
+ "s07.reading.lesson.03": [
+  {
+   "prompt": "Combien de sons fait le groupe bl ?",
+   "options": [
+    "Deux",
+    "Un"
+   ]
+  },
+  {
+   "prompt": "Quel groupe commence le mot star : st ou bl ?",
+   "options": [
+    "st",
+    "bl"
+   ]
+  }
+ ],
+ "s07.reading.lesson.04": [
+  {
+   "prompt": "'The girl kicks the ball.' Qui donne le coup de pied ?",
+   "options": [
+    "La fille",
+    "Le ballon"
+   ]
+  },
+  {
+   "prompt": "Dans cette phrase, qu'est-ce qui est frappé ?",
+   "options": [
+    "Le ballon",
+    "La fille"
+   ]
+  }
+ ],
+ "s07.writing.lesson.01": [
+  {
+   "prompt": "Dans 'The happy dog runs', quel mot nomme une chose ?",
+   "options": [
+    "dog",
+    "runs",
+    "happy"
+   ]
+  },
+  {
+   "prompt": "Dans cette phrase, quel mot est l'action ?",
+   "options": [
+    "runs",
+    "dog",
+    "happy"
+   ]
+  }
+ ],
+ "s07.writing.lesson.02": [
+  {
+   "prompt": "Que nomme un nom ?",
+   "options": [
+    "Une personne, un lieu ou une chose",
+    "Une action"
+   ]
+  },
+  {
+   "prompt": "Dans 'I go to school', quel mot est le nom ?",
+   "options": [
+    "school",
+    "go"
+   ]
+  }
+ ],
+ "s07.writing.lesson.03": [
+  {
+   "prompt": "Que t'indique un verbe ?",
+   "options": [
+    "Une action",
+    "Une couleur"
+   ]
+  },
+  {
+   "prompt": "Dans 'She runs fast', quel mot est le verbe ?",
+   "options": [
+    "runs",
+    "fast"
+   ]
+  }
+ ],
+ "s07.writing.lesson.06": [
+  {
+   "prompt": "Un chat, deux…?",
+   "options": [
+    "cats",
+    "cat"
+   ]
+  },
+  {
+   "prompt": "Quelle terminaison ajoute-t-on pour le pluriel de la plupart des mots ?",
+   "options": [
+    "-s",
+    "-e"
+   ]
+  }
+ ],
+ "s07.math.lesson.01": [
+  {
+   "prompt": "8 + 5 = ?",
+   "options": [
+    "13",
+    "12",
+    "14"
+   ]
+  },
+  {
+   "prompt": "13 - 4 = ?",
+   "options": [
+    "9",
+    "8",
+    "10"
+   ]
+  }
+ ],
+ "s07.math.lesson.04": [
+  {
+   "prompt": "Dans le nombre 47, combien de dizaines ?",
+   "options": [
+    "Quatre",
+    "Sept",
+    "Quarante-sept"
+   ]
+  },
+  {
+   "prompt": "Dans le nombre 47, combien d'unités ?",
+   "options": [
+    "Sept",
+    "Quatre",
+    "Quarante"
+   ]
+  }
+ ],
+ "s07.math.lesson.06": [
+  {
+   "prompt": "Deux pièces de 5 chacune font…",
+   "options": [
+    "10",
+    "5",
+    "15"
+   ]
+  },
+  {
+   "prompt": "Combien vaut une seule de ces pièces ?",
+   "options": [
+    "5",
+    "1",
+    "10"
+   ]
+  }
+ ],
+ "s07.social.lesson.02": [
+  {
+   "prompt": "Lequel est rond comme la Terre ?",
+   "options": [
+    "Un globe",
+    "Une carte"
+   ]
+  },
+  {
+   "prompt": "Lequel est plat et facile à emporter ?",
+   "options": [
+    "Une carte",
+    "Un globe"
+   ]
+  }
+ ],
+ "s07.health.lesson.01": [
+  {
+   "prompt": "À quel groupe alimentaire appartient une pomme ?",
+   "options": [
+    "Les fruits",
+    "Les céréales"
+   ]
+  },
+  {
+   "prompt": "Quand faut-il se laver les mains ?",
+   "options": [
+    "Avant de manger",
+    "Jamais"
+   ]
+  }
+ ],
+ "s07.health.lesson.03": [
+  {
+   "prompt": "Quels aliments nous aident à grandir chaque jour ?",
+   "options": [
+    "Les fruits et les légumes",
+    "Les bonbons"
+   ]
+  },
+  {
+   "prompt": "Les bonbons sont des aliments pour…",
+   "options": [
+    "de temps en temps",
+    "chaque repas"
+   ]
+  }
+ ],
+ "s08.reading.lesson.01": [
+  {
+   "prompt": "cup + cake donne quel mot ?",
+   "options": [
+    "cupcake",
+    "cakecup"
+   ]
+  },
+  {
+   "prompt": "Deux petits mots réunis en un seul forment un…",
+   "options": [
+    "mot composé",
+    "poème"
+   ]
+  }
+ ],
+ "s08.reading.lesson.02": [
+  {
+   "prompt": "Que veut dire le préfixe un- ?",
+   "options": [
+    "ne pas",
+    "encore"
+   ]
+  },
+  {
+   "prompt": "Que veut dire le préfixe re- ?",
+   "options": [
+    "encore",
+    "ne pas"
+   ]
+  }
+ ],
+ "s08.reading.lesson.04": [
+  {
+   "prompt": "'Maya played at the beach.' Qui est le personnage ?",
+   "options": [
+    "Maya",
+    "La plage"
+   ]
+  },
+  {
+   "prompt": "Dans cette phrase, où est le lieu ?",
+   "options": [
+    "La plage",
+    "Maya"
+   ]
+  }
+ ],
+ "s08.reading.lesson.05": [
+  {
+   "prompt": "'Le ciel est bleu' peut se vérifier, c'est donc un…",
+   "options": [
+    "fait",
+    "avis"
+   ]
+  },
+  {
+   "prompt": "'Le bleu est la plus belle couleur' est un ressenti, c'est donc un…",
+   "options": [
+    "avis",
+    "fait"
+   ]
+  }
+ ],
+ "s08.writing.lesson.01": [
+  {
+   "prompt": "Une boîte, deux…?",
+   "options": [
+    "boxes",
+    "boxs"
+   ]
+  },
+  {
+   "prompt": "Aujourd'hui je marche. Hier je…?",
+   "options": [
+    "walked",
+    "walking"
+   ]
+  }
+ ],
+ "s08.writing.lesson.02": [
+  {
+   "prompt": "Comment écrit-on le nom d'une personne ?",
+   "options": [
+    "Avec une majuscule",
+    "Tout en minuscules"
+   ]
+  },
+  {
+   "prompt": "Qu'est-ce qui a aussi besoin d'une majuscule ?",
+   "options": [
+    "Le nom d'une ville",
+    "Une couleur"
+   ]
+  }
+ ],
+ "s08.writing.lesson.04": [
+  {
+   "prompt": "do + not se raccourcit en quel mot ?",
+   "options": [
+    "don't",
+    "dont"
+   ]
+  },
+  {
+   "prompt": "Que remplace l'apostrophe ?",
+   "options": [
+    "La lettre enlevée",
+    "Un point"
+   ]
+  }
+ ],
+ "s08.math.lesson.02": [
+  {
+   "prompt": "24 + 18 = ?",
+   "options": [
+    "42",
+    "32",
+    "52"
+   ]
+  },
+  {
+   "prompt": "Quand les unités dépassent dix, que fais-tu ?",
+   "options": [
+    "Tu retiens une dizaine",
+    "Tu l'ignores"
+   ]
+  }
+ ],
+ "s08.math.lesson.03": [
+  {
+   "prompt": "52 - 27 = ?",
+   "options": [
+    "25",
+    "35",
+    "26"
+   ]
+  },
+  {
+   "prompt": "Quand le chiffre du haut est trop petit, que fais-tu ?",
+   "options": [
+    "Tu empruntes une dizaine",
+    "Tu le sautes"
+   ]
+  }
+ ],
+ "s08.math.lesson.04": [
+  {
+   "prompt": "En comptant de 5 en 5 : 5, 10, 15, puis…",
+   "options": [
+    "20",
+    "16",
+    "25"
+   ]
+  },
+  {
+   "prompt": "En comptant de 10 en 10 : 10, 20, 30, puis…",
+   "options": [
+    "40",
+    "31",
+    "35"
+   ]
+  }
+ ],
+ "s08.science.lesson.02": [
+  {
+   "prompt": "Où se trouve l'habitat d'un poisson ?",
+   "options": [
+    "Dans l'eau",
+    "Dans le désert"
+   ]
+  },
+  {
+   "prompt": "Que donne un habitat à un animal ?",
+   "options": [
+    "Ce dont il a besoin pour vivre",
+    "Un nom"
+   ]
+  }
+ ],
+ "s08.science.lesson.04": [
+  {
+   "prompt": "Un caillou garde sa forme, c'est donc un…",
+   "options": [
+    "solide",
+    "liquide"
+   ]
+  },
+  {
+   "prompt": "Le jus coule et remplit son verre, c'est donc un…",
+   "options": [
+    "liquide",
+    "gaz"
+   ]
+  }
+ ],
+ "s08.science.lesson.05": [
+  {
+   "prompt": "Le soleil chauffe l'eau qui monte dans l'air. C'est…",
+   "options": [
+    "l'évaporation",
+    "la congélation"
+   ]
+  },
+  {
+   "prompt": "La vapeur refroidit et forme des nuages. C'est…",
+   "options": [
+    "la condensation",
+    "l'évaporation"
+   ]
+  }
+ ],
+ "s08.science.lesson.06": [
+  {
+   "prompt": "Que font les aimants à certains métaux ?",
+   "options": [
+    "Ils les attirent",
+    "Ils les font fondre"
+   ]
+  },
+  {
+   "prompt": "Que font deux pôles identiques ?",
+   "options": [
+    "Ils se repoussent",
+    "Ils se collent"
+   ]
+  }
+ ],
+ "s08.social.lesson.05": [
+  {
+   "prompt": "Un boulanger qui fait du pain est un…",
+   "options": [
+    "producteur",
+    "consommateur"
+   ]
+  },
+  {
+   "prompt": "Un client qui achète le pain est un…",
+   "options": [
+    "consommateur",
+    "producteur"
+   ]
+  }
+ ],
+ "s08.tech.lesson.01": [
+  {
+   "prompt": "Quel bloc fait bouger le chat sur le côté ?",
+   "options": [
+    "ALLER À DROITE",
+    "SAUTER"
+   ]
+  },
+  {
+   "prompt": "Des blocs à la suite s'exécutent dans quel ordre ?",
+   "options": [
+    "De haut en bas",
+    "N'importe quel ordre"
+   ]
+  }
+ ],
+ "s08.tech.lesson.04": [
+  {
+   "prompt": "Le robot doit monter mais une étape dit descendre. Cette erreur est un…",
+   "options": [
+    "bogue",
+    "boucle"
+   ]
+  },
+  {
+   "prompt": "Trouver et corriger cette erreur s'appelle…",
+   "options": [
+    "déboguer",
+    "concevoir"
+   ]
+  }
+ ],
+ "s09.reading.lesson.01": [
+  {
+   "prompt": "'As brave as a lion' utilise le mot as, c'est donc une…",
+   "options": [
+    "comparaison",
+    "métaphore"
+   ]
+  },
+  {
+   "prompt": "'The classroom was a zoo' dit qu'une chose EST une autre, c'est donc une…",
+   "options": [
+    "métaphore",
+    "comparaison"
+   ]
+  }
+ ],
+ "s09.reading.lesson.03": [
+  {
+   "prompt": "Il a plu toute la nuit et la rivière a débordé. Quel est l'effet ?",
+   "options": [
+    "La rivière a débordé",
+    "Il a plu"
+   ]
+  },
+  {
+   "prompt": "Quel mot signale une cause ?",
+   "options": [
+    "parce que",
+    "magnifique"
+   ]
+  }
+ ],
+ "s09.reading.lesson.04": [
+  {
+   "prompt": "Que t'indique un titre de section ?",
+   "options": [
+    "De quoi parle la section",
+    "Qui a dessiné l'image"
+   ]
+  },
+  {
+   "prompt": "Qu'explique une légende ?",
+   "options": [
+    "Une image",
+    "La couverture"
+   ]
+  }
+ ],
+ "s09.reading.lesson.06": [
+  {
+   "prompt": "Une histoire drôle est écrite pour…",
+   "options": [
+    "divertir",
+    "convaincre"
+   ]
+  },
+  {
+   "prompt": "Une publicité qui dit « Achetez ceci ! » est écrite pour…",
+   "options": [
+    "convaincre",
+    "divertir"
+   ]
+  }
+ ],
+ "s09.writing.lesson.02": [
+  {
+   "prompt": "Quel mot dit au lecteur qu'une étape vient au début ?",
+   "options": [
+    "D'abord",
+    "Enfin"
+   ]
+  },
+  {
+   "prompt": "Que font les mots de liaison pour le lecteur ?",
+   "options": [
+    "Ils le guident",
+    "Ils le perdent"
+   ]
+  }
+ ],
+ "s09.writing.lesson.04": [
+  {
+   "prompt": "Lequel est un nom propre ?",
+   "options": [
+    "Lundi",
+    "jour"
+   ]
+  },
+  {
+   "prompt": "'rivière' est commun, mais lequel est propre ?",
+   "options": [
+    "Nil",
+    "eau"
+   ]
+  }
+ ],
+ "s09.writing.lesson.05": [
+  {
+   "prompt": "'I will walk' est à quel temps ?",
+   "options": [
+    "Futur",
+    "Passé"
+   ]
+  },
+  {
+   "prompt": "'I walked' est à quel temps ?",
+   "options": [
+    "Passé",
+    "Présent"
+   ]
+  }
+ ],
+ "s09.math.lesson.01": [
+  {
+   "prompt": "6 × 4 = ?",
+   "options": [
+    "24",
+    "25",
+    "34"
+   ]
+  },
+  {
+   "prompt": "24 ÷ 4 = ?",
+   "options": [
+    "6",
+    "5",
+    "16"
+   ]
+  }
+ ],
+ "s09.math.lesson.04": [
+  {
+   "prompt": "3 × 10 = ?",
+   "options": [
+    "30",
+    "13",
+    "300"
+   ]
+  },
+  {
+   "prompt": "3 × 20 = ?",
+   "options": [
+    "60",
+    "50",
+    "70"
+   ]
+  }
+ ],
+ "s09.math.lesson.05": [
+  {
+   "prompt": "Arrondis 47 à la dizaine la plus proche.",
+   "options": [
+    "50",
+    "40",
+    "47"
+   ]
+  },
+  {
+   "prompt": "Arrondis 230 à la centaine la plus proche.",
+   "options": [
+    "200",
+    "300",
+    "230"
+   ]
+  }
+ ],
+ "s09.science.lesson.05": [
+  {
+   "prompt": "Une rampe est quelle machine simple ?",
+   "options": [
+    "Un plan incliné",
+    "Une poulie"
+   ]
+  },
+  {
+   "prompt": "Que font les machines simples pour nous ?",
+   "options": [
+    "Elles facilitent le travail",
+    "Elles le compliquent"
+   ]
+  }
+ ],
+ "s09.social.lesson.02": [
+  {
+   "prompt": "Qu'explique la légende d'une carte ?",
+   "options": [
+    "Ce que veulent dire les symboles",
+    "Qui l'a dessinée"
+   ]
+  },
+  {
+   "prompt": "Que montre l'échelle ?",
+   "options": [
+    "La distance réelle",
+    "La date"
+   ]
+  }
+ ],
+ "s09.social.lesson.03": [
+  {
+   "prompt": "Aller à l'école est un exemple de…",
+   "options": [
+    "droit",
+    "devoir"
+   ]
+  },
+  {
+   "prompt": "Respecter des règles justes est un exemple de…",
+   "options": [
+    "devoir",
+    "droit"
+   ]
+  }
+ ],
+ "s09.social.lesson.06": [
+  {
+   "prompt": "Une zone avec des fermes et des champs est…",
+   "options": [
+    "rurale",
+    "urbaine"
+   ]
+  },
+  {
+   "prompt": "Une zone de ville très animée est…",
+   "options": [
+    "urbaine",
+    "rurale"
+   ]
+  }
+ ],
+ "s09.coding.lesson.03": [
+  {
+   "prompt": "Que fait une variable ?",
+   "options": [
+    "Elle garde une valeur",
+    "Elle dessine une image"
+   ]
+  },
+  {
+   "prompt": "score vaut 5, puis tu ajoutes 3. Que contient-elle ?",
+   "options": [
+    "8",
+    "5",
+    "53"
+   ]
+  }
+ ],
+ "s09.coding.lesson.04": [
+  {
+   "prompt": "Que fait une fonction ?",
+   "options": [
+    "Elle nomme un groupe d'étapes",
+    "Elle efface des étapes"
+   ]
+  },
+  {
+   "prompt": "Pourquoi une fonction est-elle utile ?",
+   "options": [
+    "On peut la réutiliser",
+    "Elle ne sert qu'une fois"
+   ]
+  }
+ ],
+ "s09.coding.lesson.05": [
+  {
+   "prompt": "'5 est plus grand que 3' est…",
+   "options": [
+    "vrai",
+    "faux"
+   ]
+  },
+  {
+   "prompt": "'Un chat a des ailes' est…",
+   "options": [
+    "faux",
+    "vrai"
+   ]
+  }
+ ],
+ "s10.math.lesson.01": [
+  {
+   "prompt": "84 ÷ 4 = ?",
+   "options": [
+    "21",
+    "11",
+    "31"
+   ]
+  },
+  {
+   "prompt": "Quelle étape vient en premier dans la division posée ?",
+   "options": [
+    "Diviser",
+    "Soustraire"
+   ]
+  }
+ ],
+ "s10.math.lesson.02": [
+  {
+   "prompt": "23 × 4 = ?",
+   "options": [
+    "92",
+    "82",
+    "94"
+   ]
+  },
+  {
+   "prompt": "Séparer 23 en 20 + 3 puis multiplier chaque part donne des…",
+   "options": [
+    "produits partiels",
+    "restes"
+   ]
+  }
+ ],
+ "s10.math.lesson.03": [
+  {
+   "prompt": "Quelle fraction vaut la même chose que 1/2 ?",
+   "options": [
+    "2/4",
+    "1/4",
+    "3/4"
+   ]
+  },
+  {
+   "prompt": "Pour obtenir une fraction égale, multiplie le haut et le bas par…",
+   "options": [
+    "le même nombre",
+    "des nombres différents"
+   ]
+  }
+ ],
+ "s10.math.lesson.04": [
+  {
+   "prompt": "1/5 + 2/5 = ?",
+   "options": [
+    "3/5",
+    "3/10",
+    "2/5"
+   ]
+  },
+  {
+   "prompt": "Quand on additionne des fractions de même dénominateur, qu'est-ce qui change ?",
+   "options": [
+    "Seulement le haut",
+    "Seulement le bas"
+   ]
+  }
+ ],
+ "s10.math.lesson.05": [
+  {
+   "prompt": "Combien de dixièmes vaut 0,7 ?",
+   "options": [
+    "Sept",
+    "Soixante-dix",
+    "Un"
+   ]
+  },
+  {
+   "prompt": "Lequel est le plus grand, 0,5 ou 0,45 ?",
+   "options": [
+    "0,5",
+    "0,45"
+   ]
+  }
+ ],
+ "s10.math.lesson.06": [
+  {
+   "prompt": "Un rectangle mesure 5 de long et 3 de large. Quel est son périmètre ?",
+   "options": [
+    "16",
+    "15",
+    "8"
+   ]
+  },
+  {
+   "prompt": "Quelle est l'aire de ce rectangle ?",
+   "options": [
+    "15",
+    "16",
+    "8"
+   ]
+  }
+ ],
+ "s10.reading.lesson.01": [
+  {
+   "prompt": "'Courageux comme un lion' est quel genre de rapprochement ?",
+   "options": [
+    "Une comparaison",
+    "Une métaphore"
+   ]
+  },
+  {
+   "prompt": "'Son sourire était du soleil' est quel genre ?",
+   "options": [
+    "Une métaphore",
+    "Une comparaison"
+   ]
+  }
+ ],
+ "s10.reading.lesson.02": [
+  {
+   "prompt": "'Il pleut des cordes' veut dire…",
+   "options": [
+    "il pleut très fort",
+    "des cordes tombent"
+   ]
+  },
+  {
+   "prompt": "'Les doigts dans le nez' veut dire que c'est…",
+   "options": [
+    "très facile",
+    "très salissant"
+   ]
+  }
+ ],
+ "s10.reading.lesson.03": [
+  {
+   "prompt": "Qu'est-ce qu'un thème ?",
+   "options": [
+    "La grande leçon d'une histoire",
+    "La liste des personnages"
+   ]
+  },
+  {
+   "prompt": "Une tortue lente gagne à force d'efforts. Quel est le thème ?",
+   "options": [
+    "L'effort régulier gagne",
+    "Les tortues sont rapides"
+   ]
+  }
+ ],
+ "s10.reading.lesson.04": [
+  {
+   "prompt": "'Je suis rentré à la maison' est raconté à quel point de vue ?",
+   "options": [
+    "Première personne",
+    "Troisième personne"
+   ]
+  },
+  {
+   "prompt": "'Elle est rentrée à la maison' est raconté à quel point de vue ?",
+   "options": [
+    "Troisième personne",
+    "Première personne"
+   ]
+  }
+ ],
+ "s10.science.lesson.03": [
+  {
+   "prompt": "Une lampe donne quelle forme d'énergie ?",
+   "options": [
+    "La lumière",
+    "Le son"
+   ]
+  },
+  {
+   "prompt": "Un tambour qui vibre donne quelle forme d'énergie ?",
+   "options": [
+    "Le son",
+    "La lumière"
+   ]
+  }
+ ],
+ "s10.science.lesson.05": [
+  {
+   "prompt": "Chauffer la glace jusqu'à obtenir de l'eau s'appelle…",
+   "options": [
+    "la fusion",
+    "la congélation"
+   ]
+  },
+  {
+   "prompt": "Refroidir l'eau jusqu'à obtenir de la glace s'appelle…",
+   "options": [
+    "la congélation",
+    "la fusion"
+   ]
+  }
+ ],
+ "s10.science.lesson.06": [
+  {
+   "prompt": "Quelle est la première étape de la démarche scientifique ?",
+   "options": [
+    "Poser une question",
+    "Tirer une conclusion"
+   ]
+  },
+  {
+   "prompt": "Une supposition réfléchie que l'on teste s'appelle une…",
+   "options": [
+    "hypothèse",
+    "conclusion"
+   ]
+  }
+ ],
+ "s10.social.lesson.02": [
+  {
+   "prompt": "Quelle branche applique les lois ?",
+   "options": [
+    "L'exécutif",
+    "Le judiciaire"
+   ]
+  },
+  {
+   "prompt": "Quelle branche décide du sens des lois ?",
+   "options": [
+    "Le judiciaire",
+    "Le législatif"
+   ]
+  }
+ ],
+ "s10.social.lesson.03": [
+  {
+   "prompt": "Quand beaucoup de gens veulent un objet rare, le prix souvent…",
+   "options": [
+    "monte",
+    "baisse"
+   ]
+  },
+  {
+   "prompt": "Une coupe de cheveux est un travail utile, c'est donc un…",
+   "options": [
+    "service",
+    "bien"
+   ]
+  }
+ ],
+ "s10.social.lesson.06": [
+  {
+   "prompt": "Comment les citoyens choisissent-ils leurs dirigeants ?",
+   "options": [
+    "En votant",
+    "En devinant"
+   ]
+  },
+  {
+   "prompt": "Respecter des règles justes et aider les autres, ce sont des…",
+   "options": [
+    "devoirs de citoyen",
+    "droits de citoyen"
+   ]
+  }
+ ],
+ "s10.coding.lesson.01": [
+  {
+   "prompt": "Quelle commande Python affiche du texte à l'écran ?",
+   "options": [
+    "print()",
+    "erase()"
+   ]
+  },
+  {
+   "prompt": "Deux lignes print() donnent combien de lignes de sortie ?",
+   "options": [
+    "2",
+    "1"
+   ]
+  }
+ ],
+ "s10.coding.lesson.02": [
+  {
+   "prompt": "Après name = \"Ada\", qu'affiche print(name) ?",
+   "options": [
+    "Ada",
+    "name"
+   ]
+  },
+  {
+   "prompt": "Une même variable peut-elle contenir des valeurs différentes selon le moment ?",
+   "options": [
+    "Oui",
+    "Non"
+   ]
+  }
+ ],
+ "s10.coding.lesson.03": [
+  {
+   "prompt": "for i in range(5) répète combien de fois ?",
+   "options": [
+    "Cinq",
+    "Une",
+    "Quatre"
+   ]
+  },
+  {
+   "prompt": "Pourquoi utiliser une boucle for ?",
+   "options": [
+    "Elle évite de retaper la même ligne",
+    "Elle ralentit le programme"
+   ]
+  }
+ ],
+ "s10.coding.lesson.04": [
+  {
+   "prompt": "score = 12 et la règle est score >= 10. Quel chemin s'exécute ?",
+   "options": [
+    "Le chemin du if",
+    "Le chemin du else"
+   ]
+  },
+  {
+   "prompt": "Que se passe-t-il quand la condition est fausse ?",
+   "options": [
+    "Le chemin du else s'exécute",
+    "Rien du tout"
+   ]
+  }
+ ],
+ "s10.coding.lesson.05": [
+  {
+   "prompt": "prnt(\"Hello\") ne marche pas. Quel est le problème ?",
+   "options": [
+    "La commande est mal orthographiée",
+    "Il manque les guillemets"
+   ]
+  },
+  {
+   "prompt": "Quelle est la meilleure façon de corriger des erreurs ?",
+   "options": [
+    "Une chose à la fois",
+    "Tout changer d'un coup"
+   ]
+  }
+ ],
+ "s10.writing.lesson.01": [
+  {
+   "prompt": "Quelle partie d'une rédaction vient en premier ?",
+   "options": [
+    "L'introduction",
+    "La conclusion"
+   ]
+  },
+  {
+   "prompt": "Quelle partie donne les raisons et les détails ?",
+   "options": [
+    "Le développement",
+    "L'introduction"
+   ]
+  }
+ ],
+ "s10.writing.lesson.02": [
+  {
+   "prompt": "Que fait une phrase-sujet ?",
+   "options": [
+    "Elle donne l'idée principale",
+    "Elle termine le paragraphe"
+   ]
+  },
+  {
+   "prompt": "Un bon paragraphe contient…",
+   "options": [
+    "une idée claire et des raisons",
+    "beaucoup de sujets différents"
+   ]
+  }
+ ],
+ "s10.writing.lesson.03": [
+  {
+   "prompt": "Quel mot marque une opposition ?",
+   "options": [
+    "Cependant",
+    "D'abord"
+   ]
+  },
+  {
+   "prompt": "Quel mot marque la cause et l'effet ?",
+   "options": [
+    "Parce que",
+    "Ensuite"
+   ]
+  }
+ ],
+ "s10.writing.lesson.05": [
+  {
+   "prompt": "Une écriture qui raconte une histoire est…",
+   "options": [
+    "narrative",
+    "persuasive"
+   ]
+  },
+  {
+   "prompt": "Une écriture qui cherche à te convaincre est…",
+   "options": [
+    "persuasive",
+    "informative"
+   ]
+  }
+ ],
+ "s10.writing.lesson.06": [
+  {
+   "prompt": "Que fait-on en premier pour améliorer un brouillon ?",
+   "options": [
+    "Réviser les idées",
+    "Corriger la langue"
+   ]
+  },
+  {
+   "prompt": "Corriger l'orthographe, les majuscules et la ponctuation, c'est…",
+   "options": [
+    "l'édition",
+    "la révision"
+   ]
+  }
+ ],
+ "s08.math.lesson.01": [
+  {
+   "prompt": "3 rangées de 4 points font combien en tout ?",
+   "options": [
+    "12",
+    "7",
+    "34"
+   ]
+  },
+  {
+   "prompt": "2 rangées de 5 font combien ?",
+   "options": [
+    "10",
+    "7",
+    "25"
+   ]
+  }
+ ]
+}
