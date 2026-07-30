@@ -1743,9 +1743,16 @@
      "feedback": "Array fills in row by row."
     },
     {
-     "narration": "Count: 3 rows × 4 = ? Tap your answer.",
-     "action": "input",
-     "feedback": "'3 × 4 = 12.' Multiplication is just equal groups."
+     "narration": "Three rows of four. How many altogether?",
+     "action": "tap",
+     "feedback": "12. Three equal rows of four, so 3 × 4 = 12.",
+     "choices": [
+      "12",
+      "7",
+      "34"
+     ],
+     "choiceIndex": 0,
+     "mechanic": "multiChoice"
     },
     {
      "narration": "Try it your way: build 2 × 5.",
@@ -3010,14 +3017,26 @@
    ],
    "steps": [
     {
-     "narration": "Is a dog living? Drag it to living.",
-     "action": "drag",
-     "feedback": "'Yes! A dog grows, eats, and breathes.'"
+     "narration": "Is a dog living or non-living?",
+     "action": "tap",
+     "feedback": "Living! A dog grows, eats, and breathes.",
+     "choices": [
+      "Living",
+      "Non-living"
+     ],
+     "choiceIndex": 0,
+     "mechanic": "multiChoice"
     },
     {
-     "narration": "Is a rock living? Drag it to non-living.",
-     "action": "drag",
-     "feedback": "'Right. A rock does not grow or eat.'"
+     "narration": "Is a rock living or non-living?",
+     "action": "tap",
+     "feedback": "Non-living. A rock does not grow or eat.",
+     "choices": [
+      "Non-living",
+      "Living"
+     ],
+     "choiceIndex": 0,
+     "mechanic": "multiChoice"
     }
    ],
    "recap": [
@@ -4213,14 +4232,26 @@
    ],
    "steps": [
     {
-     "narration": "One box, two ___? Tap the plural.",
+     "narration": "One box, two ___. Which spelling is right?",
      "action": "tap",
-     "feedback": "'boxes'. Add -es after x."
+     "feedback": "boxes. After x you add -es.",
+     "choices": [
+      "boxes",
+      "boxs"
+     ],
+     "choiceIndex": 0,
+     "mechanic": "multiChoice"
     },
     {
-     "narration": "Today I walk. Yesterday I ___? Tap it.",
+     "narration": "Today I walk. Yesterday I ___. Which one?",
      "action": "tap",
-     "feedback": "'walked'. Past tense adds -ed."
+     "feedback": "walked. The past tense adds -ed.",
+     "choices": [
+      "walked",
+      "walking"
+     ],
+     "choiceIndex": 0,
+     "mechanic": "multiChoice"
     }
    ],
    "recap": [
@@ -4559,9 +4590,9 @@
    ],
    "steps": [
     {
-     "narration": "'As brave as a lion' compares using 'as'. That is a simile.",
+     "narration": "'As brave as a lion' compares using the word 'as'. Which kind of comparison is it?",
      "action": "tap",
-     "feedback": "Similes use like or as.",
+     "feedback": "A simile. It compares using 'like' or 'as'.",
      "mechanic": "multiChoice",
      "choices": [
       "Simile",
@@ -4570,9 +4601,9 @@
      "choiceIndex": 0
     },
     {
-     "narration": "'The classroom was a zoo' calls it something it is not. That is a metaphor.",
+     "narration": "'The classroom was a zoo' calls it something it is not. Which kind is it?",
      "action": "tap",
-     "feedback": "Metaphors compare directly. Nice!",
+     "feedback": "A metaphor. It says one thing is another.",
      "mechanic": "multiChoice",
      "choices": [
       "Simile",
@@ -12292,9 +12323,15 @@
    ],
    "steps": [
     {
-     "narration": "How long is the pencil? Tap to lay cubes along it.",
+     "narration": "Lay the cubes along the pencil. How long is it?",
      "action": "tap",
-     "feedback": "'Four cubes long!'"
+     "feedback": "Four cubes long! You measured end to end.",
+     "choices": [
+      "Four cubes",
+      "Ten cubes"
+     ],
+     "choiceIndex": 0,
+     "mechanic": "multiChoice"
     },
     {
      "narration": "The crayon is shorter. Three cubes.",
@@ -12659,9 +12696,15 @@
    ],
    "steps": [
     {
-     "narration": "To open the door, do we push or pull? Tap to push.",
+     "narration": "To open the door away from you, do we push or pull?",
      "action": "tap",
-     "feedback": "A push moves it away!"
+     "feedback": "A push! It moves the door away from you.",
+     "choices": [
+      "Push",
+      "Pull"
+     ],
+     "choiceIndex": 0,
+     "mechanic": "multiChoice"
     },
     {
      "narration": "To bring the wagon close, we pull.",
@@ -15334,14 +15377,26 @@
    ],
    "steps": [
     {
-     "narration": "The screen is where we see and tap. Tap the screen.",
+     "narration": "Which part do we look at and tap?",
      "action": "tap",
-     "feedback": "'The screen!'"
+     "feedback": "The screen. It shows everything we tap.",
+     "choices": [
+      "The screen",
+      "The button"
+     ],
+     "choiceIndex": 0,
+     "mechanic": "multiChoice"
     },
     {
-     "narration": "The button turns it on and off. Tap the button.",
+     "narration": "Which part turns the tablet on and off?",
      "action": "tap",
-     "feedback": "'The button!'"
+     "feedback": "The button. It powers the tablet on and off.",
+     "choices": [
+      "The button",
+      "The screen"
+     ],
+     "choiceIndex": 0,
+     "mechanic": "multiChoice"
     }
    ],
    "recap": [
@@ -16401,9 +16456,15 @@
    ],
    "steps": [
     {
-     "narration": "One cat, two ___? Add 's': cats. Tap 'cats'.",
+     "narration": "One cat, two ___. Which one?",
      "action": "tap",
-     "feedback": "'cats'. More than one!"
+     "feedback": "cats. Adding -s makes more than one.",
+     "choices": [
+      "cats",
+      "cat"
+     ],
+     "choiceIndex": 0,
+     "mechanic": "multiChoice"
     },
     {
      "narration": "One dog becomes two dogs.",
@@ -18487,9 +18548,15 @@
    ],
    "steps": [
     {
-     "narration": "'cup' + 'cake' = ? Drag them together.",
-     "action": "drag",
-     "feedback": "'cupcake.' Two words, one new word."
+     "narration": "Put 'cup' and 'cake' together. What word do they make?",
+     "action": "tap",
+     "feedback": "cupcake. Two words joined into one.",
+     "choices": [
+      "cupcake",
+      "cakecup"
+     ],
+     "choiceIndex": 0,
+     "mechanic": "multiChoice"
     },
     {
      "narration": "Now 'rain' + 'bow'.",
@@ -18597,9 +18664,15 @@
    ],
    "steps": [
     {
-     "narration": "'The thirsty dog drank from its bowl.' What does 'thirsty' mean? Tap your guess.",
+     "narration": "'The thirsty dog drank from its bowl.' What does 'thirsty' mean?",
      "action": "tap",
-     "feedback": "Needing a drink. The sentence gave you the clue."
+     "feedback": "Needing a drink. The sentence gave you the clue.",
+     "choices": [
+      "Needing a drink",
+      "Feeling sleepy"
+     ],
+     "choiceIndex": 0,
+     "mechanic": "multiChoice"
     },
     {
      "narration": "Other words give us clues.",
@@ -18656,9 +18729,15 @@
    ],
    "steps": [
     {
-     "narration": "'Maya played at the beach.' Who is the character? Tap Maya.",
+     "narration": "'Maya played at the beach.' Who is the character?",
      "action": "tap",
-     "feedback": "Maya is the character."
+     "feedback": "Maya. The character is who the story is about.",
+     "choices": [
+      "Maya",
+      "The beach"
+     ],
+     "choiceIndex": 0,
+     "mechanic": "multiChoice"
     },
     {
      "narration": "Where is the setting? Tap the beach.",
@@ -20947,9 +21026,15 @@
    ],
    "steps": [
     {
-     "narration": "'Mia grabbed her umbrella and frowned at the window.' What can you infer? Tap your idea.",
+     "narration": "'Mia grabbed her umbrella and frowned at the window.' What can you infer?",
      "action": "tap",
-     "feedback": "Good inference. It's probably raining! The clues told you."
+     "feedback": "It is raining. The umbrella and the frown were your clues.",
+     "choices": [
+      "It is raining",
+      "It is sunny"
+     ],
+     "choiceIndex": 0,
+     "mechanic": "multiChoice"
     },
     {
      "narration": "Authors don't say everything; readers figure it out.",
@@ -21006,9 +21091,15 @@
    ],
    "steps": [
     {
-     "narration": "Cause: it rained all night. What is the effect? Drag 'the river flooded'.",
-     "action": "drag",
-     "feedback": "Cause → effect."
+     "narration": "It rained all night. Which one is the effect?",
+     "action": "tap",
+     "feedback": "The river flooded. The rain was the cause; the flood is what it caused.",
+     "choices": [
+      "The river flooded",
+      "It rained all night"
+     ],
+     "choiceIndex": 0,
+     "mechanic": "multiChoice"
     },
     {
      "narration": "Signal words like 'because' and 'so' show the link.",
@@ -21555,9 +21646,15 @@
    ],
    "steps": [
     {
-     "narration": "This sentence has a mistake: 'my dog runs fast'. What's missing? Tap to add a capital and period.",
+     "narration": "Look at 'my dog runs fast'. What is missing?",
      "action": "tap",
-     "feedback": "'My dog runs fast.' Fixed."
+     "feedback": "A capital and a period. 'My dog runs fast.'",
+     "choices": [
+      "A capital and a period",
+      "Only a comma"
+     ],
+     "choiceIndex": 0,
+     "mechanic": "multiChoice"
     },
     {
      "narration": "Good writers always edit their work.",
@@ -21901,9 +21998,15 @@
    ],
    "steps": [
     {
-     "narration": "Round 47 to the nearest 10. Is it closer to 40 or 50? Tap 50.",
+     "narration": "Round 47 to the nearest ten. Is it closer to 40 or 50?",
      "action": "tap",
-     "feedback": "'47 rounds to 50.'"
+     "feedback": "50. 47 is past halfway, so it rounds up.",
+     "choices": [
+      "50",
+      "40"
+     ],
+     "choiceIndex": 0,
+     "mechanic": "multiChoice"
     },
     {
      "narration": "Round 230 to the nearest 100: 200.",
@@ -21962,9 +22065,16 @@
    ],
    "steps": [
     {
-     "narration": "The graph shows pets in class. Which bar is tallest? Tap it.",
+     "narration": "The graph shows pets in the class. Which pet has the tallest bar?",
      "action": "tap",
-     "feedback": "'Dogs. The most popular pet.'"
+     "feedback": "Dogs. The tallest bar means the most.",
+     "choices": [
+      "Dogs",
+      "Cats",
+      "Fish"
+     ],
+     "choiceIndex": 0,
+     "mechanic": "multiChoice"
     },
     {
      "narration": "How many more dogs than cats? Compare the bars.",
@@ -23070,9 +23180,15 @@
    ],
    "steps": [
     {
-     "narration": "'5 is greater than 3'. Is that true or false? Tap true.",
+     "narration": "'5 is greater than 3'. Is that true or false?",
      "action": "tap",
-     "feedback": "True. 5 > 3."
+     "feedback": "True. 5 is more than 3.",
+     "choices": [
+      "True",
+      "False"
+     ],
+     "choiceIndex": 0,
+     "mechanic": "multiChoice"
     },
     {
      "narration": "'A cat has wings' is false. Computers use true/false to decide.",
@@ -24207,9 +24323,15 @@
    ],
    "steps": [
     {
-     "narration": "'Mateo zipped his coat and stamped his boots in the snow.' Is it warm or cold? Tap your inference.",
+     "narration": "'Mateo zipped his coat and stamped his boots in the snow.' Is it warm or cold?",
      "action": "tap",
-     "feedback": "Cold. The clues tell us, even though it isn't stated."
+     "feedback": "Cold. The coat, the boots and the snow are the clues.",
+     "choices": [
+      "Cold",
+      "Warm"
+     ],
+     "choiceIndex": 0,
+     "mechanic": "multiChoice"
     },
     {
      "narration": "An inference is a smart guess from evidence in the text.",
