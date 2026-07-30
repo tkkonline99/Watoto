@@ -21,6 +21,12 @@ import '../network/watoto_api.dart';
 import 'offline_store.dart';
 import 'sync_engine.dart';
 
+// OfflineStore's facets live in part files as extensions, and an
+// extension is only in scope where its library is imported. Most of the
+// app reaches the store through this file, so re-export it here rather
+// than add an import line to every caller.
+export 'offline_store.dart';
+
 /// Opened during bootstrap (main.dart) and injected via override so widget
 /// tests can supply an in-memory store.
 final offlineStoreProvider = Provider<OfflineStore>(

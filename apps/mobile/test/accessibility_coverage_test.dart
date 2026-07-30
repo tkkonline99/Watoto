@@ -56,8 +56,15 @@ void main() {
     // Text scale, reading ease, high contrast and reduced motion are the four
     // the design system promises; a setting that exists but is unreadable is
     // the same as no setting.
-    final store =
-        File('lib/core/offline/offline_store.dart').readAsStringSync();
+    // The store is one library spread over offline_store.dart and its part
+    // files, so read all of them — the settings facet is not in the main file.
+    final store = Directory('lib/core/offline')
+        .listSync()
+        .whereType<File>()
+        .where((f) => f.path.split(RegExp(r'[/\\]')).last
+            .startsWith('offline_store'))
+        .map((f) => f.readAsStringSync())
+        .join('\n');
     for (final setting in [
       'textScale',
       'dyslexiaFriendly',

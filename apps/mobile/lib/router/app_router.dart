@@ -26,6 +26,7 @@ import '../features/profiles/profile_picker_screen.dart';
 import '../features/quiz/quiz_runner_screen.dart';
 import '../features/stories/story_library_screen.dart';
 import 'return_to.dart';
+import '../core/offline/offline_store.dart';
 
 /// Router is provided (not a global) so each app instance — and each widget
 /// test — gets fresh navigation state. Guards enforce the deployment-required

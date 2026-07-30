@@ -14,6 +14,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../offline/offline_providers.dart';
+import '../offline/offline_store.dart';
 
 /// Named product events (stable strings for dashboards).
 abstract final class AnalyticsEvents {
