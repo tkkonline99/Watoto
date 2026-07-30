@@ -631,7 +631,7 @@ abstract class AppLocalizations {
   /// No description provided for @wrongNumbers.
   ///
   /// In en, this message translates to:
-  /// **'Those numbers don\'t match — try again'**
+  /// **'Those numbers don\'t match. Try again'**
   String get wrongNumbers;
 
   /// No description provided for @stageOf.
@@ -877,7 +877,7 @@ abstract class AppLocalizations {
   /// No description provided for @avatarShopBody.
   ///
   /// In en, this message translates to:
-  /// **'Spend coins on fun animal friends. Coins never buy learning — only looks!'**
+  /// **'Spend coins on fun animal friends. Coins never buy learning, only looks!'**
   String get avatarShopBody;
 
   /// No description provided for @freeAvatars.
@@ -895,7 +895,7 @@ abstract class AppLocalizations {
   /// No description provided for @notEnoughCoins.
   ///
   /// In en, this message translates to:
-  /// **'Need more coins — play to earn!'**
+  /// **'Need more coins. Play to earn!'**
   String get notEnoughCoins;
 
   /// No description provided for @screenTime.
@@ -1039,7 +1039,7 @@ abstract class AppLocalizations {
   /// No description provided for @tourBody.
   ///
   /// In en, this message translates to:
-  /// **'Hi {name}! Try one short activity with me — I\'ll cheer you on.'**
+  /// **'Hi {name}! Try one short activity with me. I\'ll cheer you on.'**
   String tourBody(String name);
 
   /// No description provided for @tourStart.
@@ -1177,7 +1177,7 @@ abstract class AppLocalizations {
   /// No description provided for @highContrastBody.
   ///
   /// In en, this message translates to:
-  /// **'Stronger colours and borders for low vision'**
+  /// **'Stronger colors and borders for low vision'**
   String get highContrastBody;
 
   /// No description provided for @reducedMotion.
@@ -1405,7 +1405,7 @@ abstract class AppLocalizations {
   /// No description provided for @parentGateWrong.
   ///
   /// In en, this message translates to:
-  /// **'Not quite — try again'**
+  /// **'Not quite. Try again'**
   String get parentGateWrong;
 
   /// No description provided for @forgotPinTitle.
@@ -1759,7 +1759,7 @@ abstract class AppLocalizations {
   /// No description provided for @mascotProud.
   ///
   /// In en, this message translates to:
-  /// **'{days} days in a row — I\'m so proud!'**
+  /// **'{days} days in a row. I\'m so proud!'**
   String mascotProud(int days);
 
   /// No description provided for @mascotCurious.
@@ -1789,7 +1789,7 @@ abstract class AppLocalizations {
   /// No description provided for @familyChallengeDone.
   ///
   /// In en, this message translates to:
-  /// **'Done — the whole family got there!'**
+  /// **'Done. The whole family got there!'**
   String get familyChallengeDone;
 
   /// No description provided for @sendCheer.
@@ -1951,7 +1951,7 @@ abstract class AppLocalizations {
   /// No description provided for @nextReview.
   ///
   /// In en, this message translates to:
-  /// **'Let\'s practise this one again'**
+  /// **'Let\'s practice this one again'**
   String get nextReview;
 
   /// No description provided for @badgeTwentyLessons.
@@ -2029,7 +2029,7 @@ abstract class AppLocalizations {
   /// No description provided for @stretchKeepPlaying.
   ///
   /// In en, this message translates to:
-  /// **'I stretched — keep playing'**
+  /// **'I stretched. Keep playing'**
   String get stretchKeepPlaying;
 
   /// No description provided for @stretchGoHome.

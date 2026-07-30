@@ -294,7 +294,7 @@ class AppLocalizationsSw extends AppLocalizations {
   String get gateAnswerHint => 'Andika jibu';
 
   @override
-  String get wrongNumbers => 'Namba hazifanani — jaribu tena';
+  String get wrongNumbers => 'Namba hazifanani. Jaribu tena';
 
   @override
   String stageOf(int stage, String ages) {
@@ -430,7 +430,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get avatarShopBody =>
-      'Tumia sarafu kununua marafiki wa wanyama. Sarafu hazinunui masomo — sura tu!';
+      'Tumia sarafu kununua marafiki wa wanyama. Sarafu hazinunui masomo. Sura tu!';
 
   @override
   String get freeAvatars => 'Wanyama wako';
@@ -439,7 +439,7 @@ class AppLocalizationsSw extends AppLocalizations {
   String get shopAvatars => 'Fungua zaidi';
 
   @override
-  String get notEnoughCoins => 'Unahitaji sarafu zaidi — cheza ili upate!';
+  String get notEnoughCoins => 'Unahitaji sarafu zaidi. Cheza ili upate!';
 
   @override
   String get screenTime => 'Muda wa skrini';
@@ -520,7 +520,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String tourBody(String name) {
-    return 'Habari $name! Tujaribu shughuli fupi — nitakushangilia.';
+    return 'Habari $name! Tujaribu shughuli fupi. Nitakushangilia.';
   }
 
   @override
@@ -734,7 +734,7 @@ class AppLocalizationsSw extends AppLocalizations {
   }
 
   @override
-  String get parentGateWrong => 'Sio sahihi — jaribu tena';
+  String get parentGateWrong => 'Sio sahihi. Jaribu tena';
 
   @override
   String get forgotPinTitle => 'Umesahau PIN yako?';
@@ -943,7 +943,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String mascotProud(int days) {
-    return 'Siku $days mfululizo — ninajivunia!';
+    return 'Siku $days mfululizo. Ninajivunia!';
   }
 
   @override
@@ -961,7 +961,7 @@ class AppLocalizationsSw extends AppLocalizations {
   }
 
   @override
-  String get familyChallengeDone => 'Imekamilika — familia nzima imefika!';
+  String get familyChallengeDone => 'Imekamilika. Familia nzima imefika!';
 
   @override
   String sendCheer(String name) {
@@ -1102,7 +1102,7 @@ class AppLocalizationsSw extends AppLocalizations {
       'Umekuwa ukijifunza kwa muda. Simama, jinyooshe juu, na kunja mikono yako.';
 
   @override
-  String get stretchKeepPlaying => 'Nimejinyoosha — endelea';
+  String get stretchKeepPlaying => 'Nimejinyoosha. Endelea';
 
   @override
   String get stretchGoHome => 'Nenda nyumbani';

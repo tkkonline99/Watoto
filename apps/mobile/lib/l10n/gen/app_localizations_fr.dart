@@ -295,7 +295,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get gateAnswerHint => 'Tape la réponse';
 
   @override
-  String get wrongNumbers => 'Ces chiffres ne correspondent pas — réessaie';
+  String get wrongNumbers => 'Ces chiffres ne correspondent pas. Réessaie';
 
   @override
   String stageOf(int stage, String ages) {
@@ -432,7 +432,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get avatarShopBody =>
-      'Dépense des pièces pour de nouveaux animaux. Les pièces n\'achètent jamais d\'apprentissage — seulement le look !';
+      'Dépense des pièces pour de nouveaux animaux. Les pièces n\'achètent jamais d\'apprentissage, seulement le look !';
 
   @override
   String get freeAvatars => 'Tes animaux';
@@ -441,7 +441,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get shopAvatars => 'En débloquer plus';
 
   @override
-  String get notEnoughCoins => 'Il faut plus de pièces — joue pour en gagner !';
+  String get notEnoughCoins => 'Il faut plus de pièces. Joue pour en gagner !';
 
   @override
   String get screenTime => 'Temps d\'écran';
@@ -522,7 +522,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String tourBody(String name) {
-    return 'Salut $name ! Faisons une petite activité — je t\'encourage.';
+    return 'Salut $name ! Faisons une petite activité. Je t\'encourage.';
   }
 
   @override
@@ -738,7 +738,7 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get parentGateWrong => 'Pas tout à fait — réessayez';
+  String get parentGateWrong => 'Pas tout à fait. Réessayez';
 
   @override
   String get forgotPinTitle => 'Code PIN oublié ?';
@@ -949,7 +949,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String mascotProud(int days) {
-    return '$days jours d\'affilée — je suis fier !';
+    return '$days jours d\'affilée. Je suis fier !';
   }
 
   @override
@@ -967,7 +967,7 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get familyChallengeDone => 'Réussi — toute la famille y est arrivée !';
+  String get familyChallengeDone => 'Réussi. Toute la famille y est arrivée !';
 
   @override
   String sendCheer(String name) {
@@ -1109,7 +1109,7 @@ class AppLocalizationsFr extends AppLocalizations {
       'Tu apprends depuis un moment. Lève-toi, étire-toi bien haut et secoue les mains.';
 
   @override
-  String get stretchKeepPlaying => 'Je me suis étiré — on continue';
+  String get stretchKeepPlaying => 'Je me suis étiré. On continue';
 
   @override
   String get stretchGoHome => 'Retour à l\'accueil';

@@ -294,7 +294,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get gateAnswerHint => 'Type the answer';
 
   @override
-  String get wrongNumbers => 'Those numbers don\'t match — try again';
+  String get wrongNumbers => 'Those numbers don\'t match. Try again';
 
   @override
   String stageOf(int stage, String ages) {
@@ -431,7 +431,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get avatarShopBody =>
-      'Spend coins on fun animal friends. Coins never buy learning — only looks!';
+      'Spend coins on fun animal friends. Coins never buy learning, only looks!';
 
   @override
   String get freeAvatars => 'Your animals';
@@ -440,7 +440,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get shopAvatars => 'Unlock more';
 
   @override
-  String get notEnoughCoins => 'Need more coins — play to earn!';
+  String get notEnoughCoins => 'Need more coins. Play to earn!';
 
   @override
   String get screenTime => 'Screen time';
@@ -521,7 +521,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String tourBody(String name) {
-    return 'Hi $name! Try one short activity with me — I\'ll cheer you on.';
+    return 'Hi $name! Try one short activity with me. I\'ll cheer you on.';
   }
 
   @override
@@ -602,7 +602,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get highContrast => 'High contrast';
 
   @override
-  String get highContrastBody => 'Stronger colours and borders for low vision';
+  String get highContrastBody => 'Stronger colors and borders for low vision';
 
   @override
   String get reducedMotion => 'Reduce motion';
@@ -741,7 +741,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get parentGateWrong => 'Not quite — try again';
+  String get parentGateWrong => 'Not quite. Try again';
 
   @override
   String get forgotPinTitle => 'Forgot your PIN?';
@@ -949,7 +949,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String mascotProud(int days) {
-    return '$days days in a row — I\'m so proud!';
+    return '$days days in a row. I\'m so proud!';
   }
 
   @override
@@ -967,7 +967,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get familyChallengeDone => 'Done — the whole family got there!';
+  String get familyChallengeDone => 'Done. The whole family got there!';
 
   @override
   String sendCheer(String name) {
@@ -1063,7 +1063,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get nextReview => 'Let\'s practise this one again';
+  String get nextReview => 'Let\'s practice this one again';
 
   @override
   String get badgeTwentyLessons => '20 lessons';
@@ -1106,7 +1106,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'You have been learning for a while. Stand up, stretch tall, and shake your hands.';
 
   @override
-  String get stretchKeepPlaying => 'I stretched — keep playing';
+  String get stretchKeepPlaying => 'I stretched. Keep playing';
 
   @override
   String get stretchGoHome => 'Go home';

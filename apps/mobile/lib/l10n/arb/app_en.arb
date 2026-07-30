@@ -125,7 +125,7 @@
   "grownupCheck": "Grown-up check",
   "grownupCheckBody": "Ask a grown-up to continue. Type these numbers:",
   "gateAnswerHint": "Type the answer",
-  "wrongNumbers": "Those numbers don't match — try again",
+  "wrongNumbers": "Those numbers don't match. Try again",
   "stageOf": "Stage {stage} · Ages {ages}",
   "legalSection": "About & legal",
   "privacyPolicy": "Privacy Policy",
@@ -194,10 +194,10 @@
   "playNow": "Play now",
   "continueLearning": "Keep going",
   "avatarShop": "Avatar shop",
-  "avatarShopBody": "Spend coins on fun animal friends. Coins never buy learning — only looks!",
+  "avatarShopBody": "Spend coins on fun animal friends. Coins never buy learning, only looks!",
   "freeAvatars": "Your animals",
   "shopAvatars": "Unlock more",
-  "notEnoughCoins": "Need more coins — play to earn!",
+  "notEnoughCoins": "Need more coins. Play to earn!",
   "screenTime": "Screen time",
   "screenTimeBody": "Soft daily limit. When time is up, Watoto shows a rest screen (no hard lock-outs mid-activity).",
   "screenTimeOff": "Off",
@@ -231,7 +231,7 @@
   "restoreNone": "No purchases to restore yet.",
   "premiumAskGrownUp": "Ask a grown-up to unlock Premium",
   "tourTitle": "Let's play together!",
-  "tourBody": "Hi {name}! Try one short activity with me — I'll cheer you on.",
+  "tourBody": "Hi {name}! Try one short activity with me. I'll cheer you on.",
   "@tourBody": {
     "placeholders": {
       "name": { "type": "String" }
@@ -278,7 +278,7 @@
   "readingEase": "Reading ease",
   "readingEaseBody": "Wider letter spacing and line height for easier reading",
   "highContrast": "High contrast",
-  "highContrastBody": "Stronger colours and borders for low vision",
+  "highContrastBody": "Stronger colors and borders for low vision",
   "reducedMotion": "Reduce motion",
   "reducedMotionBody": "Calmer animations and mascot movement",
   "analyticsOptIn": "Help improve Watoto",
@@ -362,7 +362,7 @@
       "question": { "type": "String" }
     }
   },
-  "parentGateWrong": "Not quite — try again",
+  "parentGateWrong": "Not quite. Try again",
   "forgotPinTitle": "Forgot your PIN?",
   "forgotPinBodyAccount": "Enter your account password to set a new PIN.",
   "forgotPinBodyPinOnly": "This family uses a PIN only, so there is no password to check. Set a new PIN below.",
@@ -472,7 +472,7 @@
   "mascotNameHint": "What shall we call them?",
   "mascotDefaultName": "Your lion friend",
   "mascotMissedYou": "I missed you! Shall we play?",
-  "mascotProud": "{days} days in a row — I'm so proud!",
+  "mascotProud": "{days} days in a row. I'm so proud!",
   "@mascotProud": {
     "placeholders": {
       "days": { "type": "int" }
@@ -487,7 +487,7 @@
       "count": { "type": "int" }
     }
   },
-  "familyChallengeDone": "Done — the whole family got there!",
+  "familyChallengeDone": "Done. The whole family got there!",
   "sendCheer": "Send {name} a cheer",
   "@sendCheer": {
     "placeholders": {
@@ -546,7 +546,7 @@
       "language": { "type": "String" }
     }
   },
-  "nextReview": "Let's practise this one again",
+  "nextReview": "Let's practice this one again",
   "badgeTwentyLessons": "20 lessons",
   "badgeStreak14": "14-day streak",
   "badgeThreeStories": "3 stories",
@@ -564,7 +564,7 @@
   "highFiveButton": "Keep playing",
   "stretchTitle": "Wiggle break!",
   "stretchBody": "You have been learning for a while. Stand up, stretch tall, and shake your hands.",
-  "stretchKeepPlaying": "I stretched — keep playing",
+  "stretchKeepPlaying": "I stretched. Keep playing",
   "stretchGoHome": "Go home",
   "whatsNewTitle": "What's new",
   "whatsNewSubtitle": "You are on version {version}",
