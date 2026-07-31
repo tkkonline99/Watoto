@@ -21,7 +21,7 @@ import '../features/onboarding/language_select_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
 import '../features/parent/guides_screen.dart';
 import '../features/parent/parent_dashboard_screen.dart';
-import '../features/parent/pin_gate_screen.dart';
+import '../features/parent/parent_zone_gate_screen.dart';
 import '../features/parent/rest_screen.dart';
 import '../features/profiles/add_child_screen.dart';
 import '../features/profiles/profile_picker_screen.dart';
@@ -86,18 +86,20 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       // Already in — the login screen has nothing left to say.
       if (loc == '/login') return '/';
 
-      if (loc.startsWith('/parent') || loc == '/paywall') {
-        if (loc == '/parent/pin') return null;
-        // Account families are let straight in (no PIN). Otherwise PIN families
-        // unlock with the PIN; a signed-out account family logs back in.
+      // Everything a child must not reach, whoever is signed in: settings and
+      // consent, purchases, and the account screen — which can change the
+      // password or delete the family outright.
+      if (loc.startsWith('/parent') ||
+          loc == '/paywall' ||
+          loc.startsWith('/account')) {
+        if (loc == '/parent/unlock') return null;
+        // Being logged in is not enough; the grown-up proves it at the gate,
+        // and backgrounding the app closes it again.
         if (s.parentAccessAllowed) return null;
         // Carry the full intended location (query included) through the gate,
         // so unlocking hands the family back to the activity they came for
         // instead of stranding them on the dashboard.
-        final intended = state.uri.toString();
-        return ref.read(offlineStoreProvider).hasPin
-            ? gateWithReturn('/parent/pin', intended)
-            : gateWithReturn('/login', intended);
+        return gateWithReturn('/parent/unlock', state.uri.toString());
       }
 
       if (loc == '/rest') return null;
@@ -126,7 +128,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         builder: (c, s) => const ProfilePickerScreen(),
       ),
       GoRoute(path: '/profiles/add', builder: (c, s) => const AddChildScreen()),
-      GoRoute(path: '/parent/pin', builder: (c, s) => const PinGateScreen()),
+      GoRoute(
+        path: '/parent/unlock',
+        builder: (c, s) => const ParentZoneGateScreen(),
+      ),
       GoRoute(path: '/pin-reset', builder: (c, s) => const PinResetScreen()),
       GoRoute(
         path: '/password-reset',

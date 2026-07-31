@@ -45,6 +45,7 @@
   "pinMismatch": "PIN hazifanani",
   "enterPinTitle": "Watu wazima pekee",
   "enterPinSubtitle": "Weka PIN yako ya mzazi ili kuendelea.",
+  "enterPasswordSubtitle": "Weka nenosiri lako ili kuendelea.",
   "wrongPin": "PIN si sahihi, jaribu tena",
   "unlock": "Fungua",
   "createAccount": "Fungua akaunti",

@@ -154,6 +154,9 @@ class AppLocalizationsSw extends AppLocalizations {
   String get enterPinSubtitle => 'Weka PIN yako ya mzazi ili kuendelea.';
 
   @override
+  String get enterPasswordSubtitle => 'Weka nenosiri lako ili kuendelea.';
+
+  @override
   String get wrongPin => 'PIN si sahihi, jaribu tena';
 
   @override

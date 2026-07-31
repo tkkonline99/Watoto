@@ -73,7 +73,7 @@ class _PinResetScreenState extends ConsumerState<PinResetScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(l10n.pinResetSuccess)),
       );
-      context.go('/parent/pin');
+      context.go('/parent/unlock');
     } catch (e) {
       setState(() {
         _error = e is StateError
@@ -95,7 +95,7 @@ class _PinResetScreenState extends ConsumerState<PinResetScreen> {
     return SavannaScaffold(
       topRight: IconButton(
         icon: const Icon(Icons.close, color: WatotoColors.deep),
-        onPressed: () => context.go('/parent/pin'),
+        onPressed: () => context.go('/parent/unlock'),
       ),
       child: Center(
         child: SingleChildScrollView(

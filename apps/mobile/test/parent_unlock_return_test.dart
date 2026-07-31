@@ -117,8 +117,8 @@ void main() {
   group('return_to', () {
     test('carries an in-app destination', () {
       expect(
-        gateWithReturn('/parent/pin', '/play/abc'),
-        '/parent/pin?from=%2Fplay%2Fabc',
+        gateWithReturn('/parent/unlock', '/play/abc'),
+        '/parent/unlock?from=%2Fplay%2Fabc',
       );
     });
 
@@ -126,7 +126,7 @@ void main() {
       // The real chain: a locked lesson sends the grown-up to the paywall, and
       // the router wraps that in the PIN gate. Both hops must decode back out.
       final toPaywall = gateWithReturn('/paywall', '/play/s07.reading.lesson.03');
-      final toPin = gateWithReturn('/parent/pin', toPaywall);
+      final toPin = gateWithReturn('/parent/unlock', toPaywall);
 
       final afterPin = Uri.parse(toPin).queryParameters[returnToParam];
       expect(afterPin, toPaywall);
@@ -136,11 +136,16 @@ void main() {
 
     test('refuses external and gate destinations', () {
       // No open redirects, and no bouncing back into the gate just passed.
-      expect(gateWithReturn('/parent/pin', 'https://evil.example'),
-          '/parent/pin');
-      expect(gateWithReturn('/parent/pin', '//evil.example'), '/parent/pin');
-      expect(gateWithReturn('/parent/pin', '/parent/pin'), '/parent/pin');
-      expect(gateWithReturn('/paywall', '/account'), '/paywall');
+      expect(gateWithReturn('/parent/unlock', 'https://evil.example'),
+          '/parent/unlock');
+      expect(gateWithReturn('/parent/unlock', '//evil.example'), '/parent/unlock');
+      expect(gateWithReturn('/parent/unlock', '/parent/unlock'), '/parent/unlock');
+      expect(gateWithReturn('/parent/unlock', '/login'), '/parent/unlock');
+    });
+
+    test('carries /account, which is a destination and no longer a gate', () {
+      expect(gateWithReturn('/parent/unlock', '/account'),
+          '/parent/unlock?from=%2Faccount');
     });
   });
 
@@ -177,7 +182,7 @@ void main() {
 
     // Come in already past the PIN, straight at the paywall, with the lesson
     // recorded as the destination.
-    goTo(tester, '/parent/pin?from=%2Fpaywall');
+    goTo(tester, '/parent/unlock?from=%2Fpaywall');
     await tester.pumpAndSettle();
     await tester.enterText(find.byType(TextField), '1234');
     await tester.tap(find.text('Unlock'));
