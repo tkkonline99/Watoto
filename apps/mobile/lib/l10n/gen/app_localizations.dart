@@ -574,6 +574,144 @@ abstract class AppLocalizations {
   /// **'{name}, age {age}'**
   String childNameAge(String name, int age);
 
+  /// No description provided for @consentEnabled.
+  ///
+  /// In en, this message translates to:
+  /// **'What you turned on'**
+  String get consentEnabled;
+
+  /// No description provided for @consentProgressOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress saving only'**
+  String get consentProgressOnly;
+
+  /// No description provided for @childProfileLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Child'**
+  String get childProfileLabel;
+
+  /// No description provided for @yourPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'Your plan'**
+  String get yourPlan;
+
+  /// No description provided for @planPremium.
+  ///
+  /// In en, this message translates to:
+  /// **'Premium · every stage'**
+  String get planPremium;
+
+  /// No description provided for @planFreeAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Free · every stage'**
+  String get planFreeAll;
+
+  /// No description provided for @planFreeUpTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Free · stages 1–{max}'**
+  String planFreeUpTo(int max);
+
+  /// No description provided for @yourData.
+  ///
+  /// In en, this message translates to:
+  /// **'Your data'**
+  String get yourData;
+
+  /// No description provided for @whereItIsSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Where it\'s saved'**
+  String get whereItIsSaved;
+
+  /// No description provided for @dataOnThisDevice.
+  ///
+  /// In en, this message translates to:
+  /// **'On this device only'**
+  String get dataOnThisDevice;
+
+  /// No description provided for @syncStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Progress backup'**
+  String get syncStatus;
+
+  /// No description provided for @dataAllSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Everything is saved'**
+  String get dataAllSaved;
+
+  /// No description provided for @changePassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Change password'**
+  String get changePassword;
+
+  /// No description provided for @changePin.
+  ///
+  /// In en, this message translates to:
+  /// **'Change PIN'**
+  String get changePin;
+
+  /// No description provided for @currentPasswordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Current password'**
+  String get currentPasswordLabel;
+
+  /// No description provided for @currentPinLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Current PIN'**
+  String get currentPinLabel;
+
+  /// No description provided for @wrongCurrentPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'That password is not right'**
+  String get wrongCurrentPassword;
+
+  /// No description provided for @wrongCurrentPin.
+  ///
+  /// In en, this message translates to:
+  /// **'That PIN is not right'**
+  String get wrongCurrentPin;
+
+  /// No description provided for @passwordChanged.
+  ///
+  /// In en, this message translates to:
+  /// **'Password changed'**
+  String get passwordChanged;
+
+  /// No description provided for @pinChanged.
+  ///
+  /// In en, this message translates to:
+  /// **'PIN changed'**
+  String get pinChanged;
+
+  /// No description provided for @addEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Add an email'**
+  String get addEmail;
+
+  /// No description provided for @addEmailBody.
+  ///
+  /// In en, this message translates to:
+  /// **'So you can get back in if you forget your PIN'**
+  String get addEmailBody;
+
+  /// No description provided for @emailSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Email saved'**
+  String get emailSaved;
+
   /// No description provided for @deleteAccount.
   ///
   /// In en, this message translates to:

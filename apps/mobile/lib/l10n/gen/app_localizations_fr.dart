@@ -265,6 +265,77 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get consentEnabled => 'Ce que tu as activé';
+
+  @override
+  String get consentProgressOnly => 'Sauvegarde des progrès uniquement';
+
+  @override
+  String get childProfileLabel => 'Enfant';
+
+  @override
+  String get yourPlan => 'Ta formule';
+
+  @override
+  String get planPremium => 'Premium · toutes les étapes';
+
+  @override
+  String get planFreeAll => 'Gratuit · toutes les étapes';
+
+  @override
+  String planFreeUpTo(int max) {
+    return 'Gratuit · étapes 1–$max';
+  }
+
+  @override
+  String get yourData => 'Tes données';
+
+  @override
+  String get whereItIsSaved => 'Où c\'est enregistré';
+
+  @override
+  String get dataOnThisDevice => 'Sur cet appareil uniquement';
+
+  @override
+  String get syncStatus => 'Sauvegarde des progrès';
+
+  @override
+  String get dataAllSaved => 'Tout est enregistré';
+
+  @override
+  String get changePassword => 'Changer le mot de passe';
+
+  @override
+  String get changePin => 'Changer le code';
+
+  @override
+  String get currentPasswordLabel => 'Mot de passe actuel';
+
+  @override
+  String get currentPinLabel => 'Code actuel';
+
+  @override
+  String get wrongCurrentPassword => 'Ce mot de passe n\'est pas le bon';
+
+  @override
+  String get wrongCurrentPin => 'Ce code n\'est pas le bon';
+
+  @override
+  String get passwordChanged => 'Mot de passe changé';
+
+  @override
+  String get pinChanged => 'Code changé';
+
+  @override
+  String get addEmail => 'Ajouter un e-mail';
+
+  @override
+  String get addEmailBody => 'Pour revenir si tu oublies ton code';
+
+  @override
+  String get emailSaved => 'E-mail enregistré';
+
+  @override
   String get deleteAccount => 'Supprimer le compte';
 
   @override

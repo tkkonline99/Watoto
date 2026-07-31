@@ -111,6 +111,34 @@
       "age": { "type": "int" }
     }
   },
+  "consentEnabled": "What you turned on",
+  "consentProgressOnly": "Progress saving only",
+  "childProfileLabel": "Child",
+  "yourPlan": "Your plan",
+  "planPremium": "Premium · every stage",
+  "planFreeAll": "Free · every stage",
+  "planFreeUpTo": "Free · stages 1–{max}",
+  "@planFreeUpTo": {
+    "placeholders": {
+      "max": { "type": "int" }
+    }
+  },
+  "yourData": "Your data",
+  "whereItIsSaved": "Where it's saved",
+  "dataOnThisDevice": "On this device only",
+  "syncStatus": "Progress backup",
+  "dataAllSaved": "Everything is saved",
+  "changePassword": "Change password",
+  "changePin": "Change PIN",
+  "currentPasswordLabel": "Current password",
+  "currentPinLabel": "Current PIN",
+  "wrongCurrentPassword": "That password is not right",
+  "wrongCurrentPin": "That PIN is not right",
+  "passwordChanged": "Password changed",
+  "pinChanged": "PIN changed",
+  "addEmail": "Add an email",
+  "addEmailBody": "So you can get back in if you forget your PIN",
+  "emailSaved": "Email saved",
   "deleteAccount": "Delete account",
   "deleteAccountBody": "Removes your account, your children and all their progress from this device.",
   "deleteAccountConfirm": "This erases your account, your children's profiles and everything they have learned on this device. It cannot be undone. Continue?",
