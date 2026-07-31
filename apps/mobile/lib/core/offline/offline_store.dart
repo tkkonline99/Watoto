@@ -268,14 +268,26 @@ class OfflineStore {
 
   String? get accountEmail => _account.get('accountEmail');
 
-  /// Whether a parent session is currently active (persisted across launches).
-  bool get isLoggedIn => _account.get('loggedIn') == 'true';
+  /// Whether the account's password actually lives on this device. A restored
+  /// backup carries [accountEmail] but never the hash (see
+  /// [_backupExcludedKeys]), so "has an account" and "can be signed in to" are
+  /// not the same question.
+  bool get hasAccountPassword => _account.get('accountHash') != null;
+
+  /// Whether a parent session is active **in this run**.
+  ///
+  /// Deliberately in memory and never persisted: the family's email is
+  /// remembered so they don't retype it, but the password or PIN is asked for
+  /// on every launch. Restarting the app always lands on `/login`.
+  bool get isLoggedIn => _sessionActive;
+
+  bool _sessionActive = false;
 
   Future<void> createAccount(String email, String password) async {
     await _account.put('accountEmail', email.trim().toLowerCase());
     await _account.put('accountSalt', _uuid.v4());
     await _account.put('accountHash', _hashAccount(password));
-    await _account.put('loggedIn', 'true');
+    _sessionActive = true;
   }
 
   bool verifyAccount(String password) =>
@@ -287,11 +299,37 @@ class OfflineStore {
       return false;
     }
     if (!verifyAccount(password)) return false;
-    await _account.put('loggedIn', 'true');
+    _sessionActive = true;
+    // Drop the flag written by builds that did persist the session, so an
+    // upgrade can't leave a stale "logged in" behind in the box.
+    if (_account.containsKey('loggedIn')) await _account.delete('loggedIn');
     return true;
   }
 
-  Future<void> signOut() => _account.put('loggedIn', 'false');
+  Future<void> signOut() async {
+    _sessionActive = false;
+    if (_account.containsKey('loggedIn')) await _account.delete('loggedIn');
+  }
+
+  /// Erases the account and **everything** attached to it on this device:
+  /// credentials, children, consent, progress, rewards and the pending sync
+  /// queue. The family is left at first run.
+  ///
+  /// The chosen language survives — it is a UI preference, not something the
+  /// family told us about themselves, and losing it would drop a Swahili
+  /// household back into English onboarding.
+  Future<void> deleteAccountAndAllData() async {
+    final locale = localeCode;
+    await _progress.clear();
+    await _queue.clear();
+    await _stats.clear();
+    await _account.clear();
+    _sessionActive = false;
+    if (locale != null) await _account.put('localeCode', locale);
+    // A fresh identity, so the deleted family's device id cannot be tied to
+    // whoever sets the app up next.
+    await _account.put('deviceId', _uuid.v4());
+  }
 
   String _hashAccount(String password) {
     final salt = _account.get('accountSalt') ?? '';

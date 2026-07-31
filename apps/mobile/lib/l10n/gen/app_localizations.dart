@@ -484,6 +484,114 @@ abstract class AppLocalizations {
   /// **'Signed in as {email}'**
   String signedInAs(String email);
 
+  /// No description provided for @welcomeBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back!'**
+  String get welcomeBack;
+
+  /// No description provided for @loginSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password to carry on.'**
+  String get loginSubtitle;
+
+  /// No description provided for @usePinToLogIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Use your PIN instead'**
+  String get usePinToLogIn;
+
+  /// No description provided for @usePasswordToLogIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Use your password instead'**
+  String get usePasswordToLogIn;
+
+  /// No description provided for @noCredentialsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'There is no password or PIN saved on this device. Set a new PIN to carry on.'**
+  String get noCredentialsSubtitle;
+
+  /// No description provided for @pinLockedFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many tries. Wait {seconds}s.'**
+  String pinLockedFor(int seconds);
+
+  /// No description provided for @myAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'My account'**
+  String get myAccount;
+
+  /// No description provided for @personalInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Your information'**
+  String get personalInfo;
+
+  /// No description provided for @signInMethod.
+  ///
+  /// In en, this message translates to:
+  /// **'How you sign in'**
+  String get signInMethod;
+
+  /// No description provided for @signInMethodPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Email & password'**
+  String get signInMethodPassword;
+
+  /// No description provided for @signInMethodPin.
+  ///
+  /// In en, this message translates to:
+  /// **'Parent PIN'**
+  String get signInMethodPin;
+
+  /// No description provided for @noEmailSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'No email saved'**
+  String get noEmailSaved;
+
+  /// No description provided for @consentRecorded.
+  ///
+  /// In en, this message translates to:
+  /// **'Consent given'**
+  String get consentRecorded;
+
+  /// No description provided for @noChildrenYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No children added yet'**
+  String get noChildrenYet;
+
+  /// No description provided for @childNameAge.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}, age {age}'**
+  String childNameAge(String name, int age);
+
+  /// No description provided for @deleteAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete account'**
+  String get deleteAccount;
+
+  /// No description provided for @deleteAccountBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Removes your account, your children and all their progress from this device.'**
+  String get deleteAccountBody;
+
+  /// No description provided for @deleteAccountConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'This erases your account, your children\'s profiles and everything they have learned on this device. It cannot be undone. Continue?'**
+  String get deleteAccountConfirm;
+
   /// No description provided for @createChildTitle.
   ///
   /// In en, this message translates to:

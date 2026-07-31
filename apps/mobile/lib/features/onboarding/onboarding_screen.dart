@@ -6,7 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../core/offline/offline_providers.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
-import '../auth/account_screen.dart' show accountFieldDecoration;
+import '../auth/auth_widgets.dart' show accountFieldDecoration;
 import '../profiles/child_form.dart';
 import 'consent.dart';
 import 'language_select_screen.dart';

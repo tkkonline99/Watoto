@@ -34,6 +34,10 @@ void main() {
     Hive.init(Directory.systemTemp.path);
     debugDisableSavannaAmbient = true;
     debugDisableMascotAnimation = true;
+    // These tests are about the *PIN* gate; start past the login gate so the
+    // redirect under test is the one being asserted. app_flow_test covers
+    // recovery being reachable from /login itself.
+    debugSkipLoginGate = true;
   });
 
   setUp(() async => store = await OfflineStore.open(inMemory: true));

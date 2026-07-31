@@ -60,6 +60,7 @@ class SessionState {
     required this.activeChildId,
     required this.parentUnlocked,
     required this.loggedIn,
+    required this.authenticated,
     required this.profilesRev,
   });
 
@@ -68,6 +69,15 @@ class SessionState {
   final bool parentUnlocked;
   final bool loggedIn; // a parent account session is active
   final int profilesRev; // bumps when the set of profiles changes
+
+  /// Whether the family has passed `/login` in this run.
+  ///
+  /// Always starts false — no session survives a restart, by design — and is
+  /// what the router requires before it hands over any surface. Backgrounding
+  /// the app does *not* clear it: that re-locks the Parent Zone
+  /// ([lockParent]), but throwing a child back to a password prompt every time
+  /// they glance at another app would make the device unusable.
+  final bool authenticated;
 
   /// PIN families need [parentUnlocked] this run. Account families may enter
   /// while [loggedIn]; sensitive actions still use the FTC parent gate.
@@ -79,6 +89,7 @@ class SessionState {
     Object? activeChildId = _unset,
     bool? parentUnlocked,
     bool? loggedIn,
+    bool? authenticated,
     int? profilesRev,
   }) => SessionState(
     onboardingComplete: onboardingComplete ?? this.onboardingComplete,
@@ -87,6 +98,7 @@ class SessionState {
         : activeChildId as String?,
     parentUnlocked: parentUnlocked ?? this.parentUnlocked,
     loggedIn: loggedIn ?? this.loggedIn,
+    authenticated: authenticated ?? this.authenticated,
     profilesRev: profilesRev ?? this.profilesRev,
   );
 
@@ -100,7 +112,11 @@ class SessionController extends StateNotifier<SessionState> {
           onboardingComplete: _store.onboardingComplete,
           activeChildId: _store.activeChildId,
           parentUnlocked: false,
+          // Both read the store's *in-memory* session, so a fresh launch is
+          // always signed out; they only carry over if this controller is
+          // rebuilt while a session is already running.
           loggedIn: _store.isLoggedIn,
+          authenticated: _store.isLoggedIn,
           profilesRev: 0,
         ),
       );
@@ -132,6 +148,9 @@ class SessionController extends StateNotifier<SessionState> {
       loggedIn: accountEmail != null,
       // Fresh onboarding unlocks parent for setup; backgrounds re-lock.
       parentUnlocked: true,
+      // The grown-up just chose the password/PIN, so don't turn round and ask
+      // for it — this run is authenticated. The next launch will ask.
+      authenticated: true,
       profilesRev: state.profilesRev + 1,
     );
     // Activation is the funnel step that matters most; no PII in the params.
@@ -154,19 +173,49 @@ class SessionController extends StateNotifier<SessionState> {
   /// Creates a local parent account and starts the session.
   Future<void> createAccount(String email, String password) async {
     await _store.createAccount(email, password);
-    state = state._copy(loggedIn: true, parentUnlocked: true);
+    state = state._copy(
+      loggedIn: true,
+      parentUnlocked: true,
+      authenticated: true,
+    );
   }
 
   /// Signs in to the local account; returns false on a credential mismatch.
   Future<bool> signIn(String email, String password) async {
     final ok = await _store.signIn(email, password);
-    if (ok) state = state._copy(loggedIn: true, parentUnlocked: true);
+    if (ok) {
+      state = state._copy(
+        loggedIn: true,
+        parentUnlocked: true,
+        authenticated: true,
+      );
+    }
     return ok;
   }
 
-  Future<void> signOutAccount() async {
+  /// Ends the run's session completely — account *and* PIN unlock *and* the
+  /// login gate. The next screen the family sees is `/login`.
+  Future<void> logOut() async {
     await _store.signOut();
-    state = state._copy(loggedIn: false, parentUnlocked: false);
+    state = state._copy(
+      loggedIn: false,
+      parentUnlocked: false,
+      authenticated: false,
+    );
+  }
+
+  /// Erases the account and every trace of the family from this device, then
+  /// resets the session to first-run.
+  Future<void> deleteAccount() async {
+    await _store.deleteAccountAndAllData();
+    state = SessionState(
+      onboardingComplete: false,
+      activeChildId: null,
+      parentUnlocked: false,
+      loggedIn: false,
+      authenticated: false,
+      profilesRev: state.profilesRev + 1,
+    );
   }
 
   Future<ChildProfile> addChild({
@@ -196,9 +245,11 @@ class SessionController extends StateNotifier<SessionState> {
     state = state._copy(); // nudge listeners
   }
 
+  /// A correct PIN both opens the Parent Zone and satisfies the login gate —
+  /// it is the PIN family's password.
   void unlockParent() {
     _analytics.log(AnalyticsEvents.parentUnlock);
-    state = state._copy(parentUnlocked: true);
+    state = state._copy(parentUnlocked: true, authenticated: true);
   }
 
   void lockParent() => state = state._copy(parentUnlocked: false);

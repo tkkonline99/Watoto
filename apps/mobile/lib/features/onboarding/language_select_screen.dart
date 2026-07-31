@@ -10,14 +10,17 @@ import '../../l10n/gen/app_localizations.dart';
 import 'savanna_background.dart';
 
 /// Standalone welcome/landing screen (route `/welcome`): the same language
-/// screen shown after signing out. Picking a language and tapping "Let's go"
-/// re-enters the app at the home.
+/// screen shown after signing out, and where every launch begins.
+///
+/// Picking a language and tapping "Let's go" goes to `/login` — Watoto keeps
+/// no session between runs, so the password or PIN is asked for every time.
+/// (If a session is already live, the router forwards `/login` on to the home.)
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) =>
-      LanguageSelectScreen(onStart: () => context.go('/'));
+      LanguageSelectScreen(onStart: () => context.go('/login'));
 }
 
 /// First impression for children (many pre-readers): a bright savanna scene

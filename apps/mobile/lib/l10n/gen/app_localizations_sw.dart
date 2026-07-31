@@ -214,6 +214,67 @@ class AppLocalizationsSw extends AppLocalizations {
   }
 
   @override
+  String get welcomeBack => 'Karibu tena!';
+
+  @override
+  String get loginSubtitle => 'Weka nenosiri lako ili kuendelea.';
+
+  @override
+  String get usePinToLogIn => 'Tumia PIN yako badala yake';
+
+  @override
+  String get usePasswordToLogIn => 'Tumia nenosiri lako badala yake';
+
+  @override
+  String get noCredentialsSubtitle =>
+      'Hakuna nenosiri wala PIN iliyohifadhiwa kwenye kifaa hiki. Weka PIN mpya ili kuendelea.';
+
+  @override
+  String pinLockedFor(int seconds) {
+    return 'Umejaribu mara nyingi mno. Subiri sekunde $seconds.';
+  }
+
+  @override
+  String get myAccount => 'Akaunti yangu';
+
+  @override
+  String get personalInfo => 'Taarifa zako';
+
+  @override
+  String get signInMethod => 'Jinsi unavyoingia';
+
+  @override
+  String get signInMethodPassword => 'Barua pepe na nenosiri';
+
+  @override
+  String get signInMethodPin => 'PIN ya mzazi';
+
+  @override
+  String get noEmailSaved => 'Hakuna barua pepe iliyohifadhiwa';
+
+  @override
+  String get consentRecorded => 'Ridhaa ilitolewa';
+
+  @override
+  String get noChildrenYet => 'Bado hakuna mtoto aliyeongezwa';
+
+  @override
+  String childNameAge(String name, int age) {
+    return '$name, miaka $age';
+  }
+
+  @override
+  String get deleteAccount => 'Futa akaunti';
+
+  @override
+  String get deleteAccountBody =>
+      'Huondoa akaunti yako, watoto wako na maendeleo yao yote kwenye kifaa hiki.';
+
+  @override
+  String get deleteAccountConfirm =>
+      'Hii itafuta akaunti yako, wasifu wa watoto wako na kila walichojifunza kwenye kifaa hiki. Haiwezi kutenduliwa. Kuendelea?';
+
+  @override
   String get createChildTitle => 'Ongeza mtoto wako';
 
   @override

@@ -85,6 +85,35 @@
       "email": { "type": "String" }
     }
   },
+  "welcomeBack": "Welcome back!",
+  "loginSubtitle": "Enter your password to carry on.",
+  "usePinToLogIn": "Use your PIN instead",
+  "usePasswordToLogIn": "Use your password instead",
+  "noCredentialsSubtitle": "There is no password or PIN saved on this device. Set a new PIN to carry on.",
+  "pinLockedFor": "Too many tries. Wait {seconds}s.",
+  "@pinLockedFor": {
+    "placeholders": {
+      "seconds": { "type": "int" }
+    }
+  },
+  "myAccount": "My account",
+  "personalInfo": "Your information",
+  "signInMethod": "How you sign in",
+  "signInMethodPassword": "Email & password",
+  "signInMethodPin": "Parent PIN",
+  "noEmailSaved": "No email saved",
+  "consentRecorded": "Consent given",
+  "noChildrenYet": "No children added yet",
+  "childNameAge": "{name}, age {age}",
+  "@childNameAge": {
+    "placeholders": {
+      "name": { "type": "String" },
+      "age": { "type": "int" }
+    }
+  },
+  "deleteAccount": "Delete account",
+  "deleteAccountBody": "Removes your account, your children and all their progress from this device.",
+  "deleteAccountConfirm": "This erases your account, your children's profiles and everything they have learned on this device. It cannot be undone. Continue?",
   "createChildTitle": "Add your child",
   "createChildSubtitle": "Pick a fun name and an animal buddy to learn with!",
   "childNickname": "Nickname",

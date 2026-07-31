@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../core/offline/offline_providers.dart';
 import '../features/auth/account_screen.dart';
+import '../features/auth/login_screen.dart';
 import '../features/auth/password_reset_screen.dart';
 import '../features/auth/paywall_screen.dart';
 import '../features/auth/pin_reset_screen.dart';
@@ -28,10 +29,15 @@ import '../features/stories/story_library_screen.dart';
 import 'return_to.dart';
 import '../core/offline/offline_store.dart';
 
+/// Lets a widget test start on a post-login surface without driving `/login`
+/// first. Tests that exercise the gate itself leave it false.
+@visibleForTesting
+bool debugSkipLoginGate = false;
+
 /// Router is provided (not a global) so each app instance — and each widget
 /// test — gets fresh navigation state. Guards enforce the deployment-required
-/// flow (docs/05 §5.4): onboarding+consent first, parent zone behind the PIN,
-/// a child must be selected before any learning surface.
+/// flow (docs/05 §5.4): onboarding+consent first, a login every run, parent
+/// zone behind the PIN, a child selected before any learning surface.
 final appRouterProvider = Provider<GoRouter>((ref) {
   final refresh = ValueNotifier(0);
   final sub = ref.listen(sessionProvider, (_, _) => refresh.value++);
@@ -61,12 +67,23 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       // The welcome/landing screen is always reachable once onboarded.
       if (loc == '/welcome') return null;
 
-      // Recovery is always reachable. These deliberately sit outside /parent:
-      // a grown-up who has forgotten the PIN cannot be asked to pass the gate
-      // they are trying to reset, and a signed-out account family cannot log
-      // in to reach their own password reset. Both screens run their own adult
-      // check (parent gate, and an emailed code) before changing anything.
+      // Recovery is always reachable. These deliberately sit outside /parent
+      // *and* outside the login gate: a grown-up who has forgotten the PIN
+      // cannot be asked to pass the gate they are trying to reset, and a
+      // family whose password is gone could otherwise never get past /login.
+      // Both screens run their own adult check (parent gate, and an emailed
+      // code) before changing anything.
       if (loc == '/pin-reset' || loc == '/password-reset') return null;
+
+      // Nothing else opens until the family has logged in *this run*. Watoto
+      // keeps no session across launches, so this is the front door on every
+      // start, not just the first one.
+      if (!s.authenticated && !debugSkipLoginGate) {
+        if (loc == '/login') return null;
+        return gateWithReturn('/login', state.uri.toString());
+      }
+      // Already in — the login screen has nothing left to say.
+      if (loc == '/login') return '/';
 
       if (loc.startsWith('/parent') || loc == '/paywall') {
         if (loc == '/parent/pin') return null;
@@ -79,7 +96,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         final intended = state.uri.toString();
         return ref.read(offlineStoreProvider).hasPin
             ? gateWithReturn('/parent/pin', intended)
-            : gateWithReturn('/account', intended);
+            : gateWithReturn('/login', intended);
       }
 
       if (loc == '/rest') return null;
@@ -141,6 +158,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/', builder: (c, s) => const ChildHomeScreen()),
       GoRoute(path: '/welcome', builder: (c, s) => const WelcomeScreen()),
       GoRoute(path: '/account', builder: (c, s) => const AccountScreen()),
+      GoRoute(path: '/login', builder: (c, s) => const LoginScreen()),
       GoRoute(
         path: '/lesson/:slug',
         builder: (c, s) => LessonPlayerScreen(slug: s.pathParameters['slug']!),

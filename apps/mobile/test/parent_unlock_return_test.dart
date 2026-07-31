@@ -57,6 +57,9 @@ void main() {
     Hive.init(Directory.systemTemp.path);
     debugDisableSavannaAmbient = true;
     debugDisableMascotAnimation = true;
+    // Start past the login gate: what's under test here is the PIN gate
+    // handing the family back to where they were headed.
+    debugSkipLoginGate = true;
   });
 
   setUp(() async {

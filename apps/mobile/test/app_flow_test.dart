@@ -100,6 +100,9 @@ void main() {
     // throughout) doesn't wait forever on an animation that never completes.
     debugDisableSavannaAmbient = true;
     debugDisableMascotAnimation = true;
+    // Most tests here jump straight to a learning surface; the login gate has
+    // its own group below, which turns this back off.
+    debugSkipLoginGate = true;
   });
 
   setUp(() async {
@@ -231,8 +234,43 @@ void main() {
     expect(find.text('Grown-ups only'), findsNothing);
   });
 
-  testWidgets('PIN family can log in and out from the account screen',
+  testWidgets('the account screen shows the family their own information',
       (tester) async {
+    await tester.binding.setSurfaceSize(const Size(900, 1400));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    await store.completeOnboarding(
+      consent: ConsentRecord(
+        coreData: true,
+        aiFeatures: false,
+        voiceRecording: false,
+        recordedAt: DateTime.utc(2026, 3, 4),
+      ),
+      accountEmail: 'mom@example.com',
+      accountPassword: 'secret123',
+      nickname: 'Amani',
+      avatarKey: 'lion',
+      birthYear: 2019,
+    );
+    await tester.pumpWidget(buildApp());
+    await tester.pumpAndSettle();
+
+    goTo(tester, '/account');
+    await tester.pumpAndSettle();
+
+    expect(find.text('My account'), findsOneWidget);
+    expect(find.text('mom@example.com'), findsWidgets);
+    expect(find.text('Email & password'), findsOneWidget);
+    expect(find.text('Amani, age ${DateTime.now().year - 2019}'),
+        findsOneWidget);
+    // Both dispose-of-my-data actions are offered, log out first.
+    expect(find.text('Log out'), findsOneWidget);
+    expect(find.text('Delete account'), findsOneWidget);
+  });
+
+  testWidgets('logging out from the account screen returns to the welcome '
+      'screen and ends the session', (tester) async {
+    await tester.binding.setSurfaceSize(const Size(900, 1400));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
     await seedOnboarded(); // PIN 1234, no account
     await tester.pumpWidget(buildApp());
     await tester.pumpAndSettle();
@@ -240,21 +278,52 @@ void main() {
     goTo(tester, '/account');
     await tester.pumpAndSettle();
 
-    // PIN-login view: enter the PIN and log in.
-    await tester.enterText(find.byType(TextField), '1234');
-    await tester.pump();
-    final logIn = find.text('Log in');
-    await tester.ensureVisible(logIn);
-    await tester.tap(logIn);
-    await tester.pumpAndSettle();
-
-    // Now signed in -> log out is offered; logging out returns to the
-    // welcome / "Choose your language" screen.
     final logOut = find.text('Log out');
-    expect(logOut, findsOneWidget);
     await tester.ensureVisible(logOut);
     await tester.tap(logOut);
     await tester.pumpAndSettle();
+
+    expect(find.text('Choose your language'), findsOneWidget);
+    expect(store.isLoggedIn, isFalse);
+  });
+
+  testWidgets('deleting the account erases the device back to first run',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(900, 1400));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final childId = await seedOnboarded();
+    await store.recordLessonCompleted(
+      childId: childId,
+      lessonId: 'counting-1-3',
+      scorePct: 100,
+      timeSpentS: 60,
+      xpEarned: 25,
+    );
+    expect(store.xpFor(childId), 25);
+    expect(store.pendingOps, isNotEmpty);
+
+    await tester.pumpWidget(buildApp());
+    await tester.pumpAndSettle();
+    goTo(tester, '/account');
+    await tester.pumpAndSettle();
+
+    final delete = find.text('Delete account');
+    await tester.ensureVisible(delete);
+    await tester.tap(delete);
+    await tester.pumpAndSettle();
+
+    // Destructive, so it asks first.
+    expect(find.text('Cancel'), findsOneWidget);
+    await tester.tap(find.text('Delete'));
+    await tester.pumpAndSettle();
+
+    expect(store.onboardingComplete, isFalse);
+    expect(store.children, isEmpty);
+    expect(store.hasAccount, isFalse);
+    expect(store.hasPin, isFalse);
+    expect(store.xpFor(childId), 0);
+    expect(store.pendingOps, isEmpty);
+    // Back at the very beginning.
     expect(find.text('Choose your language'), findsOneWidget);
   });
 
@@ -392,5 +461,122 @@ void main() {
     expect(find.text('Jambo, Amani!'), findsOneWidget); // localized greeting
     // Note: subject tile names come from the curriculum content (English in the
     // source deck), so they are not localized yet — only UI chrome is.
+  });
+
+  /// Watoto keeps no session between launches: the email is remembered, the
+  /// password or PIN is not. These run with the real gate in place.
+  group('login gate', () {
+    setUp(() => debugSkipLoginGate = false);
+    tearDown(() => debugSkipLoginGate = true);
+
+    Future<void> pumpTall(WidgetTester tester) async {
+      // The login card plus its recovery links overflow a short viewport.
+      await tester.binding.setSurfaceSize(const Size(900, 1400));
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+      await tester.pumpWidget(buildApp());
+      await tester.pumpAndSettle();
+    }
+
+    Future<void> tapLetsGo(WidgetTester tester) async {
+      final letsGo = find.text("Let's go! 🚀");
+      await tester.ensureVisible(letsGo);
+      await tester.pump();
+      await tester.tap(letsGo);
+      await tester.pumpAndSettle();
+    }
+
+    testWidgets('"Let\'s go" leads to the login page, not the home',
+        (tester) async {
+      await seedOnboarded(); // PIN 1234
+      await pumpTall(tester);
+
+      // A returning family lands on the welcome screen, signed out.
+      expect(find.text('Choose your language'), findsOneWidget);
+      await tapLetsGo(tester);
+
+      expect(find.text('Welcome back!'), findsOneWidget);
+      expect(find.text('Hello, Amani!'), findsNothing);
+    });
+
+    testWidgets('a stored account is remembered but its password is not',
+        (tester) async {
+      await store.completeOnboarding(
+        consent: const ConsentRecord(
+            coreData: true,
+            aiFeatures: false,
+            voiceRecording: false,
+            recordedAt: null),
+        accountEmail: 'mom@example.com',
+        accountPassword: 'secret123',
+        nickname: 'Amani',
+        avatarKey: 'lion',
+        birthYear: 2019,
+      );
+      // Onboarding logged them in; a relaunch must not inherit that session.
+      await store.signOut();
+      await pumpTall(tester);
+      await tapLetsGo(tester);
+
+      // Email prefilled, password demanded.
+      expect(find.text('mom@example.com'), findsOneWidget);
+      final password = find.byType(TextField).at(1);
+
+      await tester.enterText(password, 'wrong-one');
+      await tester.pump();
+      await tester.tap(find.text('Log in'));
+      await tester.pumpAndSettle();
+      expect(find.text('Wrong password, try again'), findsOneWidget);
+      expect(find.text('Hello, Amani!'), findsNothing);
+
+      await tester.enterText(password, 'secret123');
+      await tester.pump();
+      await tester.tap(find.text('Log in'));
+      await tester.pumpAndSettle();
+      expect(find.text('Hello, Amani!'), findsOneWidget);
+    });
+
+    testWidgets('a PIN family gets in with the PIN', (tester) async {
+      await seedOnboarded(); // PIN 1234
+      await pumpTall(tester);
+      await tapLetsGo(tester);
+
+      await tester.enterText(find.byType(TextField), '1234');
+      await tester.pump();
+      await tester.tap(find.text('Log in'));
+      await tester.pumpAndSettle();
+      expect(find.text('Hello, Amani!'), findsOneWidget);
+    });
+
+    testWidgets('deep links are held at the gate, then handed back',
+        (tester) async {
+      await seedOnboarded();
+      await pumpTall(tester);
+
+      goTo(tester, '/curriculum');
+      await tester.pumpAndSettle();
+      // Gate first...
+      expect(find.text('Welcome back!'), findsOneWidget);
+
+      await tester.enterText(find.byType(TextField), '1234');
+      await tester.pump();
+      await tester.tap(find.text('Log in'));
+      await tester.pumpAndSettle();
+      // ...then the place they were actually going.
+      expect(find.text('Welcome back!'), findsNothing);
+      expect(find.textContaining('Curriculum'), findsWidgets);
+    });
+
+    testWidgets('someone locked out can still reach recovery', (tester) async {
+      await seedOnboarded();
+      await pumpTall(tester);
+      await tapLetsGo(tester);
+
+      final forgot = find.text('Forgot your PIN?');
+      expect(forgot, findsOneWidget);
+      await tester.ensureVisible(forgot);
+      await tester.tap(forgot);
+      await tester.pumpAndSettle();
+      expect(find.text('Set new PIN'), findsOneWidget);
+    });
   });
 }

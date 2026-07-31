@@ -127,6 +127,9 @@ void main() {
       // Hold the perpetual savanna ambient drift still so pumpAndSettle works.
       debugDisableSavannaAmbient = true;
       debugDisableMascotAnimation = true;
+      // These drive learning surfaces directly; the login gate has its own
+      // tests in app_flow_test.
+      debugSkipLoginGate = true;
     });
 
     testWidgets('home subject card opens the age picker, then drills in', (
