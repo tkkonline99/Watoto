@@ -15,6 +15,7 @@ import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
 import 'content_lexicon.dart';
 import 'play_stage_code.dart';
+import 'step_motion.dart';
 import 'step_play.dart';
 
 class DivisionWorkspace extends StatelessWidget {
@@ -602,8 +603,16 @@ class ChoiceStageState extends State<ChoiceStage> {
 bool isWordOption(String s) =>
     s.length > 1 && RegExp(r'[A-Za-z0-9]').hasMatch(s);
 
-Widget bigEmoji(String emoji) =>
-    Text(emoji, style: const TextStyle(fontSize: 88));
+/// The stage's hero glyph. Breathes, because on most steps this *is* the
+/// picture — the decorative slot above it is empty until per-step art exists.
+///
+/// Only the hero: the choice options render their own [Text] and stay still, so
+/// a grid of answers does not shimmer while a child is trying to read it. The
+/// scale swing is 3.5%, which is visible at 88pt but does not meaningfully move
+/// the tap target; reduce-motion stops it entirely.
+Widget bigEmoji(String emoji) => BreathingArt(
+      child: Text(emoji, style: const TextStyle(fontSize: 88)),
+    );
 
 
 class ExplainStage extends StatelessWidget {

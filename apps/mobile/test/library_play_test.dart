@@ -13,6 +13,7 @@ import 'package:watoto_mobile/core/widgets/mascot_widget.dart';
 import 'package:watoto_mobile/features/library/content_lexicon.dart';
 import 'package:watoto_mobile/features/library/library_models.dart';
 import 'package:watoto_mobile/features/library/library_repository.dart';
+import 'package:watoto_mobile/features/library/step_motion.dart';
 import 'package:watoto_mobile/features/onboarding/consent.dart';
 import 'package:watoto_mobile/features/onboarding/savanna_background.dart';
 import 'package:watoto_mobile/router/app_router.dart';
@@ -135,6 +136,9 @@ void main() {
     // The celebration screen bounces Kibo forever; hold him still so
     // pumpAndSettle can return.
     debugDisableMascotAnimation = true;
+    // Same for the step illustration, which breathes for as long as it is on
+    // screen.
+    debugDisableStepMotion = true;
   });
 
   setUp(() async {
