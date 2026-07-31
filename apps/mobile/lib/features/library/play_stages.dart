@@ -608,8 +608,8 @@ bool isWordOption(String s) =>
 ///
 /// Only the hero: the choice options render their own [Text] and stay still, so
 /// a grid of answers does not shimmer while a child is trying to read it. The
-/// scale swing is 3.5%, which is visible at 88pt but does not meaningfully move
-/// the tap target; reduce-motion stops it entirely.
+/// swing is 9% and 9px at 88pt — clearly alive, while the glyph's centre stays
+/// put so it is no harder to hit; reduce-motion stops it entirely.
 Widget bigEmoji(String emoji) => BreathingArt(
       child: Text(emoji, style: const TextStyle(fontSize: 88)),
     );

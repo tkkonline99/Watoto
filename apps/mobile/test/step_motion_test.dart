@@ -31,20 +31,23 @@ void main() {
   ) async {
     await tester.pumpWidget(host(reduceMotion: false));
     final samples = <double>[];
-    // A full breath is 2600ms; sample across one half-cycle.
+    // The controller sweeps 0->1 over 1600ms and reverses, so a full breath is
+    // 3.2s. Sample one whole sweep to see the entire range.
     for (var i = 0; i < 6; i++) {
       samples.add(scaleOf(tester));
-      await tester.pump(const Duration(milliseconds: 260));
+      await tester.pump(const Duration(milliseconds: 320));
     }
     final lo = samples.reduce((a, b) => a < b ? a : b);
     final hi = samples.reduce((a, b) => a > b ? a : b);
+    // Has to be plainly visible, not just technically animating: the first
+    // version swung 3.5% and could not be seen outside a 60fps screen.
     expect(
       hi - lo,
-      greaterThan(0.01),
-      reason: 'expected a visible breathe, saw $samples',
+      greaterThan(0.05),
+      reason: 'breathe is too faint to notice, saw $samples',
     );
-    // Small enough that the tap target does not meaningfully move.
-    expect(hi - lo, lessThan(0.06), reason: 'breathe got loud: $samples');
+    // Still bounded, so the tap target does not lurch under a small hand.
+    expect(hi - lo, lessThan(0.14), reason: 'breathe got loud: $samples');
 
     // Perpetual, so it must be stopped before the test ends or the tree
     // never settles.
