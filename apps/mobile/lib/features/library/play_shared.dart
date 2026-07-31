@@ -118,6 +118,28 @@ Widget artOrEmoji(LibraryItem item, String emoji) =>
 /// same picture twice — one dead, one alive.
 Widget? artOnly(LibraryItem item) => itemArt(item);
 
+/// The picture above a stage: this step's own illustration if one has been
+/// drawn, otherwise the item's, otherwise nothing.
+///
+/// Per-step art is what actually depicts the sentence — the starter pack is
+/// item-level and stops at stage 3, so a stage-9 reading step has no picture of
+/// what it is describing. `image_manifest.csv` holds an `art_brief` for every
+/// step; rendering one to the path [stepArtAsset] names makes it appear here.
+Widget stepArt(LibraryItem item, int stepIndex) {
+  final fallback = itemArt(item) ?? const SizedBox.shrink();
+  return ClipRRect(
+    borderRadius: BorderRadius.circular(24),
+    child: Image.asset(
+      stepArtAsset(item, stepIndex),
+      width: 180,
+      height: 180,
+      fit: BoxFit.cover,
+      // Nothing is drawn for most steps yet, so a miss is the normal path.
+      errorBuilder: (_, _, _) => fallback,
+    ),
+  );
+}
+
 Widget? itemArt(LibraryItem item) {
   final path = artAssetForItem(item);
   if (path == null) return null;

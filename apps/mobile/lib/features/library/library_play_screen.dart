@@ -452,8 +452,7 @@ class _LessonViewState extends ConsumerState<_LessonView> {
                             // nothing; other stages still get the emoji, since
                             // there it is the only picture on screen.
                             child: stageShowsEmoji(plan.mechanic)
-                                ? (artOnly(widget.item) ??
-                                    const SizedBox.shrink())
+                                ? stepArt(widget.item, _step)
                                 : artOrEmoji(widget.item, emoji),
                           ),
                         const SizedBox(height: 16),
