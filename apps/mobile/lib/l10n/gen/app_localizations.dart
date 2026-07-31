@@ -370,6 +370,12 @@ abstract class AppLocalizations {
   /// **'Enter your parent PIN to continue.'**
   String get enterPinSubtitle;
 
+  /// No description provided for @enterPasswordSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password to continue.'**
+  String get enterPasswordSubtitle;
+
   /// No description provided for @wrongPin.
   ///
   /// In en, this message translates to:

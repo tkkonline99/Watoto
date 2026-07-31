@@ -79,10 +79,15 @@ class SessionState {
   /// they glance at another app would make the device unusable.
   final bool authenticated;
 
-  /// PIN families need [parentUnlocked] this run. Account families may enter
-  /// while [loggedIn]; sensitive actions still use the FTC parent gate.
-  /// Background [lockParent] clears the PIN unlock only.
-  bool get parentAccessAllowed => parentUnlocked || loggedIn;
+  /// Whether the Parent Zone is open right now.
+  ///
+  /// Deliberately *only* [parentUnlocked]: signing in at the front door proves
+  /// a grown-up was present when the app opened, not that one is holding the
+  /// device now. The child uses the app all afternoon on that same session, so
+  /// letting [loggedIn] satisfy this handed them settings, consent, purchases
+  /// and account deletion. The grown-up re-proves it at the gate, and
+  /// [lockParent] closes it again when the app backgrounds.
+  bool get parentAccessAllowed => parentUnlocked;
 
   SessionState _copy({
     bool? onboardingComplete,
@@ -170,28 +175,24 @@ class SessionController extends StateNotifier<SessionState> {
     return '8-10';
   }
 
-  /// Creates a local parent account and starts the session.
+  /// Creates a local parent account and starts the session. Grants no Parent
+  /// Zone access of its own — the only caller is already inside it.
   Future<void> createAccount(String email, String password) async {
     await _store.createAccount(email, password);
-    state = state._copy(
-      loggedIn: true,
-      parentUnlocked: true,
-      authenticated: true,
-    );
+    state = state._copy(loggedIn: true, authenticated: true);
   }
 
-  /// Signs in to the local account; returns false on a credential mismatch.
+  /// Signs in to the local account at the front door; returns false on a
+  /// credential mismatch. Opens the app, **not** the Parent Zone.
   Future<bool> signIn(String email, String password) async {
     final ok = await _store.signIn(email, password);
-    if (ok) {
-      state = state._copy(
-        loggedIn: true,
-        parentUnlocked: true,
-        authenticated: true,
-      );
-    }
+    if (ok) state = state._copy(loggedIn: true, authenticated: true);
     return ok;
   }
+
+  /// A PIN family passing the front door. Same rule as [signIn]: it opens the
+  /// app for the run and nothing more.
+  void authenticateWithPin() => state = state._copy(authenticated: true);
 
   /// Ends the run's session completely — account *and* PIN unlock *and* the
   /// login gate. The next screen the family sees is `/login`.
@@ -245,8 +246,8 @@ class SessionController extends StateNotifier<SessionState> {
     state = state._copy(); // nudge listeners
   }
 
-  /// A correct PIN both opens the Parent Zone and satisfies the login gate —
-  /// it is the PIN family's password.
+  /// A grown-up has re-proved themselves at the Parent Zone gate. Also implies
+  /// authentication — they just typed the credential the front door asks for.
   void unlockParent() {
     _analytics.log(AnalyticsEvents.parentUnlock);
     state = state._copy(parentUnlocked: true, authenticated: true);

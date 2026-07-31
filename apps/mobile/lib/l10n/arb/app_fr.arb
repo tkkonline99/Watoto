@@ -45,6 +45,7 @@
   "pinMismatch": "Les codes ne correspondent pas",
   "enterPinTitle": "Adultes uniquement",
   "enterPinSubtitle": "Saisis ton code parent pour continuer.",
+  "enterPasswordSubtitle": "Saisis ton mot de passe pour continuer.",
   "wrongPin": "Code incorrect, réessaie",
   "unlock": "Déverrouiller",
   "createAccount": "Créer un compte",

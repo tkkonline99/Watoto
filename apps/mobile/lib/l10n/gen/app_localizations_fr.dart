@@ -155,6 +155,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get enterPinSubtitle => 'Saisis ton code parent pour continuer.';
 
   @override
+  String get enterPasswordSubtitle => 'Saisis ton mot de passe pour continuer.';
+
+  @override
   String get wrongPin => 'Code incorrect, réessaie';
 
   @override

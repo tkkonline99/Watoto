@@ -154,6 +154,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get enterPinSubtitle => 'Enter your parent PIN to continue.';
 
   @override
+  String get enterPasswordSubtitle => 'Enter your password to continue.';
+
+  @override
   String get wrongPin => 'Wrong PIN, try again';
 
   @override

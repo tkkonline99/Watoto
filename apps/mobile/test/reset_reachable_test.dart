@@ -86,7 +86,7 @@ void main() {
     goTo(tester, '/parent');
     await tester.pumpAndSettle();
     // Gated, as expected.
-    expect(location(tester), startsWith('/parent/pin'));
+    expect(location(tester), startsWith('/parent/unlock'));
 
     final forgot = find.text('Forgot your PIN?');
     expect(forgot, findsOneWidget);

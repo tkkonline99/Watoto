@@ -61,6 +61,7 @@
   "pinMismatch": "PINs do not match",
   "enterPinTitle": "Grown-ups only",
   "enterPinSubtitle": "Enter your parent PIN to continue.",
+  "enterPasswordSubtitle": "Enter your password to continue.",
   "wrongPin": "Wrong PIN, try again",
   "unlock": "Unlock",
   "createAccount": "Create account",

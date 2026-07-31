@@ -88,7 +88,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       return setState(() => _error = l10n.pinLockedFor(secs));
     }
     if (result != 'ok') return setState(() => _error = l10n.wrongPin);
-    ref.read(sessionProvider.notifier).unlockParent();
+    // Opens the app only. The Parent Zone asks again at its own gate.
+    ref.read(sessionProvider.notifier).authenticateWithPin();
     _pin.clear();
     _enter();
   }

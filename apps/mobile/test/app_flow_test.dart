@@ -75,6 +75,14 @@ void goTo(WidgetTester tester, String location) {
       .go(location);
 }
 
+/// Stands in for a grown-up passing `/parent/unlock`, for tests whose subject
+/// is what lies *behind* the gate rather than the gate itself.
+void unlockParent(WidgetTester tester) {
+  ProviderScope.containerOf(tester.element(find.byType(WatotoApp)))
+      .read(sessionProvider.notifier)
+      .unlockParent();
+}
+
 /// The home XP counter is a stat pill that renders the bare number ("⭐ 10");
 /// the readable `<n> XP · Level <l>` string lives only on its semantics label,
 /// so assert against the semantics tree rather than the pill's digits.
@@ -211,8 +219,11 @@ void main() {
     expect(store.hasPin, isFalse); // account families are never asked for a PIN
   });
 
-  testWidgets('account family reaches the parent zone without a PIN',
+  testWidgets('a signed-in account family is still gated at the parent zone',
       (tester) async {
+    // The trap this guards: being logged in used to *be* parent access, so a
+    // child using the family's session all afternoon could open settings,
+    // purchases and account deletion by tapping the padlock.
     await store.completeOnboarding(
       consent: const ConsentRecord(
           coreData: true, aiFeatures: false, voiceRecording: false, recordedAt: null),
@@ -224,14 +235,56 @@ void main() {
     );
     await tester.pumpWidget(buildApp());
     await tester.pumpAndSettle();
-    goTo(tester, '/'); // app opens on the welcome screen; enter the home
+    goTo(tester, '/');
+    await tester.pumpAndSettle();
+    // Onboarding leaves the zone open for setup; a child's session would not.
+    ProviderScope.containerOf(tester.element(find.byType(WatotoApp)))
+        .read(sessionProvider.notifier)
+        .lockParent();
     await tester.pumpAndSettle();
 
     await tester.tap(find.byTooltip('Parent Zone'));
     await tester.pumpAndSettle();
-    // Straight into the dashboard — no PIN gate.
+
+    // Account families used to have no gate at all — now they get one, asking
+    // for the password rather than a PIN they never set.
+    expect(find.text('Grown-ups only'), findsOneWidget);
+    expect(find.text('Enter your password to continue.'), findsOneWidget);
+    expect(find.text('Children'), findsNothing);
+
+    await tester.enterText(find.byType(TextField), 'nope');
+    await tester.tap(find.text('Unlock'));
+    await tester.pumpAndSettle();
+    expect(find.text('Children'), findsNothing);
+
+    await tester.enterText(find.byType(TextField), 'secret123');
+    await tester.tap(find.text('Unlock'));
+    await tester.pumpAndSettle();
     expect(find.text('Children'), findsOneWidget);
-    expect(find.text('Grown-ups only'), findsNothing);
+  });
+
+  testWidgets('the account screen is behind the gate too', (tester) async {
+    // It can change the password and delete the family; a padlock on the
+    // Parent Zone alone would just move the door.
+    await seedOnboarded();
+    await tester.pumpWidget(buildApp());
+    await tester.pumpAndSettle();
+    goTo(tester, '/');
+    await tester.pumpAndSettle();
+    ProviderScope.containerOf(tester.element(find.byType(WatotoApp)))
+        .read(sessionProvider.notifier)
+        .lockParent();
+    await tester.pumpAndSettle();
+
+    goTo(tester, '/account');
+    await tester.pumpAndSettle();
+    expect(find.text('Grown-ups only'), findsOneWidget);
+    expect(find.text('My account'), findsNothing);
+
+    await tester.enterText(find.byType(TextField), '1234');
+    await tester.tap(find.text('Unlock'));
+    await tester.pumpAndSettle();
+    expect(find.text('My account'), findsOneWidget);
   });
 
   testWidgets('the account screen shows the family their own information',
@@ -254,6 +307,7 @@ void main() {
     await tester.pumpWidget(buildApp());
     await tester.pumpAndSettle();
 
+    unlockParent(tester);
     goTo(tester, '/account');
     await tester.pumpAndSettle();
 
@@ -291,6 +345,7 @@ void main() {
     );
     await tester.pumpWidget(buildApp());
     await tester.pumpAndSettle();
+    unlockParent(tester);
     goTo(tester, '/account');
     await tester.pumpAndSettle();
 
@@ -305,6 +360,7 @@ void main() {
     await seedOnboarded(); // PIN 1234, no account
     await tester.pumpWidget(buildApp());
     await tester.pumpAndSettle();
+    unlockParent(tester);
     goTo(tester, '/account');
     await tester.pumpAndSettle();
 
@@ -347,6 +403,7 @@ void main() {
     );
     await tester.pumpWidget(buildApp());
     await tester.pumpAndSettle();
+    unlockParent(tester);
     goTo(tester, '/account/password');
     await tester.pumpAndSettle();
 
@@ -374,6 +431,7 @@ void main() {
     await seedOnboarded(); // PIN 1234
     await tester.pumpWidget(buildApp());
     await tester.pumpAndSettle();
+    unlockParent(tester);
     goTo(tester, '/account/pin');
     await tester.pumpAndSettle();
 
@@ -403,6 +461,7 @@ void main() {
     await tester.pumpWidget(buildApp());
     await tester.pumpAndSettle();
 
+    unlockParent(tester);
     goTo(tester, '/account');
     await tester.pumpAndSettle();
 
@@ -432,6 +491,7 @@ void main() {
 
     await tester.pumpWidget(buildApp());
     await tester.pumpAndSettle();
+    unlockParent(tester);
     goTo(tester, '/account');
     await tester.pumpAndSettle();
 

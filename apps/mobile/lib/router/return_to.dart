@@ -14,7 +14,7 @@ import 'package:go_router/go_router.dart';
 /// Query parameter holding the post-unlock destination.
 const String returnToParam = 'from';
 
-/// `/parent/pin` + the place the family was trying to reach.
+/// `/parent/unlock` + the place the family was trying to reach.
 String gateWithReturn(String gatePath, String intended) {
   if (!_isSafe(intended)) return gatePath;
   final base = Uri.parse(gatePath);
@@ -46,10 +46,13 @@ String? _clean(String? raw) {
 
 /// Only in-app locations, and never a gate itself — returning to a gate after
 /// passing it would bounce the family straight back into the gate.
+///
+/// `/account` is deliberately *not* excluded any more: it used to be the login
+/// screen, and is now an ordinary destination sitting behind the gate, so a
+/// grown-up who was sent to unlock on their way there must land on it.
 bool _isSafe(String location) =>
     location.startsWith('/') &&
     !location.startsWith('//') &&
-    !location.startsWith('/parent/pin') &&
-    !location.startsWith('/account') &&
+    !location.startsWith('/parent/unlock') &&
     !location.startsWith('/login') &&
     !location.startsWith('/onboarding');
