@@ -19,6 +19,7 @@ import 'content_lexicon.dart';
 import 'library_models.dart';
 import 'lesson_recap.dart';
 import 'library_repository.dart';
+import 'step_motion.dart';
 import 'step_play.dart';
 import 'play_celebration.dart';
 import 'play_shared.dart';
@@ -451,9 +452,12 @@ class _LessonViewState extends ConsumerState<_LessonView> {
                             // Emoji-showing stages get the bundled artwork or
                             // nothing; other stages still get the emoji, since
                             // there it is the only picture on screen.
-                            child: stageShowsEmoji(plan.mechanic)
-                                ? stepArt(widget.item, _step)
-                                : artOrEmoji(widget.item, emoji),
+                            child: BreathingArt(
+                              restartKey: _step,
+                              child: stageShowsEmoji(plan.mechanic)
+                                  ? stepArt(widget.item, _step)
+                                  : artOrEmoji(widget.item, emoji),
+                            ),
                           ),
                         const SizedBox(height: 16),
                         SmartInteractionStage(
