@@ -1,9 +1,12 @@
-/// Gentle motion for the picture above a lesson stage.
+/// Motion for the picture above a lesson stage.
 ///
 /// The illustration is a still — one emoji, or a PNG once art exists for the
-/// step. A slow breathe-and-bob makes it read as alive without costing a byte,
+/// step. A breathe-and-bob makes it read as alive without costing a byte,
 /// which matters here: the app is offline-first, so animated assets would have
 /// to be bundled and the audio pack already accounts for 184 MB.
+///
+/// 9% scale and a 9px rise, a full breath every 3.2s. The first pass was a
+/// third of that and was invisible on anything but a real screen at 60fps.
 ///
 /// Deliberately calm, and deliberately only on the *decorative* picture. The
 /// interactive emoji a child aims at stays perfectly still — a moving tap
@@ -36,7 +39,8 @@ class _BreathingArtState extends State<BreathingArt>
   /// The perpetual breathe.
   late final AnimationController _breathe = AnimationController(
     vsync: this,
-    duration: const Duration(milliseconds: 2600),
+    // One direction of the swing; reverse:true makes a full breath twice this.
+    duration: const Duration(milliseconds: 1600),
   );
 
   /// A one-shot settle when the step's picture first appears.
@@ -86,13 +90,13 @@ class _BreathingArtState extends State<BreathingArt>
       builder: (context, child) {
         final breathe = Curves.easeInOut.transform(_breathe.value);
         final enter = Curves.easeOutBack.transform(_enter.value.clamp(0, 1));
-        // Breathe is small on purpose: big enough to notice out of the corner
-        // of an eye, small enough to read past while working.
-        final scale = (0.96 + 0.04 * enter) * (1 + 0.035 * breathe);
+        // Big enough to read as alive from across a room, still small enough
+        // that the glyph's centre barely moves — it is a tap target.
+        final scale = (0.94 + 0.06 * enter) * (1 + 0.09 * breathe);
         return Opacity(
           opacity: _enter.value.clamp(0, 1),
           child: Transform.translate(
-            offset: Offset(0, -3 * breathe),
+            offset: Offset(0, -9 * breathe),
             child: Transform.scale(scale: scale, child: child),
           ),
         );
