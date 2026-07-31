@@ -51,4 +51,5 @@ bool _isSafe(String location) =>
     !location.startsWith('//') &&
     !location.startsWith('/parent/pin') &&
     !location.startsWith('/account') &&
+    !location.startsWith('/login') &&
     !location.startsWith('/onboarding');

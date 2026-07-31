@@ -9,7 +9,7 @@ import '../../core/offline/offline_providers.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
 import '../onboarding/savanna_background.dart';
-import 'account_screen.dart' show accountFieldDecoration;
+import 'auth_widgets.dart' show accountFieldDecoration;
 import 'auth_service.dart';
 import 'parent_gate_dialog.dart';
 

@@ -139,6 +139,8 @@ void main() {
     // Same for the step illustration, which breathes for as long as it is on
     // screen.
     debugDisableStepMotion = true;
+    // These drive learning surfaces directly; the login gate has its own tests.
+    debugSkipLoginGate = true;
   });
 
   setUp(() async {

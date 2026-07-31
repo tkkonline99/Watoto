@@ -214,6 +214,67 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get welcomeBack => 'Welcome back!';
+
+  @override
+  String get loginSubtitle => 'Enter your password to carry on.';
+
+  @override
+  String get usePinToLogIn => 'Use your PIN instead';
+
+  @override
+  String get usePasswordToLogIn => 'Use your password instead';
+
+  @override
+  String get noCredentialsSubtitle =>
+      'There is no password or PIN saved on this device. Set a new PIN to carry on.';
+
+  @override
+  String pinLockedFor(int seconds) {
+    return 'Too many tries. Wait ${seconds}s.';
+  }
+
+  @override
+  String get myAccount => 'My account';
+
+  @override
+  String get personalInfo => 'Your information';
+
+  @override
+  String get signInMethod => 'How you sign in';
+
+  @override
+  String get signInMethodPassword => 'Email & password';
+
+  @override
+  String get signInMethodPin => 'Parent PIN';
+
+  @override
+  String get noEmailSaved => 'No email saved';
+
+  @override
+  String get consentRecorded => 'Consent given';
+
+  @override
+  String get noChildrenYet => 'No children added yet';
+
+  @override
+  String childNameAge(String name, int age) {
+    return '$name, age $age';
+  }
+
+  @override
+  String get deleteAccount => 'Delete account';
+
+  @override
+  String get deleteAccountBody =>
+      'Removes your account, your children and all their progress from this device.';
+
+  @override
+  String get deleteAccountConfirm =>
+      'This erases your account, your children\'s profiles and everything they have learned on this device. It cannot be undone. Continue?';
+
+  @override
   String get createChildTitle => 'Add your child';
 
   @override

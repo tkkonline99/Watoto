@@ -215,6 +215,67 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get welcomeBack => 'Bon retour !';
+
+  @override
+  String get loginSubtitle => 'Saisis ton mot de passe pour continuer.';
+
+  @override
+  String get usePinToLogIn => 'Utiliser ton code à la place';
+
+  @override
+  String get usePasswordToLogIn => 'Utiliser ton mot de passe à la place';
+
+  @override
+  String get noCredentialsSubtitle =>
+      'Aucun mot de passe ni code n\'est enregistré sur cet appareil. Choisis un nouveau code pour continuer.';
+
+  @override
+  String pinLockedFor(int seconds) {
+    return 'Trop d\'essais. Attends $seconds s.';
+  }
+
+  @override
+  String get myAccount => 'Mon compte';
+
+  @override
+  String get personalInfo => 'Tes informations';
+
+  @override
+  String get signInMethod => 'Ta façon de te connecter';
+
+  @override
+  String get signInMethodPassword => 'E-mail et mot de passe';
+
+  @override
+  String get signInMethodPin => 'Code parent';
+
+  @override
+  String get noEmailSaved => 'Aucun e-mail enregistré';
+
+  @override
+  String get consentRecorded => 'Consentement donné';
+
+  @override
+  String get noChildrenYet => 'Aucun enfant ajouté pour l\'instant';
+
+  @override
+  String childNameAge(String name, int age) {
+    return '$name, $age ans';
+  }
+
+  @override
+  String get deleteAccount => 'Supprimer le compte';
+
+  @override
+  String get deleteAccountBody =>
+      'Supprime ton compte, tes enfants et tous leurs progrès de cet appareil.';
+
+  @override
+  String get deleteAccountConfirm =>
+      'Cela efface ton compte, les profils de tes enfants et tout ce qu\'ils ont appris sur cet appareil. C\'est irréversible. Continuer ?';
+
+  @override
   String get createChildTitle => 'Ajoute ton enfant';
 
   @override
