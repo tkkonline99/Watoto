@@ -264,6 +264,77 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get consentEnabled => 'What you turned on';
+
+  @override
+  String get consentProgressOnly => 'Progress saving only';
+
+  @override
+  String get childProfileLabel => 'Child';
+
+  @override
+  String get yourPlan => 'Your plan';
+
+  @override
+  String get planPremium => 'Premium · every stage';
+
+  @override
+  String get planFreeAll => 'Free · every stage';
+
+  @override
+  String planFreeUpTo(int max) {
+    return 'Free · stages 1–$max';
+  }
+
+  @override
+  String get yourData => 'Your data';
+
+  @override
+  String get whereItIsSaved => 'Where it\'s saved';
+
+  @override
+  String get dataOnThisDevice => 'On this device only';
+
+  @override
+  String get syncStatus => 'Progress backup';
+
+  @override
+  String get dataAllSaved => 'Everything is saved';
+
+  @override
+  String get changePassword => 'Change password';
+
+  @override
+  String get changePin => 'Change PIN';
+
+  @override
+  String get currentPasswordLabel => 'Current password';
+
+  @override
+  String get currentPinLabel => 'Current PIN';
+
+  @override
+  String get wrongCurrentPassword => 'That password is not right';
+
+  @override
+  String get wrongCurrentPin => 'That PIN is not right';
+
+  @override
+  String get passwordChanged => 'Password changed';
+
+  @override
+  String get pinChanged => 'PIN changed';
+
+  @override
+  String get addEmail => 'Add an email';
+
+  @override
+  String get addEmailBody => 'So you can get back in if you forget your PIN';
+
+  @override
+  String get emailSaved => 'Email saved';
+
+  @override
   String get deleteAccount => 'Delete account';
 
   @override

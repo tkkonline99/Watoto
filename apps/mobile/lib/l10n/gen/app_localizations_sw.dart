@@ -264,6 +264,77 @@ class AppLocalizationsSw extends AppLocalizations {
   }
 
   @override
+  String get consentEnabled => 'Ulichowasha';
+
+  @override
+  String get consentProgressOnly => 'Kuhifadhi maendeleo pekee';
+
+  @override
+  String get childProfileLabel => 'Mtoto';
+
+  @override
+  String get yourPlan => 'Mpango wako';
+
+  @override
+  String get planPremium => 'Premium · hatua zote';
+
+  @override
+  String get planFreeAll => 'Bila malipo · hatua zote';
+
+  @override
+  String planFreeUpTo(int max) {
+    return 'Bila malipo · hatua 1–$max';
+  }
+
+  @override
+  String get yourData => 'Data yako';
+
+  @override
+  String get whereItIsSaved => 'Inapohifadhiwa';
+
+  @override
+  String get dataOnThisDevice => 'Kwenye kifaa hiki pekee';
+
+  @override
+  String get syncStatus => 'Hifadhi ya maendeleo';
+
+  @override
+  String get dataAllSaved => 'Kila kitu kimehifadhiwa';
+
+  @override
+  String get changePassword => 'Badilisha nenosiri';
+
+  @override
+  String get changePin => 'Badilisha PIN';
+
+  @override
+  String get currentPasswordLabel => 'Nenosiri la sasa';
+
+  @override
+  String get currentPinLabel => 'PIN ya sasa';
+
+  @override
+  String get wrongCurrentPassword => 'Nenosiri hilo si sahihi';
+
+  @override
+  String get wrongCurrentPin => 'PIN hiyo si sahihi';
+
+  @override
+  String get passwordChanged => 'Nenosiri limebadilishwa';
+
+  @override
+  String get pinChanged => 'PIN imebadilishwa';
+
+  @override
+  String get addEmail => 'Ongeza barua pepe';
+
+  @override
+  String get addEmailBody => 'Ili uweze kurudi ukisahau PIN yako';
+
+  @override
+  String get emailSaved => 'Barua pepe imehifadhiwa';
+
+  @override
   String get deleteAccount => 'Futa akaunti';
 
   @override

@@ -258,13 +258,141 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('My account'), findsOneWidget);
-    expect(find.text('mom@example.com'), findsWidgets);
+    // Exactly once: the header used to repeat the address as a subtitle.
+    expect(find.text('mom@example.com'), findsOneWidget);
     expect(find.text('Email & password'), findsOneWidget);
     expect(find.text('Amani, age ${DateTime.now().year - 2019}'),
         findsOneWidget);
+    // Consent is reported as what was turned on, not just a date.
+    expect(find.text('Progress saving only'), findsOneWidget);
+    // Plan and where the progress actually lives.
+    expect(find.text('On this device only'), findsOneWidget);
+    expect(find.text('Everything is saved'), findsOneWidget);
+    // An account family is offered a password change, not a PIN change.
+    expect(find.text('Change password'), findsOneWidget);
+    expect(find.text('Change PIN'), findsNothing);
+    expect(find.text('Add an email'), findsNothing);
     // Both dispose-of-my-data actions are offered, log out first.
     expect(find.text('Log out'), findsOneWidget);
     expect(find.text('Delete account'), findsOneWidget);
+  });
+
+  testWidgets('unsynced work is reported, not silently at risk',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(900, 1400));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final childId = await seedOnboarded();
+    await store.recordLessonCompleted(
+      childId: childId,
+      lessonId: 'counting-1-3',
+      scorePct: 100,
+      timeSpentS: 60,
+      xpEarned: 10,
+    );
+    await tester.pumpWidget(buildApp());
+    await tester.pumpAndSettle();
+    goTo(tester, '/account');
+    await tester.pumpAndSettle();
+
+    expect(find.textContaining('waiting to sync'), findsOneWidget);
+    expect(find.text('Everything is saved'), findsNothing);
+  });
+
+  testWidgets('a PIN family is offered an email, and adding one keeps the PIN',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(900, 1400));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    await seedOnboarded(); // PIN 1234, no account
+    await tester.pumpWidget(buildApp());
+    await tester.pumpAndSettle();
+    goTo(tester, '/account');
+    await tester.pumpAndSettle();
+
+    expect(find.text('No email saved'), findsOneWidget);
+    expect(find.text('Change PIN'), findsOneWidget);
+    expect(find.text('Change password'), findsNothing);
+
+    final add = find.text('Add an email');
+    await tester.ensureVisible(add);
+    await tester.tap(add);
+    await tester.pumpAndSettle();
+
+    await tester.enterText(find.byType(TextField).at(0), 'dad@example.com');
+    await tester.enterText(find.byType(TextField).at(1), 'secret123');
+    await tester.pump();
+    await tester.tap(find.text('Save'));
+    await tester.pumpAndSettle();
+
+    expect(store.accountEmail, 'dad@example.com');
+    expect(store.hasAccountPassword, isTrue);
+    // The PIN is not traded away — the family can use either.
+    expect(store.hasPin, isTrue);
+    expect(store.verifyPin('1234'), isTrue);
+  });
+
+  testWidgets('a grown-up who knows the password can change it', (tester) async {
+    await tester.binding.setSurfaceSize(const Size(900, 1400));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    await store.completeOnboarding(
+      consent: const ConsentRecord(
+          coreData: true,
+          aiFeatures: false,
+          voiceRecording: false,
+          recordedAt: null),
+      accountEmail: 'mom@example.com',
+      accountPassword: 'secret123',
+      nickname: 'Amani',
+      avatarKey: 'lion',
+      birthYear: 2019,
+    );
+    await tester.pumpWidget(buildApp());
+    await tester.pumpAndSettle();
+    goTo(tester, '/account/password');
+    await tester.pumpAndSettle();
+
+    // The wrong current password changes nothing.
+    await tester.enterText(find.byType(TextField).at(0), 'not-it');
+    await tester.enterText(find.byType(TextField).at(1), 'brandnew1');
+    await tester.pump();
+    await tester.tap(find.text('Save'));
+    await tester.pumpAndSettle();
+    expect(find.text('That password is not right'), findsOneWidget);
+    expect(store.verifyAccount('secret123'), isTrue);
+
+    await tester.enterText(find.byType(TextField).at(0), 'secret123');
+    await tester.pump();
+    await tester.tap(find.text('Save'));
+    await tester.pumpAndSettle();
+
+    expect(store.verifyAccount('brandnew1'), isTrue);
+    expect(store.verifyAccount('secret123'), isFalse);
+  });
+
+  testWidgets('a grown-up who knows the PIN can change it', (tester) async {
+    await tester.binding.setSurfaceSize(const Size(900, 1400));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    await seedOnboarded(); // PIN 1234
+    await tester.pumpWidget(buildApp());
+    await tester.pumpAndSettle();
+    goTo(tester, '/account/pin');
+    await tester.pumpAndSettle();
+
+    await tester.enterText(find.byType(TextField).at(0), '9999');
+    await tester.enterText(find.byType(TextField).at(1), '5678');
+    await tester.enterText(find.byType(TextField).at(2), '5678');
+    await tester.pump();
+    await tester.tap(find.text('Save'));
+    await tester.pumpAndSettle();
+    expect(find.text('That PIN is not right'), findsOneWidget);
+    expect(store.verifyPin('1234'), isTrue);
+
+    await tester.enterText(find.byType(TextField).at(0), '1234');
+    await tester.pump();
+    await tester.tap(find.text('Save'));
+    await tester.pumpAndSettle();
+
+    expect(store.verifyPin('5678'), isTrue);
+    expect(store.verifyPin('1234'), isFalse);
   });
 
   testWidgets('logging out from the account screen returns to the welcome '

@@ -230,15 +230,20 @@ class AuthOutlineButton extends StatelessWidget {
 }
 
 /// One "label / value" line of the family's own information.
+///
+/// Carries either an [icon] or an [emoji] in its badge — children show their
+/// own animal, everything else shows a glyph.
 class AuthInfoRow extends StatelessWidget {
   const AuthInfoRow({
     super.key,
-    required this.icon,
+    this.icon,
+    this.emoji,
     required this.label,
     required this.value,
-  });
+  }) : assert(icon != null || emoji != null, 'needs an icon or an emoji');
 
-  final IconData icon;
+  final IconData? icon;
+  final String? emoji;
   final String label;
   final String value;
 
@@ -257,7 +262,9 @@ class AuthInfoRow extends StatelessWidget {
               color: WatotoColors.sun.withValues(alpha: 0.16),
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Icon(icon, size: 20, color: WatotoColors.deep),
+            child: icon != null
+                ? Icon(icon, size: 20, color: WatotoColors.deep)
+                : Text(emoji!, style: const TextStyle(fontSize: 20)),
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -285,6 +292,87 @@ class AuthInfoRow extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// A tappable "go and do this" line — change password, add an email. Rows
+/// rather than buttons on purpose: the account screen already ends in two
+/// weighty buttons, and a stack of five would leave nothing looking primary.
+class AuthActionRow extends StatelessWidget {
+  const AuthActionRow({
+    super.key,
+    required this.icon,
+    required this.label,
+    required this.onTap,
+    this.subtitle,
+  });
+
+  final IconData icon;
+  final String label;
+  final String? subtitle;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      button: true,
+      label: subtitle == null ? label : '$label. $subtitle',
+      child: ExcludeSemantics(child: _row(context)),
+    );
+  }
+
+  Widget _row(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(14),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        child: Row(
+          children: [
+            Container(
+              width: 38,
+              height: 38,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: WatotoColors.sky.withValues(alpha: 0.16),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Icon(icon, size: 20, color: WatotoColors.deep),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    label,
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w700,
+                      color: WatotoColors.deep,
+                    ),
+                  ),
+                  if (subtitle != null) ...[
+                    const SizedBox(height: 2),
+                    Text(
+                      subtitle!,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: WatotoColors.deep.withValues(alpha: 0.55),
+                      ),
+                    ),
+                  ],
+                ],
+              ),
+            ),
+            Icon(
+              Icons.chevron_right_rounded,
+              color: WatotoColors.deep.withValues(alpha: 0.35),
+            ),
+          ],
+        ),
       ),
     );
   }

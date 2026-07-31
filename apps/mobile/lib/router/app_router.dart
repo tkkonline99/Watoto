@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../core/offline/offline_providers.dart';
 import '../features/auth/account_screen.dart';
+import '../features/auth/change_credentials_screen.dart';
 import '../features/auth/login_screen.dart';
 import '../features/auth/password_reset_screen.dart';
 import '../features/auth/paywall_screen.dart';
@@ -159,6 +160,15 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/welcome', builder: (c, s) => const WelcomeScreen()),
       GoRoute(path: '/account', builder: (c, s) => const AccountScreen()),
       GoRoute(path: '/login', builder: (c, s) => const LoginScreen()),
+      // Credential changes sit under /account, so the login gate already
+      // covers them: reaching any of these means the current secret was
+      // typed at the front door this run.
+      GoRoute(
+        path: '/account/password',
+        builder: (c, s) => const ChangePasswordScreen(),
+      ),
+      GoRoute(path: '/account/pin', builder: (c, s) => const ChangePinScreen()),
+      GoRoute(path: '/account/email', builder: (c, s) => const AddEmailScreen()),
       GoRoute(
         path: '/lesson/:slug',
         builder: (c, s) => LessonPlayerScreen(slug: s.pathParameters['slug']!),

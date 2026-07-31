@@ -6,17 +6,24 @@ import '../../core/offline/offline_providers.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
 import 'auth_widgets.dart';
+import 'entitlements.dart';
 
 /// The family's own account (route `/account`), reached from the person button
 /// in the home's top chrome.
 ///
 /// Shows the grown-up what this device holds about them — how they sign in,
-/// which children are on the device, and what they consented to — and gives
-/// them the two actions that dispose of it: **log out** and **delete account**.
+/// what they consented to, what plan they are on, where their child's progress
+/// actually lives, and which children are here — then lets them act on it:
+/// change the password or PIN, attach an email, upgrade, log out, or delete
+/// everything.
 ///
 /// Logging in is *not* here; that is [LoginScreen] at `/login`, which the
 /// router has already made everyone pass. So this screen can assume an
 /// authenticated grown-up and offer destructive controls safely.
+///
+/// Deliberately does **not** duplicate the Parent Zone: children editing,
+/// screen time, accessibility, insights, export and legal all live there, and
+/// two places to change one setting is worse than one.
 class AccountScreen extends ConsumerWidget {
   const AccountScreen({super.key});
 
@@ -28,8 +35,15 @@ class AccountScreen extends ConsumerWidget {
     ref.watch(sessionProvider.select((s) => s.profilesRev));
 
     final email = store.accountEmail;
+    final hasPassword = store.hasAccount && store.hasAccountPassword;
     final children = store.children;
     final consent = store.consent;
+    final premium = ref.watch(isPremiumProvider);
+    final freeMax = ref.watch(freeStageMaxProvider);
+    // During a free-only launch every stage is already free, so there is
+    // nothing to sell and the upgrade call-to-action would be a lie.
+    final everythingFree = freeMax >= 10;
+    final pending = store.pendingOps.length;
 
     return AuthCard(
       topRight: AuthCloseButton(onTap: () => context.go('/')),
@@ -37,11 +51,10 @@ class AccountScreen extends ConsumerWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          AuthHeader(
-            emoji: '👤',
-            title: l10n.myAccount,
-            subtitle: email == null ? null : l10n.signedInAs(email),
-          ),
+          // No "signed in as <email>" subtitle: the email row below says the
+          // same thing, and printing an address twice reads as a bug.
+          AuthHeader(emoji: '👤', title: l10n.myAccount),
+
           _SectionLabel(l10n.personalInfo),
           AuthInfoRow(
             icon: Icons.mail_rounded,
@@ -51,7 +64,7 @@ class AccountScreen extends ConsumerWidget {
           AuthInfoRow(
             icon: Icons.lock_rounded,
             label: l10n.signInMethod,
-            value: store.hasAccount && store.hasAccountPassword
+            value: hasPassword
                 ? l10n.signInMethodPassword
                 : l10n.signInMethodPin,
           ),
@@ -61,6 +74,39 @@ class AccountScreen extends ConsumerWidget {
               label: l10n.consentRecorded,
               value: _formatDate(consent.recordedAt!.toLocal()),
             ),
+          // A date alone tells a parent nothing about what they agreed to.
+          AuthInfoRow(
+            icon: Icons.tune_rounded,
+            label: l10n.consentEnabled,
+            value: _consentSummary(l10n, consent.aiFeatures,
+                consent.voiceRecording),
+          ),
+
+          const SizedBox(height: 10),
+          _SectionLabel(l10n.yourPlan),
+          AuthInfoRow(
+            icon: premium ? Icons.workspace_premium_rounded : Icons.star_rounded,
+            label: l10n.yourPlan,
+            value: premium
+                ? l10n.planPremium
+                : everythingFree
+                    ? l10n.planFreeAll
+                    : l10n.planFreeUpTo(freeMax),
+          ),
+
+          const SizedBox(height: 10),
+          _SectionLabel(l10n.yourData),
+          AuthInfoRow(
+            icon: Icons.smartphone_rounded,
+            label: l10n.whereItIsSaved,
+            value: l10n.dataOnThisDevice,
+          ),
+          AuthInfoRow(
+            icon: pending > 0 ? Icons.sync_rounded : Icons.cloud_done_rounded,
+            label: l10n.syncStatus,
+            value: pending > 0 ? l10n.syncPending(pending) : l10n.dataAllSaved,
+          ),
+
           const SizedBox(height: 10),
           _SectionLabel(l10n.children),
           if (children.isEmpty)
@@ -72,15 +118,51 @@ class AccountScreen extends ConsumerWidget {
           else
             for (final child in children)
               AuthInfoRow(
-                icon: Icons.child_care_rounded,
-                label: child.emoji,
+                // The child's own animal, not a generic glyph.
+                emoji: child.emoji,
+                label: l10n.childProfileLabel,
                 value: l10n.childNameAge(
                   child.nickname,
                   DateTime.now().year - child.birthYear,
                 ),
               ),
-          const SizedBox(height: 24),
-          AuthFilledButton(label: l10n.logOut, onTap: () => _logOut(ref, context)),
+
+          const Divider(height: 32),
+          if (hasPassword)
+            AuthActionRow(
+              icon: Icons.password_rounded,
+              label: l10n.changePassword,
+              onTap: () => context.go('/account/password'),
+            ),
+          if (store.hasPin)
+            AuthActionRow(
+              icon: Icons.pin_rounded,
+              label: l10n.changePin,
+              onTap: () => context.go('/account/pin'),
+            ),
+          if (!store.hasAccount)
+            AuthActionRow(
+              icon: Icons.alternate_email_rounded,
+              label: l10n.addEmail,
+              subtitle: l10n.addEmailBody,
+              onTap: () => context.go('/account/email'),
+            ),
+
+          const SizedBox(height: 20),
+          // Gold is the app's "do the main thing" colour; pointing it at the
+          // exit made logging out look like the point of the screen.
+          if (!premium && !everythingFree) ...[
+            AuthFilledButton(
+              label: l10n.premiumTitle,
+              onTap: () => context.go('/paywall'),
+            ),
+            const SizedBox(height: 12),
+          ],
+          AuthOutlineButton(
+            label: l10n.logOut,
+            color: WatotoColors.deep,
+            onTap: () => _logOut(ref, context),
+          ),
           const SizedBox(height: 12),
           AuthOutlineButton(
             label: l10n.deleteAccount,
@@ -133,6 +215,15 @@ class AccountScreen extends ConsumerWidget {
     // Everything is gone, including the onboarding flag, so the app is back at
     // first run; the router would redirect anyway, this just skips the bounce.
     if (context.mounted) context.go('/onboarding');
+  }
+
+  /// What the family actually turned on, in their words — not a bare date.
+  static String _consentSummary(AppLocalizations l10n, bool ai, bool voice) {
+    final on = [
+      if (ai) l10n.consentAi,
+      if (voice) l10n.consentVoice,
+    ];
+    return on.isEmpty ? l10n.consentProgressOnly : on.join(' · ');
   }
 
   static String _formatDate(DateTime d) =>

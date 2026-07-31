@@ -336,6 +336,33 @@ class OfflineStore {
     return sha256.convert(utf8.encode('$salt:$password')).toString();
   }
 
+  /// Deliberate password change by a grown-up who knows the current one —
+  /// distinct from [completePasswordReset], which is the forgotten-it path and
+  /// costs an emailed code. Returns false when [currentPassword] is wrong.
+  Future<bool> changeAccountPassword({
+    required String currentPassword,
+    required String newPassword,
+  }) async {
+    if (!verifyAccount(currentPassword)) return false;
+    if (newPassword.length < 6) throw StateError('Password too short.');
+    // Salt first: _hashAccount reads the stored salt, so rotating it after
+    // hashing would leave a hash nobody can reproduce.
+    await _account.put('accountSalt', _uuid.v4());
+    await _account.put('accountHash', _hashAccount(newPassword));
+    return true;
+  }
+
+  /// Deliberate PIN change. Returns false when [currentPin] is wrong; throws
+  /// if [newPin] is not 4–6 digits.
+  Future<bool> changePin({
+    required String currentPin,
+    required String newPin,
+  }) async {
+    if (!verifyPin(currentPin)) return false;
+    await resetPin(newPin);
+    return true;
+  }
+
   /// Password reset codes expire after 1 hour.
   static const Duration passwordResetTtl = Duration(hours: 1);
 
