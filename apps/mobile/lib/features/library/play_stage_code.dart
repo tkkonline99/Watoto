@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../core/theme/watoto_theme.dart';
+import '../../l10n/gen/app_localizations.dart';
 import 'step_play.dart';
 
 class KidCodeStage extends StatefulWidget {
@@ -48,7 +49,7 @@ class KidCodeStageState extends State<KidCodeStage>
     _pulse = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 900),
-    )..repeat(reverse: true);
+    );
     final challenge = widget.plan.codeChallenge ?? 'print';
     _pool = List<String>.from(widget.plan.codeTokens);
     if (_pool.isEmpty && challenge == 'print') {
@@ -69,6 +70,25 @@ class KidCodeStageState extends State<KidCodeStage>
         challenge == 'if') {
       _phase = 1;
     }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _syncPulse();
+  }
+
+  /// The RUN button breathes to draw the eye, but a family that asked for less
+  /// motion gets a still button — and a still button lets `pumpAndSettle`
+  /// return in tests, the same deal every other ambient animation here makes.
+  void _syncPulse() {
+    final reduce = MediaQuery.maybeOf(context)?.disableAnimations ?? false;
+    if (reduce) {
+      if (_pulse.isAnimating) _pulse.stop();
+      _pulse.value = 0;
+      return;
+    }
+    if (!_pulse.isAnimating) _pulse.repeat(reverse: true);
   }
 
   @override
@@ -167,6 +187,10 @@ class KidCodeStageState extends State<KidCodeStage>
   @override
   Widget build(BuildContext context) {
     final c = widget.plan.codeChallenge ?? 'print';
+    // The code itself stays English on purpose — `print`, `for` and `if` are
+    // Python, not prose, and translating them would teach a language that does
+    // not exist. Everything wrapped around the editor is the child's language.
+    final l10n = AppLocalizations.of(context);
     return Column(
       children: [
         // Mascot reacts to phase.
@@ -181,12 +205,12 @@ class KidCodeStageState extends State<KidCodeStage>
         const SizedBox(height: 8),
         Text(
           _phase == 0
-              ? 'Tap blocks in order!'
+              ? l10n.codeTapBlocks
               : _phase == 1
-                  ? 'Ready — smash RUN!'
+                  ? l10n.codeReadyRun
                   : _phase == 2
-                      ? 'Running…'
-                      : 'It worked!',
+                      ? l10n.codeRunning
+                      : l10n.codeItWorked,
           style: const TextStyle(
             fontWeight: FontWeight.w800,
             fontSize: 16,
@@ -197,11 +221,14 @@ class KidCodeStageState extends State<KidCodeStage>
 
         // Challenge-specific choosers — each challenge gets the controls it needs.
         if (c == 'twoLines') ...[
-          const Align(
+          Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              '1. Your name',
-              style: TextStyle(fontWeight: FontWeight.w800, fontSize: 15),
+              l10n.codeYourName,
+              style: const TextStyle(
+                fontWeight: FontWeight.w800,
+                fontSize: 15,
+              ),
             ),
           ),
           const SizedBox(height: 6),
@@ -228,7 +255,7 @@ class KidCodeStageState extends State<KidCodeStage>
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              '2. Your age: $_age',
+              l10n.codeYourAge(_age),
               style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 15),
             ),
           ),
@@ -267,7 +294,7 @@ class KidCodeStageState extends State<KidCodeStage>
           ),
           const SizedBox(height: 8),
           Text(
-            'Will print:\n${_name ?? 'Amani'}\n$_age',
+            '${l10n.codeWillPrint}\n${_name ?? 'Amani'}\n$_age',
             textAlign: TextAlign.center,
             style: const TextStyle(
               fontWeight: FontWeight.w700,
@@ -278,7 +305,9 @@ class KidCodeStageState extends State<KidCodeStage>
           const SizedBox(height: 10),
         ] else if (c == 'message' || c == 'variable') ...[
           Text(
-            c == 'message' ? 'What should it say?' : 'What goes in the box?',
+            c == 'message'
+                ? l10n.codeWhatShouldItSay
+                : l10n.codeWhatGoesInBox,
             style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 15),
           ),
           const SizedBox(height: 6),
@@ -310,7 +339,7 @@ class KidCodeStageState extends State<KidCodeStage>
 
         if (c == 'loop') ...[
           Text(
-            'Repeat $_loopN times',
+            l10n.codeRepeatTimes(_loopN),
             style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 18),
           ),
           Row(
@@ -374,7 +403,7 @@ class KidCodeStageState extends State<KidCodeStage>
               border: Border.all(color: WatotoColors.sky, width: 2),
             ),
             child: Text(
-              _built.isEmpty ? '⬇ drop blocks here' : _built.join(' '),
+              _built.isEmpty ? l10n.codeDropBlocks : _built.join(' '),
               style: TextStyle(
                 fontFamily: 'monospace',
                 color: _built.isEmpty
@@ -454,9 +483,9 @@ class KidCodeStageState extends State<KidCodeStage>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'OUTPUT',
-                  style: TextStyle(
+                Text(
+                  l10n.codeOutput,
+                  style: const TextStyle(
                     color: Colors.white54,
                     fontSize: 11,
                     fontWeight: FontWeight.w800,
@@ -497,17 +526,20 @@ class KidCodeStageState extends State<KidCodeStage>
               ),
               onPressed: _phase == 1 ? _run : null,
               icon: const Icon(Icons.play_arrow_rounded, size: 32),
-              label: const Text(
-                'RUN',
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900),
+              label: Text(
+                l10n.codeRun,
+                style: const TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w900,
+                ),
               ),
             ),
           ),
         if (_phase >= 3)
-          const Text(
-            '⭐ You made the computer talk! ⭐',
+          Text(
+            l10n.codeMadeItTalk,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.w800,
               fontSize: 16,
               color: WatotoColors.leaf,

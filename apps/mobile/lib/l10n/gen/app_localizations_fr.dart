@@ -1260,4 +1260,56 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get whatsNewFooter =>
       'Watoto fonctionne hors ligne. La progression reste sur cet appareil, sauf si vous exportez une sauvegarde.';
+
+  @override
+  String get yesShort => 'Oui !';
+
+  @override
+  String get levelUpShort => 'Niveau supérieur !';
+
+  @override
+  String get codeTapBlocks => 'Touche les blocs dans l\'ordre !';
+
+  @override
+  String get codeReadyRun => 'Prêt — appuie sur LANCER !';
+
+  @override
+  String get codeRunning => 'Ça tourne…';
+
+  @override
+  String get codeItWorked => 'Ça marche !';
+
+  @override
+  String get codeYourName => '1. Ton prénom';
+
+  @override
+  String codeYourAge(int age) {
+    return '2. Ton âge : $age';
+  }
+
+  @override
+  String get codeWillPrint => 'Va afficher :';
+
+  @override
+  String get codeWhatShouldItSay => 'Qu\'est-ce qu\'il doit dire ?';
+
+  @override
+  String get codeWhatGoesInBox => 'Qu\'est-ce qui va dans la boîte ?';
+
+  @override
+  String codeRepeatTimes(int count) {
+    return 'Répète $count fois';
+  }
+
+  @override
+  String get codeDropBlocks => '⬇ dépose les blocs ici';
+
+  @override
+  String get codeOutput => 'RÉSULTAT';
+
+  @override
+  String get codeRun => 'LANCER';
+
+  @override
+  String get codeMadeItTalk => '⭐ Tu as fait parler l\'ordinateur ! ⭐';
 }

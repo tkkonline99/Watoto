@@ -2307,6 +2307,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Watoto works offline. Progress stays on this device unless you export a backup.'**
   String get whatsNewFooter;
+
+  /// No description provided for @yesShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes!'**
+  String get yesShort;
+
+  /// No description provided for @levelUpShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Level up!'**
+  String get levelUpShort;
+
+  /// No description provided for @codeTapBlocks.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap blocks in order!'**
+  String get codeTapBlocks;
+
+  /// No description provided for @codeReadyRun.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready — smash RUN!'**
+  String get codeReadyRun;
+
+  /// No description provided for @codeRunning.
+  ///
+  /// In en, this message translates to:
+  /// **'Running…'**
+  String get codeRunning;
+
+  /// No description provided for @codeItWorked.
+  ///
+  /// In en, this message translates to:
+  /// **'It worked!'**
+  String get codeItWorked;
+
+  /// No description provided for @codeYourName.
+  ///
+  /// In en, this message translates to:
+  /// **'1. Your name'**
+  String get codeYourName;
+
+  /// No description provided for @codeYourAge.
+  ///
+  /// In en, this message translates to:
+  /// **'2. Your age: {age}'**
+  String codeYourAge(int age);
+
+  /// No description provided for @codeWillPrint.
+  ///
+  /// In en, this message translates to:
+  /// **'Will print:'**
+  String get codeWillPrint;
+
+  /// No description provided for @codeWhatShouldItSay.
+  ///
+  /// In en, this message translates to:
+  /// **'What should it say?'**
+  String get codeWhatShouldItSay;
+
+  /// No description provided for @codeWhatGoesInBox.
+  ///
+  /// In en, this message translates to:
+  /// **'What goes in the box?'**
+  String get codeWhatGoesInBox;
+
+  /// No description provided for @codeRepeatTimes.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeat {count} times'**
+  String codeRepeatTimes(int count);
+
+  /// No description provided for @codeDropBlocks.
+  ///
+  /// In en, this message translates to:
+  /// **'⬇ drop blocks here'**
+  String get codeDropBlocks;
+
+  /// No description provided for @codeOutput.
+  ///
+  /// In en, this message translates to:
+  /// **'OUTPUT'**
+  String get codeOutput;
+
+  /// No description provided for @codeRun.
+  ///
+  /// In en, this message translates to:
+  /// **'RUN'**
+  String get codeRun;
+
+  /// No description provided for @codeMadeItTalk.
+  ///
+  /// In en, this message translates to:
+  /// **'⭐ You made the computer talk! ⭐'**
+  String get codeMadeItTalk;
 }
 
 class _AppLocalizationsDelegate

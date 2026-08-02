@@ -716,7 +716,7 @@ class TapStageState extends State<TapStage> {
         if (_done || prompt != null) ...[
           const SizedBox(height: 12),
           Text(
-            _done ? 'Yes!' : prompt!,
+            _done ? l10n.yesShort : prompt!,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 16,

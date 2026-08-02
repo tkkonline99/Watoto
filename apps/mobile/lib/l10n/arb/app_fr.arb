@@ -367,5 +367,21 @@
   "stretchGoHome": "Retour à l'accueil",
   "whatsNewTitle": "Nouveautés",
   "whatsNewSubtitle": "Vous utilisez la version {version}",
-  "whatsNewFooter": "Watoto fonctionne hors ligne. La progression reste sur cet appareil, sauf si vous exportez une sauvegarde."
+  "whatsNewFooter": "Watoto fonctionne hors ligne. La progression reste sur cet appareil, sauf si vous exportez une sauvegarde.",
+  "yesShort": "Oui !",
+  "levelUpShort": "Niveau supérieur !",
+  "codeTapBlocks": "Touche les blocs dans l'ordre !",
+  "codeReadyRun": "Prêt — appuie sur LANCER !",
+  "codeRunning": "Ça tourne…",
+  "codeItWorked": "Ça marche !",
+  "codeYourName": "1. Ton prénom",
+  "codeYourAge": "2. Ton âge : {age}",
+  "codeWillPrint": "Va afficher :",
+  "codeWhatShouldItSay": "Qu'est-ce qu'il doit dire ?",
+  "codeWhatGoesInBox": "Qu'est-ce qui va dans la boîte ?",
+  "codeRepeatTimes": "Répète {count} fois",
+  "codeDropBlocks": "⬇ dépose les blocs ici",
+  "codeOutput": "RÉSULTAT",
+  "codeRun": "LANCER",
+  "codeMadeItTalk": "⭐ Tu as fait parler l'ordinateur ! ⭐"
 }

@@ -1257,4 +1257,56 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get whatsNewFooter =>
       'Watoto works offline. Progress stays on this device unless you export a backup.';
+
+  @override
+  String get yesShort => 'Yes!';
+
+  @override
+  String get levelUpShort => 'Level up!';
+
+  @override
+  String get codeTapBlocks => 'Tap blocks in order!';
+
+  @override
+  String get codeReadyRun => 'Ready — smash RUN!';
+
+  @override
+  String get codeRunning => 'Running…';
+
+  @override
+  String get codeItWorked => 'It worked!';
+
+  @override
+  String get codeYourName => '1. Your name';
+
+  @override
+  String codeYourAge(int age) {
+    return '2. Your age: $age';
+  }
+
+  @override
+  String get codeWillPrint => 'Will print:';
+
+  @override
+  String get codeWhatShouldItSay => 'What should it say?';
+
+  @override
+  String get codeWhatGoesInBox => 'What goes in the box?';
+
+  @override
+  String codeRepeatTimes(int count) {
+    return 'Repeat $count times';
+  }
+
+  @override
+  String get codeDropBlocks => '⬇ drop blocks here';
+
+  @override
+  String get codeOutput => 'OUTPUT';
+
+  @override
+  String get codeRun => 'RUN';
+
+  @override
+  String get codeMadeItTalk => '⭐ You made the computer talk! ⭐';
 }

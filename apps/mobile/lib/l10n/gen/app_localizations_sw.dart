@@ -1253,4 +1253,56 @@ class AppLocalizationsSw extends AppLocalizations {
   @override
   String get whatsNewFooter =>
       'Watoto hufanya kazi bila intaneti. Maendeleo yanabaki kwenye kifaa hiki isipokuwa uhifadhi nakala rudufu.';
+
+  @override
+  String get yesShort => 'Ndiyo!';
+
+  @override
+  String get levelUpShort => 'Kiwango kipya!';
+
+  @override
+  String get codeTapBlocks => 'Gusa vipande kwa mpangilio!';
+
+  @override
+  String get codeReadyRun => 'Tayari — bonyeza ENDESHA!';
+
+  @override
+  String get codeRunning => 'Inaendesha…';
+
+  @override
+  String get codeItWorked => 'Imefanya kazi!';
+
+  @override
+  String get codeYourName => '1. Jina lako';
+
+  @override
+  String codeYourAge(int age) {
+    return '2. Umri wako: $age';
+  }
+
+  @override
+  String get codeWillPrint => 'Itaandika:';
+
+  @override
+  String get codeWhatShouldItSay => 'Iseme nini?';
+
+  @override
+  String get codeWhatGoesInBox => 'Nini kiingie kwenye kisanduku?';
+
+  @override
+  String codeRepeatTimes(int count) {
+    return 'Rudia mara $count';
+  }
+
+  @override
+  String get codeDropBlocks => '⬇ dondosha vipande hapa';
+
+  @override
+  String get codeOutput => 'MATOKEO';
+
+  @override
+  String get codeRun => 'ENDESHA';
+
+  @override
+  String get codeMadeItTalk => '⭐ Umeifanya kompyuta iongee! ⭐';
 }

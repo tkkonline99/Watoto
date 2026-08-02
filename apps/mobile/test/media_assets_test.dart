@@ -41,6 +41,18 @@ void main() {
   const voSample = 's01.cause.lesson.01.steps.0.narration';
 
   test('VO manifest still covers the stage-1 sample', () {
+    // The manifest lives in the monorepo, not in this package. CI checks the
+    // whole repo out so it is reachable; the local build workspace copies only
+    // apps/mobile, so it is not. Skip when the whole content/ tree is out of
+    // reach — but if content/ IS there, a missing manifest is a real failure,
+    // not an excuse to pass.
+    final contentDir = Directory('../../content');
+    if (!contentDir.existsSync()) {
+      markTestSkipped(
+        'content/ is out of reach — testing apps/mobile on its own',
+      );
+      return;
+    }
     final manifest = File(
       '../../content/production/audio/audio_manifest.csv',
     );
