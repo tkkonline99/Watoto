@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import '../../l10n/gen/app_localizations.dart';
 import '../theme/watoto_theme.dart';
 
 /// When true, Kibo's perpetual bounce is held still. Tests set this so
@@ -92,8 +93,17 @@ class _MascotWidgetState extends State<MascotWidget>
   @override
   Widget build(BuildContext context) {
     final reduce = MediaQuery.maybeOf(context)?.disableAnimations ?? false;
+    // Six of the seven call sites let this default, so for a child using a
+    // screen reader it IS the mascot's name — it has to be in their language.
+    // Looked up leniently rather than via AppLocalizations.of: this widget also
+    // fills loading and error states, which can render before a Localizations
+    // ancestor exists, and a semantic label is never worth crashing over.
+    final l10n = Localizations.of<AppLocalizations>(context, AppLocalizations);
     return Semantics(
-      label: widget.label ?? 'Kibo the lion cub',
+      label: widget.label ?? l10n?.mascotName ?? 'Kibo the lion cub',
+      // Without this the reader says the name and then the emoji it is drawn
+      // with — "Kibo the lion cub, lion face". Same rule the tiles follow.
+      excludeSemantics: true,
       child: AnimatedBuilder(
         animation: _ctl,
         builder: (context, child) {

@@ -1315,4 +1315,7 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get nicknameRequired => 'Andika jina kwanza';
+
+  @override
+  String get mascotName => 'Kibo mtoto wa simba';
 }

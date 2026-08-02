@@ -2421,6 +2421,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Type a name first'**
   String get nicknameRequired;
+
+  /// No description provided for @mascotName.
+  ///
+  /// In en, this message translates to:
+  /// **'Kibo the lion cub'**
+  String get mascotName;
 }
 
 class _AppLocalizationsDelegate

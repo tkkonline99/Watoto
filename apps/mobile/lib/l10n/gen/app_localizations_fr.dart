@@ -1322,4 +1322,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get nicknameRequired => 'Saisissez d\'abord un nom';
+
+  @override
+  String get mascotName => 'Kibo le lionceau';
 }
