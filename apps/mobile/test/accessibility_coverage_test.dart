@@ -24,6 +24,15 @@ void main() {
     // The auth screens (login, account, both resets) build every tap target
     // out of these shared widgets, so this is where their semantics live.
     'lib/features/auth/auth_widgets.dart',
+    // Shared widgets used to be out of scope here, and both of these slipped
+    // through because of it: SubjectIsland (the home subject tiles) labelled
+    // its node but let the reader walk into the emoji, the padlock and the
+    // caption underneath, and the mascot announced its English name plus
+    // "lion face" in every language. A screen is only as accessible as the
+    // widgets it is built from, so the shared ones are checked too.
+    'lib/core/widgets/subject_island.dart',
+    'lib/core/widgets/mascot_widget.dart',
+    'lib/core/widgets/status_views.dart',
   ];
 
   test('every interactive surface declares screen-reader semantics', () {
@@ -47,7 +56,8 @@ void main() {
       final source = File(path).readAsStringSync();
       if (!source.contains('Semantics(')) continue;
       expect(
-        source.contains('ExcludeSemantics'),
+        source.contains('ExcludeSemantics') ||
+            source.contains('excludeSemantics:'),
         isTrue,
         reason: '$path labels nodes but still exposes their children',
       );

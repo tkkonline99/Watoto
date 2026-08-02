@@ -525,59 +525,64 @@ class ChoiceStageState extends State<ChoiceStage> {
                 label: widget.plan.options[i].word,
                 child: GestureDetector(
                   onTap: () => _pick(i),
-                  child: AnimatedScale(
-                    scale: _done && i == widget.plan.targetIndex
-                        ? 1.2
-                        : (_wrong.contains(i) ? 0.85 : 1.0),
-                    duration: const Duration(milliseconds: 180),
-                    curve: Curves.easeOutBack,
-                    child: AnimatedOpacity(
-                      opacity:
-                          _wrong.contains(i) ||
-                              (_done && i != widget.plan.targetIndex)
-                          ? 0.35
-                          : 1.0,
+                  // The option's word is the Semantics label above; the glyph inside
+                  // is how it looks. Excluded here, not on the Semantics, so the
+                  // GestureDetector keeps the tap action a reader activates.
+                  child: ExcludeSemantics(
+                    child: AnimatedScale(
+                      scale: _done && i == widget.plan.targetIndex
+                          ? 1.2
+                          : (_wrong.contains(i) ? 0.85 : 1.0),
                       duration: const Duration(milliseconds: 180),
-                      child: Container(
-                        constraints: const BoxConstraints(
-                          minWidth: 92,
-                          minHeight: 92,
-                        ),
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(22),
-                          border: Border.all(
-                            color: _done && i == widget.plan.targetIndex
-                                ? WatotoColors.leaf
-                                : WatotoColors.sky.withValues(alpha: 0.25),
-                            width: 3,
+                      curve: Curves.easeOutBack,
+                      child: AnimatedOpacity(
+                        opacity:
+                            _wrong.contains(i) ||
+                                (_done && i != widget.plan.targetIndex)
+                            ? 0.35
+                            : 1.0,
+                        duration: const Duration(milliseconds: 180),
+                        child: Container(
+                          constraints: const BoxConstraints(
+                            minWidth: 92,
+                            minHeight: 92,
                           ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: WatotoColors.deep.withValues(alpha: 0.08),
-                              blurRadius: 10,
-                              offset: const Offset(0, 4),
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(22),
+                            border: Border.all(
+                              color: _done && i == widget.plan.targetIndex
+                                  ? WatotoColors.leaf
+                                  : WatotoColors.sky.withValues(alpha: 0.25),
+                              width: 3,
                             ),
-                          ],
-                        ),
-                        // Reading choices ("cap" vs "cape") render as words,
-                        // not emoji-sized glyphs.
-                        child: isWordOption(widget.plan.options[i].emoji)
-                            ? Text(
-                                widget.plan.options[i].emoji,
-                                style: const TextStyle(
-                                  fontFamily: 'Baloo2',
-                                  fontSize: 28,
-                                  fontWeight: FontWeight.w800,
-                                  color: WatotoColors.deep,
-                                ),
-                              )
-                            : Text(
-                                widget.plan.options[i].emoji,
-                                style: const TextStyle(fontSize: 48),
+                            boxShadow: [
+                              BoxShadow(
+                                color: WatotoColors.deep.withValues(alpha: 0.08),
+                                blurRadius: 10,
+                                offset: const Offset(0, 4),
                               ),
+                            ],
+                          ),
+                          // Reading choices ("cap" vs "cape") render as words,
+                          // not emoji-sized glyphs.
+                          child: isWordOption(widget.plan.options[i].emoji)
+                              ? Text(
+                                  widget.plan.options[i].emoji,
+                                  style: const TextStyle(
+                                    fontFamily: 'Baloo2',
+                                    fontSize: 28,
+                                    fontWeight: FontWeight.w800,
+                                    color: WatotoColors.deep,
+                                  ),
+                                )
+                              : Text(
+                                  widget.plan.options[i].emoji,
+                                  style: const TextStyle(fontSize: 48),
+                                ),
+                        ),
                       ),
                     ),
                   ),
@@ -685,30 +690,33 @@ class TapStageState extends State<TapStage> {
           label: prompt ?? l10n.tapEachPrompt,
           child: GestureDetector(
             onTap: _tap,
-            child: AnimatedScale(
-              scale: _done ? 1.28 : 1.0,
-              duration: const Duration(milliseconds: 200),
-              curve: Curves.easeOutBack,
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Container(
-                    width: 140,
-                    height: 140,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: (_done ? WatotoColors.leaf : WatotoColors.sun)
-                          .withValues(alpha: 0.18),
+            // Decoration only below this point — the prompt is the label above.
+            child: ExcludeSemantics(
+              child: AnimatedScale(
+                scale: _done ? 1.28 : 1.0,
+                duration: const Duration(milliseconds: 200),
+                curve: Curves.easeOutBack,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Container(
+                      width: 140,
+                      height: 140,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: (_done ? WatotoColors.leaf : WatotoColors.sun)
+                            .withValues(alpha: 0.18),
+                      ),
                     ),
-                  ),
-                  bigEmoji(widget.emoji),
-                  if (_done)
-                    const Positioned(
-                      top: 0,
-                      right: 8,
-                      child: Text('⭐', style: TextStyle(fontSize: 28)),
-                    ),
-                ],
+                    bigEmoji(widget.emoji),
+                    if (_done)
+                      const Positioned(
+                        top: 0,
+                        right: 8,
+                        child: Text('⭐', style: TextStyle(fontSize: 28)),
+                      ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -784,18 +792,21 @@ class CountStageState extends State<CountStage> {
                 label: '${i + 1}',
                 child: GestureDetector(
                   onTap: () => _tap(i),
-                  child: AnimatedScale(
-                    scale: _counted[i] ? 1.2 : 1.0,
-                    duration: const Duration(milliseconds: 150),
-                    child: Badge(
-                      isLabelVisible: _counted[i],
-                      backgroundColor: WatotoColors.leaf,
-                      label: Text(
-                        '${_counted.take(i + 1).where((c) => c).length}',
-                      ),
-                      child: Text(
-                        widget.emoji,
-                        style: const TextStyle(fontSize: 56),
+                  // The item's number is the label; the emoji and its badge are decor.
+                  child: ExcludeSemantics(
+                    child: AnimatedScale(
+                      scale: _counted[i] ? 1.2 : 1.0,
+                      duration: const Duration(milliseconds: 150),
+                      child: Badge(
+                        isLabelVisible: _counted[i],
+                        backgroundColor: WatotoColors.leaf,
+                        label: Text(
+                          '${_counted.take(i + 1).where((c) => c).length}',
+                        ),
+                        child: Text(
+                          widget.emoji,
+                          style: const TextStyle(fontSize: 56),
+                        ),
                       ),
                     ),
                   ),
@@ -858,7 +869,10 @@ class DragStageState extends State<DragStage> {
               // Tap also completes, so the step is doable without a drag.
               child: GestureDetector(
                 onTap: _finish,
-                child: bigEmoji(widget.emoji),
+                // The basket instruction is the label above; this is the token.
+                child: ExcludeSemantics(
+                  child: bigEmoji(widget.emoji),
+                ),
               ),
             ),
           ),

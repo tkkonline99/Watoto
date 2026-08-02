@@ -1220,104 +1220,109 @@ class _DailyChallengeCard extends ConsumerWidget {
               forceAgePicker: false,
             );
           },
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(28),
-              boxShadow: [
-                BoxShadow(
-                  color: WatotoColors.deep.withValues(alpha: 0.08),
-                  blurRadius: 18,
-                  offset: const Offset(0, 8),
-                ),
-              ],
-            ),
-            child: Row(
-              children: [
-                Container(
-                  width: 60,
-                  height: 60,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: done
-                        ? WatotoColors.leaf.withValues(alpha: 0.2)
-                        : WatotoColors.sun.withValues(alpha: 0.2),
-                    borderRadius: BorderRadius.circular(18),
+          // The label above already reads "Daily Challenge. <title>"; without
+          // this the reader goes on to say the emoji, the title again and the
+          // progress caption.
+          child: ExcludeSemantics(
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(28),
+                boxShadow: [
+                  BoxShadow(
+                    color: WatotoColors.deep.withValues(alpha: 0.08),
+                    blurRadius: 18,
+                    offset: const Offset(0, 8),
                   ),
-                  child: Text(emoji, style: const TextStyle(fontSize: 34)),
-                ),
-                const SizedBox(width: 14),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        l10n.dailyChallenge,
-                        style: const TextStyle(
-                          fontFamily: 'Baloo2',
-                          fontSize: 18,
-                          fontWeight: FontWeight.w800,
-                          color: WatotoColors.deep,
-                        ),
-                      ),
-                      if (title != null)
-                        Text(
-                          title,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            color: WatotoColors.deep.withValues(alpha: 0.65),
-                          ),
-                        ),
-                      const SizedBox(height: 8),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(6),
-                        child: LinearProgressIndicator(
-                          value: done ? 1 : (xp % 100) / 100,
-                          minHeight: 10,
-                          backgroundColor: WatotoColors.sun.withValues(
-                            alpha: 0.18,
-                          ),
-                          valueColor: AlwaysStoppedAnimation(
-                            done ? WatotoColors.leaf : WatotoColors.sun,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(width: 14),
-                Container(
-                  width: 56,
-                  height: 56,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: done
-                          ? [WatotoColors.leaf, const Color(0xFF2E8B57)]
-                          : const [WatotoColors.sun, WatotoColors.mango],
+                ],
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    width: 60,
+                    height: 60,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: done
+                          ? WatotoColors.leaf.withValues(alpha: 0.2)
+                          : WatotoColors.sun.withValues(alpha: 0.2),
+                      borderRadius: BorderRadius.circular(18),
                     ),
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: (done ? WatotoColors.leaf : WatotoColors.mango)
-                            .withValues(alpha: 0.45),
-                        blurRadius: 12,
-                        offset: const Offset(0, 5),
+                    child: Text(emoji, style: const TextStyle(fontSize: 34)),
+                  ),
+                  const SizedBox(width: 14),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          l10n.dailyChallenge,
+                          style: const TextStyle(
+                            fontFamily: 'Baloo2',
+                            fontSize: 18,
+                            fontWeight: FontWeight.w800,
+                            color: WatotoColors.deep,
+                          ),
+                        ),
+                        if (title != null)
+                          Text(
+                            title,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: WatotoColors.deep.withValues(alpha: 0.65),
+                            ),
+                          ),
+                        const SizedBox(height: 8),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(6),
+                          child: LinearProgressIndicator(
+                            value: done ? 1 : (xp % 100) / 100,
+                            minHeight: 10,
+                            backgroundColor: WatotoColors.sun.withValues(
+                              alpha: 0.18,
+                            ),
+                            valueColor: AlwaysStoppedAnimation(
+                              done ? WatotoColors.leaf : WatotoColors.sun,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 14),
+                  Container(
+                    width: 56,
+                    height: 56,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: done
+                            ? [WatotoColors.leaf, const Color(0xFF2E8B57)]
+                            : const [WatotoColors.sun, WatotoColors.mango],
                       ),
-                    ],
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: (done ? WatotoColors.leaf : WatotoColors.mango)
+                              .withValues(alpha: 0.45),
+                          blurRadius: 12,
+                          offset: const Offset(0, 5),
+                        ),
+                      ],
+                    ),
+                    child: Icon(
+                      done ? Icons.check_rounded : Icons.play_arrow_rounded,
+                      size: 32,
+                      color: WatotoColors.deep,
+                    ),
                   ),
-                  child: Icon(
-                    done ? Icons.check_rounded : Icons.play_arrow_rounded,
-                    size: 32,
-                    color: WatotoColors.deep,
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
