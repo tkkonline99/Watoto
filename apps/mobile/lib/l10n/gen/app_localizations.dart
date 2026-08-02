@@ -2403,6 +2403,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'⭐ You made the computer talk! ⭐'**
   String get codeMadeItTalk;
+
+  /// No description provided for @noAccountForEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'No account on this device uses that email'**
+  String get noAccountForEmail;
+
+  /// No description provided for @resetCodeExpired.
+  ///
+  /// In en, this message translates to:
+  /// **'That code has expired — ask for a new one'**
+  String get resetCodeExpired;
+
+  /// No description provided for @nicknameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Type a name first'**
+  String get nicknameRequired;
 }
 
 class _AppLocalizationsDelegate

@@ -1309,4 +1309,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get codeMadeItTalk => '⭐ You made the computer talk! ⭐';
+
+  @override
+  String get noAccountForEmail => 'No account on this device uses that email';
+
+  @override
+  String get resetCodeExpired => 'That code has expired — ask for a new one';
+
+  @override
+  String get nicknameRequired => 'Type a name first';
 }

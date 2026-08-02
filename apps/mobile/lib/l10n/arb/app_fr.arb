@@ -383,5 +383,8 @@
   "codeDropBlocks": "⬇ dépose les blocs ici",
   "codeOutput": "RÉSULTAT",
   "codeRun": "LANCER",
-  "codeMadeItTalk": "⭐ Tu as fait parler l'ordinateur ! ⭐"
+  "codeMadeItTalk": "⭐ Tu as fait parler l'ordinateur ! ⭐",
+  "noAccountForEmail": "Aucun compte sur cet appareil n'utilise cette adresse",
+  "resetCodeExpired": "Ce code a expiré — demandez-en un nouveau",
+  "nicknameRequired": "Saisissez d'abord un nom"
 }

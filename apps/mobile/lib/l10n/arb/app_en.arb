@@ -657,5 +657,8 @@
   "codeDropBlocks": "⬇ drop blocks here",
   "codeOutput": "OUTPUT",
   "codeRun": "RUN",
-  "codeMadeItTalk": "⭐ You made the computer talk! ⭐"
+  "codeMadeItTalk": "⭐ You made the computer talk! ⭐",
+  "noAccountForEmail": "No account on this device uses that email",
+  "resetCodeExpired": "That code has expired — ask for a new one",
+  "nicknameRequired": "Type a name first"
 }

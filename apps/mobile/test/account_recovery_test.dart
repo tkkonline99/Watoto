@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
 import 'package:watoto_mobile/core/offline/offline_store.dart';
+import 'package:watoto_mobile/core/offline/store_error.dart';
 import 'package:watoto_mobile/features/auth/auth_service.dart';
 
 void main() {
@@ -59,7 +60,13 @@ void main() {
       await store.createAccount('parent@example.com', 'secret12');
       expect(
         () => store.beginPasswordReset('other@example.com'),
-        throwsStateError,
+        throwsA(
+          isA<StoreError>().having(
+            (e) => e.code,
+            'code',
+            StoreErrorCode.noAccountForEmail,
+          ),
+        ),
       );
     });
 

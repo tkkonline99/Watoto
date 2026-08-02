@@ -99,22 +99,26 @@ extension OfflineStoreSettings on OfflineStore {
       _account.put('child:${child.id}', jsonEncode(child.toJson()));
 
   /// Renames a child profile if the 90-day cooldown has elapsed.
-  /// Returns the updated profile. Throws [StateError] when blocked.
+  /// Returns the updated profile. Throws [StoreError] when blocked.
   Future<ChildProfile> updateChildNickname({
     required String childId,
     required String nickname,
     DateTime? now,
   }) async {
     final child = childById(childId);
-    if (child == null) throw StateError('Child not found.');
+    if (child == null) {
+      throw const StoreError(StoreErrorCode.childNotFound);
+    }
     final name = nickname.trim();
-    if (name.isEmpty) throw StateError('Nickname required.');
+    if (name.isEmpty) {
+      throw const StoreError(StoreErrorCode.nicknameRequired);
+    }
     if (name == child.nickname) return child;
     final when = now ?? DateTime.now().toUtc();
     if (!canChangeNickname(child.nicknameChangedAt, now: when)) {
       final days =
           nicknameCooldownDaysRemaining(child.nicknameChangedAt, now: when);
-      throw StateError('Nickname can be changed again in $days days.');
+      throw StoreError(StoreErrorCode.nicknameCooldown, days: days);
     }
     final updated = child.copyWith(
       nickname: name,

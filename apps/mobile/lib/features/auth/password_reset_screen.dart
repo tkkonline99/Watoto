@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/analytics/analytics.dart';
+import '../../core/l10n/store_error_text.dart';
 import '../../core/offline/offline_providers.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
@@ -100,7 +101,7 @@ class _PasswordResetScreenState extends ConsumerState<PasswordResetScreen> {
     } catch (e) {
       // Generic copy — avoid account enumeration in UI for cloud; local may fail.
       setState(() {
-        _error = e is StateError ? e.message : l10n.passwordResetFailed;
+        _error = storeErrorText(l10n, e, fallback: l10n.passwordResetFailed);
       });
     } finally {
       if (mounted) setState(() => _busy = false);
@@ -141,7 +142,7 @@ class _PasswordResetScreenState extends ConsumerState<PasswordResetScreen> {
       context.go('/account');
     } catch (e) {
       setState(() {
-        _error = e is StateError ? e.message : l10n.passwordResetFailed;
+        _error = storeErrorText(l10n, e, fallback: l10n.passwordResetFailed);
       });
     } finally {
       if (mounted) setState(() => _busy = false);
