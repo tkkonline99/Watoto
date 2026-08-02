@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/analytics/analytics.dart';
+import '../../core/l10n/store_error_text.dart';
 import '../../core/offline/offline_providers.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
@@ -76,11 +77,7 @@ class _PinResetScreenState extends ConsumerState<PinResetScreen> {
       context.go('/parent/unlock');
     } catch (e) {
       setState(() {
-        _error = e is StateError
-            ? (e.message.contains('Wrong password')
-                ? l10n.wrongPassword
-                : e.message)
-            : l10n.pinResetFailed;
+        _error = storeErrorText(l10n, e, fallback: l10n.pinResetFailed);
       });
     } finally {
       if (mounted) setState(() => _busy = false);

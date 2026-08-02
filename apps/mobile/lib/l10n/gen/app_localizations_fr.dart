@@ -1312,4 +1312,14 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get codeMadeItTalk => '⭐ Tu as fait parler l\'ordinateur ! ⭐';
+
+  @override
+  String get noAccountForEmail =>
+      'Aucun compte sur cet appareil n\'utilise cette adresse';
+
+  @override
+  String get resetCodeExpired => 'Ce code a expiré — demandez-en un nouveau';
+
+  @override
+  String get nicknameRequired => 'Saisissez d\'abord un nom';
 }

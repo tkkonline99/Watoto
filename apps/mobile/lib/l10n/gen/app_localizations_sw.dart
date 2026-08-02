@@ -1305,4 +1305,14 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get codeMadeItTalk => '⭐ Umeifanya kompyuta iongee! ⭐';
+
+  @override
+  String get noAccountForEmail =>
+      'Hakuna akaunti kwenye kifaa hiki inayotumia barua pepe hiyo';
+
+  @override
+  String get resetCodeExpired => 'Msimbo huo umeisha muda — omba mpya';
+
+  @override
+  String get nicknameRequired => 'Andika jina kwanza';
 }

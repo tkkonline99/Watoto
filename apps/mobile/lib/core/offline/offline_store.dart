@@ -11,6 +11,7 @@ import '../../domain/models/child_profile.dart';
 import '../../domain/rules/review.dart';
 import '../../domain/rules/streak.dart';
 import '../../domain/rules/username.dart';
+import 'store_error.dart';
 import 'sync_op.dart';
 
 export '../../domain/rules/streak.dart'
@@ -344,7 +345,9 @@ class OfflineStore {
     required String newPassword,
   }) async {
     if (!verifyAccount(currentPassword)) return false;
-    if (newPassword.length < 6) throw StateError('Password too short.');
+    if (newPassword.length < 6) {
+      throw const StoreError(StoreErrorCode.passwordTooShort);
+    }
     // Salt first: _hashAccount reads the stored salt, so rotating it after
     // hashing would leave a hash nobody can reproduce.
     await _account.put('accountSalt', _uuid.v4());
@@ -371,7 +374,7 @@ class OfflineStore {
   Future<String> beginPasswordReset(String email) async {
     final registered = (accountEmail ?? '').toLowerCase();
     if (!hasAccount || email.trim().toLowerCase() != registered) {
-      throw StateError('No account for that email on this device.');
+      throw const StoreError(StoreErrorCode.noAccountForEmail);
     }
     final code = _sixDigitCode();
     final salt = _uuid.v4();
@@ -392,27 +395,27 @@ class OfflineStore {
     required String newPassword,
   }) async {
     if (newPassword.length < 6) {
-      throw StateError('Password too short.');
+      throw const StoreError(StoreErrorCode.passwordTooShort);
     }
     final registered = (accountEmail ?? '').toLowerCase();
     final target = email.trim().toLowerCase();
     if (!hasAccount || target != registered) {
-      throw StateError('Invalid reset request.');
+      throw const StoreError(StoreErrorCode.invalidResetRequest);
     }
     if ((_account.get('pwResetEmail') ?? '') != registered) {
-      throw StateError('Invalid or expired reset code.');
+      throw const StoreError(StoreErrorCode.invalidResetCode);
     }
     final expRaw = _account.get('pwResetExp');
     final exp = expRaw == null ? null : DateTime.tryParse(expRaw);
     if (exp == null || exp.isBefore(DateTime.now().toUtc())) {
       await _clearPasswordReset();
-      throw StateError('Reset code expired. Request a new one.');
+      throw const StoreError(StoreErrorCode.resetCodeExpired);
     }
     final salt = _account.get('pwResetSalt') ?? '';
     final expected = _account.get('pwResetHash');
     final got = sha256.convert(utf8.encode('$salt:$code')).toString();
     if (expected == null || got != expected) {
-      throw StateError('Invalid reset code.');
+      throw const StoreError(StoreErrorCode.invalidResetCode);
     }
     await _account.put('accountSalt', _uuid.v4());
     await _account.put('accountHash', _hashAccount(newPassword));
@@ -437,7 +440,7 @@ class OfflineStore {
   Future<void> resetPin(String newPin) async {
     final digits = newPin.replaceAll(RegExp(r'\D'), '');
     if (digits.length < 4 || digits.length > 6) {
-      throw StateError('PIN must be 4–6 digits.');
+      throw const StoreError(StoreErrorCode.pinFormat);
     }
     await setPin(digits);
   }
@@ -448,7 +451,7 @@ class OfflineStore {
     required String newPin,
   }) async {
     if (!verifyAccount(password)) {
-      throw StateError('Wrong password.');
+      throw const StoreError(StoreErrorCode.wrongPassword);
     }
     await resetPin(newPin);
   }

@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../core/analytics/analytics.dart';
 import '../../core/audio/narration.dart';
+import '../../core/l10n/store_error_text.dart';
 import '../../core/offline/desktop_export_stub.dart'
     if (dart.library.io) '../../core/offline/desktop_export_io.dart';
 import '../../core/offline/offline_providers.dart';
@@ -338,7 +339,7 @@ Future<void> _editNickname(
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            e is StateError ? e.message : l10n.nicknameUpdateFailed,
+            storeErrorText(l10n, e, fallback: l10n.nicknameUpdateFailed),
           ),
         ),
       );
