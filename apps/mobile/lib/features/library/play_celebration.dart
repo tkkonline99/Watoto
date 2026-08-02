@@ -163,7 +163,7 @@ class CelebrationState extends ConsumerState<Celebration> {
                     // show below it, so the buttons stay reachable on a small
                     // phone without scrolling.
                     size: hasExtras ? 72 : 96,
-                    label: levelUp > 0 ? 'Level up!' : 'Great job!',
+                    label: levelUp > 0 ? l10n.levelUpShort : l10n.greatJob,
                   ),
                 if (emoji.isNotEmpty && !brief && !hasExtras) ...[
                   const SizedBox(height: 8),

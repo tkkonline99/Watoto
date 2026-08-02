@@ -367,5 +367,21 @@
   "stretchGoHome": "Nenda nyumbani",
   "whatsNewTitle": "Mambo mapya",
   "whatsNewSubtitle": "Unatumia toleo {version}",
-  "whatsNewFooter": "Watoto hufanya kazi bila intaneti. Maendeleo yanabaki kwenye kifaa hiki isipokuwa uhifadhi nakala rudufu."
+  "whatsNewFooter": "Watoto hufanya kazi bila intaneti. Maendeleo yanabaki kwenye kifaa hiki isipokuwa uhifadhi nakala rudufu.",
+  "yesShort": "Ndiyo!",
+  "levelUpShort": "Kiwango kipya!",
+  "codeTapBlocks": "Gusa vipande kwa mpangilio!",
+  "codeReadyRun": "Tayari — bonyeza ENDESHA!",
+  "codeRunning": "Inaendesha…",
+  "codeItWorked": "Imefanya kazi!",
+  "codeYourName": "1. Jina lako",
+  "codeYourAge": "2. Umri wako: {age}",
+  "codeWillPrint": "Itaandika:",
+  "codeWhatShouldItSay": "Iseme nini?",
+  "codeWhatGoesInBox": "Nini kiingie kwenye kisanduku?",
+  "codeRepeatTimes": "Rudia mara {count}",
+  "codeDropBlocks": "⬇ dondosha vipande hapa",
+  "codeOutput": "MATOKEO",
+  "codeRun": "ENDESHA",
+  "codeMadeItTalk": "⭐ Umeifanya kompyuta iongee! ⭐"
 }

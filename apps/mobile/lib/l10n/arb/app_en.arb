@@ -631,5 +631,31 @@
       "version": { "type": "String" }
     }
   },
-  "whatsNewFooter": "Watoto works offline. Progress stays on this device unless you export a backup."
+  "whatsNewFooter": "Watoto works offline. Progress stays on this device unless you export a backup.",
+  "yesShort": "Yes!",
+  "levelUpShort": "Level up!",
+  "codeTapBlocks": "Tap blocks in order!",
+  "codeReadyRun": "Ready — smash RUN!",
+  "codeRunning": "Running…",
+  "codeItWorked": "It worked!",
+  "codeYourName": "1. Your name",
+  "codeYourAge": "2. Your age: {age}",
+  "@codeYourAge": {
+    "placeholders": {
+      "age": { "type": "int" }
+    }
+  },
+  "codeWillPrint": "Will print:",
+  "codeWhatShouldItSay": "What should it say?",
+  "codeWhatGoesInBox": "What goes in the box?",
+  "codeRepeatTimes": "Repeat {count} times",
+  "@codeRepeatTimes": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "codeDropBlocks": "⬇ drop blocks here",
+  "codeOutput": "OUTPUT",
+  "codeRun": "RUN",
+  "codeMadeItTalk": "⭐ You made the computer talk! ⭐"
 }
