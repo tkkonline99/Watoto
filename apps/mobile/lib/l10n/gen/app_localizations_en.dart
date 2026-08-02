@@ -1318,4 +1318,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get nicknameRequired => 'Type a name first';
+
+  @override
+  String get mascotName => 'Kibo the lion cub';
 }
