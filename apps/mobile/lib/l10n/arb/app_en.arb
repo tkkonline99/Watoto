@@ -4,7 +4,9 @@
   "homeGreeting": "Hello, {name}!",
   "@homeGreeting": {
     "placeholders": {
-      "name": { "type": "String" }
+      "name": {
+        "type": "String"
+      }
     }
   },
   "dailyChallenge": "Daily Challenge",
@@ -27,7 +29,9 @@
   "xpEarned": "+{xp} XP",
   "@xpEarned": {
     "placeholders": {
-      "xp": { "type": "int" }
+      "xp": {
+        "type": "int"
+      }
     }
   },
   "chooseLanguage": "Choose your language",
@@ -38,8 +42,12 @@
   "quizScore": "You got {correct} of {total}!",
   "@quizScore": {
     "placeholders": {
-      "correct": { "type": "int" },
-      "total": { "type": "int" }
+      "correct": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
     }
   },
   "retry": "Try again",
@@ -83,7 +91,9 @@
   "signedInAs": "Signed in as {email}",
   "@signedInAs": {
     "placeholders": {
-      "email": { "type": "String" }
+      "email": {
+        "type": "String"
+      }
     }
   },
   "welcomeBack": "Welcome back!",
@@ -94,7 +104,9 @@
   "pinLockedFor": "Too many tries. Wait {seconds}s.",
   "@pinLockedFor": {
     "placeholders": {
-      "seconds": { "type": "int" }
+      "seconds": {
+        "type": "int"
+      }
     }
   },
   "myAccount": "My account",
@@ -108,8 +120,12 @@
   "childNameAge": "{name}, age {age}",
   "@childNameAge": {
     "placeholders": {
-      "name": { "type": "String" },
-      "age": { "type": "int" }
+      "name": {
+        "type": "String"
+      },
+      "age": {
+        "type": "int"
+      }
     }
   },
   "consentEnabled": "What you turned on",
@@ -121,7 +137,9 @@
   "planFreeUpTo": "Free · stages 1–{max}",
   "@planFreeUpTo": {
     "placeholders": {
-      "max": { "type": "int" }
+      "max": {
+        "type": "int"
+      }
     }
   },
   "yourData": "Your data",
@@ -151,8 +169,12 @@
   "childAge": "Age {age} ({band})",
   "@childAge": {
     "placeholders": {
-      "age": { "type": "int" },
-      "band": { "type": "String" }
+      "age": {
+        "type": "int"
+      },
+      "band": {
+        "type": "String"
+      }
     }
   },
   "whoIsLearning": "Who is learning?",
@@ -162,13 +184,17 @@
   "ageBandLabel": "Ages {band}",
   "@ageBandLabel": {
     "placeholders": {
-      "band": { "type": "String" }
+      "band": {
+        "type": "String"
+      }
     }
   },
   "lessonsDone": "{count} lessons",
   "@lessonsDone": {
     "placeholders": {
-      "count": { "type": "int" }
+      "count": {
+        "type": "int"
+      }
     }
   },
   "privacyData": "Privacy & data",
@@ -191,20 +217,28 @@
   "legalDraftNote": "Draft — pending legal review",
   "@stageOf": {
     "placeholders": {
-      "stage": { "type": "int" },
-      "ages": { "type": "String" }
+      "stage": {
+        "type": "int"
+      },
+      "ages": {
+        "type": "String"
+      }
     }
   },
   "levelLabel": "Level {level}",
   "@levelLabel": {
     "placeholders": {
-      "level": { "type": "int" }
+      "level": {
+        "type": "int"
+      }
     }
   },
   "streakLabel": "{days}-day streak",
   "@streakLabel": {
     "placeholders": {
-      "days": { "type": "int" }
+      "days": {
+        "type": "int"
+      }
     }
   },
   "accessibility": "Accessibility",
@@ -236,16 +270,24 @@
   "xpToNextLevel": "{into} / {total} XP · {remaining} to next level",
   "@xpToNextLevel": {
     "placeholders": {
-      "into": { "type": "int" },
-      "total": { "type": "int" },
-      "remaining": { "type": "int" }
+      "into": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      },
+      "remaining": {
+        "type": "int"
+      }
     }
   },
   "dailyChallengeDone": "Done for today!",
   "dailyChallengeBonus": "+{xp} bonus XP",
   "@dailyChallengeBonus": {
     "placeholders": {
-      "xp": { "type": "int" }
+      "xp": {
+        "type": "int"
+      }
     }
   },
   "changeAgeHint": "Long-press to change age",
@@ -262,13 +304,17 @@
   "screenTimeMinutes": "{minutes} min",
   "@screenTimeMinutes": {
     "placeholders": {
-      "minutes": { "type": "int" }
+      "minutes": {
+        "type": "int"
+      }
     }
   },
   "screenTimeUsed": "Used today: {minutes} min",
   "@screenTimeUsed": {
     "placeholders": {
-      "minutes": { "type": "int" }
+      "minutes": {
+        "type": "int"
+      }
     }
   },
   "restTitle": "Time for a rest!",
@@ -292,7 +338,9 @@
   "tourBody": "Hi {name}! Try one short activity with me. I'll cheer you on.",
   "@tourBody": {
     "placeholders": {
-      "name": { "type": "String" }
+      "name": {
+        "type": "String"
+      }
     }
   },
   "tourStart": "Start first lesson",
@@ -301,7 +349,9 @@
   "levelUp": "Level {level}! Amazing!",
   "@levelUp": {
     "placeholders": {
-      "level": { "type": "int" }
+      "level": {
+        "type": "int"
+      }
     }
   },
   "quizHint": "Need a hint?",
@@ -313,9 +363,15 @@
   "weeklySnapshotBody": "{lessons} lessons · {stars} quiz stars · {days} active days",
   "@weeklySnapshotBody": {
     "placeholders": {
-      "lessons": { "type": "int" },
-      "stars": { "type": "int" },
-      "days": { "type": "int" }
+      "lessons": {
+        "type": "int"
+      },
+      "stars": {
+        "type": "int"
+      },
+      "days": {
+        "type": "int"
+      }
     }
   },
   "weeklyActivities": "activities",
@@ -328,9 +384,15 @@
   "certificateBody": "Reached level {level} · {lessons} lessons · {stars} stars",
   "@certificateBody": {
     "placeholders": {
-      "level": { "type": "int" },
-      "lessons": { "type": "int" },
-      "stars": { "type": "int" }
+      "level": {
+        "type": "int"
+      },
+      "lessons": {
+        "type": "int"
+      },
+      "stars": {
+        "type": "int"
+      }
     }
   },
   "readingEase": "Reading ease",
@@ -347,7 +409,9 @@
   "deleteChild": "Delete {name}",
   "@deleteChild": {
     "placeholders": {
-      "name": { "type": "String" }
+      "name": {
+        "type": "String"
+      }
     }
   },
   "deleteChildBody": "Removes this profile and their progress on this device",
@@ -357,7 +421,9 @@
   "syncPending": "{count} items waiting to sync",
   "@syncPending": {
     "placeholders": {
-      "count": { "type": "int" }
+      "count": {
+        "type": "int"
+      }
     }
   },
   "premiumMapFree": "Free includes stages 1–5. Premium unlocks stages 6–10.",
@@ -371,28 +437,38 @@
   "nicknameCooldown": "You can change this name again in {days} days",
   "@nicknameCooldown": {
     "placeholders": {
-      "days": { "type": "int" }
+      "days": {
+        "type": "int"
+      }
     }
   },
   "insightQuietWeek": "A quiet week",
   "insightQuietWeekDetail": "{name} has not played this week. A short story is a gentle way back in.",
   "@insightQuietWeekDetail": {
     "placeholders": {
-      "name": { "type": "String" }
+      "name": {
+        "type": "String"
+      }
     }
   },
   "insightStrongWeek": "A strong week",
   "insightStrongWeekDetail": "{name} finished {count} lessons this week. Tell them you noticed!",
   "@insightStrongWeekDetail": {
     "placeholders": {
-      "name": { "type": "String" },
-      "count": { "type": "int" }
+      "name": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
     }
   },
   "insightStreak": "{days}-day streak",
   "@insightStreak": {
     "placeholders": {
-      "days": { "type": "int" }
+      "days": {
+        "type": "int"
+      }
     }
   },
   "insightStreakDetail": "Showing up daily is the habit that matters most.",
@@ -400,7 +476,9 @@
   "insightStarsDetail": "{count} stars earned this week.",
   "@insightStarsDetail": {
     "placeholders": {
-      "count": { "type": "int" }
+      "count": {
+        "type": "int"
+      }
     }
   },
   "insightOneDay": "One day of play",
@@ -409,7 +487,9 @@
   "syncStatusPending": "{count} items waiting to sync",
   "@syncStatusPending": {
     "placeholders": {
-      "count": { "type": "int" }
+      "count": {
+        "type": "int"
+      }
     }
   },
   "syncStatusError": "Sync paused — it will retry automatically",
@@ -417,7 +497,9 @@
   "parentGateBody": "To continue, answer: {question}",
   "@parentGateBody": {
     "placeholders": {
-      "question": { "type": "String" }
+      "question": {
+        "type": "String"
+      }
     }
   },
   "parentGateWrong": "Not quite. Try again",
@@ -439,7 +521,9 @@
   "passwordResetDevCode": "Debug code: {code}",
   "@passwordResetDevCode": {
     "placeholders": {
-      "code": { "type": "String" }
+      "code": {
+        "type": "String"
+      }
     }
   },
   "passwordResetCodeLabel": "Reset code",
@@ -455,8 +539,12 @@
   "todayQuestProgress": "{done} of {goal} activities",
   "@todayQuestProgress": {
     "placeholders": {
-      "done": { "type": "int" },
-      "goal": { "type": "int" }
+      "done": {
+        "type": "int"
+      },
+      "goal": {
+        "type": "int"
+      }
     }
   },
   "todayQuestComplete": "Quest complete!",
@@ -467,14 +555,18 @@
   "streakSavedBody": "You missed a day, so your weekly shield kept the {days}-day streak going.",
   "@streakSavedBody": {
     "placeholders": {
-      "days": { "type": "int" }
+      "days": {
+        "type": "int"
+      }
     }
   },
   "streakShieldUsedNote": "Shield used this week",
   "coinsEarned": "+{count} coins",
   "@coinsEarned": {
     "placeholders": {
-      "count": { "type": "int" }
+      "count": {
+        "type": "int"
+      }
     }
   },
   "perfectRun": "Perfect!",
@@ -487,26 +579,34 @@
   "reminderStreakTitle": "{name}'s streak ends today",
   "@reminderStreakTitle": {
     "placeholders": {
-      "name": { "type": "String" }
+      "name": {
+        "type": "String"
+      }
     }
   },
   "reminderStreakBody": "One short activity keeps the {days}-day run alive.",
   "@reminderStreakBody": {
     "placeholders": {
-      "days": { "type": "int" }
+      "days": {
+        "type": "int"
+      }
     }
   },
   "reminderInactiveTitle": "{name} hasn't played in a while",
   "@reminderInactiveTitle": {
     "placeholders": {
-      "name": { "type": "String" }
+      "name": {
+        "type": "String"
+      }
     }
   },
   "reminderInactiveBody": "A short story is a gentle way back in.",
   "reminderKeepGoingTitle": "Time to play with {name}?",
   "@reminderKeepGoingTitle": {
     "placeholders": {
-      "name": { "type": "String" }
+      "name": {
+        "type": "String"
+      }
     }
   },
   "reminderKeepGoingBody": "Five minutes today is worth more than an hour on Sunday.",
@@ -517,13 +617,17 @@
   "decorationNeedsLevel": "Level {level}",
   "@decorationNeedsLevel": {
     "placeholders": {
-      "level": { "type": "int" }
+      "level": {
+        "type": "int"
+      }
     }
   },
   "decorationNeedsSubjects": "{count} subjects",
   "@decorationNeedsSubjects": {
     "placeholders": {
-      "count": { "type": "int" }
+      "count": {
+        "type": "int"
+      }
     }
   },
   "nameYourFriend": "Name your friend",
@@ -533,7 +637,9 @@
   "mascotProud": "{days} days in a row. I'm so proud!",
   "@mascotProud": {
     "placeholders": {
-      "days": { "type": "int" }
+      "days": {
+        "type": "int"
+      }
     }
   },
   "mascotCurious": "There you are! What shall we learn?",
@@ -542,21 +648,27 @@
   "familyChallengeBody": "{count} more activities together this week.",
   "@familyChallengeBody": {
     "placeholders": {
-      "count": { "type": "int" }
+      "count": {
+        "type": "int"
+      }
     }
   },
   "familyChallengeDone": "Done. The whole family got there!",
   "sendCheer": "Send {name} a cheer",
   "@sendCheer": {
     "placeholders": {
-      "name": { "type": "String" }
+      "name": {
+        "type": "String"
+      }
     }
   },
   "sendCheerBody": "They will see it next time they open the app.",
   "cheerSent": "Sent to {name}",
   "@cheerSent": {
     "placeholders": {
-      "name": { "type": "String" }
+      "name": {
+        "type": "String"
+      }
     }
   },
   "cheerFromGrownUp": "A message for you",
@@ -569,7 +681,9 @@
   "certificateSaved": "Saved to {path}",
   "@certificateSaved": {
     "placeholders": {
-      "path": { "type": "String" }
+      "path": {
+        "type": "String"
+      }
     }
   },
   "certificateCopied": "Certificate copied to the clipboard",
@@ -578,8 +692,12 @@
   "recapProgress": "Question {current} of {total}",
   "@recapProgress": {
     "placeholders": {
-      "current": { "type": "int" },
-      "total": { "type": "int" }
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
     }
   },
   "restoreBackup": "Restore from a backup",
@@ -589,8 +707,12 @@
   "restoreBackupDone": "Restored {children} profile(s) and {items} activities",
   "@restoreBackupDone": {
     "placeholders": {
-      "children": { "type": "int" },
-      "items": { "type": "int" }
+      "children": {
+        "type": "int"
+      },
+      "items": {
+        "type": "int"
+      }
     }
   },
   "restoreBackupNothing": "Nothing new to restore — this device is already up to date",
@@ -601,7 +723,9 @@
   "narrationUnavailableBody": "This device has no installed voice for {language}. Captions still show every word. To add a voice, open your device settings and install {language} text-to-speech.",
   "@narrationUnavailableBody": {
     "placeholders": {
-      "language": { "type": "String" }
+      "language": {
+        "type": "String"
+      }
     }
   },
   "nextReview": "Let's practice this one again",
@@ -611,27 +735,6 @@
   "badgeLevel10": "Level 10",
   "badgeFirstQuiz": "First quiz",
   "badgePerfectQuiz": "All correct!",
-  "highFiveTitle": "High five!",
-  "highFiveBody": "{name}, that's your first activity today. Well done!",
-  "@highFiveBody": {
-    "placeholders": {
-      "name": { "type": "String" }
-    }
-  },
-  "highFiveGrownUp": "Grown-ups: a short daily habit beats a long weekly one.",
-  "highFiveButton": "Keep playing",
-  "stretchTitle": "Wiggle break!",
-  "stretchBody": "You have been learning for a while. Stand up, stretch tall, and shake your hands.",
-  "stretchKeepPlaying": "I stretched. Keep playing",
-  "stretchGoHome": "Go home",
-  "whatsNewTitle": "What's new",
-  "whatsNewSubtitle": "You are on version {version}",
-  "@whatsNewSubtitle": {
-    "placeholders": {
-      "version": { "type": "String" }
-    }
-  },
-  "whatsNewFooter": "Watoto works offline. Progress stays on this device unless you export a backup.",
   "yesShort": "Yes!",
   "levelUpShort": "Level up!",
   "codeTapBlocks": "Tap blocks in order!",
@@ -642,7 +745,9 @@
   "codeYourAge": "2. Your age: {age}",
   "@codeYourAge": {
     "placeholders": {
-      "age": { "type": "int" }
+      "age": {
+        "type": "int"
+      }
     }
   },
   "codeWillPrint": "Will print:",
@@ -651,7 +756,9 @@
   "codeRepeatTimes": "Repeat {count} times",
   "@codeRepeatTimes": {
     "placeholders": {
-      "count": { "type": "int" }
+      "count": {
+        "type": "int"
+      }
     }
   },
   "codeDropBlocks": "⬇ drop blocks here",
@@ -661,5 +768,21 @@
   "noAccountForEmail": "No account on this device uses that email",
   "resetCodeExpired": "That code has expired — ask for a new one",
   "nicknameRequired": "Type a name first",
-  "mascotName": "Kibo the lion cub"
+  "mascotName": "Kibo the lion cub",
+  "passwordResetLocalBody": "Enter the email you signed up with. Your account lives on this device, so Watoto shows the code here instead of emailing it.",
+  "passwordResetLocalCode": "Your reset code is {code}",
+  "@passwordResetLocalCode": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "passwordResetLocalWhy": "Anyone holding this device can read this code, which is why the grown-up check comes first. It expires in an hour.",
+  "passwordResetLocalCopied": "Copied to the clipboard.",
+  "passwordResetLocalEnterCodeBody": "Type the code shown above, then choose a new password.",
+  "passwordResetCodeHintLocal": "The 6-digit code shown above",
+  "passwordResetKnowPin": "Know your parent PIN? You can log in with it instead.",
+  "sendResetEmailLocal": "Show my reset code",
+  "resendResetEmailLocal": "Show a new code"
 }

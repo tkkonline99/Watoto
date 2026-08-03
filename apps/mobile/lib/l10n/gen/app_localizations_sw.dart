@@ -1215,46 +1215,6 @@ class AppLocalizationsSw extends AppLocalizations {
   String get badgePerfectQuiz => 'Zote sahihi!';
 
   @override
-  String get highFiveTitle => 'Tupige tano!';
-
-  @override
-  String highFiveBody(String name) {
-    return '$name, hii ni shughuli yako ya kwanza leo. Hongera!';
-  }
-
-  @override
-  String get highFiveGrownUp =>
-      'Kwa wazazi: mazoezi mafupi ya kila siku ni bora kuliko marefu ya kila wiki.';
-
-  @override
-  String get highFiveButton => 'Endelea kucheza';
-
-  @override
-  String get stretchTitle => 'Mapumziko ya kujinyoosha!';
-
-  @override
-  String get stretchBody =>
-      'Umekuwa ukijifunza kwa muda. Simama, jinyooshe juu, na kunja mikono yako.';
-
-  @override
-  String get stretchKeepPlaying => 'Nimejinyoosha. Endelea';
-
-  @override
-  String get stretchGoHome => 'Nenda nyumbani';
-
-  @override
-  String get whatsNewTitle => 'Mambo mapya';
-
-  @override
-  String whatsNewSubtitle(String version) {
-    return 'Unatumia toleo $version';
-  }
-
-  @override
-  String get whatsNewFooter =>
-      'Watoto hufanya kazi bila intaneti. Maendeleo yanabaki kwenye kifaa hiki isipokuwa uhifadhi nakala rudufu.';
-
-  @override
   String get yesShort => 'Ndiyo!';
 
   @override
@@ -1318,4 +1278,38 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get mascotName => 'Kibo mtoto wa simba';
+
+  @override
+  String get passwordResetLocalBody =>
+      'Weka barua pepe uliyojisajili nayo. Akaunti yako iko kwenye kifaa hiki, hivyo Watoto inaonesha msimbo hapa badala ya kutuma barua pepe.';
+
+  @override
+  String passwordResetLocalCode(String code) {
+    return 'Msimbo wako wa kuweka upya ni $code';
+  }
+
+  @override
+  String get passwordResetLocalWhy =>
+      'Yeyote aliyeshika kifaa hiki anaweza kusoma msimbo huu, ndiyo maana ukaguzi wa mtu mzima hutangulia. Unaisha baada ya saa moja.';
+
+  @override
+  String get passwordResetLocalCopied => 'Imenakiliwa kwenye ubao wa kunakili.';
+
+  @override
+  String get passwordResetLocalEnterCodeBody =>
+      'Andika msimbo ulioonekana hapo juu, kisha chagua nenosiri jipya.';
+
+  @override
+  String get passwordResetCodeHintLocal =>
+      'Msimbo wa tarakimu 6 ulioonekana hapo juu';
+
+  @override
+  String get passwordResetKnowPin =>
+      'Unajua PIN yako ya mzazi? Unaweza kuingia nayo badala yake.';
+
+  @override
+  String get sendResetEmailLocal => 'Onesha msimbo wangu';
+
+  @override
+  String get resendResetEmailLocal => 'Onesha msimbo mpya';
 }

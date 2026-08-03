@@ -110,6 +110,12 @@ class StoryViewState extends ConsumerState<StoryView> {
                 ),
               ),
             ),
+            // A bedtime story for a one-year-old is read *by* someone. The
+            // note tells them how ("Dim your screen and read in a low voice").
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: CoPlayTip(item: widget.item),
+            ),
             Padding(
               padding: const EdgeInsets.all(16),
               child: Row(

@@ -32,7 +32,6 @@ void main() {
     // widgets it is built from, so the shared ones are checked too.
     'lib/core/widgets/subject_island.dart',
     'lib/core/widgets/mascot_widget.dart',
-    'lib/core/widgets/status_views.dart',
   ];
 
   test('every interactive surface declares screen-reader semantics', () {

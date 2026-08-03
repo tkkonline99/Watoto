@@ -2242,72 +2242,6 @@ abstract class AppLocalizations {
   /// **'All correct!'**
   String get badgePerfectQuiz;
 
-  /// No description provided for @highFiveTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'High five!'**
-  String get highFiveTitle;
-
-  /// No description provided for @highFiveBody.
-  ///
-  /// In en, this message translates to:
-  /// **'{name}, that\'s your first activity today. Well done!'**
-  String highFiveBody(String name);
-
-  /// No description provided for @highFiveGrownUp.
-  ///
-  /// In en, this message translates to:
-  /// **'Grown-ups: a short daily habit beats a long weekly one.'**
-  String get highFiveGrownUp;
-
-  /// No description provided for @highFiveButton.
-  ///
-  /// In en, this message translates to:
-  /// **'Keep playing'**
-  String get highFiveButton;
-
-  /// No description provided for @stretchTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Wiggle break!'**
-  String get stretchTitle;
-
-  /// No description provided for @stretchBody.
-  ///
-  /// In en, this message translates to:
-  /// **'You have been learning for a while. Stand up, stretch tall, and shake your hands.'**
-  String get stretchBody;
-
-  /// No description provided for @stretchKeepPlaying.
-  ///
-  /// In en, this message translates to:
-  /// **'I stretched. Keep playing'**
-  String get stretchKeepPlaying;
-
-  /// No description provided for @stretchGoHome.
-  ///
-  /// In en, this message translates to:
-  /// **'Go home'**
-  String get stretchGoHome;
-
-  /// No description provided for @whatsNewTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'What\'s new'**
-  String get whatsNewTitle;
-
-  /// No description provided for @whatsNewSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'You are on version {version}'**
-  String whatsNewSubtitle(String version);
-
-  /// No description provided for @whatsNewFooter.
-  ///
-  /// In en, this message translates to:
-  /// **'Watoto works offline. Progress stays on this device unless you export a backup.'**
-  String get whatsNewFooter;
-
   /// No description provided for @yesShort.
   ///
   /// In en, this message translates to:
@@ -2427,6 +2361,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Kibo the lion cub'**
   String get mascotName;
+
+  /// No description provided for @passwordResetLocalBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the email you signed up with. Your account lives on this device, so Watoto shows the code here instead of emailing it.'**
+  String get passwordResetLocalBody;
+
+  /// No description provided for @passwordResetLocalCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Your reset code is {code}'**
+  String passwordResetLocalCode(String code);
+
+  /// No description provided for @passwordResetLocalWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Anyone holding this device can read this code, which is why the grown-up check comes first. It expires in an hour.'**
+  String get passwordResetLocalWhy;
+
+  /// No description provided for @passwordResetLocalCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied to the clipboard.'**
+  String get passwordResetLocalCopied;
+
+  /// No description provided for @passwordResetLocalEnterCodeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Type the code shown above, then choose a new password.'**
+  String get passwordResetLocalEnterCodeBody;
+
+  /// No description provided for @passwordResetCodeHintLocal.
+  ///
+  /// In en, this message translates to:
+  /// **'The 6-digit code shown above'**
+  String get passwordResetCodeHintLocal;
+
+  /// No description provided for @passwordResetKnowPin.
+  ///
+  /// In en, this message translates to:
+  /// **'Know your parent PIN? You can log in with it instead.'**
+  String get passwordResetKnowPin;
+
+  /// No description provided for @sendResetEmailLocal.
+  ///
+  /// In en, this message translates to:
+  /// **'Show my reset code'**
+  String get sendResetEmailLocal;
+
+  /// No description provided for @resendResetEmailLocal.
+  ///
+  /// In en, this message translates to:
+  /// **'Show a new code'**
+  String get resendResetEmailLocal;
 }
 
 class _AppLocalizationsDelegate
