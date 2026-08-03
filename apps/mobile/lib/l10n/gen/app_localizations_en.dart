@@ -1219,46 +1219,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get badgePerfectQuiz => 'All correct!';
 
   @override
-  String get highFiveTitle => 'High five!';
-
-  @override
-  String highFiveBody(String name) {
-    return '$name, that\'s your first activity today. Well done!';
-  }
-
-  @override
-  String get highFiveGrownUp =>
-      'Grown-ups: a short daily habit beats a long weekly one.';
-
-  @override
-  String get highFiveButton => 'Keep playing';
-
-  @override
-  String get stretchTitle => 'Wiggle break!';
-
-  @override
-  String get stretchBody =>
-      'You have been learning for a while. Stand up, stretch tall, and shake your hands.';
-
-  @override
-  String get stretchKeepPlaying => 'I stretched. Keep playing';
-
-  @override
-  String get stretchGoHome => 'Go home';
-
-  @override
-  String get whatsNewTitle => 'What\'s new';
-
-  @override
-  String whatsNewSubtitle(String version) {
-    return 'You are on version $version';
-  }
-
-  @override
-  String get whatsNewFooter =>
-      'Watoto works offline. Progress stays on this device unless you export a backup.';
-
-  @override
   String get yesShort => 'Yes!';
 
   @override

@@ -735,31 +735,6 @@
   "badgeLevel10": "Level 10",
   "badgeFirstQuiz": "First quiz",
   "badgePerfectQuiz": "All correct!",
-  "highFiveTitle": "High five!",
-  "highFiveBody": "{name}, that's your first activity today. Well done!",
-  "@highFiveBody": {
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
-  "highFiveGrownUp": "Grown-ups: a short daily habit beats a long weekly one.",
-  "highFiveButton": "Keep playing",
-  "stretchTitle": "Wiggle break!",
-  "stretchBody": "You have been learning for a while. Stand up, stretch tall, and shake your hands.",
-  "stretchKeepPlaying": "I stretched. Keep playing",
-  "stretchGoHome": "Go home",
-  "whatsNewTitle": "What's new",
-  "whatsNewSubtitle": "You are on version {version}",
-  "@whatsNewSubtitle": {
-    "placeholders": {
-      "version": {
-        "type": "String"
-      }
-    }
-  },
-  "whatsNewFooter": "Watoto works offline. Progress stays on this device unless you export a backup.",
   "yesShort": "Yes!",
   "levelUpShort": "Level up!",
   "codeTapBlocks": "Tap blocks in order!",

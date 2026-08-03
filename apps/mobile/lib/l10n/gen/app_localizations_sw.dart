@@ -1215,46 +1215,6 @@ class AppLocalizationsSw extends AppLocalizations {
   String get badgePerfectQuiz => 'Zote sahihi!';
 
   @override
-  String get highFiveTitle => 'Tupige tano!';
-
-  @override
-  String highFiveBody(String name) {
-    return '$name, hii ni shughuli yako ya kwanza leo. Hongera!';
-  }
-
-  @override
-  String get highFiveGrownUp =>
-      'Kwa wazazi: mazoezi mafupi ya kila siku ni bora kuliko marefu ya kila wiki.';
-
-  @override
-  String get highFiveButton => 'Endelea kucheza';
-
-  @override
-  String get stretchTitle => 'Mapumziko ya kujinyoosha!';
-
-  @override
-  String get stretchBody =>
-      'Umekuwa ukijifunza kwa muda. Simama, jinyooshe juu, na kunja mikono yako.';
-
-  @override
-  String get stretchKeepPlaying => 'Nimejinyoosha. Endelea';
-
-  @override
-  String get stretchGoHome => 'Nenda nyumbani';
-
-  @override
-  String get whatsNewTitle => 'Mambo mapya';
-
-  @override
-  String whatsNewSubtitle(String version) {
-    return 'Unatumia toleo $version';
-  }
-
-  @override
-  String get whatsNewFooter =>
-      'Watoto hufanya kazi bila intaneti. Maendeleo yanabaki kwenye kifaa hiki isipokuwa uhifadhi nakala rudufu.';
-
-  @override
   String get yesShort => 'Ndiyo!';
 
   @override

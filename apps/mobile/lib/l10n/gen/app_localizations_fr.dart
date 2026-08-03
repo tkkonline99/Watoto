@@ -1222,46 +1222,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get badgePerfectQuiz => 'Tout juste !';
 
   @override
-  String get highFiveTitle => 'Tape m\'en cinq !';
-
-  @override
-  String highFiveBody(String name) {
-    return '$name, c\'est ta première activité aujourd\'hui. Bravo !';
-  }
-
-  @override
-  String get highFiveGrownUp =>
-      'Pour les adultes : une courte habitude quotidienne vaut mieux qu\'une longue séance hebdomadaire.';
-
-  @override
-  String get highFiveButton => 'Continuer à jouer';
-
-  @override
-  String get stretchTitle => 'Pause étirement !';
-
-  @override
-  String get stretchBody =>
-      'Tu apprends depuis un moment. Lève-toi, étire-toi bien haut et secoue les mains.';
-
-  @override
-  String get stretchKeepPlaying => 'Je me suis étiré. On continue';
-
-  @override
-  String get stretchGoHome => 'Retour à l\'accueil';
-
-  @override
-  String get whatsNewTitle => 'Nouveautés';
-
-  @override
-  String whatsNewSubtitle(String version) {
-    return 'Vous utilisez la version $version';
-  }
-
-  @override
-  String get whatsNewFooter =>
-      'Watoto fonctionne hors ligne. La progression reste sur cet appareil, sauf si vous exportez une sauvegarde.';
-
-  @override
   String get yesShort => 'Oui !';
 
   @override
