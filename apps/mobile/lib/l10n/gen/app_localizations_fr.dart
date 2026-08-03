@@ -1325,4 +1325,38 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get mascotName => 'Kibo le lionceau';
+
+  @override
+  String get passwordResetLocalBody =>
+      'Saisissez l\'adresse e-mail utilisée à l\'inscription. Votre compte est stocké sur cet appareil : Watoto affiche donc le code ici au lieu de l\'envoyer.';
+
+  @override
+  String passwordResetLocalCode(String code) {
+    return 'Votre code de réinitialisation est $code';
+  }
+
+  @override
+  String get passwordResetLocalWhy =>
+      'Toute personne tenant cet appareil peut lire ce code — d\'où la vérification adulte au préalable. Il expire dans une heure.';
+
+  @override
+  String get passwordResetLocalCopied => 'Copié dans le presse-papiers.';
+
+  @override
+  String get passwordResetLocalEnterCodeBody =>
+      'Saisissez le code affiché ci-dessus, puis choisissez un nouveau mot de passe.';
+
+  @override
+  String get passwordResetCodeHintLocal =>
+      'Le code à 6 chiffres affiché ci-dessus';
+
+  @override
+  String get passwordResetKnowPin =>
+      'Vous connaissez votre code PIN parent ? Vous pouvez vous connecter avec.';
+
+  @override
+  String get sendResetEmailLocal => 'Afficher mon code';
+
+  @override
+  String get resendResetEmailLocal => 'Afficher un nouveau code';
 }

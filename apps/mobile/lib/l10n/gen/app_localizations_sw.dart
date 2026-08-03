@@ -1318,4 +1318,38 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get mascotName => 'Kibo mtoto wa simba';
+
+  @override
+  String get passwordResetLocalBody =>
+      'Weka barua pepe uliyojisajili nayo. Akaunti yako iko kwenye kifaa hiki, hivyo Watoto inaonesha msimbo hapa badala ya kutuma barua pepe.';
+
+  @override
+  String passwordResetLocalCode(String code) {
+    return 'Msimbo wako wa kuweka upya ni $code';
+  }
+
+  @override
+  String get passwordResetLocalWhy =>
+      'Yeyote aliyeshika kifaa hiki anaweza kusoma msimbo huu, ndiyo maana ukaguzi wa mtu mzima hutangulia. Unaisha baada ya saa moja.';
+
+  @override
+  String get passwordResetLocalCopied => 'Imenakiliwa kwenye ubao wa kunakili.';
+
+  @override
+  String get passwordResetLocalEnterCodeBody =>
+      'Andika msimbo ulioonekana hapo juu, kisha chagua nenosiri jipya.';
+
+  @override
+  String get passwordResetCodeHintLocal =>
+      'Msimbo wa tarakimu 6 ulioonekana hapo juu';
+
+  @override
+  String get passwordResetKnowPin =>
+      'Unajua PIN yako ya mzazi? Unaweza kuingia nayo badala yake.';
+
+  @override
+  String get sendResetEmailLocal => 'Onesha msimbo wangu';
+
+  @override
+  String get resendResetEmailLocal => 'Onesha msimbo mpya';
 }

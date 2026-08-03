@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,7 +13,27 @@ import 'auth_widgets.dart' show accountFieldDecoration;
 import 'auth_service.dart';
 import 'parent_gate_dialog.dart';
 
-/// Forgot-password flow: email a reset code/link, then set a new password.
+/// Forgot-password flow: get a reset code, then set a new password.
+///
+/// Two very different situations wear the same screen, and conflating them was
+/// the bug. With a cloud account the code really is emailed. With the local
+/// account — which is every shipped build, since no `firebase_*` package is in
+/// pubspec — there is no mail server and no `url_launcher`: the `mailto:` URI
+/// [LocalAuthService.requestLocalPasswordReset] builds is discarded, nothing
+/// is sent, and the code used to go silently to the clipboard while the screen
+/// said "Check your email for the reset code." A parent who had genuinely
+/// forgotten their password waited for mail that could never arrive.
+///
+/// So the local branch now says what it is: your account is on this device,
+/// here is your code, on screen. That is not a weakening — the code was always
+/// reachable by whoever held the phone, via the clipboard.
+///
+/// The barrier that does the work is knowing the account email, which is why
+/// this screen no longer pre-fills it. It used to, which meant a child could
+/// open the one screen that sits outside the login gate, pass a spelled-digit
+/// parent gate designed to stop a *young* child, read the code off the screen,
+/// and own the Parent Zone — screen-time limits, data export, erase-all. The
+/// app's audience runs to ten years old.
 class PasswordResetScreen extends ConsumerStatefulWidget {
   const PasswordResetScreen({super.key});
 
@@ -35,12 +54,11 @@ class _PasswordResetScreenState extends ConsumerState<PasswordResetScreen> {
   String? _info;
   String? _localCode; // offline handoff for device-owner recovery
 
-  @override
-  void initState() {
-    super.initState();
-    final stored = ref.read(offlineStoreProvider).accountEmail;
-    if (stored != null) _email.text = stored;
-  }
+  // Deliberately no initState pre-fill. The account email was pre-filled here
+  // "so the family doesn't retype it", which also handed it to anyone who
+  // picked up the phone. A parent knows their own address; a child usually
+  // does not, and on a device-local account it is the only secret standing
+  // between them and the Parent Zone.
 
   @override
   void dispose() {
@@ -70,24 +88,23 @@ class _PasswordResetScreenState extends ConsumerState<PasswordResetScreen> {
       if (auth is LocalAuthService) {
         auth.bindStore(ref.read(offlineStoreProvider));
         final result = await auth.requestLocalPasswordReset(email);
-        _localCode = result.localResetCode;
-        // Copy mailto body to clipboard so the parent can paste into mail.
-        if (result.mailtoUri != null) {
-          await Clipboard.setData(
-            ClipboardData(
-              text: 'Watoto reset code: ${result.localResetCode}\n\n'
-                  'Send this to yourself at ${result.email} or enter the code in the app.',
-            ),
-          );
-        }
+        final code = result.localResetCode;
+        // Show the code first. It is the thing the parent came for, and the
+        // clipboard is a convenience on top — a platform that refuses the
+        // write (or has no clipboard at all) must not cost them their code,
+        // which is exactly what happened while this ran the other way round.
         setState(() {
+          _localCode = code;
           _sent = true;
-          _info = l10n.passwordResetEmailSent;
-          if (kDebugMode && _localCode != null) {
-            _info = '${l10n.passwordResetEmailSent}\n'
-                '${l10n.passwordResetDevCode(_localCode!)}';
-          }
+          _info = null; // the code block below carries the message now
         });
+        if (code != null) {
+          try {
+            await Clipboard.setData(ClipboardData(text: code));
+          } catch (_) {
+            // Nothing to tell the family: the code is already on screen.
+          }
+        }
       } else {
         await auth.sendPasswordResetEmail(email);
         setState(() {
@@ -152,6 +169,9 @@ class _PasswordResetScreenState extends ConsumerState<PasswordResetScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    // Which of the two flows this really is. Every shipped build is local;
+    // the cloud branch is here for when Firebase is switched on.
+    final isLocal = ref.read(authServiceProvider) is LocalAuthService;
     return SavannaScaffold(
       topRight: IconButton(
         icon: const Icon(Icons.close, color: WatotoColors.deep),
@@ -195,15 +215,66 @@ class _PasswordResetScreenState extends ConsumerState<PasswordResetScreen> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    _sent
-                        ? l10n.forgotPasswordEnterCodeBody
-                        : l10n.forgotPasswordBody,
+                    switch ((isLocal, _sent)) {
+                      (true, false) => l10n.passwordResetLocalBody,
+                      (true, true) => l10n.passwordResetLocalEnterCodeBody,
+                      (false, false) => l10n.forgotPasswordBody,
+                      (false, true) => l10n.forgotPasswordEnterCodeBody,
+                    },
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: WatotoColors.deep.withValues(alpha: 0.65),
                     ),
                   ),
+                  // A family with a PIN never needed this screen: the PIN is a
+                  // way in on its own. Say so before they reset anything.
+                  if (!_sent && ref.read(offlineStoreProvider).hasPin) ...[
+                    const SizedBox(height: 10),
+                    TextButton(
+                      onPressed: () => context.go('/login'),
+                      child: Text(l10n.passwordResetKnowPin),
+                    ),
+                  ],
                   const SizedBox(height: 20),
+                  // The code itself, on screen, where the copy now says it is.
+                  if (isLocal && _sent && _localCode != null) ...[
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 14,
+                      ),
+                      decoration: BoxDecoration(
+                        color: WatotoColors.sky.withValues(alpha: 0.15),
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: Column(
+                        children: [
+                          Text(
+                            l10n.passwordResetLocalCode(_localCode!),
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w800,
+                              color: WatotoColors.deep,
+                            ),
+                          ),
+                          const SizedBox(height: 6),
+                          Text(
+                            '${l10n.passwordResetLocalCopied} '
+                            '${l10n.passwordResetLocalWhy}',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 12,
+                              height: 1.35,
+                              color: WatotoColors.deep.withValues(alpha: 0.7),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                  ],
                   if (_info != null) ...[
                     Text(
                       _info!,
@@ -237,7 +308,7 @@ class _PasswordResetScreenState extends ConsumerState<PasswordResetScreen> {
                     const SizedBox(height: 16),
                     FilledButton(
                       onPressed: _busy ? null : _send,
-                      child: Text(l10n.sendResetEmail),
+                      child: Text(isLocal ? l10n.sendResetEmailLocal : l10n.sendResetEmail),
                     ),
                   ] else ...[
                     const SizedBox(height: 14),
@@ -249,7 +320,9 @@ class _PasswordResetScreenState extends ConsumerState<PasswordResetScreen> {
                       ],
                       decoration: accountFieldDecoration(
                         l10n.passwordResetCodeLabel,
-                        l10n.passwordResetCodeHint,
+                        isLocal
+                            ? l10n.passwordResetCodeHintLocal
+                            : l10n.passwordResetCodeHint,
                       ),
                     ),
                     const SizedBox(height: 12),
@@ -277,7 +350,7 @@ class _PasswordResetScreenState extends ConsumerState<PasswordResetScreen> {
                     ),
                     TextButton(
                       onPressed: _busy ? null : _send,
-                      child: Text(l10n.resendResetEmail),
+                      child: Text(isLocal ? l10n.resendResetEmailLocal : l10n.resendResetEmail),
                     ),
                   ],
                 ],

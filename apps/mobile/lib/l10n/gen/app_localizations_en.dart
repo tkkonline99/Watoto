@@ -1321,4 +1321,37 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get mascotName => 'Kibo the lion cub';
+
+  @override
+  String get passwordResetLocalBody =>
+      'Enter the email you signed up with. Your account lives on this device, so Watoto shows the code here instead of emailing it.';
+
+  @override
+  String passwordResetLocalCode(String code) {
+    return 'Your reset code is $code';
+  }
+
+  @override
+  String get passwordResetLocalWhy =>
+      'Anyone holding this device can read this code, which is why the grown-up check comes first. It expires in an hour.';
+
+  @override
+  String get passwordResetLocalCopied => 'Copied to the clipboard.';
+
+  @override
+  String get passwordResetLocalEnterCodeBody =>
+      'Type the code shown above, then choose a new password.';
+
+  @override
+  String get passwordResetCodeHintLocal => 'The 6-digit code shown above';
+
+  @override
+  String get passwordResetKnowPin =>
+      'Know your parent PIN? You can log in with it instead.';
+
+  @override
+  String get sendResetEmailLocal => 'Show my reset code';
+
+  @override
+  String get resendResetEmailLocal => 'Show a new code';
 }

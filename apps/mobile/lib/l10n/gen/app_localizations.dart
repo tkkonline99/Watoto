@@ -2427,6 +2427,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Kibo the lion cub'**
   String get mascotName;
+
+  /// No description provided for @passwordResetLocalBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the email you signed up with. Your account lives on this device, so Watoto shows the code here instead of emailing it.'**
+  String get passwordResetLocalBody;
+
+  /// No description provided for @passwordResetLocalCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Your reset code is {code}'**
+  String passwordResetLocalCode(String code);
+
+  /// No description provided for @passwordResetLocalWhy.
+  ///
+  /// In en, this message translates to:
+  /// **'Anyone holding this device can read this code, which is why the grown-up check comes first. It expires in an hour.'**
+  String get passwordResetLocalWhy;
+
+  /// No description provided for @passwordResetLocalCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied to the clipboard.'**
+  String get passwordResetLocalCopied;
+
+  /// No description provided for @passwordResetLocalEnterCodeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Type the code shown above, then choose a new password.'**
+  String get passwordResetLocalEnterCodeBody;
+
+  /// No description provided for @passwordResetCodeHintLocal.
+  ///
+  /// In en, this message translates to:
+  /// **'The 6-digit code shown above'**
+  String get passwordResetCodeHintLocal;
+
+  /// No description provided for @passwordResetKnowPin.
+  ///
+  /// In en, this message translates to:
+  /// **'Know your parent PIN? You can log in with it instead.'**
+  String get passwordResetKnowPin;
+
+  /// No description provided for @sendResetEmailLocal.
+  ///
+  /// In en, this message translates to:
+  /// **'Show my reset code'**
+  String get sendResetEmailLocal;
+
+  /// No description provided for @resendResetEmailLocal.
+  ///
+  /// In en, this message translates to:
+  /// **'Show a new code'**
+  String get resendResetEmailLocal;
 }
 
 class _AppLocalizationsDelegate
