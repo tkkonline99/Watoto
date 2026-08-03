@@ -368,7 +368,8 @@ StepPlayPlan planStep({
   final seed = item.id.hashCode ^ (stepIndex * 9973);
 
   // --- Explicit schema fields (locale-safe; preferred over EN heuristics) ---
-  final explicit = _planFromExplicit(step, seed: seed);
+  final explicit =
+      _planFromExplicit(step, interaction: interaction, seed: seed);
   if (explicit != null) return explicit;
 
   // --- Explicit code-run (kid mini-game, not a vague RUN button) ---
@@ -537,11 +538,25 @@ StepPlayPlan planStep({
 /// and "Maps use a key to help us read them" are statements, and staging them
 /// as something to tap is exactly the fake exercise this planner avoids. So the
 /// verb must open a sentence or follow a connector ("Now open a gap…").
+/// The verb alternation on its own, without the position rule.
+///
+/// Public because `step_coverage_test.dart` enforces a deliberately weaker
+/// version of this rule (verb anywhere, not just in imperative position) and
+/// used to keep its own hand-copied duplicate of the list. The two drifted the
+/// moment a verb was added here, and the test failed on content that was
+/// correct. One list, two rules built from it.
+const directiveVerbs =
+    r'tap|touch|press|find|point to|pick|choose|show me|can you find'
+    r'|pop|mix|pour|push|pull|roll|ring|knock|squeeze|stack|build|match'
+    r'|sort|read|open|close|feed|wash|catch|put|place|move'
+    // Peekaboo verbs. Stage 1 spends six lessons hiding and revealing things,
+    // and "lift the box" is as much an on-screen instruction as "pop it".
+    r'|lift|cover|uncover|reach|shut|peek';
+
 final _directiveVerb = RegExp(
   r'(?:^|[.!?]\s+|\b(?:and|then|now|next|first|also)\s+)'
-  r'(tap|touch|press|find|point to|pick|choose|show me|can you find'
-  r'|pop|mix|pour|push|pull|roll|ring|knock|squeeze|stack|build|match'
-  r'|sort|read|open|close|feed|wash|catch|put|place|move)\b',
+  '($directiveVerbs)'
+  r'\b',
   caseSensitive: false,
 );
 
@@ -672,7 +687,17 @@ bool _same(String a, String b) =>
     b.toLowerCase().replaceAll(_punctuation, '');
 
 /// Prefer author-supplied mechanic / answer / choices when present.
-StepPlayPlan? _planFromExplicit(LessonStep step, {required int seed}) {
+///
+/// [interaction] is the item-level mechanic string. It is only ever used to
+/// pick the *wording* of a prompt, never the mechanic itself: an explicitly
+/// declared mechanic is authoritative. Prompts still read the English
+/// narration, so a translated step falls back to the generic hint exactly as
+/// it does today — but it now stages the right mechanic while doing so.
+StepPlayPlan? _planFromExplicit(
+  LessonStep step, {
+  required String interaction,
+  required int seed,
+}) {
   final raw = step.mechanic?.trim().toLowerCase();
   if (raw == null || raw.isEmpty) {
     // Partial explicit: answer alone still beats EN heuristics for numbers.
@@ -738,6 +763,10 @@ StepPlayPlan? _planFromExplicit(LessonStep step, {required int seed}) {
           promptHint: 'Type your answer',
         );
       }
+      // The workspace is the visual the child works the sum out on. The
+      // heuristic path derives it from the narration; an explicit mechanic
+      // must not cost them it.
+      final workspace = _workspaceFrom(step.narration);
       if (step.choices.isNotEmpty) {
         final idx = step.choiceIndex ?? step.choices.indexOf('$answer');
         return StepPlayPlan(
@@ -746,6 +775,7 @@ StepPlayPlan? _planFromExplicit(LessonStep step, {required int seed}) {
           choices: step.choices,
           choiceIndex: idx < 0 ? 0 : idx,
           promptHint: 'Tap the number!',
+          workspace: workspace,
         );
       }
       if (answer <= 12) {
@@ -757,12 +787,14 @@ StepPlayPlan? _planFromExplicit(LessonStep step, {required int seed}) {
           choices: choices,
           choiceIndex: idx < 0 ? 0 : idx,
           promptHint: 'Tap the number!',
+          workspace: workspace,
         );
       }
       return StepPlayPlan(
         mechanic: StepMechanic.numberAnswer,
         answer: answer,
         promptHint: 'Type your answer',
+        workspace: workspace,
       );
     case StepMechanic.multiChoice:
       return StepPlayPlan(
@@ -775,10 +807,24 @@ StepPlayPlan? _planFromExplicit(LessonStep step, {required int seed}) {
       );
     case StepMechanic.count:
       final n = step.count ?? step.answer ?? 3;
+      // Counting and keeping a beat are both "tap N times", but only one of
+      // them is counting. The heuristic chain lets the count family answer
+      // first and only reaches rhythm for what is left; mirror that, or a
+      // clapping song starts telling the child to count.
+      final a = step.action.toLowerCase();
+      final counting = a.contains('count') ||
+          interaction.contains('count') ||
+          interaction.contains('number-line');
+      final rhythmic = a.contains('rhythm') ||
+          a.contains('along') ||
+          interaction.contains('rhythm') ||
+          interaction.contains('along');
       return StepPlayPlan(
         mechanic: StepMechanic.count,
         count: n.clamp(2, 8),
-        promptHint: 'Tap each one to count!',
+        promptHint: !counting && rhythmic
+            ? 'Tap along with the beat!'
+            : 'Tap each one to count!',
       );
     case StepMechanic.buildArray:
       final r = step.rows ?? 3;
@@ -791,22 +837,56 @@ StepPlayPlan? _planFromExplicit(LessonStep step, {required int seed}) {
         promptHint: 'Tap to place every dot!',
       );
     case StepMechanic.drag:
-      return const StepPlayPlan(
+      // "Swipe across the picture!" and "Trace it with your finger!" are very
+      // different instructions to a child. Recover the specific one, in the
+      // same order the heuristic chain would have: the drag family answers
+      // first and never consults the gesture prompts, so a declared mechanic
+      // must not either, or a tracing step starts saying "draw".
+      final act = step.action.toLowerCase();
+      final dragFamily = act.startsWith('drag') ||
+          interaction.startsWith('drag') ||
+          act.contains('order') ||
+          act.contains('trace') ||
+          interaction.contains('trace');
+      if (dragFamily) {
+        final tracing = act.contains('trace') ||
+            interaction.contains('trace') ||
+            RegExp(r'\btrace\b', caseSensitive: false).hasMatch(step.narration);
+        return StepPlayPlan(
+          mechanic: StepMechanic.drag,
+          promptHint:
+              tracing ? 'Trace it with your finger!' : 'Drag it in!',
+        );
+      }
+      return StepPlayPlan(
         mechanic: StepMechanic.drag,
-        promptHint: 'Drag it in!',
+        promptHint: _gesturePrompt(step.action, interaction, step.narration) ??
+            'Drag it in!',
       );
     case StepMechanic.celebrate:
+      // A declared celebrate is a do-it-in-the-room step (clap, shake, wave).
+      // Honour it whatever language the narration is in: `_physicalPrompt`
+      // only supplies the *wording*, and it reads English, so consulting it
+      // for the mechanic would turn every translated clapping step into a
+      // silent "Got it!".
+      return StepPlayPlan(
+        mechanic: StepMechanic.celebrate,
+        promptHint: _physicalPrompt(step.action, interaction, step.narration) ??
+            'Do it together, then tap!',
+      );
     case StepMechanic.explain:
-      // Author-declared watch/celebrate: nothing to hunt for, so the child
+      // Author-declared watch/explain: nothing to hunt for, so the child
       // gets the picture and a "Got it!" rather than a poke-the-emoji puzzle.
       return const StepPlayPlan(mechanic: StepMechanic.explain);
     case StepMechanic.codeRun:
       return _codePlan(step.narration, step.feedback, seed);
     case StepMechanic.tap:
-      // Same rule as the heuristic path: a tap step must be asking for a tap.
-      if (!_hasDirective(step.narration)) {
-        return const StepPlayPlan(mechanic: StepMechanic.explain);
-      }
+      // The heuristic path checks `_hasDirective` before staging a tap, to
+      // stop itself inventing a puzzle out of an expository line. A declared
+      // tap has already had that decision made by an author (or by
+      // tool/bake_mechanics.dart, which asked the same question of the
+      // English text). Asking again here would re-run an English regex over
+      // Swahili narration and quietly downgrade the step to "Got it!".
       return StepPlayPlan(
         mechanic: StepMechanic.tap,
         promptHint: _tapPrompt(step.narration),

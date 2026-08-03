@@ -146,10 +146,11 @@ void main() {
     // is deliberately a weaker rule than the planner's (which also requires
     // the verb to be imperative): the guard should catch a step staged as a
     // tap when its sentence contains no action at all.
+    // Built from the planner's own verb list so the two cannot drift; the
+    // weakening is dropping its imperative-position requirement, not keeping
+    // a second copy of the vocabulary.
     final directive = RegExp(
-      r'\b(tap|touch|press|find|point to|pick|choose|show me'
-      r'|pop|mix|pour|push|pull|roll|ring|knock|squeeze|stack|build|match'
-      r'|sort|read|open|close|feed|wash|catch|put|place|move)\b',
+      '\\b($directiveVerbs)\\b',
       caseSensitive: false,
     );
     final bad = <String>[];

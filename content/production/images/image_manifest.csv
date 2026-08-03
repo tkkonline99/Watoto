@@ -1362,3 +1362,136 @@ img/s10/step_writing_lesson_05_2.png,10,Writing,1,s10.writing.lesson.05.steps.2,
 img/s10/step_writing_lesson_06_0.png,10,Writing,1,s10.writing.lesson.06.steps.0,step-scene,,"Flat pastel cartoon, 512x512, soft rounded shapes, no text, no letters or numerals drawn in the image. Scene: Revising improves ideas: add a detail or a clearer word. The sentence that needs more detail."
 img/s10/step_writing_lesson_06_1.png,10,Writing,1,s10.writing.lesson.06.steps.1,step-scene,,"Flat pastel cartoon, 512x512, soft rounded shapes, no text, no letters or numerals drawn in the image. Scene: Editing fixes spelling, capitals, and punctuation. The editing mistake."
 img/s10/step_writing_lesson_06_2.png,10,Writing,1,s10.writing.lesson.06.steps.2,step-scene,,"Flat pastel cartoon, 512x512, soft rounded shapes, no text, no letters or numerals drawn in the image. Scene: Great writers reread and improve their work. DO NOT depict the answer (Revise) or anything that reveals it; draw only what the sentence states."
+img/s01/bear_still.png,1,Motor Imitation,1,s01.motor.quiz.02,quiz-option,,Still bear
+img/s01/btn_music.png,1,Cause & Effect,1,s01.cause.quiz.02,quiz-option,,Music button
+img/s01/btn_quiet.png,1,Cause & Effect,1,s01.cause.quiz.02,quiz-option,,Quiet button
+img/s01/bunny_sleep.png,1,Motor Imitation,1,s01.motor.quiz.01,quiz-option,,Sleeping bunny
+img/s01/bush_left.png,1,Object Permanence,1,s01.object.quiz.02,quiz-option,,Left bush
+img/s01/bush_right.png,1,Object Permanence,1,s01.object.quiz.02,quiz-option,,Right bush
+img/s01/cup_left.png,1,Object Permanence,1,s01.object.quiz.01,quiz-option,,Left cup
+img/s01/cup_right.png,1,Object Permanence,1,s01.object.quiz.01,quiz-option,,Right cup
+img/s01/empty_bed.png,1,Cause & Effect,1,s01.cause.quiz.01,quiz-option,,Empty bed
+img/s01/fish.png,1,Sensory Exploration,1,s01.sensory.quiz.02,quiz-option,,Wiggly fish
+img/s01/puppy_sleep.png,1,Cause & Effect,1,s01.cause.quiz.01,quiz-option,,Sleeping puppy
+img/s01/rock.png,1,Sensory Exploration,1,s01.sensory.quiz.02,quiz-option,,Still rock
+img/s01/star_bright.png,1,Sensory Exploration,1,s01.sensory.quiz.01,quiz-option,,Bright star
+img/s01/star_dim.png,1,Sensory Exploration,1,s01.sensory.quiz.01,quiz-option,,Dim star
+img/s02/balloon_blue.png,2,Colors & Shapes,1,s02.colors.quiz.01,quiz-option,,Blue balloon
+img/s02/balloon_red.png,2,Colors & Shapes,1,s02.colors.quiz.01,quiz-option,,Red balloon
+img/s02/basket_blue.png,2,Simple Sorting,1,s02.sorting.quiz.01,quiz-option,,Blue basket
+img/s02/basket_red.png,2,Simple Sorting,1,s02.sorting.quiz.01,quiz-option,,Red basket
+img/s02/ear.png,2,Body Parts,2,s02.body.quiz.01 s02.body.quiz.03,quiz-option,,Ear
+img/s02/eyes.png,2,Body Parts,1,s02.body.quiz.02,quiz-option,,Eyes
+img/s02/fish_blue.png,2,Colors & Shapes,1,s02.colors.quiz.02,quiz-option,,Blue fish
+img/s02/fish_green.png,2,Colors & Shapes,1,s02.colors.quiz.02,quiz-option,,Green fish
+img/s02/fruit_bowl.png,2,Simple Sorting,1,s02.sorting.quiz.03,quiz-option,,Fruit bowl
+img/s02/hen.png,2,Animals,1,s02.animals.quiz.01,quiz-option,,Hen
+img/s02/mouth.png,2,Body Parts,1,s02.body.quiz.03,quiz-option,,Mouth
+img/s02/nose.png,2,Body Parts,1,s02.body.quiz.01,quiz-option,,Nose
+img/s02/plate_1.png,2,First Numbers,1,s02.numbers.quiz.03,quiz-option,,Plate with 1
+img/s02/plate_3.png,2,First Numbers,1,s02.numbers.quiz.03,quiz-option,,Plate with 3
+img/s02/play.png,2,Music & Routines,1,s02.music.quiz.02,quiz-option,,Play outside
+img/s02/sheep.png,2,Animals,1,s02.animals.quiz.02,quiz-option,,Sheep
+img/s02/sleep.png,2,Music & Routines,1,s02.music.quiz.02,quiz-option,,Sleep
+img/s02/spoon.png,2,Music & Routines,1,s02.music.quiz.03,quiz-option,,Spoon
+img/s02/toy_box.png,2,Simple Sorting,1,s02.sorting.quiz.03,quiz-option,,Toy box
+img/s02/tree.png,2,Animals,1,s02.animals.quiz.03,quiz-option,,In a tree
+img/s02/water.png,2,Animals,1,s02.animals.quiz.03,quiz-option,,In water
+img/s03/ball.png,3,Phonological Awareness,1,s03.phono.quiz.03,quiz-option,,Ball
+img/s03/blue.png,3,Patterns & Opposites,1,s03.patterns.quiz.01,quiz-option,,Blue
+img/s03/car.png,3,Phonological Awareness,3,s03.phono.quiz.01 s03.vocab.quiz.02 s03.tracing.quiz.03,quiz-option,,Car
+img/s03/cat.png,3,Vocabulary,2,s03.vocab.quiz.02 s03.phono.quiz.03,quiz-option,,Cat
+img/s03/circle.png,3,Patterns & Opposites,1,s03.patterns.quiz.02,quiz-option,,Circle
+img/s03/dog.png,3,Phonological Awareness,1,s03.phono.quiz.01,quiz-option,,Dog
+img/s03/frog.png,3,Phonological Awareness,1,s03.phono.quiz.02,quiz-option,,Frog
+img/s03/hug.png,3,Emotions,1,s03.emotions.quiz.03,quiz-option,,A hug
+img/s03/nothing.png,3,Emotions,1,s03.emotions.quiz.03,quiz-option,,Nothing
+img/s03/red.png,3,Patterns & Opposites,1,s03.patterns.quiz.01,quiz-option,,Red
+img/s03/shoe.png,3,Vocabulary,2,s03.vocab.quiz.01 s03.vocab.quiz.03,quiz-option,,Shoe
+img/s03/sleepy.png,3,Emotions,1,s03.emotions.quiz.02,quiz-option,,Sleepy
+img/s03/small.png,3,Patterns & Opposites,1,s03.patterns.quiz.03,quiz-option,,Small
+img/s03/square.png,3,Patterns & Opposites,1,s03.patterns.quiz.02,quiz-option,,Square
+img/s03/sun.png,3,Phonological Awareness,2,s03.phono.quiz.01 s03.phono.quiz.02,quiz-option,,Sun
+img/s03/surprised.png,3,Emotions,1,s03.emotions.quiz.02,quiz-option,,Surprised
+img/s03/tall.png,3,Patterns & Opposites,1,s03.patterns.quiz.03,quiz-option,,Tall
+img/s04/arctic.png,4,Science & Nature,1,s04.science.quiz.01,quiz-option,,Arctic ice
+img/s04/baker.png,4,Social Studies,1,s04.social.quiz.01,quiz-option,,Baker
+img/s04/blue.png,4,Creative Arts,1,s04.arts.quiz.01,quiz-option,,Blue
+img/s04/chef.png,4,Social Studies,1,s04.social.quiz.02,quiz-option,,Chef
+img/s04/circle.png,4,Creative Arts,1,s04.arts.quiz.03,quiz-option,,Circle
+img/s04/cup.png,4,Creative Arts,1,s04.arts.quiz.02,quiz-option,,Cup
+img/s04/desert.png,4,Science & Nature,1,s04.science.quiz.01,quiz-option,,Hot desert
+img/s04/drum.png,4,Creative Arts,1,s04.arts.quiz.02,quiz-option,,Drum
+img/s04/firefighter.png,4,Social Studies,1,s04.social.quiz.01,quiz-option,,Firefighter
+img/s04/fish.png,4,Science & Nature,1,s04.science.quiz.03,quiz-option,,Fish
+img/s04/hat.png,4,Language & Literacy,1,s04.literacy.quiz.03,quiz-option,,Hat
+img/s04/lion.png,4,Science & Nature,1,s04.science.quiz.03,quiz-option,,Lion
+img/s04/ocean.png,4,Science & Nature,1,s04.science.quiz.01,quiz-option,,Ocean
+img/s04/orange.png,4,Creative Arts,1,s04.arts.quiz.01,quiz-option,,Orange
+img/s04/snake_long.png,4,Math & Logic,1,s04.math.quiz.01,quiz-option,,Long snake
+img/s04/snake_short.png,4,Math & Logic,1,s04.math.quiz.01,quiz-option,,Short snake
+img/s04/sock.png,4,Language & Literacy,1,s04.literacy.quiz.03,quiz-option,,Sock
+img/s04/square.png,4,Creative Arts,1,s04.arts.quiz.03,quiz-option,,Square
+img/s04/stars_2.png,4,Math & Logic,1,s04.math.quiz.03,quiz-option,,Group of 2
+img/s04/stars_4.png,4,Math & Logic,1,s04.math.quiz.03,quiz-option,,Group of 4
+img/s04/teacher.png,4,Social Studies,1,s04.social.quiz.02,quiz-option,,Teacher
+img/s04/toy.png,4,Science & Nature,1,s04.science.quiz.02,quiz-option,,A toy
+img/s04/tree.png,4,Science & Nature,1,s04.science.quiz.01,quiz-option,,Treetop
+img/s04/water_sun.png,4,Science & Nature,1,s04.science.quiz.02,quiz-option,,Water and sun
+img/s05/plant.png,5,Science,1,s05.science.quiz.02,quiz-option,,Plant
+img/s05/rock.png,5,Science,1,s05.science.quiz.02,quiz-option,,Rock
+img/s06/balloon.png,6,Science,1,s06.science.quiz.02,quiz-option,,A balloon
+img/s06/bottle.png,6,Science,1,s06.science.quiz.03,quiz-option,,Glass bottle
+img/s06/car.png,6,Social Studies,1,s06.social.quiz.01,quiz-option,,Modern car
+img/s06/cart.png,6,Social Studies,1,s06.social.quiz.01,quiz-option,,Horse and cart
+img/s06/cat.png,6,Reading & Writing,1,s06.reading.quiz.02,quiz-option,,Cat
+img/s06/circle.png,6,Technology & Logic,1,s06.tech.quiz.01,quiz-option,,Circle
+img/s06/face.png,6,Social Studies,1,s06.social.quiz.03,quiz-option,,Photo of a face
+img/s06/log.png,6,Science,1,s06.science.quiz.03,quiz-option,,Tree log
+img/s06/map.png,6,Social Studies,1,s06.social.quiz.03,quiz-option,,Top-down street plan
+img/s06/ship.png,6,Reading & Writing,1,s06.reading.quiz.02,quiz-option,,Ship
+img/s06/square.png,6,Technology & Logic,1,s06.tech.quiz.01,quiz-option,,Square
+img/s06/tenframe_7.png,6,Math,1,s06.math.quiz.01,quiz-option,,7
+img/s06/water.png,6,Science,1,s06.science.quiz.02,quiz-option,,Water
+img/s07/apple.png,7,Health,1,s07.health.quiz.03,quiz-option,,Apple slices
+img/s07/candy.png,7,Health,1,s07.health.quiz.03,quiz-option,,Candy
+img/s07/map.png,7,Social Studies,1,s07.social.quiz.02,quiz-option,,Flat paper map
+img/s07/rock.png,7,Science,1,s07.science.quiz.03,quiz-option,,A rock
+img/s07/sun.png,7,Science,1,s07.science.quiz.03,quiz-option,,The sun
+img/s08/desert.png,8,Science,1,s08.science.quiz.02,quiz-option,,In the desert
+img/s08/water.png,8,Science,1,s08.science.quiz.02,quiz-option,,In water
+img/s01/ball_red.png,1,Early Language,1,s01.lang.quiz.04,asset-image,,Ball
+img/s01/bear_still2.png,1,Motor Imitation,1,s01.motor.quiz.03,asset-image,,Still bear
+img/s01/bear_wave2.png,1,Motor Imitation,1,s01.motor.quiz.03,asset-image,,Waving bear
+img/s01/bell_ringing.png,1,Cause & Effect,1,s01.cause.quiz.03,asset-image,,Ringing bell
+img/s01/bell_still.png,1,Cause & Effect,1,s01.cause.quiz.03,asset-image,,Quiet bell
+img/s01/bird_return.png,1,Object Permanence,1,s01.object.story.02,asset-image,,Look! She is flying home.
+img/s01/blanket_left.png,1,Object Permanence,1,s01.object.quiz.03,asset-image,,Left blanket
+img/s01/blanket_right.png,1,Object Permanence,1,s01.object.quiz.03,asset-image,,Right blanket
+img/s01/breakfast.png,1,Early Language,1,s01.lang.story.02,asset-image,,Now we eat together. Yum!
+img/s01/breeze_leaf.png,1,Sensory Exploration,1,s01.sensory.story.02,asset-image,,A little breeze says hello. Shhh...
+img/s01/bunny_clap2.png,1,Motor Imitation,1,s01.motor.quiz.04,asset-image,,Clapping bunny
+img/s01/bunny_sleep2.png,1,Motor Imitation,1,s01.motor.quiz.04,asset-image,,Sleeping bunny
+img/s01/clap_together.png,1,Motor Imitation,1,s01.motor.story.02,asset-image,,"Clap your hands. Clap, clap!"
+img/s01/cow.png,1,Early Language,1,s01.lang.quiz.03,asset-image,,Cow
+img/s01/cup_blue.png,1,Early Language,1,s01.lang.quiz.04,asset-image,,Cup
+img/s01/door_closed.png,1,Object Permanence,1,s01.object.quiz.04,asset-image,,Closed door
+img/s01/door_open.png,1,Object Permanence,1,s01.object.quiz.04,asset-image,,Open door
+img/s01/drum_loud.png,1,Sensory Exploration,1,s01.sensory.quiz.03,asset-image,,Drum
+img/s01/duck.png,1,Early Language,1,s01.lang.quiz.03,asset-image,,Duck
+img/s01/family_wave.png,1,Early Language,1,s01.lang.story.02,asset-image,,"Wave to everyone. Hello, hello!"
+img/s01/feather_soft.png,1,Sensory Exploration,1,s01.sensory.quiz.03,asset-image,,Feather
+img/s01/fuzzy_patch.png,1,Sensory Exploration,1,s01.sensory.quiz.04,asset-image,,Fuzzy
+img/s01/grass_green.png,1,Sensory Exploration,1,s01.sensory.story.02,asset-image,,The grass is soft under your hands.
+img/s01/hug_together.png,1,Motor Imitation,1,s01.motor.story.02,asset-image,,Now a big hug. All done!
+img/s01/lamp_off.png,1,Cause & Effect,1,s01.cause.quiz.04,asset-image,,Light off
+img/s01/lamp_on.png,1,Cause & Effect,1,s01.cause.quiz.04,asset-image,,Light on
+img/s01/morning_sun.png,1,Early Language,1,s01.lang.story.02,asset-image,,The sun is up. Good morning!
+img/s01/nest_cosy.png,1,Object Permanence,1,s01.object.story.02,asset-image,,Back in the cosy nest. She was always coming back.
+img/s01/nest_empty.png,1,Object Permanence,1,s01.object.story.02,asset-image,,The nest is empty. Where is baby bird?
+img/s01/puddle.png,1,Cause & Effect,1,s01.cause.story.02,asset-image,,A small hand taps the water.
+img/s01/smooth_patch.png,1,Sensory Exploration,1,s01.sensory.quiz.04,asset-image,,Smooth
+img/s01/splash.png,1,Cause & Effect,1,s01.cause.story.02,asset-image,,Splash! The drops jump up high.
+img/s01/stomp_together.png,1,Motor Imitation,1,s01.motor.story.02,asset-image,,"Stomp your feet. Stomp, stomp!"
+img/s01/sun_warm.png,1,Sensory Exploration,1,s01.sensory.story.02,asset-image,,The sun is warm on your face.
+img/s01/towel_dry.png,1,Cause & Effect,1,s01.cause.story.02,asset-image,,A soft towel makes everything dry again.
