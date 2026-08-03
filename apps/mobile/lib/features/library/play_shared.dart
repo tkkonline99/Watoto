@@ -18,6 +18,7 @@ import 'content_art.dart';
 import 'content_i18n.dart';
 import 'library_models.dart';
 import 'library_repository.dart';
+import 'play_style.dart';
 import 'step_play.dart';
 import 'step_visuals.dart';
 
@@ -26,6 +27,75 @@ LocalizedItem localizedItem(WidgetRef ref, LibraryItem item) {
   final lang = ref.watch(localeProvider).languageCode;
   final i18n = ref.watch(contentI18nProvider).asData?.value;
   return LocalizedItem(item, i18n, lang);
+}
+
+/// The co-play prompt for a grown-up, on activities aimed at the very young.
+///
+/// Stages 1–2 are `parent-led`: the design tier says outright that the parent
+/// is the primary user, and the content is written to match — "Pat a real pot
+/// or drum together to feel the beat", "Play real peekaboo first with your
+/// hands, then on screen". Those notes are the lesson at this age; the screen
+/// is only the prompt. They were authored on every item and displayed nowhere,
+/// because their only reader was [coPlayTipFor] in play_style.dart, which
+/// nothing called.
+///
+/// Deliberately quiet: small, low-contrast, at the foot of the screen. It is
+/// addressed to the adult holding the device, and must not compete with the
+/// child for the middle of it.
+class CoPlayTip extends ConsumerWidget {
+  const CoPlayTip({super.key, required this.item});
+
+  final LibraryItem item;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    // Older bands get no tip: the child is the user by then, and a standing
+    // instruction to a grown-up who is not there is just clutter.
+    if (!isToddlerStage(item.stage)) return const SizedBox.shrink();
+    final loc = localizedItem(ref, item);
+    final tip = coPlayTipFor(
+      stage: item.stage,
+      subject: item.subject,
+      parentNote: loc.parentNote,
+      lang: loc.lang,
+    );
+    if (tip.isEmpty) return const SizedBox.shrink();
+    final l10n = AppLocalizations.of(context);
+    return Padding(
+      padding: const EdgeInsets.only(top: 12),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+        decoration: BoxDecoration(
+          color: WatotoColors.deep.withValues(alpha: 0.05),
+          borderRadius: BorderRadius.circular(14),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              l10n.forGrownups.toUpperCase(),
+              style: TextStyle(
+                fontSize: 11,
+                fontWeight: FontWeight.w800,
+                letterSpacing: 0.8,
+                color: WatotoColors.deep.withValues(alpha: 0.55),
+              ),
+            ),
+            const SizedBox(height: 3),
+            Text(
+              tip,
+              style: TextStyle(
+                fontSize: 14,
+                height: 1.35,
+                color: WatotoColors.deep.withValues(alpha: 0.8),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 PreferredSizeWidget playAppBar(BuildContext context, String title) => AppBar(

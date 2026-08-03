@@ -497,6 +497,8 @@ class _LessonViewState extends ConsumerState<_LessonView> {
                   ),
                 ),
               ),
+              CoPlayTip(item: widget.item),
+              const SizedBox(height: 12),
               SizedBox(
                 width: double.infinity,
                 child: FilledButton(

@@ -56,6 +56,17 @@ class LocalizedItem {
 
   String get title => _t('title', item.title);
 
+  /// The item's note to the grown-up, or null when it has none.
+  ///
+  /// Every stage-1 and stage-2 item carries one ("Hold baby close and trace
+  /// the swirl together") and until CoPlayTip was wired nothing displayed
+  /// them, so 342 of these had never been read by a parent.
+  String? get parentNote {
+    final english = item.parentNote;
+    if (english == null || english.isEmpty) return null;
+    return _t('parentNote', english);
+  }
+
   String stepNarration(int i) => _t('steps.$i.narration', item.steps[i].narration);
   String stepFeedback(int i) => _t('steps.$i.feedback', item.steps[i].feedback);
 
