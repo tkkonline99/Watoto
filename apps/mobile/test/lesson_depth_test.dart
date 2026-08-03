@@ -40,6 +40,25 @@ const deepenedIds = <String>[
 const minSteps = 8;
 const langs = ['en', 'sw', 'fr'];
 
+/// How deep a lesson has to be before it is teaching rather than gesturing.
+///
+/// Deliberately a function of the design tier, not one number for the library.
+/// The 8-step figure came from the stage-7 pilot — children of 6 and 7, who
+/// can follow a worked example and answer a recap. A one-year-old cannot, and
+/// holding `parent-led` content to a stage-7 arc would produce lessons no baby
+/// can sit through and no parent wants to read aloud. Tiers are defined in the
+/// library's `_meta.designTiers`.
+///
+/// Keep in sync with MIN_STEPS_BY_TIER in content/worklist.js.
+const minStepsByTier = <String, int>{
+  'parent-led': 4, // ages 0-2: cozy, slow, the parent is the user
+  'encourage-effort': 6, // ages 3-5
+  'gamify-gently': 8, // ages 6-7
+  'grant-autonomy': 8, // ages 8-10
+};
+
+int minStepsForTier(String? tier) => minStepsByTier[tier] ?? minSteps;
+
 Map<String, LibraryItem> _library() {
   final raw =
       File('assets/content/watoto_content_library.json').readAsStringSync();
@@ -205,5 +224,84 @@ void main() {
         expect(step.answer, greaterThanOrEqualTo(0), reason: '$id step $i');
       }
     }
+  });
+
+  // ---------------------------------------------------------------------
+  // Library-wide. The pilot proved the shape on ten lessons; these hold the
+  // other 332 to the part of it that can be checked mechanically.
+  // ---------------------------------------------------------------------
+
+  group('whole library', () {
+    final lessons = library.values.where((i) => i.type == LibraryType.lesson);
+
+    test('every lesson step declares its mechanic', () {
+      final bare = <String>[];
+      for (final item in lessons) {
+        for (var i = 0; i < item.steps.length; i++) {
+          final m = item.steps[i].mechanic?.trim();
+          if (m == null || m.isEmpty) bare.add('${item.id} step $i');
+        }
+      }
+      expect(
+        bare,
+        isEmpty,
+        reason: 'these steps make the player guess the mechanic from English '
+            'narration, so they stage a plain tap in sw/fr:\n'
+            '${bare.take(20).join('\n')}\n'
+            'run: dart run tool/bake_mechanics.dart',
+      );
+    });
+
+    test('the player stages the same mechanic in every language', () {
+      final drift = <String>[];
+      for (final item in lessons) {
+        for (var i = 0; i < item.steps.length; i++) {
+          final en = planStep(
+            item: item,
+            stepIndex: i,
+            step: _localized(item, i, overlays['en']!),
+          );
+          for (final lang in ['sw', 'fr']) {
+            final other = planStep(
+              item: item,
+              stepIndex: i,
+              step: _localized(item, i, overlays[lang]!),
+            );
+            if (other.mechanic != en.mechanic) {
+              drift.add('${item.id} step $i: ${en.mechanic.name} in en but '
+                  '${other.mechanic.name} in $lang');
+            }
+          }
+        }
+      }
+      expect(
+        drift,
+        isEmpty,
+        reason: 'a child in this language gets a visibly poorer lesson from '
+            'the same JSON:\n${drift.take(20).join('\n')}',
+      );
+    });
+
+    test('lessons reach the step depth their design tier calls for', () {
+      final shallow = <String>[];
+      for (final item in lessons) {
+        final min = minStepsForTier(item.designTier);
+        if (item.steps.length < min) {
+          shallow.add('${item.id} (${item.designTier}): '
+              '${item.steps.length} steps, needs $min');
+        }
+      }
+      // Depth is being filled in stage by stage, priority order first. This
+      // asserts the direction of travel: the count may fall, never rise.
+      // Lower it as stages land; see docs/CONTENT_WORKLIST.md.
+      // 332 before stage 1 was authored (content/author_stage1.py).
+      const knownShallow = 302;
+      expect(
+        shallow.length,
+        lessThanOrEqualTo(knownShallow),
+        reason: 'more shallow lessons than the recorded baseline — a stage '
+            'was flattened:\n${shallow.take(20).join('\n')}',
+      );
+    });
   });
 }

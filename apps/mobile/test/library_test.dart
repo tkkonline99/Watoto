@@ -34,10 +34,12 @@ void main() {
   group('content library', () {
     test('parses all v0.13.0 items by type', () async {
       final repo = await loadFromDisk();
-      expect(repo.all, hasLength(565));
+      // 565 before stage 1 was authored out to the build plan's target of
+      // 4 quizzes and 2 stories per subject (content/author_stage1.py).
+      expect(repo.all, hasLength(580));
       expect(repo.all.where((i) => i.type == LibraryType.lesson), hasLength(342));
-      expect(repo.all.where((i) => i.type == LibraryType.quiz), hasLength(166));
-      expect(repo.all.where((i) => i.type == LibraryType.story), hasLength(57));
+      expect(repo.all.where((i) => i.type == LibraryType.quiz), hasLength(176));
+      expect(repo.all.where((i) => i.type == LibraryType.story), hasLength(62));
     });
 
     test('indexes by stage + subject', () async {

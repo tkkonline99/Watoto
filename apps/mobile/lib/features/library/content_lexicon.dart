@@ -78,6 +78,13 @@ const Map<String, LexEntry> lexicon = {
   'bell': LexEntry('🔔', _object), 'robot': LexEntry('🤖', _object),
   'computer': LexEntry('💻', _object), 'phone': LexEntry('📱', _object),
   'clock': LexEntry('🕐', _object), 'key': LexEntry('🔑', _object),
+  // Stage-1 "carry it into the room" steps name a real household thing the
+  // parent is meant to reach for. Without these the step falls back to the
+  // generic subject icon and the picture stops being about the step.
+  'paper': LexEntry('📄', _object), 'towel': LexEntry('🧻', _object),
+  'blanket': LexEntry('🛏️', _object), 'pot': LexEntry('🍲', _object),
+  'nest': LexEntry('🪹', _nature), 'puddle': LexEntry('💧', _nature),
+  'breeze': LexEntry('🍃', _nature),
   'door': LexEntry('🚪', _object), 'bed': LexEntry('🛏️', _object),
   'chair': LexEntry('🪑', _object), 'toy': LexEntry('🧸', _object),
   'doll': LexEntry('🧸', _object), 'block': LexEntry('🧱', _object),

@@ -12,9 +12,24 @@ or non-compliant content item can ever ship to a child.
 """
 import json, re, sys
 from collections import Counter
+from pathlib import Path
 
 PATH = next((a for a in sys.argv[1:] if not a.startswith("--")), "watoto_content_library.json")
 SHOW_ASSETS = "--assets" in sys.argv
+
+REPO = Path(__file__).resolve().parent.parent
+
+# Where an asset `ref` resolves from. Images are relative to assets/images
+# ("img/s01/ball.png"); audio is relative to assets ("audio/s01/chime.mp3").
+ASSET_ROOT = REPO / "apps" / "mobile" / "assets"
+
+def asset_path(atype, ref):
+    return ASSET_ROOT / ("images/" + ref if atype == "image" else ref)
+
+# content/watoto_content_library.json is a mirror of the file the app ships.
+# CI validates this copy, so if the two drift the validator starts grading a
+# library no child will ever play.
+SHIPPED = ASSET_ROOT / "content" / "watoto_content_library.json"
 
 TYPES = {"lesson", "quiz", "story"}
 ID_RE = re.compile(r"^s\d{2}\.[a-z0-9\-]+\.(lesson|quiz|story)\.\d{2}$")
@@ -28,6 +43,7 @@ def main():
     stages = {s["stage"]: set(s["subjects"]) for s in lib["curriculum"]["stages"]}
     content = lib["content"]
     errors, warnings, ids, assets = [], [], set(), []
+    rendered = set()  # refs the player actually draws, not just pipeline metadata
 
     for c in content:
         cid = c.get("id", "<no id>")
@@ -90,11 +106,57 @@ def main():
                     errors.append(f"{cid}: page {i} missing narration/illustration")
 
         # ---- collect assets ----
+        #
+        # Three places carry a media ref, and they are not equally important.
+        # `assets[]` is pipeline metadata — LibraryItem does not even parse it,
+        # so a bad ref there costs a child nothing today. `options[].asset` and
+        # `pages[].illustration` are what the player actually renders; a ref
+        # with no file behind it is a hole on the screen. Collect all three,
+        # remember which are rendered, and grade them differently below.
         for a in c.get("assets", []):
             if a.get("type") not in {"image", "audio", "haptic"} or not a.get("ref"):
                 errors.append(f"{cid}: bad asset entry {a}")
             else:
                 assets.append((a["type"], a["ref"], a.get("desc", ""), cid))
+        for i, qq in enumerate(c.get("questions", [])):
+            for o in qq.get("options", []):
+                if o.get("asset"):
+                    assets.append(("image", o["asset"], o.get("label", ""), cid))
+                    rendered.add(o["asset"])
+        for i, pg in enumerate(c.get("pages", [])):
+            if pg.get("illustration"):
+                assets.append(("image", pg["illustration"], pg.get("narration", "")[:60], cid))
+                rendered.add(pg["illustration"])
+
+    # ---- do the referenced files exist? ----
+    #
+    # 98 quiz-option images once shipped pointing at PNGs nobody had drawn,
+    # because this validator only ever looked at `assets[]` and quiz options
+    # live somewhere else. A ref the player renders must resolve to a file.
+    # Audio is graded softer: the app plays bundled SFX and never loads these
+    # refs, so a missing file is a production backlog item (tracked in
+    # content/production/audio/audio_sfx_manifest.csv), not a broken screen.
+    if ASSET_ROOT.is_dir():
+        for atype, ref, _desc, cid in assets:
+            if atype == "haptic" or asset_path(atype, ref).exists():
+                continue
+            if atype == "image" and ref in rendered:
+                errors.append(f"{cid}: renders {ref} but no such file — regenerate with "
+                              f"apps/mobile/tool/generate_art_batch.py")
+            elif atype == "image":
+                warnings.append(f"{cid}: {ref} declared in assets[] has no file")
+            elif atype == "audio":
+                warnings.append(f"{cid}: {ref} has no file (see audio_sfx_manifest.csv)")
+    else:
+        warnings.append(f"asset root {ASSET_ROOT} not found — skipped file checks")
+
+    # ---- is this the library the app actually ships? ----
+    if SHIPPED.exists() and Path(PATH).resolve() != SHIPPED:
+        if load(SHIPPED) != lib:
+            errors.append(
+                f"{PATH} and {SHIPPED} have diverged — CI validates this copy but the "
+                f"app bundles the other one. Copy the file across before committing."
+            )
 
     # ---- report ----
     by_type = Counter(c.get("type") for c in content)
