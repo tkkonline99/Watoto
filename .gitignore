@@ -39,3 +39,8 @@ Thumbs.db
 .terraform/
 *.tfstate
 *.tfstate.*
+
+# Python bytecode. content/ gained importable modules (authoring.py) when the
+# stage scripts started sharing a pipeline, and CPython caches them next door.
+__pycache__/
+*.pyc
