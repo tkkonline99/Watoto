@@ -1557,3 +1557,69 @@ img/s03/shout_loud.png,3,Emotions,1,s03.emotions.quiz.04,asset-image,,Shouting l
 img/s03/sock_s.png,3,Phonological Awareness,1,s03.phono.quiz.04,asset-image,,Sock
 img/s03/tell_grownup.png,3,Emotions,1,s03.emotions.quiz.04,asset-image,,A grown-up who loves you
 img/s03/tell_nobody.png,3,Emotions,1,s03.emotions.quiz.04,asset-image,,Nobody at all
+img/s04/ask_help.png,4,Social-Emotional,1,s04.semotional.quiz.04,asset-image,,Ask for help
+img/s04/give_up.png,4,Social-Emotional,1,s04.semotional.quiz.04,asset-image,,Give up
+img/s04/helper_doctor.png,4,Social Studies,1,s04.social.quiz.04,asset-image,,A doctor
+img/s04/helper_farmer.png,4,Social Studies,1,s04.social.quiz.04,asset-image,,A farmer
+img/s04/job_baker.png,4,Social Studies,1,s04.social.story.02,asset-image,,The baker is awake before anyone else.
+img/s04/job_child.png,4,Social Studies,1,s04.social.story.02,asset-image,,"And you help too, when you carry your own bag."
+img/s04/job_nurse.png,4,Social Studies,1,s04.social.story.02,asset-image,,The nurse works while the town sleeps.
+img/s04/letter_found.png,4,Language & Literacy,1,s04.literacy.story.02,asset-image,,"They found it in ball, and in bird, and in book."
+img/s04/letter_home.png,4,Language & Literacy,1,s04.literacy.story.02,asset-image,,"It had been busy all along, holding words together."
+img/s04/letter_lost.png,4,Language & Literacy,1,s04.literacy.story.02,asset-image,,Little b went missing from the alphabet.
+img/s04/letter_m.png,4,Language & Literacy,1,s04.literacy.quiz.04,asset-image,,M
+img/s04/letter_s.png,4,Language & Literacy,1,s04.literacy.quiz.04,asset-image,,S
+img/s04/need_toys.png,4,Science & Nature,1,s04.science.quiz.04,asset-image,,Toys
+img/s04/need_water.png,4,Science & Nature,1,s04.science.quiz.04,asset-image,,Water
+img/s04/paint_drop.png,4,Creative Arts,1,s04.arts.story.02,asset-image,,Ada painted a yellow sun. A drop of blue fell on it.
+img/s04/paint_green.png,4,Creative Arts,1,s04.arts.story.02,asset-image,,"The sun turned green. Ada stopped, and looked."
+img/s04/paint_tree.png,4,Creative Arts,1,s04.arts.story.02,asset-image,,So she painted leaves around it. Now it was a tree.
+img/s04/plant_droop.png,4,Science & Nature,1,s04.science.quiz.04,asset-image,,It droops
+img/s04/plant_tall.png,4,Science & Nature,1,s04.science.quiz.04,asset-image,,It grows taller
+img/s04/seed_dark.png,4,Science & Nature,1,s04.science.story.02,asset-image,,The seed sat in the dark soil. Nothing happened.
+img/s04/seed_rain.png,4,Science & Nature,1,s04.science.story.02,asset-image,,"Rain came. Then the sun. Still nothing, for days."
+img/s04/seed_sprout.png,4,Science & Nature,1,s04.science.story.02,asset-image,,"Then one morning, a small green shoot."
+img/s04/shape_circle.png,4,Math & Logic,1,s04.math.quiz.04,asset-image,,Circle
+img/s04/shape_triangle.png,4,Math & Logic,1,s04.math.quiz.04,asset-image,,Triangle
+img/s04/size_big.png,4,Math & Logic,1,s04.math.quiz.04,asset-image,,Big
+img/s04/size_small.png,4,Math & Logic,1,s04.math.quiz.04,asset-image,,Small
+img/s04/stones_five.png,4,Math & Logic,1,s04.math.story.02,asset-image,,Juma found five stones and lined them up.
+img/s04/stones_four.png,4,Math & Logic,1,s04.math.story.02,asset-image,,One rolled away. Four left — still a line.
+img/s04/stones_order.png,4,Math & Logic,1,s04.math.story.02,asset-image,,"Smallest first, then bigger, then biggest of all."
+img/s04/swatch_green.png,4,Creative Arts,1,s04.arts.quiz.04,asset-image,,Green
+img/s04/swatch_purple.png,4,Creative Arts,1,s04.arts.quiz.04,asset-image,,Purple
+img/s04/throw_away.png,4,Social-Emotional,1,s04.semotional.quiz.04,asset-image,,Throw it away
+img/s04/tower_again.png,4,Social-Emotional,1,s04.semotional.story.02,asset-image,,"Instead she breathed out, slowly. And started again."
+img/s04/tower_cross.png,4,Social-Emotional,1,s04.semotional.story.02,asset-image,,Her face went hot. She wanted to push it all away.
+img/s04/tower_fall.png,4,Social-Emotional,1,s04.semotional.story.02,asset-image,,"Neema built a tower. On the ninth block, it fell."
+img/s04/try_again.png,4,Social-Emotional,1,s04.semotional.quiz.04,asset-image,,Breathe and try again
+img/s05/count_one.png,5,Creativity & Coding,1,s05.coding.quiz.04,asset-image,,One
+img/s05/count_three.png,5,Creativity & Coding,1,s05.coding.quiz.04,asset-image,,Three
+img/s05/living_flower.png,5,Science,1,s05.science.quiz.04,asset-image,,Living
+img/s05/loop_repeat.png,5,Creativity & Coding,1,s05.coding.quiz.04,asset-image,,Repeat a step
+img/s05/loop_stop.png,5,Creativity & Coding,1,s05.coding.quiz.04,asset-image,,Stop completely
+img/s05/mango_five.png,5,Math,1,s05.math.story.02,asset-image,,"Five each, and nothing left over. Exactly fair."
+img/s05/mango_share.png,5,Math,1,s05.math.story.02,asset-image,,"One for you, one for me. Again, and again."
+img/s05/mango_ten.png,5,Math,1,s05.math.story.02,asset-image,,"Ten mangoes, and two friends to share them."
+img/s05/need_water5.png,5,Social Studies,1,s05.social.quiz.04,asset-image,,A need
+img/s05/nonliving_chair.png,5,Science,1,s05.science.quiz.04,asset-image,,Non-living
+img/s05/nonliving_rock.png,5,Science,1,s05.science.quiz.04,asset-image,,Non-living
+img/s05/op_add.png,5,Math,1,s05.math.quiz.04,asset-image,,Add them
+img/s05/op_sub.png,5,Math,1,s05.math.quiz.04,asset-image,,Take away
+img/s05/puddle_gone.png,5,Science,1,s05.science.story.02,asset-image,,"By evening, dry stone. The water went up into the air."
+img/s05/puddle_morning.png,5,Science,1,s05.science.story.02,asset-image,,"In the morning there was a wide, shining puddle."
+img/s05/puddle_noon.png,5,Science,1,s05.science.story.02,asset-image,,"By lunchtime it was only a thin, wet line."
+img/s05/robot_cup.png,5,Creativity & Coding,1,s05.coding.story.02,asset-image,,Ama told the robot: put the cup on the table.
+img/s05/robot_right.png,5,Creativity & Coding,1,s05.coding.story.02,asset-image,,"So Ama said it again, with every step. This time it worked."
+img/s05/robot_upside.png,5,Creativity & Coding,1,s05.coding.story.02,asset-image,,It put the cup on the table — upside down.
+img/s05/swing_crowd.png,5,Social Studies,1,s05.social.story.02,asset-image,,Everyone wanted the swing at once. Nobody got a turn.
+img/s05/swing_fair.png,5,Social Studies,1,s05.social.story.02,asset-image,,"After that, everybody got a turn. The rule was ours."
+img/s05/swing_rule.png,5,Social Studies,1,s05.social.story.02,asset-image,,"So we sat down and made a rule: count to twenty, then swap."
+img/s05/want_toy5.png,5,Social Studies,1,s05.social.quiz.04,asset-image,,A want
+img/s05/word_bag.png,5,Reading & Writing,1,s05.reading.quiz.04,asset-image,,bag
+img/s05/word_big.png,5,Reading & Writing,1,s05.reading.quiz.04,asset-image,,big
+img/s05/word_parts.png,5,Reading & Writing,1,s05.reading.story.02,asset-image,,So I took it apart: /b/ ... /e/ ... /d/.
+img/s05/word_read.png,5,Reading & Writing,1,s05.reading.story.02,asset-image,,Bed. It was bed all along. I read it myself.
+img/s05/word_sit.png,5,Reading & Writing,1,s05.reading.quiz.04,asset-image,,sit
+img/s05/word_stuck.png,5,Reading & Writing,1,s05.reading.story.02,asset-image,,The word sat on the page and would not come.
+img/s05/word_sun.png,5,Reading & Writing,1,s05.reading.quiz.04,asset-image,,sun

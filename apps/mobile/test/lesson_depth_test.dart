@@ -294,9 +294,9 @@ void main() {
       // Depth is being filled in stage by stage, priority order first. This
       // asserts the direction of travel: the count may fall, never rise.
       // Lower it as stages land; see docs/CONTENT_WORKLIST.md.
-      // 332 before the foundation band was authored; 302 after stage 1,
-      // 230 once stages 2 and 3 followed (content/author_stage{1,2,3}.py).
-      const knownShallow = 230;
+      // 332 before any of this; 302 after stage 1, 230 after stages 2 and 3,
+      // 164 once stages 4 and 5 followed (content/author_stage{1..5}.py).
+      const knownShallow = 164;
       expect(
         shallow.length,
         lessThanOrEqualTo(knownShallow),
