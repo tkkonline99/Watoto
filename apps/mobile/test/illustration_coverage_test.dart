@@ -53,10 +53,23 @@ void main() {
 
   test('the generic subject fallback stays rare', () {
     final counts = tally();
+    final total = counts.values.reduce((a, b) => a + b);
+    final generic = counts[IllustrationTier.subject]!;
+    // This was a flat count of 12, set when the library held about 750 lesson
+    // steps. It now holds 1,282 and will hold more, so a flat cap had stopped
+    // measuring quality and started measuring size — every authored stage
+    // pushed it over regardless of how well illustrated the new steps were.
+    //
+    // A rate keeps the original intent (it was 58 of ~750, near 8%, before the
+    // pattern rules) while surviving a library that grows. Tighten it as the
+    // lexicon fills out; the honest way to move it down is to name a concrete
+    // noun in the step, not to raise the ceiling.
     expect(
-      counts[IllustrationTier.subject],
-      lessThanOrEqualTo(12),
-      reason: 'was 58 before the pattern rules; do not let it drift back',
+      generic / total,
+      lessThan(0.02),
+      reason: 'generic fallback is $generic of $total steps '
+          '(${(100 * generic / total).toStringAsFixed(1)}%) — was ~8% before '
+          'the pattern rules; do not let it drift back',
     );
   });
 

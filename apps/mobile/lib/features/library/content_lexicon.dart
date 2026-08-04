@@ -85,6 +85,12 @@ const Map<String, LexEntry> lexicon = {
   'blanket': LexEntry('🛏️', _object), 'pot': LexEntry('🍲', _object),
   // Stage-2 and -3 "find the real one" steps name these; without them the
   // step falls back to the generic subject icon.
+  // Nouns the stage-4 and -5 arcs name while asking a question about them.
+  // Without these the step falls back to the generic subject icon and the
+  // picture stops being about the step.
+  'shelf': LexEntry('🗄️', _object), 'gift': LexEntry('🎁', _object),
+  'island': LexEntry('🏝️', _nature), 'sea': LexEntry('🌊', _nature),
+  'season': LexEntry('🍂', _nature), 'job': LexEntry('👷', _people),
   'window': LexEntry('🪟', _object), 'plate': LexEntry('🍽️', _object),
   'lid': LexEntry('🥫', _object), 'basket': LexEntry('🧺', _object),
   'head': LexEntry('🧑', _people), 'lips': LexEntry('👄', _people),

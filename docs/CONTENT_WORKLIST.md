@@ -9,9 +9,9 @@ _Library version 0.13.0, generated 2026-06-17._
 
 | Gap | Count |
 |---|---|
-| Quizzes to author | 40 |
-| Stories to author | 40 |
-| Lessons below their tier's step depth | 230 |
+| Quizzes to author | 29 |
+| Stories to author | 29 |
+| Lessons below their tier's step depth | 164 |
 | Lessons with no recap | 138 |
 | Items with no illustration | 109 |
 | Unreferenced PNGs on disk | 0 |
@@ -104,84 +104,51 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 
 ### Stage 4 — Language & Literacy (ages 3-4)
 
-- **Author 1 quiz:** `s04.literacy.quiz.04`
-- **Author 1 story:** `s04.literacy.story.02`
-- **Deepen 6 lessons:** `s04.literacy.lesson.01` (3→6), `s04.literacy.lesson.02` (3→6), `s04.literacy.lesson.03` (2→6), `s04.literacy.lesson.04` (2→6), `s04.literacy.lesson.05` (2→6), `s04.literacy.lesson.06` (2→6)
 - **Add 6 recaps:** `s04.literacy.lesson.01`, `s04.literacy.lesson.02`, `s04.literacy.lesson.03`, `s04.literacy.lesson.04`, `s04.literacy.lesson.05`, `s04.literacy.lesson.06`
 - **4 items have no illustration** (emoji fallback): `s04.literacy.lesson.03`, `s04.literacy.lesson.06`, `s04.literacy.quiz.01`, `s04.literacy.quiz.02`
 
 ### Stage 4 — Math & Logic (ages 3-4)
 
-- **Author 1 quiz:** `s04.math.quiz.04`
-- **Author 1 story:** `s04.math.story.02`
-- **Deepen 6 lessons:** `s04.math.lesson.01` (2→6), `s04.math.lesson.02` (2→6), `s04.math.lesson.03` (2→6), `s04.math.lesson.04` (2→6), `s04.math.lesson.05` (2→6), `s04.math.lesson.06` (2→6)
 - **Add 6 recaps:** `s04.math.lesson.01`, `s04.math.lesson.02`, `s04.math.lesson.03`, `s04.math.lesson.04`, `s04.math.lesson.05`, `s04.math.lesson.06`
 - **1 items have no illustration** (emoji fallback): `s04.math.quiz.02`
 
 ### Stage 4 — Science & Nature (ages 3-4)
 
-- **Author 1 quiz:** `s04.science.quiz.04`
-- **Author 1 story:** `s04.science.story.02`
-- **Deepen 6 lessons:** `s04.science.lesson.01` (3→6), `s04.science.lesson.02` (3→6), `s04.science.lesson.03` (2→6), `s04.science.lesson.04` (2→6), `s04.science.lesson.05` (2→6), `s04.science.lesson.06` (2→6)
 - **Add 6 recaps:** `s04.science.lesson.01`, `s04.science.lesson.02`, `s04.science.lesson.03`, `s04.science.lesson.04`, `s04.science.lesson.05`, `s04.science.lesson.06`
 
 ### Stage 4 — Social Studies (ages 3-4)
 
-- **Author 1 quiz:** `s04.social.quiz.04`
-- **Author 1 story:** `s04.social.story.02`
-- **Deepen 6 lessons:** `s04.social.lesson.01` (3→6), `s04.social.lesson.02` (2→6), `s04.social.lesson.03` (2→6), `s04.social.lesson.04` (3→6), `s04.social.lesson.05` (2→6), `s04.social.lesson.06` (2→6)
 - **Add 6 recaps:** `s04.social.lesson.01`, `s04.social.lesson.02`, `s04.social.lesson.03`, `s04.social.lesson.04`, `s04.social.lesson.05`, `s04.social.lesson.06`
 - **1 items have no illustration** (emoji fallback): `s04.social.quiz.03`
 
 ### Stage 4 — Creative Arts (ages 3-4)
 
-- **Author 1 quiz:** `s04.arts.quiz.04`
-- **Author 1 story:** `s04.arts.story.02`
-- **Deepen 6 lessons:** `s04.arts.lesson.01` (2→6), `s04.arts.lesson.02` (2→6), `s04.arts.lesson.03` (2→6), `s04.arts.lesson.04` (2→6), `s04.arts.lesson.05` (2→6), `s04.arts.lesson.06` (2→6)
 - **Add 6 recaps:** `s04.arts.lesson.01`, `s04.arts.lesson.02`, `s04.arts.lesson.03`, `s04.arts.lesson.04`, `s04.arts.lesson.05`, `s04.arts.lesson.06`
 - **1 items have no illustration** (emoji fallback): `s04.arts.lesson.05`
 
 ### Stage 4 — Social-Emotional (ages 3-4)
 
-- **Author 1 quiz:** `s04.semotional.quiz.04`
-- **Author 1 story:** `s04.semotional.story.02`
-- **Deepen 6 lessons:** `s04.semotional.lesson.01` (2→6), `s04.semotional.lesson.02` (2→6), `s04.semotional.lesson.03` (2→6), `s04.semotional.lesson.04` (2→6), `s04.semotional.lesson.05` (2→6), `s04.semotional.lesson.06` (2→6)
 - **Add 6 recaps:** `s04.semotional.lesson.01`, `s04.semotional.lesson.02`, `s04.semotional.lesson.03`, `s04.semotional.lesson.04`, `s04.semotional.lesson.05`, `s04.semotional.lesson.06`
 - **3 items have no illustration** (emoji fallback): `s04.semotional.quiz.01`, `s04.semotional.quiz.02`, `s04.semotional.quiz.03`
 
 ### Stage 5 — Reading & Writing (ages 4-5)
 
-- **Author 1 quiz:** `s05.reading.quiz.04`
-- **Author 1 story:** `s05.reading.story.02`
-- **Deepen 6 lessons:** `s05.reading.lesson.01` (2→6), `s05.reading.lesson.02` (2→6), `s05.reading.lesson.03` (2→6), `s05.reading.lesson.04` (2→6), `s05.reading.lesson.05` (2→6), `s05.reading.lesson.06` (2→6)
 - **3 items have no illustration** (emoji fallback): `s05.reading.quiz.01`, `s05.reading.quiz.02`, `s05.reading.quiz.03`
 
 ### Stage 5 — Math (ages 4-5)
 
-- **Author 1 quiz:** `s05.math.quiz.04`
-- **Author 1 story:** `s05.math.story.02`
-- **Deepen 6 lessons:** `s05.math.lesson.01` (2→6), `s05.math.lesson.02` (2→6), `s05.math.lesson.03` (2→6), `s05.math.lesson.04` (2→6), `s05.math.lesson.05` (2→6), `s05.math.lesson.06` (2→6)
 - **3 items have no illustration** (emoji fallback): `s05.math.quiz.01`, `s05.math.quiz.02`, `s05.math.quiz.03`
 
 ### Stage 5 — Science (ages 4-5)
 
-- **Author 1 quiz:** `s05.science.quiz.04`
-- **Author 1 story:** `s05.science.story.02`
-- **Deepen 6 lessons:** `s05.science.lesson.01` (2→6), `s05.science.lesson.02` (2→6), `s05.science.lesson.03` (2→6), `s05.science.lesson.04` (2→6), `s05.science.lesson.05` (2→6), `s05.science.lesson.06` (2→6)
 - **2 items have no illustration** (emoji fallback): `s05.science.quiz.01`, `s05.science.quiz.03`
 
 ### Stage 5 — Social Studies (ages 4-5)
 
-- **Author 1 quiz:** `s05.social.quiz.04`
-- **Author 1 story:** `s05.social.story.02`
-- **Deepen 6 lessons:** `s05.social.lesson.01` (2→6), `s05.social.lesson.02` (2→6), `s05.social.lesson.03` (2→6), `s05.social.lesson.04` (2→6), `s05.social.lesson.05` (2→6), `s05.social.lesson.06` (2→6)
 - **3 items have no illustration** (emoji fallback): `s05.social.quiz.01`, `s05.social.quiz.02`, `s05.social.quiz.03`
 
 ### Stage 5 — Creativity & Coding (ages 4-5)
 
-- **Author 1 quiz:** `s05.coding.quiz.04`
-- **Author 1 story:** `s05.coding.story.02`
-- **Deepen 6 lessons:** `s05.coding.lesson.01` (2→6), `s05.coding.lesson.02` (2→6), `s05.coding.lesson.03` (2→6), `s05.coding.lesson.04` (2→6), `s05.coding.lesson.05` (2→6), `s05.coding.lesson.06` (2→6)
 - **3 items have no illustration** (emoji fallback): `s05.coding.quiz.01`, `s05.coding.quiz.02`, `s05.coding.quiz.03`
 
 ### Stage 6 — Reading & Writing (ages 5-6)
