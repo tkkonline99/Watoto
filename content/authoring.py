@@ -191,7 +191,7 @@ def apply_stage(
     lib["content"].sort(key=lambda c: (c["stage"], c["subject"], c["type"], c["id"]))
     for path in LIBRARIES:
         path.write_text(json.dumps(lib, indent=2, ensure_ascii=False) + "\n",
-                        encoding="utf-8")
+                        encoding="utf-8", newline="\n")
     for d in I18N_DIRS:
         for lang in LANGS:
             p = d / f"{lang}.json"
@@ -199,7 +199,7 @@ def apply_stage(
             cur.update(overlay[lang])
             p.write_text(
                 json.dumps(dict(sorted(cur.items())), indent=2, ensure_ascii=False) + "\n",
-                encoding="utf-8")
+                encoding="utf-8", newline="\n")
 
     lessons = [c for c in lib["content"] if c["stage"] == stage and c["type"] == "lesson"]
     lo, hi = min(len(l["steps"]) for l in lessons), max(len(l["steps"]) for l in lessons)

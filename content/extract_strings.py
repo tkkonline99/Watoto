@@ -57,8 +57,12 @@ def main():
         catalog.update(extract(item))
     catalog = dict(sorted(catalog.items()))
     os.makedirs(OUTDIR, exist_ok=True)
-    with open(f"{OUTDIR}/en.json", "w", encoding="utf-8") as f:
+    with open(f"{OUTDIR}/en.json", "w", encoding="utf-8", newline="\n") as f:
         json.dump(catalog, f, indent=2, ensure_ascii=False)
+        # json.dump writes no trailing newline; every other writer in this
+        # folder does. Without it the file flipped back and forth depending on
+        # which tool touched it last, and showed as modified after every run.
+        f.write("\n")
     print(f"wrote {OUTDIR}/en.json — {len(catalog)} strings from {len(lib['content'])} items")
     if "--print" in sys.argv:
         for k in list(catalog)[:8]:

@@ -1371,7 +1371,7 @@ def apply(check_only: bool) -> int:
 
     for path in LIBRARIES:
         path.write_text(
-            json.dumps(lib, indent=1, ensure_ascii=False) + "\n", encoding="utf-8"
+            json.dumps(lib, indent=1, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n"
         )
 
     for d in I18N_DIRS:
@@ -1387,7 +1387,7 @@ def apply(check_only: bool) -> int:
                 data.update(i18n_keys(item_id, authored, lang))
             f.write_text(
                 json.dumps(data, indent=1, ensure_ascii=False, sort_keys=True) + "\n",
-                encoding="utf-8",
+                encoding="utf-8", newline="\n",
             )
 
     steps = sum(len(v) for v in LESSONS.values())

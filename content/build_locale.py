@@ -197,6 +197,6 @@ sw = {
 
 os.makedirs(OUTDIR, exist_ok=True)
 for code, bundle in (("fr", fr), ("sw", sw)):
-    with open(f"{OUTDIR}/{code}.json", "w", encoding="utf-8") as f:
+    with open(f"{OUTDIR}/{code}.json", "w", encoding="utf-8", newline="\n") as f:
         json.dump(dict(sorted(bundle.items())), f, indent=2, ensure_ascii=False)
     print(f"wrote {OUTDIR}/{code}.json — {len(bundle)} strings")

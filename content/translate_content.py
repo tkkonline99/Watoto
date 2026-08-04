@@ -41,7 +41,7 @@ def load(p):
     return json.load(open(p, encoding="utf-8"))
 
 def save(p, obj):
-    json.dump(dict(sorted(obj.items())), open(p, "w", encoding="utf-8"),
+    json.dump(dict(sorted(obj.items())), open(p, "w", encoding="utf-8", newline="\n"),
               indent=2, ensure_ascii=False)
 
 def call_claude(system, user, max_tokens=4000):

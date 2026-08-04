@@ -127,7 +127,7 @@ def main():
 
         target.write_text(
             json.dumps(data, ensure_ascii=False, indent=1) + "\n",
-            encoding="utf-8",
+            encoding="utf-8", newline="\n",
         )
         print(f"{target.relative_to(REPO)}: merged {applied} recaps")
         for u in unknown:
@@ -192,7 +192,7 @@ def emit_translations(recaps):
             data.update(keys)
             bundle.write_text(
                 json.dumps(data, ensure_ascii=False, indent=1) + "\n",
-                encoding="utf-8",
+                encoding="utf-8", newline="\n",
             )
             print(f"{bundle.relative_to(REPO)}: +{len(keys)} recap keys")
     return 0

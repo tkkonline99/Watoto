@@ -1131,14 +1131,14 @@ def apply(check_only=False):
 
     lib["content"].sort(key=lambda c: (c["stage"], c["subject"], c["type"], c["id"]))
     for path in LIBRARIES:
-        path.write_text(json.dumps(lib, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        path.write_text(json.dumps(lib, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
     for d in I18N_DIRS:
         for lang in LANGS:
             p = d / f"{lang}.json"
             cur = json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
             cur.update(overlay[lang])
             p.write_text(json.dumps(dict(sorted(cur.items())), indent=2, ensure_ascii=False) + "\n",
-                         encoding="utf-8")
+                         encoding="utf-8", newline="\n")
 
     lessons = [c for c in lib["content"] if c["stage"] == 1 and c["type"] == "lesson"]
     print(f"stage 1: {len(EXTRA_STEPS)} lessons deepened "

@@ -37,7 +37,7 @@ def load_lib():
     return json.load(open(LIB, encoding="utf-8"))
 
 def save_lib(lib):
-    json.dump(lib, open(LIB, "w", encoding="utf-8"), indent=2, ensure_ascii=False)
+    json.dump(lib, open(LIB, "w", encoding="utf-8", newline="\n"), indent=2, ensure_ascii=False)
 
 def slug_map(lib):
     """Recover the id slug used for each (stage, subject) from existing items."""
