@@ -34,12 +34,13 @@ void main() {
   group('content library', () {
     test('parses all v0.13.0 items by type', () async {
       final repo = await loadFromDisk();
-      // 565 before stage 1 was authored out to the build plan's target of
-      // 4 quizzes and 2 stories per subject (content/author_stage1.py).
-      expect(repo.all, hasLength(580));
+      // 565 before the foundation band (stages 1-3) was authored out to the
+      // build plan's 6 lessons / 4 quizzes / 2 stories per subject. Those
+      // three stages are now complete; stages 4-10 are still short.
+      expect(repo.all, hasLength(604));
       expect(repo.all.where((i) => i.type == LibraryType.lesson), hasLength(342));
-      expect(repo.all.where((i) => i.type == LibraryType.quiz), hasLength(176));
-      expect(repo.all.where((i) => i.type == LibraryType.story), hasLength(62));
+      expect(repo.all.where((i) => i.type == LibraryType.quiz), hasLength(188));
+      expect(repo.all.where((i) => i.type == LibraryType.story), hasLength(74));
     });
 
     test('indexes by stage + subject', () async {

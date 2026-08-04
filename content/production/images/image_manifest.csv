@@ -1495,3 +1495,65 @@ img/s01/splash.png,1,Cause & Effect,1,s01.cause.story.02,asset-image,,Splash! Th
 img/s01/stomp_together.png,1,Motor Imitation,1,s01.motor.story.02,asset-image,,"Stomp your feet. Stomp, stomp!"
 img/s01/sun_warm.png,1,Sensory Exploration,1,s01.sensory.story.02,asset-image,,The sun is warm on your face.
 img/s01/towel_dry.png,1,Cause & Effect,1,s01.cause.story.02,asset-image,,A soft towel makes everything dry again.
+img/s02/apple_red.png,2,Colors & Shapes,1,s02.colors.story.02,asset-image,,"A red apple, round and shiny."
+img/s02/ball_box.png,2,Simple Sorting,1,s02.sorting.story.02,asset-image,,The ball goes in the toy box.
+img/s02/child_hug.png,2,Simple Sorting,1,s02.sorting.story.02,asset-image,,And you go into a big goodnight hug.
+img/s02/cow_grass.png,2,Animals,1,s02.animals.story.02,asset-image,,"Something soft says moo. A cow, come to say hello."
+img/s02/cup_odd.png,2,Simple Sorting,1,s02.sorting.quiz.04,asset-image,,A cup
+img/s02/cup_shelf.png,2,Simple Sorting,1,s02.sorting.story.02,asset-image,,The cup goes on the shelf.
+img/s02/eat_breakfast.png,2,Music & Routines,1,s02.music.story.02,asset-image,,"Then we eat. Yum, yum!"
+img/s02/elephant_big.png,2,Animals,1,s02.animals.quiz.04,asset-image,,Elephant
+img/s02/feet.png,2,Body Parts,1,s02.body.quiz.04,asset-image,,Feet
+img/s02/frog_grass.png,2,Animals,1,s02.animals.story.02,asset-image,,Something small hops in the grass. A frog!
+img/s02/go_sleep.png,2,Music & Routines,1,s02.music.quiz.04,asset-image,,Go to sleep
+img/s02/hands.png,2,Body Parts,1,s02.body.quiz.04,asset-image,,Hands
+img/s02/hands_clap.png,2,Body Parts,1,s02.body.story.02,asset-image,,"My hands can clap. Clap, clap!"
+img/s02/hands_hug.png,2,Body Parts,1,s02.body.story.02,asset-image,,My hands can hug. Come here!
+img/s02/hands_wave.png,2,Body Parts,1,s02.body.story.02,asset-image,,"My hands can wave. Hello, hello!"
+img/s02/kitten_one.png,2,First Numbers,1,s02.numbers.story.02,asset-image,,One step. The kitten leaves the basket.
+img/s02/kitten_three.png,2,First Numbers,1,s02.numbers.story.02,asset-image,,Three steps. Right into your lap!
+img/s02/kitten_two.png,2,First Numbers,1,s02.numbers.story.02,asset-image,,Two steps. She reaches the mat.
+img/s02/many_flowers.png,2,First Numbers,1,s02.numbers.quiz.04,asset-image,,Many flowers
+img/s02/mouse_small.png,2,Animals,1,s02.animals.quiz.04,asset-image,,Mouse
+img/s02/one_flower.png,2,First Numbers,1,s02.numbers.quiz.04,asset-image,,One flower
+img/s02/shoes_on.png,2,Music & Routines,1,s02.music.story.02,asset-image,,"Then shoes on, and out we go!"
+img/s02/sky_blue.png,2,Colors & Shapes,1,s02.colors.story.02,asset-image,,"A blue sky, big over everything."
+img/s02/snake_grass.png,2,Animals,1,s02.animals.story.02,asset-image,,Something long slides by. A snake!
+img/s02/sock_pair.png,2,Simple Sorting,1,s02.sorting.quiz.04,asset-image,,Another sock
+img/s02/sun_story.png,2,Colors & Shapes,1,s02.colors.story.02,asset-image,,"A yellow sun, warm on my face."
+img/s02/sun_yellow.png,2,Colors & Shapes,1,s02.colors.quiz.04,asset-image,,Yellow sun
+img/s02/wake_up.png,2,Music & Routines,1,s02.music.quiz.04,asset-image,,Wake up
+img/s02/wash_face.png,2,Music & Routines,1,s02.music.story.02,asset-image,,"First we wash. Splish, splash!"
+img/s03/apples_four.png,3,Counting & Numbers,1,s03.counting.quiz.04,asset-image,,Four apples
+img/s03/apples_two.png,3,Counting & Numbers,1,s03.counting.quiz.04,asset-image,,Two apples
+img/s03/ball_b.png,3,Phonological Awareness,1,s03.phono.quiz.04,asset-image,,Ball
+img/s03/basket_bread.png,3,Vocabulary,1,s03.vocab.story.02,asset-image,,"Bread, warm from the oven. That is food."
+img/s03/basket_bus.png,3,Vocabulary,1,s03.vocab.story.02,asset-image,,And a small toy bus. Beep beep! That is a vehicle.
+img/s03/basket_hat.png,3,Vocabulary,1,s03.vocab.story.02,asset-image,,"A hat, soft and round. That is clothes."
+img/s03/bear_b.png,3,Phonological Awareness,1,s03.phono.quiz.04,asset-image,,Bear
+img/s03/breathe_calm.png,3,Emotions,1,s03.emotions.quiz.04,asset-image,,A slow breath
+img/s03/cup_empty.png,3,Patterns & Opposites,1,s03.patterns.quiz.04,asset-image,,Empty cup
+img/s03/cup_full.png,3,Patterns & Opposites,1,s03.patterns.quiz.04,asset-image,,Full cup
+img/s03/day_calm.png,3,Emotions,1,s03.emotions.story.02,asset-image,,At night I felt calm. All of it was okay.
+img/s03/day_cross.png,3,Emotions,1,s03.emotions.story.02,asset-image,,Then I felt cross. My tower fell down.
+img/s03/day_happy.png,3,Emotions,1,s03.emotions.story.02,asset-image,,In the morning I felt happy. I sang.
+img/s03/garden_bee.png,3,Phonological Awareness,1,s03.phono.story.02,asset-image,,The bee says zzzz. Can you buzz?
+img/s03/garden_snake.png,3,Phonological Awareness,1,s03.phono.story.02,asset-image,,The snake says ssss. Can you hiss?
+img/s03/garden_wind.png,3,Phonological Awareness,1,s03.phono.story.02,asset-image,,The wind says shhh. Time to be still.
+img/s03/group_clothes.png,3,Vocabulary,1,s03.vocab.quiz.04,asset-image,,Clothes
+img/s03/group_food.png,3,Vocabulary,1,s03.vocab.quiz.04,asset-image,,Food
+img/s03/hill_down.png,3,Patterns & Opposites,1,s03.patterns.story.02,asset-image,,"Down we run, fast and warm and laughing."
+img/s03/hill_top.png,3,Patterns & Opposites,1,s03.patterns.story.02,asset-image,,At the top it is windy and cold.
+img/s03/hill_up.png,3,Patterns & Opposites,1,s03.patterns.story.02,asset-image,,"Up we go, slow and heavy."
+img/s03/line_straight.png,3,Tracing & Stories,1,s03.tracing.quiz.04,asset-image,,Straight line
+img/s03/line_walk_circle.png,3,Tracing & Stories,1,s03.tracing.story.02,asset-image,,Then it curled round into a circle.
+img/s03/line_walk_straight.png,3,Tracing & Stories,1,s03.tracing.story.02,asset-image,,"The line went straight, all the way to the gate."
+img/s03/line_walk_zigzag.png,3,Tracing & Stories,1,s03.tracing.story.02,asset-image,,Then it zigzagged home for tea.
+img/s03/line_wiggly.png,3,Tracing & Stories,1,s03.tracing.quiz.04,asset-image,,Wiggly line
+img/s03/pocket_feather.png,3,Counting & Numbers,1,s03.counting.story.02,asset-image,,Three! A feather too. My pocket is full.
+img/s03/pocket_leaves.png,3,Counting & Numbers,1,s03.counting.story.02,asset-image,,Two red leaves from the tree.
+img/s03/pocket_stone.png,3,Counting & Numbers,1,s03.counting.story.02,asset-image,,One smooth stone from the path.
+img/s03/shout_loud.png,3,Emotions,1,s03.emotions.quiz.04,asset-image,,Shouting louder
+img/s03/sock_s.png,3,Phonological Awareness,1,s03.phono.quiz.04,asset-image,,Sock
+img/s03/tell_grownup.png,3,Emotions,1,s03.emotions.quiz.04,asset-image,,A grown-up who loves you
+img/s03/tell_nobody.png,3,Emotions,1,s03.emotions.quiz.04,asset-image,,Nobody at all
