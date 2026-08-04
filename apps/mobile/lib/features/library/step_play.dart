@@ -551,7 +551,10 @@ const directiveVerbs =
     r'|sort|read|open|close|feed|wash|catch|put|place|move'
     // Peekaboo verbs. Stage 1 spends six lessons hiding and revealing things,
     // and "lift the box" is as much an on-screen instruction as "pop it".
-    r'|lift|cover|uncover|reach|shut|peek';
+    r'|lift|cover|uncover|reach|shut|peek'
+    // Hand verbs the foundation band leans on: "pat the tummy", "trace the
+    // circle", "count the ducks", "wiggle your fingers".
+    r'|pat|trace|count|wiggle|shake|clap|stomp|wave';
 
 final _directiveVerb = RegExp(
   r'(?:^|[.!?]\s+|\b(?:and|then|now|next|first|also)\s+)'

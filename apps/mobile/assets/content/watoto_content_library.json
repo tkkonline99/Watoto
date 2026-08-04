@@ -3237,6 +3237,18 @@
           "action": "tap",
           "feedback": "'Cat! Meow.'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the cow once more. Say moo with me.",
+          "action": "tap",
+          "feedback": "'Moooo!' Your voice and the cow together.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Look out of a window for a real animal.",
+          "action": "real-world",
+          "feedback": "A bird, a dog, a goat — name it out loud!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -3289,6 +3301,18 @@
           "action": "tap",
           "feedback": "'Elephant! Trrrumpet.'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the lion again. Roar together!",
+          "action": "tap",
+          "feedback": "'Roooar!' A big, brave sound.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Stomp like an elephant across the room.",
+          "action": "real-world",
+          "feedback": "Big slow steps. Trrrumpet!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -3341,6 +3365,18 @@
           "action": "tap",
           "feedback": "'Crab! Click-click.'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the fish again. Blub-blub!",
+          "action": "tap",
+          "feedback": "Little bubbles float up.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Wiggle like a fish in the water.",
+          "action": "real-world",
+          "feedback": "Swim, swim! Your whole body is a fish.",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -3393,6 +3429,18 @@
           "action": "tap",
           "feedback": "'Bird! Tweet.'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the dog once more. Woof!",
+          "action": "tap",
+          "feedback": "'Woof-woof!' A happy tail wag.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Do you know a real dog or cat? Say its name.",
+          "action": "real-world",
+          "feedback": "Real pets have names, just like you!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -3434,6 +3482,18 @@
           "action": "tap",
           "feedback": "Waddle-waddle. Quack!",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Now stretch tall like a giraffe. Tap the giraffe.",
+          "action": "tap",
+          "feedback": "So tall! Up on your tiptoes.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Hop, waddle and stretch across the room.",
+          "action": "real-world",
+          "feedback": "Your body can be any animal you like!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -3475,6 +3535,18 @@
           "action": "tap",
           "feedback": "'So small! Squeak.'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the big elephant, then the small mouse.",
+          "action": "tap",
+          "feedback": "Big... and small. So different!",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Find something big and something small near you.",
+          "action": "real-world",
+          "feedback": "Hold them together. Big! Small!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -3608,6 +3680,67 @@
       ]
     },
     {
+      "id": "s02.animals.quiz.04",
+      "stage": 2,
+      "ages": "1-2",
+      "subject": "Animals",
+      "type": "quiz",
+      "title": "Big Animal or Small?",
+      "objective": "Compare the size of two familiar animals.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Stretch tall for big, crouch small for little.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s02/elephant_big.png",
+          "desc": "Elephant"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/mouse_small.png",
+          "desc": "Mouse"
+        }
+      ],
+      "questions": [
+        {
+          "prompt": "Tap the big animal.",
+          "options": [
+            {
+              "label": "Elephant",
+              "asset": "img/s02/elephant_big.png"
+            },
+            {
+              "label": "Mouse",
+              "asset": "img/s02/mouse_small.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "So big! Trrrumpet.",
+          "retryFeedback": "That one is small. Try again!"
+        },
+        {
+          "prompt": "Now tap the small one.",
+          "options": [
+            {
+              "label": "Mouse",
+              "asset": "img/s02/mouse_small.png"
+            },
+            {
+              "label": "Elephant",
+              "asset": "img/s02/elephant_big.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "So small! Squeak.",
+          "retryFeedback": "That one is big. Try again!"
+        }
+      ]
+    },
+    {
       "id": "s02.animals.story.01",
       "stage": 2,
       "ages": "1-2",
@@ -3643,6 +3776,52 @@
           "narration": "In the coop, the hen lays an egg. Goodnight, farm!",
           "illustration": "img/s02/farm_coop.png",
           "interaction": null
+        }
+      ]
+    },
+    {
+      "id": "s02.animals.story.02",
+      "stage": 2,
+      "ages": "1-2",
+      "subject": "Animals",
+      "type": "story",
+      "title": "Who Is Hiding in the Grass?",
+      "objective": "Name three animals, one per page.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "listen",
+      "parentNote": "Make each animal's sound before turning the page.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s02/frog_grass.png",
+          "desc": "Something small hops in the grass. A frog!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/snake_grass.png",
+          "desc": "Something long slides by. A snake!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/cow_grass.png",
+          "desc": "Something soft says moo. A cow, come to say hello."
+        }
+      ],
+      "pages": [
+        {
+          "narration": "Something small hops in the grass. A frog!",
+          "illustration": "img/s02/frog_grass.png"
+        },
+        {
+          "narration": "Something long slides by. A snake!",
+          "illustration": "img/s02/snake_grass.png"
+        },
+        {
+          "narration": "Something soft says moo. A cow, come to say hello.",
+          "illustration": "img/s02/cow_grass.png"
         }
       ]
     },
@@ -3685,6 +3864,18 @@
           "action": "real-world",
           "feedback": "Giggle sound + 'You found it!'",
           "mechanic": "celebrate"
+        },
+        {
+          "narration": "Touch the mouth on the face.",
+          "action": "tap",
+          "feedback": "'Mouth! We smile with it.'",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Touch your own nose, then your grown-up's.",
+          "action": "real-world",
+          "feedback": "Two noses! Everyone has one.",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -3723,6 +3914,18 @@
           "feedback": "Giggles as the song speeds up.",
           "mechanic": "count",
           "count": 3
+        },
+        {
+          "narration": "Touch your head one more time, a little faster!",
+          "action": "tap-along",
+          "feedback": "Head, shoulders, knees and toes!",
+          "mechanic": "count"
+        },
+        {
+          "narration": "Now touch your real head, shoulders and knees.",
+          "action": "real-world",
+          "feedback": "All of them are yours!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -3764,6 +3967,18 @@
           "action": "tap",
           "feedback": "'Feet! Tippy-toes.'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the hand again. Open and close it.",
+          "action": "tap",
+          "feedback": "Open... shut. Clever hands!",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Wiggle your real fingers and toes together.",
+          "action": "real-world",
+          "feedback": "Ten fingers, ten toes. All wiggling!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -3806,6 +4021,18 @@
           "action": "tap",
           "feedback": "'Mouth! We talk and eat.'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the nose. Sniff, sniff!",
+          "action": "tap",
+          "feedback": "'Nose! We smell with it.'",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Find these on a real face — yours or mine.",
+          "action": "real-world",
+          "feedback": "Eyes, ears, mouth, nose. All here!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -3842,6 +4069,18 @@
           "action": "tap",
           "feedback": "'Back!'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Pat the tummy gently. Pat, pat.",
+          "action": "tap",
+          "feedback": "A soft drum! Pat-pat.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Pat your own tummy, then have a stretch.",
+          "action": "real-world",
+          "feedback": "Round tummy, straight back. Aaah!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -3884,6 +4123,18 @@
           "action": "tap",
           "feedback": "Blink-blink!",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Mouths can sing! Tap and sing la-la-la.",
+          "action": "tap",
+          "feedback": "La-la-la! What a lovely sound.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Clap, stomp, blink and sing — all together now.",
+          "action": "real-world",
+          "feedback": "Your body can do all of it!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -3990,6 +4241,67 @@
       ]
     },
     {
+      "id": "s02.body.quiz.04",
+      "stage": 2,
+      "ages": "1-2",
+      "subject": "Body Parts",
+      "type": "quiz",
+      "title": "What Do We Walk With?",
+      "objective": "Link a body part to what it does.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Do the action first, then ask the question.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s02/feet.png",
+          "desc": "Feet"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/hands.png",
+          "desc": "Hands"
+        }
+      ],
+      "questions": [
+        {
+          "prompt": "We walk with these. Tap them.",
+          "options": [
+            {
+              "label": "Feet",
+              "asset": "img/s02/feet.png"
+            },
+            {
+              "label": "Hands",
+              "asset": "img/s02/hands.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Feet! Stomp, stomp.",
+          "retryFeedback": "Those are hands. Try again!"
+        },
+        {
+          "prompt": "And we clap with these. Tap them.",
+          "options": [
+            {
+              "label": "Hands",
+              "asset": "img/s02/hands.png"
+            },
+            {
+              "label": "Feet",
+              "asset": "img/s02/feet.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Hands! Clap-clap.",
+          "retryFeedback": "Those are feet. Try again!"
+        }
+      ]
+    },
+    {
       "id": "s02.body.story.01",
       "stage": 2,
       "ages": "1-2",
@@ -4025,6 +4337,52 @@
           "narration": "Wiggle your toes, then have a rest. All done!",
           "illustration": "img/s02/story_toes.png",
           "interaction": null
+        }
+      ]
+    },
+    {
+      "id": "s02.body.story.02",
+      "stage": 2,
+      "ages": "1-2",
+      "subject": "Body Parts",
+      "type": "story",
+      "title": "My Busy Hands",
+      "objective": "Three things hands can do, one per page.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "listen",
+      "parentNote": "Do each action with your own hands as you read.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s02/hands_clap.png",
+          "desc": "My hands can clap. Clap, clap!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/hands_wave.png",
+          "desc": "My hands can wave. Hello, hello!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/hands_hug.png",
+          "desc": "My hands can hug. Come here!"
+        }
+      ],
+      "pages": [
+        {
+          "narration": "My hands can clap. Clap, clap!",
+          "illustration": "img/s02/hands_clap.png"
+        },
+        {
+          "narration": "My hands can wave. Hello, hello!",
+          "illustration": "img/s02/hands_wave.png"
+        },
+        {
+          "narration": "My hands can hug. Come here!",
+          "illustration": "img/s02/hands_hug.png"
         }
       ]
     },
@@ -4077,6 +4435,18 @@
           "action": "tap",
           "feedback": "'Yellow!'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the red apple again. Say: red.",
+          "action": "tap",
+          "feedback": "'Red!' Bright and warm.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Find something red in your room.",
+          "action": "real-world",
+          "feedback": "Point at it and say 'red!' together.",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -4129,6 +4499,18 @@
           "action": "tap",
           "feedback": "'Triangle. Three sides!'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Trace the circle with your finger.",
+          "action": "trace",
+          "feedback": "Round and round, no corners at all.",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "Find a real round thing — a plate, a lid.",
+          "action": "real-world",
+          "feedback": "Circles are everywhere once you look!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -4170,6 +4552,18 @@
           "action": "tap",
           "feedback": "'Orange!'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the green leaf again. Say: green.",
+          "action": "tap",
+          "feedback": "'Green!' Like grass and trees.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Look outside for something green.",
+          "action": "real-world",
+          "feedback": "Leaves, grass, a plant. Green everywhere!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -4222,6 +4616,18 @@
           "action": "tap",
           "feedback": "'Blue sky!'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the green tree. What colour is it?",
+          "action": "tap",
+          "feedback": "'Green tree!' You knew it.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Name the colour of your cup at snack time.",
+          "action": "real-world",
+          "feedback": "Colours are on everything you use!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -4263,6 +4669,18 @@
           "action": "tap",
           "feedback": "'Circle!'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the round clock. A circle too!",
+          "action": "tap",
+          "feedback": "Three circles found. Well spotted!",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Hunt for one real circle in this room.",
+          "action": "real-world",
+          "feedback": "Trace it with your finger when you find it.",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -4299,6 +4717,18 @@
           "action": "drag",
           "feedback": "Plop! Great matching.",
           "mechanic": "drag"
+        },
+        {
+          "narration": "Now the triangle. Drag it to its hole.",
+          "action": "drag",
+          "feedback": "Plop! Every shape has its place.",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "Post a real lid into a real box together.",
+          "action": "real-world",
+          "feedback": "It fits! Hands learn by doing.",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -4421,6 +4851,67 @@
       ]
     },
     {
+      "id": "s02.colors.quiz.04",
+      "stage": 2,
+      "ages": "1-2",
+      "subject": "Colors & Shapes",
+      "type": "quiz",
+      "title": "Find the Yellow One",
+      "objective": "Pick a named colour from two.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Say the colour, wait, then let them choose.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s02/sun_yellow.png",
+          "desc": "Yellow sun"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/leaf_green.png",
+          "desc": "Green leaf"
+        }
+      ],
+      "questions": [
+        {
+          "prompt": "Tap the yellow one.",
+          "options": [
+            {
+              "label": "Yellow sun",
+              "asset": "img/s02/sun_yellow.png"
+            },
+            {
+              "label": "Green leaf",
+              "asset": "img/s02/leaf_green.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yellow, like the sun!",
+          "retryFeedback": "That one is green. Try again!"
+        },
+        {
+          "prompt": "Now tap the green one.",
+          "options": [
+            {
+              "label": "Green leaf",
+              "asset": "img/s02/leaf_green.png"
+            },
+            {
+              "label": "Yellow sun",
+              "asset": "img/s02/sun_yellow.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Green, like a leaf!",
+          "retryFeedback": "That one is yellow. Try again!"
+        }
+      ]
+    },
+    {
       "id": "s02.colors.story.01",
       "stage": 2,
       "ages": "1-2",
@@ -4460,6 +4951,52 @@
       ]
     },
     {
+      "id": "s02.colors.story.02",
+      "stage": 2,
+      "ages": "1-2",
+      "subject": "Colors & Shapes",
+      "type": "story",
+      "title": "A Red, Yellow, Blue Day",
+      "objective": "Meet three colours on familiar things.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "listen",
+      "parentNote": "Find the same colour in the room on each page.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s02/apple_red.png",
+          "desc": "A red apple, round and shiny."
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/sun_story.png",
+          "desc": "A yellow sun, warm on my face."
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/sky_blue.png",
+          "desc": "A blue sky, big over everything."
+        }
+      ],
+      "pages": [
+        {
+          "narration": "A red apple, round and shiny.",
+          "illustration": "img/s02/apple_red.png"
+        },
+        {
+          "narration": "A yellow sun, warm on my face.",
+          "illustration": "img/s02/sun_story.png"
+        },
+        {
+          "narration": "A blue sky, big over everything.",
+          "illustration": "img/s02/sky_blue.png"
+        }
+      ]
+    },
+    {
       "id": "s02.numbers.lesson.01",
       "stage": 2,
       "ages": "1-2",
@@ -4494,6 +5031,18 @@
           "feedback": "'Three!'",
           "mechanic": "count",
           "count": 3
+        },
+        {
+          "narration": "Count them once more: one, two, three.",
+          "action": "tap-to-count",
+          "feedback": "Three ducks, every time you count!",
+          "mechanic": "count"
+        },
+        {
+          "narration": "Count three real things you can hold.",
+          "action": "real-world",
+          "feedback": "Spoons, socks, stones — three is three!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -4532,6 +5081,18 @@
           "feedback": "'Five!'",
           "mechanic": "count",
           "count": 3
+        },
+        {
+          "narration": "Count the stars backwards: five, four, three...",
+          "action": "tap-to-count",
+          "feedback": "...two, one! Numbers go both ways.",
+          "mechanic": "count"
+        },
+        {
+          "narration": "Count five steps as you walk together.",
+          "action": "real-world",
+          "feedback": "One, two, three, four, five. Arrived!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -4568,6 +5129,18 @@
           "action": "tap",
           "feedback": "'Many flowers!'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the side with one bird, then with many.",
+          "action": "tap",
+          "feedback": "One... and many. Easy to see!",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Hold one sock, then a whole pile of them.",
+          "action": "real-world",
+          "feedback": "One in your hand, many on the floor!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -4606,6 +5179,18 @@
           "feedback": "'Hooray. Three!'",
           "mechanic": "count",
           "count": 3
+        },
+        {
+          "narration": "Now help teddy back down. Three, two, one!",
+          "action": "tap-to-count",
+          "feedback": "Down he comes, one step at a time.",
+          "mechanic": "count"
+        },
+        {
+          "narration": "Count real stairs or steps out loud.",
+          "action": "real-world",
+          "feedback": "Every step gets a number!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -4648,6 +5233,18 @@
           "action": "tap",
           "feedback": "'Three!'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Tap 1, then 2, then 3, in order.",
+          "action": "tap",
+          "feedback": "'One, two, three!' In a row.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Look for a number 1 on a door or a page.",
+          "action": "real-world",
+          "feedback": "Numbers are written all around us!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -4686,6 +5283,18 @@
           "feedback": "'High five!'",
           "mechanic": "count",
           "count": 3
+        },
+        {
+          "narration": "Count the other hand too. Five more!",
+          "action": "tap-to-count",
+          "feedback": "Five and five. Ten fingers!",
+          "mechanic": "count"
+        },
+        {
+          "narration": "Count your child's real fingers, one kiss each.",
+          "action": "real-world",
+          "feedback": "Ten fingers, ten kisses. All counted!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -4800,6 +5409,67 @@
       ]
     },
     {
+      "id": "s02.numbers.quiz.04",
+      "stage": 2,
+      "ages": "1-2",
+      "subject": "First Numbers",
+      "type": "quiz",
+      "title": "One or Many?",
+      "objective": "Tell one thing from many.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Hold up one finger, then all of them.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s02/one_flower.png",
+          "desc": "One flower"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/many_flowers.png",
+          "desc": "Many flowers"
+        }
+      ],
+      "questions": [
+        {
+          "prompt": "Tap the side with just one.",
+          "options": [
+            {
+              "label": "One flower",
+              "asset": "img/s02/one_flower.png"
+            },
+            {
+              "label": "Many flowers",
+              "asset": "img/s02/many_flowers.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Just one!",
+          "retryFeedback": "That side has many. Try again!"
+        },
+        {
+          "prompt": "Now tap the side with many.",
+          "options": [
+            {
+              "label": "Many flowers",
+              "asset": "img/s02/many_flowers.png"
+            },
+            {
+              "label": "One flower",
+              "asset": "img/s02/one_flower.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "So many! Too many to count.",
+          "retryFeedback": "That side has one. Try again!"
+        }
+      ]
+    },
+    {
       "id": "s02.numbers.story.01",
       "stage": 2,
       "ages": "1-2",
@@ -4835,6 +5505,52 @@
           "narration": "Three little ducks paddle home. Goodnight, ducks!",
           "illustration": "img/s02/ducks_home.png",
           "interaction": null
+        }
+      ]
+    },
+    {
+      "id": "s02.numbers.story.02",
+      "stage": 2,
+      "ages": "1-2",
+      "subject": "First Numbers",
+      "type": "story",
+      "title": "One, Two, Three Steps",
+      "objective": "Count to three inside a small story.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "listen",
+      "parentNote": "Count the steps on your fingers as you read.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s02/kitten_one.png",
+          "desc": "One step. The kitten leaves the basket."
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/kitten_two.png",
+          "desc": "Two steps. She reaches the mat."
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/kitten_three.png",
+          "desc": "Three steps. Right into your lap!"
+        }
+      ],
+      "pages": [
+        {
+          "narration": "One step. The kitten leaves the basket.",
+          "illustration": "img/s02/kitten_one.png"
+        },
+        {
+          "narration": "Two steps. She reaches the mat.",
+          "illustration": "img/s02/kitten_two.png"
+        },
+        {
+          "narration": "Three steps. Right into your lap!",
+          "illustration": "img/s02/kitten_three.png"
         }
       ]
     },
@@ -4878,6 +5594,18 @@
           "feedback": "Drum speeds up and slows with you.",
           "mechanic": "count",
           "count": 3
+        },
+        {
+          "narration": "Tap three times: boom, boom, boom.",
+          "action": "tap-rhythm",
+          "feedback": "Three beats! You are the drummer.",
+          "mechanic": "count"
+        },
+        {
+          "narration": "Drum on a real pot or a cushion.",
+          "action": "real-world",
+          "feedback": "Hard things ring, soft things thud!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -4918,6 +5646,18 @@
           "narration": "Shake it softly, then loud.",
           "action": "shake",
           "feedback": "Soft... then loud! You make the music.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Shake it high, then down low.",
+          "action": "shake",
+          "feedback": "The sound follows your hands!",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Put rice in a jar and shake a real one.",
+          "action": "real-world",
+          "feedback": "You made an instrument!",
           "mechanic": "celebrate"
         }
       ]
@@ -4960,6 +5700,18 @@
           "action": "tap",
           "feedback": "Ting. So soft and quiet.",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the drum, then the bell. Hear the difference?",
+          "action": "tap",
+          "feedback": "Loud... then quiet. Two different sounds!",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Say your name loudly, then in a whisper.",
+          "action": "real-world",
+          "feedback": "Your voice can do both!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -4995,6 +5747,18 @@
           "narration": "Now clap faster!",
           "action": "tap-rhythm",
           "feedback": "Clap-clap-clap! So much fun.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Now clap slowly. Clap... clap... clap.",
+          "action": "tap-rhythm",
+          "feedback": "Slow and steady. You control the beat!",
+          "mechanic": "count"
+        },
+        {
+          "narration": "Clap along to a song you both know.",
+          "action": "real-world",
+          "feedback": "Singing together beats any screen.",
           "mechanic": "celebrate"
         }
       ]
@@ -5032,6 +5796,18 @@
           "action": "tap",
           "feedback": "Big stretch. Aaah! Ready for the day.",
           "mechanic": "celebrate"
+        },
+        {
+          "narration": "Tap to put on your shoes. Ready to go!",
+          "action": "tap",
+          "feedback": "Shoes on. What comes next?",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Say your real morning steps out loud together.",
+          "action": "real-world",
+          "feedback": "Knowing what comes next feels safe.",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -5068,6 +5844,18 @@
           "action": "tap",
           "feedback": "Cozy and sleepy. Goodnight!",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Tap to read one bedtime story.",
+          "action": "tap",
+          "feedback": "One story, then sleep. Shhh.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Dim the light and say goodnight for real.",
+          "action": "real-world",
+          "feedback": "Same steps every night. Cosy and calm.",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -5174,6 +5962,67 @@
       ]
     },
     {
+      "id": "s02.music.quiz.04",
+      "stage": 2,
+      "ages": "1-2",
+      "subject": "Music & Routines",
+      "type": "quiz",
+      "title": "Morning or Night?",
+      "objective": "Match a routine to the time of day.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Talk through your own day as you play.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s02/wake_up.png",
+          "desc": "Wake up"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/go_sleep.png",
+          "desc": "Go to sleep"
+        }
+      ],
+      "questions": [
+        {
+          "prompt": "The sun is up. What do we do?",
+          "options": [
+            {
+              "label": "Wake up",
+              "asset": "img/s02/wake_up.png"
+            },
+            {
+              "label": "Go to sleep",
+              "asset": "img/s02/go_sleep.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Good morning! Time to get up.",
+          "retryFeedback": "That is for night-time. Try again!"
+        },
+        {
+          "prompt": "The moon is out. What do we do?",
+          "options": [
+            {
+              "label": "Go to sleep",
+              "asset": "img/s02/go_sleep.png"
+            },
+            {
+              "label": "Wake up",
+              "asset": "img/s02/wake_up.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Goodnight. Sleep well!",
+          "retryFeedback": "That is for morning. Try again!"
+        }
+      ]
+    },
+    {
       "id": "s02.music.story.01",
       "stage": 2,
       "ages": "1-2",
@@ -5209,6 +6058,52 @@
           "narration": "All clean! Wrap up in a cozy towel. The end.",
           "illustration": "img/s02/towel.png",
           "interaction": null
+        }
+      ]
+    },
+    {
+      "id": "s02.music.story.02",
+      "stage": 2,
+      "ages": "1-2",
+      "subject": "Music & Routines",
+      "type": "story",
+      "title": "The Getting-Ready Song",
+      "objective": "Three morning steps, in order.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "listen",
+      "parentNote": "Sing it during your real morning routine.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s02/wash_face.png",
+          "desc": "First we wash. Splish, splash!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/eat_breakfast.png",
+          "desc": "Then we eat. Yum, yum!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/shoes_on.png",
+          "desc": "Then shoes on, and out we go!"
+        }
+      ],
+      "pages": [
+        {
+          "narration": "First we wash. Splish, splash!",
+          "illustration": "img/s02/wash_face.png"
+        },
+        {
+          "narration": "Then we eat. Yum, yum!",
+          "illustration": "img/s02/eat_breakfast.png"
+        },
+        {
+          "narration": "Then shoes on, and out we go!",
+          "illustration": "img/s02/shoes_on.png"
         }
       ]
     },
@@ -5255,6 +6150,18 @@
           "action": "drag",
           "feedback": "Plink! 'Small!'",
           "mechanic": "drag"
+        },
+        {
+          "narration": "One more. Put it where it belongs.",
+          "action": "drag",
+          "feedback": "Everything has its own group!",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "Sort real spoons and forks together.",
+          "action": "real-world",
+          "feedback": "Spoons here, forks there. Sorted!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -5291,6 +6198,18 @@
           "action": "drag",
           "feedback": "'Blue with blue. Well sorted!'",
           "mechanic": "drag"
+        },
+        {
+          "narration": "Now the last one. Where does it go?",
+          "action": "drag",
+          "feedback": "All sorted. Nothing left over!",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "Put the toys away by kind, not in a heap.",
+          "action": "real-world",
+          "feedback": "Tidying is sorting you can walk through!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -5327,6 +6246,18 @@
           "action": "drag",
           "feedback": "'That's a toy! Great sorting.'",
           "mechanic": "drag"
+        },
+        {
+          "narration": "Now put the books on the shelf.",
+          "action": "drag",
+          "feedback": "'Books!' Three groups, all tidy.",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "Tidy one real basket together, by kind.",
+          "action": "real-world",
+          "feedback": "Two hands make it quick!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -5363,6 +6294,18 @@
           "action": "tap",
           "feedback": "'They match!'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Look closely. Tap the odd one out again.",
+          "action": "tap",
+          "feedback": "Sharp eyes! You spotted it.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Find two real things that match, and one that doesn't.",
+          "action": "real-world",
+          "feedback": "Same, same, different!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -5399,6 +6342,18 @@
           "action": "drag",
           "feedback": "'Short! Nicely sorted.'",
           "mechanic": "drag"
+        },
+        {
+          "narration": "Now the tall giraffe and the short duck.",
+          "action": "drag",
+          "feedback": "Tall on one side, short on the other!",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "Stand back to back and see who is taller.",
+          "action": "real-world",
+          "feedback": "You will be the tall one one day!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -5435,6 +6390,18 @@
           "action": "drag",
           "feedback": "'They go together!'",
           "mechanic": "drag"
+        },
+        {
+          "narration": "One pair left. Find its partner.",
+          "action": "drag",
+          "feedback": "Every one has a partner!",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "Match real socks together after washing.",
+          "action": "real-world",
+          "feedback": "A real job, done by you!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -5541,6 +6508,67 @@
       ]
     },
     {
+      "id": "s02.sorting.quiz.04",
+      "stage": 2,
+      "ages": "1-2",
+      "subject": "Simple Sorting",
+      "type": "quiz",
+      "title": "Which Two Match?",
+      "objective": "Find the pair that belongs together.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Do it with real socks straight afterwards.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s02/sock_pair.png",
+          "desc": "Another sock"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/cup_odd.png",
+          "desc": "A cup"
+        }
+      ],
+      "questions": [
+        {
+          "prompt": "Which one matches the sock?",
+          "options": [
+            {
+              "label": "Another sock",
+              "asset": "img/s02/sock_pair.png"
+            },
+            {
+              "label": "A cup",
+              "asset": "img/s02/cup_odd.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "A matching pair!",
+          "retryFeedback": "A cup is not a sock. Try again!"
+        },
+        {
+          "prompt": "Which one does not belong?",
+          "options": [
+            {
+              "label": "A cup",
+              "asset": "img/s02/cup_odd.png"
+            },
+            {
+              "label": "Another sock",
+              "asset": "img/s02/sock_pair.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Right — the cup is the odd one!",
+          "retryFeedback": "That is a sock, it belongs. Try again!"
+        }
+      ]
+    },
+    {
       "id": "s02.sorting.story.01",
       "stage": 2,
       "ages": "1-2",
@@ -5576,6 +6604,52 @@
           "narration": "All tidy! Great helping. Time to rest.",
           "illustration": "img/s02/tidy_room.png",
           "interaction": null
+        }
+      ]
+    },
+    {
+      "id": "s02.sorting.story.02",
+      "stage": 2,
+      "ages": "1-2",
+      "subject": "Simple Sorting",
+      "type": "story",
+      "title": "Everything Has a Home",
+      "objective": "Three things put back where they belong.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "listen",
+      "parentNote": "Put one real thing away together at the end.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s02/ball_box.png",
+          "desc": "The ball goes in the toy box."
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/cup_shelf.png",
+          "desc": "The cup goes on the shelf."
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/child_hug.png",
+          "desc": "And you go into a big goodnight hug."
+        }
+      ],
+      "pages": [
+        {
+          "narration": "The ball goes in the toy box.",
+          "illustration": "img/s02/ball_box.png"
+        },
+        {
+          "narration": "The cup goes on the shelf.",
+          "illustration": "img/s02/cup_shelf.png"
+        },
+        {
+          "narration": "And you go into a big goodnight hug.",
+          "illustration": "img/s02/child_hug.png"
         }
       ]
     },
@@ -5623,6 +6697,18 @@
           "action": "drag",
           "feedback": "Crunch! 'Three! Everyone has one.'",
           "mechanic": "drag"
+        },
+        {
+          "narration": "Count the rabbits. How many carrots did we need?",
+          "action": "tap",
+          "feedback": "Three rabbits, three carrots. The same!",
+          "mechanic": "count"
+        },
+        {
+          "narration": "Give one spoon to each person at the table.",
+          "action": "real-world",
+          "feedback": "One each — nobody left out!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -5661,6 +6747,18 @@
           "feedback": "'Ten!'",
           "mechanic": "count",
           "count": 3
+        },
+        {
+          "narration": "Count them again, but whisper this time.",
+          "action": "tap-to-count",
+          "feedback": "Still ten! Loud or quiet, ten is ten.",
+          "mechanic": "count"
+        },
+        {
+          "narration": "Count ten steps together across the room.",
+          "action": "real-world",
+          "feedback": "Ten steps, and you arrive!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -5699,6 +6797,18 @@
           "feedback": "'Ten fingers!'",
           "mechanic": "count",
           "count": 3
+        },
+        {
+          "narration": "Hide two fingers. How many are left?",
+          "action": "tap-to-count",
+          "feedback": "Three left! Fingers can take away too.",
+          "mechanic": "count"
+        },
+        {
+          "narration": "Count your toes together, one by one.",
+          "action": "real-world",
+          "feedback": "Ten toes as well. What a body!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -5735,6 +6845,18 @@
           "action": "drag",
           "feedback": "'Four, five! Great ordering.'",
           "mechanic": "drag"
+        },
+        {
+          "narration": "Now put them backwards: 5, 4, 3, 2, 1.",
+          "action": "drag",
+          "feedback": "Backwards works too. Blast off!",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "Count down from five, then jump.",
+          "action": "real-world",
+          "feedback": "Five, four, three, two, one — jump!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -5776,6 +6898,18 @@
             "Now there are three"
           ],
           "choiceIndex": 0
+        },
+        {
+          "narration": "Four apples. Tap to add one more.",
+          "action": "tap",
+          "feedback": "'Now there are five!' One more, every time.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Put out four stones, then add one more.",
+          "action": "real-world",
+          "feedback": "One more makes the next number!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -5814,6 +6948,18 @@
           "feedback": "'Five!'",
           "mechanic": "count",
           "count": 3
+        },
+        {
+          "narration": "Touch them in a different order. Still five?",
+          "action": "tap-to-count",
+          "feedback": "Still five! Order does not change how many.",
+          "mechanic": "count"
+        },
+        {
+          "narration": "Count five grapes, then eat them one by one.",
+          "action": "real-world",
+          "feedback": "Five in, five gone. Delicious counting!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -5928,6 +7074,67 @@
       ]
     },
     {
+      "id": "s03.counting.quiz.04",
+      "stage": 3,
+      "ages": "2-3",
+      "subject": "Counting & Numbers",
+      "type": "quiz",
+      "title": "Which Has More?",
+      "objective": "Compare two small groups.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Count both groups out loud before choosing.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s03/apples_four.png",
+          "desc": "Four apples"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/apples_two.png",
+          "desc": "Two apples"
+        }
+      ],
+      "questions": [
+        {
+          "prompt": "Which plate has more apples?",
+          "options": [
+            {
+              "label": "Four apples",
+              "asset": "img/s03/apples_four.png"
+            },
+            {
+              "label": "Two apples",
+              "asset": "img/s03/apples_two.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Four is more than two!",
+          "retryFeedback": "Count them again together."
+        },
+        {
+          "prompt": "Which plate has fewer?",
+          "options": [
+            {
+              "label": "Two apples",
+              "asset": "img/s03/apples_two.png"
+            },
+            {
+              "label": "Four apples",
+              "asset": "img/s03/apples_four.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Two is fewer. Well counted!",
+          "retryFeedback": "That one has more. Try again!"
+        }
+      ]
+    },
+    {
       "id": "s03.counting.story.01",
       "stage": 3,
       "ages": "2-3",
@@ -5963,6 +7170,52 @@
           "narration": "At bedtime, all five came back. Goodnight, ducks!",
           "illustration": "img/s03/ducks_back.png",
           "interaction": null
+        }
+      ]
+    },
+    {
+      "id": "s03.counting.story.02",
+      "stage": 3,
+      "ages": "2-3",
+      "subject": "Counting & Numbers",
+      "type": "story",
+      "title": "Three Things in My Pocket",
+      "objective": "Count to three inside a story.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "listen",
+      "parentNote": "Hold up fingers as each thing appears.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s03/pocket_stone.png",
+          "desc": "One smooth stone from the path."
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/pocket_leaves.png",
+          "desc": "Two red leaves from the tree."
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/pocket_feather.png",
+          "desc": "Three! A feather too. My pocket is full."
+        }
+      ],
+      "pages": [
+        {
+          "narration": "One smooth stone from the path.",
+          "illustration": "img/s03/pocket_stone.png"
+        },
+        {
+          "narration": "Two red leaves from the tree.",
+          "illustration": "img/s03/pocket_leaves.png"
+        },
+        {
+          "narration": "Three! A feather too. My pocket is full.",
+          "illustration": "img/s03/pocket_feather.png"
         }
       ]
     },
@@ -6015,6 +7268,18 @@
           "action": "tap",
           "feedback": "'Angry. Let us take a deep breath.'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the face that matches how you feel now.",
+          "action": "tap",
+          "feedback": "Whatever you picked is allowed.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Tell your grown-up one word for how you feel.",
+          "action": "real-world",
+          "feedback": "Naming a feeling makes it smaller.",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -6051,6 +7316,18 @@
           "action": "tap",
           "feedback": "'Safe and cozy.'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the person who helps when you feel scared.",
+          "action": "tap",
+          "feedback": "Someone always comes. You are not alone.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Have a real hug right now.",
+          "action": "real-world",
+          "feedback": "Safe again. That is what hugs are for.",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -6086,6 +7363,18 @@
           "narration": "Wiggle with excitement!",
           "action": "tap",
           "feedback": "Yay!",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Excited feels big and bouncy. Tap the jumping child.",
+          "action": "tap",
+          "feedback": "Big feelings need big movements!",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Jump three times, then sit down slowly.",
+          "action": "real-world",
+          "feedback": "Up and excited, then down and calm.",
           "mechanic": "celebrate"
         }
       ]
@@ -6123,6 +7412,18 @@
           "action": "tap",
           "feedback": "Big warm hug. Better!",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Talking helps too. Tap the two friends talking.",
+          "action": "tap",
+          "feedback": "Telling someone makes sad feel lighter.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Say out loud: 'I feel sad when...'",
+          "action": "real-world",
+          "feedback": "Finishing that sentence is a big skill.",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -6158,6 +7459,18 @@
           "narration": "Blow the candle. Breathe out. Aaah, calm.",
           "action": "tap-breathe",
           "feedback": "Outtt. So calm.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "One more time. Smell... and blow.",
+          "action": "tap-breathe",
+          "feedback": "Slower each time. Your body is calming.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Do three real flower-and-candle breaths together.",
+          "action": "real-world",
+          "feedback": "Use this when a real feeling gets big.",
           "mechanic": "celebrate"
         }
       ]
@@ -6195,6 +7508,18 @@
           "action": "tap",
           "feedback": "'Sleepy. Yaaawn.'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the surprised face. Oooh!",
+          "action": "tap",
+          "feedback": "'Surprised! Eyes wide open.'",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Make each face at each other in a mirror.",
+          "action": "real-world",
+          "feedback": "Faces say things before words do.",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -6317,6 +7642,77 @@
       ]
     },
     {
+      "id": "s03.emotions.quiz.04",
+      "stage": 3,
+      "ages": "2-3",
+      "subject": "Emotions",
+      "type": "quiz",
+      "title": "What Helps a Big Feeling?",
+      "objective": "Choose a calming action.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Do the breathing together before you answer.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s03/breathe_calm.png",
+          "desc": "A slow breath"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/shout_loud.png",
+          "desc": "Shouting louder"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/tell_grownup.png",
+          "desc": "A grown-up who loves you"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/tell_nobody.png",
+          "desc": "Nobody at all"
+        }
+      ],
+      "questions": [
+        {
+          "prompt": "Feelings feel too big. What helps?",
+          "options": [
+            {
+              "label": "A slow breath",
+              "asset": "img/s03/breathe_calm.png"
+            },
+            {
+              "label": "Shouting louder",
+              "asset": "img/s03/shout_loud.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes. Breathe in, breathe out. Calmer.",
+          "retryFeedback": "Shouting makes it bigger. Try again!"
+        },
+        {
+          "prompt": "And who can you tell?",
+          "options": [
+            {
+              "label": "A grown-up who loves you",
+              "asset": "img/s03/tell_grownup.png"
+            },
+            {
+              "label": "Nobody at all",
+              "asset": "img/s03/tell_nobody.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Telling someone always helps.",
+          "retryFeedback": "Feelings get smaller when shared. Try again!"
+        }
+      ]
+    },
+    {
       "id": "s03.emotions.story.01",
       "stage": 3,
       "ages": "2-3",
@@ -6352,6 +7748,52 @@
           "narration": "He tries again and smiles. Feelings can pass!",
           "illustration": "img/s03/leo_happy.png",
           "interaction": null
+        }
+      ]
+    },
+    {
+      "id": "s03.emotions.story.02",
+      "stage": 3,
+      "ages": "2-3",
+      "subject": "Emotions",
+      "type": "story",
+      "title": "The Day I Felt Everything",
+      "objective": "Three feelings in one day, all allowed.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "listen",
+      "parentNote": "Ask which one they felt today.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s03/day_happy.png",
+          "desc": "In the morning I felt happy. I sang."
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/day_cross.png",
+          "desc": "Then I felt cross. My tower fell down."
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/day_calm.png",
+          "desc": "At night I felt calm. All of it was okay."
+        }
+      ],
+      "pages": [
+        {
+          "narration": "In the morning I felt happy. I sang.",
+          "illustration": "img/s03/day_happy.png"
+        },
+        {
+          "narration": "Then I felt cross. My tower fell down.",
+          "illustration": "img/s03/day_cross.png"
+        },
+        {
+          "narration": "At night I felt calm. All of it was okay.",
+          "illustration": "img/s03/day_calm.png"
         }
       ]
     },
@@ -6393,6 +7835,18 @@
           "action": "tap",
           "feedback": "'Small!'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "This cup is full. Tap the empty one.",
+          "action": "tap",
+          "feedback": "'Empty!' Opposites come in pairs.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Find a door that is open, and one that is shut.",
+          "action": "real-world",
+          "feedback": "A door, a box, a hand. Open! Shut!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -6429,6 +7883,18 @@
           "action": "tap",
           "feedback": "'Cold!'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Which would you hold with two hands? Tap it.",
+          "action": "tap",
+          "feedback": "Hot things need care. Cold things are safe.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Touch something cold, then something warm.",
+          "action": "real-world",
+          "feedback": "Your skin knows the difference straight away!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -6465,6 +7931,18 @@
           "action": "tap",
           "feedback": "'Night!'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "What do we do at night? Tap the sleeping child.",
+          "action": "tap",
+          "feedback": "Night is for sleeping. Day is for playing.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Look out of the window. Is it day or night?",
+          "action": "real-world",
+          "feedback": "You can tell just by looking!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -6502,6 +7980,18 @@
           "feedback": "You made a pattern!",
           "mechanic": "count",
           "count": 3
+        },
+        {
+          "narration": "Try a new pattern: clap, clap, stomp.",
+          "action": "tap-rhythm",
+          "feedback": "Clap-clap-stomp! A different pattern.",
+          "mechanic": "count"
+        },
+        {
+          "narration": "Make up a pattern with your own hands and feet.",
+          "action": "real-world",
+          "feedback": "You are the one who decides it!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -6543,6 +8033,18 @@
             "Blue"
           ],
           "choiceIndex": 1
+        },
+        {
+          "narration": "A longer one: red, red, blue. Tap what comes next.",
+          "action": "tap",
+          "feedback": "'Red!' Patterns can be longer than two.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Line up spoons and forks in a pattern.",
+          "action": "real-world",
+          "feedback": "Spoon, fork, spoon, fork. A real pattern!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -6579,6 +8081,18 @@
           "action": "tap",
           "feedback": "'Slow... and steady.'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the fast one, then the slow one.",
+          "action": "tap",
+          "feedback": "Fast and slow, one after the other.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Walk fast across the room, then very slowly.",
+          "action": "real-world",
+          "feedback": "Your legs can do both speeds!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -6701,6 +8215,67 @@
       ]
     },
     {
+      "id": "s03.patterns.quiz.04",
+      "stage": 3,
+      "ages": "2-3",
+      "subject": "Patterns & Opposites",
+      "type": "quiz",
+      "title": "Full or Empty?",
+      "objective": "Match an opposite word to a picture.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Pour water between two real cups afterwards.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s03/cup_full.png",
+          "desc": "Full cup"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/cup_empty.png",
+          "desc": "Empty cup"
+        }
+      ],
+      "questions": [
+        {
+          "prompt": "Tap the full cup.",
+          "options": [
+            {
+              "label": "Full cup",
+              "asset": "img/s03/cup_full.png"
+            },
+            {
+              "label": "Empty cup",
+              "asset": "img/s03/cup_empty.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Full to the top!",
+          "retryFeedback": "That one is empty. Try again!"
+        },
+        {
+          "prompt": "Now tap the empty one.",
+          "options": [
+            {
+              "label": "Empty cup",
+              "asset": "img/s03/cup_empty.png"
+            },
+            {
+              "label": "Full cup",
+              "asset": "img/s03/cup_full.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Empty — nothing inside!",
+          "retryFeedback": "That one is full. Try again!"
+        }
+      ]
+    },
+    {
       "id": "s03.patterns.story.01",
       "stage": 3,
       "ages": "2-3",
@@ -6740,6 +8315,52 @@
       ]
     },
     {
+      "id": "s03.patterns.story.02",
+      "stage": 3,
+      "ages": "2-3",
+      "subject": "Patterns & Opposites",
+      "type": "story",
+      "title": "Up the Hill, Down the Hill",
+      "objective": "Opposites carried through a small journey.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "listen",
+      "parentNote": "Lift them up and lower them down as you read.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s03/hill_up.png",
+          "desc": "Up we go, slow and heavy."
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/hill_top.png",
+          "desc": "At the top it is windy and cold."
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/hill_down.png",
+          "desc": "Down we run, fast and warm and laughing."
+        }
+      ],
+      "pages": [
+        {
+          "narration": "Up we go, slow and heavy.",
+          "illustration": "img/s03/hill_up.png"
+        },
+        {
+          "narration": "At the top it is windy and cold.",
+          "illustration": "img/s03/hill_top.png"
+        },
+        {
+          "narration": "Down we run, fast and warm and laughing.",
+          "illustration": "img/s03/hill_down.png"
+        }
+      ]
+    },
+    {
       "id": "s03.phono.lesson.01",
       "stage": 3,
       "ages": "2-3",
@@ -6772,6 +8393,18 @@
           "action": "tap",
           "feedback": "'/b/... bear!'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Banana starts with /b/ too. Tap the banana.",
+          "action": "tap",
+          "feedback": "'/b/... banana!' Three /b/ words now.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Say your own name. What sound does it start with?",
+          "action": "real-world",
+          "feedback": "Every name starts with a sound!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -6814,6 +8447,18 @@
             "Long words"
           ],
           "choiceIndex": 0
+        },
+        {
+          "narration": "Which one rhymes with cat? Tap the mat.",
+          "action": "tap",
+          "feedback": "Cat, mat. They end the same!",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Make up a silly rhyme for your own name.",
+          "action": "real-world",
+          "feedback": "Silly rhymes are the best rhymes.",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -6851,6 +8496,18 @@
           "feedback": "Ap-ple. Two claps!",
           "mechanic": "count",
           "count": 3
+        },
+        {
+          "narration": "Now your own name. Clap its parts!",
+          "action": "tap-rhythm",
+          "feedback": "Every name has parts you can clap.",
+          "mechanic": "count"
+        },
+        {
+          "narration": "Clap the parts of what you had for lunch.",
+          "action": "real-world",
+          "feedback": "Words are made of beats!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -6887,6 +8544,18 @@
           "action": "tap",
           "feedback": "'/s/... sock!'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Snake starts with /s/ as well. Tap the snake.",
+          "action": "tap",
+          "feedback": "'/s/... snake!' Ssssss.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Hiss like a snake, long and slow.",
+          "action": "real-world",
+          "feedback": "Sssss! Your mouth makes the sound.",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -6923,6 +8592,18 @@
           "action": "tap",
           "feedback": "'/m/... mouse!'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Milk starts with /m/. Tap the milk.",
+          "action": "tap",
+          "feedback": "'/m/... milk!' Mmmm.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Hum mmmm with your lips closed.",
+          "action": "real-world",
+          "feedback": "You can feel it buzz on your lips!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -6959,6 +8640,18 @@
           "action": "tap",
           "feedback": "Zzzzz!",
           "mechanic": "tap"
+        },
+        {
+          "narration": "A cow says moooo. Tap to moo!",
+          "action": "tap",
+          "feedback": "Moooo! Long and low.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Take turns making a sound for the other to copy.",
+          "action": "real-world",
+          "feedback": "Copying sounds is how talking is learned.",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -7081,6 +8774,72 @@
       ]
     },
     {
+      "id": "s03.phono.quiz.04",
+      "stage": 3,
+      "ages": "2-3",
+      "subject": "Phonological Awareness",
+      "type": "quiz",
+      "title": "Same First Sound?",
+      "objective": "Match two words that begin with the same sound.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Say both words slowly, stretching the first sound.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s03/sock_s.png",
+          "desc": "Sock"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/ball_b.png",
+          "desc": "Ball"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/bear_b.png",
+          "desc": "Bear"
+        }
+      ],
+      "questions": [
+        {
+          "prompt": "Sun starts with /s/. Which one does too?",
+          "options": [
+            {
+              "label": "Sock",
+              "asset": "img/s03/sock_s.png"
+            },
+            {
+              "label": "Ball",
+              "asset": "img/s03/ball_b.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "/s/... sock! Same sound.",
+          "retryFeedback": "Ball starts with /b/. Try again!"
+        },
+        {
+          "prompt": "Ball starts with /b/. Which one does too?",
+          "options": [
+            {
+              "label": "Bear",
+              "asset": "img/s03/bear_b.png"
+            },
+            {
+              "label": "Sock",
+              "asset": "img/s03/sock_s.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "/b/... bear! You heard it.",
+          "retryFeedback": "Sock starts with /s/. Try again!"
+        }
+      ]
+    },
+    {
       "id": "s03.phono.story.01",
       "stage": 3,
       "ages": "2-3",
@@ -7120,6 +8879,52 @@
       ]
     },
     {
+      "id": "s03.phono.story.02",
+      "stage": 3,
+      "ages": "2-3",
+      "subject": "Phonological Awareness",
+      "type": "story",
+      "title": "The Buzzing, Hissing Garden",
+      "objective": "Three sounds to make out loud, one per page.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "listen",
+      "parentNote": "Make every sound out loud — that is the whole lesson.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s03/garden_bee.png",
+          "desc": "The bee says zzzz. Can you buzz?"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/garden_snake.png",
+          "desc": "The snake says ssss. Can you hiss?"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/garden_wind.png",
+          "desc": "The wind says shhh. Time to be still."
+        }
+      ],
+      "pages": [
+        {
+          "narration": "The bee says zzzz. Can you buzz?",
+          "illustration": "img/s03/garden_bee.png"
+        },
+        {
+          "narration": "The snake says ssss. Can you hiss?",
+          "illustration": "img/s03/garden_snake.png"
+        },
+        {
+          "narration": "The wind says shhh. Time to be still.",
+          "illustration": "img/s03/garden_wind.png"
+        }
+      ]
+    },
+    {
       "id": "s03.tracing.lesson.01",
       "stage": 3,
       "ages": "2-3",
@@ -7152,6 +8957,18 @@
           "action": "celebrate",
           "feedback": "Happy quacks.",
           "mechanic": "drag"
+        },
+        {
+          "narration": "Trace it again, a little faster this time.",
+          "action": "trace",
+          "feedback": "Your finger remembers the way!",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "Draw a wiggly line on paper with a crayon.",
+          "action": "real-world",
+          "feedback": "Real crayons, real lines. Same skill!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -7188,6 +9005,18 @@
           "action": "celebrate",
           "feedback": "Beep-beep! Great tracing.",
           "mechanic": "drag"
+        },
+        {
+          "narration": "Trace the road back the other way.",
+          "action": "trace",
+          "feedback": "There and back. Steady hands!",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "Draw a straight line along the edge of a book.",
+          "action": "real-world",
+          "feedback": "The edge helps your hand stay straight.",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -7224,6 +9053,18 @@
           "action": "celebrate",
           "feedback": "A perfect circle!",
           "mechanic": "drag"
+        },
+        {
+          "narration": "Trace a smaller circle inside the big one.",
+          "action": "trace",
+          "feedback": "A circle inside a circle!",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "Draw around a real cup on paper.",
+          "action": "real-world",
+          "feedback": "A perfect circle, made by your hand!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -7260,6 +9101,18 @@
           "action": "celebrate",
           "feedback": "Zigzag done!",
           "mechanic": "drag"
+        },
+        {
+          "narration": "Trace the zigzag once more, slowly.",
+          "action": "trace",
+          "feedback": "Up, down, up, down. A mountain range!",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "Draw zigzags in the air with your whole arm.",
+          "action": "real-world",
+          "feedback": "Big arm, big zigzag!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -7296,6 +9149,18 @@
           "action": "celebrate",
           "feedback": "Well done!",
           "mechanic": "drag"
+        },
+        {
+          "narration": "Trace a smaller O beside the big one.",
+          "action": "trace",
+          "feedback": "Two O's! Big O, little o.",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "Look for the letter O in a book together.",
+          "action": "real-world",
+          "feedback": "It is hiding on nearly every page!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -7332,6 +9197,18 @@
           "action": "celebrate",
           "feedback": "It's a kite!",
           "mechanic": "drag"
+        },
+        {
+          "narration": "Now add dot 4 and dot 5.",
+          "action": "trace",
+          "feedback": "Five dots, one shape. It grew!",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "Make dots on paper and join them together.",
+          "action": "real-world",
+          "feedback": "You decide what the shape becomes!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -7438,6 +9315,67 @@
       ]
     },
     {
+      "id": "s03.tracing.quiz.04",
+      "stage": 3,
+      "ages": "2-3",
+      "subject": "Tracing & Stories",
+      "type": "quiz",
+      "title": "Which Line Is Straight?",
+      "objective": "Tell a straight line from a curvy one.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Draw both kinds on paper straight afterwards.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s03/line_straight.png",
+          "desc": "Straight line"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/line_wiggly.png",
+          "desc": "Wiggly line"
+        }
+      ],
+      "questions": [
+        {
+          "prompt": "Tap the straight line.",
+          "options": [
+            {
+              "label": "Straight line",
+              "asset": "img/s03/line_straight.png"
+            },
+            {
+              "label": "Wiggly line",
+              "asset": "img/s03/line_wiggly.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Straight as a road!",
+          "retryFeedback": "That one wiggles. Try again!"
+        },
+        {
+          "prompt": "Now tap the wiggly one.",
+          "options": [
+            {
+              "label": "Wiggly line",
+              "asset": "img/s03/line_wiggly.png"
+            },
+            {
+              "label": "Straight line",
+              "asset": "img/s03/line_straight.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Wiggly like a snake!",
+          "retryFeedback": "That one is straight. Try again!"
+        }
+      ]
+    },
+    {
       "id": "s03.stories.story.01",
       "stage": 3,
       "ages": "2-3",
@@ -7473,6 +9411,52 @@
           "narration": "Splash! She found the pond and swam all day. (End) The end!",
           "illustration": "img/s03/duck_pond.png",
           "interaction": null
+        }
+      ]
+    },
+    {
+      "id": "s03.tracing.story.02",
+      "stage": 3,
+      "ages": "2-3",
+      "subject": "Tracing & Stories",
+      "type": "story",
+      "title": "The Line That Went for a Walk",
+      "objective": "A line becomes three shapes, one per page.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "listen",
+      "parentNote": "Trace each shape on their back with your finger.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s03/line_walk_straight.png",
+          "desc": "The line went straight, all the way to the gate."
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/line_walk_circle.png",
+          "desc": "Then it curled round into a circle."
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/line_walk_zigzag.png",
+          "desc": "Then it zigzagged home for tea."
+        }
+      ],
+      "pages": [
+        {
+          "narration": "The line went straight, all the way to the gate.",
+          "illustration": "img/s03/line_walk_straight.png"
+        },
+        {
+          "narration": "Then it curled round into a circle.",
+          "illustration": "img/s03/line_walk_circle.png"
+        },
+        {
+          "narration": "Then it zigzagged home for tea.",
+          "illustration": "img/s03/line_walk_zigzag.png"
         }
       ]
     },
@@ -7525,6 +9509,18 @@
           "action": "tap",
           "feedback": "'Eat!' Bear munches honey.",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the sleeping cat. What is it doing?",
+          "action": "tap",
+          "feedback": "'Sleep!' Another action word.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Run, jump and eat something — really do it!",
+          "action": "real-world",
+          "feedback": "Action words are for doing, not just saying.",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -7577,6 +9573,18 @@
           "action": "drag",
           "feedback": "'Vehicle! Beep beep.'",
           "mechanic": "drag"
+        },
+        {
+          "narration": "One more. Drag the banana where it belongs.",
+          "action": "drag",
+          "feedback": "'Food!' You know the groups now.",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "Name three real foods in your kitchen.",
+          "action": "real-world",
+          "feedback": "They all belong to the food group!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -7619,6 +9627,18 @@
           "action": "tap",
           "feedback": "'Door!'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the window. What do we see through it?",
+          "action": "tap",
+          "feedback": "'Window!' The outside, from inside.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Point at a real chair, bed and door and name them.",
+          "action": "real-world",
+          "feedback": "Your home is full of words!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -7661,6 +9681,18 @@
           "action": "tap",
           "feedback": "'Coat!'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the socks. Where do they go?",
+          "action": "tap",
+          "feedback": "'Socks! On our feet.'",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Name each thing you are wearing right now.",
+          "action": "real-world",
+          "feedback": "You are wearing a whole list of words!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -7703,6 +9735,18 @@
           "action": "tap",
           "feedback": "'Milk!'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the banana. Peel it and eat it!",
+          "action": "tap",
+          "feedback": "'Banana! Sweet and soft.'",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Name the food on your plate at the next meal.",
+          "action": "real-world",
+          "feedback": "Eating and talking, both at once!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -7739,6 +9783,18 @@
           "action": "tap",
           "feedback": "'Wet!'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "This stone is heavy. Tap it.",
+          "action": "tap",
+          "feedback": "'Heavy!' It takes two hands.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Find something heavy and something light.",
+          "action": "real-world",
+          "feedback": "Lift them both. Your arms can tell!",
+          "mechanic": "celebrate"
         }
       ]
     },
@@ -7845,6 +9901,67 @@
       ]
     },
     {
+      "id": "s03.vocab.quiz.04",
+      "stage": 3,
+      "ages": "2-3",
+      "subject": "Vocabulary",
+      "type": "quiz",
+      "title": "Where Does It Belong?",
+      "objective": "Sort a word into its everyday category.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Name the group out loud before choosing.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s03/group_clothes.png",
+          "desc": "Clothes"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/group_food.png",
+          "desc": "Food"
+        }
+      ],
+      "questions": [
+        {
+          "prompt": "A shoe. Is it food or clothes?",
+          "options": [
+            {
+              "label": "Clothes",
+              "asset": "img/s03/group_clothes.png"
+            },
+            {
+              "label": "Food",
+              "asset": "img/s03/group_food.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Clothes! We wear it.",
+          "retryFeedback": "We do not eat shoes. Try again!"
+        },
+        {
+          "prompt": "An apple. Food or clothes?",
+          "options": [
+            {
+              "label": "Food",
+              "asset": "img/s03/group_food.png"
+            },
+            {
+              "label": "Clothes",
+              "asset": "img/s03/group_clothes.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Food! We eat it. Yum.",
+          "retryFeedback": "We do not wear apples. Try again!"
+        }
+      ]
+    },
+    {
       "id": "s03.vocab.story.01",
       "stage": 3,
       "ages": "2-3",
@@ -7880,6 +9997,52 @@
           "narration": "Then she plays with her ball outside. What a day!",
           "illustration": "img/s03/mia_ball.png",
           "interaction": null
+        }
+      ]
+    },
+    {
+      "id": "s03.vocab.story.02",
+      "stage": 3,
+      "ages": "2-3",
+      "subject": "Vocabulary",
+      "type": "story",
+      "title": "What Is in the Basket?",
+      "objective": "Name three everyday things from three groups.",
+      "designTier": "parent-led",
+      "reading": false,
+      "timed": false,
+      "interaction": "listen",
+      "parentNote": "Ask 'what group?' after each page.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s03/basket_bread.png",
+          "desc": "Bread, warm from the oven. That is food."
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/basket_hat.png",
+          "desc": "A hat, soft and round. That is clothes."
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/basket_bus.png",
+          "desc": "And a small toy bus. Beep beep! That is a vehicle."
+        }
+      ],
+      "pages": [
+        {
+          "narration": "Bread, warm from the oven. That is food.",
+          "illustration": "img/s03/basket_bread.png"
+        },
+        {
+          "narration": "A hat, soft and round. That is clothes.",
+          "illustration": "img/s03/basket_hat.png"
+        },
+        {
+          "narration": "And a small toy bus. Beep beep! That is a vehicle.",
+          "illustration": "img/s03/basket_bus.png"
         }
       ]
     },

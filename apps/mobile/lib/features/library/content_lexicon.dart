@@ -83,6 +83,11 @@ const Map<String, LexEntry> lexicon = {
   // generic subject icon and the picture stops being about the step.
   'paper': LexEntry('📄', _object), 'towel': LexEntry('🧻', _object),
   'blanket': LexEntry('🛏️', _object), 'pot': LexEntry('🍲', _object),
+  // Stage-2 and -3 "find the real one" steps name these; without them the
+  // step falls back to the generic subject icon.
+  'window': LexEntry('🪟', _object), 'plate': LexEntry('🍽️', _object),
+  'lid': LexEntry('🥫', _object), 'basket': LexEntry('🧺', _object),
+  'head': LexEntry('🧑', _people), 'lips': LexEntry('👄', _people),
   'nest': LexEntry('🪹', _nature), 'puddle': LexEntry('💧', _nature),
   'breeze': LexEntry('🍃', _nature),
   'door': LexEntry('🚪', _object), 'bed': LexEntry('🛏️', _object),

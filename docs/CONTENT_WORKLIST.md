@@ -9,9 +9,9 @@ _Library version 0.13.0, generated 2026-06-17._
 
 | Gap | Count |
 |---|---|
-| Quizzes to author | 52 |
-| Stories to author | 52 |
-| Lessons below their tier's step depth | 302 |
+| Quizzes to author | 40 |
+| Stories to author | 40 |
+| Lessons below their tier's step depth | 230 |
 | Lessons with no recap | 138 |
 | Items with no illustration | 109 |
 | Unreferenced PNGs on disk | 0 |
@@ -49,91 +49,55 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 
 ### Stage 2 — Animals (ages 1-2)
 
-- **Author 1 quiz:** `s02.animals.quiz.04`
-- **Author 1 story:** `s02.animals.story.02`
-- **Deepen 6 lessons:** `s02.animals.lesson.01` (3→4), `s02.animals.lesson.02` (3→4), `s02.animals.lesson.03` (3→4), `s02.animals.lesson.04` (3→4), `s02.animals.lesson.05` (2→4), `s02.animals.lesson.06` (2→4)
 - **Add 6 recaps:** `s02.animals.lesson.01`, `s02.animals.lesson.02`, `s02.animals.lesson.03`, `s02.animals.lesson.04`, `s02.animals.lesson.05`, `s02.animals.lesson.06`
 
 ### Stage 2 — Body Parts (ages 1-2)
 
-- **Author 1 quiz:** `s02.body.quiz.04`
-- **Author 1 story:** `s02.body.story.02`
-- **Deepen 6 lessons:** `s02.body.lesson.01` (3→4), `s02.body.lesson.02` (2→4), `s02.body.lesson.03` (2→4), `s02.body.lesson.04` (3→4), `s02.body.lesson.05` (2→4), `s02.body.lesson.06` (3→4)
 - **Add 6 recaps:** `s02.body.lesson.01`, `s02.body.lesson.02`, `s02.body.lesson.03`, `s02.body.lesson.04`, `s02.body.lesson.05`, `s02.body.lesson.06`
 - **1 items have no illustration** (emoji fallback): `s02.body.lesson.02`
 
 ### Stage 2 — Colors & Shapes (ages 1-2)
 
-- **Author 1 quiz:** `s02.colors.quiz.04`
-- **Author 1 story:** `s02.colors.story.02`
-- **Deepen 6 lessons:** `s02.colors.lesson.01` (3→4), `s02.colors.lesson.02` (3→4), `s02.colors.lesson.03` (2→4), `s02.colors.lesson.04` (3→4), `s02.colors.lesson.05` (2→4), `s02.colors.lesson.06` (2→4)
 - **Add 6 recaps:** `s02.colors.lesson.01`, `s02.colors.lesson.02`, `s02.colors.lesson.03`, `s02.colors.lesson.04`, `s02.colors.lesson.05`, `s02.colors.lesson.06`
 
 ### Stage 2 — Simple Sorting (ages 1-2)
 
-- **Author 1 quiz:** `s02.sorting.quiz.04`
-- **Author 1 story:** `s02.sorting.story.02`
-- **Deepen 6 lessons:** `s02.sorting.lesson.01` (2→4), `s02.sorting.lesson.02` (2→4), `s02.sorting.lesson.03` (2→4), `s02.sorting.lesson.04` (2→4), `s02.sorting.lesson.05` (2→4), `s02.sorting.lesson.06` (2→4)
 - **Add 6 recaps:** `s02.sorting.lesson.01`, `s02.sorting.lesson.02`, `s02.sorting.lesson.03`, `s02.sorting.lesson.04`, `s02.sorting.lesson.05`, `s02.sorting.lesson.06`
 
 ### Stage 2 — First Numbers (ages 1-2)
 
-- **Author 1 quiz:** `s02.numbers.quiz.04`
-- **Author 1 story:** `s02.numbers.story.02`
-- **Deepen 6 lessons:** `s02.numbers.lesson.01` (2→4), `s02.numbers.lesson.02` (2→4), `s02.numbers.lesson.03` (2→4), `s02.numbers.lesson.04` (2→4), `s02.numbers.lesson.05` (3→4), `s02.numbers.lesson.06` (2→4)
 - **Add 6 recaps:** `s02.numbers.lesson.01`, `s02.numbers.lesson.02`, `s02.numbers.lesson.03`, `s02.numbers.lesson.04`, `s02.numbers.lesson.05`, `s02.numbers.lesson.06`
 - **2 items have no illustration** (emoji fallback): `s02.numbers.quiz.01`, `s02.numbers.quiz.02`
 
 ### Stage 2 — Music & Routines (ages 1-2)
 
-- **Author 1 quiz:** `s02.music.quiz.04`
-- **Author 1 story:** `s02.music.story.02`
-- **Deepen 6 lessons:** `s02.music.lesson.01` (2→4), `s02.music.lesson.02` (2→4), `s02.music.lesson.03` (2→4), `s02.music.lesson.04` (2→4), `s02.music.lesson.05` (2→4), `s02.music.lesson.06` (2→4)
 - **Add 6 recaps:** `s02.music.lesson.01`, `s02.music.lesson.02`, `s02.music.lesson.03`, `s02.music.lesson.04`, `s02.music.lesson.05`, `s02.music.lesson.06`
 - **1 items have no illustration** (emoji fallback): `s02.music.lesson.04`
 
 ### Stage 3 — Vocabulary (ages 2-3)
 
-- **Author 1 quiz:** `s03.vocab.quiz.04`
-- **Author 1 story:** `s03.vocab.story.02`
-- **Deepen 6 lessons:** `s03.vocab.lesson.01` (3→4), `s03.vocab.lesson.02` (3→4), `s03.vocab.lesson.03` (3→4), `s03.vocab.lesson.04` (3→4), `s03.vocab.lesson.05` (3→4), `s03.vocab.lesson.06` (2→4)
 - **Add 6 recaps:** `s03.vocab.lesson.01`, `s03.vocab.lesson.02`, `s03.vocab.lesson.03`, `s03.vocab.lesson.04`, `s03.vocab.lesson.05`, `s03.vocab.lesson.06`
 
 ### Stage 3 — Phonological Awareness (ages 2-3)
 
-- **Author 1 quiz:** `s03.phono.quiz.04`
-- **Author 1 story:** `s03.phono.story.02`
-- **Deepen 6 lessons:** `s03.phono.lesson.01` (2→4), `s03.phono.lesson.02` (2→4), `s03.phono.lesson.03` (2→4), `s03.phono.lesson.04` (2→4), `s03.phono.lesson.05` (2→4), `s03.phono.lesson.06` (2→4)
 - **Add 6 recaps:** `s03.phono.lesson.01`, `s03.phono.lesson.02`, `s03.phono.lesson.03`, `s03.phono.lesson.04`, `s03.phono.lesson.05`, `s03.phono.lesson.06`
 - **1 items have no illustration** (emoji fallback): `s03.phono.lesson.02`
 
 ### Stage 3 — Counting & Numbers (ages 2-3)
 
-- **Author 1 quiz:** `s03.counting.quiz.04`
-- **Author 1 story:** `s03.counting.story.02`
-- **Deepen 6 lessons:** `s03.counting.lesson.01` (3→4), `s03.counting.lesson.02` (2→4), `s03.counting.lesson.03` (2→4), `s03.counting.lesson.04` (2→4), `s03.counting.lesson.05` (2→4), `s03.counting.lesson.06` (2→4)
 - **Add 6 recaps:** `s03.counting.lesson.01`, `s03.counting.lesson.02`, `s03.counting.lesson.03`, `s03.counting.lesson.04`, `s03.counting.lesson.05`, `s03.counting.lesson.06`
 - **3 items have no illustration** (emoji fallback): `s03.counting.quiz.01`, `s03.counting.quiz.02`, `s03.counting.quiz.03`
 
 ### Stage 3 — Patterns & Opposites (ages 2-3)
 
-- **Author 1 quiz:** `s03.patterns.quiz.04`
-- **Author 1 story:** `s03.patterns.story.02`
-- **Deepen 6 lessons:** `s03.patterns.lesson.01` (2→4), `s03.patterns.lesson.02` (2→4), `s03.patterns.lesson.03` (2→4), `s03.patterns.lesson.04` (2→4), `s03.patterns.lesson.05` (2→4), `s03.patterns.lesson.06` (2→4)
 - **Add 6 recaps:** `s03.patterns.lesson.01`, `s03.patterns.lesson.02`, `s03.patterns.lesson.03`, `s03.patterns.lesson.04`, `s03.patterns.lesson.05`, `s03.patterns.lesson.06`
 
 ### Stage 3 — Emotions (ages 2-3)
 
-- **Author 1 quiz:** `s03.emotions.quiz.04`
-- **Author 1 story:** `s03.emotions.story.02`
-- **Deepen 6 lessons:** `s03.emotions.lesson.01` (3→4), `s03.emotions.lesson.02` (2→4), `s03.emotions.lesson.03` (2→4), `s03.emotions.lesson.04` (2→4), `s03.emotions.lesson.05` (2→4), `s03.emotions.lesson.06` (2→4)
 - **Add 6 recaps:** `s03.emotions.lesson.01`, `s03.emotions.lesson.02`, `s03.emotions.lesson.03`, `s03.emotions.lesson.04`, `s03.emotions.lesson.05`, `s03.emotions.lesson.06`
 
 ### Stage 3 — Tracing & Stories (ages 2-3)
 
-- **Author 1 quiz:** `s03.tracing.quiz.04`
-- **Author 1 story:** `s03.tracing.story.02`
-- **Deepen 6 lessons:** `s03.tracing.lesson.01` (2→4), `s03.tracing.lesson.02` (2→4), `s03.tracing.lesson.03` (2→4), `s03.tracing.lesson.04` (2→4), `s03.tracing.lesson.05` (2→4), `s03.tracing.lesson.06` (2→4)
 - **Add 6 recaps:** `s03.tracing.lesson.01`, `s03.tracing.lesson.02`, `s03.tracing.lesson.03`, `s03.tracing.lesson.04`, `s03.tracing.lesson.05`, `s03.tracing.lesson.06`
 
 ## P2 — pre-literacy → kindergarten (stages 4-6)
