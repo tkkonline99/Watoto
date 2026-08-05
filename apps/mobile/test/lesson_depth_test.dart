@@ -340,8 +340,12 @@ void main() {
       // 332 before any of this; 302 after stage 1, 230 after stages 2 and 3,
       // 164 once stages 4 and 5 followed, 134 with stage 6, 108 with stage 7,
       // 72 once stage 8's 36 lessons went from two steps to eight, 36 with
-      // stage 9 (content/author_stage{1..9}.py). Stage 10 is the last.
-      const knownShallow = 36;
+      // stage 9, and 0 with stage 10 (content/author_stage{1..10}.py).
+      //
+      // Zero is the end of the ratchet, not a milestone to relax. Every lesson
+      // in the library now meets its tier, so this may no longer fall — and any
+      // rise at all is a stage being flattened.
+      const knownShallow = 0;
       expect(
         shallow.length,
         lessThanOrEqualTo(knownShallow),
@@ -377,9 +381,9 @@ void main() {
       // stage 6, 139 of 210 after stage 7, 129 once stage 1 took its own ten
       // shipped quizzes from one question to two (content/author_stage1.py),
       // 105 after stage 4 and 85 after stage 5, then 54 with stages 2 and 3,
-      // 36 once stage 8 was authored and published, 18 with stage 9. The 18
-      // left are all stage 10.
-      const knownShallow = 18;
+      // 36 once stage 8 was authored and published, 18 with stage 9, and 0
+      // with stage 10. Not one quiz in the library asks a single question.
+      const knownShallow = 0;
       expect(
         shallow.length,
         lessThanOrEqualTo(knownShallow),
@@ -451,8 +455,9 @@ void main() {
       // 80 of 90 after stage 6, 74 of 96 after stage 7, 64 once stage 1's ten
       // stories each grew the fourth page (content/author_stage1.py), 52 after
       // stage 4 and 42 after stage 5, then 18 with stages 2 and 3, 12 once
-      // stage 8 landed and 6 with stage 9. What is left is stage 10 alone.
-      const knownShallow = 6;
+      // stage 8 landed, 6 with stage 9 and 0 with stage 10. Every story in
+      // the library now reaches its tier's page count.
+      const knownShallow = 0;
       expect(
         shallow.length,
         lessThanOrEqualTo(knownShallow),
