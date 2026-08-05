@@ -373,8 +373,9 @@ void main() {
       // Same ratchet rule as the lessons: may fall, never rise.
       // 172 of 199 when this test was written — including every stage the
       // lesson ratchet had already certified as done. 157 of 204 after
-      // stage 6, 139 of 210 after stage 7.
-      const knownShallow = 139;
+      // stage 6, 139 of 210 after stage 7, 129 once stage 1 took its own ten
+      // shipped quizzes from one question to two (content/author_stage1.py).
+      const knownShallow = 129;
       expect(
         shallow.length,
         lessThanOrEqualTo(knownShallow),
@@ -443,8 +444,9 @@ void main() {
       }
       // 85 of 85 when this test was written — the whole story library was
       // exactly three pages long, in every stage, including the done ones.
-      // 80 of 90 after stage 6, 74 of 96 after stage 7.
-      const knownShallow = 74;
+      // 80 of 90 after stage 6, 74 of 96 after stage 7, 64 once stage 1's ten
+      // stories each grew the fourth page (content/author_stage1.py).
+      const knownShallow = 64;
       expect(
         shallow.length,
         lessThanOrEqualTo(knownShallow),

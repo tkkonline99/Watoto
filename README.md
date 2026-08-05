@@ -55,26 +55,33 @@ were finished while 172 of 199 quizzes sat at one question and **every story in
 the library** sat at exactly three pages. A ratchet that guards one of three
 item types certifies one third of the work.
 
-**Stages 6 and 7 are complete** — the only stages at depth on all three types,
-and the two deepest in the library at about two hours and two and a half hours
-of play. Both run the `gamify-gently` arc, which adds a worked example and a
-check-yourself step to the six-step shape, because a six-year-old can follow
-one and a four-year-old cannot. Stage 7's ten pilot lessons
-(`content/deepen_stage7.py`) were left untouched by `author_stage7.py`, which
-deepened the other 26 around them.
+**Stages 6 and 7 are complete** — the two deepest in the library at about two
+hours and two and a half hours of play. Both run the `gamify-gently` arc, which
+adds a worked example and a check-yourself step to the six-step shape, because
+a six-year-old can follow one and a four-year-old cannot. Stage 7's ten pilot
+lessons (`content/deepen_stage7.py`) were left untouched by `author_stage7.py`,
+which deepened the other 26 around them.
 
-**Stages 1–5 hold their lesson depth.** The foundation band (1–3) runs 4–5
-steps on an infant arc — notice, do, do again changed, then carry it into the
-room. Stages 4–5 run the 6-step `encourage-effort` arc, with the child rather
-than the parent as the user. Every subject in all five has the build plan's
-full 6 lessons, 4 quizzes and 2 stories; the quizzes and stories are still
-thin.
+**Stage 1 is now complete too**, and it is the cheapest stage to finish because
+`parent-led` asks for the least: 4 steps, 2 questions, 4 pages. Its ten shipped
+quizzes had asked a single question each and its ten stories had stopped at
+three pages — a one-question quiz is a tap rather than a check, and three pages
+is setup and stop, with no room for the middle beat an object-permanence story
+is entirely about. Each shipped question and page was carried over word for
+word in all three languages rather than rewritten.
+
+**Stages 2–5 hold their lesson depth.** The rest of the foundation band (2–3)
+runs 4–5 steps on an infant arc — notice, do, do again changed, then carry it
+into the room. Stages 4–5 run the 6-step `encourage-effort` arc, with the child
+rather than the parent as the user. Every subject in all four has the build
+plan's full 6 lessons, 4 quizzes and 2 stories; the quizzes and stories are
+still thin.
 
 **Stages 8–10 are scaffolding and do not ship** — see
 [docs/V1_SCOPE.md](docs/V1_SCOPE.md). All 36 of each stage's lessons are at two
 steps.
 
-Remaining across the library: 108 lessons, 139 quizzes and 74 stories below
+Remaining across the library: 108 lessons, 129 quizzes and 64 stories below
 their tier's depth, plus 18 quizzes and 18 stories unwritten. The per-subject
 worklist is [docs/CONTENT_WORKLIST.md](docs/CONTENT_WORKLIST.md), regenerated
 by `node content/worklist.js`.

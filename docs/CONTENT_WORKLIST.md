@@ -12,8 +12,8 @@ _Library version 0.13.0, generated 2026-06-17._
 | Quizzes to author | 18 |
 | Stories to author | 18 |
 | Lessons below their tier's step depth | 108 |
-| Quizzes below their tier's question count | 139 |
-| Stories below their tier's page count | 74 |
+| Quizzes below their tier's question count | 129 |
+| Stories below their tier's page count | 64 |
 | Lessons with no recap | 138 |
 | Items with no illustration | 123 |
 | Unreferenced PNGs on disk | 0 |
@@ -35,33 +35,23 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 
 ### Stage 1 — Sensory Exploration (ages 0-1)
 
-- **Deepen 2 quizzes:** `s01.sensory.quiz.01` (1→2 questions), `s01.sensory.quiz.02` (1→2 questions)
-- **Deepen 2 stories:** `s01.sensory.story.01` (3→4 pages), `s01.sensory.story.02` (3→4 pages)
 - **Add 6 recaps:** `s01.sensory.lesson.01`, `s01.sensory.lesson.02`, `s01.sensory.lesson.03`, `s01.sensory.lesson.04`, `s01.sensory.lesson.05`, `s01.sensory.lesson.06`
 
 ### Stage 1 — Cause & Effect (ages 0-1)
 
-- **Deepen 2 quizzes:** `s01.cause.quiz.01` (1→2 questions), `s01.cause.quiz.02` (1→2 questions)
-- **Deepen 2 stories:** `s01.cause.story.01` (3→4 pages), `s01.cause.story.02` (3→4 pages)
 - **Add 6 recaps:** `s01.cause.lesson.01`, `s01.cause.lesson.02`, `s01.cause.lesson.03`, `s01.cause.lesson.04`, `s01.cause.lesson.05`, `s01.cause.lesson.06`
 
 ### Stage 1 — Object Permanence (ages 0-1)
 
-- **Deepen 2 quizzes:** `s01.object.quiz.01` (1→2 questions), `s01.object.quiz.02` (1→2 questions)
-- **Deepen 2 stories:** `s01.object.story.01` (3→4 pages), `s01.object.story.02` (3→4 pages)
 - **Add 6 recaps:** `s01.object.lesson.01`, `s01.object.lesson.02`, `s01.object.lesson.03`, `s01.object.lesson.04`, `s01.object.lesson.05`, `s01.object.lesson.06`
 
 ### Stage 1 — Early Language (ages 0-1)
 
-- **Deepen 2 quizzes:** `s01.lang.quiz.01` (1→2 questions), `s01.lang.quiz.02` (1→2 questions)
-- **Deepen 2 stories:** `s01.lang.story.01` (3→4 pages), `s01.lang.story.02` (3→4 pages)
 - **Add 6 recaps:** `s01.lang.lesson.01`, `s01.lang.lesson.02`, `s01.lang.lesson.03`, `s01.lang.lesson.04`, `s01.lang.lesson.05`, `s01.lang.lesson.06`
 - **1 items have no illustration** (emoji fallback): `s01.lang.lesson.06`
 
 ### Stage 1 — Motor Imitation (ages 0-1)
 
-- **Deepen 2 quizzes:** `s01.motor.quiz.01` (1→2 questions), `s01.motor.quiz.02` (1→2 questions)
-- **Deepen 2 stories:** `s01.motor.story.01` (3→4 pages), `s01.motor.story.02` (3→4 pages)
 - **Add 6 recaps:** `s01.motor.lesson.01`, `s01.motor.lesson.02`, `s01.motor.lesson.03`, `s01.motor.lesson.04`, `s01.motor.lesson.05`, `s01.motor.lesson.06`
 
 ### Stage 2 — Animals (ages 1-2)
