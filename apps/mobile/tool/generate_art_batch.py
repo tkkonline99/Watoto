@@ -331,8 +331,35 @@ def draw_abstract(draw, seed: str, stage: int):
     draw_sun(draw, 420, 90, 36, GOLD)
 
 
+_SCENE_RE = re.compile(r"\bscene\s*:\s*(.*)", re.IGNORECASE | re.DOTALL)
+
+
+def scene_of(brief: str) -> str:
+    """The part of a brief that says what to draw, without the style preamble.
+
+    Every step brief is written as a style boilerplate followed by the actual
+    subject: "Flat pastel cartoon, 512x512, soft rounded shapes, no text, no
+    letters or numerals drawn in the image. Scene: Look at the black and white
+    swirls."
+
+    The classifier below matches on substrings, and that boilerplate was being
+    fed to it along with the scene. The word **cartoon contains "car"**, so the
+    `"car" in t` rule matched all 820 step briefs and every one of them
+    rendered as a car — including "The dark sky" and "black and white swirls".
+    "letters" collides with the `"letter"` rule the same way; car simply came
+    first in the cascade. Nobody had rendered these, which is presumably how it
+    went unnoticed.
+
+    Splitting on "Scene:" fixes both at once and needs no change to the
+    keyword rules, several of which are deliberate prefix matches ("phon" for
+    phonics and phonemes) that word-boundary matching would break.
+    """
+    m = _SCENE_RE.search(brief or "")
+    return (m.group(1) if m else (brief or "")).strip()
+
+
 def classify_and_draw(draw, brief: str, name: str, stage: int, seed: str):
-    t = f"{brief} {name}".lower()
+    t = f"{scene_of(brief)} {name}".lower()
     cx, cy = SIZE // 2, SIZE // 2 + 10
 
     # faces / people
