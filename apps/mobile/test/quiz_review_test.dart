@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:watoto_mobile/core/config/publish_config.dart';
 import 'package:watoto_mobile/features/library/library_models.dart';
 import 'package:watoto_mobile/features/library/quiz_review.dart';
 
@@ -43,16 +44,31 @@ void main() {
       library.where((i) => i.type == LibraryType.quiz).toList();
 
   test('the library really is as thin as this fix assumes', () {
-    // A tripwire, and it is meant to trip. 140 of 166 when the top-up was
-    // written; 109 of 210 now that stages 6 and 7 carry four authored
-    // questions each. Two more stages will take it under this threshold.
+    // A tripwire, and it is meant to trip. When it does, the fix is NOT to
+    // lower the number. It is to decide whether the top-up should still run
+    // at all — a borrowed recap question is weaker than an authored one, and
+    // it only earns its place while most quizzes have nothing else to offer.
     //
-    // When it does, the fix is NOT to lower the number. It is to decide
-    // whether the top-up should still run at all — a borrowed recap question
-    // is weaker than an authored one, and it only earns its place while most
-    // quizzes have nothing else to offer.
-    final single = quizzes().where((q) => q.questions.length <= 1).length;
-    expect(single, greaterThan(100),
+    // It counted every quiz in the library until stage 1 went to depth, and
+    // that reading was wrong in a way worth recording. `canExpandQuiz` skips
+    // `parent-led` outright, so the 31 thin quizzes in that band were never
+    // candidates for the top-up at all. Stage 1 took the raw figure from 109
+    // to 99 by fixing ten of them — it moved the tripwire without changing a
+    // single quiz the mechanism touches. A tripwire measuring a population
+    // its subject ignores will keep firing for reasons that have nothing to
+    // do with the question it was asked to watch.
+    //
+    // So it now counts what the top-up can actually reach: expandable quizzes
+    // in the stages that ship. 29 of 88, all of them stage 4 and stage 5, and
+    // both are next in `_buildPlan.priorityOrder`. When those two land this
+    // goes to roughly zero and the top-up should be deleted rather than
+    // re-thresholded — at that point every shipping quiz carries its own
+    // authored questions and borrowing is pure loss.
+    final thin = quizzes()
+        .where((q) => canExpandQuiz(q) && q.stage <= maxPublishedStage)
+        .where((q) => q.questions.length <= 1)
+        .length;
+    expect(thin, greaterThan(20),
         reason: 'the top-up may have outlived its purpose — read the comment');
   });
 
