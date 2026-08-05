@@ -90,9 +90,15 @@ void main() {
     // correctly returns unchanged. Counting those as failures-to-improve made
     // this ratio fall every time a stage was authored properly, which is
     // backwards: the top-up doing nothing to a complete quiz is the point.
+    // Measured against the quiz's *tier* target, not a flat four — the same
+    // trap one line up, one level deeper. A stage-5 quiz with its authored
+    // three is not short; counting it as short and then recording that it did
+    // not grow is the exact "failure to improve" this comment already warns
+    // about, and it dragged the ratio under the threshold the moment stage 5
+    // was authored properly.
     final short = quizzes()
         .where(canExpandQuiz)
-        .where((q) => q.questions.length < targetQuizQuestions)
+        .where((q) => q.questions.length < targetQuestionsFor(q))
         .toList();
     expect(short, isNotEmpty);
 

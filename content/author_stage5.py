@@ -1208,7 +1208,12 @@ EXTRA_QUESTIONS: dict[str, list[dict]] = {
            "Pense au poids d'une feuille. Réessaie.")),
     ],
     "s05.science.quiz.02": [
-        Q(("Which one is living?", "Kipi kinaishi?", "Lequel est vivant ?"),
+        # Not "Which one is living?" — that is question 0's prompt word for
+        # word, and quiz_review dedupes on normalized prompt text, so the two
+        # collapsed into one and the quiz played a question short.
+        Q(("A cat and a chair. Which one is alive?",
+           "Paka na kiti. Kipi kiko hai?",
+           "Un chat et une chaise. Lequel est vivant ?"),
           [(("Cat", "Paka", "Chat"), "img/s05/cat.png"),
            (("Chair", "Kiti", "Chaise"), "img/s05/nonliving_chair.png")], 0,
           ("The cat. It eats, grows and moves on its own.",

@@ -18829,7 +18829,7 @@
           "retryFeedback": "Living things grow and need water. Try again!"
         },
         {
-          "prompt": "Which one is living?",
+          "prompt": "A cat and a chair. Which one is alive?",
           "options": [
             {
               "label": "Cat",

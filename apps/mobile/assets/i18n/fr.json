@@ -3570,7 +3570,7 @@
   "s05.science.quiz.02.questions.1.correctFeedback": "Le chat. Il mange, grandit et bouge tout seul.",
   "s05.science.quiz.02.questions.1.options.0.label": "Chat",
   "s05.science.quiz.02.questions.1.options.1.label": "Chaise",
-  "s05.science.quiz.02.questions.1.prompt": "Lequel est vivant ?",
+  "s05.science.quiz.02.questions.1.prompt": "Un chat et une chaise. Lequel est vivant ?",
   "s05.science.quiz.02.questions.1.retryFeedback": "Lequel pourrait avoir faim ? Réessaie.",
   "s05.science.quiz.02.questions.2.correctFeedback": "Grandir et avoir des besoins, voilà le test. Pas la couleur.",
   "s05.science.quiz.02.questions.2.options.0.label": "Elle pousse et a besoin d'eau",
