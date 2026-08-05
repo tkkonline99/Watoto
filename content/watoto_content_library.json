@@ -48151,7 +48151,7 @@
           "choiceIndex": 0
         },
         {
-          "narration": "Both compare. A simile admits it with 'like' or 'as'; a metaphor does not.",
+          "narration": "Both compare a voice to thunder. A simile admits it with 'like'; a metaphor does not.",
           "action": "watch",
           "feedback": "A metaphor is stronger because it does not ask permission first.",
           "mechanic": "explain"
@@ -48259,7 +48259,7 @@
           "mechanic": "tap"
         },
         {
-          "narration": "Tap what 'break a leg' means when said before a performance.",
+          "narration": "An actor is about to walk on stage. Tap what 'break a leg' means.",
           "action": "tap",
           "feedback": "Good luck. Its history is odd, and knowing it is the only way to know it.",
           "mechanic": "tap"
@@ -48452,7 +48452,7 @@
           "choiceIndex": 0
         },
         {
-          "narration": "Point of view decides what the reader is allowed to know.",
+          "narration": "Point of view decides what the reader knows: whose eyes the room is seen through.",
           "action": "watch",
           "feedback": "A first-person narrator cannot tell you what anyone else is thinking.",
           "mechanic": "explain"
@@ -48470,7 +48470,7 @@
           "mechanic": "tap"
         },
         {
-          "narration": "Tap what changes if a scary scene is told by the person who is frightened.",
+          "narration": "A dark house at midnight, told by the frightened child inside it. Tap what changes.",
           "action": "tap",
           "feedback": "You feel it instead of watching it, and you know less than they do not.",
           "mechanic": "tap"
@@ -49471,7 +49471,7 @@
           "choiceIndex": 2
         },
         {
-          "narration": "Energy is never made or lost. It only changes from one form into another.",
+          "narration": "A lamp, a drum, a rolling ball: energy is never made or lost, only changed in form.",
           "action": "watch",
           "feedback": "A torch turns chemical energy into light, and some of it into heat.",
           "mechanic": "explain"
@@ -49657,7 +49657,7 @@
           "choiceIndex": 2
         },
         {
-          "narration": "Melting, freezing and evaporating change the state, never the substance.",
+          "narration": "Ice, water and steam: melting and freezing change the state, never the substance.",
           "action": "watch",
           "feedback": "Weigh ice, melt it, weigh the water. Nothing has been gained or lost.",
           "mechanic": "explain"
@@ -49771,7 +49771,7 @@
           "mechanic": "tap"
         },
         {
-          "narration": "Tap what a hypothesis is, before you test anything.",
+          "narration": "Before you throw a single paper plane, tap what a hypothesis is.",
           "action": "tap",
           "feedback": "A prediction you are willing to be wrong about, written down first.",
           "mechanic": "tap"
@@ -51472,7 +51472,7 @@
           "mechanic": "drag"
         },
         {
-          "narration": "An essay tells the reader where it is going, goes there, then says it arrived.",
+          "narration": "An essay is a road: it names the destination, travels there, then says it arrived.",
           "action": "watch",
           "feedback": "That repetition is not padding. It is how a reader keeps their place.",
           "mechanic": "explain"
@@ -51490,7 +51490,7 @@
           "mechanic": "tap"
         },
         {
-          "narration": "Someone put a brand-new reason in the conclusion. Tap why that is wrong.",
+          "narration": "The last page of an essay adds a brand-new reason. Tap why that is wrong.",
           "action": "tap",
           "feedback": "A conclusion gathers what was argued. New evidence needs a body paragraph.",
           "mechanic": "tap"
@@ -51860,7 +51860,7 @@
           "mechanic": "tap"
         },
         {
-          "narration": "Narrative tells, informative explains, persuasive asks you to do something.",
+          "narration": "A story tells, a label explains, an advert asks you to buy. Three kinds of writing.",
           "action": "watch",
           "feedback": "The third one is the one to read most carefully.",
           "mechanic": "explain"
