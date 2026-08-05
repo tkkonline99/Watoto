@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
+import 'package:watoto_mobile/core/config/publish_config.dart';
 import 'package:watoto_mobile/core/offline/offline_store.dart';
 import 'package:watoto_mobile/features/auth/entitlements.dart';
 import 'package:watoto_mobile/features/gamification/economy.dart';
@@ -29,12 +30,15 @@ void main() {
   });
 
   group('entitlements', () {
-    test('publish free-only unlocks all stages; premium always unlocks', () {
+    test('publish free-only unlocks every published stage; premium always '
+        'unlocks', () {
       // Default PUBLISH_FREE_ONLY=true so a no-IAP store launch is playable.
+      // "All stages" now means all *published* stages: this build stops at
+      // maxPublishedStage, and a free ceiling above that would advertise
+      // content the build does not contain (test/published_stages_test.dart).
       expect(isStageUnlocked(3, Entitlement.free), isTrue);
       expect(isStageUnlocked(5, Entitlement.free), isTrue);
-      expect(isStageUnlocked(6, Entitlement.free), isTrue);
-      expect(isStageUnlocked(10, Entitlement.free), isTrue);
+      expect(isStageUnlocked(maxPublishedStage, Entitlement.free), isTrue);
       expect(
         isStageUnlocked(
           10,

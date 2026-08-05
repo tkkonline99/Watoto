@@ -33,9 +33,12 @@ class SubjectCategory {
     return null;
   }
 
-  /// Every stage (age band) whose curriculum includes this subject.
+  /// Every published stage (age band) whose curriculum includes this subject.
+  ///
+  /// Published, not every stage: this list is the age picker a child taps
+  /// through on the home screen, so an unshipped stage here is a dead end.
   List<CurriculumStage> stagesAvailable() => [
-    for (final s in curriculumStages)
+    for (final s in publishedCurriculumStages)
       if (topicNameFor(s) != null) s,
   ];
 }

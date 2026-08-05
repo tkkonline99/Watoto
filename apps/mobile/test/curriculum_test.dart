@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
+import 'package:watoto_mobile/core/config/publish_config.dart';
 import 'package:watoto_mobile/app.dart';
 import 'package:watoto_mobile/core/network/watoto_api.dart';
 import 'package:watoto_mobile/core/offline/offline_providers.dart';
@@ -47,13 +48,20 @@ void main() {
       }
     });
 
-    test('maps age to the right stage', () {
+    test('maps age to the right stage, within what this build publishes', () {
+      // The mapping the curriculum defines, then clamped to what ships. Written
+      // as capped(n) rather than a literal so raising maxPublishedStage as
+      // stage 7 lands does not turn this red — see
+      // test/published_stages_test.dart for the rest of that guard.
+      int capped(int stage) =>
+          stage < maxPublishedStage ? stage : maxPublishedStage;
+
       expect(stageForAge(0).stage, 1);
       expect(stageForAge(2).stage, 3);
       expect(stageForAge(5).stage, 6);
-      expect(stageForAge(7).stage, 8);
-      expect(stageForAge(9).stage, 10);
-      expect(stageForAge(10).stage, 10); // clamps to the top stage
+      expect(stageForAge(7).stage, capped(8));
+      expect(stageForAge(9).stage, capped(10));
+      expect(stageForAge(10).stage, capped(10));
     });
 
     test('every stage has topics, each with activities', () {
@@ -73,7 +81,13 @@ void main() {
     });
 
     test('stageForBirthYear uses the current year', () {
-      expect(stageForBirthYear(DateTime.now().year - 7).stage, 8);
+      // A three-year-old is inside the published band, so this checks the
+      // arithmetic rather than the clamp.
+      expect(stageForBirthYear(DateTime.now().year - 3).stage, 4);
+      expect(
+        stageForBirthYear(DateTime.now().year - 7).stage,
+        8 < maxPublishedStage ? 8 : maxPublishedStage,
+      );
     });
   });
 
