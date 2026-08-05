@@ -86,6 +86,14 @@ their tier's depth, plus 18 quizzes and 18 stories unwritten. The per-subject
 worklist is [docs/CONTENT_WORKLIST.md](docs/CONTENT_WORKLIST.md), regenerated
 by `node content/worklist.js`.
 
+That worklist used to open with "138 lessons with no recap", which was noise.
+A recap is a written multiple-choice question, so every `reading: false` lesson
+withholds one deliberately — and the split turned out to be exact: all 204
+reading lessons have a recap, none of the 138 pre-reading ones do. It now
+counts only reading lessons, and the figure is 0. Whether a pre-reader should
+get a *spoken* two-option recap is a real design question, since the recap view
+narrates as well as prints; it is not 138 pieces of missing content.
+
 Authored by `content/author_stage{1..7}.py`, all idempotent with a `--check`
 mode, sharing `content/authoring.py`. A stage costs roughly 3,000–3,900 lines
 of authoring script and 2,700–2,900 new strings across the three languages.
