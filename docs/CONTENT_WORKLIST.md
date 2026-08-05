@@ -12,10 +12,10 @@ _Library version 0.13.0, generated 2026-06-17._
 | Quizzes to author | 18 |
 | Stories to author | 18 |
 | Lessons below their tier's step depth | 108 |
-| Quizzes below their tier's question count | 85 |
-| Stories below their tier's page count | 42 |
+| Quizzes below their tier's question count | 54 |
+| Stories below their tier's page count | 18 |
 | Reading lessons with no recap | 0 |
-| Items with no illustration | 115 |
+| Items with no illustration | 111 |
 | Unreferenced PNGs on disk | 0 |
 | Steps with no declared mechanic | 0 |
 | Declared audio files that do not exist | 77 |
@@ -55,68 +55,51 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 
 ### Stage 2 — Animals (ages 1-2)
 
-- **Deepen 2 quizzes:** `s02.animals.quiz.02` (1→2 questions), `s02.animals.quiz.03` (1→2 questions)
-- **Deepen 2 stories:** `s02.animals.story.01` (3→4 pages), `s02.animals.story.02` (3→4 pages)
+- ✅ complete
 
 ### Stage 2 — Body Parts (ages 1-2)
 
-- **Deepen 3 quizzes:** `s02.body.quiz.01` (1→2 questions), `s02.body.quiz.02` (1→2 questions), `s02.body.quiz.03` (1→2 questions)
-- **Deepen 2 stories:** `s02.body.story.01` (3→4 pages), `s02.body.story.02` (3→4 pages)
 - **1 items have no illustration** (emoji fallback): `s02.body.lesson.02`
 
 ### Stage 2 — Colors & Shapes (ages 1-2)
 
-- **Deepen 2 quizzes:** `s02.colors.quiz.02` (1→2 questions), `s02.colors.quiz.03` (1→2 questions)
-- **Deepen 2 stories:** `s02.colors.story.01` (3→4 pages), `s02.colors.story.02` (3→4 pages)
+- ✅ complete
 
 ### Stage 2 — Simple Sorting (ages 1-2)
 
-- **Deepen 3 quizzes:** `s02.sorting.quiz.01` (1→2 questions), `s02.sorting.quiz.02` (1→2 questions), `s02.sorting.quiz.03` (1→2 questions)
-- **Deepen 2 stories:** `s02.sorting.story.01` (3→4 pages), `s02.sorting.story.02` (3→4 pages)
+- ✅ complete
 
 ### Stage 2 — First Numbers (ages 1-2)
 
-- **Deepen 3 quizzes:** `s02.numbers.quiz.01` (1→2 questions), `s02.numbers.quiz.02` (1→2 questions), `s02.numbers.quiz.03` (1→2 questions)
-- **Deepen 2 stories:** `s02.numbers.story.01` (3→4 pages), `s02.numbers.story.02` (3→4 pages)
-- **2 items have no illustration** (emoji fallback): `s02.numbers.quiz.01`, `s02.numbers.quiz.02`
+- ✅ complete
 
 ### Stage 2 — Music & Routines (ages 1-2)
 
-- **Deepen 3 quizzes:** `s02.music.quiz.01` (1→2 questions), `s02.music.quiz.02` (1→2 questions), `s02.music.quiz.03` (1→2 questions)
-- **Deepen 2 stories:** `s02.music.story.01` (3→4 pages), `s02.music.story.02` (3→4 pages)
 - **1 items have no illustration** (emoji fallback): `s02.music.lesson.04`
 
 ### Stage 3 — Vocabulary (ages 2-3)
 
-- **Deepen 3 quizzes:** `s03.vocab.quiz.01` (1→2 questions), `s03.vocab.quiz.02` (1→2 questions), `s03.vocab.quiz.03` (1→2 questions)
-- **Deepen 2 stories:** `s03.vocab.story.01` (3→4 pages), `s03.vocab.story.02` (3→4 pages)
+- ✅ complete
 
 ### Stage 3 — Phonological Awareness (ages 2-3)
 
-- **Deepen 2 quizzes:** `s03.phono.quiz.02` (1→2 questions), `s03.phono.quiz.03` (1→2 questions)
-- **Deepen 2 stories:** `s03.phono.story.01` (3→4 pages), `s03.phono.story.02` (3→4 pages)
 - **1 items have no illustration** (emoji fallback): `s03.phono.lesson.02`
 
 ### Stage 3 — Counting & Numbers (ages 2-3)
 
-- **Deepen 3 quizzes:** `s03.counting.quiz.01` (1→2 questions), `s03.counting.quiz.02` (1→2 questions), `s03.counting.quiz.03` (1→2 questions)
-- **Deepen 2 stories:** `s03.counting.story.01` (3→4 pages), `s03.counting.story.02` (3→4 pages)
-- **3 items have no illustration** (emoji fallback): `s03.counting.quiz.01`, `s03.counting.quiz.02`, `s03.counting.quiz.03`
+- **1 items have no illustration** (emoji fallback): `s03.counting.quiz.03`
 
 ### Stage 3 — Patterns & Opposites (ages 2-3)
 
-- **Deepen 2 quizzes:** `s03.patterns.quiz.02` (1→2 questions), `s03.patterns.quiz.03` (1→2 questions)
-- **Deepen 2 stories:** `s03.patterns.story.01` (3→4 pages), `s03.patterns.story.02` (3→4 pages)
+- ✅ complete
 
 ### Stage 3 — Emotions (ages 2-3)
 
-- **Deepen 2 quizzes:** `s03.emotions.quiz.02` (1→2 questions), `s03.emotions.quiz.03` (1→2 questions)
-- **Deepen 2 stories:** `s03.emotions.story.01` (3→4 pages), `s03.emotions.story.02` (3→4 pages)
+- ✅ complete
 
 ### Stage 3 — Tracing & Stories (ages 2-3)
 
-- **Deepen 3 quizzes:** `s03.tracing.quiz.01` (1→2 questions), `s03.tracing.quiz.02` (1→2 questions), `s03.tracing.quiz.03` (1→2 questions)
-- **Deepen 2 stories:** `s03.stories.story.01` (3→4 pages), `s03.tracing.story.02` (3→4 pages)
+- ✅ complete
 
 ## P2 — pre-literacy → kindergarten (stages 4-6)
 

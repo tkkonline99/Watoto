@@ -4049,7 +4049,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s02/sheep.png",
+          "desc": "Sheep"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/cow.png",
+          "desc": "Cow"
+        }
+      ],
       "questions": [
         {
           "prompt": "Which animal says 'moo'?",
@@ -4066,6 +4077,22 @@
           "answer": 0,
           "correctFeedback": "Moo! The cow says moo. 🐄",
           "retryFeedback": "Listen for 'moo'. Try again!"
+        },
+        {
+          "prompt": "Which animal says 'baa'?",
+          "options": [
+            {
+              "label": "Sheep",
+              "asset": "img/s02/sheep.png"
+            },
+            {
+              "label": "Cow",
+              "asset": "img/s02/cow.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Baa! The sheep says baa. 🐑",
+          "retryFeedback": "Listen for 'baa'. Try again!"
         }
       ]
     },
@@ -4083,7 +4110,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s02/tree.png",
+          "desc": "In a tree"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/water.png",
+          "desc": "In water"
+        }
+      ],
       "questions": [
         {
           "prompt": "Where does the fish live?",
@@ -4100,6 +4138,22 @@
           "answer": 0,
           "correctFeedback": "That's it. Fish live in water.",
           "retryFeedback": "Fish like to swim. Try again!"
+        },
+        {
+          "prompt": "Where does the bird live?",
+          "options": [
+            {
+              "label": "In a tree",
+              "asset": "img/s02/tree.png"
+            },
+            {
+              "label": "In water",
+              "asset": "img/s02/water.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Up in the tree, in a nest.",
+          "retryFeedback": "Birds like branches. Try again!"
         }
       ]
     },
@@ -4175,31 +4229,52 @@
       "designTier": "parent-led",
       "reading": false,
       "timed": false,
-      "interaction": "tap-the-animal",
-      "parentNote": null,
+      "interaction": "listen",
+      "parentNote": "Make each animal's sound as you turn the page.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
         {
           "type": "audio",
           "ref": "audio/s02/farm_narration.mp3",
           "desc": "Cheerful narrator"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/farm_cow.png",
+          "desc": "On the farm, the cow eats grass. Tap the cow!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/farm_pond.png",
+          "desc": "In the pond, the duck goes for a swim. Tap the duck!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/sheep.png",
+          "desc": "In the field, the sheep says baa. Tap the sheep!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/farm_coop.png",
+          "desc": "In the coop, the hen lays an egg. Goodnight, farm!"
         }
       ],
       "pages": [
         {
           "narration": "On the farm, the cow eats grass. Tap the cow!",
-          "illustration": "img/s02/farm_cow.png",
-          "interaction": "tap-the-cow"
+          "illustration": "img/s02/farm_cow.png"
         },
         {
           "narration": "In the pond, the duck goes for a swim. Tap the duck!",
-          "illustration": "img/s02/farm_pond.png",
-          "interaction": "tap-the-duck"
+          "illustration": "img/s02/farm_pond.png"
+        },
+        {
+          "narration": "In the field, the sheep says baa. Tap the sheep!",
+          "illustration": "img/s02/sheep.png"
         },
         {
           "narration": "In the coop, the hen lays an egg. Goodnight, farm!",
-          "illustration": "img/s02/farm_coop.png",
-          "interaction": null
+          "illustration": "img/s02/farm_coop.png"
         }
       ]
     },
@@ -4230,6 +4305,11 @@
         },
         {
           "type": "image",
+          "ref": "img/s02/bird.png",
+          "desc": "Something with wings lands on a leaf. A bird!"
+        },
+        {
+          "type": "image",
           "ref": "img/s02/cow_grass.png",
           "desc": "Something soft says moo. A cow, come to say hello."
         }
@@ -4242,6 +4322,10 @@
         {
           "narration": "Something long slides by. A snake!",
           "illustration": "img/s02/snake_grass.png"
+        },
+        {
+          "narration": "Something with wings lands on a leaf. A bird!",
+          "illustration": "img/s02/bird.png"
         },
         {
           "narration": "Something soft says moo. A cow, come to say hello.",
@@ -4576,7 +4660,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s02/ear.png",
+          "desc": "Ear"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/nose.png",
+          "desc": "Nose"
+        }
+      ],
       "questions": [
         {
           "prompt": "Tap the nose.",
@@ -4593,6 +4688,22 @@
           "answer": 0,
           "correctFeedback": "That's the nose!",
           "retryFeedback": "It's in the middle of the face. Try again!"
+        },
+        {
+          "prompt": "Now tap the ear.",
+          "options": [
+            {
+              "label": "Ear",
+              "asset": "img/s02/ear.png"
+            },
+            {
+              "label": "Nose",
+              "asset": "img/s02/nose.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "That's the ear! We hear with it.",
+          "retryFeedback": "It is on the side of the head. Try again!"
         }
       ]
     },
@@ -4610,7 +4721,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s02/hand.png",
+          "desc": "Hands"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/eyes.png",
+          "desc": "Eyes"
+        }
+      ],
       "questions": [
         {
           "prompt": "Tap the eyes.",
@@ -4627,6 +4749,22 @@
           "answer": 0,
           "correctFeedback": "You found them. We see with our eyes.",
           "retryFeedback": "We use them to see. Try again!"
+        },
+        {
+          "prompt": "Now tap the hands.",
+          "options": [
+            {
+              "label": "Hands",
+              "asset": "img/s02/hand.png"
+            },
+            {
+              "label": "Eyes",
+              "asset": "img/s02/eyes.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Hands! We hold and clap with them.",
+          "retryFeedback": "Wiggle your fingers. Try again!"
         }
       ]
     },
@@ -4644,7 +4782,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s02/mouth.png",
+          "desc": "Mouth"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/ear.png",
+          "desc": "Ears"
+        }
+      ],
       "questions": [
         {
           "prompt": "What do we hear with?",
@@ -4661,6 +4810,22 @@
           "answer": 0,
           "correctFeedback": "Right. We hear with our ears.",
           "retryFeedback": "Listen. Which ones catch sound? Try again!"
+        },
+        {
+          "prompt": "What do we eat with?",
+          "options": [
+            {
+              "label": "Mouth",
+              "asset": "img/s02/mouth.png"
+            },
+            {
+              "label": "Ears",
+              "asset": "img/s02/ear.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "The mouth. Chew, chew!",
+          "retryFeedback": "Ears are for listening. Try again!"
         }
       ]
     },
@@ -4736,7 +4901,7 @@
       "designTier": "parent-led",
       "reading": false,
       "timed": false,
-      "interaction": "tap-to-turn",
+      "interaction": "listen",
       "parentNote": "Do each wiggle together; great before nap time.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
@@ -4744,23 +4909,44 @@
           "type": "audio",
           "ref": "audio/s02/wiggle.mp3",
           "desc": "Playful narrator"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/story_head.png",
+          "desc": "Nod your head. Yes, yes, yes!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/story_arms.png",
+          "desc": "Wave your arms. Swish, swish!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/feet.png",
+          "desc": "Stamp your feet. Stomp, stomp!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/story_toes.png",
+          "desc": "Wiggle your toes, then have a rest. All done!"
         }
       ],
       "pages": [
         {
           "narration": "Nod your head. Yes, yes, yes!",
-          "illustration": "img/s02/story_head.png",
-          "interaction": "tap-to-nod"
+          "illustration": "img/s02/story_head.png"
         },
         {
           "narration": "Wave your arms. Swish, swish!",
-          "illustration": "img/s02/story_arms.png",
-          "interaction": "tap-to-wave"
+          "illustration": "img/s02/story_arms.png"
+        },
+        {
+          "narration": "Stamp your feet. Stomp, stomp!",
+          "illustration": "img/s02/feet.png"
         },
         {
           "narration": "Wiggle your toes, then have a rest. All done!",
-          "illustration": "img/s02/story_toes.png",
-          "interaction": null
+          "illustration": "img/s02/story_toes.png"
         }
       ]
     },
@@ -4791,6 +4977,11 @@
         },
         {
           "type": "image",
+          "ref": "img/s02/hands.png",
+          "desc": "My hands can hold. Hold on tight!"
+        },
+        {
+          "type": "image",
           "ref": "img/s02/hands_hug.png",
           "desc": "My hands can hug. Come here!"
         }
@@ -4803,6 +4994,10 @@
         {
           "narration": "My hands can wave. Hello, hello!",
           "illustration": "img/s02/hands_wave.png"
+        },
+        {
+          "narration": "My hands can hold. Hold on tight!",
+          "illustration": "img/s02/hands.png"
         },
         {
           "narration": "My hands can hug. Come here!",
@@ -5220,7 +5415,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s02/fish_green.png",
+          "desc": "Green fish"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/fish_blue.png",
+          "desc": "Blue fish"
+        }
+      ],
       "questions": [
         {
           "prompt": "Tap the blue one.",
@@ -5237,6 +5443,22 @@
           "answer": 0,
           "correctFeedback": "That one is blue!",
           "retryFeedback": "Blue is like the sky. Try again!"
+        },
+        {
+          "prompt": "Now tap the green one.",
+          "options": [
+            {
+              "label": "Green fish",
+              "asset": "img/s02/fish_green.png"
+            },
+            {
+              "label": "Blue fish",
+              "asset": "img/s02/fish_blue.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "That one is green, like grass.",
+          "retryFeedback": "Green is like the leaves. Try again!"
         }
       ]
     },
@@ -5254,7 +5476,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s02/circle.png",
+          "desc": "Circle"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/square.png",
+          "desc": "Square"
+        }
+      ],
       "questions": [
         {
           "prompt": "Tap the square.",
@@ -5271,6 +5504,22 @@
           "answer": 0,
           "correctFeedback": "You found the square. It has four sides.",
           "retryFeedback": "A square has corners. Try again!"
+        },
+        {
+          "prompt": "Now tap the circle.",
+          "options": [
+            {
+              "label": "Circle",
+              "asset": "img/s02/circle.png"
+            },
+            {
+              "label": "Square",
+              "asset": "img/s02/square.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Round and round. No corners at all!",
+          "retryFeedback": "A circle has no corners. Try again!"
         }
       ]
     },
@@ -5346,31 +5595,52 @@
       "designTier": "parent-led",
       "reading": false,
       "timed": false,
-      "interaction": "tap-to-turn",
-      "parentNote": null,
+      "interaction": "listen",
+      "parentNote": "Trace each shape in the air with your finger.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
         {
           "type": "audio",
           "ref": "audio/s02/parade.mp3",
           "desc": "Cheerful parade music"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/parade_circle.png",
+          "desc": "Here comes the circle, rolling along!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/parade_square.png",
+          "desc": "The square marches, stomp-stomp!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/wheel.png",
+          "desc": "A round wheel rolls past too. Round like the circle!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/parade_triangle.png",
+          "desc": "The triangle hops at the end. Hooray, shapes!"
         }
       ],
       "pages": [
         {
           "narration": "Here comes the circle, rolling along!",
-          "illustration": "img/s02/parade_circle.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s02/parade_circle.png"
         },
         {
           "narration": "The square marches, stomp-stomp!",
-          "illustration": "img/s02/parade_square.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s02/parade_square.png"
+        },
+        {
+          "narration": "A round wheel rolls past too. Round like the circle!",
+          "illustration": "img/s02/wheel.png"
         },
         {
           "narration": "The triangle hops at the end. Hooray, shapes!",
-          "illustration": "img/s02/parade_triangle.png",
-          "interaction": null
+          "illustration": "img/s02/parade_triangle.png"
         }
       ]
     },
@@ -5401,6 +5671,11 @@
         },
         {
           "type": "image",
+          "ref": "img/s02/leaf_green.png",
+          "desc": "A green leaf, small in my hand."
+        },
+        {
+          "type": "image",
           "ref": "img/s02/sky_blue.png",
           "desc": "A blue sky, big over everything."
         }
@@ -5413,6 +5688,10 @@
         {
           "narration": "A yellow sun, warm on my face.",
           "illustration": "img/s02/sun_story.png"
+        },
+        {
+          "narration": "A green leaf, small in my hand.",
+          "illustration": "img/s02/leaf_green.png"
         },
         {
           "narration": "A blue sky, big over everything.",
@@ -5736,7 +6015,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s02/kitten_three.png",
+          "desc": "3"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/kitten_one.png",
+          "desc": "1"
+        }
+      ],
       "questions": [
         {
           "prompt": "How many balls? Tap the right number.",
@@ -5757,6 +6047,22 @@
           "answer": 0,
           "correctFeedback": "You counted two balls.",
           "retryFeedback": "Touch each ball as you count. Try again!"
+        },
+        {
+          "prompt": "How many kittens? Tap the right number.",
+          "options": [
+            {
+              "label": "3",
+              "asset": "img/s02/kitten_three.png"
+            },
+            {
+              "label": "1",
+              "asset": "img/s02/kitten_one.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Three kittens. One, two, three.",
+          "retryFeedback": "Touch each kitten as you count. Try again!"
         }
       ]
     },
@@ -5774,7 +6080,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s02/three_ducks.png",
+          "desc": "3"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/duck_1.png",
+          "desc": "1"
+        }
+      ],
       "questions": [
         {
           "prompt": "Count the apples. How many?",
@@ -5795,6 +6112,22 @@
           "answer": 0,
           "correctFeedback": "You counted three apples.",
           "retryFeedback": "Touch each apple as you count. Try again!"
+        },
+        {
+          "prompt": "Count the ducks. How many?",
+          "options": [
+            {
+              "label": "3",
+              "asset": "img/s02/three_ducks.png"
+            },
+            {
+              "label": "1",
+              "asset": "img/s02/duck_1.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Three ducks in a row.",
+          "retryFeedback": "Point at each duck. Try again!"
         }
       ]
     },
@@ -5812,7 +6145,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s02/plate_1.png",
+          "desc": "Plate with 1"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/plate_3.png",
+          "desc": "Plate with 3"
+        }
+      ],
       "questions": [
         {
           "prompt": "Which plate has more cookies?",
@@ -5829,6 +6173,22 @@
           "answer": 0,
           "correctFeedback": "You compared them. That plate has more.",
           "retryFeedback": "More means a bigger bunch. Try again!"
+        },
+        {
+          "prompt": "Now tap the plate with fewer cookies.",
+          "options": [
+            {
+              "label": "Plate with 1",
+              "asset": "img/s02/plate_1.png"
+            },
+            {
+              "label": "Plate with 3",
+              "asset": "img/s02/plate_3.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Fewer means a smaller bunch. Just one.",
+          "retryFeedback": "Count them both again. Try again!"
         }
       ]
     },
@@ -5904,7 +6264,7 @@
       "designTier": "parent-led",
       "reading": false,
       "timed": false,
-      "interaction": "tap-to-turn",
+      "interaction": "listen",
       "parentNote": "Hold up fingers — one, two, three — as you read.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
@@ -5912,23 +6272,44 @@
           "type": "audio",
           "ref": "audio/s02/three_ducks.mp3",
           "desc": "Gentle counting narrator"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/duck_1.png",
+          "desc": "One little duck swims in the pond."
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/duck_3.png",
+          "desc": "Two more come along. Now there are three!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/hand_count.png",
+          "desc": "Count them with me: one, two, three."
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/ducks_home.png",
+          "desc": "Three little ducks paddle home. Goodnight, ducks!"
         }
       ],
       "pages": [
         {
           "narration": "One little duck swims in the pond.",
-          "illustration": "img/s02/duck_1.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s02/duck_1.png"
         },
         {
           "narration": "Two more come along. Now there are three!",
-          "illustration": "img/s02/duck_3.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s02/duck_3.png"
+        },
+        {
+          "narration": "Count them with me: one, two, three.",
+          "illustration": "img/s02/hand_count.png"
         },
         {
           "narration": "Three little ducks paddle home. Goodnight, ducks!",
-          "illustration": "img/s02/ducks_home.png",
-          "interaction": null
+          "illustration": "img/s02/ducks_home.png"
         }
       ]
     },
@@ -5961,6 +6342,11 @@
           "type": "image",
           "ref": "img/s02/kitten_three.png",
           "desc": "Three steps. Right into your lap!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/sleep.png",
+          "desc": "Three steps, and a purr. Goodnight, kitten."
         }
       ],
       "pages": [
@@ -5975,6 +6361,10 @@
         {
           "narration": "Three steps. Right into your lap!",
           "illustration": "img/s02/kitten_three.png"
+        },
+        {
+          "narration": "Three steps, and a purr. Goodnight, kitten.",
+          "illustration": "img/s02/sleep.png"
         }
       ]
     },
@@ -6297,7 +6687,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s02/bell.png",
+          "desc": "Little bell"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/drum.png",
+          "desc": "Big drum"
+        }
+      ],
       "questions": [
         {
           "prompt": "Which one is loud?",
@@ -6314,6 +6715,22 @@
           "answer": 0,
           "correctFeedback": "You picked the loud one. The big drum booms.",
           "retryFeedback": "A drum goes boom. Try again!"
+        },
+        {
+          "prompt": "Now tap the quiet one.",
+          "options": [
+            {
+              "label": "Little bell",
+              "asset": "img/s02/bell.png"
+            },
+            {
+              "label": "Big drum",
+              "asset": "img/s02/drum.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Ting. Soft and small.",
+          "retryFeedback": "The drum booms loudly. Try again!"
         }
       ]
     },
@@ -6331,7 +6748,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s02/wake_up.png",
+          "desc": "Wake up"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/sleep.png",
+          "desc": "Sleep"
+        }
+      ],
       "questions": [
         {
           "prompt": "What do we do at night?",
@@ -6348,6 +6776,22 @@
           "answer": 0,
           "correctFeedback": "That's right. At night we sleep.",
           "retryFeedback": "Night is for resting. Try again!"
+        },
+        {
+          "prompt": "And what do we do in the morning?",
+          "options": [
+            {
+              "label": "Wake up",
+              "asset": "img/s02/wake_up.png"
+            },
+            {
+              "label": "Sleep",
+              "asset": "img/s02/sleep.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Good morning! Up we get.",
+          "retryFeedback": "Sleeping is for night-time. Try again!"
         }
       ]
     },
@@ -6365,7 +6809,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s02/shaker.png",
+          "desc": "Shaker"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/drum.png",
+          "desc": "Drum"
+        }
+      ],
       "questions": [
         {
           "prompt": "Tap the drum.",
@@ -6382,6 +6837,22 @@
           "answer": 0,
           "correctFeedback": "That's the drum. Boom-boom!",
           "retryFeedback": "The drum is round. Try again!"
+        },
+        {
+          "prompt": "Now tap the shaker.",
+          "options": [
+            {
+              "label": "Shaker",
+              "asset": "img/s02/shaker.png"
+            },
+            {
+              "label": "Drum",
+              "asset": "img/s02/drum.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Shake, shake! That one rattles.",
+          "retryFeedback": "The drum you tap; this one you shake. Try again!"
         }
       ]
     },
@@ -6457,7 +6928,7 @@
       "designTier": "parent-led",
       "reading": false,
       "timed": false,
-      "interaction": "tap-to-turn",
+      "interaction": "listen",
       "parentNote": "Sing along at real bath time to build the routine.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
@@ -6465,23 +6936,44 @@
           "type": "audio",
           "ref": "audio/s02/bath_song.mp3",
           "desc": "Bath-time sing-along"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/bathtub.png",
+          "desc": "Splish, splash! Time for the bath. Tap the tap to fill the tub!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/bath_duck.png",
+          "desc": "Scrub-a-dub the duck. Wash, wash, wash!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/wash_face.png",
+          "desc": "Now wash your face. Round and round!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/towel.png",
+          "desc": "All clean! Wrap up in a cozy towel. The end."
         }
       ],
       "pages": [
         {
           "narration": "Splish, splash! Time for the bath. Tap the tap to fill the tub!",
-          "illustration": "img/s02/bathtub.png",
-          "interaction": "tap-the-tap"
+          "illustration": "img/s02/bathtub.png"
         },
         {
           "narration": "Scrub-a-dub the duck. Wash, wash, wash!",
-          "illustration": "img/s02/bath_duck.png",
-          "interaction": null
+          "illustration": "img/s02/bath_duck.png"
+        },
+        {
+          "narration": "Now wash your face. Round and round!",
+          "illustration": "img/s02/wash_face.png"
         },
         {
           "narration": "All clean! Wrap up in a cozy towel. The end.",
-          "illustration": "img/s02/towel.png",
-          "interaction": null
+          "illustration": "img/s02/towel.png"
         }
       ]
     },
@@ -6507,6 +6999,11 @@
         },
         {
           "type": "image",
+          "ref": "img/s02/morning.png",
+          "desc": "Then we say good morning to everyone."
+        },
+        {
+          "type": "image",
           "ref": "img/s02/eat_breakfast.png",
           "desc": "Then we eat. Yum, yum!"
         },
@@ -6520,6 +7017,10 @@
         {
           "narration": "First we wash. Splish, splash!",
           "illustration": "img/s02/wash_face.png"
+        },
+        {
+          "narration": "Then we say good morning to everyone.",
+          "illustration": "img/s02/morning.png"
         },
         {
           "narration": "Then we eat. Yum, yum!",
@@ -6843,7 +7344,18 @@
       "interaction": "drag",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s02/basket_blue.png",
+          "desc": "Blue basket"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/basket_red.png",
+          "desc": "Red basket"
+        }
+      ],
       "questions": [
         {
           "prompt": "Drag the red sock to the red basket.",
@@ -6860,6 +7372,22 @@
           "answer": 0,
           "correctFeedback": "Match! Red with red.",
           "retryFeedback": "Look for the same color. Try again!"
+        },
+        {
+          "prompt": "Now the blue sock. Which basket?",
+          "options": [
+            {
+              "label": "Blue basket",
+              "asset": "img/s02/basket_blue.png"
+            },
+            {
+              "label": "Red basket",
+              "asset": "img/s02/basket_red.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Match! Blue with blue.",
+          "retryFeedback": "Look for the same colour. Try again!"
         }
       ]
     },
@@ -6877,7 +7405,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s02/ball_big.png",
+          "desc": "Ball"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/cup_odd.png",
+          "desc": "Cup"
+        }
+      ],
       "questions": [
         {
           "prompt": "Two are apples. Tap the one that is not an apple.",
@@ -6894,6 +7433,22 @@
           "answer": 0,
           "correctFeedback": "You spotted the odd one. The banana is different.",
           "retryFeedback": "Look for the one that's not an apple. Try again!"
+        },
+        {
+          "prompt": "Two are cups. Tap the one that is not a cup.",
+          "options": [
+            {
+              "label": "Ball",
+              "asset": "img/s02/ball_big.png"
+            },
+            {
+              "label": "Cup",
+              "asset": "img/s02/cup_odd.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "You spotted it. The ball is different.",
+          "retryFeedback": "Look for the one you cannot drink from. Try again!"
         }
       ]
     },
@@ -6911,7 +7466,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s02/toy_box.png",
+          "desc": "Toy box"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/fruit_bowl.png",
+          "desc": "Fruit bowl"
+        }
+      ],
       "questions": [
         {
           "prompt": "Where does the apple go?",
@@ -6928,6 +7494,22 @@
           "answer": 0,
           "correctFeedback": "In it goes. The apple belongs in the fruit bowl.",
           "retryFeedback": "An apple is a fruit. Try again!"
+        },
+        {
+          "prompt": "Where does the ball go?",
+          "options": [
+            {
+              "label": "Toy box",
+              "asset": "img/s02/toy_box.png"
+            },
+            {
+              "label": "Fruit bowl",
+              "asset": "img/s02/fruit_bowl.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "In it goes. A ball is a toy.",
+          "retryFeedback": "We do not eat a ball. Try again!"
         }
       ]
     },
@@ -7003,7 +7585,7 @@
       "designTier": "parent-led",
       "reading": false,
       "timed": false,
-      "interaction": "tap-to-turn",
+      "interaction": "listen",
       "parentNote": "Sing a clean-up song while tidying together.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
@@ -7011,23 +7593,44 @@
           "type": "audio",
           "ref": "audio/s02/tidy_song.mp3",
           "desc": "Cheerful clean-up song"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/messy_room.png",
+          "desc": "Toys everywhere! Let's tidy up. Tap to start."
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/sorting_toys.png",
+          "desc": "Blocks in the block box, balls in the ball bag!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/color_bins.png",
+          "desc": "Every colour has its own bin. Red here, blue there."
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/tidy_room.png",
+          "desc": "All tidy! Great helping. Time to rest."
         }
       ],
       "pages": [
         {
           "narration": "Toys everywhere! Let's tidy up. Tap to start.",
-          "illustration": "img/s02/messy_room.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s02/messy_room.png"
         },
         {
           "narration": "Blocks in the block box, balls in the ball bag!",
-          "illustration": "img/s02/sorting_toys.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s02/sorting_toys.png"
+        },
+        {
+          "narration": "Every colour has its own bin. Red here, blue there.",
+          "illustration": "img/s02/color_bins.png"
         },
         {
           "narration": "All tidy! Great helping. Time to rest.",
-          "illustration": "img/s02/tidy_room.png",
-          "interaction": null
+          "illustration": "img/s02/tidy_room.png"
         }
       ]
     },
@@ -7058,6 +7661,11 @@
         },
         {
           "type": "image",
+          "ref": "img/s02/socks_pairs.png",
+          "desc": "The socks go in the drawer, two by two."
+        },
+        {
+          "type": "image",
           "ref": "img/s02/child_hug.png",
           "desc": "And you go into a big goodnight hug."
         }
@@ -7070,6 +7678,10 @@
         {
           "narration": "The cup goes on the shelf.",
           "illustration": "img/s02/cup_shelf.png"
+        },
+        {
+          "narration": "The socks go in the drawer, two by two.",
+          "illustration": "img/s02/socks_pairs.png"
         },
         {
           "narration": "And you go into a big goodnight hug.",
@@ -7401,7 +8013,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s03/four_ducks.png",
+          "desc": "4"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/five_ducks.png",
+          "desc": "5"
+        }
+      ],
       "questions": [
         {
           "prompt": "Count the stars. Which numeral matches?",
@@ -7422,6 +8045,22 @@
           "answer": 0,
           "correctFeedback": "Five stars! ⭐",
           "retryFeedback": "Tap each star as you count. Try again!"
+        },
+        {
+          "prompt": "Count the ducks. Which numeral matches?",
+          "options": [
+            {
+              "label": "4",
+              "asset": "img/s03/four_ducks.png"
+            },
+            {
+              "label": "5",
+              "asset": "img/s03/five_ducks.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Four ducks. 🦆",
+          "retryFeedback": "Tap each duck as you count. Try again!"
         }
       ]
     },
@@ -7439,7 +8078,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s03/apples_two.png",
+          "desc": "2"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/apples_four.png",
+          "desc": "4"
+        }
+      ],
       "questions": [
         {
           "prompt": "Count the stars. How many?",
@@ -7460,6 +8110,22 @@
           "answer": 0,
           "correctFeedback": "You counted four stars. ⭐",
           "retryFeedback": "Touch each star as you count. Try again!"
+        },
+        {
+          "prompt": "Count the apples. How many?",
+          "options": [
+            {
+              "label": "2",
+              "asset": "img/s03/apples_two.png"
+            },
+            {
+              "label": "4",
+              "asset": "img/s03/apples_four.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Two apples. 🍎",
+          "retryFeedback": "Touch each apple as you count. Try again!"
         }
       ]
     },
@@ -7494,6 +8160,22 @@
           "answer": 0,
           "correctFeedback": "That's 3!",
           "retryFeedback": "Three comes after two. Try again!"
+        },
+        {
+          "prompt": "Now tap the number 5.",
+          "options": [
+            {
+              "label": "5",
+              "asset": null
+            },
+            {
+              "label": "2",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "That's 5! One whole hand.",
+          "retryFeedback": "Five comes after four. Try again!"
         }
       ]
     },
@@ -7569,7 +8251,7 @@
       "designTier": "parent-led",
       "reading": false,
       "timed": false,
-      "interaction": "tap-to-turn",
+      "interaction": "listen",
       "parentNote": "Hold up fingers as the ducks come and go.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
@@ -7577,23 +8259,44 @@
           "type": "audio",
           "ref": "audio/s03/five_ducks.mp3",
           "desc": "Counting narrator"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/five_ducks.png",
+          "desc": "Five little ducks went out to play."
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/four_ducks.png",
+          "desc": "One stayed home, so four swam away."
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/duck_path.png",
+          "desc": "Away they paddled, down the little path."
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/ducks_back.png",
+          "desc": "At bedtime, all five came back. Goodnight, ducks!"
         }
       ],
       "pages": [
         {
           "narration": "Five little ducks went out to play.",
-          "illustration": "img/s03/five_ducks.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s03/five_ducks.png"
         },
         {
           "narration": "One stayed home, so four swam away.",
-          "illustration": "img/s03/four_ducks.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s03/four_ducks.png"
+        },
+        {
+          "narration": "Away they paddled, down the little path.",
+          "illustration": "img/s03/duck_path.png"
         },
         {
           "narration": "At bedtime, all five came back. Goodnight, ducks!",
-          "illustration": "img/s03/ducks_back.png",
-          "interaction": null
+          "illustration": "img/s03/ducks_back.png"
         }
       ]
     },
@@ -7626,6 +8329,11 @@
           "type": "image",
           "ref": "img/s03/pocket_feather.png",
           "desc": "Three! A feather too. My pocket is full."
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/dots_123.png",
+          "desc": "One, two, three. I counted them all the way home."
         }
       ],
       "pages": [
@@ -7640,6 +8348,10 @@
         {
           "narration": "Three! A feather too. My pocket is full.",
           "illustration": "img/s03/pocket_feather.png"
+        },
+        {
+          "narration": "One, two, three. I counted them all the way home.",
+          "illustration": "img/s03/dots_123.png"
         }
       ]
     },
@@ -8011,7 +8723,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s03/sleepy.png",
+          "desc": "Sleepy"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/surprised.png",
+          "desc": "Surprised"
+        }
+      ],
       "questions": [
         {
           "prompt": "A gift pops out! How does he feel?",
@@ -8028,6 +8751,22 @@
           "answer": 0,
           "correctFeedback": "Surprised! Wow!",
           "retryFeedback": "Look at his wide eyes. Try again!"
+        },
+        {
+          "prompt": "It is late and his eyes are closing. How does he feel?",
+          "options": [
+            {
+              "label": "Sleepy",
+              "asset": "img/s03/sleepy.png"
+            },
+            {
+              "label": "Surprised",
+              "asset": "img/s03/surprised.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Sleepy. Time to rest.",
+          "retryFeedback": "Look at his heavy eyes. Try again!"
         }
       ]
     },
@@ -8045,7 +8784,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s03/breathe_calm.png",
+          "desc": "A slow breath"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/nothing.png",
+          "desc": "Nothing"
+        }
+      ],
       "questions": [
         {
           "prompt": "What can help when you feel sad?",
@@ -8062,6 +8812,22 @@
           "answer": 0,
           "correctFeedback": "A hug can help.",
           "retryFeedback": "Asking for comfort helps. Try again!"
+        },
+        {
+          "prompt": "What can help when you feel cross?",
+          "options": [
+            {
+              "label": "A slow breath",
+              "asset": "img/s03/breathe_calm.png"
+            },
+            {
+              "label": "Nothing",
+              "asset": "img/s03/nothing.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Breathe in, breathe out. It helps.",
+          "retryFeedback": "Try a big slow breath together. Try again!"
         }
       ]
     },
@@ -8147,7 +8913,7 @@
       "designTier": "parent-led",
       "reading": false,
       "timed": false,
-      "interaction": "tap-to-turn",
+      "interaction": "listen",
       "parentNote": "Talk about a time your child felt frustrated and what helped.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
@@ -8155,23 +8921,44 @@
           "type": "audio",
           "ref": "audio/s03/leo_feelings.mp3",
           "desc": "Caring narrator"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/leo_frustrated.png",
+          "desc": "Leo's tower fell. He feels frustrated."
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/face_angry.png",
+          "desc": "His hands went tight and his face went hot."
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/leo_breathe.png",
+          "desc": "He takes a deep breath, in and out."
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/leo_happy.png",
+          "desc": "He tries again and smiles. Feelings can pass!"
         }
       ],
       "pages": [
         {
           "narration": "Leo's tower fell. He feels frustrated.",
-          "illustration": "img/s03/leo_frustrated.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s03/leo_frustrated.png"
+        },
+        {
+          "narration": "His hands went tight and his face went hot.",
+          "illustration": "img/s03/face_angry.png"
         },
         {
           "narration": "He takes a deep breath, in and out.",
-          "illustration": "img/s03/leo_breathe.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s03/leo_breathe.png"
         },
         {
           "narration": "He tries again and smiles. Feelings can pass!",
-          "illustration": "img/s03/leo_happy.png",
-          "interaction": null
+          "illustration": "img/s03/leo_happy.png"
         }
       ]
     },
@@ -8202,6 +8989,11 @@
         },
         {
           "type": "image",
+          "ref": "img/s03/face_sad.png",
+          "desc": "In the afternoon I felt sad. Nobody had done anything wrong."
+        },
+        {
+          "type": "image",
           "ref": "img/s03/day_calm.png",
           "desc": "At night I felt calm. All of it was okay."
         }
@@ -8214,6 +9006,10 @@
         {
           "narration": "Then I felt cross. My tower fell down.",
           "illustration": "img/s03/day_cross.png"
+        },
+        {
+          "narration": "In the afternoon I felt sad. Nobody had done anything wrong.",
+          "illustration": "img/s03/face_sad.png"
         },
         {
           "narration": "At night I felt calm. All of it was okay.",
@@ -8584,7 +9380,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s03/red.png",
+          "desc": "Red"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/blue.png",
+          "desc": "Blue"
+        }
+      ],
       "questions": [
         {
           "prompt": "Circle, square, circle, square... what's next?",
@@ -8601,6 +9408,22 @@
           "answer": 0,
           "correctFeedback": "You followed the pattern. Circle comes next.",
           "retryFeedback": "Look at the pattern. Try again!"
+        },
+        {
+          "prompt": "Red, blue, red, blue... what's next?",
+          "options": [
+            {
+              "label": "Red",
+              "asset": "img/s03/red.png"
+            },
+            {
+              "label": "Blue",
+              "asset": "img/s03/blue.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Red! The pattern starts again.",
+          "retryFeedback": "Say the colours out loud in order. Try again!"
         }
       ]
     },
@@ -8618,7 +9441,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s03/cat_down.png",
+          "desc": "Down"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/cat_up.png",
+          "desc": "Up"
+        }
+      ],
       "questions": [
         {
           "prompt": "What is the opposite of big?",
@@ -8635,6 +9469,22 @@
           "answer": 0,
           "correctFeedback": "Small is the opposite of big.",
           "retryFeedback": "Think tiny. Try again!"
+        },
+        {
+          "prompt": "What is the opposite of up?",
+          "options": [
+            {
+              "label": "Down",
+              "asset": "img/s03/cat_down.png"
+            },
+            {
+              "label": "Up",
+              "asset": "img/s03/cat_up.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Down is the opposite of up.",
+          "retryFeedback": "Point up, then point the other way. Try again!"
         }
       ]
     },
@@ -8710,31 +9560,52 @@
       "designTier": "parent-led",
       "reading": false,
       "timed": false,
-      "interaction": "tap-to-turn",
-      "parentNote": null,
+      "interaction": "listen",
+      "parentNote": "Say the opposite of everything for one minute after.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
         {
           "type": "audio",
           "ref": "audio/s03/opposite_day.mp3",
           "desc": "Playful narrator"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/cat_up.png",
+          "desc": "Today is Opposite Day! The cat is up high."
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/cat_down.png",
+          "desc": "Now the cat is down low."
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/cup_full.png",
+          "desc": "The cup is full. Tip it up — now it is empty!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/opposites_end.png",
+          "desc": "Fast then slow, big then small. What fun!"
         }
       ],
       "pages": [
         {
           "narration": "Today is Opposite Day! The cat is up high.",
-          "illustration": "img/s03/cat_up.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s03/cat_up.png"
         },
         {
           "narration": "Now the cat is down low.",
-          "illustration": "img/s03/cat_down.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s03/cat_down.png"
+        },
+        {
+          "narration": "The cup is full. Tip it up — now it is empty!",
+          "illustration": "img/s03/cup_full.png"
         },
         {
           "narration": "Fast then slow, big then small. What fun!",
-          "illustration": "img/s03/opposites_end.png",
-          "interaction": null
+          "illustration": "img/s03/opposites_end.png"
         }
       ]
     },
@@ -8765,6 +9636,11 @@
         },
         {
           "type": "image",
+          "ref": "img/s03/hot_cold.png",
+          "desc": "Hot cheeks, cold hands. Both at the very same time."
+        },
+        {
+          "type": "image",
           "ref": "img/s03/hill_down.png",
           "desc": "Down we run, fast and warm and laughing."
         }
@@ -8777,6 +9653,10 @@
         {
           "narration": "At the top it is windy and cold.",
           "illustration": "img/s03/hill_top.png"
+        },
+        {
+          "narration": "Hot cheeks, cold hands. Both at the very same time.",
+          "illustration": "img/s03/hot_cold.png"
         },
         {
           "narration": "Down we run, fast and warm and laughing.",
@@ -9143,7 +10023,23 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s03/hat.png",
+          "desc": "Hat"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/dog.png",
+          "desc": "Dog"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/car.png",
+          "desc": "Car"
+        }
+      ],
       "questions": [
         {
           "prompt": "'Dog'... which one rhymes?",
@@ -9160,6 +10056,22 @@
           "answer": 0,
           "correctFeedback": "Dog and frog rhyme!",
           "retryFeedback": "Say them slowly: dog, frog. Try again!"
+        },
+        {
+          "prompt": "'Cat'... which one rhymes?",
+          "options": [
+            {
+              "label": "Hat",
+              "asset": "img/s03/hat.png"
+            },
+            {
+              "label": "Car",
+              "asset": "img/s03/car.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Cat and hat rhyme!",
+          "retryFeedback": "Say them slowly: cat, hat. Try again!"
         }
       ]
     },
@@ -9177,7 +10089,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s03/sock_s.png",
+          "desc": "Sock"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/ball.png",
+          "desc": "Ball"
+        }
+      ],
       "questions": [
         {
           "prompt": "Which one starts with /b/?",
@@ -9194,6 +10117,22 @@
           "answer": 0,
           "correctFeedback": "You heard the /b/. B-b-ball!",
           "retryFeedback": "Listen for /b/. Try again!"
+        },
+        {
+          "prompt": "Which one starts with /s/?",
+          "options": [
+            {
+              "label": "Sock",
+              "asset": "img/s03/sock_s.png"
+            },
+            {
+              "label": "Ball",
+              "asset": "img/s03/ball.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "You heard the /s/. S-s-sock!",
+          "retryFeedback": "Listen for the hiss at the start. Try again!"
         }
       ]
     },
@@ -9274,31 +10213,52 @@
       "designTier": "parent-led",
       "reading": false,
       "timed": false,
-      "interaction": "tap-to-turn",
-      "parentNote": null,
+      "interaction": "listen",
+      "parentNote": "Say each rhyming pair slowly, twice.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
         {
           "type": "audio",
           "ref": "audio/s03/rhyme_train.mp3",
           "desc": "Rhyming narrator"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/train_cat.png",
+          "desc": "The train goes by with a cat in a hat!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/train_dog.png",
+          "desc": "Next a dog on a log, riding along!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/frog.png",
+          "desc": "Then a frog in the fog, hopping aboard!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/train_home.png",
+          "desc": "Toot-toot! The rhyme train heads home."
         }
       ],
       "pages": [
         {
           "narration": "The train goes by with a cat in a hat!",
-          "illustration": "img/s03/train_cat.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s03/train_cat.png"
         },
         {
           "narration": "Next a dog on a log, riding along!",
-          "illustration": "img/s03/train_dog.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s03/train_dog.png"
+        },
+        {
+          "narration": "Then a frog in the fog, hopping aboard!",
+          "illustration": "img/s03/frog.png"
         },
         {
           "narration": "Toot-toot! The rhyme train heads home.",
-          "illustration": "img/s03/train_home.png",
-          "interaction": null
+          "illustration": "img/s03/train_home.png"
         }
       ]
     },
@@ -9329,6 +10289,11 @@
         },
         {
           "type": "image",
+          "ref": "img/s03/frog_jump.png",
+          "desc": "The frog says rrribbit. Can you croak?"
+        },
+        {
+          "type": "image",
           "ref": "img/s03/garden_wind.png",
           "desc": "The wind says shhh. Time to be still."
         }
@@ -9341,6 +10306,10 @@
         {
           "narration": "The snake says ssss. Can you hiss?",
           "illustration": "img/s03/garden_snake.png"
+        },
+        {
+          "narration": "The frog says rrribbit. Can you croak?",
+          "illustration": "img/s03/frog_jump.png"
         },
         {
           "narration": "The wind says shhh. Time to be still.",
@@ -9650,7 +10619,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s03/duck_walk.png",
+          "desc": "She walked down the path"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/duck_pond.png",
+          "desc": "She swam in the pond"
+        }
+      ],
       "questions": [
         {
           "prompt": "In Little Duck's story, what happened first?",
@@ -9667,6 +10647,22 @@
           "answer": 0,
           "correctFeedback": "First she woke up. You remembered the order.",
           "retryFeedback": "The beginning comes first. Try again!"
+        },
+        {
+          "prompt": "After she woke up, what did she do next?",
+          "options": [
+            {
+              "label": "She walked down the path",
+              "asset": "img/s03/duck_walk.png"
+            },
+            {
+              "label": "She swam in the pond",
+              "asset": "img/s03/duck_pond.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "She walked first, then swam. That is the order.",
+          "retryFeedback": "The pond comes at the end. Try again!"
         }
       ]
     },
@@ -9684,7 +10680,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s03/duck_wake.png",
+          "desc": "She woke up"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/duck_pond.png",
+          "desc": "She found the pond"
+        }
+      ],
       "questions": [
         {
           "prompt": "How does Little Duck's story end?",
@@ -9701,6 +10708,22 @@
           "answer": 0,
           "correctFeedback": "That's the ending. She finds the pond.",
           "retryFeedback": "The end is the last part. Try again!"
+        },
+        {
+          "prompt": "And what happened at the very beginning?",
+          "options": [
+            {
+              "label": "She woke up",
+              "asset": "img/s03/duck_wake.png"
+            },
+            {
+              "label": "She found the pond",
+              "asset": "img/s03/duck_pond.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Waking up came first of all.",
+          "retryFeedback": "That is how it ends, not how it starts. Try again!"
         }
       ]
     },
@@ -9718,7 +10741,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s03/duck_pond.png",
+          "desc": "To the pond"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/hill_top.png",
+          "desc": "Up a hill"
+        }
+      ],
       "questions": [
         {
           "prompt": "Who is the story about?",
@@ -9735,6 +10769,22 @@
           "answer": 0,
           "correctFeedback": "The story is about a little duck.",
           "retryFeedback": "Remember who we followed. Try again!"
+        },
+        {
+          "prompt": "Where does the duck go in the story?",
+          "options": [
+            {
+              "label": "To the pond",
+              "asset": "img/s03/duck_pond.png"
+            },
+            {
+              "label": "Up a hill",
+              "asset": "img/s03/hill_top.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "To the pond, to swim.",
+          "retryFeedback": "Think where a duck likes to be. Try again!"
         }
       ]
     },
@@ -9810,7 +10860,7 @@
       "designTier": "parent-led",
       "reading": false,
       "timed": false,
-      "interaction": "tap-to-turn",
+      "interaction": "listen",
       "parentNote": "Ask: 'What happened first? What happened last?' to build story sense.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
@@ -9818,23 +10868,44 @@
           "type": "audio",
           "ref": "audio/s03/duck_story.mp3",
           "desc": "Warm narrator"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/duck_wake.png",
+          "desc": "Little Duck woke up. 'I want to swim!' (Beginning) Tap to turn the page."
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/duck_walk.png",
+          "desc": "She waddled past the barn and the big tree, looking for water. (Middle)"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/duck_path.png",
+          "desc": "The path went on and on. Still no water anywhere. (Middle)"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/duck_pond.png",
+          "desc": "Splash! She found the pond and swam all day. (End) The end!"
         }
       ],
       "pages": [
         {
           "narration": "Little Duck woke up. 'I want to swim!' (Beginning) Tap to turn the page.",
-          "illustration": "img/s03/duck_wake.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s03/duck_wake.png"
         },
         {
           "narration": "She waddled past the barn and the big tree, looking for water. (Middle)",
-          "illustration": "img/s03/duck_walk.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s03/duck_walk.png"
+        },
+        {
+          "narration": "The path went on and on. Still no water anywhere. (Middle)",
+          "illustration": "img/s03/duck_path.png"
         },
         {
           "narration": "Splash! She found the pond and swam all day. (End) The end!",
-          "illustration": "img/s03/duck_pond.png",
-          "interaction": null
+          "illustration": "img/s03/duck_pond.png"
         }
       ]
     },
@@ -9865,6 +10936,11 @@
         },
         {
           "type": "image",
+          "ref": "img/s03/line_wiggly.png",
+          "desc": "Then it wiggled, up and down like water."
+        },
+        {
+          "type": "image",
           "ref": "img/s03/line_walk_zigzag.png",
           "desc": "Then it zigzagged home for tea."
         }
@@ -9877,6 +10953,10 @@
         {
           "narration": "Then it curled round into a circle.",
           "illustration": "img/s03/line_walk_circle.png"
+        },
+        {
+          "narration": "Then it wiggled, up and down like water.",
+          "illustration": "img/s03/line_wiggly.png"
         },
         {
           "narration": "Then it zigzagged home for tea.",
@@ -10236,7 +11316,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s03/shoe.png",
+          "desc": "Shoe"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/banana.png",
+          "desc": "Banana"
+        }
+      ],
       "questions": [
         {
           "prompt": "Which one do we eat?",
@@ -10253,6 +11344,22 @@
           "answer": 0,
           "correctFeedback": "We eat the banana.",
           "retryFeedback": "We don't eat shoes. Try again!"
+        },
+        {
+          "prompt": "Which one do we wear?",
+          "options": [
+            {
+              "label": "Shoe",
+              "asset": "img/s03/shoe.png"
+            },
+            {
+              "label": "Banana",
+              "asset": "img/s03/banana.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "We wear the shoe.",
+          "retryFeedback": "We eat the banana instead. Try again!"
         }
       ]
     },
@@ -10270,7 +11377,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s03/car.png",
+          "desc": "Car"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/cat.png",
+          "desc": "Cat"
+        }
+      ],
       "questions": [
         {
           "prompt": "Which one is an animal?",
@@ -10287,6 +11405,22 @@
           "answer": 0,
           "correctFeedback": "The cat is an animal.",
           "retryFeedback": "An animal is alive. Try again!"
+        },
+        {
+          "prompt": "Which one do we ride in?",
+          "options": [
+            {
+              "label": "Car",
+              "asset": "img/s03/car.png"
+            },
+            {
+              "label": "Cat",
+              "asset": "img/s03/cat.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "We ride in the car. Beep!",
+          "retryFeedback": "A cat is an animal. Try again!"
         }
       ]
     },
@@ -10304,7 +11438,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s03/hat.png",
+          "desc": "Hat"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/shoe.png",
+          "desc": "Shoes"
+        }
+      ],
       "questions": [
         {
           "prompt": "What do we wear on our feet?",
@@ -10321,6 +11466,22 @@
           "answer": 0,
           "correctFeedback": "Shoes go on our feet.",
           "retryFeedback": "A hat goes on your head. Try again!"
+        },
+        {
+          "prompt": "And what do we wear on our head?",
+          "options": [
+            {
+              "label": "Hat",
+              "asset": "img/s03/hat.png"
+            },
+            {
+              "label": "Shoes",
+              "asset": "img/s03/shoe.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "A hat goes on our head.",
+          "retryFeedback": "Shoes go on our feet. Try again!"
         }
       ]
     },
@@ -10396,31 +11557,52 @@
       "designTier": "parent-led",
       "reading": false,
       "timed": false,
-      "interaction": "tap-to-turn",
-      "parentNote": null,
+      "interaction": "listen",
+      "parentNote": "Name each thing again in your own home afterwards.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
         {
           "type": "audio",
           "ref": "audio/s03/mia_day.mp3",
           "desc": "Warm narrator"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/mia_shoes.png",
+          "desc": "Mia wakes up and puts on her shoes. Tap the shoes!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/hat.png",
+          "desc": "She puts on her hat. The sun is bright today."
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/mia_apple.png",
+          "desc": "She eats an apple for a snack. Yum!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/mia_ball.png",
+          "desc": "Then she plays with her ball outside. What a day!"
         }
       ],
       "pages": [
         {
           "narration": "Mia wakes up and puts on her shoes. Tap the shoes!",
-          "illustration": "img/s03/mia_shoes.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s03/mia_shoes.png"
+        },
+        {
+          "narration": "She puts on her hat. The sun is bright today.",
+          "illustration": "img/s03/hat.png"
         },
         {
           "narration": "She eats an apple for a snack. Yum!",
-          "illustration": "img/s03/mia_apple.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s03/mia_apple.png"
         },
         {
           "narration": "Then she plays with her ball outside. What a day!",
-          "illustration": "img/s03/mia_ball.png",
-          "interaction": null
+          "illustration": "img/s03/mia_ball.png"
         }
       ]
     },
@@ -10453,6 +11635,11 @@
           "type": "image",
           "ref": "img/s03/basket_bus.png",
           "desc": "And a small toy bus. Beep beep! That is a vehicle."
+        },
+        {
+          "type": "image",
+          "ref": "img/s03/group_food.png",
+          "desc": "Food, clothes, a vehicle. Three groups in one basket."
         }
       ],
       "pages": [
@@ -10467,6 +11654,10 @@
         {
           "narration": "And a small toy bus. Beep beep! That is a vehicle.",
           "illustration": "img/s03/basket_bus.png"
+        },
+        {
+          "narration": "Food, clothes, a vehicle. Three groups in one basket.",
+          "illustration": "img/s03/group_food.png"
         }
       ]
     },
