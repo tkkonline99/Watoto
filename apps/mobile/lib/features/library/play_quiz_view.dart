@@ -43,20 +43,17 @@ class QuizViewState extends ConsumerState<QuizView> {
 
   /// The questions actually played, already localized.
   ///
-  /// Most quizzes ship a single question, which is not a check on anything, so
-  /// this tops them up with review questions from the same subject's lessons
-  /// (see quiz_review.dart). Resolved once per run: rebuilding it mid-quiz
-  /// could change the question under a child's finger.
+  /// Resolved once per run: rebuilding it mid-quiz could change the question
+  /// under a child's finger. This used to top short quizzes up with borrowed
+  /// recap questions; every quiz is now authored to its tier's depth, so it
+  /// only localizes what the quiz already asks (see quiz_review.dart).
   List<LibQuestion>? _questionsCache;
 
   List<LibQuestion> get _questions {
     return _questionsCache ??= localizedQuizQuestions(
       quiz: widget.item,
-      library: ref.read(libraryProvider).asData?.value.all ?? const [],
       i18n: ref.read(contentI18nProvider).asData?.value,
       lang: ref.read(localeProvider).languageCode,
-      correctFeedback: AppLocalizations.of(context).quizPerfect,
-      retryFeedback: AppLocalizations.of(context).quizNiceTry,
     );
   }
 
