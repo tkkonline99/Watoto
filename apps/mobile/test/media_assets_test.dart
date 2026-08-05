@@ -87,4 +87,46 @@ void main() {
       expect(data.lengthInBytes, greaterThan(100), reason: path);
     }
   });
+
+  /// The sound effects have to match in both directions, and neither half held.
+  ///
+  /// `assets/audio/sfx/` is bundled wholesale, so a file that lands in it ships
+  /// to every device whether or not anything calls it. Three did: `page.wav`,
+  /// which meant all 594 story pages turned in silence, and two audition takes
+  /// (`level_up.wav`, `soft_wrong.wav`) that generate_sfx.py renders for
+  /// choosing between and that were never meant to ship.
+  ///
+  /// A missing file is the louder failure and a stray one is the quieter, but
+  /// both are cheap to check, so this checks both.
+  group('sound effects', () {
+    final source = File('lib/core/audio/sound_effects.dart').readAsStringSync();
+    final played = RegExp(r"audio/sfx/([a-z_]+)\.wav")
+        .allMatches(source)
+        .map((m) => '${m.group(1)}.wav')
+        .toSet();
+    final onDisk = Directory('assets/audio/sfx')
+        .listSync()
+        .whereType<File>()
+        .map((f) => f.uri.pathSegments.last)
+        .where((n) => n.endsWith('.wav'))
+        .toSet();
+
+    test('every sound the app plays is on disk', () {
+      expect(played, isNotEmpty);
+      expect(
+        played.difference(onDisk),
+        isEmpty,
+        reason: 'sound_effects.dart plays a file that is not in the bundle',
+      );
+    });
+
+    test('every sound in the bundle is played by something', () {
+      expect(
+        onDisk.difference(played),
+        isEmpty,
+        reason: 'these ship to every device and nothing calls them — either '
+            'wire them up or delete them',
+      );
+    });
+  });
 }
