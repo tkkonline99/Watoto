@@ -145,4 +145,51 @@ void main() {
       reason: 'the picture did not change when the page turned',
     );
   });
+
+  /// Opening a story link on a locked device sends the parent through the PIN
+  /// gate and then into the story. app_flow_test covers the same handoff into
+  /// `/curriculum`; a story is the other end of it — the arriving screen speaks
+  /// its first page on the frame it mounts, which the curriculum screen does
+  /// not, so it is worth its own case.
+  testWidgets('a story deep link survives the PIN gate', (tester) async {
+    debugSkipLoginGate = false;
+    addTearDown(() => debugSkipLoginGate = true);
+
+    await store.completeOnboarding(
+      consent: const ConsentRecord(
+        coreData: true,
+        aiFeatures: false,
+        voiceRecording: false,
+        recordedAt: null,
+      ),
+      pin: '1234',
+      nickname: 'Amani',
+      avatarKey: 'lion',
+      birthYear: 2018,
+    );
+    await store.signOut();
+
+    await tester.binding.setSurfaceSize(const Size(900, 1400));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    await tester.pumpWidget(buildApp());
+    await tester.pumpAndSettle();
+
+    ProviderScope.containerOf(tester.element(find.byType(WatotoApp)))
+        .read(appRouterProvider)
+        .go('/play/${_story.id}');
+    await tester.pumpAndSettle();
+    expect(find.text('Welcome back!'), findsOneWidget);
+
+    await tester.enterText(find.byType(TextField), '1234');
+    await tester.pump();
+    await tester.tap(find.text('Log in'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Welcome back!'), findsNothing);
+    expect(find.text(_story.pages[0].narration), findsOneWidget);
+    expect(
+      assetsOnScreen(tester),
+      contains('assets/images/img/s06/bear_apples.png'),
+    );
+  });
 }
