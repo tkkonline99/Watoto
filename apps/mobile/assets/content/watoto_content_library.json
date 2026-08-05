@@ -22203,12 +22203,12 @@
         {
           "type": "image",
           "ref": "img/s06/five_apples.png",
-          "desc": "3 and 2 is 5 apples. Wobble, wobble!"
+          "desc": "'I can carry more,' says the bear. Tap to add 2 more."
         },
         {
           "type": "image",
           "ref": "img/s06/apples_stay.png",
-          "desc": "They all stay up. Hooray for 5 apples and one brave bird!"
+          "desc": "A bird lands on the very top apple. The tower leans."
         }
       ],
       "pages": [
@@ -22218,7 +22218,7 @@
         },
         {
           "narration": "'I can carry more,' says the bear. Tap to add 2 more.",
-          "illustration": null
+          "illustration": "img/s06/five_apples.png"
         },
         {
           "narration": "3 and 2 is 5 apples. Wobble, wobble!",
@@ -22226,11 +22226,11 @@
         },
         {
           "narration": "A bird lands on the very top apple. The tower leans.",
-          "illustration": null
+          "illustration": "img/s06/apples_stay.png"
         },
         {
           "narration": "The bear stands very still. Slowly, the tower straightens.",
-          "illustration": null
+          "illustration": "img/s06/bear_apples.png"
         },
         {
           "narration": "They all stay up. Hooray for 5 apples and one brave bird!",
@@ -22252,31 +22252,62 @@
       "interaction": "listen",
       "parentNote": "Real coins on the table turn this from a story into a lesson. Ten singles for one ten is the whole idea.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s06/cart.png",
+          "desc": "Amina has 24 beans to sell at the market."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/tens_ones.png",
+          "desc": "She puts ten in one cup, ten in another. Two cups of ten."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/place_value.png",
+          "desc": "Four beans are left over. 2 tens and 4 ones is 24."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/subtract_ten.png",
+          "desc": "A customer buys one whole cup. How many beans is that?"
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/teen_numbers.png",
+          "desc": "Ten! Now Amina has 1 ten and 4 ones. Fourteen beans."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/add_ten.png",
+          "desc": "Counting in tens is faster than counting one by one. Amina knew that all along."
+        }
+      ],
       "pages": [
         {
           "narration": "Amina has 24 beans to sell at the market.",
-          "illustration": null
+          "illustration": "img/s06/cart.png"
         },
         {
           "narration": "She puts ten in one cup, ten in another. Two cups of ten.",
-          "illustration": null
+          "illustration": "img/s06/tens_ones.png"
         },
         {
           "narration": "Four beans are left over. 2 tens and 4 ones is 24.",
-          "illustration": null
+          "illustration": "img/s06/place_value.png"
         },
         {
           "narration": "A customer buys one whole cup. How many beans is that?",
-          "illustration": null
+          "illustration": "img/s06/subtract_ten.png"
         },
         {
           "narration": "Ten! Now Amina has 1 ten and 4 ones. Fourteen beans.",
-          "illustration": null
+          "illustration": "img/s06/teen_numbers.png"
         },
         {
           "narration": "Counting in tens is faster than counting one by one. Amina knew that all along.",
-          "illustration": null
+          "illustration": "img/s06/add_ten.png"
         }
       ]
     },
@@ -23214,13 +23245,13 @@
         },
         {
           "type": "image",
-          "ref": "img/s06/sam.png",
-          "desc": "Sam sits down on the mat and waits."
+          "ref": "img/s06/sam_cat.png",
+          "desc": "A cat sits on the hat!"
         },
         {
           "type": "image",
-          "ref": "img/s06/sam_cat.png",
-          "desc": "Sam and the cat sit on the mat. The end!"
+          "ref": "img/s06/sam.png",
+          "desc": "'Get off, cat,' says Sam. The cat does not get off."
         }
       ],
       "pages": [
@@ -23234,11 +23265,11 @@
         },
         {
           "narration": "A cat sits on the hat!",
-          "illustration": null
+          "illustration": "img/s06/sam_cat.png"
         },
         {
           "narration": "'Get off, cat,' says Sam. The cat does not get off.",
-          "illustration": null
+          "illustration": "img/s06/sam.png"
         },
         {
           "narration": "Sam sits down on the mat and waits.",
@@ -23268,13 +23299,33 @@
         {
           "type": "image",
           "ref": "img/s06/ship.png",
-          "desc": "Chad finds the ship. 'Can it go on the water?' he asks."
+          "desc": "In the shed there is a ship. It is small and it is red."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/water.png",
+          "desc": "There is a chip in the ship. Water gets in."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/ch_words.png",
+          "desc": "Chad gets a patch. He fits it on the chip."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/sh_words.png",
+          "desc": "The ship sits on the water. It does not sink!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/water_rise.png",
+          "desc": "Chad and the ship go up the river. Shhh — off they go."
         }
       ],
       "pages": [
         {
           "narration": "In the shed there is a ship. It is small and it is red.",
-          "illustration": null
+          "illustration": "img/s06/ship.png"
         },
         {
           "narration": "Chad finds the ship. 'Can it go on the water?' he asks.",
@@ -23282,19 +23333,19 @@
         },
         {
           "narration": "There is a chip in the ship. Water gets in.",
-          "illustration": null
+          "illustration": "img/s06/water.png"
         },
         {
           "narration": "Chad gets a patch. He fits it on the chip.",
-          "illustration": null
+          "illustration": "img/s06/ch_words.png"
         },
         {
           "narration": "The ship sits on the water. It does not sink!",
-          "illustration": null
+          "illustration": "img/s06/sh_words.png"
         },
         {
           "narration": "Chad and the ship go up the river. Shhh — off they go.",
-          "illustration": null
+          "illustration": "img/s06/water_rise.png"
         }
       ]
     },
@@ -24251,12 +24302,17 @@
         {
           "type": "image",
           "ref": "img/s06/clouds_form.png",
-          "desc": "Millions of drops together make a cloud. The cloud grows heavy."
+          "desc": "Up high the air is cold. The mist turns back into tiny drops."
         },
         {
           "type": "image",
           "ref": "img/s06/rain_down.png",
           "desc": "Too heavy to float. Drip-drop — it rains back down!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/water.png",
+          "desc": "Then the sun warms the lake again. Water goes round and round."
         }
       ],
       "pages": [
@@ -24266,7 +24322,7 @@
         },
         {
           "narration": "Up high the air is cold. The mist turns back into tiny drops.",
-          "illustration": null
+          "illustration": "img/s06/clouds_form.png"
         },
         {
           "narration": "Millions of drops together make a cloud. The cloud grows heavy.",
@@ -24278,11 +24334,11 @@
         },
         {
           "narration": "The rain runs into the river, and the river runs to the lake.",
-          "illustration": null
+          "illustration": "img/s06/rain_down.png"
         },
         {
           "narration": "Then the sun warms the lake again. Water goes round and round.",
-          "illustration": null
+          "illustration": "img/s06/water.png"
         }
       ]
     },
@@ -24300,31 +24356,57 @@
       "interaction": "listen",
       "parentNote": "Slow is not the same as bad at something. That is the point of the ending — worth saying out loud.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s06/fast_slow_motion.png",
+          "desc": "A cheetah can run faster than any animal on land."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/animal_needs.png",
+          "desc": "A snail moves so slowly you can barely see it move at all."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/then_now.png",
+          "desc": "But a cheetah can only run fast for a very short time."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/log.png",
+          "desc": "He stops to rest under a tree. The snail keeps going."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/plant_flower.png",
+          "desc": "Fast is not always first. Slow and steady arrives too."
+        }
+      ],
       "pages": [
         {
           "narration": "A cheetah can run faster than any animal on land.",
-          "illustration": null
+          "illustration": "img/s06/fast_slow_motion.png"
         },
         {
           "narration": "A snail moves so slowly you can barely see it move at all.",
-          "illustration": null
+          "illustration": "img/s06/animal_needs.png"
         },
         {
           "narration": "'Race me,' says the cheetah, and off he goes in a blur.",
-          "illustration": null
+          "illustration": "img/s06/fast_slow_motion.png"
         },
         {
           "narration": "But a cheetah can only run fast for a very short time.",
-          "illustration": null
+          "illustration": "img/s06/then_now.png"
         },
         {
           "narration": "He stops to rest under a tree. The snail keeps going.",
-          "illustration": null
+          "illustration": "img/s06/log.png"
         },
         {
           "narration": "Fast is not always first. Slow and steady arrives too.",
-          "illustration": null
+          "illustration": "img/s06/plant_flower.png"
         }
       ]
     },
@@ -25251,13 +25333,18 @@
         },
         {
           "type": "image",
-          "ref": "img/s06/plant_flower.png",
-          "desc": "Then they plant a flower where the worst pile had been."
+          "ref": "img/s06/citizen.png",
+          "desc": "'It is our park though,' says another. That settles it."
         },
         {
           "type": "image",
           "ref": "img/s06/clean_park.png",
-          "desc": "Now the park is clean. Good citizens fix what is theirs to share."
+          "desc": "Together they pick it all up. It takes less time than they feared."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/plant_flower.png",
+          "desc": "Then they plant a flower where the worst pile had been."
         }
       ],
       "pages": [
@@ -25267,15 +25354,15 @@
         },
         {
           "narration": "'It is not our mess,' says one child. The others look at the ground.",
-          "illustration": null
+          "illustration": "img/s06/park_litter.png"
         },
         {
           "narration": "'It is our park though,' says another. That settles it.",
-          "illustration": null
+          "illustration": "img/s06/citizen.png"
         },
         {
           "narration": "Together they pick it all up. It takes less time than they feared.",
-          "illustration": null
+          "illustration": "img/s06/clean_park.png"
         },
         {
           "narration": "Then they plant a flower where the worst pile had been.",
@@ -25306,6 +25393,26 @@
           "type": "image",
           "ref": "img/s06/map.png",
           "desc": "Juma is going to Grandma's house. Mum draws him a map."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/room_map.png",
+          "desc": "Past the school, then left at the big tree."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/plant_flower.png",
+          "desc": "At the tree, Juma stops. There are two paths, not one."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/water.png",
+          "desc": "He looks again. The map shows a river beside the right path."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/water_rise.png",
+          "desc": "He hears the water and takes that path. Grandma is waiting."
         }
       ],
       "pages": [
@@ -25315,23 +25422,23 @@
         },
         {
           "narration": "The map looks down on the street from above, like a bird.",
-          "illustration": null
+          "illustration": "img/s06/map.png"
         },
         {
           "narration": "Past the school, then left at the big tree.",
-          "illustration": null
+          "illustration": "img/s06/room_map.png"
         },
         {
           "narration": "At the tree, Juma stops. There are two paths, not one.",
-          "illustration": null
+          "illustration": "img/s06/plant_flower.png"
         },
         {
           "narration": "He looks again. The map shows a river beside the right path.",
-          "illustration": null
+          "illustration": "img/s06/water.png"
         },
         {
           "narration": "He hears the water and takes that path. Grandma is waiting.",
-          "illustration": null
+          "illustration": "img/s06/water_rise.png"
         }
       ]
     },
@@ -26272,6 +26379,21 @@
         },
         {
           "type": "image",
+          "ref": "img/s06/car.png",
+          "desc": "Then cars with cars. The heap gets smaller."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/blocks.png",
+          "desc": "But the red blocks and the blue blocks are still muddled."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/two_rules.png",
+          "desc": "So Robo sorts again — by shape AND by colour. Two rules."
+        },
+        {
+          "type": "image",
           "ref": "img/s06/robo_tidy.png",
           "desc": "All tidy. 'Two rules found everything,' says Robo. 'Good logic!'"
         }
@@ -26287,15 +26409,15 @@
         },
         {
           "narration": "Then cars with cars. The heap gets smaller.",
-          "illustration": null
+          "illustration": "img/s06/car.png"
         },
         {
           "narration": "But the red blocks and the blue blocks are still muddled.",
-          "illustration": null
+          "illustration": "img/s06/blocks.png"
         },
         {
           "narration": "So Robo sorts again — by shape AND by colour. Two rules.",
-          "illustration": null
+          "illustration": "img/s06/two_rules.png"
         },
         {
           "narration": "All tidy. 'Two rules found everything,' says Robo. 'Good logic!'",
@@ -26322,6 +26444,26 @@
           "type": "image",
           "ref": "img/s06/robot_grid.png",
           "desc": "Nia builds a robot. It does exactly what it is told. Exactly."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/algorithm_steps.png",
+          "desc": "'Put on your shoes, then your socks,' says Nia."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/robo_messy.png",
+          "desc": "The robot puts the socks on over the shoes. Nia laughs."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/robo_sorting.png",
+          "desc": "She swaps the two steps around and runs the program again."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/robo_tidy.png",
+          "desc": "Socks, then shoes. Perfect. A program is only as good as its order."
         }
       ],
       "pages": [
@@ -26331,23 +26473,23 @@
         },
         {
           "narration": "'Put on your shoes, then your socks,' says Nia.",
-          "illustration": null
+          "illustration": "img/s06/algorithm_steps.png"
         },
         {
           "narration": "The robot puts the socks on over the shoes. Nia laughs.",
-          "illustration": null
+          "illustration": "img/s06/robo_messy.png"
         },
         {
           "narration": "'You did what I said,' says Nia, 'not what I meant.'",
-          "illustration": null
+          "illustration": "img/s06/robot_grid.png"
         },
         {
           "narration": "She swaps the two steps around and runs the program again.",
-          "illustration": null
+          "illustration": "img/s06/robo_sorting.png"
         },
         {
           "narration": "Socks, then shoes. Perfect. A program is only as good as its order.",
-          "illustration": null
+          "illustration": "img/s06/robo_tidy.png"
         }
       ]
     },
@@ -27296,13 +27438,23 @@
         },
         {
           "type": "image",
+          "ref": "img/s07/food_groups.png",
+          "desc": "Breakfast is fruit and bread — two food groups on one plate."
+        },
+        {
+          "type": "image",
           "ref": "img/s07/zoe_play.png",
           "desc": "She runs and plays outside until her heart thumps."
         },
         {
           "type": "image",
+          "ref": "img/s07/wash_hands.png",
+          "desc": "Before lunch she washes her hands. Twenty seconds, with soap."
+        },
+        {
+          "type": "image",
           "ref": "img/s07/zoe_sleep.png",
-          "desc": "She sleeps, and her brain sorts everything she learned. A healthy day!"
+          "desc": "At night the lamp goes low and she reads one quiet book."
         }
       ],
       "pages": [
@@ -27312,7 +27464,7 @@
         },
         {
           "narration": "Breakfast is fruit and bread — two food groups on one plate.",
-          "illustration": null
+          "illustration": "img/s07/food_groups.png"
         },
         {
           "narration": "She runs and plays outside until her heart thumps.",
@@ -27320,11 +27472,11 @@
         },
         {
           "narration": "Before lunch she washes her hands. Twenty seconds, with soap.",
-          "illustration": null
+          "illustration": "img/s07/wash_hands.png"
         },
         {
           "narration": "At night the lamp goes low and she reads one quiet book.",
-          "illustration": null
+          "illustration": "img/s07/zoe_sleep.png"
         },
         {
           "narration": "She sleeps, and her brain sorts everything she learned. A healthy day!",
@@ -27349,30 +27501,50 @@
       "assets": [
         {
           "type": "image",
+          "ref": "img/s07/exercise.png",
+          "desc": "Tomas is going to the shop on his bike. It is very close."
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/rules_laws.png",
+          "desc": "'It is only two streets,' he says. 'I do not need the helmet.'"
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/question_mark.png",
+          "desc": "His sister asks: 'Do falls know how far you are going?'"
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/main_idea.png",
+          "desc": "Tomas stops. He had not thought of it that way."
+        },
+        {
+          "type": "image",
           "ref": "img/s07/safety.png",
-          "desc": "Nothing happens on the way. That is exactly the point."
+          "desc": "He clips the helmet on. It takes four seconds."
         }
       ],
       "pages": [
         {
           "narration": "Tomas is going to the shop on his bike. It is very close.",
-          "illustration": null
+          "illustration": "img/s07/exercise.png"
         },
         {
           "narration": "'It is only two streets,' he says. 'I do not need the helmet.'",
-          "illustration": null
+          "illustration": "img/s07/rules_laws.png"
         },
         {
           "narration": "His sister asks: 'Do falls know how far you are going?'",
-          "illustration": null
+          "illustration": "img/s07/question_mark.png"
         },
         {
           "narration": "Tomas stops. He had not thought of it that way.",
-          "illustration": null
+          "illustration": "img/s07/main_idea.png"
         },
         {
           "narration": "He clips the helmet on. It takes four seconds.",
-          "illustration": null
+          "illustration": "img/s07/safety.png"
         },
         {
           "narration": "Nothing happens on the way. That is exactly the point.",
@@ -28450,13 +28622,18 @@
         },
         {
           "type": "image",
+          "ref": "img/s07/coins.png",
+          "desc": "On Monday she puts in a 5-coin. That is 5."
+        },
+        {
+          "type": "image",
           "ref": "img/s07/count_coins.png",
           "desc": "On Tuesday another 5-coin. Count with her: 5, 10!"
         },
         {
           "type": "image",
           "ref": "img/s07/buy_kite.png",
-          "desc": "She buys the one she saved for, and keeps counting. Off it flies!"
+          "desc": "The kite costs 10. She has exactly enough."
         }
       ],
       "pages": [
@@ -28466,7 +28643,7 @@
         },
         {
           "narration": "On Monday she puts in a 5-coin. That is 5.",
-          "illustration": null
+          "illustration": "img/s07/coins.png"
         },
         {
           "narration": "On Tuesday another 5-coin. Count with her: 5, 10!",
@@ -28474,11 +28651,11 @@
         },
         {
           "narration": "The kite costs 10. She has exactly enough.",
-          "illustration": null
+          "illustration": "img/s07/buy_kite.png"
         },
         {
           "narration": "But at the shop she sees a smaller kite for 5.",
-          "illustration": null
+          "illustration": "img/s07/count_coins.png"
         },
         {
           "narration": "She buys the one she saved for, and keeps counting. Off it flies!",
@@ -28504,13 +28681,28 @@
         {
           "type": "image",
           "ref": "img/s07/clock_hour.png",
-          "desc": "He checks the clock. The little hand is on 8."
+          "desc": "Kofi is meeting his friend at the park at 10 o'clock."
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/number_line20.png",
+          "desc": "Eight o'clock. Two whole hours to wait. He sighs."
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/plant_care.png",
+          "desc": "He helps in the garden until the big hand comes round again."
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/families_time.png",
+          "desc": "Ten o'clock, and there is his friend at the gate. Right on time!"
         }
       ],
       "pages": [
         {
           "narration": "Kofi is meeting his friend at the park at 10 o'clock.",
-          "illustration": null
+          "illustration": "img/s07/clock_hour.png"
         },
         {
           "narration": "He checks the clock. The little hand is on 8.",
@@ -28518,19 +28710,19 @@
         },
         {
           "narration": "Eight o'clock. Two whole hours to wait. He sighs.",
-          "illustration": null
+          "illustration": "img/s07/number_line20.png"
         },
         {
           "narration": "He helps in the garden until the big hand comes round again.",
-          "illustration": null
+          "illustration": "img/s07/plant_care.png"
         },
         {
           "narration": "Nine o'clock. One more trip round for the big hand.",
-          "illustration": null
+          "illustration": "img/s07/clock_hour.png"
         },
         {
           "narration": "Ten o'clock, and there is his friend at the gate. Right on time!",
-          "illustration": null
+          "illustration": "img/s07/families_time.png"
         }
       ]
     },
@@ -29553,12 +29745,12 @@
         {
           "type": "image",
           "ref": "img/s07/girl_tag.png",
-          "desc": "She read the name tag on its collar: Bo, and a street."
+          "desc": "A kind girl saw it and stopped. She did not pick it up."
         },
         {
           "type": "image",
           "ref": "img/s07/puppy_home.png",
-          "desc": "Bo's family opened the door. His tail did not stop. The end!"
+          "desc": "She told her mother, and they walked Bo to the street together."
         }
       ],
       "pages": [
@@ -29568,11 +29760,11 @@
         },
         {
           "narration": "It sat down by the road and made a small sad sound.",
-          "illustration": null
+          "illustration": "img/s07/lost_puppy.png"
         },
         {
           "narration": "A kind girl saw it and stopped. She did not pick it up.",
-          "illustration": null
+          "illustration": "img/s07/girl_tag.png"
         },
         {
           "narration": "She read the name tag on its collar: Bo, and a street.",
@@ -29580,7 +29772,7 @@
         },
         {
           "narration": "She told her mother, and they walked Bo to the street together.",
-          "illustration": null
+          "illustration": "img/s07/puppy_home.png"
         },
         {
           "narration": "Bo's family opened the door. His tail did not stop. The end!",
@@ -29602,31 +29794,62 @@
       "interaction": "listen",
       "parentNote": "Stop before the last page and ask what they think. Then ask what made them think it.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s07/candy.png",
+          "desc": "A cake sat on the kitchen table with no name on it."
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/number_line20.png",
+          "desc": "Beside it were seven candles, unlit, in a neat row."
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/families_time.png",
+          "desc": "Ada is seven next week. Her brother is four."
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/question_mark.png",
+          "desc": "The kitchen door was shut, and someone was whispering."
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/main_idea.png",
+          "desc": "Ada counted the candles. Seven. She started to smile."
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/read_meaning.png",
+          "desc": "The door opened. 'Surprise!' The clues had told her already."
+        }
+      ],
       "pages": [
         {
           "narration": "A cake sat on the kitchen table with no name on it.",
-          "illustration": null
+          "illustration": "img/s07/candy.png"
         },
         {
           "narration": "Beside it were seven candles, unlit, in a neat row.",
-          "illustration": null
+          "illustration": "img/s07/number_line20.png"
         },
         {
           "narration": "Ada is seven next week. Her brother is four.",
-          "illustration": null
+          "illustration": "img/s07/families_time.png"
         },
         {
           "narration": "The kitchen door was shut, and someone was whispering.",
-          "illustration": null
+          "illustration": "img/s07/question_mark.png"
         },
         {
           "narration": "Ada counted the candles. Seven. She started to smile.",
-          "illustration": null
+          "illustration": "img/s07/main_idea.png"
         },
         {
           "narration": "The door opened. 'Surprise!' The clues had told her already.",
-          "illustration": null
+          "illustration": "img/s07/read_meaning.png"
         }
       ]
     },
@@ -30564,6 +30787,11 @@
         },
         {
           "type": "image",
+          "ref": "img/s07/butterfly_cycle.png",
+          "desc": "Then it hangs still and builds a chrysalis around itself."
+        },
+        {
+          "type": "image",
           "ref": "img/s07/butterfly_fly.png",
           "desc": "Out comes a butterfly. It flies off to lay an egg on a leaf."
         }
@@ -30579,15 +30807,15 @@
         },
         {
           "narration": "It eats until it is far too big for its own skin.",
-          "illustration": null
+          "illustration": "img/s07/caterpillar_munch.png"
         },
         {
           "narration": "Then it hangs still and builds a chrysalis around itself.",
-          "illustration": null
+          "illustration": "img/s07/butterfly_cycle.png"
         },
         {
           "narration": "Inside, hidden, it changes completely. Nothing shows outside.",
-          "illustration": null
+          "illustration": "img/s07/egg_leaf.png"
         },
         {
           "narration": "Out comes a butterfly. It flies off to lay an egg on a leaf.",
@@ -30613,17 +30841,27 @@
         {
           "type": "image",
           "ref": "img/s07/light_shadow.png",
-          "desc": "At lunchtime the sun was high. Her shadow was short and round."
+          "desc": "In the morning, Nia found her shadow stretched long across the yard."
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/rock.png",
+          "desc": "She marked its head with a small stone and went to school."
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/sun.png",
+          "desc": "Then Nia understood: the shadow had not moved. The sun had."
         }
       ],
       "pages": [
         {
           "narration": "In the morning, Nia found her shadow stretched long across the yard.",
-          "illustration": null
+          "illustration": "img/s07/light_shadow.png"
         },
         {
           "narration": "She marked its head with a small stone and went to school.",
-          "illustration": null
+          "illustration": "img/s07/rock.png"
         },
         {
           "narration": "At lunchtime the sun was high. Her shadow was short and round.",
@@ -30631,15 +30869,15 @@
         },
         {
           "narration": "The stone was a long way off. Nothing had moved it.",
-          "illustration": null
+          "illustration": "img/s07/rock.png"
         },
         {
           "narration": "Then Nia understood: the shadow had not moved. The sun had.",
-          "illustration": null
+          "illustration": "img/s07/sun.png"
         },
         {
           "narration": "By evening it stretched the other way. Light first, shadow after.",
-          "illustration": null
+          "illustration": "img/s07/light_shadow.png"
         }
       ]
     },
@@ -31556,13 +31794,18 @@
         },
         {
           "type": "image",
+          "ref": "img/s07/being_fair.png",
+          "desc": "Some shouted louder. That did not settle anything."
+        },
+        {
+          "type": "image",
           "ref": "img/s07/count_votes.png",
           "desc": "Each child raised a hand once. They counted together."
         },
         {
           "type": "image",
           "ref": "img/s07/vote_result.png",
-          "desc": "Then she sang anyway. Voting is fair even on the days you lose."
+          "desc": "Song won by two. Ada had wanted the story, and she said so."
         }
       ],
       "pages": [
@@ -31572,11 +31815,11 @@
         },
         {
           "narration": "Some shouted louder. That did not settle anything.",
-          "illustration": null
+          "illustration": "img/s07/being_fair.png"
         },
         {
           "narration": "Miss Bello said, 'Let's vote. Every hand counts the same.'",
-          "illustration": null
+          "illustration": "img/s07/class_vote.png"
         },
         {
           "narration": "Each child raised a hand once. They counted together.",
@@ -31584,7 +31827,7 @@
         },
         {
           "narration": "Song won by two. Ada had wanted the story, and she said so.",
-          "illustration": null
+          "illustration": "img/s07/vote_result.png"
         },
         {
           "narration": "Then she sang anyway. Voting is fair even on the days you lose.",
@@ -31611,6 +31854,16 @@
           "type": "image",
           "ref": "img/s07/map_globe.png",
           "desc": "Grandpa spread a big map on the floor and put his finger down."
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/globe.png",
+          "desc": "'This is us,' he said. 'Africa. The equator runs right here.'"
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/map.png",
+          "desc": "It took a long time to cross, even on paper."
         }
       ],
       "pages": [
@@ -31620,23 +31873,23 @@
         },
         {
           "narration": "'This is us,' he said. 'Africa. The equator runs right here.'",
-          "illustration": null
+          "illustration": "img/s07/globe.png"
         },
         {
           "narration": "His finger crossed a wide blue space. 'That is an ocean.'",
-          "illustration": null
+          "illustration": "img/s07/map_globe.png"
         },
         {
           "narration": "It took a long time to cross, even on paper.",
-          "illustration": null
+          "illustration": "img/s07/map.png"
         },
         {
           "narration": "'Water covers more of it than land,' he said. 'Look.'",
-          "illustration": null
+          "illustration": "img/s07/globe.png"
         },
         {
           "narration": "Seven continents, five oceans, and their house on one of them.",
-          "illustration": null
+          "illustration": "img/s07/map_globe.png"
         }
       ]
     },
@@ -32598,7 +32851,7 @@
         {
           "type": "image",
           "ref": "img/s07/amir_done.png",
-          "desc": "He signs his name and folds it. Grandma will read it twice."
+          "desc": "A period. Now the sentence knows where to stop."
         }
       ],
       "pages": [
@@ -32608,7 +32861,7 @@
         },
         {
           "narration": "He starts with a capital letter, because every sentence does.",
-          "illustration": null
+          "illustration": "img/s07/amir_write.png"
         },
         {
           "narration": "'Thank you for the red hat.' A who, and what they did.",
@@ -32616,11 +32869,11 @@
         },
         {
           "narration": "He reads it back aloud. Something is missing at the end.",
-          "illustration": null
+          "illustration": "img/s07/amir_sentence.png"
         },
         {
           "narration": "A period. Now the sentence knows where to stop.",
-          "illustration": null
+          "illustration": "img/s07/amir_done.png"
         },
         {
           "narration": "He signs his name and folds it. Grandma will read it twice.",
@@ -32647,6 +32900,26 @@
           "type": "image",
           "ref": "img/s07/write_sentence.png",
           "desc": "Sam wrote three words on the board: 'The big red'."
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/question_mark.png",
+          "desc": "'The big red what?' asked Ana. 'And what did it do?'"
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/nouns.png",
+          "desc": "Sam added one word: 'bus'. Now they knew what it was."
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/word_types.png",
+          "desc": "Still nothing happened. A noun on its own just sits there."
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/verbs.png",
+          "desc": "So he wrote 'stops'. 'The big red bus stops.' A whole sentence, at last."
         }
       ],
       "pages": [
@@ -32656,23 +32929,23 @@
         },
         {
           "narration": "The class waited. Nobody knew what to say.",
-          "illustration": null
+          "illustration": "img/s07/write_sentence.png"
         },
         {
           "narration": "'The big red what?' asked Ana. 'And what did it do?'",
-          "illustration": null
+          "illustration": "img/s07/question_mark.png"
         },
         {
           "narration": "Sam added one word: 'bus'. Now they knew what it was.",
-          "illustration": null
+          "illustration": "img/s07/nouns.png"
         },
         {
           "narration": "Still nothing happened. A noun on its own just sits there.",
-          "illustration": null
+          "illustration": "img/s07/word_types.png"
         },
         {
           "narration": "So he wrote 'stops'. 'The big red bus stops.' A whole sentence, at last.",
-          "illustration": null
+          "illustration": "img/s07/verbs.png"
         }
       ]
     },

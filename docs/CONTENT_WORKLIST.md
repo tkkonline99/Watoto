@@ -15,7 +15,7 @@ _Library version 0.13.0, generated 2026-06-17._
 | Quizzes below their tier's question count | 0 |
 | Stories below their tier's page count | 0 |
 | Reading lessons with no recap | 0 |
-| Items with no illustration | 58 |
+| Items with no illustration | 55 |
 | Unreferenced PNGs on disk | 0 |
 | Steps with no declared mechanic | 0 |
 | Declared audio files that do not exist | 77 |
@@ -153,11 +153,11 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 
 ### Stage 6 — Math (ages 5-6)
 
-- **4 items have no illustration** (emoji fallback): `s06.math.quiz.02`, `s06.math.quiz.03`, `s06.math.quiz.04`, `s06.math.story.02`
+- **3 items have no illustration** (emoji fallback): `s06.math.quiz.02`, `s06.math.quiz.03`, `s06.math.quiz.04`
 
 ### Stage 6 — Science (ages 5-6)
 
-- **3 items have no illustration** (emoji fallback): `s06.science.quiz.01`, `s06.science.quiz.04`, `s06.science.story.02`
+- **2 items have no illustration** (emoji fallback): `s06.science.quiz.01`, `s06.science.quiz.04`
 
 ### Stage 6 — Social Studies (ages 5-6)
 
@@ -171,7 +171,7 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 
 ### Stage 7 — Reading (ages 6-7)
 
-- **5 items have no illustration** (emoji fallback): `s07.reading.quiz.01`, `s07.reading.quiz.02`, `s07.reading.quiz.03`, `s07.reading.quiz.04`, `s07.reading.story.02`
+- **4 items have no illustration** (emoji fallback): `s07.reading.quiz.01`, `s07.reading.quiz.02`, `s07.reading.quiz.03`, `s07.reading.quiz.04`
 
 ### Stage 7 — Writing & Grammar (ages 6-7)
 
