@@ -159,6 +159,51 @@ def draw_face(draw, cx, cy, r, skin=PEACH):
     _circle(draw, cx + r * 0.45, cy + r * 0.15, r * 0.12, (*PINK[:3], 180))
 
 
+def draw_hands(draw, cx, cy, s, skin=SOFT_BROWN):
+    """Two open hands, for clapping and waving.
+
+    The youngest band's lessons are full of these — clap to the beat, wave
+    hello, head shoulders knees and toes — and there was no primitive for a
+    hand, so every one of them fell through to an abstract blob.
+    """
+    for side in (-1, 1):
+        px = cx + side * s * 0.55
+        _soft_shadow(draw, px, cy, s * 0.42)
+        _ellipse(draw, [px - s * 0.42, cy - s * 0.5, px + s * 0.42, cy + s * 0.5], skin)
+        # four fingers along the top edge
+        for f in range(4):
+            fx = px - s * 0.28 + f * s * 0.19
+            _ellipse(draw, [fx - s * 0.09, cy - s * 0.78, fx + s * 0.09, cy - s * 0.34], skin)
+        # thumb, angled outward
+        tx = px + side * s * 0.42
+        _ellipse(draw, [tx - s * 0.11, cy - s * 0.2, tx + s * 0.11, cy + s * 0.22], skin)
+
+
+def draw_note(draw, cx, cy, s, color=LAVENDER):
+    """A single musical note, for songs, beats and rhythm steps."""
+    _soft_shadow(draw, cx - s * 0.25, cy + s * 0.45, s * 0.3)
+    _ellipse(draw, [cx - s * 0.55, cy + s * 0.15, cx + s * 0.05, cy + s * 0.72], color)
+    draw.rounded_rectangle(
+        [cx - s * 0.02, cy - s * 0.75, cx + s * 0.12, cy + s * 0.45], radius=int(s * 0.06),
+        fill=color)
+    draw.rounded_rectangle(
+        [cx + s * 0.08, cy - s * 0.78, cx + s * 0.52, cy - s * 0.5], radius=int(s * 0.12),
+        fill=color)
+
+
+def draw_body(draw, cx, cy, s, skin=SOFT_BROWN):
+    """A whole small figure — head, shoulders, knees and toes lessons."""
+    draw_face(draw, cx, cy - s * 0.62, s * 0.38, skin)
+    draw.rounded_rectangle(
+        [cx - s * 0.34, cy - s * 0.24, cx + s * 0.34, cy + s * 0.42], radius=int(s * 0.18),
+        fill=TEAL)
+    for side in (-1, 1):
+        _ellipse(draw, [cx + side * s * 0.48 - s * 0.12, cy - s * 0.18,
+                        cx + side * s * 0.48 + s * 0.12, cy + s * 0.34], skin)
+        _ellipse(draw, [cx + side * s * 0.2 - s * 0.13, cy + s * 0.4,
+                        cx + side * s * 0.2 + s * 0.13, cy + s * 0.92], skin)
+
+
 def draw_bird(draw, cx, cy, s, body=CORAL):
     _ellipse(draw, [cx - s, cy - s * 0.55, cx + s * 0.6, cy + s * 0.55], body)
     _circle(draw, cx + s * 0.55, cy - s * 0.15, s * 0.42, body)
@@ -362,8 +407,24 @@ def classify_and_draw(draw, brief: str, name: str, stage: int, seed: str):
     t = f"{scene_of(brief)} {name}".lower()
     cx, cy = SIZE // 2, SIZE // 2 + 10
 
+    # Body, hands and music come first: the pre-reading band leans on them
+    # constantly (clap to the beat, head shoulders knees and toes, sing the
+    # alphabet) and without a primitive each one fell through to an abstract
+    # blob — which is worse than the emoji the app falls back to when the file
+    # is simply absent. A drawn image has to beat that emoji to be worth
+    # shipping.
+    if any(k in t for k in ("shoulder", "knees", "toes", "whole body", "head, ")):
+        draw_body(draw, cx, cy - 10, 190)
+        return
+    if any(k in t for k in ("clap", "hands", "wave", "waving", "pat-a-cake")):
+        draw_hands(draw, cx, cy, 150)
+        return
+    if any(k in t for k in ("music", "song", "sing", "beat", "rhythm", "drum", "tune", "melody")):
+        draw_note(draw, cx, cy, 170)
+        return
+
     # faces / people
-    if any(k in t for k in ("face", "baby", "smile", "caregiver", "mama", "dada", "child", "kid", "person", "people", "family", "hug", "kiss")):
+    if any(k in t for k in ("face", "baby", "smile", "caregiver", "mama", "dada", "child", "kid", "person", "people", "family", "hug", "kiss", "sneeze", "yawn", "head")):
         draw_face(draw, cx, cy - 10, 140, PEACH if "baby" in t else SOFT_BROWN)
         return
     if "bear" in t or "teddy" in t:

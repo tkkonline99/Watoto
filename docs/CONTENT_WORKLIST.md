@@ -15,7 +15,7 @@ _Library version 0.13.0, generated 2026-06-17._
 | Quizzes below their tier's question count | 0 |
 | Stories below their tier's page count | 0 |
 | Reading lessons with no recap | 0 |
-| Items with no illustration | 55 |
+| Items with no illustration | 48 |
 | Unreferenced PNGs on disk | 0 |
 | Steps with no declared mechanic | 0 |
 | Audio briefs with nothing recorded (the app loads none of them) | 77 |
@@ -47,7 +47,7 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 
 ### Stage 1 — Early Language (ages 0-1)
 
-- **1 items have no illustration** (emoji fallback): `s01.lang.lesson.06`
+- ✅ complete
 
 ### Stage 1 — Motor Imitation (ages 0-1)
 
@@ -59,7 +59,7 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 
 ### Stage 2 — Body Parts (ages 1-2)
 
-- **1 items have no illustration** (emoji fallback): `s02.body.lesson.02`
+- ✅ complete
 
 ### Stage 2 — Colors & Shapes (ages 1-2)
 
@@ -75,7 +75,7 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 
 ### Stage 2 — Music & Routines (ages 1-2)
 
-- **1 items have no illustration** (emoji fallback): `s02.music.lesson.04`
+- ✅ complete
 
 ### Stage 3 — Vocabulary (ages 2-3)
 
@@ -83,7 +83,7 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 
 ### Stage 3 — Phonological Awareness (ages 2-3)
 
-- **1 items have no illustration** (emoji fallback): `s03.phono.lesson.02`
+- ✅ complete
 
 ### Stage 3 — Counting & Numbers (ages 2-3)
 
@@ -105,7 +105,7 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 
 ### Stage 4 — Language & Literacy (ages 3-4)
 
-- **3 items have no illustration** (emoji fallback): `s04.literacy.lesson.03`, `s04.literacy.lesson.06`, `s04.literacy.quiz.01`
+- **1 items have no illustration** (emoji fallback): `s04.literacy.quiz.01`
 
 ### Stage 4 — Math & Logic (ages 3-4)
 
@@ -121,7 +121,7 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 
 ### Stage 4 — Creative Arts (ages 3-4)
 
-- **1 items have no illustration** (emoji fallback): `s04.arts.lesson.05`
+- ✅ complete
 
 ### Stage 4 — Social-Emotional (ages 3-4)
 

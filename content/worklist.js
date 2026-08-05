@@ -80,12 +80,23 @@ function slugOf(items) {
   return null;
 }
 
+// The per-step illustration the player looks for, by naming convention rather
+// than by a field. Mirrors `stepArtAsset` in features/library/content_art.dart:
+// nothing in the JSON points at these files, so a scan that only follows fields
+// reports every one of them as an orphan.
+const stepArtRef = (item, stepIndex) => {
+  const stage = String(item.stage).padStart(2, '0');
+  const slug = item.id.replace(/^s\d\d\./, '').toLowerCase().replace(/[^a-z0-9]+/g, '_');
+  return `s${stage}/step_${slug}_${stepIndex}.png`;
+};
+
 // ---- PNGs on disk that no item references ----
 const referenced = new Set();
 for (const it of arr) {
   for (const a of it.assets || []) if (a.type === 'image') referenced.add(a.ref.replace(/^img\//, ''));
   for (const q of it.questions || []) for (const o of q.options || []) if (o.asset) referenced.add(o.asset.replace(/^img\//, ''));
   for (const p of it.pages || []) if (p.illustration) referenced.add(p.illustration.replace(/^img\//, ''));
+  for (let i = 0; i < (it.steps || []).length; i++) referenced.add(stepArtRef(it, i));
 }
 const orphans = [];
 for (const d of fs.readdirSync(IMGDIR)) {
@@ -163,10 +174,15 @@ for (const { stage, ages, subject } of subs) {
   // metadata that LibraryItem never even parses, so counting only that once
   // reported 227 art-less items when the real figure — items with no image
   // anywhere, including quiz options and story pages — was less than half of it.
+  // A lesson also has art if its per-step PNGs are on disk, which is the only
+  // way a lesson gets a picture at all — steps carry no illustration field.
+  // Counting only fields called the seven pre-reading song and movement
+  // lessons art-less while their step scenes sat rendered beside them.
   const noArt = items.filter((it) => {
     const q = (it.questions || []).some((x) => (x.options || []).some((o) => o.asset));
     const p = (it.pages || []).some((x) => x.illustration);
-    return !(it.assets || []).some((a) => a.type === 'image') && !q && !p;
+    const s = (it.steps || []).some((_, i) => fs.existsSync(path.join(IMGDIR, stepArtRef(it, i))));
+    return !(it.assets || []).some((a) => a.type === 'image') && !q && !p && !s;
   });
   const bare = byType.lesson.reduce((n, l) => n + (l.steps || []).filter(isBare).length, 0);
 
