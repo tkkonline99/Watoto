@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/config/publish_config.dart';
 import '../../core/offline/offline_providers.dart';
 import '../../core/state/app_state.dart';
 import '../../core/theme/watoto_theme.dart';
@@ -37,7 +38,10 @@ class _CurriculumScreenState extends ConsumerState<CurriculumScreen> {
     final defaultStage = child == null
         ? 1
         : stageForBirthYear(child.birthYear).stage;
-    final selected = _selectedStage ?? defaultStage;
+    // Clamped so a stage saved by a build with a higher [maxPublishedStage]
+    // cannot select a chip that is no longer in the row.
+    final selected =
+        (_selectedStage ?? defaultStage).clamp(1, maxPublishedStage).toInt();
     final stage = curriculumStages[selected - 1];
 
     return Scaffold(
@@ -108,10 +112,12 @@ class _StageSelector extends StatelessWidget {
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        itemCount: curriculumStages.length,
+        // Published only: every chip here leads into that stage's activities,
+        // so an unshipped one is a dead end rather than a preview.
+        itemCount: publishedCurriculumStages.length,
         separatorBuilder: (_, _) => const SizedBox(width: 8),
         itemBuilder: (context, i) {
-          final stage = curriculumStages[i];
+          final stage = publishedCurriculumStages[i];
           final isSelected = stage.stage == selected;
           final isChild = stage.stage == childStage;
           return ChoiceChip(

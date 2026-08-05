@@ -1,3 +1,4 @@
+import '../../core/config/publish_config.dart';
 import 'curriculum_models.dart';
 
 /// The full curriculum from curriculum.pptx, transcribed faithfully.
@@ -199,12 +200,29 @@ const curriculumStages = <CurriculumStage>[
   ),
 ];
 
-/// Maps a child's age (years) to a curriculum stage (1..10), clamped.
+/// The stages this build actually offers.
+///
+/// [curriculumStages] stays the full ten because it is reference data — the
+/// parent's curriculum guide, and the index behind `curriculumStages[stage-1]`
+/// lookups. This is the list a child is ever offered. See [maxPublishedStage]
+/// for why it stops where it does.
+List<CurriculumStage> get publishedCurriculumStages => [
+  for (final s in curriculumStages)
+    if (s.stage <= maxPublishedStage) s,
+];
+
+/// Maps a child's age (years) to a curriculum stage, clamped to what this
+/// build publishes.
+///
+/// An eight-year-old resolves to the highest published stage rather than to
+/// stage 9: better the top of the real curriculum than an age band with two
+/// steps a lesson in it.
 CurriculumStage stageForAge(int age) {
-  for (final s in curriculumStages) {
+  final published = publishedCurriculumStages;
+  for (final s in published) {
     if (age >= s.minAge && age < s.maxAge) return s;
   }
-  return age < 0 ? curriculumStages.first : curriculumStages.last;
+  return age < 0 ? published.first : published.last;
 }
 
 /// Maps a birth year to a stage using the current year.

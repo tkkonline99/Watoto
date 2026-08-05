@@ -1,6 +1,6 @@
 library;
 
-/// Guards the stage-7 depth pilot (content/deepen_stage7.py).
+/// Guards content depth: the stage-7 pilot, and then the whole library.
 ///
 /// The library is wide and shallow: 342 lessons share about 750 steps, most of
 /// them a single tap. Ten stage-7 lessons were rewritten into 8–10 step teaching
@@ -16,6 +16,12 @@ library;
 /// ("how many", "trace", "rows of"). A translated lesson misses them and every
 /// step collapses to a plain tap, so a Swahili child gets a visibly poorer
 /// lesson than an English one from the same JSON.
+///
+/// The library-wide groups at the bottom then hold all three item types to a
+/// depth their design tier calls for. Lessons had that ratchet from the start;
+/// quizzes and stories did not, and it showed — five stages were certified
+/// "done" on lesson depth alone while their quizzes sat at one question and
+/// every story in the library sat at exactly three pages.
 import 'dart:convert';
 import 'dart:io';
 
@@ -58,6 +64,43 @@ const minStepsByTier = <String, int>{
 };
 
 int minStepsForTier(String? tier) => minStepsByTier[tier] ?? minSteps;
+
+/// How many questions a quiz needs before it is assessing rather than gesturing.
+///
+/// Same shape of reasoning as [minStepsByTier], and the same refusal to use one
+/// number for the whole library. A `parent-led` quiz is a grown-up holding up
+/// two pictures and asking which is the dog; four of those is a chore. From
+/// `gamify-gently` up the child answers alone, and a single two-option question
+/// tells you nothing — a coin flip reads as mastery, and the adaptive resolver
+/// then moves them on the strength of it.
+///
+/// Keep in sync with MIN_QUESTIONS_BY_TIER in content/worklist.js.
+const minQuestionsByTier = <String, int>{
+  'parent-led': 2, // ages 0-2
+  'encourage-effort': 3, // ages 3-5
+  'gamify-gently': 4, // ages 6-7
+  'grant-autonomy': 4, // ages 8-10
+};
+
+int minQuestionsForTier(String? tier) => minQuestionsByTier[tier] ?? 4;
+
+/// How many pages a story needs before it is a story.
+///
+/// Every story in the library shipped at exactly three pages, which is setup
+/// and stop: something happens, and it is over. Page count is not a quality
+/// measure and this test does not pretend otherwise — but below about five
+/// there is no room for a problem to appear, be attempted, and resolve, and
+/// that arc is most of what a story is doing for a child this age.
+///
+/// Keep in sync with MIN_PAGES_BY_TIER in content/worklist.js.
+const minPagesByTier = <String, int>{
+  'parent-led': 4, // ages 0-2: board-book length, read aloud
+  'encourage-effort': 5, // ages 3-5
+  'gamify-gently': 6, // ages 6-7
+  'grant-autonomy': 6, // ages 8-10
+};
+
+int minPagesForTier(String? tier) => minPagesByTier[tier] ?? 6;
 
 Map<String, LibraryItem> _library() {
   final raw =
@@ -295,13 +338,152 @@ void main() {
       // asserts the direction of travel: the count may fall, never rise.
       // Lower it as stages land; see docs/CONTENT_WORKLIST.md.
       // 332 before any of this; 302 after stage 1, 230 after stages 2 and 3,
-      // 164 once stages 4 and 5 followed (content/author_stage{1..5}.py).
-      const knownShallow = 164;
+      // 164 once stages 4 and 5 followed, 134 with stage 6
+      // (content/author_stage{1..6}.py).
+      const knownShallow = 134;
       expect(
         shallow.length,
         lessThanOrEqualTo(knownShallow),
         reason: 'more shallow lessons than the recorded baseline — a stage '
             'was flattened:\n${shallow.take(20).join('\n')}',
+      );
+    });
+  });
+
+  // ---------------------------------------------------------------------
+  // Quizzes and stories. The lesson ratchet above ran alone for five stages
+  // and, because "stage N is done" was measured by it, five stages were
+  // called done while their quizzes stayed at one question and every story
+  // in the library stayed at three pages. Lessons are a third of the item
+  // types; a ratchet that only guards them certifies a third of the work.
+  // ---------------------------------------------------------------------
+
+  group('quiz depth', () {
+    final quizzes = library.values.where((i) => i.type == LibraryType.quiz);
+
+    test('quizzes reach the question count their design tier calls for', () {
+      final shallow = <String>[];
+      for (final item in quizzes) {
+        final min = minQuestionsForTier(item.designTier);
+        if (item.questions.length < min) {
+          shallow.add('${item.id} (${item.designTier}): '
+              '${item.questions.length} questions, needs $min');
+        }
+      }
+      // Same ratchet rule as the lessons: may fall, never rise.
+      // 172 of 199 when this test was written — including every stage the
+      // lesson ratchet had already certified as done. 157 of 204 after
+      // stage 6 (content/author_stage6.py).
+      const knownShallow = 157;
+      expect(
+        shallow.length,
+        lessThanOrEqualTo(knownShallow),
+        reason: 'more shallow quizzes than the recorded baseline:\n'
+            '${shallow.take(20).join('\n')}',
+      );
+    });
+
+    test('every question offers at least two distinct, non-empty options', () {
+      final bad = <String>[];
+      for (final item in quizzes) {
+        for (var i = 0; i < item.questions.length; i++) {
+          final q = item.questions[i];
+          final labels = q.options.map((o) => o.label.trim()).toList();
+          if (labels.length < 2) {
+            bad.add('${item.id} q$i has ${labels.length} option(s)');
+          } else if (labels.toSet().length != labels.length) {
+            bad.add('${item.id} q$i repeats an option — two answers look '
+                'equally right');
+          } else if (labels.any((l) => l.isEmpty)) {
+            bad.add('${item.id} q$i has a blank option');
+          }
+          if (q.answer < 0 || q.answer >= labels.length) {
+            bad.add('${item.id} q$i marks an answer that does not exist');
+          }
+        }
+      }
+      expect(bad, isEmpty, reason: bad.take(20).join('\n'));
+    });
+
+    test('sw and fr get their own questions, not the English ones', () {
+      final untranslated = <String>[];
+      for (final item in quizzes) {
+        for (var i = 0; i < item.questions.length; i++) {
+          final key = '${item.id}.questions.$i.prompt';
+          for (final lang in ['sw', 'fr']) {
+            final got = overlays[lang]![key];
+            if (got == null || got == item.questions[i].prompt) {
+              untranslated.add('$key ($lang)');
+            }
+          }
+        }
+      }
+      // Ratchet, not a clean bill: the backlog is real and shrinking.
+      const knownUntranslated = 0;
+      expect(
+        untranslated.length,
+        lessThanOrEqualTo(knownUntranslated),
+        reason: 'these questions would show English to a sw/fr child:\n'
+            '${untranslated.take(20).join('\n')}',
+      );
+    });
+  });
+
+  group('story depth', () {
+    final stories = library.values.where((i) => i.type == LibraryType.story);
+
+    test('stories reach the page count their design tier calls for', () {
+      final shallow = <String>[];
+      for (final item in stories) {
+        final min = minPagesForTier(item.designTier);
+        if (item.pages.length < min) {
+          shallow.add('${item.id} (${item.designTier}): '
+              '${item.pages.length} pages, needs $min');
+        }
+      }
+      // 85 of 85 when this test was written — the whole story library was
+      // exactly three pages long, in every stage, including the done ones.
+      // 80 of 90 after stage 6 (content/author_stage6.py).
+      const knownShallow = 80;
+      expect(
+        shallow.length,
+        lessThanOrEqualTo(knownShallow),
+        reason: 'more shallow stories than the recorded baseline:\n'
+            '${shallow.take(20).join('\n')}',
+      );
+    });
+
+    test('every page carries narration', () {
+      final blank = <String>[];
+      for (final item in stories) {
+        for (var i = 0; i < item.pages.length; i++) {
+          if (item.pages[i].narration.trim().isEmpty) {
+            blank.add('${item.id} page $i');
+          }
+        }
+      }
+      expect(blank, isEmpty, reason: blank.join('\n'));
+    });
+
+    test('sw and fr get their own pages, not the English ones', () {
+      final untranslated = <String>[];
+      for (final item in stories) {
+        for (var i = 0; i < item.pages.length; i++) {
+          final key = '${item.id}.pages.$i.narration';
+          for (final lang in ['sw', 'fr']) {
+            final got = overlays[lang]![key];
+            if (got == null || got == item.pages[i].narration) {
+              untranslated.add('$key ($lang)');
+            }
+          }
+        }
+      }
+      const knownUntranslated = 0;
+      expect(
+        untranslated.length,
+        lessThanOrEqualTo(knownUntranslated),
+        reason: 'these pages would show English to a sw/fr child:\n'
+            '${untranslated.take(20).join('\n')}',
       );
     });
   });

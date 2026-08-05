@@ -37,7 +37,10 @@ class DailyChallenge {
 CurriculumStage stageForChild(ChildProfile child, OfflineStore store) {
   final preferred = store.preferredStage(child.id);
   if (preferred != null) {
-    for (final s in curriculumStages) {
+    // Published only. The stored pick outlives the build that wrote it, so a
+    // device that once ran with a higher [maxPublishedStage] must not keep
+    // being handed daily challenges from a stage this build no longer offers.
+    for (final s in publishedCurriculumStages) {
       if (s.stage == preferred) return s;
     }
   }
