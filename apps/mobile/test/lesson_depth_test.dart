@@ -338,9 +338,9 @@ void main() {
       // asserts the direction of travel: the count may fall, never rise.
       // Lower it as stages land; see docs/CONTENT_WORKLIST.md.
       // 332 before any of this; 302 after stage 1, 230 after stages 2 and 3,
-      // 164 once stages 4 and 5 followed, 134 with stage 6
-      // (content/author_stage{1..6}.py).
-      const knownShallow = 134;
+      // 164 once stages 4 and 5 followed, 134 with stage 6, 108 with stage 7
+      // (content/author_stage{1..7}.py).
+      const knownShallow = 108;
       expect(
         shallow.length,
         lessThanOrEqualTo(knownShallow),
@@ -373,8 +373,8 @@ void main() {
       // Same ratchet rule as the lessons: may fall, never rise.
       // 172 of 199 when this test was written — including every stage the
       // lesson ratchet had already certified as done. 157 of 204 after
-      // stage 6 (content/author_stage6.py).
-      const knownShallow = 157;
+      // stage 6, 139 of 210 after stage 7.
+      const knownShallow = 139;
       expect(
         shallow.length,
         lessThanOrEqualTo(knownShallow),
@@ -443,8 +443,8 @@ void main() {
       }
       // 85 of 85 when this test was written — the whole story library was
       // exactly three pages long, in every stage, including the done ones.
-      // 80 of 90 after stage 6 (content/author_stage6.py).
-      const knownShallow = 80;
+      // 80 of 90 after stage 6, 74 of 96 after stage 7.
+      const knownShallow = 74;
       expect(
         shallow.length,
         lessThanOrEqualTo(knownShallow),

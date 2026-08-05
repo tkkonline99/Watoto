@@ -1,14 +1,14 @@
 # Watoto — Store Listing Kit (Gate 9)
 
-> **⚠ Every "ages 0–10" below is stale and must be edited to "ages 0–6" before
-> submission, in all three languages.** The build ships stages 1–6 only — see
+> **⚠ Every "ages 0–10" below is stale and must be edited to "ages 0–7" before
+> submission, in all three languages.** The build ships stages 1–7 only — see
 > [V1_SCOPE.md](V1_SCOPE.md). This file is left at the curriculum's full range
 > deliberately rather than half-rewritten: the copy is marketing text in EN/FR/SW
 > and the age bands feed the store age-rating questionnaires, so it wants one
 > pass by whoever owns marketing, not a search-and-replace. The affected fields
 > are the promotional text, both short descriptions, the screenshot captions,
-> and Google's **target age groups** (drop *9–10*, and *6–8* unless stage 7
-> ships).
+> and Google's **target age groups** (keep *Ages 5 & Under* and *6–8*, drop
+> *9–10*).
 
 Everything needed to fill in the App Store Connect and Google Play Console listings. Copy blocks are paste-ready and within each field's character limit; privacy answers are mapped to what Watoto actually collects (see `PRIVACY_POLICY.md`). Replace anything in [brackets]. Confirm final wording with whoever owns marketing/legal.
 

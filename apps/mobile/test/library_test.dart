@@ -34,13 +34,14 @@ void main() {
   group('content library', () {
     test('parses all v0.13.0 items by type', () async {
       final repo = await loadFromDisk();
-      // 565 before any authoring, 626 after stages 1-5. Stages 1-6 now hit the
-      // build plan's 6 lessons / 4 quizzes / 2 stories per subject; 8-10 are
-      // still short. Stage 6 added 5 quizzes and 5 stories, hence 636.
-      expect(repo.all, hasLength(636));
+      // 565 before any authoring, 626 after stages 1-5, 636 after stage 6.
+      // Stages 1-7 now hit the build plan's 6 lessons / 4 quizzes / 2 stories
+      // per subject; 8-10 are still short. Stage 7 has six subjects, so it
+      // added 6 quizzes and 6 stories, hence 648.
+      expect(repo.all, hasLength(648));
       expect(repo.all.where((i) => i.type == LibraryType.lesson), hasLength(342));
-      expect(repo.all.where((i) => i.type == LibraryType.quiz), hasLength(204));
-      expect(repo.all.where((i) => i.type == LibraryType.story), hasLength(90));
+      expect(repo.all.where((i) => i.type == LibraryType.quiz), hasLength(210));
+      expect(repo.all.where((i) => i.type == LibraryType.story), hasLength(96));
     });
 
     test('indexes by stage + subject', () async {
