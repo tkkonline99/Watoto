@@ -12,10 +12,10 @@ _Library version 0.13.0, generated 2026-06-17._
 | Quizzes to author | 18 |
 | Stories to author | 18 |
 | Lessons below their tier's step depth | 108 |
-| Quizzes below their tier's question count | 129 |
-| Stories below their tier's page count | 64 |
+| Quizzes below their tier's question count | 85 |
+| Stories below their tier's page count | 42 |
 | Reading lessons with no recap | 0 |
-| Items with no illustration | 123 |
+| Items with no illustration | 115 |
 | Unreferenced PNGs on disk | 0 |
 | Steps with no declared mechanic | 0 |
 | Declared audio files that do not exist | 77 |
@@ -122,67 +122,46 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 
 ### Stage 4 — Language & Literacy (ages 3-4)
 
-- **Deepen 4 quizzes:** `s04.literacy.quiz.01` (2→3 questions), `s04.literacy.quiz.02` (1→3 questions), `s04.literacy.quiz.03` (1→3 questions), `s04.literacy.quiz.04` (2→3 questions)
-- **Deepen 2 stories:** `s04.literacy.story.01` (3→5 pages), `s04.literacy.story.02` (3→5 pages)
-- **4 items have no illustration** (emoji fallback): `s04.literacy.lesson.03`, `s04.literacy.lesson.06`, `s04.literacy.quiz.01`, `s04.literacy.quiz.02`
+- **3 items have no illustration** (emoji fallback): `s04.literacy.lesson.03`, `s04.literacy.lesson.06`, `s04.literacy.quiz.01`
 
 ### Stage 4 — Math & Logic (ages 3-4)
 
-- **Deepen 4 quizzes:** `s04.math.quiz.01` (1→3 questions), `s04.math.quiz.02` (1→3 questions), `s04.math.quiz.03` (1→3 questions), `s04.math.quiz.04` (2→3 questions)
-- **Deepen 2 stories:** `s04.math.story.01` (3→5 pages), `s04.math.story.02` (3→5 pages)
-- **1 items have no illustration** (emoji fallback): `s04.math.quiz.02`
+- ✅ complete
 
 ### Stage 4 — Science & Nature (ages 3-4)
 
-- **Deepen 4 quizzes:** `s04.science.quiz.01` (2→3 questions), `s04.science.quiz.02` (1→3 questions), `s04.science.quiz.03` (1→3 questions), `s04.science.quiz.04` (2→3 questions)
-- **Deepen 2 stories:** `s04.science.story.01` (3→5 pages), `s04.science.story.02` (3→5 pages)
+- ✅ complete
 
 ### Stage 4 — Social Studies (ages 3-4)
 
-- **Deepen 4 quizzes:** `s04.social.quiz.01` (1→3 questions), `s04.social.quiz.02` (1→3 questions), `s04.social.quiz.03` (1→3 questions), `s04.social.quiz.04` (2→3 questions)
-- **Deepen 2 stories:** `s04.social.story.01` (3→5 pages), `s04.social.story.02` (3→5 pages)
-- **1 items have no illustration** (emoji fallback): `s04.social.quiz.03`
+- ✅ complete
 
 ### Stage 4 — Creative Arts (ages 3-4)
 
-- **Deepen 4 quizzes:** `s04.arts.quiz.01` (1→3 questions), `s04.arts.quiz.02` (1→3 questions), `s04.arts.quiz.03` (1→3 questions), `s04.arts.quiz.04` (2→3 questions)
-- **Deepen 2 stories:** `s04.arts.story.01` (3→5 pages), `s04.arts.story.02` (3→5 pages)
 - **1 items have no illustration** (emoji fallback): `s04.arts.lesson.05`
 
 ### Stage 4 — Social-Emotional (ages 3-4)
 
-- **Deepen 4 quizzes:** `s04.semotional.quiz.01` (1→3 questions), `s04.semotional.quiz.02` (1→3 questions), `s04.semotional.quiz.03` (1→3 questions), `s04.semotional.quiz.04` (2→3 questions)
-- **Deepen 2 stories:** `s04.semotional.story.01` (3→5 pages), `s04.semotional.story.02` (3→5 pages)
-- **3 items have no illustration** (emoji fallback): `s04.semotional.quiz.01`, `s04.semotional.quiz.02`, `s04.semotional.quiz.03`
+- ✅ complete
 
 ### Stage 5 — Reading & Writing (ages 4-5)
 
-- **Deepen 4 quizzes:** `s05.reading.quiz.01` (2→3 questions), `s05.reading.quiz.02` (1→3 questions), `s05.reading.quiz.03` (1→3 questions), `s05.reading.quiz.04` (2→3 questions)
-- **Deepen 2 stories:** `s05.reading.story.01` (3→5 pages), `s05.reading.story.02` (3→5 pages)
-- **3 items have no illustration** (emoji fallback): `s05.reading.quiz.01`, `s05.reading.quiz.02`, `s05.reading.quiz.03`
+- **2 items have no illustration** (emoji fallback): `s05.reading.quiz.01`, `s05.reading.quiz.02`
 
 ### Stage 5 — Math (ages 4-5)
 
-- **Deepen 4 quizzes:** `s05.math.quiz.01` (1→3 questions), `s05.math.quiz.02` (1→3 questions), `s05.math.quiz.03` (1→3 questions), `s05.math.quiz.04` (2→3 questions)
-- **Deepen 2 stories:** `s05.math.story.01` (3→5 pages), `s05.math.story.02` (3→5 pages)
 - **3 items have no illustration** (emoji fallback): `s05.math.quiz.01`, `s05.math.quiz.02`, `s05.math.quiz.03`
 
 ### Stage 5 — Science (ages 4-5)
 
-- **Deepen 4 quizzes:** `s05.science.quiz.01` (2→3 questions), `s05.science.quiz.02` (1→3 questions), `s05.science.quiz.03` (1→3 questions), `s05.science.quiz.04` (2→3 questions)
-- **Deepen 2 stories:** `s05.science.story.01` (3→5 pages), `s05.science.story.02` (3→5 pages)
-- **2 items have no illustration** (emoji fallback): `s05.science.quiz.01`, `s05.science.quiz.03`
+- **1 items have no illustration** (emoji fallback): `s05.science.quiz.01`
 
 ### Stage 5 — Social Studies (ages 4-5)
 
-- **Deepen 4 quizzes:** `s05.social.quiz.01` (1→3 questions), `s05.social.quiz.02` (1→3 questions), `s05.social.quiz.03` (1→3 questions), `s05.social.quiz.04` (2→3 questions)
-- **Deepen 2 stories:** `s05.social.story.01` (3→5 pages), `s05.social.story.02` (3→5 pages)
 - **3 items have no illustration** (emoji fallback): `s05.social.quiz.01`, `s05.social.quiz.02`, `s05.social.quiz.03`
 
 ### Stage 5 — Creativity & Coding (ages 4-5)
 
-- **Deepen 4 quizzes:** `s05.coding.quiz.01` (1→3 questions), `s05.coding.quiz.02` (1→3 questions), `s05.coding.quiz.03` (1→3 questions), `s05.coding.quiz.04` (2→3 questions)
-- **Deepen 2 stories:** `s05.coding.story.01` (3→5 pages), `s05.coding.story.02` (3→5 pages)
 - **3 items have no illustration** (emoji fallback): `s05.coding.quiz.01`, `s05.coding.quiz.02`, `s05.coding.quiz.03`
 
 ### Stage 6 — Reading & Writing (ages 5-6)

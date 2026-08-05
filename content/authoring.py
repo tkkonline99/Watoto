@@ -105,6 +105,14 @@ def build_story(spec, *, stage, ages, tier, reading=False):
     for n, lang in enumerate(LANGS):
         keys[lang][f"{sid}.title"] = spec["title"][n]
         keys[lang][f"{sid}.parentNote"] = spec["parentNote"][n]
+    # A narration track the story already declared. This builder replaces the
+    # whole item, so a cue not restated here is dropped — and these have never
+    # been rendered, which makes the loss invisible at runtime and invisible in
+    # a diff of what the child hears. Whether to keep an unrecorded cue is a
+    # media decision; a script taking a story to depth should not make it by
+    # omission.
+    for ref, desc in spec.get("audio", []):
+        item["assets"].append({"type": "audio", "ref": ref, "desc": desc})
     # Deduped like build_quiz's option art: a six-page story that returns to the
     # same scene twice would otherwise declare the same ref twice, and
     # worklist.js counts declared refs.
@@ -132,13 +140,33 @@ def apply_stage(
     reading=False,
     min_questions=None,
     min_pages=None,
+    base_question_counts=None,
+    extra_questions=None,
     check_only=False,
 ):
-    """Deepen a stage's lessons and add its missing quizzes and stories."""
+    """Deepen a stage's lessons and add its missing quizzes and stories.
+
+    [extra_questions] appends to quizzes that already exist, the same way
+    [extra_steps] appends to lessons, and for the same reason. Taking a stage's
+    quizzes to depth through [new_quizzes] means restating every question they
+    already ask — 44 quizzes' worth of prompts, options and feedback across
+    three languages, retyped only to be written back unchanged. Every one of
+    those is a chance to drop a translation. A question is also not a page: it
+    stands alone, so a third question appended after the first two reads
+    exactly as well as one inserted between them, and nothing about the item
+    needs rebuilding. Stories are the opposite and stay on [new_stories] —
+    they have endings, so depth there means inserting a beat in the middle.
+
+    Idempotency is [extra_steps]' rule, unchanged: truncate to the count the
+    quiz shipped with, then append. Matching on question text instead would
+    break the first time a prompt was reworded.
+    """
     lib = json.loads(LIBRARIES[0].read_text(encoding="utf-8"))
     by_id = {c["id"]: c for c in lib["content"]}
     overlay = {l: {} for l in LANGS}
     problems = []
+    base_question_counts = base_question_counts or {}
+    extra_questions = extra_questions or {}
 
     for lid, extras in extra_steps.items():
         item = by_id.get(lid)
@@ -200,6 +228,55 @@ def apply_stage(
             else:
                 lib["content"].append(built)
 
+    # Deepening runs *after* writing, so a quiz can be both authored here and
+    # topped up by extra_questions — the `.04` quizzes of stages 4 and 5 are
+    # both. The other order silently drops the appended questions, because
+    # build_quiz replaces the whole item. by_id is rebuilt because those
+    # replacements swapped in new dicts and the old handles are now stale.
+    by_id = {c["id"]: c for c in lib["content"]}
+
+    for qid, extras in extra_questions.items():
+        item = by_id.get(qid)
+        if item is None:
+            problems.append(f"{qid} not in the library")
+            continue
+        n_base = base_question_counts.get(qid)
+        if n_base is None:
+            problems.append(f"{qid} has no base question count")
+            continue
+        if len(item["questions"]) < n_base:
+            problems.append(
+                f"{qid} has {len(item['questions'])} questions, fewer than the "
+                f"{n_base} it shipped with — the library has been edited by hand")
+            continue
+        base = item["questions"][:n_base]
+        questions = list(base)
+        for offset, q in enumerate(extras):
+            n = len(base) + offset
+            opts = []
+            for om, (label, asset) in enumerate(q["options"]):
+                opts.append({"label": label[0], "asset": asset})
+                for i, lang in enumerate(LANGS):
+                    overlay[lang][f"{qid}.questions.{n}.options.{om}.label"] = label[i]
+                # A word-only option is normal from `encourage-effort` up, where
+                # the child reads the choice. Declaring {"ref": null} would put
+                # an image asset with no image into the art manifest.
+                if asset is not None and not any(
+                        a.get("ref") == asset for a in item["assets"]):
+                    item["assets"].append(
+                        {"type": "image", "ref": asset, "desc": label[0]})
+            questions.append({
+                "prompt": q["prompt"][0], "options": opts, "answer": q["answer"],
+                "correctFeedback": q["correctFeedback"][0],
+                "retryFeedback": q["retryFeedback"][0],
+            })
+            for i, lang in enumerate(LANGS):
+                overlay[lang][f"{qid}.questions.{n}.prompt"] = q["prompt"][i]
+                overlay[lang][f"{qid}.questions.{n}.correctFeedback"] = q["correctFeedback"][i]
+                overlay[lang][f"{qid}.questions.{n}.retryFeedback"] = q["retryFeedback"][i]
+        if not check_only:
+            item["questions"] = questions
+
     if check_only:
         cur = json.loads(LIBRARIES[0].read_text(encoding="utf-8"))
         cur_ids = {c["id"] for c in cur["content"]}
@@ -214,11 +291,11 @@ def apply_stage(
         # the gap that let five stages pass as done with one question each.
         by_cur = {c["id"]: c for c in cur["content"]}
         if min_questions:
-            for spec in new_quizzes:
-                it = by_cur.get(spec["id"])
+            for qid in [s["id"] for s in new_quizzes] + list(extra_questions):
+                it = by_cur.get(qid)
                 if it and len(it.get("questions", [])) < min_questions:
                     problems.append(
-                        f"{spec['id']} is {len(it['questions'])} questions, "
+                        f"{qid} is {len(it['questions'])} questions, "
                         f"needs {min_questions}")
         if min_pages:
             for spec in new_stories:
@@ -253,6 +330,7 @@ def apply_stage(
     lessons = [c for c in lib["content"] if c["stage"] == stage and c["type"] == "lesson"]
     lo, hi = min(len(l["steps"]) for l in lessons), max(len(l["steps"]) for l in lessons)
     print(f"stage {stage}: {len(extra_steps)} lessons deepened (now {lo}-{hi} steps), "
-          f"{len(new_quizzes)} quizzes and {len(new_stories)} stories added")
+          f"{len(extra_questions)} quizzes deepened, "
+          f"{len(new_quizzes)} quizzes and {len(new_stories)} stories written")
     print(f"i18n: {len(overlay['en'])} keys per language x {len(LANGS)} languages")
     return 0
