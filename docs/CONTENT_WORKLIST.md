@@ -9,13 +9,13 @@ _Library version 0.13.0, generated 2026-06-17._
 
 | Gap | Count |
 |---|---|
-| Quizzes to author | 18 |
-| Stories to author | 18 |
-| Lessons below their tier's step depth | 108 |
-| Quizzes below their tier's question count | 54 |
-| Stories below their tier's page count | 18 |
+| Quizzes to author | 12 |
+| Stories to author | 12 |
+| Lessons below their tier's step depth | 72 |
+| Quizzes below their tier's question count | 36 |
+| Stories below their tier's page count | 12 |
 | Reading lessons with no recap | 0 |
-| Items with no illustration | 111 |
+| Items with no illustration | 94 |
 | Unreferenced PNGs on disk | 0 |
 | Steps with no declared mechanic | 0 |
 | Declared audio files that do not exist | 77 |
@@ -195,57 +195,27 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 
 ### Stage 8 — Reading (ages 7-8)
 
-- **Author 1 quiz:** `s08.reading.quiz.04`
-- **Author 1 story:** `s08.reading.story.02`
-- **Deepen 6 lessons:** `s08.reading.lesson.01` (2→8), `s08.reading.lesson.02` (2→8), `s08.reading.lesson.03` (2→8), `s08.reading.lesson.04` (2→8), `s08.reading.lesson.05` (2→8), `s08.reading.lesson.06` (2→8)
-- **Deepen 3 quizzes:** `s08.reading.quiz.01` (2→4 questions), `s08.reading.quiz.02` (1→4 questions), `s08.reading.quiz.03` (1→4 questions)
-- **Deepen 1 stories:** `s08.reading.story.01` (3→6 pages)
-- **3 items have no illustration** (emoji fallback): `s08.reading.quiz.01`, `s08.reading.quiz.02`, `s08.reading.quiz.03`
+- ✅ complete
 
 ### Stage 8 — Writing & Grammar (ages 7-8)
 
-- **Author 1 quiz:** `s08.writing.quiz.04`
-- **Author 1 story:** `s08.writing.story.02`
-- **Deepen 6 lessons:** `s08.writing.lesson.01` (2→8), `s08.writing.lesson.02` (2→8), `s08.writing.lesson.03` (2→8), `s08.writing.lesson.04` (2→8), `s08.writing.lesson.05` (2→8), `s08.writing.lesson.06` (2→8)
-- **Deepen 3 quizzes:** `s08.writing.quiz.01` (1→4 questions), `s08.writing.quiz.02` (1→4 questions), `s08.writing.quiz.03` (1→4 questions)
-- **Deepen 1 stories:** `s08.writing.story.01` (3→6 pages)
-- **3 items have no illustration** (emoji fallback): `s08.writing.quiz.01`, `s08.writing.quiz.02`, `s08.writing.quiz.03`
+- ✅ complete
 
 ### Stage 8 — Math (ages 7-8)
 
-- **Author 1 quiz:** `s08.math.quiz.04`
-- **Author 1 story:** `s08.math.story.02`
-- **Deepen 6 lessons:** `s08.math.lesson.01` (3→8), `s08.math.lesson.02` (2→8), `s08.math.lesson.03` (2→8), `s08.math.lesson.04` (2→8), `s08.math.lesson.05` (2→8), `s08.math.lesson.06` (2→8)
-- **Deepen 3 quizzes:** `s08.math.quiz.01` (1→4 questions), `s08.math.quiz.02` (1→4 questions), `s08.math.quiz.03` (1→4 questions)
-- **Deepen 1 stories:** `s08.math.story.01` (3→6 pages)
-- **3 items have no illustration** (emoji fallback): `s08.math.quiz.01`, `s08.math.quiz.02`, `s08.math.quiz.03`
+- ✅ complete
 
 ### Stage 8 — Science (ages 7-8)
 
-- **Author 1 quiz:** `s08.science.quiz.04`
-- **Author 1 story:** `s08.science.story.02`
-- **Deepen 6 lessons:** `s08.science.lesson.01` (2→8), `s08.science.lesson.02` (2→8), `s08.science.lesson.03` (2→8), `s08.science.lesson.04` (2→8), `s08.science.lesson.05` (2→8), `s08.science.lesson.06` (2→8)
-- **Deepen 3 quizzes:** `s08.science.quiz.01` (1→4 questions), `s08.science.quiz.02` (1→4 questions), `s08.science.quiz.03` (1→4 questions)
-- **Deepen 1 stories:** `s08.science.story.01` (3→6 pages)
-- **2 items have no illustration** (emoji fallback): `s08.science.quiz.01`, `s08.science.quiz.03`
+- ✅ complete
 
 ### Stage 8 — Social Studies (ages 7-8)
 
-- **Author 1 quiz:** `s08.social.quiz.04`
-- **Author 1 story:** `s08.social.story.02`
-- **Deepen 6 lessons:** `s08.social.lesson.01` (2→8), `s08.social.lesson.02` (2→8), `s08.social.lesson.03` (2→8), `s08.social.lesson.04` (2→8), `s08.social.lesson.05` (2→8), `s08.social.lesson.06` (2→8)
-- **Deepen 3 quizzes:** `s08.social.quiz.01` (1→4 questions), `s08.social.quiz.02` (1→4 questions), `s08.social.quiz.03` (1→4 questions)
-- **Deepen 1 stories:** `s08.social.story.01` (3→6 pages)
-- **3 items have no illustration** (emoji fallback): `s08.social.quiz.01`, `s08.social.quiz.02`, `s08.social.quiz.03`
+- ✅ complete
 
 ### Stage 8 — Creativity & Tech (ages 7-8)
 
-- **Author 1 quiz:** `s08.tech.quiz.04`
-- **Author 1 story:** `s08.tech.story.02`
-- **Deepen 6 lessons:** `s08.tech.lesson.01` (2→8), `s08.tech.lesson.02` (2→8), `s08.tech.lesson.03` (2→8), `s08.tech.lesson.04` (2→8), `s08.tech.lesson.05` (2→8), `s08.tech.lesson.06` (2→8)
-- **Deepen 3 quizzes:** `s08.tech.quiz.01` (1→4 questions), `s08.tech.quiz.02` (1→4 questions), `s08.tech.quiz.03` (1→4 questions)
-- **Deepen 1 stories:** `s08.tech.story.01` (3→6 pages)
-- **3 items have no illustration** (emoji fallback): `s08.tech.quiz.01`, `s08.tech.quiz.02`, `s08.tech.quiz.03`
+- ✅ complete
 
 ### Stage 9 — Reading (ages 8-9)
 
