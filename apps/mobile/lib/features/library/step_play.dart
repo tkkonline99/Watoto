@@ -29,6 +29,9 @@ enum StepMechanic {
   /// Build an m×n array of dots.
   buildArray,
 
+  /// Drag a battery, wire and bulb into a loop until the bulb lights.
+  buildCircuit,
+
   /// Watch/celebrate — animated beat then one big "Go!" tap.
   celebrate,
 
@@ -57,6 +60,7 @@ class StepPlayPlan {
     this.codeTokens = const [],
     this.messageChoices = const [],
     this.codeChallenge,
+    this.circuitMode,
   });
 
   final StepMechanic mechanic;
@@ -84,6 +88,11 @@ class StepPlayPlan {
   final List<String> codeTokens;
   final List<String> messageChoices;
   final String? codeChallenge; // 'print' | 'variable' | 'loop' | 'if' | 'fix'
+
+  /// Circuit builder direction: 'build' closes the loop, 'gap' opens it.
+  /// The same board runs both ways — "Now open a gap in the wire" is the
+  /// second half of the same idea, not a different exercise.
+  final String? circuitMode;
 }
 
 /// Visual scaffold for place-value / division problems.
@@ -371,6 +380,18 @@ StepPlayPlan planStep({
   final explicit =
       _planFromExplicit(step, interaction: interaction, seed: seed);
   if (explicit != null) return explicit;
+
+  // --- Circuit builder ---
+  // Matched on the *step* action only. The item-level interaction is
+  // `build-circuit` for the whole lesson, and its later steps are ordinary
+  // taps about what was just built — staging those as a board too would make
+  // the child rebuild the circuit to answer a question about it.
+  if (action.contains('circuit')) {
+    return StepPlayPlan(
+      mechanic: StepMechanic.buildCircuit,
+      circuitMode: _circuitModeFrom(narration),
+    );
+  }
 
   // --- Explicit code-run (kid mini-game, not a vague RUN button) ---
   if (action.contains('code') || interaction.contains('code-run')) {
@@ -689,6 +710,17 @@ bool _same(String a, String b) =>
     a.toLowerCase().replaceAll(_punctuation, '') ==
     b.toLowerCase().replaceAll(_punctuation, '');
 
+/// Which way the circuit board runs for this step.
+///
+/// "Now open a gap in the wire" hands the child a lit loop to break; anything
+/// else hands them loose parts to join. Getting this backwards would put an
+/// empty board under an instruction to open a gap in it.
+String _circuitModeFrom(String narration) =>
+    RegExp(r'\b(gap|break|open|cut|remove|disconnect)\b', caseSensitive: false)
+            .hasMatch(narration)
+        ? 'gap'
+        : 'build';
+
 /// Prefer author-supplied mechanic / answer / choices when present.
 ///
 /// [interaction] is the item-level mechanic string. It is only ever used to
@@ -838,6 +870,13 @@ StepPlayPlan? _planFromExplicit(
         cols: c,
         answer: step.answer ?? (r * c),
         promptHint: 'Tap to place every dot!',
+      );
+    case StepMechanic.buildCircuit:
+      // The board prints its own instruction next to the sockets, so there is
+      // no hint to add here without saying it twice.
+      return StepPlayPlan(
+        mechanic: StepMechanic.buildCircuit,
+        circuitMode: _circuitModeFrom(step.narration),
       );
     case StepMechanic.drag:
       // "Swipe across the picture!" and "Trace it with your finger!" are very

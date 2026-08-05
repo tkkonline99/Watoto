@@ -784,5 +784,14 @@
   "passwordResetCodeHintLocal": "The 6-digit code shown above",
   "passwordResetKnowPin": "Know your parent PIN? You can log in with it instead.",
   "sendResetEmailLocal": "Show my reset code",
-  "resendResetEmailLocal": "Show a new code"
+  "resendResetEmailLocal": "Show a new code",
+  "circuitBoard": "Circuit board",
+  "circuitDropHint": "Drop each part into its socket",
+  "circuitPartsTray": "Parts tray",
+  "circuitBattery": "Battery",
+  "circuitWire": "Wire",
+  "circuitBulb": "Bulb",
+  "circuitComplete": "The loop is complete — the bulb lights up!",
+  "circuitGapHint": "Take one part out to break the loop",
+  "circuitBroken": "The loop is open — the bulb goes dark."
 }

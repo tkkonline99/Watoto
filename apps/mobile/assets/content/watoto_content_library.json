@@ -49530,19 +49530,13 @@
           "narration": "Connect the battery, wire, and bulb to make a loop.",
           "action": "build-circuit",
           "feedback": "The bulb lights. A complete circuit lets current flow.",
-          "mechanic": "multiChoice",
-          "prompt": "What makes the bulb light?",
-          "choices": [
-            "A broken wire",
-            "A complete loop"
-          ],
-          "choiceIndex": 1
+          "mechanic": "buildCircuit"
         },
         {
           "narration": "Now open a gap in the wire.",
           "action": "build-circuit",
           "feedback": "The light goes out. A broken circuit stops the flow.",
-          "mechanic": "tap"
+          "mechanic": "buildCircuit"
         },
         {
           "narration": "Electricity only flows round a complete loop. One gap stops everything.",

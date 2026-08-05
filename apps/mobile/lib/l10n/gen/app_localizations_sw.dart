@@ -1312,4 +1312,31 @@ class AppLocalizationsSw extends AppLocalizations {
 
   @override
   String get resendResetEmailLocal => 'Onesha msimbo mpya';
+
+  @override
+  String get circuitBoard => 'Mzunguko';
+
+  @override
+  String get circuitDropHint => 'Weka kila kipande mahali pake';
+
+  @override
+  String get circuitPartsTray => 'Sanduku la vipande';
+
+  @override
+  String get circuitBattery => 'Betri';
+
+  @override
+  String get circuitWire => 'Waya';
+
+  @override
+  String get circuitBulb => 'Balbu';
+
+  @override
+  String get circuitComplete => 'Mzunguko umekamilika — balbu inawaka!';
+
+  @override
+  String get circuitGapHint => 'Ondoa kipande kimoja ili kuvunja mzunguko';
+
+  @override
+  String get circuitBroken => 'Mzunguko umefunguka — balbu inazimika.';
 }

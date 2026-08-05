@@ -368,6 +368,16 @@ class _LessonViewState extends ConsumerState<_LessonView> {
         ? loc.stepPrompt(_step)
         : (loc.lang == 'en' ? plan.promptHint : null);
     final emoji = stepIllustration(item: widget.item, narration: narrationEn);
+    // One caption widget, placed either above the stage or below it — see
+    // stageCaptionsBelow. Building it twice would announce it twice.
+    final caption = Semantics(
+      liveRegion: true,
+      child: Text(
+        loc.stepNarration(_step),
+        textAlign: TextAlign.center,
+        style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w800),
+      ),
+    );
     return Scaffold(
       appBar: playAppBar(context, loc.title),
       body: SafeArea(
@@ -409,17 +419,7 @@ class _LessonViewState extends ConsumerState<_LessonView> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Semantics(
-                          liveRegion: true,
-                          child: Text(
-                            loc.stepNarration(_step),
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.w800,
-                            ),
-                          ),
-                        ),
+                        if (!stageCaptionsBelow(plan.mechanic)) caption,
                         if (stepPrompt != null &&
                             !_interacted &&
                             !stageShowsPrompt(plan.mechanic)) ...[
@@ -446,7 +446,7 @@ class _LessonViewState extends ConsumerState<_LessonView> {
                         // step's emoji as their tap target skip it too — the
                         // child was seeing the same picture twice, once dead
                         // and once alive.
-                        else if (plan.mechanic != StepMechanic.codeRun &&
+                        else if (!stageOwnsCanvas(plan.mechanic) &&
                             choice == null)
                           ExcludeSemantics(
                             // Emoji-showing stages get the bundled artwork or
@@ -480,6 +480,10 @@ class _LessonViewState extends ConsumerState<_LessonView> {
                             ref.read(soundEffectsProvider).retry();
                           },
                         ),
+                        if (stageCaptionsBelow(plan.mechanic)) ...[
+                          const SizedBox(height: 20),
+                          caption,
+                        ],
                         if (_interacted) ...[
                           const SizedBox(height: 16),
                           Text(

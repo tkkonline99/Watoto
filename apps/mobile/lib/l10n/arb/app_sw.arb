@@ -385,5 +385,14 @@
   "passwordResetCodeHintLocal": "Msimbo wa tarakimu 6 ulioonekana hapo juu",
   "passwordResetKnowPin": "Unajua PIN yako ya mzazi? Unaweza kuingia nayo badala yake.",
   "sendResetEmailLocal": "Onesha msimbo wangu",
-  "resendResetEmailLocal": "Onesha msimbo mpya"
+  "resendResetEmailLocal": "Onesha msimbo mpya",
+  "circuitBoard": "Mzunguko",
+  "circuitDropHint": "Weka kila kipande mahali pake",
+  "circuitPartsTray": "Sanduku la vipande",
+  "circuitBattery": "Betri",
+  "circuitWire": "Waya",
+  "circuitBulb": "Balbu",
+  "circuitComplete": "Mzunguko umekamilika — balbu inawaka!",
+  "circuitGapHint": "Ondoa kipande kimoja ili kuvunja mzunguko",
+  "circuitBroken": "Mzunguko umefunguka — balbu inazimika."
 }

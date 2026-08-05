@@ -2415,6 +2415,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Show a new code'**
   String get resendResetEmailLocal;
+
+  /// No description provided for @circuitBoard.
+  ///
+  /// In en, this message translates to:
+  /// **'Circuit board'**
+  String get circuitBoard;
+
+  /// No description provided for @circuitDropHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Drop each part into its socket'**
+  String get circuitDropHint;
+
+  /// No description provided for @circuitPartsTray.
+  ///
+  /// In en, this message translates to:
+  /// **'Parts tray'**
+  String get circuitPartsTray;
+
+  /// No description provided for @circuitBattery.
+  ///
+  /// In en, this message translates to:
+  /// **'Battery'**
+  String get circuitBattery;
+
+  /// No description provided for @circuitWire.
+  ///
+  /// In en, this message translates to:
+  /// **'Wire'**
+  String get circuitWire;
+
+  /// No description provided for @circuitBulb.
+  ///
+  /// In en, this message translates to:
+  /// **'Bulb'**
+  String get circuitBulb;
+
+  /// No description provided for @circuitComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'The loop is complete — the bulb lights up!'**
+  String get circuitComplete;
+
+  /// No description provided for @circuitGapHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Take one part out to break the loop'**
+  String get circuitGapHint;
+
+  /// No description provided for @circuitBroken.
+  ///
+  /// In en, this message translates to:
+  /// **'The loop is open — the bulb goes dark.'**
+  String get circuitBroken;
 }
 
 class _AppLocalizationsDelegate

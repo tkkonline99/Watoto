@@ -10844,7 +10844,6 @@
   "s10.science.lesson.01.steps.0.choices.1": "Une boucle complète",
   "s10.science.lesson.01.steps.0.feedback": "L'ampoule s'allume. Un circuit complet laisse passer le courant.",
   "s10.science.lesson.01.steps.0.narration": "Relie la pile, le fil et l'ampoule pour faire une boucle.",
-  "s10.science.lesson.01.steps.0.prompt": "Qu'allume l'ampoule ?",
   "s10.science.lesson.01.steps.1.feedback": "La lumière s'éteint. Un circuit coupé arrête le courant.",
   "s10.science.lesson.01.steps.1.narration": "Maintenant, ouvre une coupure dans le fil.",
   "s10.science.lesson.01.steps.2.feedback": "Un interrupteur n'est qu'un trou qu'on ouvre et ferme à volonté.",

@@ -10869,7 +10869,6 @@
   "s10.science.lesson.01.steps.0.choices.1": "A complete loop",
   "s10.science.lesson.01.steps.0.feedback": "The bulb lights. A complete circuit lets current flow.",
   "s10.science.lesson.01.steps.0.narration": "Connect the battery, wire, and bulb to make a loop.",
-  "s10.science.lesson.01.steps.0.prompt": "What makes the bulb light?",
   "s10.science.lesson.01.steps.1.feedback": "The light goes out. A broken circuit stops the flow.",
   "s10.science.lesson.01.steps.1.narration": "Now open a gap in the wire.",
   "s10.science.lesson.01.steps.2.feedback": "A switch is nothing more than a gap you can open and close on purpose.",

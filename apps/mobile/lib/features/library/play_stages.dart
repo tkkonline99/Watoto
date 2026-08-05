@@ -14,6 +14,7 @@ import 'package:flutter/services.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
 import 'content_lexicon.dart';
+import 'play_stage_circuit.dart';
 import 'play_stage_code.dart';
 import 'step_motion.dart';
 import 'step_play.dart';
@@ -166,6 +167,11 @@ class SmartInteractionStage extends StatelessWidget {
         ),
       StepMechanic.codeRun => KidCodeStage(
           plan: plan,
+          onCompleted: () => onCompleted(),
+          onTapSound: onTapSound,
+        ),
+      StepMechanic.buildCircuit => CircuitBuildStage(
+          gap: plan.circuitMode == 'gap',
           onCompleted: () => onCompleted(),
           onTapSound: onTapSound,
         ),

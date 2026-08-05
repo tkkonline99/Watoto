@@ -385,5 +385,14 @@
   "passwordResetCodeHintLocal": "Le code à 6 chiffres affiché ci-dessus",
   "passwordResetKnowPin": "Vous connaissez votre code PIN parent ? Vous pouvez vous connecter avec.",
   "sendResetEmailLocal": "Afficher mon code",
-  "resendResetEmailLocal": "Afficher un nouveau code"
+  "resendResetEmailLocal": "Afficher un nouveau code",
+  "circuitBoard": "Circuit",
+  "circuitDropHint": "Dépose chaque pièce dans son emplacement",
+  "circuitPartsTray": "Boîte à pièces",
+  "circuitBattery": "Pile",
+  "circuitWire": "Fil",
+  "circuitBulb": "Ampoule",
+  "circuitComplete": "La boucle est complète — l'ampoule s'allume !",
+  "circuitGapHint": "Retire une pièce pour ouvrir la boucle",
+  "circuitBroken": "La boucle est ouverte — l'ampoule s'éteint."
 }

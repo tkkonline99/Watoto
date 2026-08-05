@@ -1314,4 +1314,31 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get resendResetEmailLocal => 'Show a new code';
+
+  @override
+  String get circuitBoard => 'Circuit board';
+
+  @override
+  String get circuitDropHint => 'Drop each part into its socket';
+
+  @override
+  String get circuitPartsTray => 'Parts tray';
+
+  @override
+  String get circuitBattery => 'Battery';
+
+  @override
+  String get circuitWire => 'Wire';
+
+  @override
+  String get circuitBulb => 'Bulb';
+
+  @override
+  String get circuitComplete => 'The loop is complete — the bulb lights up!';
+
+  @override
+  String get circuitGapHint => 'Take one part out to break the loop';
+
+  @override
+  String get circuitBroken => 'The loop is open — the bulb goes dark.';
 }

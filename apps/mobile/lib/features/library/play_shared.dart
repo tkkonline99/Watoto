@@ -143,6 +143,9 @@ bool stageShowsPrompt(StepMechanic mechanic) => switch (mechanic) {
       StepMechanic.drag ||
       StepMechanic.explain =>
         true,
+      // The circuit board carries "Drop each part into its socket" inside the
+      // loop, where the child is already looking.
+      StepMechanic.buildCircuit => true,
       // A choice stage lists answers and nothing else: its question has to be
       // printed above them or the child is picking blind.
       StepMechanic.multiChoice ||
@@ -164,9 +167,22 @@ bool stageShowsEmoji(StepMechanic mechanic) => switch (mechanic) {
         true,
       StepMechanic.numberAnswer ||
       StepMechanic.buildArray ||
-      StepMechanic.codeRun =>
+      StepMechanic.codeRun ||
+      StepMechanic.buildCircuit =>
         false,
     };
+
+/// Stages that are the whole picture themselves, so the decorative slot above
+/// them is not just redundant but crowds the thing being handled off screen.
+/// The code editor and the circuit board both want the canvas.
+bool stageOwnsCanvas(StepMechanic mechanic) =>
+    mechanic == StepMechanic.codeRun || mechanic == StepMechanic.buildCircuit;
+
+/// Stages whose instruction reads as a caption *under* the workspace, the way
+/// a figure is captioned. Putting "Connect the battery, wire and bulb" above a
+/// 300px board pushed the parts tray below the fold on a small phone.
+bool stageCaptionsBelow(StepMechanic mechanic) =>
+    mechanic == StepMechanic.buildCircuit;
 
 Widget emojiPlaceholder(String emoji) => Container(
   width: 140,

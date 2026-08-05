@@ -1319,4 +1319,32 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get resendResetEmailLocal => 'Afficher un nouveau code';
+
+  @override
+  String get circuitBoard => 'Circuit';
+
+  @override
+  String get circuitDropHint => 'Dépose chaque pièce dans son emplacement';
+
+  @override
+  String get circuitPartsTray => 'Boîte à pièces';
+
+  @override
+  String get circuitBattery => 'Pile';
+
+  @override
+  String get circuitWire => 'Fil';
+
+  @override
+  String get circuitBulb => 'Ampoule';
+
+  @override
+  String get circuitComplete =>
+      'La boucle est complète — l\'ampoule s\'allume !';
+
+  @override
+  String get circuitGapHint => 'Retire une pièce pour ouvrir la boucle';
+
+  @override
+  String get circuitBroken => 'La boucle est ouverte — l\'ampoule s\'éteint.';
 }
