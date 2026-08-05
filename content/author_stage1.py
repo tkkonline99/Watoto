@@ -28,7 +28,24 @@ screen is the prompt, not the lesson.
 For the same reason this script adds **no recap questions**. A recap is a
 multiple-choice question (`play_recap_view.dart`) and a pre-verbal child has no
 way to answer one. `lesson_depth_test.dart` scores depth per tier for exactly
-this reason.
+this reason. (`worklist.js` still lists 30 stage-1 lessons as missing a recap;
+for this tier that is a gap on paper only.)
+
+Quizzes and stories, added later
+--------------------------------
+The first pass of this script deepened the lessons and filled the *missing*
+quizzes and stories — the two per subject the build plan asked for and the
+library did not have. It left the ones that already existed alone, and they
+were thin: all ten shipped quizzes asked a single question, and every stage-1
+story was exactly three pages. That is the same mistake the whole library made
+for five stages, described in `lesson_depth_test.dart`: "stage N is done" was
+read off lesson depth, which is one of three item types.
+
+So the ten shipped quizzes now carry two questions and the ten stories four
+pages — the `parent-led` row of the depth tables. The shipped question and
+pages are carried over verbatim in all three languages rather than rewritten;
+they work, and discarding a good translation to reword a line a baby cannot
+read buys nothing.
 
 Everything is written in all three languages, English included, because
 `LocalizedItem._t` prefers the i18n overlay over the text embedded in the
@@ -59,6 +76,12 @@ I18N_DIRS = [ROOT / "apps/mobile/assets/i18n", ROOT / "content/i18n"]
 LANGS = ("en", "sw", "fr")
 
 ACCESSIBILITY = "All narration is also shown as captions; playable audio-only."
+
+# The `parent-led` row of the depth tables. Keep in sync with
+# minQuestionsByTier / minPagesByTier in apps/mobile/test/lesson_depth_test.dart
+# and MIN_QUESTIONS_BY_TIER / MIN_PAGES_BY_TIER in content/worklist.js.
+MIN_QUESTIONS = 2
+MIN_PAGES = 4
 
 # How many steps each stage-1 lesson shipped with, before this script. Used to
 # truncate back to the original before re-appending, so the script is
@@ -589,6 +612,326 @@ def Q(prompt, opts, answer, correct, retry):
 
 
 NEW_QUIZZES = [
+    # ---- The ten shipped quizzes, rebuilt at two questions ----------------
+    # These already existed and are listed here to be *replaced*, not added.
+    # Question 0 of each is the shipped one, carried over word for word in all
+    # three languages: it works, and rewording it would throw away a
+    # translation for no gain. Question 1 is new, and reverses the pair — "now
+    # tap the quiet one" — which is the shape quiz.03 and quiz.04 already use.
+    # At this age that reversal is the whole assessment: a single question a
+    # baby can pass by tapping the only thing on screen shows nothing, and two
+    # options with the answer on the left both times teaches position, not the
+    # word.
+    {
+        "id": "s01.sensory.quiz.01", "subject": "Sensory Exploration",
+        "title": ("Find the Bright One", "Tafuta inayong'aa", "Trouve la lumineuse"),
+        "objective": ("Look toward the brighter of two lights.",
+                      "Angalia mwanga mkali kati ya miwili.",
+                      "Regarder vers la plus brillante de deux lumières."),
+        "interaction": "tap",
+        "parentNote": ("Point to the bright light and say 'bright!' together.",
+                       "Onyesha mwanga mkali na semeni 'mng'ao!' pamoja.",
+                       "Montrez la lumière vive et dites « brillant ! » ensemble."),
+        "questions": [
+            Q(("Tap the one that is glowing brightly.",
+               "Gusa ile inayong'aa sana.",
+               "Touche celle qui brille fort."),
+              [(("Bright star", "Nyota inayong'aa", "Étoile brillante"), "img/s01/star_bright.png"),
+               (("Dim star", "Nyota hafifu", "Étoile pâle"), "img/s01/star_dim.png")], 0,
+              ("You found the bright one! ✨", "Umeipata inayong'aa! ✨",
+               "Tu as trouvé la brillante ! ✨"),
+              ("Look for the glow. Try again!", "Tafuta mng'ao. Jaribu tena!",
+               "Cherche la lueur. Essaie encore !")),
+            Q(("Now tap the star that is resting, soft and dim.",
+               "Sasa gusa nyota inayopumzika, laini na hafifu.",
+               "Touche maintenant l'étoile qui se repose, douce et pâle."),
+              [(("Dim star", "Nyota hafifu", "Étoile pâle"), "img/s01/star_dim.png"),
+               (("Bright star", "Nyota inayong'aa", "Étoile brillante"), "img/s01/star_bright.png")], 0,
+              ("Soft and sleepy. That one is dim.", "Laini na yenye usingizi. Hiyo ni hafifu.",
+               "Douce et endormie. Celle-là est pâle."),
+              ("That one is bright! Try again.", "Hiyo inang'aa! Jaribu tena.",
+               "Celle-là brille ! Essaie encore.")),
+        ],
+    },
+    {
+        "id": "s01.sensory.quiz.02", "subject": "Sensory Exploration",
+        "title": ("Which One Wiggled?", "Kipi kilitikisika?", "Laquelle a bougé ?"),
+        "objective": ("Notice and tap the thing that moved.",
+                      "Tambua na uguse kitu kilichosogea.",
+                      "Remarquer et toucher ce qui a bougé."),
+        "interaction": "tap",
+        "parentNote": ("Wiggle your fingers, then hold them still. Let your baby see both.",
+                       "Tikisa vidole vyako, kisha vitulize. Mwache mtoto aone vyote viwili.",
+                       "Remuez les doigts, puis restez immobile. Laissez bébé voir les deux."),
+        "questions": [
+            Q(("One shape wiggled. Tap the one that moved!",
+               "Umbo moja lilitikisika. Gusa lile lililosogea!",
+               "Une forme a bougé. Touche celle qui a remué !"),
+              [(("Wiggly fish", "Samaki anayetikisika", "Poisson frétillant"), "img/s01/fish.png"),
+               (("Still rock", "Jiwe tulivu", "Rocher immobile"), "img/s01/rock.png")], 0,
+              ("You spotted it! The fish wiggled.", "Umeangalia vizuri. Samaki alitikisika!",
+               "Tu as bien regardé. Le poisson a frétillé !"),
+              ("Watch closely. Try again!", "Angalia kwa makini. Jaribu tena!",
+               "Regarde bien. Essaie encore !")),
+            Q(("Now tap the one that stayed still.",
+               "Sasa gusa lile lililobaki tuli.",
+               "Touche maintenant celui qui est resté immobile."),
+              [(("Still rock", "Jiwe tulivu", "Rocher immobile"), "img/s01/rock.png"),
+               (("Wiggly fish", "Samaki anayetikisika", "Poisson frétillant"), "img/s01/fish.png")], 0,
+              ("The rock stayed still. Nothing moved.", "Jiwe lilibaki tuli. Hakuna kilichosogea.",
+               "Le rocher n'a pas bougé. Rien n'a remué."),
+              ("That one wiggled! Try again.", "Lile lilitikisika! Jaribu tena.",
+               "Celui-là a bougé ! Essaie encore.")),
+        ],
+    },
+    {
+        "id": "s01.cause.quiz.01", "subject": "Cause & Effect",
+        "title": ("Wake the Puppy", "Mwamshe mbwa mdogo", "Réveille le petit chien"),
+        "objective": ("Tap to cause a friendly reaction.",
+                      "Gusa ili kusababisha jibu la kirafiki.",
+                      "Toucher pour provoquer une réaction amicale."),
+        "interaction": "tap",
+        "parentNote": ("Say 'good morning!' in your own voice before your baby taps.",
+                       "Sema 'habari za asubuhi!' kwa sauti yako kabla mtoto hajagusa.",
+                       "Dites « bonjour ! » de votre voix avant que bébé ne touche."),
+        "questions": [
+            Q(("The puppy is sleeping. Tap the puppy to say good morning!",
+               "Mbwa mdogo amelala. Mguse ili kumwambia habari za asubuhi!",
+               "Le petit chien dort. Touche-le pour lui dire bonjour !"),
+              [(("Sleeping puppy", "Mbwa aliyelala", "Chien endormi"), "img/s01/puppy_sleep.png"),
+               (("Empty bed", "Kitanda kitupu", "Lit vide"), "img/s01/empty_bed.png")], 0,
+              ("Woof! The puppy woke up happy. 🐶", "Wof! Mbwa ameamka kwa furaha. 🐶",
+               "Ouaf ! Le petit chien s'est réveillé tout content. 🐶"),
+              ("Tap the puppy. Try again!", "Gusa mbwa. Jaribu tena!",
+               "Touche le petit chien. Essaie encore !")),
+            Q(("The puppy is up now! Tap the puppy that is awake.",
+               "Mbwa ameamka sasa! Gusa mbwa aliyeamka.",
+               "Le petit chien est debout ! Touche le chien réveillé."),
+              [(("Awake puppy", "Mbwa aliyeamka", "Chien réveillé"), "img/s01/puppy.png"),
+               (("Sleeping puppy", "Mbwa aliyelala", "Chien endormi"), "img/s01/puppy_sleep.png")], 0,
+              ("Up and wagging! You woke him.", "Ameamka na anatikisa mkia! Umemwamsha.",
+               "Debout, la queue qui remue ! Tu l'as réveillé."),
+              ("That puppy is still asleep. Try again!", "Mbwa huyo bado amelala. Jaribu tena!",
+               "Ce chien dort encore. Essaie encore !")),
+        ],
+    },
+    {
+        "id": "s01.cause.quiz.02", "subject": "Cause & Effect",
+        "title": ("Which Makes Music?", "Kipi kinatoa muziki?", "Lequel fait de la musique ?"),
+        "objective": ("Find the button that does something.",
+                      "Tafuta kitufe kinachofanya kitu.",
+                      "Trouver le bouton qui fait quelque chose."),
+        "interaction": "tap",
+        "parentNote": ("Hum along when the music button wins.",
+                       "Imba pamoja kitufe cha muziki kinaposhinda.",
+                       "Fredonnez quand le bouton musique gagne."),
+        "questions": [
+            Q(("Tap the button that plays music.",
+               "Gusa kitufe kinachopiga muziki.",
+               "Touche le bouton qui joue de la musique."),
+              [(("Music button", "Kitufe cha muziki", "Bouton musique"), "img/s01/btn_music.png"),
+               (("Quiet button", "Kitufe kimya", "Bouton silencieux"), "img/s01/btn_quiet.png")], 0,
+              ("La-la-la! You found the music. 🎵", "La-la-la! Umepata muziki. 🎵",
+               "La-la-la ! Tu as trouvé la musique. 🎵"),
+              ("Try the other one!", "Jaribu kingine!", "Essaie l'autre !")),
+            Q(("Now tap the quiet button.",
+               "Sasa gusa kitufe kimya.",
+               "Touche maintenant le bouton silencieux."),
+              [(("Quiet button", "Kitufe kimya", "Bouton silencieux"), "img/s01/btn_quiet.png"),
+               (("Music button", "Kitufe cha muziki", "Bouton musique"), "img/s01/btn_music.png")], 0,
+              ("Shhh. That one makes no sound.", "Shhh. Hicho hakitoi sauti.",
+               "Chut. Celui-là ne fait aucun bruit."),
+              ("That one plays music! Try again.", "Hicho kinapiga muziki! Jaribu tena.",
+               "Celui-là joue de la musique ! Essaie encore.")),
+        ],
+    },
+    {
+        "id": "s01.object.quiz.01", "subject": "Object Permanence",
+        "title": ("Where Did Teddy Go?", "Teddy amekwenda wapi?", "Où est passé Nounours ?"),
+        "objective": ("Find a hidden object (gentlest matching).",
+                      "Tafuta kitu kilichofichwa (ulinganishaji mpole kabisa).",
+                      "Trouver un objet caché (appariement tout en douceur)."),
+        "interaction": "tap",
+        "parentNote": ("No score, no timer — just delight at finding Teddy.",
+                       "Hakuna alama, hakuna saa — furaha tu ya kumpata Teddy.",
+                       "Pas de score, pas de minuteur — juste le plaisir de retrouver Nounours."),
+        "extraAssets": [("img/s01/two_cups.png", "Two upside-down cups, teddy under one")],
+        "questions": [
+            Q(("Teddy hid behind a cup. Tap the cup he is under.",
+               "Teddy amejificha chini ya kikombe. Gusa kikombe alichopo.",
+               "Nounours s'est caché sous un gobelet. Touche le gobelet où il se trouve."),
+              [(("Left cup", "Kikombe cha kushoto", "Gobelet de gauche"), "img/s01/cup_left.png"),
+               (("Right cup", "Kikombe cha kulia", "Gobelet de droite"), "img/s01/cup_right.png")], 0,
+              ("There he is! You found Teddy. 🧸", "Yupo hapa! Umempata Teddy. 🧸",
+               "Le voilà ! Tu as trouvé Nounours. 🧸"),
+              ("Lift a cup and peek. Try again!", "Inua kikombe na uchungulie. Jaribu tena!",
+               "Soulève un gobelet et regarde. Essaie encore !")),
+            Q(("Teddy hid again — under the other cup this time. Tap it.",
+               "Teddy amejificha tena — chini ya kikombe kingine sasa. Kigusa.",
+               "Nounours s'est encore caché — sous l'autre gobelet cette fois. Touche-le."),
+              [(("Right cup", "Kikombe cha kulia", "Gobelet de droite"), "img/s01/cup_right.png"),
+               (("Left cup", "Kikombe cha kushoto", "Gobelet de gauche"), "img/s01/cup_left.png")], 0,
+              ("Found again! Teddy was there all along.",
+               "Umempata tena! Teddy alikuwepo muda wote.",
+               "Retrouvé ! Nounours était là depuis le début."),
+              ("Try the other cup!", "Jaribu kikombe kingine!", "Essaie l'autre gobelet !")),
+        ],
+    },
+    {
+        "id": "s01.object.quiz.02", "subject": "Object Permanence",
+        "title": ("Where Is the Duck?", "Bata yuko wapi?", "Où est le canard ?"),
+        "objective": ("Find a hidden object behind two choices.",
+                      "Tafuta kitu kilichofichwa nyuma ya machaguo mawili.",
+                      "Trouver un objet caché parmi deux choix."),
+        "interaction": "tap",
+        "parentNote": ("Hide your own face behind your hands, then peek. Same idea.",
+                       "Jifiche uso wako kwa mikono, kisha chungulia. Wazo ni lile lile.",
+                       "Cachez votre visage derrière vos mains, puis regardez. C'est la même idée."),
+        "questions": [
+            Q(("The duck hid behind a bush. Tap the bush it is behind.",
+               "Bata amejificha nyuma ya kichaka. Gusa kichaka sahihi.",
+               "Le canard s'est caché derrière un buisson. Touche le bon buisson."),
+              [(("Left bush", "Kichaka cha kushoto", "Buisson de gauche"), "img/s01/bush_left.png"),
+               (("Right bush", "Kichaka cha kulia", "Buisson de droite"), "img/s01/bush_right.png")], 0,
+              ("Quack! You found the duck. 🦆", "Kwaa! Umempata bata. 🦆",
+               "Coin-coin ! Tu as trouvé le canard. 🦆"),
+              ("Peek behind the other one. Try again!",
+               "Chungulia nyuma ya kingine. Jaribu tena!",
+               "Regarde derrière l'autre. Essaie encore !")),
+            Q(("Now the duck is behind the other bush. Tap it.",
+               "Sasa bata yuko nyuma ya kichaka kingine. Kigusa.",
+               "Maintenant le canard est derrière l'autre buisson. Touche-le."),
+              [(("Right bush", "Kichaka cha kulia", "Buisson de droite"), "img/s01/bush_right.png"),
+               (("Left bush", "Kichaka cha kushoto", "Buisson de gauche"), "img/s01/bush_left.png")], 0,
+              ("Quack-quack! Hidden is not gone.", "Kwaa-kwaa! Kujificha si kutoweka.",
+               "Coin-coin ! Caché ne veut pas dire disparu."),
+              ("Peek behind the other one. Try again!",
+               "Chungulia nyuma ya kingine. Jaribu tena!",
+               "Regarde derrière l'autre. Essaie encore !")),
+        ],
+    },
+    {
+        "id": "s01.lang.quiz.01", "subject": "Early Language",
+        "title": ("Where Is the Ball?", "Mpira uko wapi?", "Où est la balle ?"),
+        "objective": ("Point to a named object.",
+                      "Onyesha kitu kilichotajwa.",
+                      "Montrer un objet nommé."),
+        "interaction": "tap",
+        "parentNote": ("Say the word, wait a moment, then let your baby point.",
+                       "Sema neno, subiri kidogo, kisha mwache mtoto aonyeshe.",
+                       "Dites le mot, attendez un instant, puis laissez bébé montrer."),
+        "questions": [
+            Q(("Tap the ball.", "Gusa mpira.", "Touche la balle."),
+              [(("Ball", "Mpira", "Balle"), "img/s01/ball.png"),
+               (("Cup", "Kikombe", "Tasse"), "img/s01/cup.png")], 0,
+              ("That's the ball!", "Hasa hivyo. Huo ni mpira!", "C'est la balle !"),
+              ("Look for the round ball. Try again!",
+               "Tafuta mpira wa mviringo. Jaribu tena!",
+               "Cherche la balle toute ronde. Essaie encore !")),
+            Q(("Now tap the cup.", "Sasa gusa kikombe.", "Touche maintenant la tasse."),
+              [(("Cup", "Kikombe", "Tasse"), "img/s01/cup.png"),
+               (("Ball", "Mpira", "Balle"), "img/s01/ball.png")], 0,
+              ("Cup! We drink from a cup.", "Kikombe! Tunakunywa kwa kikombe.",
+               "La tasse ! On boit dans une tasse."),
+              ("That is the ball. Try again!", "Huo ni mpira. Jaribu tena!",
+               "C'est la balle. Essaie encore !")),
+        ],
+    },
+    {
+        "id": "s01.lang.quiz.02", "subject": "Early Language",
+        "title": ("Find the Dog", "Tafuta mbwa", "Trouve le chien"),
+        "objective": ("Point to a named animal.",
+                      "Onyesha mnyama aliyetajwa.",
+                      "Montrer un animal nommé."),
+        "interaction": "tap",
+        "parentNote": ("Make the animal sound yourself first — your voice teaches best.",
+                       "Toa sauti ya mnyama wewe mwenyewe kwanza — sauti yako hufundisha zaidi.",
+                       "Faites le cri de l'animal vous-même d'abord — votre voix enseigne le mieux."),
+        "questions": [
+            Q(("Where is the dog?", "Mbwa yuko wapi?", "Où est le chien ?"),
+              [(("Dog", "Mbwa", "Chien"), "img/s01/puppy.png"),
+               (("Cat", "Paka", "Chat"), "img/s02/cat.png")], 0,
+              ("Woof! You found the dog. 🐶", "Wof! Umempata mbwa. 🐶",
+               "Ouaf ! Tu as trouvé le chien. 🐶"),
+              ("The dog says woof. Try again!", "Mbwa anasema wof. Jaribu tena!",
+               "Le chien fait ouaf. Essaie encore !")),
+            Q(("Meow! Where is the cat?", "Miau! Paka yuko wapi?",
+               "Miaou ! Où est le chat ?"),
+              [(("Cat", "Paka", "Chat"), "img/s02/cat.png"),
+               (("Dog", "Mbwa", "Chien"), "img/s01/puppy.png")], 0,
+              ("Meow! You found the cat. 🐱", "Miau! Umempata paka. 🐱",
+               "Miaou ! Tu as trouvé le chat. 🐱"),
+              ("The cat says meow. Try again!", "Paka anasema miau. Jaribu tena!",
+               "Le chat fait miaou. Essaie encore !")),
+        ],
+    },
+    {
+        "id": "s01.motor.quiz.01", "subject": "Motor Imitation",
+        "title": ("Do What Teddy Does", "Fanya kama Teddy", "Fais comme Nounours"),
+        "objective": ("Match a modeled action.",
+                      "Linganisha tendo lililoonyeshwa.",
+                      "Reproduire un geste montré."),
+        "interaction": "tap",
+        "parentNote": ("Clap first, then ask. Copying comes before choosing.",
+                       "Piga makofi kwanza, kisha uliza. Kuiga hutangulia kuchagua.",
+                       "Applaudissez d'abord, puis demandez. Imiter vient avant choisir."),
+        "questions": [
+            Q(("Teddy is clapping. Tap the friend who is also clapping!",
+               "Teddy anapiga makofi. Gusa rafiki anayepiga makofi pia!",
+               "Nounours tape des mains. Touche l'ami qui tape aussi !"),
+              [(("Clapping bunny", "Sungura anayepiga makofi", "Lapin qui applaudit"), "img/s01/bunny_clap.png"),
+               (("Sleeping bunny", "Sungura aliyelala", "Lapin endormi"), "img/s01/bunny_sleep.png")], 0,
+              ("Clap, clap, clap! You found the one clapping.",
+               "Umepata. Makofi, makofi, makofi!", "Tu as trouvé. Clap, clap, clap !"),
+              ("Find the one clapping. Try again!",
+               "Tafuta anayepiga makofi. Jaribu tena!",
+               "Trouve celui qui applaudit. Essaie encore !")),
+            Q(("Now Teddy is sleeping. Tap the bunny who is asleep too.",
+               "Sasa Teddy amelala. Gusa sungura aliyelala pia.",
+               "Maintenant Nounours dort. Touche le lapin qui dort aussi."),
+              [(("Sleeping bunny", "Sungura aliyelala", "Lapin endormi"), "img/s01/bunny_sleep.png"),
+               (("Clapping bunny", "Sungura anayepiga makofi", "Lapin qui applaudit"), "img/s01/bunny_clap.png")], 0,
+              ("Shhh. Both are resting now.", "Shhh. Wote wawili wanapumzika sasa.",
+               "Chut. Tous les deux se reposent."),
+              ("That bunny is clapping! Try again.",
+               "Sungura huyo anapiga makofi! Jaribu tena.",
+               "Ce lapin applaudit ! Essaie encore.")),
+        ],
+    },
+    {
+        "id": "s01.motor.quiz.02", "subject": "Motor Imitation",
+        "title": ("Which One Waves?", "Yupi anapunga mkono?", "Lequel fait coucou ?"),
+        "objective": ("Identify the waving character.",
+                      "Tambua mhusika anayepunga mkono.",
+                      "Repérer le personnage qui salue."),
+        "interaction": "tap",
+        "parentNote": ("Wave hello together before you tap anything.",
+                       "Pungeni mikono ya salamu pamoja kabla ya kugusa chochote.",
+                       "Faites coucou ensemble avant de toucher quoi que ce soit."),
+        "questions": [
+            Q(("Tap the one waving hello.",
+               "Gusa anayepunga mkono wa salamu.",
+               "Touche celui qui fait coucou."),
+              [(("Waving bear", "Dubu anayepunga mkono", "Ours qui salue"), "img/s01/bear_wave.png"),
+               (("Still bear", "Dubu tulivu", "Ours immobile"), "img/s01/bear_still.png")], 0,
+              ("Hello! You found the wave. 👋", "Habari! Umempata anayepunga mkono. 👋",
+               "Coucou ! Tu as trouvé celui qui salue. 👋"),
+              ("Look for the moving hand. Try again!",
+               "Tafuta mkono unaosogea. Jaribu tena!",
+               "Cherche la main qui bouge. Essaie encore !")),
+            Q(("Now tap the bear holding still.",
+               "Sasa gusa dubu aliyetulia.",
+               "Touche maintenant l'ours qui reste immobile."),
+              [(("Still bear", "Dubu tulivu", "Ours immobile"), "img/s01/bear_still.png"),
+               (("Waving bear", "Dubu anayepunga mkono", "Ours qui salue"), "img/s01/bear_wave.png")], 0,
+              ("Still as a stone. Well spotted!", "Tuli kama jiwe. Umeona vizuri!",
+               "Immobile comme une pierre. Bien vu !"),
+              ("That bear is waving! Try again.",
+               "Dubu huyo anapunga mkono! Jaribu tena.",
+               "Cet ours salue ! Essaie encore.")),
+        ],
+    },
+    # ---- The four quizzes this script first added -------------------------
     {
         "id": "s01.sensory.quiz.03", "subject": "Sensory Exploration",
         "title": ("Loud or Soft?", "Kubwa au Laini?", "Fort ou Doux ?"),
@@ -881,9 +1224,142 @@ NEW_QUIZZES = [
 ]
 
 # --------------------------------------------------------------------------
-# New stories — three pages, the shape the shipped stage-1 story already uses.
+# Stories — four pages each.
+#
+# Three was the shape every story in the library shipped at, and it is setup
+# and stop: something happens, and it is over. Four is still board-book length
+# for a `parent-led` tier, but it leaves room for the middle beat the three-page
+# version had nowhere to put — the bird flies off *and comes back*, the rain
+# falls *and then the star comes out*. That middle beat is the whole point of
+# an object-permanence story.
+#
+# The five `story.01` entries are the shipped ones, rebuilt: their existing
+# pages are carried over word for word in all three languages and one page is
+# added. They each declare a narration track that was never recorded, which
+# `audio` keeps attached (see build_story).
 # --------------------------------------------------------------------------
 NEW_STORIES = [
+    {
+        "id": "s01.sensory.story.01", "subject": "Sensory Exploration",
+        "title": ("A Day of Sounds", "Siku ya sauti", "Une journée de sons"),
+        "objective": ("Enjoy a gentle tour of everyday sounds.",
+                      "Furahia matembezi mapole ya sauti za kila siku.",
+                      "Profiter d'un petit tour des sons de tous les jours."),
+        "parentNote": ("Make each sound softly with your own voice as you go.",
+                       "Toa kila sauti taratibu kwa sauti yako unaposonga.",
+                       "Faites chaque son tout doucement avec votre voix au fil des pages."),
+        "audio": [("audio/s01/day_sounds.mp3", "Gentle narrator with soft sounds")],
+        "pages": [
+            (("Good morning! The birds say tweet-tweet.",
+              "Habari za asubuhi! Ndege wanasema twii-twii.",
+              "Bonjour ! Les oiseaux font cui-cui."), "img/s01/morning_bird.png"),
+            (("Splish-splash. It is bath time!", "Chap-chap. Ni wakati wa kuoga!",
+              "Plouf-plouf. C'est l'heure du bain !"), "img/s01/bath_splash.png"),
+            (("Shake, shake! The rattle sings in your hand.",
+              "Tikisa, tikisa! Kayamba inaimba mkononi mwako.",
+              "Secoue, secoue ! Le hochet chante dans ta main."), "img/s01/rattle.png"),
+            (("Shhh, the night is quiet. Sweet dreams.",
+              "Shhh, usiku ni kimya. Lala salama.",
+              "Chut, la nuit est calme. Fais de beaux rêves."), "img/s01/night_quiet.png"),
+        ],
+    },
+    {
+        "id": "s01.cause.story.01", "subject": "Cause & Effect",
+        "title": ("Press and See!", "Gusa na uone!", "Touche et regarde !"),
+        "objective": ("Make something happen on every page.",
+                      "Fanya jambo litokee kila ukurasa.",
+                      "Faire arriver quelque chose à chaque page."),
+        "parentNote": ("Cheer 'you did it!' each time something happens.",
+                       "Sema 'umefanikiwa!' kila kitu kinapotokea.",
+                       "Dites « tu as réussi ! » à chaque fois qu'il se passe quelque chose."),
+        "audio": [("audio/s01/press_see.mp3", "Warm narrator")],
+        "pages": [
+            (("Tap the seed... a flower grows!", "Gusa mbegu... ua linachipuka!",
+              "Touche la graine... une fleur pousse !"), "img/s01/seed_flower.png"),
+            (("Tap the sky... the sun comes up!", "Gusa anga... jua linachomoza!",
+              "Touche le ciel... le soleil se lève !"), "img/s01/sky_sun.png"),
+            (("Tap the cloud... soft rain falls.",
+              "Gusa wingu... mvua laini inanyesha.",
+              "Touche le nuage... une pluie douce tombe."), "img/s01/cloud_rain.png"),
+            (("Tap the star... it twinkles goodnight. The end!",
+              "Gusa nyota... inameta usiku mwema. Mwisho!",
+              "Touche l'étoile... elle scintille bonne nuit. Fin !"), "img/s01/star.png"),
+        ],
+    },
+    {
+        "id": "s01.object.story.01", "subject": "Object Permanence",
+        "title": ("Peekaboo, Little Bird!", "Tushuu, ndege mdogo!", "Coucou, petit oiseau !"),
+        "objective": ("A gentle hide-and-reappear bedtime story.",
+                      "Hadithi tulivu ya kujificha na kutokea kabla ya kulala.",
+                      "Une histoire du soir où l'on se cache et réapparaît."),
+        "parentNote": ("A cozy wind-down story; pause and ask 'where is Bird?' on each page.",
+                       "Hadithi tulivu ya kutuliza; simama na uulize 'ndege yuko wapi?' kila ukurasa.",
+                       "Une histoire douce pour se calmer ; faites une pause et demandez « où est l'oiseau ? » à chaque page."),
+        "audio": [("audio/s01/peekaboo_bird.mp3", "Soft bedtime narrator")],
+        "pages": [
+            (("Little Bird hides behind a leaf. Where is Bird?",
+              "Ndege mdogo anajificha nyuma ya jani. Ndege yuko wapi?",
+              "Petit Oiseau se cache derrière une feuille. Où est l'oiseau ?"), "img/s01/bird_leaf.png"),
+            (("Peekaboo! There is Bird, singing softly.",
+              "Tushuu! Yupo ndege, akiimba taratibu.",
+              "Coucou ! Voilà l'oiseau, qui chante tout doucement."), "img/s01/bird_peek.png"),
+            (("Off Bird flies, and back again. Always back.",
+              "Ndege anaruka mbali, kisha anarudi. Daima anarudi.",
+              "L'oiseau s'envole, puis revient. Toujours il revient."), "img/s01/bird_return.png"),
+            (("Now Bird tucks into the nest. Goodnight, Bird!",
+              "Sasa ndege anajibanza kwenye kiota. Usiku mwema, ndege!",
+              "Maintenant, l'oiseau se blottit dans le nid. Bonne nuit, petit oiseau !"), "img/s01/bird_nest.png"),
+        ],
+    },
+    {
+        "id": "s01.lang.story.01", "subject": "Early Language",
+        "title": ("Goodnight, Little Stars", "Usiku mwema, nyota ndogo", "Bonne nuit, petites étoiles"),
+        "objective": ("A slow, soothing narrated good-night rhyme.",
+                      "Shairi tulivu la usiku mwema, lisimuliwalo polepole.",
+                      "Une comptine du soir, douce et lente."),
+        "parentNote": ("A calm-down story for bedtime. Dim your screen and read in a low voice.",
+                       "Hadithi ya kutuliza kabla ya kulala. Punguza mwangaza wa skrini na soma kwa sauti ya chini.",
+                       "Une histoire apaisante pour le coucher. Baissez la luminosité et lisez à voix basse."),
+        "audio": [("audio/s01/lullaby_bed.mp3", "Soft instrumental bed"),
+                  ("audio/s01/goodnight_narration.mp3", "Gentle narrator")],
+        "pages": [
+            (("One little star says goodnight.",
+              "Nyota ndogo moja inasema usiku mwema.",
+              "Une petite étoile dit bonne nuit."), "img/s01/star_one.png"),
+            (("Two soft clouds float by.", "Mawingu mawili laini yanapita.",
+              "Deux nuages tout doux passent."), "img/s01/clouds.png"),
+            (("Three little stars blink. Twinkle, twinkle.",
+              "Nyota ndogo tatu zinameta. Meta, meta.",
+              "Trois petites étoiles clignotent. Scintille, scintille."), "img/s01/night_sky.png"),
+            (("The moon smiles. Shhh... time to rest.",
+              "Mwezi unatabasamu. Shhh... ni wakati wa kupumzika.",
+              "La lune sourit. Chut... c'est l'heure de se reposer."), "img/s01/moon.png"),
+        ],
+    },
+    {
+        "id": "s01.motor.story.01", "subject": "Motor Imitation",
+        "title": ("Copy Me, Little One!", "Nifuate, mdogo wangu!", "Imite-moi, mon petit !"),
+        "objective": ("Imitate gentle actions through a story.",
+                      "Iga vitendo vipole kupitia hadithi.",
+                      "Imiter des gestes doux au fil d'une histoire."),
+        "parentNote": ("Do each action together; pause so your baby can try.",
+                       "Fanyeni kila tendo pamoja; simama ili bebe wako ajaribu.",
+                       "Faites chaque geste ensemble ; faites une pause pour laisser votre bébé essayer."),
+        "audio": [("audio/s01/copy_me.mp3", "Warm narrator")],
+        "pages": [
+            (("Clap your hands like me. Clap, clap!",
+              "Piga makofi kama mimi. Makofi, makofi!",
+              "Tape des mains comme moi. Clap, clap !"), "img/s01/story_clap.png"),
+            (("Now wave hello. Wave, wave!", "Sasa punga mkono wa salamu. Punga, punga!",
+              "Maintenant fais coucou. Coucou, coucou !"), "img/s01/story_wave.png"),
+            (("Stomp like an elephant. Stomp, stomp!",
+              "Kanyaga kama tembo. Kanya, kanya!",
+              "Tape des pieds comme un éléphant. Boum, boum !"), "img/s01/elephant_stomp.png"),
+            (("Last, a big hug. Squeeze! Goodnight, little one.",
+              "Mwisho, kumbatio kubwa. Kumbatia! Usiku mwema, mdogo wangu.",
+              "Pour finir, un gros câlin. Serre fort ! Bonne nuit, mon petit."), "img/s01/story_hug.png"),
+        ],
+    },
     {
         "id": "s01.sensory.story.02", "subject": "Sensory Exploration",
         "title": ("A Warm, Bright Day", "Siku ya Joto na Mwanga", "Une Journée Chaude et Claire"),
@@ -898,6 +1374,8 @@ NEW_STORIES = [
               "Le soleil est chaud sur ton visage."), "img/s01/sun_warm.png"),
             (("The grass is soft under your hands.", "Nyasi ni laini chini ya mikono yako.",
               "L'herbe est douce sous tes mains."), "img/s01/grass_green.png"),
+            (("Bubbles float past. Pop, pop!", "Mapovu yanapita yakielea. Pop, pop!",
+              "Des bulles passent en flottant. Pop, pop !"), "img/s01/bubbles.png"),
             (("A little breeze says hello. Shhh...", "Upepo mdogo unasalimia. Shhh...",
               "Une petite brise dit bonjour. Chut..."), "img/s01/breeze_leaf.png"),
         ],
@@ -916,6 +1394,8 @@ NEW_STORIES = [
               "Une petite main tape l'eau."), "img/s01/puddle.png"),
             (("Splash! The drops jump up high.", "Chapu! Matone yanaruka juu.",
               "Plouf ! Les gouttes sautent en l'air."), "img/s01/splash.png"),
+            (("Tap the bubbles... pop, pop, pop!", "Gusa mapovu... pop, pop, pop!",
+              "Touche les bulles... pop, pop, pop !"), "img/s01/bubbles.png"),
             (("A soft towel makes everything dry again.",
               "Taulo laini inakausha kila kitu tena.",
               "Une serviette douce sèche tout."), "img/s01/towel_dry.png"),
@@ -934,6 +1414,9 @@ NEW_STORIES = [
             (("The nest is empty. Where is baby bird?",
               "Kiota kiko tupu. Ndege mdogo yuko wapi?",
               "Le nid est vide. Où est bébé oiseau ?"), "img/s01/nest_empty.png"),
+            (("We look at the sky and wait. Where can she be?",
+              "Tunatazama angani na kusubiri. Yuko wapi?",
+              "On regarde le ciel et on attend. Où peut-elle être ?"), "img/s01/clouds.png"),
             (("Look! She is flying home.", "Tazama! Anarudi nyumbani akiruka.",
               "Regarde ! Elle rentre à la maison."), "img/s01/bird_return.png"),
             (("Back in the cosy nest. She was always coming back.",
@@ -955,6 +1438,8 @@ NEW_STORIES = [
               "Le soleil est levé. Bonjour !"), "img/s01/morning_sun.png"),
             (("Wave to everyone. Hello, hello!", "Wapungie wote. Hujambo, hujambo!",
               "Saluez tout le monde. Bonjour, bonjour !"), "img/s01/family_wave.png"),
+            (("Mama says your name. That is you!", "Mama anataja jina lako. Huyo ni wewe!",
+              "Maman dit ton prénom. C'est toi !"), "img/s01/mama.png"),
             (("Now we eat together. Yum!", "Sasa tunakula pamoja. Tamu!",
               "Maintenant on mange ensemble. Miam !"), "img/s01/breakfast.png"),
         ],
@@ -973,6 +1458,9 @@ NEW_STORIES = [
               "Tapez des mains. Clap, clap !"), "img/s01/clap_together.png"),
             (("Stomp your feet. Stomp, stomp!", "Kanyaga miguu. Kanya, kanya!",
               "Tapez des pieds. Boum, boum !"), "img/s01/stomp_together.png"),
+            (("Reach up high like a giraffe. Up, up, up!",
+              "Nyoosha mikono juu kama twiga. Juu, juu, juu!",
+              "Lève les bras comme une girafe. En haut, en haut !"), "img/s01/giraffe_arms.png"),
             (("Now a big hug. All done!", "Sasa kumbatio kubwa. Tumemaliza!",
               "Maintenant un gros câlin. C'est fini !"), "img/s01/hug_together.png"),
         ],
@@ -999,13 +1487,21 @@ def build_quiz(spec):
         keys[lang][f"{qid}.title"] = spec["title"][n]
         keys[lang][f"{qid}.parentNote"] = spec["parentNote"][n]
     seen = set()
+    # Art the quiz declares but no option points at — a scene-setting image such
+    # as `two_cups.png`. These builders *replace* the item, so anything not
+    # rebuilt from the spec is dropped: without this, deepening a quiz would
+    # quietly unreference a PNG that is still on disk.
+    for ref, desc in spec.get("extraAssets", []):
+        if ref not in seen:
+            seen.add(ref)
+            item["assets"].append({"type": "image", "ref": ref, "desc": desc})
     for qn, q in enumerate(spec["questions"]):
         opts = []
         for om, (label, asset) in enumerate(q["options"]):
             opts.append({"label": label[0], "asset": asset})
             for n, lang in enumerate(LANGS):
                 keys[lang][f"{qid}.questions.{qn}.options.{om}.label"] = label[n]
-            if asset not in seen:
+            if asset is not None and asset not in seen:
                 seen.add(asset)
                 item["assets"].append({"type": "image", "ref": asset, "desc": label[0]})
         item["questions"].append({
@@ -1033,9 +1529,19 @@ def build_story(spec):
     for n, lang in enumerate(LANGS):
         keys[lang][f"{sid}.title"] = spec["title"][n]
         keys[lang][f"{sid}.parentNote"] = spec["parentNote"][n]
+    # The five shipped stage-1 stories declare a narration track. None of those
+    # files have ever been rendered (worklist.js lists them under "declared
+    # audio that does not exist"), but whether to keep or drop an unrecorded cue
+    # is a media decision, not a depth one — so carry them through rather than
+    # let a rebuild silently make that call.
+    for ref, desc in spec.get("audio", []):
+        item["assets"].append({"type": "audio", "ref": ref, "desc": desc})
+    seen = set()
     for pn, (narr, ill) in enumerate(spec["pages"]):
         item["pages"].append({"narration": narr[0], "illustration": ill})
-        item["assets"].append({"type": "image", "ref": ill, "desc": narr[0]})
+        if ill is not None and ill not in seen:
+            seen.add(ill)
+            item["assets"].append({"type": "image", "ref": ill, "desc": narr[0]})
         for n, lang in enumerate(LANGS):
             keys[lang][f"{sid}.pages.{pn}.narration"] = narr[n]
     return item, keys
@@ -1119,6 +1625,20 @@ def apply(check_only=False):
             it = next((c for c in cur["content"] if c["id"] == lid), None)
             if it and len(it["steps"]) < 4:
                 problems.append(f"{lid} is {len(it['steps'])} steps — re-run author_stage1.py")
+        # Depth, not just presence. Checking only that a quiz exists is the gap
+        # that let this stage read as finished while all ten of its quizzes
+        # asked one question and every story stopped at three pages.
+        by_cur = {c["id"]: c for c in cur["content"]}
+        for spec in NEW_QUIZZES:
+            it = by_cur.get(spec["id"])
+            if it and len(it.get("questions", [])) < MIN_QUESTIONS:
+                problems.append(f"{spec['id']} is {len(it['questions'])} questions, "
+                                f"needs {MIN_QUESTIONS} — re-run author_stage1.py")
+        for spec in NEW_STORIES:
+            it = by_cur.get(spec["id"])
+            if it and len(it.get("pages", [])) < MIN_PAGES:
+                problems.append(f"{spec['id']} is {len(it['pages'])} pages, "
+                                f"needs {MIN_PAGES} — re-run author_stage1.py")
         for p in problems:
             print("  x " + p)
         print("stage 1 check:", "FAILED" if problems else "OK")
@@ -1143,7 +1663,7 @@ def apply(check_only=False):
     lessons = [c for c in lib["content"] if c["stage"] == 1 and c["type"] == "lesson"]
     print(f"stage 1: {len(EXTRA_STEPS)} lessons deepened "
           f"(now {min(len(l['steps']) for l in lessons)}-{max(len(l['steps']) for l in lessons)} steps), "
-          f"{len(NEW_QUIZZES)} quizzes and {len(NEW_STORIES)} stories added")
+          f"{len(NEW_QUIZZES)} quizzes and {len(NEW_STORIES)} stories written")
     print(f"i18n: {len(overlay['en'])} keys per language x {len(LANGS)} languages")
     return 0
 

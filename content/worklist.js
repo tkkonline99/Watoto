@@ -147,7 +147,18 @@ for (const { stage, ages, subject } of subs) {
   // it asks a single question.
   const shallowQuiz = byType.quiz.filter((q) => (q.questions || []).length < minQuestionsFor(q));
   const shallowStory = byType.story.filter((s) => (s.pages || []).length < minPagesFor(s));
-  const noRecap = byType.lesson.filter((l) => !l.recap);
+  // Only a reading lesson can be missing a recap. A recap is a written
+  // multiple-choice question (play_recap_view.dart), so every `reading: false`
+  // lesson withholds one on purpose — author_stage{1,2,3,4}.py each say so in
+  // their docstring. The split is exact: all 204 reading lessons have a recap,
+  // none of the 138 pre-reading ones do. Counting the latter as a gap put 138
+  // items on this list that nobody intends to author, and meant the whole
+  // pre-reading band could never read as complete however much was written.
+  // (author_stage4.py notes the line is worth revisiting — the recap view
+  // narrates as well as prints, so a two-option spoken recap could work for a
+  // pre-reader. That would be a design change, and this report should not
+  // pre-empt it by filing 138 tickets for it.)
+  const noRecap = byType.lesson.filter((l) => !l.recap && l.reading);
   // "Has art" means art the player actually draws. `assets[]` is pipeline
   // metadata that LibraryItem never even parses, so counting only that once
   // reported 227 art-less items when the real figure — items with no image
@@ -205,7 +216,7 @@ md += `| Stories to author | ${totals.story} |\n`;
 md += `| Lessons below their tier's step depth | ${totals.shallow} |\n`;
 md += `| Quizzes below their tier's question count | ${totals.shallowQuiz} |\n`;
 md += `| Stories below their tier's page count | ${totals.shallowStory} |\n`;
-md += `| Lessons with no recap | ${totals.norecap} |\n`;
+md += `| Reading lessons with no recap | ${totals.norecap} |\n`;
 md += `| Items with no illustration | ${totals.noart} |\n`;
 md += `| Unreferenced PNGs on disk | ${orphans.length} |\n`;
 md += `| Steps with no declared mechanic | ${totals.bare} |\n`;

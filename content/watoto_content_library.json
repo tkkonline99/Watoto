@@ -525,9 +525,25 @@
       "reading": false,
       "timed": false,
       "interaction": "tap",
-      "parentNote": null,
+      "parentNote": "Say 'good morning!' in your own voice before your baby taps.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s01/puppy_sleep.png",
+          "desc": "Sleeping puppy"
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/empty_bed.png",
+          "desc": "Empty bed"
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/puppy.png",
+          "desc": "Awake puppy"
+        }
+      ],
       "questions": [
         {
           "prompt": "The puppy is sleeping. Tap the puppy to say good morning!",
@@ -544,6 +560,22 @@
           "answer": 0,
           "correctFeedback": "Woof! The puppy woke up happy. 🐶",
           "retryFeedback": "Tap the puppy. Try again!"
+        },
+        {
+          "prompt": "The puppy is up now! Tap the puppy that is awake.",
+          "options": [
+            {
+              "label": "Awake puppy",
+              "asset": "img/s01/puppy.png"
+            },
+            {
+              "label": "Sleeping puppy",
+              "asset": "img/s01/puppy_sleep.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Up and wagging! You woke him.",
+          "retryFeedback": "That puppy is still asleep. Try again!"
         }
       ]
     },
@@ -559,9 +591,20 @@
       "reading": false,
       "timed": false,
       "interaction": "tap",
-      "parentNote": null,
+      "parentNote": "Hum along when the music button wins.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s01/btn_music.png",
+          "desc": "Music button"
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/btn_quiet.png",
+          "desc": "Quiet button"
+        }
+      ],
       "questions": [
         {
           "prompt": "Tap the button that plays music.",
@@ -578,6 +621,22 @@
           "answer": 0,
           "correctFeedback": "La-la-la! You found the music. 🎵",
           "retryFeedback": "Try the other one!"
+        },
+        {
+          "prompt": "Now tap the quiet button.",
+          "options": [
+            {
+              "label": "Quiet button",
+              "asset": "img/s01/btn_quiet.png"
+            },
+            {
+              "label": "Music button",
+              "asset": "img/s01/btn_music.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Shhh. That one makes no sound.",
+          "retryFeedback": "That one plays music! Try again."
         }
       ]
     },
@@ -714,7 +773,7 @@
       "designTier": "parent-led",
       "reading": false,
       "timed": false,
-      "interaction": "tap-to-turn",
+      "interaction": "listen",
       "parentNote": "Cheer 'you did it!' each time something happens.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
@@ -722,23 +781,44 @@
           "type": "audio",
           "ref": "audio/s01/press_see.mp3",
           "desc": "Warm narrator"
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/seed_flower.png",
+          "desc": "Tap the seed... a flower grows!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/sky_sun.png",
+          "desc": "Tap the sky... the sun comes up!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/cloud_rain.png",
+          "desc": "Tap the cloud... soft rain falls."
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/star.png",
+          "desc": "Tap the star... it twinkles goodnight. The end!"
         }
       ],
       "pages": [
         {
           "narration": "Tap the seed... a flower grows!",
-          "illustration": "img/s01/seed_flower.png",
-          "interaction": "tap-to-grow"
+          "illustration": "img/s01/seed_flower.png"
         },
         {
           "narration": "Tap the sky... the sun comes up!",
-          "illustration": "img/s01/sky_sun.png",
-          "interaction": "tap-to-rise"
+          "illustration": "img/s01/sky_sun.png"
         },
         {
-          "narration": "Tap the cloud... soft rain falls. The end!",
-          "illustration": "img/s01/cloud_rain.png",
-          "interaction": "tap-to-rain"
+          "narration": "Tap the cloud... soft rain falls.",
+          "illustration": "img/s01/cloud_rain.png"
+        },
+        {
+          "narration": "Tap the star... it twinkles goodnight. The end!",
+          "illustration": "img/s01/star.png"
         }
       ]
     },
@@ -769,6 +849,11 @@
         },
         {
           "type": "image",
+          "ref": "img/s01/bubbles.png",
+          "desc": "Tap the bubbles... pop, pop, pop!"
+        },
+        {
+          "type": "image",
           "ref": "img/s01/towel_dry.png",
           "desc": "A soft towel makes everything dry again."
         }
@@ -781,6 +866,10 @@
         {
           "narration": "Splash! The drops jump up high.",
           "illustration": "img/s01/splash.png"
+        },
+        {
+          "narration": "Tap the bubbles... pop, pop, pop!",
+          "illustration": "img/s01/bubbles.png"
         },
         {
           "narration": "A soft towel makes everything dry again.",
@@ -1139,9 +1228,20 @@
       "reading": false,
       "timed": false,
       "interaction": "tap",
-      "parentNote": null,
+      "parentNote": "Say the word, wait a moment, then let your baby point.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s01/ball.png",
+          "desc": "Ball"
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/cup.png",
+          "desc": "Cup"
+        }
+      ],
       "questions": [
         {
           "prompt": "Tap the ball.",
@@ -1158,6 +1258,22 @@
           "answer": 0,
           "correctFeedback": "That's the ball!",
           "retryFeedback": "Look for the round ball. Try again!"
+        },
+        {
+          "prompt": "Now tap the cup.",
+          "options": [
+            {
+              "label": "Cup",
+              "asset": "img/s01/cup.png"
+            },
+            {
+              "label": "Ball",
+              "asset": "img/s01/ball.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Cup! We drink from a cup.",
+          "retryFeedback": "That is the ball. Try again!"
         }
       ]
     },
@@ -1173,9 +1289,20 @@
       "reading": false,
       "timed": false,
       "interaction": "tap",
-      "parentNote": null,
+      "parentNote": "Make the animal sound yourself first — your voice teaches best.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s01/puppy.png",
+          "desc": "Dog"
+        },
+        {
+          "type": "image",
+          "ref": "img/s02/cat.png",
+          "desc": "Cat"
+        }
+      ],
       "questions": [
         {
           "prompt": "Where is the dog?",
@@ -1192,6 +1319,22 @@
           "answer": 0,
           "correctFeedback": "Woof! You found the dog. 🐶",
           "retryFeedback": "The dog says woof. Try again!"
+        },
+        {
+          "prompt": "Meow! Where is the cat?",
+          "options": [
+            {
+              "label": "Cat",
+              "asset": "img/s02/cat.png"
+            },
+            {
+              "label": "Dog",
+              "asset": "img/s01/puppy.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Meow! You found the cat. 🐱",
+          "retryFeedback": "The cat says meow. Try again!"
         }
       ]
     },
@@ -1341,23 +1484,44 @@
           "type": "audio",
           "ref": "audio/s01/goodnight_narration.mp3",
           "desc": "Gentle narrator"
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/star_one.png",
+          "desc": "One little star says goodnight."
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/clouds.png",
+          "desc": "Two soft clouds float by."
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/night_sky.png",
+          "desc": "Three little stars blink. Twinkle, twinkle."
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/moon.png",
+          "desc": "The moon smiles. Shhh... time to rest."
         }
       ],
       "pages": [
         {
           "narration": "One little star says goodnight.",
-          "illustration": "img/s01/star_one.png",
-          "interaction": null
+          "illustration": "img/s01/star_one.png"
         },
         {
           "narration": "Two soft clouds float by.",
-          "illustration": "img/s01/clouds.png",
-          "interaction": null
+          "illustration": "img/s01/clouds.png"
+        },
+        {
+          "narration": "Three little stars blink. Twinkle, twinkle.",
+          "illustration": "img/s01/night_sky.png"
         },
         {
           "narration": "The moon smiles. Shhh... time to rest.",
-          "illustration": "img/s01/moon.png",
-          "interaction": null
+          "illustration": "img/s01/moon.png"
         }
       ]
     },
@@ -1388,6 +1552,11 @@
         },
         {
           "type": "image",
+          "ref": "img/s01/mama.png",
+          "desc": "Mama says your name. That is you!"
+        },
+        {
+          "type": "image",
           "ref": "img/s01/breakfast.png",
           "desc": "Now we eat together. Yum!"
         }
@@ -1400,6 +1569,10 @@
         {
           "narration": "Wave to everyone. Hello, hello!",
           "illustration": "img/s01/family_wave.png"
+        },
+        {
+          "narration": "Mama says your name. That is you!",
+          "illustration": "img/s01/mama.png"
         },
         {
           "narration": "Now we eat together. Yum!",
@@ -1717,9 +1890,20 @@
       "reading": false,
       "timed": false,
       "interaction": "tap",
-      "parentNote": null,
+      "parentNote": "Clap first, then ask. Copying comes before choosing.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s01/bunny_clap.png",
+          "desc": "Clapping bunny"
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/bunny_sleep.png",
+          "desc": "Sleeping bunny"
+        }
+      ],
       "questions": [
         {
           "prompt": "Teddy is clapping. Tap the friend who is also clapping!",
@@ -1736,6 +1920,22 @@
           "answer": 0,
           "correctFeedback": "Clap, clap, clap! You found the one clapping.",
           "retryFeedback": "Find the one clapping. Try again!"
+        },
+        {
+          "prompt": "Now Teddy is sleeping. Tap the bunny who is asleep too.",
+          "options": [
+            {
+              "label": "Sleeping bunny",
+              "asset": "img/s01/bunny_sleep.png"
+            },
+            {
+              "label": "Clapping bunny",
+              "asset": "img/s01/bunny_clap.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Shhh. Both are resting now.",
+          "retryFeedback": "That bunny is clapping! Try again."
         }
       ]
     },
@@ -1751,9 +1951,20 @@
       "reading": false,
       "timed": false,
       "interaction": "tap",
-      "parentNote": null,
+      "parentNote": "Wave hello together before you tap anything.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s01/bear_wave.png",
+          "desc": "Waving bear"
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/bear_still.png",
+          "desc": "Still bear"
+        }
+      ],
       "questions": [
         {
           "prompt": "Tap the one waving hello.",
@@ -1770,6 +1981,22 @@
           "answer": 0,
           "correctFeedback": "Hello! You found the wave. 👋",
           "retryFeedback": "Look for the moving hand. Try again!"
+        },
+        {
+          "prompt": "Now tap the bear holding still.",
+          "options": [
+            {
+              "label": "Still bear",
+              "asset": "img/s01/bear_still.png"
+            },
+            {
+              "label": "Waving bear",
+              "asset": "img/s01/bear_wave.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Still as a stone. Well spotted!",
+          "retryFeedback": "That bear is waving! Try again."
         }
       ]
     },
@@ -1906,7 +2133,7 @@
       "designTier": "parent-led",
       "reading": false,
       "timed": false,
-      "interaction": "tap-to-turn",
+      "interaction": "listen",
       "parentNote": "Do each action together; pause so your baby can try.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
@@ -1914,23 +2141,44 @@
           "type": "audio",
           "ref": "audio/s01/copy_me.mp3",
           "desc": "Warm narrator"
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/story_clap.png",
+          "desc": "Clap your hands like me. Clap, clap!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/story_wave.png",
+          "desc": "Now wave hello. Wave, wave!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/elephant_stomp.png",
+          "desc": "Stomp like an elephant. Stomp, stomp!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/story_hug.png",
+          "desc": "Last, a big hug. Squeeze! Goodnight, little one."
         }
       ],
       "pages": [
         {
           "narration": "Clap your hands like me. Clap, clap!",
-          "illustration": "img/s01/story_clap.png",
-          "interaction": "tap-to-clap"
+          "illustration": "img/s01/story_clap.png"
         },
         {
           "narration": "Now wave hello. Wave, wave!",
-          "illustration": "img/s01/story_wave.png",
-          "interaction": "tap-to-wave"
+          "illustration": "img/s01/story_wave.png"
+        },
+        {
+          "narration": "Stomp like an elephant. Stomp, stomp!",
+          "illustration": "img/s01/elephant_stomp.png"
         },
         {
           "narration": "Last, a big hug. Squeeze! Goodnight, little one.",
-          "illustration": "img/s01/story_hug.png",
-          "interaction": null
+          "illustration": "img/s01/story_hug.png"
         }
       ]
     },
@@ -1961,6 +2209,11 @@
         },
         {
           "type": "image",
+          "ref": "img/s01/giraffe_arms.png",
+          "desc": "Reach up high like a giraffe. Up, up, up!"
+        },
+        {
+          "type": "image",
           "ref": "img/s01/hug_together.png",
           "desc": "Now a big hug. All done!"
         }
@@ -1973,6 +2226,10 @@
         {
           "narration": "Stomp your feet. Stomp, stomp!",
           "illustration": "img/s01/stomp_together.png"
+        },
+        {
+          "narration": "Reach up high like a giraffe. Up, up, up!",
+          "illustration": "img/s01/giraffe_arms.png"
         },
         {
           "narration": "Now a big hug. All done!",
@@ -2302,6 +2559,16 @@
           "type": "image",
           "ref": "img/s01/two_cups.png",
           "desc": "Two upside-down cups, teddy under one"
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/cup_left.png",
+          "desc": "Left cup"
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/cup_right.png",
+          "desc": "Right cup"
         }
       ],
       "questions": [
@@ -2320,6 +2587,22 @@
           "answer": 0,
           "correctFeedback": "There he is! You found Teddy. 🧸",
           "retryFeedback": "Lift a cup and peek. Try again!"
+        },
+        {
+          "prompt": "Teddy hid again — under the other cup this time. Tap it.",
+          "options": [
+            {
+              "label": "Right cup",
+              "asset": "img/s01/cup_right.png"
+            },
+            {
+              "label": "Left cup",
+              "asset": "img/s01/cup_left.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Found again! Teddy was there all along.",
+          "retryFeedback": "Try the other cup!"
         }
       ]
     },
@@ -2335,9 +2618,20 @@
       "reading": false,
       "timed": false,
       "interaction": "tap",
-      "parentNote": null,
+      "parentNote": "Hide your own face behind your hands, then peek. Same idea.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s01/bush_left.png",
+          "desc": "Left bush"
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/bush_right.png",
+          "desc": "Right bush"
+        }
+      ],
       "questions": [
         {
           "prompt": "The duck hid behind a bush. Tap the bush it is behind.",
@@ -2353,6 +2647,22 @@
           ],
           "answer": 0,
           "correctFeedback": "Quack! You found the duck. 🦆",
+          "retryFeedback": "Peek behind the other one. Try again!"
+        },
+        {
+          "prompt": "Now the duck is behind the other bush. Tap it.",
+          "options": [
+            {
+              "label": "Right bush",
+              "asset": "img/s01/bush_right.png"
+            },
+            {
+              "label": "Left bush",
+              "asset": "img/s01/bush_left.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Quack-quack! Hidden is not gone.",
           "retryFeedback": "Peek behind the other one. Try again!"
         }
       ]
@@ -2490,7 +2800,7 @@
       "designTier": "parent-led",
       "reading": false,
       "timed": false,
-      "interaction": "tap-to-turn",
+      "interaction": "listen",
       "parentNote": "A cozy wind-down story; pause and ask 'where is Bird?' on each page.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
@@ -2498,23 +2808,44 @@
           "type": "audio",
           "ref": "audio/s01/peekaboo_bird.mp3",
           "desc": "Soft bedtime narrator"
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/bird_leaf.png",
+          "desc": "Little Bird hides behind a leaf. Where is Bird?"
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/bird_peek.png",
+          "desc": "Peekaboo! There is Bird, singing softly."
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/bird_return.png",
+          "desc": "Off Bird flies, and back again. Always back."
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/bird_nest.png",
+          "desc": "Now Bird tucks into the nest. Goodnight, Bird!"
         }
       ],
       "pages": [
         {
           "narration": "Little Bird hides behind a leaf. Where is Bird?",
-          "illustration": "img/s01/bird_leaf.png",
-          "interaction": "tap-to-find"
+          "illustration": "img/s01/bird_leaf.png"
         },
         {
           "narration": "Peekaboo! There is Bird, singing softly.",
-          "illustration": "img/s01/bird_peek.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s01/bird_peek.png"
+        },
+        {
+          "narration": "Off Bird flies, and back again. Always back.",
+          "illustration": "img/s01/bird_return.png"
         },
         {
           "narration": "Now Bird tucks into the nest. Goodnight, Bird!",
-          "illustration": "img/s01/bird_nest.png",
-          "interaction": null
+          "illustration": "img/s01/bird_nest.png"
         }
       ]
     },
@@ -2540,6 +2871,11 @@
         },
         {
           "type": "image",
+          "ref": "img/s01/clouds.png",
+          "desc": "We look at the sky and wait. Where can she be?"
+        },
+        {
+          "type": "image",
           "ref": "img/s01/bird_return.png",
           "desc": "Look! She is flying home."
         },
@@ -2553,6 +2889,10 @@
         {
           "narration": "The nest is empty. Where is baby bird?",
           "illustration": "img/s01/nest_empty.png"
+        },
+        {
+          "narration": "We look at the sky and wait. Where can she be?",
+          "illustration": "img/s01/clouds.png"
         },
         {
           "narration": "Look! She is flying home.",
@@ -2912,7 +3252,18 @@
       "interaction": "tap",
       "parentNote": "Point to the bright light and say 'bright!' together.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s01/star_bright.png",
+          "desc": "Bright star"
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/star_dim.png",
+          "desc": "Dim star"
+        }
+      ],
       "questions": [
         {
           "prompt": "Tap the one that is glowing brightly.",
@@ -2929,6 +3280,22 @@
           "answer": 0,
           "correctFeedback": "You found the bright one! ✨",
           "retryFeedback": "Look for the glow. Try again!"
+        },
+        {
+          "prompt": "Now tap the star that is resting, soft and dim.",
+          "options": [
+            {
+              "label": "Dim star",
+              "asset": "img/s01/star_dim.png"
+            },
+            {
+              "label": "Bright star",
+              "asset": "img/s01/star_bright.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Soft and sleepy. That one is dim.",
+          "retryFeedback": "That one is bright! Try again."
         }
       ]
     },
@@ -2944,9 +3311,20 @@
       "reading": false,
       "timed": false,
       "interaction": "tap",
-      "parentNote": null,
+      "parentNote": "Wiggle your fingers, then hold them still. Let your baby see both.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s01/fish.png",
+          "desc": "Wiggly fish"
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/rock.png",
+          "desc": "Still rock"
+        }
+      ],
       "questions": [
         {
           "prompt": "One shape wiggled. Tap the one that moved!",
@@ -2963,6 +3341,22 @@
           "answer": 0,
           "correctFeedback": "You spotted it! The fish wiggled.",
           "retryFeedback": "Watch closely. Try again!"
+        },
+        {
+          "prompt": "Now tap the one that stayed still.",
+          "options": [
+            {
+              "label": "Still rock",
+              "asset": "img/s01/rock.png"
+            },
+            {
+              "label": "Wiggly fish",
+              "asset": "img/s01/fish.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "The rock stayed still. Nothing moved.",
+          "retryFeedback": "That one wiggled! Try again."
         }
       ]
     },
@@ -3107,23 +3501,44 @@
           "type": "audio",
           "ref": "audio/s01/day_sounds.mp3",
           "desc": "Gentle narrator with soft sounds"
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/morning_bird.png",
+          "desc": "Good morning! The birds say tweet-tweet."
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/bath_splash.png",
+          "desc": "Splish-splash. It is bath time!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/rattle.png",
+          "desc": "Shake, shake! The rattle sings in your hand."
+        },
+        {
+          "type": "image",
+          "ref": "img/s01/night_quiet.png",
+          "desc": "Shhh, the night is quiet. Sweet dreams."
         }
       ],
       "pages": [
         {
           "narration": "Good morning! The birds say tweet-tweet.",
-          "illustration": "img/s01/morning_bird.png",
-          "interaction": null
+          "illustration": "img/s01/morning_bird.png"
         },
         {
           "narration": "Splish-splash. It is bath time!",
-          "illustration": "img/s01/bath_splash.png",
-          "interaction": null
+          "illustration": "img/s01/bath_splash.png"
+        },
+        {
+          "narration": "Shake, shake! The rattle sings in your hand.",
+          "illustration": "img/s01/rattle.png"
         },
         {
           "narration": "Shhh, the night is quiet. Sweet dreams.",
-          "illustration": "img/s01/night_quiet.png",
-          "interaction": null
+          "illustration": "img/s01/night_quiet.png"
         }
       ]
     },
@@ -3154,6 +3569,11 @@
         },
         {
           "type": "image",
+          "ref": "img/s01/bubbles.png",
+          "desc": "Bubbles float past. Pop, pop!"
+        },
+        {
+          "type": "image",
           "ref": "img/s01/breeze_leaf.png",
           "desc": "A little breeze says hello. Shhh..."
         }
@@ -3166,6 +3586,10 @@
         {
           "narration": "The grass is soft under your hands.",
           "illustration": "img/s01/grass_green.png"
+        },
+        {
+          "narration": "Bubbles float past. Pop, pop!",
+          "illustration": "img/s01/bubbles.png"
         },
         {
           "narration": "A little breeze says hello. Shhh...",
