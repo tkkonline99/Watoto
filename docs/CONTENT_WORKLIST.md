@@ -18,7 +18,7 @@ _Library version 0.13.0, generated 2026-06-17._
 | Items with no illustration | 55 |
 | Unreferenced PNGs on disk | 0 |
 | Steps with no declared mechanic | 0 |
-| Declared audio files that do not exist | 77 |
+| Audio briefs with nothing recorded (the app loads none of them) | 77 |
 
 Depth minimums are per design tier, for all three item types. Steps per lesson: `parent-led` 4,
 `encourage-effort` 6, `gamify-gently` and `grant-autonomy` 8. Questions per quiz: 2 / 3 / 4 / 4.
@@ -265,10 +265,22 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 
 - ✅ complete
 
-## Declared audio that does not exist
+## Audio briefs with nothing recorded
 
-77 refs. The app bundles only the generic SFX in `assets/audio/sfx/`, so every cue
-below is silent at runtime. `content/validate_content.py --assets` fails on these.
+77 refs, and **none of them is loaded by the app**. This section used to say every
+cue below "is silent at runtime", which overstated it in a way worth correcting: silent implies the
+player reaches for the file and finds nothing. It never reaches for it. `LibraryItem` does not parse
+`assets[]` at all — sound effects are eleven hard-coded paths in `core/audio/sound_effects.dart`, and
+narration resolves by i18n key through `core/audio/narration.dart`, falling back to on-device TTS.
+
+So these are **production briefs**, not a hole in the experience. `validate_content.py` has always
+graded them that way — a ref the player *draws* is an error there, a bare `assets[]` declaration is
+only a warning, which is why it passes clean today.
+
+They are still worth keeping. Roughly fifty of them describe narration and songs, and recording those
+is a voice decision the repo has already taken once (the 184 MB VO pack stays out of the build, over
+Play's base-download ceiling — see `apps/mobile/tool/MEDIA_README.md`). The rest are short cues a
+synthesiser could make. Either way the work starts by wiring `assets[]` to something that reads it.
 
 ```
 audio/s01/achoo.mp3
