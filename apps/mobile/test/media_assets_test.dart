@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/services.dart';
@@ -86,6 +87,49 @@ void main() {
       final data = await rootBundle.load(path);
       expect(data.lengthInBytes, greaterThan(100), reason: path);
     }
+  });
+
+  /// Every story page names its own illustration, and for a long time nothing
+  /// read it: `LibPage.illustration` was parsed out of the JSON and had zero
+  /// call sites, so all 594 pages fell back to an emoji guessed from the
+  /// narration — six pages of "Ten Apples on Top" showed the same bear while
+  /// six distinct PNGs sat unused in the bundle.
+  ///
+  /// Two halves, because either alone passes while the feature is broken: the
+  /// art must be bundled, and the reader must actually ask for it.
+  group('story page art', () {
+    test('every page illustration is in the asset bundle', () async {
+      final raw = await rootBundle.loadString(
+        'assets/content/watoto_content_library.json',
+      );
+      final content =
+          (jsonDecode(raw) as Map<String, dynamic>)['content'] as List;
+      final refs = <String>{};
+      for (final item in content.cast<Map<String, dynamic>>()) {
+        if (item['type'] != 'story') continue;
+        for (final page in (item['pages'] as List? ?? []).cast<Map>()) {
+          final ref = page['illustration'] as String?;
+          if (ref != null && ref.isNotEmpty) refs.add(ref);
+        }
+      }
+      expect(refs, isNotEmpty, reason: 'no story page names an illustration');
+      for (final ref in refs) {
+        final data = await rootBundle.load('assets/images/$ref');
+        expect(data.lengthInBytes, greaterThan(100), reason: 'empty: $ref');
+      }
+    });
+
+    test('the story reader resolves page art', () {
+      final source = File(
+        'lib/features/library/play_story_view.dart',
+      ).readAsStringSync();
+      expect(
+        source,
+        contains('storyPageArt'),
+        reason: 'the reader stopped asking for the page picture — every page '
+            'is back to a lexicon emoji and the bundled art is dead weight',
+      );
+    });
   });
 
   /// The sound effects have to match in both directions, and neither half held.

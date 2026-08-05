@@ -88,9 +88,11 @@ class StoryViewState extends ConsumerState<StoryView> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      // Bundled art when available; emoji otherwise.
-                      artOrEmoji(
+                      // This page's own drawn picture; the item's art, then an
+                      // emoji, only if the page names none.
+                      storyPageArt(
                         widget.item,
+                        widget.item.pages[_page],
                         illustrationFor(
                               widget.item.pages[_page].narration,
                             ) ??

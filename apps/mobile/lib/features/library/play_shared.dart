@@ -210,6 +210,28 @@ Widget stepArt(LibraryItem item, int stepIndex) {
   );
 }
 
+/// The picture above a story page: the page's own illustration, then the
+/// item's, then the emoji.
+///
+/// Story pages are the one surface where per-page art already exists for the
+/// whole library, so unlike [stepArt] a miss here is the exception, not the
+/// normal path.
+Widget storyPageArt(LibraryItem item, LibPage page, String emoji) {
+  final path = pageArtAsset(page);
+  final fallback = artOrEmoji(item, emoji);
+  if (path == null) return fallback;
+  return ClipRRect(
+    borderRadius: BorderRadius.circular(24),
+    child: Image.asset(
+      path,
+      width: 180,
+      height: 180,
+      fit: BoxFit.cover,
+      errorBuilder: (_, _, _) => fallback,
+    ),
+  );
+}
+
 Widget? itemArt(LibraryItem item) {
   final path = artAssetForItem(item);
   if (path == null) return null;

@@ -144,6 +144,20 @@ String stepArtAsset(LibraryItem item, int stepIndex) {
   return 'assets/images/img/s$stage/step_${slug}_$stepIndex.png';
 }
 
+/// Where a story page's own illustration lives, or null if it names none.
+///
+/// Unlike [stepArtAsset], this is not a convention — every story page in the
+/// library carries an explicit `illustration` naming a PNG that is already
+/// drawn and bundled, e.g. `img/s06/bear_apples.png`. The field was parsed
+/// into [LibPage] and then read by nothing, so all 594 pages fell through to
+/// a lexicon emoji guessed from the narration: six pages of one bear story
+/// showed the same 🐻 while six different pictures sat in the bundle.
+String? pageArtAsset(LibPage page) {
+  final ref = page.illustration;
+  if (ref == null || ref.isEmpty) return null;
+  return 'assets/images/$ref';
+}
+
 /// Cache of assets that exist (checked once).
 final _missing = <String>{};
 final _present = <String>{};
