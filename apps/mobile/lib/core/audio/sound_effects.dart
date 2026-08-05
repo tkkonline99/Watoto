@@ -47,6 +47,13 @@ class SoundEffects {
   /// A wrong pick. A soft downward step, never a buzzer: the child is five,
   /// and the sound should read as "try again", not "you failed".
   Future<void> retry() => _play('audio/sfx/retry.wav');
+
+  /// A page turning in a story.
+  ///
+  /// The file has been in `assets/audio/sfx/` the whole time with nothing
+  /// calling it, so all 594 story pages in the library turned in silence. It
+  /// was the only sound the app shipped and never played.
+  Future<void> page() => _play('audio/sfx/page.wav');
 }
 
 final soundEffectsProvider = Provider<SoundEffects>(SoundEffects.new);

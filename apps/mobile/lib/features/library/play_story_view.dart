@@ -48,6 +48,7 @@ class StoryViewState extends ConsumerState<StoryView> {
 
   void _go(int delta) {
     setState(() => _page += delta);
+    ref.read(soundEffectsProvider).page();
     _speakPage();
   }
 
