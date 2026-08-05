@@ -10856,7 +10856,23 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s04/swatch_green.png",
+          "desc": "Green"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/orange.png",
+          "desc": "Orange"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/swatch_purple.png",
+          "desc": "Purple"
+        }
+      ],
       "questions": [
         {
           "prompt": "Red and yellow mixed make...?",
@@ -10873,6 +10889,38 @@
           "answer": 0,
           "correctFeedback": "Orange! You mixed them right.",
           "retryFeedback": "Think of a sunset. Try again!"
+        },
+        {
+          "prompt": "Blue and yellow mixed make...?",
+          "options": [
+            {
+              "label": "Green",
+              "asset": "img/s04/swatch_green.png"
+            },
+            {
+              "label": "Orange",
+              "asset": "img/s04/orange.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Green! Like new leaves.",
+          "retryFeedback": "Try the other one."
+        },
+        {
+          "prompt": "Red and blue mixed make...?",
+          "options": [
+            {
+              "label": "Purple",
+              "asset": "img/s04/swatch_purple.png"
+            },
+            {
+              "label": "Green",
+              "asset": "img/s04/swatch_green.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Purple! Two colours became a new one.",
+          "retryFeedback": "Not quite. Try again."
         }
       ]
     },
@@ -10890,7 +10938,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s04/instruments.png",
+          "desc": "Instruments"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/hat.png",
+          "desc": "A hat"
+        }
+      ],
       "questions": [
         {
           "prompt": "Which one makes music?",
@@ -10907,6 +10966,38 @@
           "answer": 0,
           "correctFeedback": "The drum makes music.",
           "retryFeedback": "Which one goes boom? Try again!"
+        },
+        {
+          "prompt": "Which of these is an instrument too?",
+          "options": [
+            {
+              "label": "Instruments",
+              "asset": "img/s04/instruments.png"
+            },
+            {
+              "label": "A hat",
+              "asset": "img/s04/hat.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Yes! Those all make music.",
+          "retryFeedback": "A hat is for your head. Try again."
+        },
+        {
+          "prompt": "How do you play a drum?",
+          "options": [
+            {
+              "label": "Tap it with your hands",
+              "asset": null
+            },
+            {
+              "label": "Wear it on your head",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Tap, tap! Now you are playing.",
+          "retryFeedback": "That would be a funny hat. Try again."
         }
       ]
     },
@@ -10924,7 +11015,28 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s04/shape_triangle.png",
+          "desc": "Triangle"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/shape_circle.png",
+          "desc": "Circle"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/square.png",
+          "desc": "Square"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/circle.png",
+          "desc": "Circle"
+        }
+      ],
       "questions": [
         {
           "prompt": "We drew a round shape. Which one is it?",
@@ -10941,6 +11053,38 @@
           "answer": 0,
           "correctFeedback": "A circle is round.",
           "retryFeedback": "Round with no corners. Try again!"
+        },
+        {
+          "prompt": "Which shape has three sides?",
+          "options": [
+            {
+              "label": "Triangle",
+              "asset": "img/s04/shape_triangle.png"
+            },
+            {
+              "label": "Circle",
+              "asset": "img/s04/shape_circle.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Three sides, three corners. A triangle!",
+          "retryFeedback": "Count the sides. Try again."
+        },
+        {
+          "prompt": "Which shape has four sides, all the same?",
+          "options": [
+            {
+              "label": "Square",
+              "asset": "img/s04/square.png"
+            },
+            {
+              "label": "Circle",
+              "asset": "img/s04/circle.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "A square. Four sides the same length.",
+          "retryFeedback": "A circle has no sides at all. Try again."
         }
       ]
     },
@@ -10968,6 +11112,11 @@
           "type": "image",
           "ref": "img/s04/swatch_green.png",
           "desc": "Green"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/orange.png",
+          "desc": "Red and yellow"
         }
       ],
       "questions": [
@@ -11002,6 +11151,22 @@
           "answer": 0,
           "correctFeedback": "Green! Like a leaf.",
           "retryFeedback": "Purple comes from red and blue. Try again!"
+        },
+        {
+          "prompt": "Which two colours make orange?",
+          "options": [
+            {
+              "label": "Red and yellow",
+              "asset": "img/s04/orange.png"
+            },
+            {
+              "label": "Blue and green",
+              "asset": "img/s04/swatch_green.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Red and yellow. Orange, like a sunset.",
+          "retryFeedback": "Those two make something else. Try again."
         }
       ]
     },
@@ -11016,31 +11181,61 @@
       "designTier": "encourage-effort",
       "reading": false,
       "timed": false,
-      "interaction": "tap-to-turn",
-      "parentNote": null,
+      "interaction": "listen",
+      "parentNote": "Ask what your child would paint first.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
         {
           "type": "audio",
           "ref": "audio/s04/magic_brush.mp3",
           "desc": "Imaginative narrator"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/paint_sky.png",
+          "desc": "Leo finds a magic paintbrush. Tap to paint the sky blue!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/paint_sun.png",
+          "desc": "He paints a yellow sun and green grass."
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/paint_pots.png",
+          "desc": "Then he finds more pots — red, purple, orange."
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/rainbow.png",
+          "desc": "He paints a rainbow, one stripe at a time."
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/paint_world.png",
+          "desc": "What a colorful world! Art is everywhere."
         }
       ],
       "pages": [
         {
           "narration": "Leo finds a magic paintbrush. Tap to paint the sky blue!",
-          "illustration": "img/s04/paint_sky.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s04/paint_sky.png"
         },
         {
           "narration": "He paints a yellow sun and green grass.",
-          "illustration": "img/s04/paint_sun.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s04/paint_sun.png"
+        },
+        {
+          "narration": "Then he finds more pots — red, purple, orange.",
+          "illustration": "img/s04/paint_pots.png"
+        },
+        {
+          "narration": "He paints a rainbow, one stripe at a time.",
+          "illustration": "img/s04/rainbow.png"
         },
         {
           "narration": "What a colorful world! Art is everywhere.",
-          "illustration": "img/s04/paint_world.png",
-          "interaction": null
+          "illustration": "img/s04/paint_world.png"
         }
       ]
     },
@@ -11071,6 +11266,16 @@
         },
         {
           "type": "image",
+          "ref": "img/s04/canvas.png",
+          "desc": "She almost turned to a clean page and started over."
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/paint_pots.png",
+          "desc": "Instead she looked at the green, and thought: what else is green?"
+        },
+        {
+          "type": "image",
           "ref": "img/s04/paint_tree.png",
           "desc": "So she painted leaves around it. Now it was a tree."
         }
@@ -11083,6 +11288,14 @@
         {
           "narration": "The sun turned green. Ada stopped, and looked.",
           "illustration": "img/s04/paint_green.png"
+        },
+        {
+          "narration": "She almost turned to a clean page and started over.",
+          "illustration": "img/s04/canvas.png"
+        },
+        {
+          "narration": "Instead she looked at the green, and thought: what else is green?",
+          "illustration": "img/s04/paint_pots.png"
         },
         {
           "narration": "So she painted leaves around it. Now it was a tree.",
@@ -11505,6 +11718,22 @@
           "answer": 0,
           "correctFeedback": "Right. S for sun.",
           "retryFeedback": "/s/-un. Try again, you can do it!"
+        },
+        {
+          "prompt": "'Moon' begins with which letter?",
+          "options": [
+            {
+              "label": "M",
+              "asset": null
+            },
+            {
+              "label": "T",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Mmm — moon starts with M.",
+          "retryFeedback": "Say it slowly and listen to the first sound."
         }
       ]
     },
@@ -11522,7 +11751,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s04/letter_m.png",
+          "desc": "M"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/letter_s.png",
+          "desc": "S"
+        }
+      ],
       "questions": [
         {
           "prompt": "Which letter makes the /b/ sound?",
@@ -11539,6 +11779,38 @@
           "answer": 0,
           "correctFeedback": "B says /b/.",
           "retryFeedback": "Listen: /b/.... Try again!"
+        },
+        {
+          "prompt": "Which letter makes the /m/ sound?",
+          "options": [
+            {
+              "label": "M",
+              "asset": "img/s04/letter_m.png"
+            },
+            {
+              "label": "S",
+              "asset": "img/s04/letter_s.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Mmm, like in mama.",
+          "retryFeedback": "Listen again: mmm. Try again."
+        },
+        {
+          "prompt": "And which letter makes the /s/ sound?",
+          "options": [
+            {
+              "label": "S",
+              "asset": "img/s04/letter_s.png"
+            },
+            {
+              "label": "M",
+              "asset": "img/s04/letter_m.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Sss, like a snake.",
+          "retryFeedback": "Listen again: sss. Try again."
         }
       ]
     },
@@ -11556,7 +11828,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s04/hat.png",
+          "desc": "Hat"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/sock.png",
+          "desc": "Sock"
+        }
+      ],
       "questions": [
         {
           "prompt": "Which word starts with /s/?",
@@ -11573,6 +11856,38 @@
           "answer": 0,
           "correctFeedback": "You heard the /s/. S-s-sock!",
           "retryFeedback": "Listen for /s/. Try again!"
+        },
+        {
+          "prompt": "Which word starts with /h/?",
+          "options": [
+            {
+              "label": "Hat",
+              "asset": "img/s04/hat.png"
+            },
+            {
+              "label": "Sock",
+              "asset": "img/s04/sock.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "H-h-hat. You heard it.",
+          "retryFeedback": "Listen to the very first sound. Try again."
+        },
+        {
+          "prompt": "Which word starts with /b/?",
+          "options": [
+            {
+              "label": "Ball",
+              "asset": null
+            },
+            {
+              "label": "Sock",
+              "asset": "img/s04/sock.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "B-b-ball. That is the one.",
+          "retryFeedback": "Sock starts with sss. Try again."
         }
       ]
     },
@@ -11634,6 +11949,22 @@
           "answer": 0,
           "correctFeedback": "S! Sssss, like sun.",
           "retryFeedback": "M says /m/. Try again!"
+        },
+        {
+          "prompt": "Which letter starts the word 'sun'?",
+          "options": [
+            {
+              "label": "S",
+              "asset": "img/s04/letter_s.png"
+            },
+            {
+              "label": "M",
+              "asset": "img/s04/letter_m.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Sss-un. S starts it.",
+          "retryFeedback": "Say the word slowly first. Try again."
         }
       ]
     },
@@ -11648,31 +11979,51 @@
       "designTier": "encourage-effort",
       "reading": false,
       "timed": false,
-      "interaction": "tap-to-turn",
-      "parentNote": null,
+      "interaction": "listen",
+      "parentNote": "Ask which part was the middle after you finish.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
         {
           "type": "audio",
           "ref": "audio/s04/pigs_narration.mp3",
           "desc": "Friendly narrator"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/pigs_start.png",
+          "desc": "Three little pigs set off to build their homes. (Beginning)"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/pigs_houses.png",
+          "desc": "One built with straw, one with sticks, one with strong bricks. (Middle)"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/pigs_brick.png",
+          "desc": "The brick house kept everyone safe and warm. (End) The end!"
         }
       ],
       "pages": [
         {
           "narration": "Three little pigs set off to build their homes. (Beginning)",
-          "illustration": "img/s04/pigs_start.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s04/pigs_start.png"
         },
         {
           "narration": "One built with straw, one with sticks, one with strong bricks. (Middle)",
-          "illustration": "img/s04/pigs_houses.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s04/pigs_houses.png"
+        },
+        {
+          "narration": "The wind huffed. Down went the straw, and down went the sticks. (Middle)",
+          "illustration": "img/s04/pigs_houses.png"
+        },
+        {
+          "narration": "All three ran to the house made of bricks. (Middle)",
+          "illustration": "img/s04/pigs_start.png"
         },
         {
           "narration": "The brick house kept everyone safe and warm. (End) The end!",
-          "illustration": "img/s04/pigs_brick.png",
-          "interaction": null
+          "illustration": "img/s04/pigs_brick.png"
         }
       ]
     },
@@ -11698,6 +12049,16 @@
         },
         {
           "type": "image",
+          "ref": "img/s04/abc_blocks.png",
+          "desc": "The others hunted through the box of blocks. No b."
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/name_letters.png",
+          "desc": "They checked every name on the wall. Still no b."
+        },
+        {
+          "type": "image",
           "ref": "img/s04/letter_found.png",
           "desc": "They found it in ball, and in bird, and in book."
         },
@@ -11711,6 +12072,14 @@
         {
           "narration": "Little b went missing from the alphabet.",
           "illustration": "img/s04/letter_lost.png"
+        },
+        {
+          "narration": "The others hunted through the box of blocks. No b.",
+          "illustration": "img/s04/abc_blocks.png"
+        },
+        {
+          "narration": "They checked every name on the wall. Still no b.",
+          "illustration": "img/s04/name_letters.png"
         },
         {
           "narration": "They found it in ball, and in bird, and in book.",
@@ -12121,7 +12490,28 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s04/snake_short.png",
+          "desc": "Short snake"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/snake_long.png",
+          "desc": "Long snake"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/size_big.png",
+          "desc": "The big bear"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/size_small.png",
+          "desc": "The small bear"
+        }
+      ],
       "questions": [
         {
           "prompt": "Which snake is longer?",
@@ -12138,6 +12528,38 @@
           "answer": 0,
           "correctFeedback": "You compared them. That one is longer.",
           "retryFeedback": "Look end to end. Try again!"
+        },
+        {
+          "prompt": "Now tap the snake that is shorter.",
+          "options": [
+            {
+              "label": "Short snake",
+              "asset": "img/s04/snake_short.png"
+            },
+            {
+              "label": "Long snake",
+              "asset": "img/s04/snake_long.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Shorter. You compared them both.",
+          "retryFeedback": "That one is the long one. Try again."
+        },
+        {
+          "prompt": "Which bear is bigger?",
+          "options": [
+            {
+              "label": "The big bear",
+              "asset": "img/s04/size_big.png"
+            },
+            {
+              "label": "The small bear",
+              "asset": "img/s04/size_small.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Bigger. Hold your hands wide!",
+          "retryFeedback": "Look again at the two. Try again."
         }
       ]
     },
@@ -12155,7 +12577,28 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s04/stones_four.png",
+          "desc": "4"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/stones_five.png",
+          "desc": "5"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/stars_4.png",
+          "desc": "4"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/stars_2.png",
+          "desc": "2"
+        }
+      ],
       "questions": [
         {
           "prompt": "How many ducks?",
@@ -12176,6 +12619,38 @@
           "answer": 0,
           "correctFeedback": "You counted five ducks.",
           "retryFeedback": "Touch each duck as you count. Try again!"
+        },
+        {
+          "prompt": "Count the stones. How many?",
+          "options": [
+            {
+              "label": "4",
+              "asset": "img/s04/stones_four.png"
+            },
+            {
+              "label": "5",
+              "asset": "img/s04/stones_five.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Four. One, two, three, four.",
+          "retryFeedback": "Touch each one as you count. Try again."
+        },
+        {
+          "prompt": "Count the stars. How many?",
+          "options": [
+            {
+              "label": "4",
+              "asset": "img/s04/stars_4.png"
+            },
+            {
+              "label": "2",
+              "asset": "img/s04/stars_2.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Four stars. Counted every one.",
+          "retryFeedback": "Count them out loud together. Try again."
         }
       ]
     },
@@ -12193,7 +12668,28 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s04/stars_2.png",
+          "desc": "Group of 2"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/stars_4.png",
+          "desc": "Group of 4"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/stones_five.png",
+          "desc": "Five stones"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/stones_four.png",
+          "desc": "Four stones"
+        }
+      ],
       "questions": [
         {
           "prompt": "Which group has more stars?",
@@ -12210,6 +12706,38 @@
           "answer": 0,
           "correctFeedback": "Four is more than two.",
           "retryFeedback": "Count both groups. Try again!"
+        },
+        {
+          "prompt": "Which group has fewer stars?",
+          "options": [
+            {
+              "label": "Group of 2",
+              "asset": "img/s04/stars_2.png"
+            },
+            {
+              "label": "Group of 4",
+              "asset": "img/s04/stars_4.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Fewer means less. Two is fewer than four.",
+          "retryFeedback": "Count both groups first. Try again."
+        },
+        {
+          "prompt": "Four stones or five stones — which is more?",
+          "options": [
+            {
+              "label": "Five stones",
+              "asset": "img/s04/stones_five.png"
+            },
+            {
+              "label": "Four stones",
+              "asset": "img/s04/stones_four.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Five is more. It comes after four.",
+          "retryFeedback": "Count each pile. Try again."
         }
       ]
     },
@@ -12247,6 +12775,11 @@
           "type": "image",
           "ref": "img/s04/size_big.png",
           "desc": "Big"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/blue.png",
+          "desc": "Blue"
         }
       ],
       "questions": [
@@ -12281,6 +12814,22 @@
           "answer": 0,
           "correctFeedback": "Small! This one repeats in threes.",
           "retryFeedback": "Count the rule again: big, big, small. Try again!"
+        },
+        {
+          "prompt": "Red, blue, red, blue, ...?",
+          "options": [
+            {
+              "label": "Red",
+              "asset": null
+            },
+            {
+              "label": "Blue",
+              "asset": "img/s04/blue.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Red. The pattern starts over.",
+          "retryFeedback": "Say the colours out loud in order. Try again."
         }
       ]
     },
@@ -12295,31 +12844,61 @@
       "designTier": "encourage-effort",
       "reading": false,
       "timed": false,
-      "interaction": "tap-to-turn",
-      "parentNote": null,
+      "interaction": "listen",
+      "parentNote": "Find one of each shape in your own room after.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
         {
           "type": "audio",
           "ref": "audio/s04/shape_town.mp3",
           "desc": "Friendly narrator"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/shape_houses.png",
+          "desc": "In Shape Town, the houses are squares."
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/shape_sun.png",
+          "desc": "The sun is a circle and the roofs are triangles."
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/four_shapes.png",
+          "desc": "Down one street: circle, square, triangle, circle, square..."
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/shape_circle.png",
+          "desc": "Even the wheels on the bus are circles."
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/shape_town.png",
+          "desc": "Count the shapes you see. What a shapely town!"
         }
       ],
       "pages": [
         {
           "narration": "In Shape Town, the houses are squares.",
-          "illustration": "img/s04/shape_houses.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s04/shape_houses.png"
         },
         {
           "narration": "The sun is a circle and the roofs are triangles.",
-          "illustration": "img/s04/shape_sun.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s04/shape_sun.png"
+        },
+        {
+          "narration": "Down one street: circle, square, triangle, circle, square...",
+          "illustration": "img/s04/four_shapes.png"
+        },
+        {
+          "narration": "Even the wheels on the bus are circles.",
+          "illustration": "img/s04/shape_circle.png"
         },
         {
           "narration": "Count the shapes you see. What a shapely town!",
-          "illustration": "img/s04/shape_town.png",
-          "interaction": null
+          "illustration": "img/s04/shape_town.png"
         }
       ]
     },
@@ -12350,6 +12929,11 @@
         },
         {
           "type": "image",
+          "ref": "img/s04/count_match.png",
+          "desc": "He touched each one as he counted. One, two, three, four, five."
+        },
+        {
+          "type": "image",
           "ref": "img/s04/stones_four.png",
           "desc": "One rolled away. Four left — still a line."
         }
@@ -12364,8 +12948,16 @@
           "illustration": "img/s04/stones_order.png"
         },
         {
+          "narration": "He touched each one as he counted. One, two, three, four, five.",
+          "illustration": "img/s04/count_match.png"
+        },
+        {
           "narration": "One rolled away. Four left — still a line.",
           "illustration": "img/s04/stones_four.png"
+        },
+        {
+          "narration": "He found it under a leaf and put it back. Five again.",
+          "illustration": "img/s04/stones_five.png"
         }
       ]
     },
@@ -12753,7 +13345,18 @@
       "interaction": "drag",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s04/tree.png",
+          "desc": "In the forest"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/ocean.png",
+          "desc": "In the ocean"
+        }
+      ],
       "questions": [
         {
           "prompt": "Where does the polar bear live?",
@@ -12786,6 +13389,22 @@
           "answer": 0,
           "correctFeedback": "Right. The ocean.",
           "retryFeedback": "Fish need water. Try again!"
+        },
+        {
+          "prompt": "Where do trees grow?",
+          "options": [
+            {
+              "label": "In the forest",
+              "asset": "img/s04/tree.png"
+            },
+            {
+              "label": "In the ocean",
+              "asset": "img/s04/ocean.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "In soil, in the forest. Roots need earth.",
+          "retryFeedback": "Think where roots can hold on. Try again."
         }
       ]
     },
@@ -12803,7 +13422,28 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s04/seed_rain.png",
+          "desc": "Rain"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/drum.png",
+          "desc": "A drum"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/seed_dark.png",
+          "desc": "In the dark soil"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/day_night_sky.png",
+          "desc": "Up in the sky"
+        }
+      ],
       "questions": [
         {
           "prompt": "What does a plant need to grow?",
@@ -12820,6 +13460,38 @@
           "answer": 0,
           "correctFeedback": "Water and sunshine. That's what a plant needs.",
           "retryFeedback": "Plants drink and soak up sun. Try again!"
+        },
+        {
+          "prompt": "What else helps a seed grow?",
+          "options": [
+            {
+              "label": "Rain",
+              "asset": "img/s04/seed_rain.png"
+            },
+            {
+              "label": "A drum",
+              "asset": "img/s04/drum.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Rain. Water from the sky.",
+          "retryFeedback": "A drum makes sound, not growing. Try again."
+        },
+        {
+          "prompt": "Where does a seed start growing?",
+          "options": [
+            {
+              "label": "In the dark soil",
+              "asset": "img/s04/seed_dark.png"
+            },
+            {
+              "label": "Up in the sky",
+              "asset": "img/s04/day_night_sky.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Underground, in the dark, before we ever see it.",
+          "retryFeedback": "It starts somewhere we cannot see. Try again."
         }
       ]
     },
@@ -12837,7 +13509,23 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s04/lion.png",
+          "desc": "Lion"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/fish.png",
+          "desc": "Fish"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/float_sink.png",
+          "desc": "It sinks"
+        }
+      ],
       "questions": [
         {
           "prompt": "Which animal lives in water?",
@@ -12854,6 +13542,38 @@
           "answer": 0,
           "correctFeedback": "The fish lives in water.",
           "retryFeedback": "Who likes to swim? Try again!"
+        },
+        {
+          "prompt": "Which animal lives on the land?",
+          "options": [
+            {
+              "label": "Lion",
+              "asset": "img/s04/lion.png"
+            },
+            {
+              "label": "Fish",
+              "asset": "img/s04/fish.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "The lion. It walks on the ground.",
+          "retryFeedback": "A fish needs water to breathe. Try again."
+        },
+        {
+          "prompt": "Does a heavy stone float or sink?",
+          "options": [
+            {
+              "label": "It sinks",
+              "asset": "img/s04/float_sink.png"
+            },
+            {
+              "label": "It floats",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Down it goes. Heavy things sink.",
+          "retryFeedback": "Try it in the bath later and see!"
         }
       ]
     },
@@ -12925,6 +13645,22 @@
           "answer": 0,
           "correctFeedback": "It droops. Water is not optional!",
           "retryFeedback": "Without water it cannot grow at all. Try again!"
+        },
+        {
+          "prompt": "What does a plant do with plenty of sun and water?",
+          "options": [
+            {
+              "label": "It grows taller",
+              "asset": "img/s04/plant_tall.png"
+            },
+            {
+              "label": "It droops",
+              "asset": "img/s04/plant_droop.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Taller and greener. That is what it needed.",
+          "retryFeedback": "That is what happens without water. Try again."
         }
       ]
     },
@@ -12939,31 +13675,61 @@
       "designTier": "encourage-effort",
       "reading": false,
       "timed": false,
-      "interaction": "tap-to-turn",
-      "parentNote": null,
+      "interaction": "listen",
+      "parentNote": "Watch the real sky together next time it rains.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
         {
           "type": "audio",
           "ref": "audio/s04/rainy_day.mp3",
           "desc": "Gentle narrator"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/rain_umbrella.png",
+          "desc": "Drip-drop! It starts to rain. Tap to open the umbrella."
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/puddles.png",
+          "desc": "Puddles everywhere. Splash, splash!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/weather.png",
+          "desc": "Then the rain slows down. Drip... drip... stop."
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/day_night_sky.png",
+          "desc": "The grey clouds move apart. Blue sky again!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/rainbow.png",
+          "desc": "The sun comes out and makes a rainbow. So pretty!"
         }
       ],
       "pages": [
         {
           "narration": "Drip-drop! It starts to rain. Tap to open the umbrella.",
-          "illustration": "img/s04/rain_umbrella.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s04/rain_umbrella.png"
         },
         {
           "narration": "Puddles everywhere. Splash, splash!",
-          "illustration": "img/s04/puddles.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s04/puddles.png"
+        },
+        {
+          "narration": "Then the rain slows down. Drip... drip... stop.",
+          "illustration": "img/s04/weather.png"
+        },
+        {
+          "narration": "The grey clouds move apart. Blue sky again!",
+          "illustration": "img/s04/day_night_sky.png"
         },
         {
           "narration": "The sun comes out and makes a rainbow. So pretty!",
-          "illustration": "img/s04/rainbow.png",
-          "interaction": null
+          "illustration": "img/s04/rainbow.png"
         }
       ]
     },
@@ -12996,6 +13762,11 @@
           "type": "image",
           "ref": "img/s04/seed_sprout.png",
           "desc": "Then one morning, a small green shoot."
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/plant_tall.png",
+          "desc": "By the next week it stood taller than Juma's hand."
         }
       ],
       "pages": [
@@ -13008,8 +13779,16 @@
           "illustration": "img/s04/seed_rain.png"
         },
         {
+          "narration": "Under the soil, where nobody could see, roots were spreading.",
+          "illustration": "img/s04/seed_dark.png"
+        },
+        {
           "narration": "Then one morning, a small green shoot.",
           "illustration": "img/s04/seed_sprout.png"
+        },
+        {
+          "narration": "By the next week it stood taller than Juma's hand.",
+          "illustration": "img/s04/plant_tall.png"
         }
       ]
     },
@@ -13393,7 +14172,28 @@
       "interaction": "drag",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s04/baker.png",
+          "desc": "Baker"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/firefighter.png",
+          "desc": "Firefighter"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/job_nurse.png",
+          "desc": "A nurse"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/job_baker.png",
+          "desc": "A baker"
+        }
+      ],
       "questions": [
         {
           "prompt": "Who puts out fires?",
@@ -13410,6 +14210,38 @@
           "answer": 0,
           "correctFeedback": "The firefighter puts out fires.",
           "retryFeedback": "Who uses a hose? Try again!"
+        },
+        {
+          "prompt": "Who bakes the bread?",
+          "options": [
+            {
+              "label": "Baker",
+              "asset": "img/s04/baker.png"
+            },
+            {
+              "label": "Firefighter",
+              "asset": "img/s04/firefighter.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "The baker. Warm bread every morning.",
+          "retryFeedback": "That one puts out fires. Try again."
+        },
+        {
+          "prompt": "Who helps you when you are sick?",
+          "options": [
+            {
+              "label": "A nurse",
+              "asset": "img/s04/job_nurse.png"
+            },
+            {
+              "label": "A baker",
+              "asset": "img/s04/job_baker.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "A nurse. They help you feel better.",
+          "retryFeedback": "A baker makes bread. Try again."
         }
       ]
     },
@@ -13427,7 +14259,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s04/chef.png",
+          "desc": "Chef"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/teacher.png",
+          "desc": "Teacher"
+        }
+      ],
       "questions": [
         {
           "prompt": "Who helps us learn at school?",
@@ -13444,6 +14287,38 @@
           "answer": 0,
           "correctFeedback": "A teacher helps us learn.",
           "retryFeedback": "Who is at the front of the class? Try again!"
+        },
+        {
+          "prompt": "Who cooks the food in a kitchen?",
+          "options": [
+            {
+              "label": "Chef",
+              "asset": "img/s04/chef.png"
+            },
+            {
+              "label": "Teacher",
+              "asset": "img/s04/teacher.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "The chef. Something smells good!",
+          "retryFeedback": "A teacher helps you learn. Try again."
+        },
+        {
+          "prompt": "Where do we go to learn with a teacher?",
+          "options": [
+            {
+              "label": "School",
+              "asset": null
+            },
+            {
+              "label": "The beach",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "School. Where the class meets.",
+          "retryFeedback": "The beach is for playing. Try again."
         }
       ]
     },
@@ -13461,7 +14336,13 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s04/saying_sorry.png",
+          "desc": "Sorry"
+        }
+      ],
       "questions": [
         {
           "prompt": "Someone helps you. What do you say?",
@@ -13478,6 +14359,38 @@
           "answer": 0,
           "correctFeedback": "'Thank you' is a kind thing to say.",
           "retryFeedback": "Saying thanks is polite. Try again!"
+        },
+        {
+          "prompt": "You bump into someone by mistake. What do you say?",
+          "options": [
+            {
+              "label": "Sorry",
+              "asset": "img/s04/saying_sorry.png"
+            },
+            {
+              "label": "Nothing",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Sorry. Two syllables, and it mends a lot.",
+          "retryFeedback": "Saying nothing leaves them hurt. Try again."
+        },
+        {
+          "prompt": "You want a turn with a toy. What do you say?",
+          "options": [
+            {
+              "label": "Please may I have a turn?",
+              "asset": null
+            },
+            {
+              "label": "Give it to me now",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Asking works better than grabbing.",
+          "retryFeedback": "How would that feel to hear? Try again."
         }
       ]
     },
@@ -13505,6 +14418,11 @@
           "type": "image",
           "ref": "img/s04/helper_farmer.png",
           "desc": "A farmer"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/market_seller.png",
+          "desc": "A seller"
         }
       ],
       "questions": [
@@ -13539,6 +14457,22 @@
           "answer": 0,
           "correctFeedback": "A farmer. Thank them at dinner!",
           "retryFeedback": "Doctors help us feel better. Try again!"
+        },
+        {
+          "prompt": "Who sells things at the market?",
+          "options": [
+            {
+              "label": "A seller",
+              "asset": "img/s04/market_seller.png"
+            },
+            {
+              "label": "A doctor",
+              "asset": "img/s04/helper_doctor.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "The seller. Every stall has one.",
+          "retryFeedback": "A doctor helps you when you are hurt. Try again."
         }
       ]
     },
@@ -13553,31 +14487,61 @@
       "designTier": "encourage-effort",
       "reading": false,
       "timed": false,
-      "interaction": "tap-to-turn",
-      "parentNote": null,
+      "interaction": "listen",
+      "parentNote": "Name the people you greet on your own next outing.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
         {
           "type": "audio",
           "ref": "audio/s04/market_trip.mp3",
           "desc": "Warm narrator"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/market_bus.png",
+          "desc": "Amara and Dad take the bus to the market. Beep!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/town_places.png",
+          "desc": "So many stalls — bread here, cloth there, fruit at the end."
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/market_seller.png",
+          "desc": "The seller smiles. 'Two apples, please!' says Amara."
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/helpers.png",
+          "desc": "A neighbour helps carry the heavy basket to the bus."
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/market_home.png",
+          "desc": "'Thank you!' They walk home together. What a nice day."
         }
       ],
       "pages": [
         {
           "narration": "Amara and Dad take the bus to the market. Beep!",
-          "illustration": "img/s04/market_bus.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s04/market_bus.png"
+        },
+        {
+          "narration": "So many stalls — bread here, cloth there, fruit at the end.",
+          "illustration": "img/s04/town_places.png"
         },
         {
           "narration": "The seller smiles. 'Two apples, please!' says Amara.",
-          "illustration": "img/s04/market_seller.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s04/market_seller.png"
+        },
+        {
+          "narration": "A neighbour helps carry the heavy basket to the bus.",
+          "illustration": "img/s04/helpers.png"
         },
         {
           "narration": "'Thank you!' They walk home together. What a nice day.",
-          "illustration": "img/s04/market_home.png",
-          "interaction": null
+          "illustration": "img/s04/market_home.png"
         }
       ]
     },
@@ -13608,6 +14572,16 @@
         },
         {
           "type": "image",
+          "ref": "img/s04/teacher.png",
+          "desc": "The teacher sets out the chairs before anyone arrives."
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/market_seller.png",
+          "desc": "The seller opens the stall while the street is still quiet."
+        },
+        {
+          "type": "image",
           "ref": "img/s04/job_child.png",
           "desc": "And you help too, when you carry your own bag."
         }
@@ -13620,6 +14594,14 @@
         {
           "narration": "The nurse works while the town sleeps.",
           "illustration": "img/s04/job_nurse.png"
+        },
+        {
+          "narration": "The teacher sets out the chairs before anyone arrives.",
+          "illustration": "img/s04/teacher.png"
+        },
+        {
+          "narration": "The seller opens the stall while the street is still quiet.",
+          "illustration": "img/s04/market_seller.png"
         },
         {
           "narration": "And you help too, when you carry your own bag.",
@@ -14025,7 +15007,23 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s04/swing_friends.png",
+          "desc": "Ask them to play"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/swing_share.png",
+          "desc": "Give them a turn"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/swing_want.png",
+          "desc": "Stay on all day"
+        }
+      ],
       "questions": [
         {
           "prompt": "Two friends want the same toy. What is the kind thing to do?",
@@ -14042,6 +15040,38 @@
           "answer": 0,
           "correctFeedback": "Taking turns is fair and kind.",
           "retryFeedback": "How can both friends be happy? Try again!"
+        },
+        {
+          "prompt": "Your friend has no one to play with. What is kind?",
+          "options": [
+            {
+              "label": "Ask them to play",
+              "asset": "img/s04/swing_friends.png"
+            },
+            {
+              "label": "Play alone",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Asking is the whole thing. Now there are two of you.",
+          "retryFeedback": "Think how they feel standing alone. Try again."
+        },
+        {
+          "prompt": "You are on the swing and a friend is waiting. What is fair?",
+          "options": [
+            {
+              "label": "Give them a turn",
+              "asset": "img/s04/swing_share.png"
+            },
+            {
+              "label": "Stay on all day",
+              "asset": "img/s04/swing_want.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "A turn each. That is what fair means.",
+          "retryFeedback": "How long would you want to wait? Try again."
         }
       ]
     },
@@ -14059,7 +15089,23 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s04/breath_balloon.png",
+          "desc": "Count to five slowly"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/throw_away.png",
+          "desc": "Throw a toy"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/tower_again.png",
+          "desc": "Build it again"
+        }
+      ],
       "questions": [
         {
           "prompt": "What can help when you feel angry?",
@@ -14076,6 +15122,38 @@
           "answer": 0,
           "correctFeedback": "A deep breath helps you calm down.",
           "retryFeedback": "A calm body helps. Try again!"
+        },
+        {
+          "prompt": "Which is a calm-down thing to do?",
+          "options": [
+            {
+              "label": "Count to five slowly",
+              "asset": "img/s04/breath_balloon.png"
+            },
+            {
+              "label": "Throw a toy",
+              "asset": "img/s04/throw_away.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Slow counting slows the feeling down too.",
+          "retryFeedback": "Throwing makes the feeling bigger. Try again."
+        },
+        {
+          "prompt": "Your tower fell down. What helps?",
+          "options": [
+            {
+              "label": "Build it again",
+              "asset": "img/s04/tower_again.png"
+            },
+            {
+              "label": "Kick it",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Again. Falling over is part of building.",
+          "retryFeedback": "That will not get it built. Try again."
         }
       ]
     },
@@ -14093,7 +15171,13 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s04/helping.png",
+          "desc": "Sit with them"
+        }
+      ],
       "questions": [
         {
           "prompt": "Your friend feels sad. What can you do?",
@@ -14110,6 +15194,38 @@
           "answer": 0,
           "correctFeedback": "Checking in is caring.",
           "retryFeedback": "A kind friend helps. Try again!"
+        },
+        {
+          "prompt": "What else can help a sad friend?",
+          "options": [
+            {
+              "label": "Sit with them",
+              "asset": "img/s04/helping.png"
+            },
+            {
+              "label": "Laugh at them",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Just being there counts. You do not need the right words.",
+          "retryFeedback": "That would hurt more. Try again."
+        },
+        {
+          "prompt": "Your friend is crying. What is kind to say?",
+          "options": [
+            {
+              "label": "I am here with you",
+              "asset": null
+            },
+            {
+              "label": "Stop crying",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "That lets them cry and not be alone.",
+          "retryFeedback": "Telling someone to stop rarely helps. Try again."
         }
       ]
     },
@@ -14147,6 +15263,11 @@
           "type": "image",
           "ref": "img/s04/give_up.png",
           "desc": "Give up"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/i_can.png",
+          "desc": "Proud — I can do it"
         }
       ],
       "questions": [
@@ -14181,6 +15302,22 @@
           "answer": 0,
           "correctFeedback": "Asking is brave, not weak.",
           "retryFeedback": "Giving up ends the try. Try again!"
+        },
+        {
+          "prompt": "You finished something hard. How do you feel?",
+          "options": [
+            {
+              "label": "Proud — I can do it",
+              "asset": "img/s04/i_can.png"
+            },
+            {
+              "label": "Angry",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Proud. Remember this feeling next time it is hard.",
+          "retryFeedback": "Look back at what you just did. Try again."
         }
       ]
     },
@@ -14195,7 +15332,7 @@
       "designTier": "encourage-effort",
       "reading": false,
       "timed": false,
-      "interaction": "tap-to-turn",
+      "interaction": "listen",
       "parentNote": "Talk about what makes someone a good friend.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
@@ -14203,23 +15340,53 @@
           "type": "audio",
           "ref": "audio/s04/best_friends.mp3",
           "desc": "Warm narrator"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/swing_want.png",
+          "desc": "Sara and Kofi both want the swing."
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/big_feelings.png",
+          "desc": "Neither one wanted to be the one who waited."
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/swing_share.png",
+          "desc": "They decide to take turns. 'You first!'"
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/sharing.png",
+          "desc": "Waiting was easier with someone to talk to."
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/swing_friends.png",
+          "desc": "Now they push each other and laugh. Good friends share!"
         }
       ],
       "pages": [
         {
           "narration": "Sara and Kofi both want the swing.",
-          "illustration": "img/s04/swing_want.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s04/swing_want.png"
+        },
+        {
+          "narration": "Neither one wanted to be the one who waited.",
+          "illustration": "img/s04/big_feelings.png"
         },
         {
           "narration": "They decide to take turns. 'You first!'",
-          "illustration": "img/s04/swing_share.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s04/swing_share.png"
+        },
+        {
+          "narration": "Waiting was easier with someone to talk to.",
+          "illustration": "img/s04/sharing.png"
         },
         {
           "narration": "Now they push each other and laugh. Good friends share!",
-          "illustration": "img/s04/swing_friends.png",
-          "interaction": null
+          "illustration": "img/s04/swing_friends.png"
         }
       ]
     },
@@ -14250,8 +15417,18 @@
         },
         {
           "type": "image",
+          "ref": "img/s04/breath_balloon.png",
+          "desc": "She stopped. In through the nose, slowly out through the mouth."
+        },
+        {
+          "type": "image",
           "ref": "img/s04/tower_again.png",
-          "desc": "Instead she breathed out, slowly. And started again."
+          "desc": "Then she started again. One block, then two, then three."
+        },
+        {
+          "type": "image",
+          "ref": "img/s04/i_can.png",
+          "desc": "On the ninth block, it stood. Nine!"
         }
       ],
       "pages": [
@@ -14264,8 +15441,16 @@
           "illustration": "img/s04/tower_cross.png"
         },
         {
-          "narration": "Instead she breathed out, slowly. And started again.",
+          "narration": "She stopped. In through the nose, slowly out through the mouth.",
+          "illustration": "img/s04/breath_balloon.png"
+        },
+        {
+          "narration": "Then she started again. One block, then two, then three.",
           "illustration": "img/s04/tower_again.png"
+        },
+        {
+          "narration": "On the ninth block, it stood. Nine!",
+          "illustration": "img/s04/i_can.png"
         }
       ]
     },
@@ -14791,6 +15976,38 @@
           "answer": 0,
           "correctFeedback": "One more forward. You traced the path.",
           "retryFeedback": "Trace the path to the star. Try again!"
+        },
+        {
+          "prompt": "Forward, Right, Forward, Right, ... what comes next?",
+          "options": [
+            {
+              "label": "Forward",
+              "asset": null
+            },
+            {
+              "label": "Backward",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Forward. The pattern repeats.",
+          "retryFeedback": "Read the list again from the start."
+        },
+        {
+          "prompt": "The robot went one step too far. Which command brings it back?",
+          "options": [
+            {
+              "label": "Backward",
+              "asset": null
+            },
+            {
+              "label": "Forward",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Backward. One step the other way.",
+          "retryFeedback": "That sends it further away. Try again."
         }
       ]
     },
@@ -14825,6 +16042,38 @@
           "answer": 0,
           "correctFeedback": "The up arrow moves it up.",
           "retryFeedback": "Which way is up? Try again!"
+        },
+        {
+          "prompt": "Which arrow moves the robot down?",
+          "options": [
+            {
+              "label": "↓ Down arrow",
+              "asset": null
+            },
+            {
+              "label": "↑ Up arrow",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Down. The arrow points the way it goes.",
+          "retryFeedback": "Look at which way the arrow points."
+        },
+        {
+          "prompt": "Which arrow moves the robot to the right?",
+          "options": [
+            {
+              "label": "→ Right arrow",
+              "asset": null
+            },
+            {
+              "label": "← Left arrow",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Right. Same way as the arrow's point.",
+          "retryFeedback": "That one points the other way."
         }
       ]
     },
@@ -14859,6 +16108,38 @@
           "answer": 0,
           "correctFeedback": "Get dressed comes next.",
           "retryFeedback": "What do we do after waking? Try again!"
+        },
+        {
+          "prompt": "Put on socks, ___, tie the laces. What is missing?",
+          "options": [
+            {
+              "label": "Put on shoes",
+              "asset": null
+            },
+            {
+              "label": "Take off socks",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Shoes go on between the socks and the laces.",
+          "retryFeedback": "Read the steps in order and see what is skipped."
+        },
+        {
+          "prompt": "Wash hands, ___, start eating. What belongs in the middle?",
+          "options": [
+            {
+              "label": "Sit at the table",
+              "asset": null
+            },
+            {
+              "label": "Go outside to play",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Sit down first. Order matters in a plan.",
+          "retryFeedback": "That would come after the meal, not before."
         }
       ]
     },
@@ -14871,7 +16152,7 @@
       "title": "What Does a Loop Do?",
       "objective": "Recall what a loop is for.",
       "designTier": "encourage-effort",
-      "reading": false,
+      "reading": true,
       "timed": false,
       "interaction": "tap",
       "parentNote": "Clap a loop together before answering.",
@@ -14930,6 +16211,22 @@
           "answer": 0,
           "correctFeedback": "Three! The number says how many times.",
           "retryFeedback": "The x3 means three. Try again!"
+        },
+        {
+          "prompt": "Which is the shorter way to write 'jump, jump, jump, jump'?",
+          "options": [
+            {
+              "label": "jump x4",
+              "asset": "img/s05/loop_repeat.png"
+            },
+            {
+              "label": "jump x1",
+              "asset": "img/s05/count_one.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "That is what a loop is for — say it once, do it four times.",
+          "retryFeedback": "Count the jumps in the list. Try again."
         }
       ]
     },
@@ -14944,31 +16241,61 @@
       "designTier": "encourage-effort",
       "reading": true,
       "timed": false,
-      "interaction": "tap-to-turn",
-      "parentNote": null,
+      "interaction": "listen",
+      "parentNote": "Give each other three steps to follow exactly.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
         {
           "type": "audio",
           "ref": "audio/s05/robot_helper.mp3",
           "desc": "Cheerful narrator"
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/robot_start.png",
+          "desc": "Beep the robot wants to water the plant. Tap to give it steps."
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/robot_steps.png",
+          "desc": "Forward, forward, then pour! Beep follows the steps."
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/debug.png",
+          "desc": "But Beep stopped one step short. The water missed the pot."
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/code_arrows.png",
+          "desc": "So we added one more forward, then pour."
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/robot_done.png",
+          "desc": "The plant gets water. Good coding, Beep!"
         }
       ],
       "pages": [
         {
           "narration": "Beep the robot wants to water the plant. Tap to give it steps.",
-          "illustration": "img/s05/robot_start.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s05/robot_start.png"
         },
         {
           "narration": "Forward, forward, then pour! Beep follows the steps.",
-          "illustration": "img/s05/robot_steps.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s05/robot_steps.png"
+        },
+        {
+          "narration": "But Beep stopped one step short. The water missed the pot.",
+          "illustration": "img/s05/debug.png"
+        },
+        {
+          "narration": "So we added one more forward, then pour.",
+          "illustration": "img/s05/code_arrows.png"
         },
         {
           "narration": "The plant gets water. Good coding, Beep!",
-          "illustration": "img/s05/robot_done.png",
-          "interaction": null
+          "illustration": "img/s05/robot_done.png"
         }
       ]
     },
@@ -14981,7 +16308,7 @@
       "title": "The Robot That Did Exactly That",
       "objective": "Instructions must say what you mean.",
       "designTier": "encourage-effort",
-      "reading": false,
+      "reading": true,
       "timed": false,
       "interaction": "listen",
       "parentNote": "Give each other a silly instruction and follow it exactly.",
@@ -14999,6 +16326,16 @@
         },
         {
           "type": "image",
+          "ref": "img/s05/debug.png",
+          "desc": "It was not wrong. It had done exactly what she said."
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/sequence.png",
+          "desc": "She thought about what she had left out: which way up."
+        },
+        {
+          "type": "image",
           "ref": "img/s05/robot_right.png",
           "desc": "So Ama said it again, with every step. This time it worked."
         }
@@ -15011,6 +16348,14 @@
         {
           "narration": "It put the cup on the table — upside down.",
           "illustration": "img/s05/robot_upside.png"
+        },
+        {
+          "narration": "It was not wrong. It had done exactly what she said.",
+          "illustration": "img/s05/debug.png"
+        },
+        {
+          "narration": "She thought about what she had left out: which way up.",
+          "illustration": "img/s05/sequence.png"
         },
         {
           "narration": "So Ama said it again, with every step. This time it worked.",
@@ -15559,6 +16904,42 @@
           "answer": 0,
           "correctFeedback": "2 + 1 = 3.",
           "retryFeedback": "Count on from 2: 3. Try again!"
+        },
+        {
+          "prompt": "What is 3 + 2?",
+          "options": [
+            {
+              "label": "5",
+              "asset": null
+            },
+            {
+              "label": "4",
+              "asset": null
+            },
+            {
+              "label": "6",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Five. Three, then two more.",
+          "retryFeedback": "Count on from three: four, five."
+        },
+        {
+          "prompt": "What is 4 + 4?",
+          "options": [
+            {
+              "label": "8",
+              "asset": null
+            },
+            {
+              "label": "7",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Eight. A double!",
+          "retryFeedback": "Four fingers on each hand. Count them all."
         }
       ]
     },
@@ -15597,6 +16978,42 @@
           "answer": 0,
           "correctFeedback": "5 - 2 = 3.",
           "retryFeedback": "Start at 5, count back 2. Try again!"
+        },
+        {
+          "prompt": "What is 6 - 3?",
+          "options": [
+            {
+              "label": "3",
+              "asset": null
+            },
+            {
+              "label": "2",
+              "asset": null
+            },
+            {
+              "label": "4",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Three. Half of six.",
+          "retryFeedback": "Start at six and count back three."
+        },
+        {
+          "prompt": "You had 8 mangoes and gave away 5. How many now?",
+          "options": [
+            {
+              "label": "3",
+              "asset": null
+            },
+            {
+              "label": "5",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Three left. Giving away means taking away.",
+          "retryFeedback": "Count back from eight, five times."
         }
       ]
     },
@@ -15631,6 +17048,38 @@
           "answer": 0,
           "correctFeedback": "7 is bigger than 4.",
           "retryFeedback": "Which comes later when counting? Try again!"
+        },
+        {
+          "prompt": "Which number is smaller?",
+          "options": [
+            {
+              "label": "4",
+              "asset": null
+            },
+            {
+              "label": "7",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Four is smaller. It comes first when you count.",
+          "retryFeedback": "Which one would you reach first counting up?"
+        },
+        {
+          "prompt": "Which is bigger: 10 or 9?",
+          "options": [
+            {
+              "label": "10",
+              "asset": null
+            },
+            {
+              "label": "9",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Ten. It comes right after nine.",
+          "retryFeedback": "Count up out loud: eight, nine, ten."
         }
       ]
     },
@@ -15643,7 +17092,7 @@
       "title": "Add or Take Away?",
       "objective": "Choose the operation a story needs.",
       "designTier": "encourage-effort",
-      "reading": false,
+      "reading": true,
       "timed": false,
       "interaction": "tap",
       "parentNote": "Act it out with real objects first.",
@@ -15692,6 +17141,22 @@
           "answer": 0,
           "correctFeedback": "Take away! 5 − 2 = 3.",
           "retryFeedback": "Eating makes fewer. Try again!"
+        },
+        {
+          "prompt": "Six birds sit on a wire. Two fly away. Add or take away?",
+          "options": [
+            {
+              "label": "Take away",
+              "asset": "img/s05/op_sub.png"
+            },
+            {
+              "label": "Add them",
+              "asset": "img/s05/op_add.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Take away. Flying off means fewer.",
+          "retryFeedback": "Are there more birds now, or fewer?"
         }
       ]
     },
@@ -15706,31 +17171,61 @@
       "designTier": "encourage-effort",
       "reading": true,
       "timed": false,
-      "interaction": "tap-to-turn",
-      "parentNote": null,
+      "interaction": "listen",
+      "parentNote": "Hold up five fingers and fold one down each page.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
         {
           "type": "audio",
           "ref": "audio/s05/five_bed.mp3",
           "desc": "Counting narrator"
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/five_bed.png",
+          "desc": "Five friends in a bed. 'Roll over!'"
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/four_bed.png",
+          "desc": "One rolls out. Now there are four."
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/subtract.png",
+          "desc": "'Roll over!' Another one out. Now there are three."
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/number_bonds.png",
+          "desc": "Three, then two. Each time, exactly one fewer."
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/one_bed.png",
+          "desc": "One by one, down to one. 'Goodnight!' Five take away four is one."
         }
       ],
       "pages": [
         {
           "narration": "Five friends in a bed. 'Roll over!'",
-          "illustration": "img/s05/five_bed.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s05/five_bed.png"
         },
         {
           "narration": "One rolls out. Now there are four.",
-          "illustration": "img/s05/four_bed.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s05/four_bed.png"
+        },
+        {
+          "narration": "'Roll over!' Another one out. Now there are three.",
+          "illustration": "img/s05/subtract.png"
+        },
+        {
+          "narration": "Three, then two. Each time, exactly one fewer.",
+          "illustration": "img/s05/number_bonds.png"
         },
         {
           "narration": "One by one, down to one. 'Goodnight!' Five take away four is one.",
-          "illustration": "img/s05/one_bed.png",
-          "interaction": null
+          "illustration": "img/s05/one_bed.png"
         }
       ]
     },
@@ -15743,7 +17238,7 @@
       "title": "Sharing Ten Mangoes",
       "objective": "Splitting a number fairly, inside a story.",
       "designTier": "encourage-effort",
-      "reading": false,
+      "reading": true,
       "timed": false,
       "interaction": "listen",
       "parentNote": "Share ten real objects between you afterwards.",
@@ -15756,8 +17251,18 @@
         },
         {
           "type": "image",
+          "ref": "img/s05/compare_groups.png",
+          "desc": "Ten does not look like it comes apart in two."
+        },
+        {
+          "type": "image",
           "ref": "img/s05/mango_share.png",
           "desc": "One for you, one for me. Again, and again."
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/number_bonds.png",
+          "desc": "They counted each pile to check. Five here, five there."
         },
         {
           "type": "image",
@@ -15771,8 +17276,16 @@
           "illustration": "img/s05/mango_ten.png"
         },
         {
+          "narration": "Ten does not look like it comes apart in two.",
+          "illustration": "img/s05/compare_groups.png"
+        },
+        {
           "narration": "One for you, one for me. Again, and again.",
           "illustration": "img/s05/mango_share.png"
+        },
+        {
+          "narration": "They counted each pile to check. Five here, five there.",
+          "illustration": "img/s05/number_bonds.png"
         },
         {
           "narration": "Five each, and nothing left over. Exactly fair.",
@@ -16328,6 +17841,22 @@
           "answer": 0,
           "correctFeedback": "Right. m-a-t, mat.",
           "retryFeedback": "/m/at. Try again, you've got this!"
+        },
+        {
+          "prompt": "Which letter makes 'cat'?  _ a t",
+          "options": [
+            {
+              "label": "c",
+              "asset": null
+            },
+            {
+              "label": "r",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "c-a-t. Cat!",
+          "retryFeedback": "Say the sound first: c... c... cat."
         }
       ]
     },
@@ -16362,6 +17891,38 @@
           "answer": 0,
           "correctFeedback": "That's 'the'.",
           "retryFeedback": "Look for the short word. Try again!"
+        },
+        {
+          "prompt": "Which word says 'and'?",
+          "options": [
+            {
+              "label": "and",
+              "asset": null
+            },
+            {
+              "label": "ant",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "'and' — the word that joins things.",
+          "retryFeedback": "Look at the last letter of each."
+        },
+        {
+          "prompt": "Which word says 'you'?",
+          "options": [
+            {
+              "label": "you",
+              "asset": null
+            },
+            {
+              "label": "yes",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "'you'. A word you will see everywhere.",
+          "retryFeedback": "Both start the same. Check the rest."
         }
       ]
     },
@@ -16379,7 +17940,13 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s05/cat.png",
+          "desc": "cat"
+        }
+      ],
       "questions": [
         {
           "prompt": "Blend it: s-u-n. What's the word?",
@@ -16396,6 +17963,38 @@
           "answer": 0,
           "correctFeedback": "You blended it. s-u-n, sun.",
           "retryFeedback": "Say each sound: /s/-/u/-/n/. Try again!"
+        },
+        {
+          "prompt": "Blend it: c-a-t. What's the word?",
+          "options": [
+            {
+              "label": "cat",
+              "asset": "img/s05/cat.png"
+            },
+            {
+              "label": "cot",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "cat. You blended all three sounds.",
+          "retryFeedback": "Say them slowly, then faster: c-a-t."
+        },
+        {
+          "prompt": "Blend it: m-a-p. What's the word?",
+          "options": [
+            {
+              "label": "map",
+              "asset": null
+            },
+            {
+              "label": "mop",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "map. The middle sound is 'a'.",
+          "retryFeedback": "Listen hard to the middle sound."
         }
       ]
     },
@@ -16408,7 +18007,7 @@
       "title": "Blend It",
       "objective": "Blend three sounds into the right word.",
       "designTier": "encourage-effort",
-      "reading": false,
+      "reading": true,
       "timed": false,
       "interaction": "tap",
       "parentNote": "Say each sound slowly, then speed up.",
@@ -16467,6 +18066,22 @@
           "answer": 0,
           "correctFeedback": "'big!' The middle sound was /i/.",
           "retryFeedback": "That one has /a/ in the middle. Try again!"
+        },
+        {
+          "prompt": "And h-o-t?",
+          "options": [
+            {
+              "label": "hot",
+              "asset": null
+            },
+            {
+              "label": "hat",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "hot. Three sounds, one word.",
+          "retryFeedback": "The middle sound is 'o', not 'a'."
         }
       ]
     },
@@ -16481,7 +18096,7 @@
       "designTier": "encourage-effort",
       "reading": true,
       "timed": false,
-      "interaction": "tap-to-turn",
+      "interaction": "listen",
       "parentNote": "Read it twice — let your child fill in the rhyming words.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
@@ -16489,23 +18104,53 @@
           "type": "audio",
           "ref": "audio/s05/cat_hat.mp3",
           "desc": "Slow, clear narrator"
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/cat_mat.png",
+          "desc": "A cat sat on a mat. Tap to read along."
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/cat_hat.png",
+          "desc": "The cat put on a hat. What a fat cat!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/cat.png",
+          "desc": "The hat sat flat on the cat. Pat, pat!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/blend_words.png",
+          "desc": "Mat, hat, cat, flat — they all end the same way."
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/cat_run.png",
+          "desc": "The cat ran with the hat. The end!"
         }
       ],
       "pages": [
         {
           "narration": "A cat sat on a mat. Tap to read along.",
-          "illustration": "img/s05/cat_mat.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s05/cat_mat.png"
         },
         {
           "narration": "The cat put on a hat. What a fat cat!",
-          "illustration": "img/s05/cat_hat.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s05/cat_hat.png"
+        },
+        {
+          "narration": "The hat sat flat on the cat. Pat, pat!",
+          "illustration": "img/s05/cat.png"
+        },
+        {
+          "narration": "Mat, hat, cat, flat — they all end the same way.",
+          "illustration": "img/s05/blend_words.png"
         },
         {
           "narration": "The cat ran with the hat. The end!",
-          "illustration": "img/s05/cat_run.png",
-          "interaction": null
+          "illustration": "img/s05/cat_run.png"
         }
       ]
     },
@@ -16518,7 +18163,7 @@
       "title": "The Word I Could Not Read",
       "objective": "Sounding out a hard word, slowly.",
       "designTier": "encourage-effort",
-      "reading": false,
+      "reading": true,
       "timed": false,
       "interaction": "listen",
       "parentNote": "Let them sound out one real word from a book.",
@@ -16531,8 +18176,18 @@
         },
         {
           "type": "image",
+          "ref": "img/s05/sight_words.png",
+          "desc": "I looked at the picture for a clue. It did not help."
+        },
+        {
+          "type": "image",
           "ref": "img/s05/word_parts.png",
           "desc": "So I took it apart: /b/ ... /e/ ... /d/."
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/blend_words.png",
+          "desc": "Then I said them fast, all together: b-e-d."
         },
         {
           "type": "image",
@@ -16546,8 +18201,16 @@
           "illustration": "img/s05/word_stuck.png"
         },
         {
+          "narration": "I looked at the picture for a clue. It did not help.",
+          "illustration": "img/s05/sight_words.png"
+        },
+        {
           "narration": "So I took it apart: /b/ ... /e/ ... /d/.",
           "illustration": "img/s05/word_parts.png"
+        },
+        {
+          "narration": "Then I said them fast, all together: b-e-d.",
+          "illustration": "img/s05/blend_words.png"
         },
         {
           "narration": "Bed. It was bed all along. I read it myself.",
@@ -17098,6 +18761,22 @@
           "answer": 0,
           "correctFeedback": "It sinks. Metal is heavy and dense.",
           "retryFeedback": "Heavy, dense things sink. Try again!"
+        },
+        {
+          "prompt": "Will a dry leaf float or sink?",
+          "options": [
+            {
+              "label": "Float",
+              "asset": null
+            },
+            {
+              "label": "Sink",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Float. Light things sit on top of the water.",
+          "retryFeedback": "Think how heavy a leaf is. Try again."
         }
       ]
     },
@@ -17115,7 +18794,23 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s05/cat.png",
+          "desc": "Cat"
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/nonliving_chair.png",
+          "desc": "Chair"
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/plant_parts.png",
+          "desc": "It grows and needs water"
+        }
+      ],
       "questions": [
         {
           "prompt": "Which one is living?",
@@ -17132,6 +18827,38 @@
           "answer": 0,
           "correctFeedback": "A plant is living. It grows.",
           "retryFeedback": "Living things grow and need water. Try again!"
+        },
+        {
+          "prompt": "A cat and a chair. Which one is alive?",
+          "options": [
+            {
+              "label": "Cat",
+              "asset": "img/s05/cat.png"
+            },
+            {
+              "label": "Chair",
+              "asset": "img/s05/nonliving_chair.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "The cat. It eats, grows and moves on its own.",
+          "retryFeedback": "Which one could get hungry? Try again."
+        },
+        {
+          "prompt": "How do we know a plant is living?",
+          "options": [
+            {
+              "label": "It grows and needs water",
+              "asset": "img/s05/plant_parts.png"
+            },
+            {
+              "label": "It is green",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Growing and needing things is the test. Colour is not.",
+          "retryFeedback": "A green chair is not living. Try again."
         }
       ]
     },
@@ -17149,7 +18876,13 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s05/four_seasons.png",
+          "desc": "Autumn"
+        }
+      ],
       "questions": [
         {
           "prompt": "Which season brings snow?",
@@ -17166,6 +18899,38 @@
           "answer": 0,
           "correctFeedback": "Winter is cold and snowy.",
           "retryFeedback": "When is it coldest? Try again!"
+        },
+        {
+          "prompt": "Which season is hottest?",
+          "options": [
+            {
+              "label": "Summer",
+              "asset": null
+            },
+            {
+              "label": "Winter",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Summer. Long days and warm sun.",
+          "retryFeedback": "That is the cold one. Try again."
+        },
+        {
+          "prompt": "In which season do leaves fall from the trees?",
+          "options": [
+            {
+              "label": "Autumn",
+              "asset": "img/s05/four_seasons.png"
+            },
+            {
+              "label": "Spring",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Autumn. The trees let their leaves go.",
+          "retryFeedback": "That is when new leaves grow. Try again."
         }
       ]
     },
@@ -17178,7 +18943,7 @@
       "title": "Living or Not?",
       "objective": "Apply the living test to two things.",
       "designTier": "encourage-effort",
-      "reading": false,
+      "reading": true,
       "timed": false,
       "interaction": "tap",
       "parentNote": "Ask 'does it grow?' before they answer.",
@@ -17198,6 +18963,11 @@
           "type": "image",
           "ref": "img/s05/nonliving_chair.png",
           "desc": "Non-living"
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/cat.png",
+          "desc": "Living"
         }
       ],
       "questions": [
@@ -17232,6 +19002,22 @@
           "answer": 0,
           "correctFeedback": "Non-living. It never grows or eats.",
           "retryFeedback": "A chair does not grow. Try again!"
+        },
+        {
+          "prompt": "Is a puppy living?",
+          "options": [
+            {
+              "label": "Living",
+              "asset": "img/s05/cat.png"
+            },
+            {
+              "label": "Non-living",
+              "asset": "img/s05/nonliving_rock.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Living. It grows, eats and breathes.",
+          "retryFeedback": "Does it need food to stay alive? Try again."
         }
       ]
     },
@@ -17246,31 +19032,61 @@
       "designTier": "encourage-effort",
       "reading": true,
       "timed": false,
-      "interaction": "tap-to-turn",
-      "parentNote": null,
+      "interaction": "listen",
+      "parentNote": "Check a real sprouting seed at the same time each day.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
         {
           "type": "audio",
           "ref": "audio/s05/little_seed.mp3",
           "desc": "Gentle narrator"
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/seed_soil.png",
+          "desc": "A little seed sleeps in the soil. Tap to give it rain."
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/plant_parts.png",
+          "desc": "Underground, roots reach down, feeling for water."
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/seed_sprout.png",
+          "desc": "With sun and water, a green sprout pokes up!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/plant.png",
+          "desc": "Leaves open, one pair at a time, drinking the light."
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/seed_flower.png",
+          "desc": "It grows tall into a flower. Living things grow!"
         }
       ],
       "pages": [
         {
           "narration": "A little seed sleeps in the soil. Tap to give it rain.",
-          "illustration": "img/s05/seed_soil.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s05/seed_soil.png"
+        },
+        {
+          "narration": "Underground, roots reach down, feeling for water.",
+          "illustration": "img/s05/plant_parts.png"
         },
         {
           "narration": "With sun and water, a green sprout pokes up!",
-          "illustration": "img/s05/seed_sprout.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s05/seed_sprout.png"
+        },
+        {
+          "narration": "Leaves open, one pair at a time, drinking the light.",
+          "illustration": "img/s05/plant.png"
         },
         {
           "narration": "It grows tall into a flower. Living things grow!",
-          "illustration": "img/s05/seed_flower.png",
-          "interaction": null
+          "illustration": "img/s05/seed_flower.png"
         }
       ]
     },
@@ -17283,7 +19099,7 @@
       "title": "Where the Puddle Went",
       "objective": "Water changes state and seems to vanish.",
       "designTier": "encourage-effort",
-      "reading": false,
+      "reading": true,
       "timed": false,
       "interaction": "listen",
       "parentNote": "Watch a real puddle over one sunny day.",
@@ -17301,6 +19117,11 @@
         },
         {
           "type": "image",
+          "ref": "img/s05/ice_water.png",
+          "desc": "Water can be ice, or a puddle, or something you cannot see."
+        },
+        {
+          "type": "image",
           "ref": "img/s05/puddle_gone.png",
           "desc": "By evening, dry stone. The water went up into the air."
         }
@@ -17315,8 +19136,16 @@
           "illustration": "img/s05/puddle_noon.png"
         },
         {
+          "narration": "Water can be ice, or a puddle, or something you cannot see.",
+          "illustration": "img/s05/ice_water.png"
+        },
+        {
           "narration": "By evening, dry stone. The water went up into the air.",
           "illustration": "img/s05/puddle_gone.png"
+        },
+        {
+          "narration": "One day it falls again as rain, and the puddle is back.",
+          "illustration": "img/s05/puddle_morning.png"
         }
       ]
     },
@@ -17827,6 +19656,38 @@
           "answer": 0,
           "correctFeedback": "A stop sign means stop and look.",
           "retryFeedback": "Red usually means stop. Try again!"
+        },
+        {
+          "prompt": "Before you step into the road, what do you do?",
+          "options": [
+            {
+              "label": "Look both ways",
+              "asset": null
+            },
+            {
+              "label": "Run across",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Look both ways, every single time.",
+          "retryFeedback": "Running means you cannot see what is coming."
+        },
+        {
+          "prompt": "Someone you do not know offers you a ride. What do you do?",
+          "options": [
+            {
+              "label": "Say no and find your grown-up",
+              "asset": null
+            },
+            {
+              "label": "Get in",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Say no, and tell a grown-up you trust.",
+          "retryFeedback": "Always check with your own grown-up first."
         }
       ]
     },
@@ -17861,6 +19722,38 @@
           "answer": 0,
           "correctFeedback": "Water is a need. We must have it.",
           "retryFeedback": "Could you live without it? Try again!"
+        },
+        {
+          "prompt": "Is food a need or a want?",
+          "options": [
+            {
+              "label": "A need",
+              "asset": null
+            },
+            {
+              "label": "A want",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "A need. Bodies do not work without it.",
+          "retryFeedback": "Could you go a whole week without it?"
+        },
+        {
+          "prompt": "Are sweets a need or a want?",
+          "options": [
+            {
+              "label": "A want",
+              "asset": null
+            },
+            {
+              "label": "A need",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "A want. Nice to have, not needed to live.",
+          "retryFeedback": "Would you still be well without them?"
         }
       ]
     },
@@ -17895,6 +19788,38 @@
           "answer": 0,
           "correctFeedback": "Stop and look. That's what red means.",
           "retryFeedback": "Red means... try again!"
+        },
+        {
+          "prompt": "What does a green light mean?",
+          "options": [
+            {
+              "label": "Go",
+              "asset": null
+            },
+            {
+              "label": "Stop",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Green means go — after you look.",
+          "retryFeedback": "Green and red mean opposite things."
+        },
+        {
+          "prompt": "Where is it safest to cross a road?",
+          "options": [
+            {
+              "label": "At the crossing",
+              "asset": null
+            },
+            {
+              "label": "Between parked cars",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "At the crossing, where drivers expect you.",
+          "retryFeedback": "Parked cars hide you from drivers."
         }
       ]
     },
@@ -17907,7 +19832,7 @@
       "title": "Need or Want?",
       "objective": "Sort two items into need and want.",
       "designTier": "encourage-effort",
-      "reading": false,
+      "reading": true,
       "timed": false,
       "interaction": "tap",
       "parentNote": "Ask 'could we live without it?' each time.",
@@ -17956,6 +19881,22 @@
           "answer": 0,
           "correctFeedback": "A want. Lovely to have, not a must.",
           "retryFeedback": "We can live without toys. Try again!"
+        },
+        {
+          "prompt": "Is a warm coat in cold weather a need or a want?",
+          "options": [
+            {
+              "label": "A need",
+              "asset": "img/s05/need_water5.png"
+            },
+            {
+              "label": "A want",
+              "asset": "img/s05/want_toy5.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "A need. Staying warm keeps you well.",
+          "retryFeedback": "What happens to a body left cold? Try again."
         }
       ]
     },
@@ -17970,7 +19911,7 @@
       "designTier": "encourage-effort",
       "reading": true,
       "timed": false,
-      "interaction": "tap-to-turn",
+      "interaction": "listen",
       "parentNote": "Talk about a time your family helped a neighbor.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
@@ -17978,23 +19919,53 @@
           "type": "audio",
           "ref": "audio/s05/neighbor.mp3",
           "desc": "Warm narrator"
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/spill.png",
+          "desc": "Mr. Ade's groceries spilled on the path."
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/swing_crowd.png",
+          "desc": "People walked past. One looked, and kept walking."
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/help_pick.png",
+          "desc": "Nia and Sam stop to help pick them up."
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/jobs.png",
+          "desc": "It took two minutes. Two minutes, and four hands."
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/happy_street.png",
+          "desc": "'Thank you!' he smiles. Helping makes a happy street."
         }
       ],
       "pages": [
         {
           "narration": "Mr. Ade's groceries spilled on the path.",
-          "illustration": "img/s05/spill.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s05/spill.png"
+        },
+        {
+          "narration": "People walked past. One looked, and kept walking.",
+          "illustration": "img/s05/swing_crowd.png"
         },
         {
           "narration": "Nia and Sam stop to help pick them up.",
-          "illustration": "img/s05/help_pick.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s05/help_pick.png"
+        },
+        {
+          "narration": "It took two minutes. Two minutes, and four hands.",
+          "illustration": "img/s05/jobs.png"
         },
         {
           "narration": "'Thank you!' he smiles. Helping makes a happy street.",
-          "illustration": "img/s05/happy_street.png",
-          "interaction": null
+          "illustration": "img/s05/happy_street.png"
         }
       ]
     },
@@ -18007,7 +19978,7 @@
       "title": "The Rule We Made Together",
       "objective": "Rules can be agreed, not only given.",
       "designTier": "encourage-effort",
-      "reading": false,
+      "reading": true,
       "timed": false,
       "interaction": "listen",
       "parentNote": "Agree one small house rule together this week.",
@@ -18020,8 +19991,18 @@
         },
         {
           "type": "image",
+          "ref": "img/s05/rules.png",
+          "desc": "One of us said a grown-up should decide. One said we could."
+        },
+        {
+          "type": "image",
           "ref": "img/s05/swing_rule.png",
           "desc": "So we sat down and made a rule: count to twenty, then swap."
+        },
+        {
+          "type": "image",
+          "ref": "img/s05/twenty_stars.png",
+          "desc": "Twenty was long enough to enjoy, and short enough to wait for."
         },
         {
           "type": "image",
@@ -18035,8 +20016,16 @@
           "illustration": "img/s05/swing_crowd.png"
         },
         {
+          "narration": "One of us said a grown-up should decide. One said we could.",
+          "illustration": "img/s05/rules.png"
+        },
+        {
           "narration": "So we sat down and made a rule: count to twenty, then swap.",
           "illustration": "img/s05/swing_rule.png"
+        },
+        {
+          "narration": "Twenty was long enough to enjoy, and short enough to wait for.",
+          "illustration": "img/s05/twenty_stars.png"
         },
         {
           "narration": "After that, everybody got a turn. The rule was ours.",

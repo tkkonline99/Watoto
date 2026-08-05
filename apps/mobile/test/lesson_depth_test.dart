@@ -374,8 +374,10 @@ void main() {
       // 172 of 199 when this test was written — including every stage the
       // lesson ratchet had already certified as done. 157 of 204 after
       // stage 6, 139 of 210 after stage 7, 129 once stage 1 took its own ten
-      // shipped quizzes from one question to two (content/author_stage1.py).
-      const knownShallow = 129;
+      // shipped quizzes from one question to two (content/author_stage1.py),
+      // 105 after stage 4 and 85 after stage 5 — every shipping stage now
+      // carries its authored question count, and the rest is stages 8-10.
+      const knownShallow = 85;
       expect(
         shallow.length,
         lessThanOrEqualTo(knownShallow),
@@ -445,8 +447,9 @@ void main() {
       // 85 of 85 when this test was written — the whole story library was
       // exactly three pages long, in every stage, including the done ones.
       // 80 of 90 after stage 6, 74 of 96 after stage 7, 64 once stage 1's ten
-      // stories each grew the fourth page (content/author_stage1.py).
-      const knownShallow = 64;
+      // stories each grew the fourth page (content/author_stage1.py), 52 after
+      // stage 4 and 42 after stage 5. What is left is stages 2, 3 and 8-10.
+      const knownShallow = 42;
       expect(
         shallow.length,
         lessThanOrEqualTo(knownShallow),

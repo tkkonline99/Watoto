@@ -43,33 +43,37 @@ void main() {
   List<LibraryItem> quizzes() =>
       library.where((i) => i.type == LibraryType.quiz).toList();
 
-  test('the library really is as thin as this fix assumes', () {
-    // A tripwire, and it is meant to trip. When it does, the fix is NOT to
-    // lower the number. It is to decide whether the top-up should still run
-    // at all — a borrowed recap question is weaker than an authored one, and
-    // it only earns its place while most quizzes have nothing else to offer.
+  test('no shipping quiz still depends on the top-up', () {
+    // This was a tripwire, meant to trip when authoring caught up with the
+    // scaffolding. It has. Stages 4 and 5 were the last shipping stages below
+    // their tier's question count, and with them authored the figure it
+    // watched went to zero: every quiz a child can currently reach carries its
+    // own authored questions.
     //
-    // It counted every quiz in the library until stage 1 went to depth, and
-    // that reading was wrong in a way worth recording. `canExpandQuiz` skips
-    // `parent-led` outright, so the 31 thin quizzes in that band were never
-    // candidates for the top-up at all. Stage 1 took the raw figure from 109
-    // to 99 by fixing ten of them — it moved the tripwire without changing a
-    // single quiz the mechanism touches. A tripwire measuring a population
-    // its subject ignores will keep firing for reasons that have nothing to
-    // do with the question it was asked to watch.
+    // Two readings of it were wrong along the way, and both are worth keeping
+    // because they are easy to repeat. It first counted every thin quiz in the
+    // library, including `parent-led` — a band `canExpandQuiz` skips outright
+    // — so stage 1 moved it ten points without touching a single quiz the
+    // mechanism reaches. And `targetQuizQuestions` was a flat 4 while the
+    // content was authored against a per-tier table, so the top-up went on
+    // padding stage-5 quizzes that already had the three their tier asks for.
+    // A number that does not measure what its subject actually does will keep
+    // reporting confidently and wrongly.
     //
-    // So it now counts what the top-up can actually reach: expandable quizzes
-    // in the stages that ship. 29 of 88, all of them stage 4 and stage 5, and
-    // both are next in `_buildPlan.priorityOrder`. When those two land this
-    // goes to roughly zero and the top-up should be deleted rather than
-    // re-thresholded — at that point every shipping quiz carries its own
-    // authored questions and borrowing is pure loss.
-    final thin = quizzes()
+    // So the assertion is inverted: it now holds the finished state, and fails
+    // if a shipping quiz ever drops back below its tier's depth.
+    final needsHelp = quizzes()
         .where((q) => canExpandQuiz(q) && q.stage <= maxPublishedStage)
-        .where((q) => q.questions.length <= 1)
-        .length;
-    expect(thin, greaterThan(20),
-        reason: 'the top-up may have outlived its purpose — read the comment');
+        .where((q) => q.questions.length < targetQuestionsFor(q))
+        .map((q) => '${q.id} (${q.designTier}): ${q.questions.length} of '
+            '${targetQuestionsFor(q)}')
+        .toList();
+    expect(
+      needsHelp,
+      isEmpty,
+      reason: 'a shipping quiz fell below its tier depth and would now be '
+          'padded with borrowed recap questions:\n${needsHelp.join('\n')}',
+    );
   });
 
   test('no quiz ever comes back shorter than it was authored', () {
@@ -86,9 +90,15 @@ void main() {
     // correctly returns unchanged. Counting those as failures-to-improve made
     // this ratio fall every time a stage was authored properly, which is
     // backwards: the top-up doing nothing to a complete quiz is the point.
+    // Measured against the quiz's *tier* target, not a flat four — the same
+    // trap one line up, one level deeper. A stage-5 quiz with its authored
+    // three is not short; counting it as short and then recording that it did
+    // not grow is the exact "failure to improve" this comment already warns
+    // about, and it dragged the ratio under the threshold the moment stage 5
+    // was authored properly.
     final short = quizzes()
         .where(canExpandQuiz)
-        .where((q) => q.questions.length < targetQuizQuestions)
+        .where((q) => q.questions.length < targetQuestionsFor(q))
         .toList();
     expect(short, isNotEmpty);
 
