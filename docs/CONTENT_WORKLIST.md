@@ -9,16 +9,16 @@ _Library version 0.13.0, generated 2026-06-17._
 
 | Gap | Count |
 |---|---|
-| Quizzes to author | 24 |
-| Stories to author | 24 |
-| Lessons below their tier's step depth | 134 |
-| Quizzes below their tier's question count | 157 |
-| Stories below their tier's page count | 80 |
+| Quizzes to author | 18 |
+| Stories to author | 18 |
+| Lessons below their tier's step depth | 108 |
+| Quizzes below their tier's question count | 139 |
+| Stories below their tier's page count | 74 |
 | Lessons with no recap | 138 |
-| Items with no illustration | 116 |
+| Items with no illustration | 123 |
 | Unreferenced PNGs on disk | 0 |
 | Steps with no declared mechanic | 0 |
-| Declared audio files that do not exist | 83 |
+| Declared audio files that do not exist | 77 |
 
 Depth minimums are per design tier, for all three item types. Steps per lesson: `parent-led` 4,
 `encourage-effort` 6, `gamify-gently` and `grant-autonomy` 8. Questions per quiz: 2 / 3 / 4 / 4.
@@ -238,57 +238,27 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 
 ### Stage 7 — Reading (ages 6-7)
 
-- **Author 1 quiz:** `s07.reading.quiz.04`
-- **Author 1 story:** `s07.reading.story.02`
-- **Deepen 3 lessons:** `s07.reading.lesson.02` (2→8), `s07.reading.lesson.04` (2→8), `s07.reading.lesson.05` (2→8)
-- **Deepen 3 quizzes:** `s07.reading.quiz.01` (1→4 questions), `s07.reading.quiz.02` (1→4 questions), `s07.reading.quiz.03` (1→4 questions)
-- **Deepen 1 stories:** `s07.reading.story.01` (3→6 pages)
-- **3 items have no illustration** (emoji fallback): `s07.reading.quiz.01`, `s07.reading.quiz.02`, `s07.reading.quiz.03`
+- **5 items have no illustration** (emoji fallback): `s07.reading.quiz.01`, `s07.reading.quiz.02`, `s07.reading.quiz.03`, `s07.reading.quiz.04`, `s07.reading.story.02`
 
 ### Stage 7 — Writing & Grammar (ages 6-7)
 
-- **Author 1 quiz:** `s07.writing.quiz.04`
-- **Author 1 story:** `s07.writing.story.02`
-- **Deepen 5 lessons:** `s07.writing.lesson.01` (3→8), `s07.writing.lesson.02` (2→8), `s07.writing.lesson.04` (2→8), `s07.writing.lesson.05` (2→8), `s07.writing.lesson.06` (2→8)
-- **Deepen 3 quizzes:** `s07.writing.quiz.01` (1→4 questions), `s07.writing.quiz.02` (1→4 questions), `s07.writing.quiz.03` (1→4 questions)
-- **Deepen 1 stories:** `s07.writing.story.01` (3→6 pages)
-- **3 items have no illustration** (emoji fallback): `s07.writing.quiz.01`, `s07.writing.quiz.02`, `s07.writing.quiz.03`
+- **4 items have no illustration** (emoji fallback): `s07.writing.quiz.01`, `s07.writing.quiz.02`, `s07.writing.quiz.03`, `s07.writing.quiz.04`
 
 ### Stage 7 — Math (ages 6-7)
 
-- **Author 1 quiz:** `s07.math.quiz.04`
-- **Author 1 story:** `s07.math.story.02`
-- **Deepen 2 lessons:** `s07.math.lesson.01` (2→8), `s07.math.lesson.05` (2→8)
-- **Deepen 3 quizzes:** `s07.math.quiz.01` (1→4 questions), `s07.math.quiz.02` (1→4 questions), `s07.math.quiz.03` (1→4 questions)
-- **Deepen 1 stories:** `s07.math.story.01` (3→6 pages)
-- **3 items have no illustration** (emoji fallback): `s07.math.quiz.01`, `s07.math.quiz.02`, `s07.math.quiz.03`
+- **4 items have no illustration** (emoji fallback): `s07.math.quiz.01`, `s07.math.quiz.02`, `s07.math.quiz.03`, `s07.math.quiz.04`
 
 ### Stage 7 — Science (ages 6-7)
 
-- **Author 1 quiz:** `s07.science.quiz.04`
-- **Author 1 story:** `s07.science.story.02`
-- **Deepen 5 lessons:** `s07.science.lesson.01` (2→8), `s07.science.lesson.03` (2→8), `s07.science.lesson.04` (2→8), `s07.science.lesson.05` (2→8), `s07.science.lesson.06` (2→8)
-- **Deepen 3 quizzes:** `s07.science.quiz.01` (1→4 questions), `s07.science.quiz.02` (1→4 questions), `s07.science.quiz.03` (1→4 questions)
-- **Deepen 1 stories:** `s07.science.story.01` (3→6 pages)
-- **2 items have no illustration** (emoji fallback): `s07.science.quiz.01`, `s07.science.quiz.02`
+- **3 items have no illustration** (emoji fallback): `s07.science.quiz.01`, `s07.science.quiz.02`, `s07.science.quiz.04`
 
 ### Stage 7 — Social Studies (ages 6-7)
 
-- **Author 1 quiz:** `s07.social.quiz.04`
-- **Author 1 story:** `s07.social.story.02`
-- **Deepen 6 lessons:** `s07.social.lesson.01` (2→8), `s07.social.lesson.02` (2→8), `s07.social.lesson.03` (2→8), `s07.social.lesson.04` (2→8), `s07.social.lesson.05` (2→8), `s07.social.lesson.06` (2→8)
-- **Deepen 3 quizzes:** `s07.social.quiz.01` (1→4 questions), `s07.social.quiz.02` (1→4 questions), `s07.social.quiz.03` (1→4 questions)
-- **Deepen 1 stories:** `s07.social.story.01` (3→6 pages)
-- **2 items have no illustration** (emoji fallback): `s07.social.quiz.01`, `s07.social.quiz.03`
+- **3 items have no illustration** (emoji fallback): `s07.social.quiz.01`, `s07.social.quiz.03`, `s07.social.quiz.04`
 
 ### Stage 7 — Health (ages 6-7)
 
-- **Author 1 quiz:** `s07.health.quiz.04`
-- **Author 1 story:** `s07.health.story.02`
-- **Deepen 5 lessons:** `s07.health.lesson.01` (2→8), `s07.health.lesson.03` (2→8), `s07.health.lesson.04` (2→8), `s07.health.lesson.05` (2→8), `s07.health.lesson.06` (2→8)
-- **Deepen 3 quizzes:** `s07.health.quiz.01` (1→4 questions), `s07.health.quiz.02` (1→4 questions), `s07.health.quiz.03` (1→4 questions)
-- **Deepen 1 stories:** `s07.health.story.01` (3→6 pages)
-- **2 items have no illustration** (emoji fallback): `s07.health.quiz.01`, `s07.health.quiz.02`
+- **3 items have no illustration** (emoji fallback): `s07.health.quiz.01`, `s07.health.quiz.02`, `s07.health.quiz.04`
 
 ### Stage 8 — Reading (ages 7-8)
 
@@ -454,7 +424,7 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 
 ## Declared audio that does not exist
 
-83 refs. The app bundles only the generic SFX in `assets/audio/sfx/`, so every cue
+77 refs. The app bundles only the generic SFX in `assets/audio/sfx/`, so every cue
 below is silent at runtime. `content/validate_content.py --assets` fails on these.
 
 ```
@@ -517,12 +487,6 @@ audio/s05/neighbor.mp3
 audio/s05/phonemes_cat.mp3
 audio/s05/robot_helper.mp3
 audio/s06/anthem.mp3
-audio/s07/class_vote.mp3
-audio/s07/coin_jar.mp3
-audio/s07/egg_butterfly.mp3
-audio/s07/healthy_day.mp3
-audio/s07/i_can_write.mp3
-audio/s07/lost_puppy.mp3
 audio/s08/best_day.mp3
 audio/s08/big_race.mp3
 audio/s08/market_stall.mp3

@@ -5,11 +5,17 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:watoto_mobile/features/library/library_models.dart';
 import 'package:watoto_mobile/features/library/quiz_review.dart';
 
-/// 140 of 166 quizzes in the shipped library ask exactly one question. A quiz
-/// that ends after a single tap cannot tell a child who knows the material
-/// from one who guessed, and it hands the adaptive engine a single noisy
-/// sample. These tests check the top-up against the *real* content file, not
-/// fixtures, because the whole claim is about what children actually get.
+/// A quiz that ends after a single tap cannot tell a child who knows the
+/// material from one who guessed, and it hands the adaptive engine a single
+/// noisy sample. The runtime top-up in `quiz_review.dart` borrows same-subject
+/// recap questions to cover for that. These tests check it against the *real*
+/// content file, not fixtures, because the whole claim is about what children
+/// actually get.
+///
+/// The top-up was written when 140 of 166 quizzes asked one question. Authoring
+/// has since taken stages 6 and 7 to four real questions each, and this file is
+/// meant to notice when that work makes the top-up unnecessary rather than let
+/// it keep padding quietly.
 void main() {
   late List<LibraryItem> library;
 
@@ -37,29 +43,48 @@ void main() {
       library.where((i) => i.type == LibraryType.quiz).toList();
 
   test('the library really is as thin as this fix assumes', () {
-    // If content authoring later fills these in, this fix is redundant and
-    // should be reconsidered rather than left to pad quizzes silently.
+    // A tripwire, and it is meant to trip. 140 of 166 when the top-up was
+    // written; 109 of 210 now that stages 6 and 7 carry four authored
+    // questions each. Two more stages will take it under this threshold.
+    //
+    // When it does, the fix is NOT to lower the number. It is to decide
+    // whether the top-up should still run at all — a borrowed recap question
+    // is weaker than an authored one, and it only earns its place while most
+    // quizzes have nothing else to offer.
     final single = quizzes().where((q) => q.questions.length <= 1).length;
-    expect(single, greaterThan(100), reason: 'baseline: 140 of 166');
+    expect(single, greaterThan(100),
+        reason: 'the top-up may have outlived its purpose — read the comment');
   });
 
-  test('expandable quizzes come back materially longer', () {
-    final expandable = quizzes().where(canExpandQuiz).toList();
-    expect(expandable, isNotEmpty);
+  test('no quiz ever comes back shorter than it was authored', () {
+    for (final quiz in quizzes()) {
+      expect(play(quiz).length, greaterThanOrEqualTo(quiz.questions.length),
+          reason: '${quiz.id} lost questions');
+    }
+  });
+
+  test('short quizzes come back materially longer', () {
+    // The denominator is quizzes that are *allowed* to expand and actually
+    // need to. `canExpandQuiz` alone is a policy predicate — it says nothing
+    // about length, so an authored four-question quiz passes it and then
+    // correctly returns unchanged. Counting those as failures-to-improve made
+    // this ratio fall every time a stage was authored properly, which is
+    // backwards: the top-up doing nothing to a complete quiz is the point.
+    final short = quizzes()
+        .where(canExpandQuiz)
+        .where((q) => q.questions.length < targetQuizQuestions)
+        .toList();
+    expect(short, isNotEmpty);
 
     var improved = 0;
-    for (final quiz in expandable) {
-      final before = quiz.questions.length;
-      final after = play(quiz).length;
-      expect(after, greaterThanOrEqualTo(before),
-          reason: '${quiz.id} lost questions');
-      if (after > before) improved++;
+    for (final quiz in short) {
+      if (play(quiz).length > quiz.questions.length) improved++;
     }
     // Not every subject has authored recaps to draw on; most do.
     expect(
-      improved / expandable.length,
+      improved / short.length,
       greaterThan(0.6),
-      reason: 'only $improved of ${expandable.length} quizzes got deeper',
+      reason: 'only $improved of ${short.length} short quizzes got deeper',
     );
   });
 

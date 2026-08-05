@@ -22780,6 +22780,42 @@
           "action": "tap",
           "feedback": "Scrub-scrub for 20 seconds. 'All clean and healthy!'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Now sort the bread into the grains group.",
+          "action": "drag",
+          "feedback": "Grains give us energy to run and play.",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "Watch: a good plate has food from several groups, not just one.",
+          "action": "watch",
+          "feedback": "Different groups do different jobs in your body.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Build a plate with a fruit, a grain and something from the milk group.",
+          "action": "drag",
+          "feedback": "Three groups on one plate. That is a balanced meal!",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "Before you touch food, hands come first. Tap the water to wash.",
+          "action": "tap",
+          "feedback": "Clean hands keep the germs off your food.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Is an apple a fruit or a grain? Tap the fruit basket.",
+          "action": "tap",
+          "feedback": "A fruit. You sorted it yourself.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Food groups on the plate, clean hands at the table.",
+          "action": "celebrate",
+          "feedback": "Two habits that keep you growing.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -22956,6 +22992,42 @@
           "action": "tap",
           "feedback": "Eat the rainbow!",
           "mechanic": "drag"
+        },
+        {
+          "narration": "Drag a carrot to the plate. Vegetables count too.",
+          "action": "drag",
+          "feedback": "A vegetable! Colour on the plate is a good sign.",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "Watch: 'every day' foods and 'sometimes' foods are both allowed.",
+          "action": "watch",
+          "feedback": "Nothing is banned. It is about how often.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Cake at a party is a 'sometimes' food. Drag it to 'sometimes'.",
+          "action": "drag",
+          "feedback": "Right — enjoyed sometimes, not every day.",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "Water is the everyday drink. Tap the water.",
+          "action": "tap",
+          "feedback": "Water every day. Your body is mostly water!",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Which is the every-day food: an apple or a cookie? Tap the apple.",
+          "action": "tap",
+          "feedback": "The apple. The cookie is a sometimes food.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Eat the rainbow, most days.",
+          "action": "celebrate",
+          "feedback": "You can sort your own plate now.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -23016,6 +23088,42 @@
             "Every day"
           ],
           "choiceIndex": 1
+        },
+        {
+          "narration": "Your heart beats faster when you run. Tap the heart.",
+          "action": "tap",
+          "feedback": "Faster beats. Your heart is a muscle getting stronger!",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Watch: moving warms you up, and your lungs pull in more air.",
+          "action": "watch",
+          "feedback": "That is your whole body working together.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "A bike ride counts as moving too. Tap the bike.",
+          "action": "tap",
+          "feedback": "Walking, running, riding — all of it counts.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "After moving, your body wants water. Tap the cup.",
+          "action": "tap",
+          "feedback": "Drink up. Moving uses water as well as energy.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Does your heart beat faster when you run or when you sit? Tap the runner.",
+          "action": "tap",
+          "feedback": "When you run. You felt it yourself.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Every day, move enough to feel your heart.",
+          "action": "celebrate",
+          "feedback": "A strong heart is built one day at a time.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -23076,6 +23184,42 @@
             "A loud room"
           ],
           "choiceIndex": 0
+        },
+        {
+          "narration": "A quiet room helps sleep come. Tap the lamp to turn it low.",
+          "action": "tap",
+          "feedback": "Low light tells your body that night has come.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Watch: while you sleep, your brain sorts what you learned today.",
+          "action": "watch",
+          "feedback": "Sleep is not lost time. It is when learning sticks.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "A book before bed is calmer than a bright screen. Tap the book.",
+          "action": "tap",
+          "feedback": "A story slows you down. A screen wakes you up.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Teeth get brushed before bed, every night. Tap the brush.",
+          "action": "tap",
+          "feedback": "Same order every night is what makes it easy.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Which helps you sleep: a quiet book or a bright screen? Tap the book.",
+          "action": "tap",
+          "feedback": "The book. Bright light keeps your brain awake.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Same steps, same time, every night.",
+          "action": "celebrate",
+          "feedback": "A bedtime routine is a gift to tomorrow's you.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -23130,6 +23274,42 @@
           "action": "tap",
           "feedback": "Click. Safe and sound!",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Look both ways before you cross. Tap the road when it is clear.",
+          "action": "tap",
+          "feedback": "Both ways, every time. Even on a quiet street.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Watch: a helmet and a seatbelt do the same job — they hold you still.",
+          "action": "watch",
+          "feedback": "Your body keeps moving when the bike stops. That is why.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Someone you do not know offers you a ride. Tap to find a grown-up.",
+          "action": "tap",
+          "feedback": "You never go anywhere with a stranger. Tell someone you trust.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "If you get lost, stay put and find a helper. Tap the shop.",
+          "action": "tap",
+          "feedback": "Staying still makes you easier to find.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Do you wear a helmet only on long rides? Tap no.",
+          "action": "tap",
+          "feedback": "No — every ride. Falls do not wait for long rides.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Helmet on, seatbelt clicked, both ways looked.",
+          "action": "celebrate",
+          "feedback": "Safety is a habit, not a rule you remember.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -23158,12 +23338,12 @@
       "subject": "Health",
       "type": "quiz",
       "title": "Safe or Unsafe?",
-      "objective": "Recognize safe choices.",
+      "objective": "Recognize safe choices, online and out.",
       "designTier": "gamify-gently",
       "reading": true,
       "timed": false,
       "interaction": "tap",
-      "parentNote": null,
+      "parentNote": "The habit worth building is telling you, not judging the situation alone. Make sure they know they will never be in trouble for asking.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [],
       "questions": [
@@ -23182,6 +23362,54 @@
           "answer": 0,
           "correctFeedback": "Always tell a trusted grown-up. You are safe.",
           "retryFeedback": "Never share private info online. Tell a grown-up. Try again!"
+        },
+        {
+          "prompt": "You are riding your bike. What goes on first?",
+          "options": [
+            {
+              "label": "A helmet",
+              "asset": null
+            },
+            {
+              "label": "Nothing",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "A helmet, every ride. Not just the long ones.",
+          "retryFeedback": "What protects your head if you fall? Try again!"
+        },
+        {
+          "prompt": "You are lost in a busy market. What is the safest thing to do?",
+          "options": [
+            {
+              "label": "Stay where you are and find a helper",
+              "asset": null
+            },
+            {
+              "label": "Walk around looking for them",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Staying put makes you far easier to find.",
+          "retryFeedback": "If you both move, you keep missing each other. Try again!"
+        },
+        {
+          "prompt": "Crossing a quiet street — do you still look both ways?",
+          "options": [
+            {
+              "label": "Yes, every time",
+              "asset": null
+            },
+            {
+              "label": "No, it is quiet",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Every time. Quiet streets still have cars.",
+          "retryFeedback": "A car can come at any moment. Try again!"
         }
       ]
     },
@@ -23192,12 +23420,12 @@
       "subject": "Health",
       "type": "quiz",
       "title": "When to Wash",
-      "objective": "Know when to wash hands.",
+      "objective": "Know when and how to wash hands.",
       "designTier": "gamify-gently",
       "reading": true,
       "timed": false,
       "interaction": "tap",
-      "parentNote": null,
+      "parentNote": "Twenty seconds is about one slow verse of a song. Timing it turns a chore into a game.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [],
       "questions": [
@@ -23216,6 +23444,54 @@
           "answer": 0,
           "correctFeedback": "Before eating, and after the toilet.",
           "retryFeedback": "Clean hands before food. Try again!"
+        },
+        {
+          "prompt": "How long should washing take?",
+          "options": [
+            {
+              "label": "About 20 seconds",
+              "asset": null
+            },
+            {
+              "label": "Two seconds",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "About 20 seconds — long enough to scrub properly.",
+          "retryFeedback": "A quick splash does not shift germs. Try again!"
+        },
+        {
+          "prompt": "What do you need as well as water?",
+          "options": [
+            {
+              "label": "Soap",
+              "asset": null
+            },
+            {
+              "label": "Nothing else",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Soap. It lifts the germs so water can carry them away.",
+          "retryFeedback": "Water alone slides right over them. Try again!"
+        },
+        {
+          "prompt": "You have just played outside with a dog. Wash before or after your snack?",
+          "options": [
+            {
+              "label": "Before",
+              "asset": null
+            },
+            {
+              "label": "After",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Before. Whatever is on your hands goes onto the food.",
+          "retryFeedback": "Think about what your hands touch the food with. Try again!"
         }
       ]
     },
@@ -23226,14 +23502,25 @@
       "subject": "Health",
       "type": "quiz",
       "title": "Healthy Snack",
-      "objective": "Choose a healthy snack.",
+      "objective": "Tell every-day foods from sometimes foods.",
       "designTier": "gamify-gently",
       "reading": true,
       "timed": false,
       "interaction": "tap",
-      "parentNote": null,
+      "parentNote": "No food is banned here, and that matters — 'sometimes' keeps treats normal instead of forbidden.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s07/apple.png",
+          "desc": "Apple slices"
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/candy.png",
+          "desc": "Candy"
+        }
+      ],
       "questions": [
         {
           "prompt": "Which is a healthy everyday snack?",
@@ -23250,6 +23537,136 @@
           "answer": 0,
           "correctFeedback": "Apple slices are a healthy snack.",
           "retryFeedback": "Which helps you grow? Try again!"
+        },
+        {
+          "prompt": "Cake at a birthday party is a...",
+          "options": [
+            {
+              "label": "Sometimes food",
+              "asset": null
+            },
+            {
+              "label": "Never food",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Sometimes, not never. Enjoyed and then moved on from.",
+          "retryFeedback": "Nothing is banned — it is about how often. Try again!"
+        },
+        {
+          "prompt": "What is the best everyday drink?",
+          "options": [
+            {
+              "label": "Water",
+              "asset": null
+            },
+            {
+              "label": "Fizzy drink",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Water. Your body is mostly water and needs topping up.",
+          "retryFeedback": "Which one does your body actually need? Try again!"
+        },
+        {
+          "prompt": "A plate with only bread on it is missing what?",
+          "options": [
+            {
+              "label": "Other food groups",
+              "asset": null
+            },
+            {
+              "label": "Nothing at all",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Other groups. One group cannot do every job.",
+          "retryFeedback": "Think about fruit, vegetables and milk. Try again!"
+        }
+      ]
+    },
+    {
+      "id": "s07.health.quiz.04",
+      "stage": 7,
+      "ages": "6-7",
+      "subject": "Health",
+      "type": "quiz",
+      "title": "Rest and Move",
+      "objective": "Know why sleep and exercise both matter.",
+      "designTier": "gamify-gently",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Sleep is where the day's learning gets filed. Saying so out loud makes bedtime an ally rather than a fight.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "What happens in your brain while you sleep?",
+          "options": [
+            {
+              "label": "It sorts what you learned",
+              "asset": null
+            },
+            {
+              "label": "It switches off completely",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "It sorts and stores the day. Sleep is when learning sticks.",
+          "retryFeedback": "Sleep is busy work, not nothing. Try again!"
+        },
+        {
+          "prompt": "Which helps you fall asleep?",
+          "options": [
+            {
+              "label": "A quiet book and low light",
+              "asset": null
+            },
+            {
+              "label": "A bright screen",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Low light tells your body the night has come.",
+          "retryFeedback": "Bright light keeps the brain awake. Try again!"
+        },
+        {
+          "prompt": "Your heart beats faster when you...",
+          "options": [
+            {
+              "label": "Run and play",
+              "asset": null
+            },
+            {
+              "label": "Sit still",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Running. Your heart is a muscle, and it gets stronger.",
+          "retryFeedback": "When does your chest thump? Try again!"
+        },
+        {
+          "prompt": "Which do you need — moving, or sleeping?",
+          "options": [
+            {
+              "label": "Both, every day",
+              "asset": null
+            },
+            {
+              "label": "Only moving",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Both. One builds you up, the other puts you back together.",
+          "retryFeedback": "Could you run all day and never sleep? Try again!"
         }
       ]
     },
@@ -23264,31 +23681,98 @@
       "designTier": "gamify-gently",
       "reading": true,
       "timed": false,
-      "interaction": "tap-to-turn",
-      "parentNote": "Talk through your child's own healthy-day habits.",
+      "interaction": "listen",
+      "parentNote": "Talk through your child's own healthy-day habits. Which of Zoe's do they already do without being asked?",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
         {
-          "type": "audio",
-          "ref": "audio/s07/healthy_day.mp3",
-          "desc": "Upbeat narrator"
+          "type": "image",
+          "ref": "img/s07/zoe_morning.png",
+          "desc": "Zoe wakes up and brushes her teeth, top and bottom."
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/zoe_play.png",
+          "desc": "She runs and plays outside until her heart thumps."
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/zoe_sleep.png",
+          "desc": "She sleeps, and her brain sorts everything she learned. A healthy day!"
         }
       ],
       "pages": [
         {
-          "narration": "Zoe wakes up, brushes her teeth, and eats fruit for breakfast.",
-          "illustration": "img/s07/zoe_morning.png",
-          "interaction": "tap-to-turn"
+          "narration": "Zoe wakes up and brushes her teeth, top and bottom.",
+          "illustration": "img/s07/zoe_morning.png"
         },
         {
-          "narration": "She runs and plays outside, then washes her hands for lunch.",
-          "illustration": "img/s07/zoe_play.png",
-          "interaction": "tap-to-turn"
+          "narration": "Breakfast is fruit and bread — two food groups on one plate.",
+          "illustration": null
         },
         {
-          "narration": "After a calm bedtime, she sleeps well. A healthy day!",
-          "illustration": "img/s07/zoe_sleep.png",
-          "interaction": null
+          "narration": "She runs and plays outside until her heart thumps.",
+          "illustration": "img/s07/zoe_play.png"
+        },
+        {
+          "narration": "Before lunch she washes her hands. Twenty seconds, with soap.",
+          "illustration": null
+        },
+        {
+          "narration": "At night the lamp goes low and she reads one quiet book.",
+          "illustration": null
+        },
+        {
+          "narration": "She sleeps, and her brain sorts everything she learned. A healthy day!",
+          "illustration": "img/s07/zoe_sleep.png"
+        }
+      ]
+    },
+    {
+      "id": "s07.health.story.02",
+      "stage": 7,
+      "ages": "6-7",
+      "subject": "Health",
+      "type": "story",
+      "title": "The Helmet Rule",
+      "objective": "See why safety habits are worth keeping.",
+      "designTier": "gamify-gently",
+      "reading": true,
+      "timed": false,
+      "interaction": "listen",
+      "parentNote": "Nobody is hurt in this story, on purpose. The point is the habit, not a scare.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s07/safety.png",
+          "desc": "Nothing happens on the way. That is exactly the point."
+        }
+      ],
+      "pages": [
+        {
+          "narration": "Tomas is going to the shop on his bike. It is very close.",
+          "illustration": null
+        },
+        {
+          "narration": "'It is only two streets,' he says. 'I do not need the helmet.'",
+          "illustration": null
+        },
+        {
+          "narration": "His sister asks: 'Do falls know how far you are going?'",
+          "illustration": null
+        },
+        {
+          "narration": "Tomas stops. He had not thought of it that way.",
+          "illustration": null
+        },
+        {
+          "narration": "He clips the helmet on. It takes four seconds.",
+          "illustration": null
+        },
+        {
+          "narration": "Nothing happens on the way. That is exactly the point.",
+          "illustration": "img/s07/safety.png"
         }
       ]
     },
@@ -23327,6 +23811,45 @@
           "feedback": "Land on 9. 13 - 4 = 9. Nice!",
           "mechanic": "count",
           "count": 6
+        },
+        {
+          "narration": "Now 9 + 6: start at 9 and hop forward 6.",
+          "action": "count",
+          "feedback": "Land on 15. 9 + 6 = 15!",
+          "mechanic": "count"
+        },
+        {
+          "narration": "Watch the shortcut: 9 + 6 is 10 + 5, because one hops over.",
+          "action": "watch",
+          "feedback": "Making ten first is faster than counting every hop.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Use the shortcut: 8 + 7. Make ten first.",
+          "action": "tap",
+          "feedback": "15! 8 + 2 is 10, then 5 more.",
+          "mechanic": "numberAnswer",
+          "answer": 15
+        },
+        {
+          "narration": "Now backward: 16 - 7. Hop back from 16.",
+          "action": "tap",
+          "feedback": "9! Subtraction hops the other way.",
+          "mechanic": "numberAnswer",
+          "answer": 9
+        },
+        {
+          "narration": "You have 12 coins and spend 5. How many are left?",
+          "action": "tap",
+          "feedback": "7! The number line works on money too.",
+          "mechanic": "numberAnswer",
+          "answer": 7
+        },
+        {
+          "narration": "Forward to add, backward to subtract, all the way to 20.",
+          "action": "celebrate",
+          "feedback": "One number line, both operations.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -23760,6 +24283,43 @@
             "half past"
           ],
           "choiceIndex": 0
+        },
+        {
+          "narration": "Little hand on 7, big hand on 12. Tap 7 o'clock.",
+          "action": "tap",
+          "feedback": "7 o'clock. The little hand names the hour.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Watch: the big hand goes all the way round while the little one moves one number.",
+          "action": "watch",
+          "feedback": "That whole trip is one hour.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Set the clock to 9 o'clock. Tap the 9.",
+          "action": "tap",
+          "feedback": "9 o'clock. Big hand up, little hand on 9.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "School starts at 8 o'clock. Tap the clock that shows it.",
+          "action": "tap",
+          "feedback": "You read a real time off a real clock.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "The little hand is on 4 and the big hand on 12. What hour is it?",
+          "action": "tap",
+          "feedback": "4! Little hand for the hour, every time.",
+          "mechanic": "numberAnswer",
+          "answer": 4
+        },
+        {
+          "narration": "Big hand on 12 means o'clock, and the little hand says which.",
+          "action": "celebrate",
+          "feedback": "You can read the clock on the wall now.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -23916,7 +24476,7 @@
       "reading": true,
       "timed": false,
       "interaction": "tap",
-      "parentNote": null,
+      "parentNote": "Tallest bar means most — that one idea unlocks every bar graph they will ever meet.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [],
       "questions": [
@@ -23935,6 +24495,58 @@
           "answer": 0,
           "correctFeedback": "You read the graph. Apples have the tallest bar.",
           "retryFeedback": "Find the tallest bar. Try again!"
+        },
+        {
+          "prompt": "What does the shortest bar tell you?",
+          "options": [
+            {
+              "label": "Fewest votes",
+              "asset": null
+            },
+            {
+              "label": "Most votes",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Shortest means fewest. Height is the whole message.",
+          "retryFeedback": "Taller means more, so shorter means...? Try again!"
+        },
+        {
+          "prompt": "Apples got 8 votes and pears got 5. How many more for apples?",
+          "options": [
+            {
+              "label": "3",
+              "asset": null
+            },
+            {
+              "label": "13",
+              "asset": null
+            },
+            {
+              "label": "5",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "3 more. Comparing bars is subtraction.",
+          "retryFeedback": "Take 5 away from 8. Try again!"
+        },
+        {
+          "prompt": "Why do we draw a graph instead of writing a list?",
+          "options": [
+            {
+              "label": "You can see the answer at a glance",
+              "asset": null
+            },
+            {
+              "label": "It uses more paper",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "At a glance. That is the whole point of a picture of numbers.",
+          "retryFeedback": "Which is faster to understand? Try again!"
         }
       ]
     },
@@ -23945,12 +24557,12 @@
       "subject": "Math",
       "type": "quiz",
       "title": "Add Within 20",
-      "objective": "Solve an addition within twenty.",
+      "objective": "Solve additions within twenty.",
       "designTier": "gamify-gently",
       "reading": true,
       "timed": false,
       "interaction": "tap",
-      "parentNote": null,
+      "parentNote": "'Make ten first' is the strategy to praise. Counting on fingers still works and is not a failure.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [],
       "questions": [
@@ -23973,6 +24585,66 @@
           "answer": 0,
           "correctFeedback": "8 + 7 = 15.",
           "retryFeedback": "Make ten first: 8 + 2, then 5. Try again!"
+        },
+        {
+          "prompt": "What is 9 + 6?",
+          "options": [
+            {
+              "label": "15",
+              "asset": null
+            },
+            {
+              "label": "16",
+              "asset": null
+            },
+            {
+              "label": "14",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "15. Same answer as 8 + 7 — there are many roads to a number.",
+          "retryFeedback": "9 + 1 is 10, then 5 more. Try again!"
+        },
+        {
+          "prompt": "What is 13 - 5?",
+          "options": [
+            {
+              "label": "8",
+              "asset": null
+            },
+            {
+              "label": "7",
+              "asset": null
+            },
+            {
+              "label": "9",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "8. Hop back five from thirteen.",
+          "retryFeedback": "Count back: 12, 11, 10... Try again!"
+        },
+        {
+          "prompt": "Which pair adds to 20?",
+          "options": [
+            {
+              "label": "12 and 8",
+              "asset": null
+            },
+            {
+              "label": "12 and 6",
+              "asset": null
+            },
+            {
+              "label": "11 and 8",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "12 and 8. Two tens' worth exactly.",
+          "retryFeedback": "How far is 12 from 20? Try again!"
         }
       ]
     },
@@ -23983,12 +24655,12 @@
       "subject": "Math",
       "type": "quiz",
       "title": "What Time?",
-      "objective": "Read an o'clock time.",
+      "objective": "Read an o'clock time from a clock face.",
       "designTier": "gamify-gently",
       "reading": true,
       "timed": false,
       "interaction": "tap",
-      "parentNote": null,
+      "parentNote": "The little hand is the one that matters, and it is the one children read last. Point at it first.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [],
       "questions": [
@@ -24007,6 +24679,148 @@
           "answer": 0,
           "correctFeedback": "6 o'clock. You read both hands.",
           "retryFeedback": "The little hand shows the hour. Try again!"
+        },
+        {
+          "prompt": "Which hand tells you the hour?",
+          "options": [
+            {
+              "label": "The little one",
+              "asset": null
+            },
+            {
+              "label": "The big one",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "The little one, always. The big one counts minutes.",
+          "retryFeedback": "Which moves more slowly? Try again!"
+        },
+        {
+          "prompt": "Where does the big hand point at o'clock?",
+          "options": [
+            {
+              "label": "Straight up at 12",
+              "asset": null
+            },
+            {
+              "label": "At the 6",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Straight up. That is what makes it 'o'clock'.",
+          "retryFeedback": "Picture 3 o'clock in your head. Try again!"
+        },
+        {
+          "prompt": "School starts at 8 o'clock. The little hand points at...",
+          "options": [
+            {
+              "label": "8",
+              "asset": null
+            },
+            {
+              "label": "12",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "The 8. Hour on the little hand, every time.",
+          "retryFeedback": "Which hand names the hour? Try again!"
+        }
+      ]
+    },
+    {
+      "id": "s07.math.quiz.04",
+      "stage": 7,
+      "ages": "6-7",
+      "subject": "Math",
+      "type": "quiz",
+      "title": "Coins and Tens",
+      "objective": "Count coins and read two-digit numbers.",
+      "designTier": "gamify-gently",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Real coins beat pictures here. Counting a handful in fives and tens is the same skill as place value.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Two 5-coins. How much is that?",
+          "options": [
+            {
+              "label": "10",
+              "asset": null
+            },
+            {
+              "label": "7",
+              "asset": null
+            },
+            {
+              "label": "25",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "10. Counting in fives: 5, 10.",
+          "retryFeedback": "5, then 5 more. Try again!"
+        },
+        {
+          "prompt": "How many tens are in 47?",
+          "options": [
+            {
+              "label": "4",
+              "asset": null
+            },
+            {
+              "label": "7",
+              "asset": null
+            },
+            {
+              "label": "47",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "4 tens and 7 ones. The first digit counts tens.",
+          "retryFeedback": "Look at the first digit. Try again!"
+        },
+        {
+          "prompt": "Which is more: 38 or 83?",
+          "options": [
+            {
+              "label": "83",
+              "asset": null
+            },
+            {
+              "label": "38",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "83. Same digits, but 8 tens beats 3 tens.",
+          "retryFeedback": "Compare the tens before the ones. Try again!"
+        },
+        {
+          "prompt": "You have 10 and spend 4. How much is left?",
+          "options": [
+            {
+              "label": "6",
+              "asset": null
+            },
+            {
+              "label": "14",
+              "asset": null
+            },
+            {
+              "label": "4",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "6. Money problems are just subtraction wearing a hat.",
+          "retryFeedback": "Count back 4 from 10. Try again!"
         }
       ]
     },
@@ -24021,31 +24835,98 @@
       "designTier": "gamify-gently",
       "reading": true,
       "timed": false,
-      "interaction": "tap-to-turn",
-      "parentNote": null,
+      "interaction": "listen",
+      "parentNote": "Count along out loud in fives. Saying the numbers is what makes them stick.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
         {
-          "type": "audio",
-          "ref": "audio/s07/coin_jar.mp3",
-          "desc": "Cheerful narrator"
+          "type": "image",
+          "ref": "img/s07/coin_jar.png",
+          "desc": "Lila is saving coins in a jar. She wants a kite."
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/count_coins.png",
+          "desc": "On Tuesday another 5-coin. Count with her: 5, 10!"
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/buy_kite.png",
+          "desc": "She buys the one she saved for, and keeps counting. Off it flies!"
         }
       ],
       "pages": [
         {
-          "narration": "Lila saves coins in a jar for a kite.",
-          "illustration": "img/s07/coin_jar.png",
-          "interaction": "tap-to-turn"
+          "narration": "Lila is saving coins in a jar. She wants a kite.",
+          "illustration": "img/s07/coin_jar.png"
         },
         {
-          "narration": "She has two 5-coins. Tap to count: 5, 10!",
-          "illustration": "img/s07/count_coins.png",
-          "interaction": "tap-to-turn"
+          "narration": "On Monday she puts in a 5-coin. That is 5.",
+          "illustration": null
         },
         {
-          "narration": "Ten is enough for the kite! Off she runs to buy it.",
-          "illustration": "img/s07/buy_kite.png",
-          "interaction": null
+          "narration": "On Tuesday another 5-coin. Count with her: 5, 10!",
+          "illustration": "img/s07/count_coins.png"
+        },
+        {
+          "narration": "The kite costs 10. She has exactly enough.",
+          "illustration": null
+        },
+        {
+          "narration": "But at the shop she sees a smaller kite for 5.",
+          "illustration": null
+        },
+        {
+          "narration": "She buys the one she saved for, and keeps counting. Off it flies!",
+          "illustration": "img/s07/buy_kite.png"
+        }
+      ]
+    },
+    {
+      "id": "s07.math.story.02",
+      "stage": 7,
+      "ages": "6-7",
+      "subject": "Math",
+      "type": "story",
+      "title": "Ten O'Clock Exactly",
+      "objective": "Read o'clock times through a story.",
+      "designTier": "gamify-gently",
+      "reading": true,
+      "timed": false,
+      "interaction": "listen",
+      "parentNote": "Point at a real clock while you read. The little hand is the one to name first.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s07/clock_hour.png",
+          "desc": "He checks the clock. The little hand is on 8."
+        }
+      ],
+      "pages": [
+        {
+          "narration": "Kofi is meeting his friend at the park at 10 o'clock.",
+          "illustration": null
+        },
+        {
+          "narration": "He checks the clock. The little hand is on 8.",
+          "illustration": "img/s07/clock_hour.png"
+        },
+        {
+          "narration": "Eight o'clock. Two whole hours to wait. He sighs.",
+          "illustration": null
+        },
+        {
+          "narration": "He helps in the garden until the big hand comes round again.",
+          "illustration": null
+        },
+        {
+          "narration": "Nine o'clock. One more trip round for the big hand.",
+          "illustration": null
+        },
+        {
+          "narration": "Ten o'clock, and there is his friend at the gate. Right on time!",
+          "illustration": null
         }
       ]
     },
@@ -24219,6 +25100,42 @@
           "action": "tap",
           "feedback": "'/ay/. Long a, cape! The e makes a say its name.'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "'kit' has a short i. Tap 'kit'.",
+          "action": "tap",
+          "feedback": "/i/. Short i, kit!",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Watch: add a silent e and the vowel says its own name.",
+          "action": "watch",
+          "feedback": "kit becomes kite. One letter, whole new word.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Tap 'kite'. Listen for the long i.",
+          "action": "tap",
+          "feedback": "/eye/. Long i. The e did that!",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "One of these has a long vowel: hat, hate, ham. Tap it.",
+          "action": "tap",
+          "feedback": "hate. The silent e gives it away.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Does 'cap' or 'cape' have the long a? Tap 'cape'.",
+          "action": "tap",
+          "feedback": "cape. Same three letters plus an e.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Short vowels say their sound; long vowels say their name.",
+          "action": "celebrate",
+          "feedback": "A silent e at the end is your clue.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -24399,6 +25316,42 @@
           "action": "tap",
           "feedback": "The ball! You understood it.",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Read: 'The boy feeds the cat.' Who feeds? Tap the boy.",
+          "action": "tap",
+          "feedback": "The boy. You found the who.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Watch: every sentence answers who, and what they did.",
+          "action": "watch",
+          "feedback": "Find those two and you have understood it.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "In 'The girl reads a book', tap what she reads.",
+          "action": "tap",
+          "feedback": "The book. That is the what.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "'The dog runs to the river.' Tap where it runs to.",
+          "action": "tap",
+          "feedback": "The river. Sentences can answer where, too.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "In 'The cat sleeps on the bed', who sleeps? Tap the cat.",
+          "action": "tap",
+          "feedback": "The cat. You asked the question yourself.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Who, what, where — three questions for any sentence.",
+          "action": "celebrate",
+          "feedback": "That is reading for meaning, not just sound.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -24453,6 +25406,42 @@
           "action": "tap",
           "feedback": "Great remembering!",
           "mechanic": "drag"
+        },
+        {
+          "narration": "Retell a new one: a seed, then a shoot, then a flower. Drag them in order.",
+          "action": "drag",
+          "feedback": "Beginning, middle, end. You kept the order!",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "Watch: a retelling keeps what matters and drops the rest.",
+          "action": "watch",
+          "feedback": "Not every word — just the story's bones.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Retell the lost puppy story in three parts. Drag them in order.",
+          "action": "drag",
+          "feedback": "Lost, found, home. That is the whole story.",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "Which part tells you how it ended? Tap the last part.",
+          "action": "tap",
+          "feedback": "The end. It answers what happened at last.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Does a retelling need every single word? Tap no.",
+          "action": "tap",
+          "feedback": "No — just the parts that carry the story.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Beginning, middle, end — in your own words.",
+          "action": "celebrate",
+          "feedback": "Retelling is how you prove you understood.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -24621,7 +25610,7 @@
       "reading": true,
       "timed": false,
       "interaction": "tap",
-      "parentNote": null,
+      "parentNote": "Ask 'what makes you think that?' after every guess. The reason matters more than the answer.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [],
       "questions": [
@@ -24638,8 +25627,56 @@
             }
           ],
           "answer": 0,
-          "correctFeedback": "Good prediction. Rain is likely. ⭐",
+          "correctFeedback": "Good prediction. Rain is likely.",
           "retryFeedback": "What do dark clouds bring? Try again!"
+        },
+        {
+          "prompt": "A girl packs a towel and a swimsuit. Where is she going?",
+          "options": [
+            {
+              "label": "Swimming",
+              "asset": null
+            },
+            {
+              "label": "To bed",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Swimming. The clues told you before the story did.",
+          "retryFeedback": "What are those two things for? Try again!"
+        },
+        {
+          "prompt": "A boy's stomach rumbles at noon. He will probably...",
+          "options": [
+            {
+              "label": "Eat lunch",
+              "asset": null
+            },
+            {
+              "label": "Go to sleep",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Eat. A rumbling stomach is a strong clue.",
+          "retryFeedback": "What does a rumbling stomach mean? Try again!"
+        },
+        {
+          "prompt": "What makes a prediction a good one?",
+          "options": [
+            {
+              "label": "Clues in the story",
+              "asset": null
+            },
+            {
+              "label": "A lucky guess",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Clues. A prediction you can explain is a good one.",
+          "retryFeedback": "What did you use to answer the last three? Try again!"
         }
       ]
     },
@@ -24650,12 +25687,12 @@
       "subject": "Reading",
       "type": "quiz",
       "title": "Long or Short?",
-      "objective": "Identify a vowel sound.",
+      "objective": "Identify long and short vowel sounds.",
       "designTier": "gamify-gently",
       "reading": true,
       "timed": false,
       "interaction": "tap",
-      "parentNote": null,
+      "parentNote": "A long vowel says its own name. Saying the word slowly aloud is the whole test.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [],
       "questions": [
@@ -24674,6 +25711,54 @@
           "answer": 0,
           "correctFeedback": "Long i. The e makes the i say its name.",
           "retryFeedback": "Say it: kiiite. Try again!"
+        },
+        {
+          "prompt": "Which word has a short vowel?",
+          "options": [
+            {
+              "label": "cap",
+              "asset": null
+            },
+            {
+              "label": "cape",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "cap. No silent e, so the a stays short.",
+          "retryFeedback": "Which one has no e at the end? Try again!"
+        },
+        {
+          "prompt": "What does a silent e at the end do?",
+          "options": [
+            {
+              "label": "Makes the vowel say its name",
+              "asset": null
+            },
+            {
+              "label": "Nothing at all",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "It reaches back and changes the vowel before it.",
+          "retryFeedback": "Compare hat and hate. Try again!"
+        },
+        {
+          "prompt": "'hop' becomes 'hope'. What changed?",
+          "options": [
+            {
+              "label": "The o is now long",
+              "asset": null
+            },
+            {
+              "label": "Nothing changed",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "The o now says its name. One silent letter did that.",
+          "retryFeedback": "Say both words aloud. Try again!"
         }
       ]
     },
@@ -24684,12 +25769,12 @@
       "subject": "Reading",
       "type": "quiz",
       "title": "What Was It About?",
-      "objective": "Show comprehension of a short text.",
+      "objective": "Find the main idea of a short text.",
       "designTier": "gamify-gently",
       "reading": true,
       "timed": false,
       "interaction": "tap",
-      "parentNote": null,
+      "parentNote": "Main idea is what the whole thing is about, not the most interesting bit. Ask what they would tell a friend in one sentence.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [],
       "questions": [
@@ -24708,6 +25793,136 @@
           "answer": 0,
           "correctFeedback": "The whole story is about how plants grow.",
           "retryFeedback": "What was the whole story about? Try again!"
+        },
+        {
+          "prompt": "A text describes a lion's teeth, claws and hunting. It is about...",
+          "options": [
+            {
+              "label": "How a lion hunts",
+              "asset": null
+            },
+            {
+              "label": "What lions look like",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Hunting. Teeth and claws are the details that support it.",
+          "retryFeedback": "What do all three details have in common? Try again!"
+        },
+        {
+          "prompt": "Is the main idea the same as the most exciting part?",
+          "options": [
+            {
+              "label": "No",
+              "asset": null
+            },
+            {
+              "label": "Yes",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "No. The main idea covers all of it, exciting or not.",
+          "retryFeedback": "Could one exciting page be the whole point? Try again!"
+        },
+        {
+          "prompt": "A good way to find the main idea is to...",
+          "options": [
+            {
+              "label": "Say the whole thing in one sentence",
+              "asset": null
+            },
+            {
+              "label": "Read only the last line",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "One sentence. If it fits, you have found it.",
+          "retryFeedback": "The last line is just the end, not the whole. Try again!"
+        }
+      ]
+    },
+    {
+      "id": "s07.reading.quiz.04",
+      "stage": 7,
+      "ages": "6-7",
+      "subject": "Reading",
+      "type": "quiz",
+      "title": "Who and What",
+      "objective": "Answer who, what and where about a sentence.",
+      "designTier": "gamify-gently",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "These three questions work on any sentence in any book. Try them on a page you are already reading together.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "'The girl kicks the ball.' Who kicks?",
+          "options": [
+            {
+              "label": "The girl",
+              "asset": null
+            },
+            {
+              "label": "The ball",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "The girl. She is the who.",
+          "retryFeedback": "Who is doing the action? Try again!"
+        },
+        {
+          "prompt": "In the same sentence, what does she kick?",
+          "options": [
+            {
+              "label": "The ball",
+              "asset": null
+            },
+            {
+              "label": "The girl",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "The ball. That is the what.",
+          "retryFeedback": "What did the action happen to? Try again!"
+        },
+        {
+          "prompt": "'The dog runs to the river.' Where does it run?",
+          "options": [
+            {
+              "label": "To the river",
+              "asset": null
+            },
+            {
+              "label": "To the dog",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "The river. Sentences answer where, too.",
+          "retryFeedback": "Which word names a place? Try again!"
+        },
+        {
+          "prompt": "Why ask who, what and where?",
+          "options": [
+            {
+              "label": "It shows you understood, not just read the words",
+              "asset": null
+            },
+            {
+              "label": "It makes reading slower",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Understanding, not just decoding. That is the difference.",
+          "retryFeedback": "You can say words without knowing what they mean. Try again!"
         }
       ]
     },
@@ -24722,31 +25937,92 @@
       "designTier": "gamify-gently",
       "reading": true,
       "timed": false,
-      "interaction": "tap-to-turn",
-      "parentNote": "Ask: what happened first, next, and last?",
+      "interaction": "listen",
+      "parentNote": "Ask what happened first, next, and last. That is a retelling, and it shows they followed it.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
         {
-          "type": "audio",
-          "ref": "audio/s07/lost_puppy.mp3",
-          "desc": "Clear, friendly narrator"
+          "type": "image",
+          "ref": "img/s07/lost_puppy.png",
+          "desc": "A small puppy could not find its way home. (Tap a word to hear it.)"
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/girl_tag.png",
+          "desc": "She read the name tag on its collar: Bo, and a street."
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/puppy_home.png",
+          "desc": "Bo's family opened the door. His tail did not stop. The end!"
         }
       ],
       "pages": [
         {
           "narration": "A small puppy could not find its way home. (Tap a word to hear it.)",
-          "illustration": "img/s07/lost_puppy.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s07/lost_puppy.png"
         },
         {
-          "narration": "A kind girl saw it and read its name tag.",
-          "illustration": "img/s07/girl_tag.png",
-          "interaction": "tap-to-turn"
+          "narration": "It sat down by the road and made a small sad sound.",
+          "illustration": null
         },
         {
-          "narration": "She walked it home. The puppy wagged its tail. The end!",
-          "illustration": "img/s07/puppy_home.png",
-          "interaction": null
+          "narration": "A kind girl saw it and stopped. She did not pick it up.",
+          "illustration": null
+        },
+        {
+          "narration": "She read the name tag on its collar: Bo, and a street.",
+          "illustration": "img/s07/girl_tag.png"
+        },
+        {
+          "narration": "She told her mother, and they walked Bo to the street together.",
+          "illustration": null
+        },
+        {
+          "narration": "Bo's family opened the door. His tail did not stop. The end!",
+          "illustration": "img/s07/puppy_home.png"
+        }
+      ]
+    },
+    {
+      "id": "s07.reading.story.02",
+      "stage": 7,
+      "ages": "6-7",
+      "subject": "Reading",
+      "type": "story",
+      "title": "The Cake with No Name",
+      "objective": "Use clues to predict what happens next.",
+      "designTier": "gamify-gently",
+      "reading": true,
+      "timed": false,
+      "interaction": "listen",
+      "parentNote": "Stop before the last page and ask what they think. Then ask what made them think it.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "pages": [
+        {
+          "narration": "A cake sat on the kitchen table with no name on it.",
+          "illustration": null
+        },
+        {
+          "narration": "Beside it were seven candles, unlit, in a neat row.",
+          "illustration": null
+        },
+        {
+          "narration": "Ada is seven next week. Her brother is four.",
+          "illustration": null
+        },
+        {
+          "narration": "The kitchen door was shut, and someone was whispering.",
+          "illustration": null
+        },
+        {
+          "narration": "Ada counted the candles. Seven. She started to smile.",
+          "illustration": null
+        },
+        {
+          "narration": "The door opened. 'Surprise!' The clues had told her already.",
+          "illustration": null
         }
       ]
     },
@@ -24783,6 +26059,42 @@
           "action": "drag-order",
           "feedback": "A butterfly! egg → caterpillar → chrysalis → butterfly.",
           "mechanic": "drag"
+        },
+        {
+          "narration": "Put the frog's life cycle in order: egg, tadpole, frog.",
+          "action": "drag",
+          "feedback": "Egg first here too. Many animals start that way!",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "Watch: a life cycle goes round. The butterfly lays an egg again.",
+          "action": "watch",
+          "feedback": "That is why we call it a cycle and not a line.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Inside the chrysalis the caterpillar changes completely. Tap the chrysalis.",
+          "action": "tap",
+          "feedback": "Hidden work. It goes in a caterpillar and comes out a butterfly.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "A butterfly lays its egg on a leaf. Tap the leaf.",
+          "action": "tap",
+          "feedback": "And the cycle starts again. Round and round.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "What comes right after the egg? Tap the caterpillar.",
+          "action": "tap",
+          "feedback": "The caterpillar. Egg, caterpillar, chrysalis, butterfly.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Four stages, and then it begins again.",
+          "action": "celebrate",
+          "feedback": "You can read a life cycle now, on any animal.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -24955,6 +26267,42 @@
           "action": "tap",
           "feedback": "'The lungs! Our body has many parts.'",
           "mechanic": "celebrate"
+        },
+        {
+          "narration": "Bones hold you up and give you shape. Tap the hand.",
+          "action": "tap",
+          "feedback": "So many small bones in one hand!",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Watch: the heart pumps, the lungs breathe, the bones hold. Each part has one job.",
+          "action": "watch",
+          "feedback": "A body is many jobs happening at once.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Muscles pull your bones so you can move. Tap the arm.",
+          "action": "tap",
+          "feedback": "Muscle and bone work as a pair.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Your brain sends the message that starts it all. Tap the head.",
+          "action": "tap",
+          "feedback": "Brain first, then muscle, then movement.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Which part pumps blood: the heart or the lungs? Tap the heart.",
+          "action": "tap",
+          "feedback": "The heart. The lungs take in air instead.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Heart, lungs, bones, muscles, brain — a team.",
+          "action": "celebrate",
+          "feedback": "You can name what is working inside you.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -25009,6 +26357,42 @@
           "action": "tap",
           "feedback": "Light makes shadows!",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Move the light closer. Tap the lamp and watch the shadow grow.",
+          "action": "tap",
+          "feedback": "Closer light, bigger shadow!",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Watch: a shadow is not a thing. It is where the light could not reach.",
+          "action": "watch",
+          "feedback": "Block the light and you have made one.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Your own shadow is longest in the morning. Tap the morning sun.",
+          "action": "tap",
+          "feedback": "Low sun, long shadow. It changes all day.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Glass lets light through, so it makes almost no shadow. Tap the glass.",
+          "action": "tap",
+          "feedback": "Only things that block light make dark shadows.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Can you have a shadow with no light at all? Tap no.",
+          "action": "tap",
+          "feedback": "No. No light, nothing to block.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Light, then something in the way, then a shadow.",
+          "action": "celebrate",
+          "feedback": "Always in that order. Now you can predict them.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -25062,6 +26446,42 @@
           "narration": "Pluck the string. It wiggles and makes a sound!",
           "action": "tap",
           "feedback": "Vibrations make sound!",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "A bell rings when it vibrates. Tap the bell.",
+          "action": "tap",
+          "feedback": "Ding! Stop the vibration and the sound stops too.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Watch: the vibration pushes the air, and the air carries it to your ear.",
+          "action": "watch",
+          "feedback": "No air, no sound. That is why space is silent.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "A short string gives a high sound, a long one a low sound. Tap the long string.",
+          "action": "tap",
+          "feedback": "Low and deep. Length changes the pitch.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Put your hand on the drum while it sounds. Tap the drum.",
+          "action": "tap",
+          "feedback": "You can feel the vibration with your hand.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "What makes a sound: something still, or something vibrating? Tap the drum.",
+          "action": "tap",
+          "feedback": "Vibration, every time. Silence is stillness.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Something vibrates, the air carries it, your ear hears it.",
+          "action": "celebrate",
+          "feedback": "Three steps, in every sound you have ever heard.",
           "mechanic": "celebrate"
         }
       ],
@@ -25117,6 +26537,42 @@
           "action": "tap",
           "feedback": "Water, light, air. A happy plant!",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Plants need air too. Tap the leaf that takes it in.",
+          "action": "tap",
+          "feedback": "Leaves take in air. That is part of how a plant feeds itself.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Watch: a plant makes its own food from light, water and air.",
+          "action": "watch",
+          "feedback": "No plant ever eats. That is the strange and wonderful part.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Roots drink the water from the soil. Tap the root.",
+          "action": "tap",
+          "feedback": "Roots below, leaves above. Both are feeding it.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Too much water can hurt a plant. Tap the pot with holes in the bottom.",
+          "action": "tap",
+          "feedback": "Holes let the extra water out. Roots need air as well.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Which does a plant need: sunlight or moonlight? Tap the sun.",
+          "action": "tap",
+          "feedback": "Sunlight. The moon has no light of its own to give.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Water, light, air — and a pot that drains.",
+          "action": "celebrate",
+          "feedback": "You could keep a plant alive now.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -25145,12 +26601,12 @@
       "subject": "Science",
       "type": "quiz",
       "title": "Simple Machines",
-      "objective": "Identify a simple machine.",
+      "objective": "Identify simple machines and what they do.",
       "designTier": "gamify-gently",
       "reading": true,
       "timed": false,
       "interaction": "tap",
-      "parentNote": null,
+      "parentNote": "Point out levers and wheels on the way to school. Once they see one, they see them everywhere.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [],
       "questions": [
@@ -25169,6 +26625,54 @@
           "answer": 0,
           "correctFeedback": "A see-saw is a lever.",
           "retryFeedback": "It tips on a point in the middle. Try again!"
+        },
+        {
+          "prompt": "What does a wheel make easier?",
+          "options": [
+            {
+              "label": "Moving heavy things",
+              "asset": null
+            },
+            {
+              "label": "Making things heavier",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Moving them. Rolling takes far less effort than dragging.",
+          "retryFeedback": "Think of a cart with and without wheels. Try again!"
+        },
+        {
+          "prompt": "A ramp helps you...",
+          "options": [
+            {
+              "label": "Move something up more easily",
+              "asset": null
+            },
+            {
+              "label": "Move something faster",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "More easily, over a longer distance. That is the trade.",
+          "retryFeedback": "Is it quicker, or just less hard? Try again!"
+        },
+        {
+          "prompt": "Why do people use simple machines at all?",
+          "options": [
+            {
+              "label": "To do hard jobs with less force",
+              "asset": null
+            },
+            {
+              "label": "To make jobs harder",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Less force. A machine trades effort for distance.",
+          "retryFeedback": "Would you rather lift or roll a heavy box? Try again!"
         }
       ]
     },
@@ -25178,13 +26682,13 @@
       "ages": "6-7",
       "subject": "Science",
       "type": "quiz",
-      "title": "After the Caterpillar",
-      "objective": "Sequence a life cycle.",
+      "title": "Life Cycles",
+      "objective": "Sequence the stages of a life cycle.",
       "designTier": "gamify-gently",
       "reading": true,
       "timed": false,
       "interaction": "tap",
-      "parentNote": null,
+      "parentNote": "The word 'cycle' is doing real work — it goes round. Ask what comes after the butterfly.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [],
       "questions": [
@@ -25203,6 +26707,54 @@
           "answer": 0,
           "correctFeedback": "Next it forms a chrysalis.",
           "retryFeedback": "The egg comes first. Try again!"
+        },
+        {
+          "prompt": "What comes after the butterfly?",
+          "options": [
+            {
+              "label": "An egg, and it starts again",
+              "asset": null
+            },
+            {
+              "label": "Nothing, it is the end",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "An egg. That is why it is called a cycle.",
+          "retryFeedback": "Does a cycle stop or go round? Try again!"
+        },
+        {
+          "prompt": "A frog's life cycle starts with...",
+          "options": [
+            {
+              "label": "An egg",
+              "asset": null
+            },
+            {
+              "label": "A tadpole",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "An egg, like the butterfly. Many animals do.",
+          "retryFeedback": "The tadpole hatches from something. Try again!"
+        },
+        {
+          "prompt": "Where does the caterpillar's big change happen?",
+          "options": [
+            {
+              "label": "Inside the chrysalis",
+              "asset": null
+            },
+            {
+              "label": "On the leaf",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Inside, hidden away. It goes in one thing and comes out another.",
+          "retryFeedback": "Where does it hide before becoming a butterfly? Try again!"
         }
       ]
     },
@@ -25212,15 +26764,26 @@
       "ages": "6-7",
       "subject": "Science",
       "type": "quiz",
-      "title": "Makes Light",
-      "objective": "Identify a light source.",
+      "title": "Light and Sound",
+      "objective": "Identify light sources and how sound is made.",
       "designTier": "gamify-gently",
       "reading": true,
       "timed": false,
       "interaction": "tap",
-      "parentNote": null,
+      "parentNote": "A shadow is an absence, not a thing. That flip is worth letting them wrestle with.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s07/sun.png",
+          "desc": "The sun"
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/rock.png",
+          "desc": "A rock"
+        }
+      ],
       "questions": [
         {
           "prompt": "Which one makes its own light?",
@@ -25237,6 +26800,136 @@
           "answer": 0,
           "correctFeedback": "The sun makes its own light.",
           "retryFeedback": "Which one shines? Try again!"
+        },
+        {
+          "prompt": "What is a shadow?",
+          "options": [
+            {
+              "label": "Where light was blocked",
+              "asset": null
+            },
+            {
+              "label": "A dark thing on the ground",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "A shadow is not a thing. It is light that could not get there.",
+          "retryFeedback": "Could you pick a shadow up? Try again!"
+        },
+        {
+          "prompt": "Sound is made when something...",
+          "options": [
+            {
+              "label": "Vibrates",
+              "asset": null
+            },
+            {
+              "label": "Stays perfectly still",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Vibrates. Stop the vibration and the sound stops.",
+          "retryFeedback": "Put a hand on a drum as it sounds. Try again!"
+        },
+        {
+          "prompt": "What carries the sound to your ear?",
+          "options": [
+            {
+              "label": "The air",
+              "asset": null
+            },
+            {
+              "label": "The light",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "The air. No air, no sound — which is why space is silent.",
+          "retryFeedback": "What is between the drum and your ear? Try again!"
+        }
+      ]
+    },
+    {
+      "id": "s07.science.quiz.04",
+      "stage": 7,
+      "ages": "6-7",
+      "subject": "Science",
+      "type": "quiz",
+      "title": "Body and Plants",
+      "objective": "Name body parts and what plants need.",
+      "designTier": "gamify-gently",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "A plant makes its own food and never eats. That is genuinely strange, and worth saying so.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Which body part pumps blood?",
+          "options": [
+            {
+              "label": "The heart",
+              "asset": null
+            },
+            {
+              "label": "The lungs",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "The heart. The lungs take in air instead.",
+          "retryFeedback": "Which one beats in your chest? Try again!"
+        },
+        {
+          "prompt": "What do muscles do?",
+          "options": [
+            {
+              "label": "Pull the bones so you move",
+              "asset": null
+            },
+            {
+              "label": "Hold the blood",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "They pull bones. Muscle and bone always work as a pair.",
+          "retryFeedback": "What moves your arm when you decide to? Try again!"
+        },
+        {
+          "prompt": "Which three things does a plant need?",
+          "options": [
+            {
+              "label": "Water, light and air",
+              "asset": null
+            },
+            {
+              "label": "Water, food and soil",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Water, light and air. It makes its own food from those three.",
+          "retryFeedback": "Does a plant ever eat a meal? Try again!"
+        },
+        {
+          "prompt": "Why do plant pots have holes in the bottom?",
+          "options": [
+            {
+              "label": "To let extra water out",
+              "asset": null
+            },
+            {
+              "label": "To let the roots escape",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Extra water drains away. Roots need air as well as water.",
+          "retryFeedback": "Can a plant drown? Try again!"
         }
       ]
     },
@@ -25251,31 +26944,98 @@
       "designTier": "gamify-gently",
       "reading": true,
       "timed": false,
-      "interaction": "tap-to-turn",
-      "parentNote": "Look for caterpillars or butterflies outdoors together.",
+      "interaction": "listen",
+      "parentNote": "Look for caterpillars or butterflies outdoors together. Seeing one stage makes the others real.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
         {
-          "type": "audio",
-          "ref": "audio/s07/egg_butterfly.mp3",
-          "desc": "Wonder-filled narrator"
+          "type": "image",
+          "ref": "img/s07/egg_leaf.png",
+          "desc": "A tiny egg sits on a leaf, no bigger than a full stop."
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/caterpillar_munch.png",
+          "desc": "Out crawls a hungry caterpillar. Munch, munch, munch."
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/butterfly_fly.png",
+          "desc": "Out comes a butterfly. It flies off to lay an egg on a leaf."
         }
       ],
       "pages": [
         {
-          "narration": "A tiny egg sits on a leaf. Tap to watch it hatch.",
-          "illustration": "img/s07/egg_leaf.png",
-          "interaction": "tap-to-turn"
+          "narration": "A tiny egg sits on a leaf, no bigger than a full stop.",
+          "illustration": "img/s07/egg_leaf.png"
         },
         {
-          "narration": "Out crawls a hungry caterpillar. Munch, munch! It forms a chrysalis.",
-          "illustration": "img/s07/caterpillar_munch.png",
-          "interaction": "tap-to-turn"
+          "narration": "Out crawls a hungry caterpillar. Munch, munch, munch.",
+          "illustration": "img/s07/caterpillar_munch.png"
         },
         {
-          "narration": "Out comes a butterfly with bright wings. It flies away!",
-          "illustration": "img/s07/butterfly_fly.png",
-          "interaction": null
+          "narration": "It eats until it is far too big for its own skin.",
+          "illustration": null
+        },
+        {
+          "narration": "Then it hangs still and builds a chrysalis around itself.",
+          "illustration": null
+        },
+        {
+          "narration": "Inside, hidden, it changes completely. Nothing shows outside.",
+          "illustration": null
+        },
+        {
+          "narration": "Out comes a butterfly. It flies off to lay an egg on a leaf.",
+          "illustration": "img/s07/butterfly_fly.png"
+        }
+      ]
+    },
+    {
+      "id": "s07.science.story.02",
+      "stage": 7,
+      "ages": "6-7",
+      "subject": "Science",
+      "type": "story",
+      "title": "The Shadow That Moved",
+      "objective": "See how light makes and moves a shadow.",
+      "designTier": "gamify-gently",
+      "reading": true,
+      "timed": false,
+      "interaction": "listen",
+      "parentNote": "Draw round a shadow with chalk in the morning, then look again after lunch. The gap is the whole lesson.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s07/light_shadow.png",
+          "desc": "At lunchtime the sun was high. Her shadow was short and round."
+        }
+      ],
+      "pages": [
+        {
+          "narration": "In the morning, Nia found her shadow stretched long across the yard.",
+          "illustration": null
+        },
+        {
+          "narration": "She marked its head with a small stone and went to school.",
+          "illustration": null
+        },
+        {
+          "narration": "At lunchtime the sun was high. Her shadow was short and round.",
+          "illustration": "img/s07/light_shadow.png"
+        },
+        {
+          "narration": "The stone was a long way off. Nothing had moved it.",
+          "illustration": null
+        },
+        {
+          "narration": "Then Nia understood: the shadow had not moved. The sun had.",
+          "illustration": null
+        },
+        {
+          "narration": "By evening it stretched the other way. Light first, shadow after.",
+          "illustration": null
         }
       ]
     },
@@ -25312,6 +27072,42 @@
           "action": "tap-map",
           "feedback": "'Those are the oceans. There are five!'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Africa is the continent with the equator across it. Tap Africa.",
+          "action": "tap",
+          "feedback": "Africa. The equator runs right through the middle.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Watch: seven continents of land, five oceans of water, one Earth.",
+          "action": "watch",
+          "feedback": "Water covers far more of it than land does.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Find the largest ocean and tap it.",
+          "action": "tap",
+          "feedback": "The Pacific. It is bigger than all the land put together.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Find the continent you live on and tap it.",
+          "action": "tap",
+          "feedback": "That is home, on a globe.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Is an ocean land or water? Tap the water.",
+          "action": "tap",
+          "feedback": "Water. Continents are the land between them.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Seven continents, five oceans, one planet.",
+          "action": "celebrate",
+          "feedback": "You can find your place on it.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -25368,6 +27164,42 @@
           "action": "tap",
           "feedback": "'A map. Flat and handy!'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "A globe shows the true shape; a flat map has to stretch it. Tap the globe.",
+          "action": "tap",
+          "feedback": "Round like Earth, so nothing is stretched.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Watch: you cannot flatten a ball without tearing or stretching it.",
+          "action": "watch",
+          "feedback": "That is why every flat map gets something a little wrong.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "A map folds into your pocket. Tap the map.",
+          "action": "tap",
+          "feedback": "Flat and handy. That is what a map is for.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "A globe has no edge. Tap where it ends.",
+          "action": "tap",
+          "feedback": "Nowhere! Go far enough and you come back round.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Which one is round like Earth: the map or the globe? Tap the globe.",
+          "action": "tap",
+          "feedback": "The globe. A map is the flat version.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Globe for the truth, map for the pocket.",
+          "action": "celebrate",
+          "feedback": "Both show the same world.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -25422,6 +27254,42 @@
           "action": "tap",
           "feedback": "Laws keep everyone safe!",
           "mechanic": "tap"
+        },
+        {
+          "narration": "A rule at home: shoes off at the door. Tap the shoe.",
+          "action": "tap",
+          "feedback": "Homes have rules too. Smaller group, same idea.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Watch: a rule is for one place, a law is for everyone in a country.",
+          "action": "watch",
+          "feedback": "Same purpose, different size.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "A law: everyone wears a seatbelt in a car. Tap the seatbelt.",
+          "action": "tap",
+          "feedback": "Everyone, every car. That is what makes it a law.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Grown-ups choose laws together by voting. Tap to raise a hand.",
+          "action": "tap",
+          "feedback": "Laws are not handed down. People agree on them.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Is 'walk inside' a rule or a law? Tap rule.",
+          "action": "tap",
+          "feedback": "A rule — it belongs to one school, not the whole country.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Rules for a place, laws for everyone.",
+          "action": "celebrate",
+          "feedback": "Both exist so people can share a place safely.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -25476,6 +27344,42 @@
           "action": "drag",
           "feedback": "'For putting out fires!'",
           "mechanic": "drag"
+        },
+        {
+          "narration": "A teacher uses a book. Drag it to the teacher.",
+          "action": "drag",
+          "feedback": "For sharing what they know!",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "Watch: the tool tells you the job, because each one fits its work.",
+          "action": "watch",
+          "feedback": "A hose for fire, a book for teaching. Nothing is by accident.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "A farmer uses a hoe. Drag it to the farmer.",
+          "action": "drag",
+          "feedback": "For growing the food we all eat.",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "Every helper here works for the community. Tap the doctor.",
+          "action": "tap",
+          "feedback": "Helpers serve people they may never meet again.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Who would use a hose: a firefighter or a teacher? Tap the firefighter.",
+          "action": "tap",
+          "feedback": "The firefighter. The tool matches the job.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Doctor, firefighter, teacher, farmer — and their tools.",
+          "action": "celebrate",
+          "feedback": "A community is people doing jobs for each other.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -25530,6 +27434,42 @@
           "action": "tap",
           "feedback": "Life changes over time!",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Long ago, families cooked over a fire. Tap the fire.",
+          "action": "tap",
+          "feedback": "Every meal started by lighting one.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Watch: the work families do has not changed. The tools have.",
+          "action": "watch",
+          "feedback": "People still cook, wash and carry water.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Long ago, water was carried from the river. Tap the river.",
+          "action": "tap",
+          "feedback": "Every day, by hand. Now a tap does it.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Ask a grown-up what their kitchen had. Tap the pot they described.",
+          "action": "tap",
+          "feedback": "Your own family holds this history.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Do families still need to eat and wash today? Tap yes.",
+          "action": "tap",
+          "feedback": "Yes. The needs stay; the tools change.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Then and now, the same family jobs.",
+          "action": "celebrate",
+          "feedback": "History is closer than it looks.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -25590,6 +27530,42 @@
             "Unfair"
           ],
           "choiceIndex": 0
+        },
+        {
+          "narration": "Three friends, two seats. Tap to share by taking turns.",
+          "action": "tap",
+          "feedback": "Turns make it fair when there is not enough.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Watch: fair does not always mean the same. It means what each one needs.",
+          "action": "watch",
+          "feedback": "A taller child does not need the same box to see over the fence.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Someone was left out of the game. Tap to invite them in.",
+          "action": "tap",
+          "feedback": "Including someone costs you nothing and changes their day.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Two children want the last apple. Tap to cut it in half.",
+          "action": "tap",
+          "feedback": "Half each. Sometimes fair is simple.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Is leaving someone out fair? Tap no.",
+          "action": "tap",
+          "feedback": "No. Fairness includes everyone who wants to play.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Take turns, share out, include everyone.",
+          "action": "celebrate",
+          "feedback": "That is fairness, and you can do all three.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -25622,8 +27598,8 @@
       "designTier": "gamify-gently",
       "reading": true,
       "timed": false,
-      "interaction": "drag",
-      "parentNote": null,
+      "interaction": "tap",
+      "parentNote": "Wants are not bad — that is the nuance to keep. The question is only which one you cannot live without.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [],
       "questions": [
@@ -25642,6 +27618,54 @@
           "answer": 0,
           "correctFeedback": "We need water to live.",
           "retryFeedback": "A need keeps us healthy and alive. Try again!"
+        },
+        {
+          "prompt": "Which is a want?",
+          "options": [
+            {
+              "label": "A bicycle",
+              "asset": null
+            },
+            {
+              "label": "Food",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "A bicycle is lovely, but nobody needs one to stay alive.",
+          "retryFeedback": "Which could you live without? Try again!"
+        },
+        {
+          "prompt": "Is shelter a need or a want?",
+          "options": [
+            {
+              "label": "A need",
+              "asset": null
+            },
+            {
+              "label": "A want",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "A need. Everyone needs somewhere safe and dry.",
+          "retryFeedback": "What happens in a storm with no roof? Try again!"
+        },
+        {
+          "prompt": "Are wants bad things to have?",
+          "options": [
+            {
+              "label": "No, they just come second",
+              "asset": null
+            },
+            {
+              "label": "Yes, always",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Not bad. Needs simply come first.",
+          "retryFeedback": "Is it wrong to want a bicycle? Try again!"
         }
       ]
     },
@@ -25651,15 +27675,26 @@
       "ages": "6-7",
       "subject": "Social Studies",
       "type": "quiz",
-      "title": "What Is a Globe?",
-      "objective": "Identify a globe.",
+      "title": "Maps and Globes",
+      "objective": "Tell a map from a globe, and read both.",
       "designTier": "gamify-gently",
       "reading": true,
       "timed": false,
       "interaction": "tap",
-      "parentNote": null,
+      "parentNote": "Try flattening an orange peel together. It is the clearest way to show why flat maps stretch things.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s07/globe.png",
+          "desc": "Round model of Earth"
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/map.png",
+          "desc": "Flat paper map"
+        }
+      ],
       "questions": [
         {
           "prompt": "Which one is a globe?",
@@ -25676,6 +27711,58 @@
           "answer": 0,
           "correctFeedback": "A globe is round, like Earth.",
           "retryFeedback": "A globe is a ball shape. Try again!"
+        },
+        {
+          "prompt": "How many continents are there?",
+          "options": [
+            {
+              "label": "Seven",
+              "asset": null
+            },
+            {
+              "label": "Five",
+              "asset": null
+            },
+            {
+              "label": "Ten",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Seven continents, and five oceans.",
+          "retryFeedback": "Count them on a globe. Try again!"
+        },
+        {
+          "prompt": "Which covers more of Earth: land or water?",
+          "options": [
+            {
+              "label": "Water",
+              "asset": null
+            },
+            {
+              "label": "Land",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Water, by a long way. Look at a globe and it is obvious.",
+          "retryFeedback": "Which colour is there more of? Try again!"
+        },
+        {
+          "prompt": "Why is a flat map never quite right?",
+          "options": [
+            {
+              "label": "You cannot flatten a ball without stretching it",
+              "asset": null
+            },
+            {
+              "label": "Maps are drawn badly",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Right. Every flat map gets something a little wrong.",
+          "retryFeedback": "Try flattening an orange peel. Try again!"
         }
       ]
     },
@@ -25685,13 +27772,13 @@
       "ages": "6-7",
       "subject": "Social Studies",
       "type": "quiz",
-      "title": "Why Laws?",
-      "objective": "Understand the purpose of laws.",
+      "title": "Rules, Laws and Fairness",
+      "objective": "Understand rules, laws and fair choices.",
       "designTier": "gamify-gently",
       "reading": true,
       "timed": false,
       "interaction": "tap",
-      "parentNote": null,
+      "parentNote": "Let them vote on something small and real at home. Losing a vote you agreed to hold teaches more than winning one.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [],
       "questions": [
@@ -25710,6 +27797,136 @@
           "answer": 0,
           "correctFeedback": "Laws help keep everyone safe.",
           "retryFeedback": "Laws protect us. Try again!"
+        },
+        {
+          "prompt": "'Walk inside, do not run' — is that a rule or a law?",
+          "options": [
+            {
+              "label": "A rule",
+              "asset": null
+            },
+            {
+              "label": "A law",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "A rule — it belongs to one place, not a whole country.",
+          "retryFeedback": "Does it apply everywhere in the country? Try again!"
+        },
+        {
+          "prompt": "Three children, two swings. What is the fair thing?",
+          "options": [
+            {
+              "label": "Take turns",
+              "asset": null
+            },
+            {
+              "label": "The fastest keeps it",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Turns. Fair means everyone gets a share of the time.",
+          "retryFeedback": "How would the third child feel? Try again!"
+        },
+        {
+          "prompt": "A class cannot agree. What is a fair way to choose?",
+          "options": [
+            {
+              "label": "Vote",
+              "asset": null
+            },
+            {
+              "label": "The loudest decides",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Vote. Everyone's choice counts the same.",
+          "retryFeedback": "Which way gives everyone a say? Try again!"
+        }
+      ]
+    },
+    {
+      "id": "s07.social.quiz.04",
+      "stage": 7,
+      "ages": "6-7",
+      "subject": "Social Studies",
+      "type": "quiz",
+      "title": "Helpers and History",
+      "objective": "Match helpers to tools and compare past with present.",
+      "designTier": "gamify-gently",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Ask a grandparent one question about their childhood kitchen. That single answer is the whole lesson.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "Who uses a stethoscope?",
+          "options": [
+            {
+              "label": "A doctor",
+              "asset": null
+            },
+            {
+              "label": "A farmer",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "A doctor, for listening to hearts and lungs.",
+          "retryFeedback": "Who listens to your chest? Try again!"
+        },
+        {
+          "prompt": "Who uses a hose at work?",
+          "options": [
+            {
+              "label": "A firefighter",
+              "asset": null
+            },
+            {
+              "label": "A teacher",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "A firefighter. The tool always matches the job.",
+          "retryFeedback": "What puts out a fire? Try again!"
+        },
+        {
+          "prompt": "Long ago, families washed clothes...",
+          "options": [
+            {
+              "label": "By hand",
+              "asset": null
+            },
+            {
+              "label": "In a machine",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "By hand, every week. Hard work.",
+          "retryFeedback": "Were there machines back then? Try again!"
+        },
+        {
+          "prompt": "Tools change over time. What stays the same?",
+          "options": [
+            {
+              "label": "The jobs families need doing",
+              "asset": null
+            },
+            {
+              "label": "Nothing",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "The jobs. People still cook, wash and carry water.",
+          "retryFeedback": "Do families still eat today? Try again!"
         }
       ]
     },
@@ -25724,31 +27941,98 @@
       "designTier": "gamify-gently",
       "reading": true,
       "timed": false,
-      "interaction": "tap-to-turn",
-      "parentNote": "Let your child vote on a small family choice.",
+      "interaction": "listen",
+      "parentNote": "Let your child vote on a small family choice — and hold to the result even if they lose. That is the lesson.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
         {
-          "type": "audio",
-          "ref": "audio/s07/class_vote.mp3",
-          "desc": "Warm narrator"
+          "type": "image",
+          "ref": "img/s07/class_vote.png",
+          "desc": "The class could not agree: a story, or a song?"
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/count_votes.png",
+          "desc": "Each child raised a hand once. They counted together."
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/vote_result.png",
+          "desc": "Then she sang anyway. Voting is fair even on the days you lose."
         }
       ],
       "pages": [
         {
-          "narration": "The class can't agree: a story or a song? Miss Bello says, 'Let's vote!'",
-          "illustration": "img/s07/class_vote.png",
-          "interaction": "tap-to-turn"
+          "narration": "The class could not agree: a story, or a song?",
+          "illustration": "img/s07/class_vote.png"
         },
         {
-          "narration": "Each child raises a hand. Tap to count the votes.",
-          "illustration": "img/s07/count_votes.png",
-          "interaction": "tap-to-turn"
+          "narration": "Some shouted louder. That did not settle anything.",
+          "illustration": null
         },
         {
-          "narration": "Song wins! Voting is a fair way to choose together.",
-          "illustration": "img/s07/vote_result.png",
-          "interaction": null
+          "narration": "Miss Bello said, 'Let's vote. Every hand counts the same.'",
+          "illustration": null
+        },
+        {
+          "narration": "Each child raised a hand once. They counted together.",
+          "illustration": "img/s07/count_votes.png"
+        },
+        {
+          "narration": "Song won by two. Ada had wanted the story, and she said so.",
+          "illustration": null
+        },
+        {
+          "narration": "Then she sang anyway. Voting is fair even on the days you lose.",
+          "illustration": "img/s07/vote_result.png"
+        }
+      ]
+    },
+    {
+      "id": "s07.social.story.02",
+      "stage": 7,
+      "ages": "6-7",
+      "subject": "Social Studies",
+      "type": "story",
+      "title": "The Longest Journey",
+      "objective": "Follow a map across continents and oceans.",
+      "designTier": "gamify-gently",
+      "reading": true,
+      "timed": false,
+      "interaction": "listen",
+      "parentNote": "Trace the route on a real map or globe as you read. Finding your own country first helps.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s07/map_globe.png",
+          "desc": "Grandpa spread a big map on the floor and put his finger down."
+        }
+      ],
+      "pages": [
+        {
+          "narration": "Grandpa spread a big map on the floor and put his finger down.",
+          "illustration": "img/s07/map_globe.png"
+        },
+        {
+          "narration": "'This is us,' he said. 'Africa. The equator runs right here.'",
+          "illustration": null
+        },
+        {
+          "narration": "His finger crossed a wide blue space. 'That is an ocean.'",
+          "illustration": null
+        },
+        {
+          "narration": "It took a long time to cross, even on paper.",
+          "illustration": null
+        },
+        {
+          "narration": "'Water covers more of it than land,' he said. 'Look.'",
+          "illustration": null
+        },
+        {
+          "narration": "Seven continents, five oceans, and their house on one of them.",
+          "illustration": null
         }
       ]
     },
@@ -25791,6 +28075,42 @@
           "action": "tap",
           "feedback": "'happy' is the adjective!",
           "mechanic": "tap"
+        },
+        {
+          "narration": "In 'The small bird sings', tap the noun.",
+          "action": "tap",
+          "feedback": "'bird' — a thing. That is the noun.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Watch: the noun is who or what, the verb is what it does, the adjective describes.",
+          "action": "watch",
+          "feedback": "Three jobs. Every sentence uses at least two.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "In the same sentence, tap the word that describes the bird.",
+          "action": "tap",
+          "feedback": "'small'. Adjectives tell you which one or what kind.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Now the action. Tap what the bird does.",
+          "action": "tap",
+          "feedback": "'sings'. That is the verb.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "In 'A red car stops', which word is the noun? Tap 'car'.",
+          "action": "tap",
+          "feedback": "'car'. You sorted three word types by yourself.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Noun names, verb acts, adjective describes.",
+          "action": "celebrate",
+          "feedback": "You can label the words in any sentence now.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -25847,6 +28167,42 @@
           "action": "tap",
           "feedback": "'school' is a place. A noun!",
           "mechanic": "tap"
+        },
+        {
+          "narration": "A noun can be a person. Tap the noun in 'The teacher smiles'.",
+          "action": "tap",
+          "feedback": "'teacher' — a person. Still a noun.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Watch: person, place or thing. If you can put 'the' in front, it is usually a noun.",
+          "action": "watch",
+          "feedback": "A handy test you can run in your head.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Tap the noun in 'We walk to the river'.",
+          "action": "tap",
+          "feedback": "'river' — a place. Nouns can be places.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Two nouns hide in 'The girl holds a book'. Tap the second one.",
+          "action": "tap",
+          "feedback": "'book'. A sentence can hold more than one.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Which is a noun: 'jump' or 'chair'? Tap 'chair'.",
+          "action": "tap",
+          "feedback": "'chair' — a thing. 'jump' is an action.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Person, place or thing — that is a noun.",
+          "action": "celebrate",
+          "feedback": "You can spot one in any sentence you read.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -26029,6 +28385,42 @@
           "action": "tap",
           "feedback": "Nice writing!",
           "mechanic": "drag"
+        },
+        {
+          "narration": "Build another: 'A' + 'bird' + 'sings'. Capital at the start, period at the end.",
+          "action": "drag",
+          "feedback": "'A bird sings.' A who and a doing-word.",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "Watch: a sentence needs a noun and a verb, or it does not finish its idea.",
+          "action": "watch",
+          "feedback": "'The big red' has no verb, so it says nothing yet.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Add a describing word: 'The' + 'small' + 'cat' + 'sleeps'.",
+          "action": "drag",
+          "feedback": "'The small cat sleeps.' An adjective made it clearer.",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "One of these is not finished. Tap 'The tall green'.",
+          "action": "tap",
+          "feedback": "No verb, no sentence. You caught it.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Does every sentence need a capital at the start? Tap yes.",
+          "action": "tap",
+          "feedback": "Yes. Capital to open, period to close.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "A noun, a verb, a capital and a period.",
+          "action": "celebrate",
+          "feedback": "Four things, and you have written a sentence.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -26089,6 +28481,42 @@
             "They ask"
           ],
           "choiceIndex": 1
+        },
+        {
+          "narration": "'What is your name?' Tap the mark at the end.",
+          "action": "tap",
+          "feedback": "The question mark. It shows the sentence asks.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Watch: a question asks and waits. A statement tells and stops.",
+          "action": "watch",
+          "feedback": "Your voice even goes up at the end of a question.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Questions often start with a question word. Tap 'Where'.",
+          "action": "tap",
+          "feedback": "Where, what, who, when, why. Good openers.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Turn 'The dog is big' into a question. Tap the question mark to end it.",
+          "action": "tap",
+          "feedback": "'Is the dog big?' The words swap and the mark changes.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Which ends a question: a period or a question mark? Tap the question mark.",
+          "action": "tap",
+          "feedback": "The question mark, every time.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Questions ask; statements tell.",
+          "action": "celebrate",
+          "feedback": "The mark at the end tells the reader which.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -26153,6 +28581,42 @@
             "s"
           ],
           "choiceIndex": 1
+        },
+        {
+          "narration": "One book, two ___. Tap 'books'.",
+          "action": "tap",
+          "feedback": "books. The -s does the work.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Watch: most words add -s, but words ending in s, x, ch or sh add -es.",
+          "action": "watch",
+          "feedback": "One box becomes two boxes, not two boxs.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "One box, two ___. Tap 'boxes'.",
+          "action": "tap",
+          "feedback": "boxes. The -es makes it easier to say.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Some words change completely. One foot, two ___. Tap 'feet'.",
+          "action": "tap",
+          "feedback": "feet! No -s at all. Those you learn one by one.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "One cat, two ___. Tap 'cats'.",
+          "action": "tap",
+          "feedback": "cats. Back to the simple rule.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Add -s, add -es, or learn the odd one.",
+          "action": "celebrate",
+          "feedback": "Three ways to say more than one.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -26181,12 +28645,12 @@
       "subject": "Writing & Grammar",
       "type": "quiz",
       "title": "Finish the Sentence",
-      "objective": "Build a simple reason sentence.",
+      "objective": "Complete a sentence so it makes sense.",
       "designTier": "gamify-gently",
       "reading": true,
       "timed": false,
       "interaction": "tap",
-      "parentNote": null,
+      "parentNote": "The wrong answers are readable too — this is about meaning, not decoding. Ask 'does that make sense?'.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [],
       "questions": [
@@ -26205,6 +28669,54 @@
           "answer": 0,
           "correctFeedback": "That one gives a reason.",
           "retryFeedback": "A reason tells why. Try again!"
+        },
+        {
+          "prompt": "'The bird can ___'. Which word fits?",
+          "options": [
+            {
+              "label": "fly",
+              "asset": null
+            },
+            {
+              "label": "nest",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "fly. After 'can' we need an action word.",
+          "retryFeedback": "What can a bird do? Try again!"
+        },
+        {
+          "prompt": "Which is a complete sentence?",
+          "options": [
+            {
+              "label": "The cat sleeps.",
+              "asset": null
+            },
+            {
+              "label": "The tall green",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "The first. It has a noun and a verb.",
+          "retryFeedback": "Which one has an action in it? Try again!"
+        },
+        {
+          "prompt": "What two things does every sentence need?",
+          "options": [
+            {
+              "label": "A noun and a verb",
+              "asset": null
+            },
+            {
+              "label": "An adjective and a comma",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "A noun and a verb. Everything else is extra.",
+          "retryFeedback": "Who, and what they did. Try again!"
         }
       ]
     },
@@ -26215,12 +28727,12 @@
       "subject": "Writing & Grammar",
       "type": "quiz",
       "title": "Pick the Noun",
-      "objective": "Identify a noun.",
+      "objective": "Identify nouns, verbs and adjectives.",
       "designTier": "gamify-gently",
       "reading": true,
       "timed": false,
       "interaction": "tap",
-      "parentNote": null,
+      "parentNote": "The 'the' test works well: if you can say 'the ___', it is usually a noun.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [],
       "questions": [
@@ -26239,6 +28751,54 @@
           "answer": 0,
           "correctFeedback": "'Ball' is a thing, so it's a noun.",
           "retryFeedback": "A noun names something. Try again!"
+        },
+        {
+          "prompt": "Which word is a verb (an action)?",
+          "options": [
+            {
+              "label": "Jump",
+              "asset": null
+            },
+            {
+              "label": "Chair",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "'Jump' is something you do. That is a verb.",
+          "retryFeedback": "Which one can you do? Try again!"
+        },
+        {
+          "prompt": "In 'The small bird sings', which word describes the bird?",
+          "options": [
+            {
+              "label": "small",
+              "asset": null
+            },
+            {
+              "label": "sings",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "'small' is the adjective. It tells you what kind.",
+          "retryFeedback": "Which word tells you about the bird? Try again!"
+        },
+        {
+          "prompt": "A noun can be a person, a place, or a...",
+          "options": [
+            {
+              "label": "Thing",
+              "asset": null
+            },
+            {
+              "label": "Colour only",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Person, place or thing. All three count.",
+          "retryFeedback": "'Teacher', 'river', 'book' — what are those? Try again!"
         }
       ]
     },
@@ -26249,12 +28809,12 @@
       "subject": "Writing & Grammar",
       "type": "quiz",
       "title": "Statement or Question?",
-      "objective": "Tell statements from questions.",
+      "objective": "Tell statements from questions by their end mark.",
       "designTier": "gamify-gently",
       "reading": true,
       "timed": false,
       "interaction": "tap",
-      "parentNote": null,
+      "parentNote": "Read both aloud and let them hear the voice rise at the end of a question. Ears beat rules here.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [],
       "questions": [
@@ -26273,6 +28833,136 @@
           "answer": 0,
           "correctFeedback": "It asks something, so it's a question.",
           "retryFeedback": "Does it ask or tell? Try again!"
+        },
+        {
+          "prompt": "Which mark ends a question?",
+          "options": [
+            {
+              "label": "?",
+              "asset": null
+            },
+            {
+              "label": ".",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "The question mark. A period ends a statement.",
+          "retryFeedback": "Which one looks like a hook? Try again!"
+        },
+        {
+          "prompt": "'The sun is hot.' is a...",
+          "options": [
+            {
+              "label": "Statement",
+              "asset": null
+            },
+            {
+              "label": "Question",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "A statement. It tells you something and stops.",
+          "retryFeedback": "Does it wait for an answer? Try again!"
+        },
+        {
+          "prompt": "Which word often starts a question?",
+          "options": [
+            {
+              "label": "Where",
+              "asset": null
+            },
+            {
+              "label": "Because",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Where, what, who, when, why — the question words.",
+          "retryFeedback": "Which one asks for information? Try again!"
+        }
+      ]
+    },
+    {
+      "id": "s07.writing.quiz.04",
+      "stage": 7,
+      "ages": "6-7",
+      "subject": "Writing & Grammar",
+      "type": "quiz",
+      "title": "More Than One",
+      "objective": "Make plurals with -s, -es and irregular forms.",
+      "designTier": "gamify-gently",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Irregular plurals cannot be worked out, only learned. Feet, teeth, children — collect them like treasures.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [],
+      "questions": [
+        {
+          "prompt": "One cat, two ___?",
+          "options": [
+            {
+              "label": "cats",
+              "asset": null
+            },
+            {
+              "label": "cates",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "cats. Most words just add -s.",
+          "retryFeedback": "Add one letter to the end. Try again!"
+        },
+        {
+          "prompt": "One box, two ___?",
+          "options": [
+            {
+              "label": "boxes",
+              "asset": null
+            },
+            {
+              "label": "boxs",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "boxes. Words ending in x take -es.",
+          "retryFeedback": "Say 'boxs' aloud — hard, isn't it? Try again!"
+        },
+        {
+          "prompt": "One foot, two ___?",
+          "options": [
+            {
+              "label": "feet",
+              "asset": null
+            },
+            {
+              "label": "foots",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "feet. Some words change completely — you learn those one by one.",
+          "retryFeedback": "This one breaks the rule. Try again!"
+        },
+        {
+          "prompt": "Which words need -es instead of -s?",
+          "options": [
+            {
+              "label": "Ones ending in s, x, ch or sh",
+              "asset": null
+            },
+            {
+              "label": "Ones ending in a vowel",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Those four endings. It is about what is easy to say.",
+          "retryFeedback": "Think of box, bus, church, dish. Try again!"
         }
       ]
     },
@@ -26287,31 +28977,98 @@
       "designTier": "gamify-gently",
       "reading": true,
       "timed": false,
-      "interaction": "tap-to-turn",
-      "parentNote": "Help your child write a short note to someone they love.",
+      "interaction": "listen",
+      "parentNote": "Help your child write a short note to someone they love, and actually send it. That is what makes writing real.",
       "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
         {
-          "type": "audio",
-          "ref": "audio/s07/i_can_write.mp3",
-          "desc": "Encouraging narrator"
+          "type": "image",
+          "ref": "img/s07/amir_write.png",
+          "desc": "Amir wants to write a thank-you note to Grandma."
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/amir_sentence.png",
+          "desc": "'Thank you for the red hat.' A who, and what they did."
+        },
+        {
+          "type": "image",
+          "ref": "img/s07/amir_done.png",
+          "desc": "He signs his name and folds it. Grandma will read it twice."
         }
       ],
       "pages": [
         {
           "narration": "Amir wants to write a thank-you note to Grandma.",
-          "illustration": "img/s07/amir_write.png",
-          "interaction": "tap-to-turn"
+          "illustration": "img/s07/amir_write.png"
         },
         {
-          "narration": "He starts with a capital letter and writes a sentence.",
-          "illustration": "img/s07/amir_sentence.png",
-          "interaction": "tap-to-turn"
+          "narration": "He starts with a capital letter, because every sentence does.",
+          "illustration": null
         },
         {
-          "narration": "He ends with a period and signs his name. Grandma will love it!",
-          "illustration": "img/s07/amir_done.png",
-          "interaction": null
+          "narration": "'Thank you for the red hat.' A who, and what they did.",
+          "illustration": "img/s07/amir_sentence.png"
+        },
+        {
+          "narration": "He reads it back aloud. Something is missing at the end.",
+          "illustration": null
+        },
+        {
+          "narration": "A period. Now the sentence knows where to stop.",
+          "illustration": null
+        },
+        {
+          "narration": "He signs his name and folds it. Grandma will read it twice.",
+          "illustration": "img/s07/amir_done.png"
+        }
+      ]
+    },
+    {
+      "id": "s07.writing.story.02",
+      "stage": 7,
+      "ages": "6-7",
+      "subject": "Writing & Grammar",
+      "type": "story",
+      "title": "The Sentence That Would Not Finish",
+      "objective": "See why a sentence needs a noun and a verb.",
+      "designTier": "gamify-gently",
+      "reading": true,
+      "timed": false,
+      "interaction": "listen",
+      "parentNote": "Say 'the big red' out loud and stop. The silence afterwards teaches this better than any rule.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s07/write_sentence.png",
+          "desc": "Sam wrote three words on the board: 'The big red'."
+        }
+      ],
+      "pages": [
+        {
+          "narration": "Sam wrote three words on the board: 'The big red'.",
+          "illustration": "img/s07/write_sentence.png"
+        },
+        {
+          "narration": "The class waited. Nobody knew what to say.",
+          "illustration": null
+        },
+        {
+          "narration": "'The big red what?' asked Ana. 'And what did it do?'",
+          "illustration": null
+        },
+        {
+          "narration": "Sam added one word: 'bus'. Now they knew what it was.",
+          "illustration": null
+        },
+        {
+          "narration": "Still nothing happened. A noun on its own just sits there.",
+          "illustration": null
+        },
+        {
+          "narration": "So he wrote 'stops'. 'The big red bus stops.' A whole sentence, at last.",
+          "illustration": null
         }
       ]
     },
