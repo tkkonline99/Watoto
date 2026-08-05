@@ -187,6 +187,11 @@ void main() {
     await tapToken(tester, find.byKey(circuitPartKey(CircuitPart.bulb)));
     expect(find.text('The loop is complete — the bulb lights up!'),
         findsOneWidget);
+    expect(
+      find.text('Drop each part into its socket'),
+      findsNothing,
+      reason: 'the board is still telling the child to do what they just did',
+    );
 
     // The bulb is shown lit for a beat before the step reports itself done.
     await tester.pump(const Duration(milliseconds: 1000));
