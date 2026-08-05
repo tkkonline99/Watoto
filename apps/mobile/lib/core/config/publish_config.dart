@@ -68,7 +68,7 @@ int get effectiveFreeStageMax => publishFreeOnly ? maxPublishedStage : 5;
 /// without shipping it. `docs/CONTENT_WORKLIST.md` is the remaining work.
 const maxPublishedStage = int.fromEnvironment(
   'WATOTO_MAX_STAGE',
-  defaultValue: 8,
+  defaultValue: 9,
 );
 
 /// Policy version recorded with parental consent (keep in sync with Cloud Functions).
