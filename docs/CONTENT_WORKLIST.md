@@ -9,13 +9,13 @@ _Library version 0.13.0, generated 2026-06-17._
 
 | Gap | Count |
 |---|---|
-| Quizzes to author | 6 |
-| Stories to author | 6 |
-| Lessons below their tier's step depth | 36 |
-| Quizzes below their tier's question count | 18 |
-| Stories below their tier's page count | 6 |
+| Quizzes to author | 0 |
+| Stories to author | 0 |
+| Lessons below their tier's step depth | 0 |
+| Quizzes below their tier's question count | 0 |
+| Stories below their tier's page count | 0 |
 | Reading lessons with no recap | 0 |
-| Items with no illustration | 76 |
+| Items with no illustration | 58 |
 | Unreferenced PNGs on disk | 0 |
 | Steps with no declared mechanic | 0 |
 | Declared audio files that do not exist | 77 |
@@ -243,57 +243,27 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 
 ### Stage 10 — Reading (ages 9-10)
 
-- **Author 1 quiz:** `s10.reading.quiz.04`
-- **Author 1 story:** `s10.reading.story.02`
-- **Deepen 6 lessons:** `s10.reading.lesson.01` (3→8), `s10.reading.lesson.02` (3→8), `s10.reading.lesson.03` (3→8), `s10.reading.lesson.04` (3→8), `s10.reading.lesson.05` (3→8), `s10.reading.lesson.06` (3→8)
-- **Deepen 3 quizzes:** `s10.reading.quiz.01` (2→4 questions), `s10.reading.quiz.02` (1→4 questions), `s10.reading.quiz.03` (2→4 questions)
-- **Deepen 1 stories:** `s10.reading.story.01` (3→6 pages)
-- **3 items have no illustration** (emoji fallback): `s10.reading.quiz.01`, `s10.reading.quiz.02`, `s10.reading.quiz.03`
+- ✅ complete
 
 ### Stage 10 — Writing (ages 9-10)
 
-- **Author 1 quiz:** `s10.writing.quiz.04`
-- **Author 1 story:** `s10.writing.story.02`
-- **Deepen 6 lessons:** `s10.writing.lesson.01` (3→8), `s10.writing.lesson.02` (3→8), `s10.writing.lesson.03` (3→8), `s10.writing.lesson.04` (3→8), `s10.writing.lesson.05` (3→8), `s10.writing.lesson.06` (3→8)
-- **Deepen 3 quizzes:** `s10.writing.quiz.01` (2→4 questions), `s10.writing.quiz.02` (1→4 questions), `s10.writing.quiz.03` (2→4 questions)
-- **Deepen 1 stories:** `s10.writing.story.01` (3→6 pages)
-- **3 items have no illustration** (emoji fallback): `s10.writing.quiz.01`, `s10.writing.quiz.02`, `s10.writing.quiz.03`
+- ✅ complete
 
 ### Stage 10 — Math (ages 9-10)
 
-- **Author 1 quiz:** `s10.math.quiz.04`
-- **Author 1 story:** `s10.math.story.02`
-- **Deepen 6 lessons:** `s10.math.lesson.01` (3→8), `s10.math.lesson.02` (3→8), `s10.math.lesson.03` (3→8), `s10.math.lesson.04` (3→8), `s10.math.lesson.05` (3→8), `s10.math.lesson.06` (3→8)
-- **Deepen 3 quizzes:** `s10.math.quiz.01` (2→4 questions), `s10.math.quiz.02` (2→4 questions), `s10.math.quiz.03` (2→4 questions)
-- **Deepen 1 stories:** `s10.math.story.01` (3→6 pages)
-- **3 items have no illustration** (emoji fallback): `s10.math.quiz.01`, `s10.math.quiz.02`, `s10.math.quiz.03`
+- ✅ complete
 
 ### Stage 10 — Science (ages 9-10)
 
-- **Author 1 quiz:** `s10.science.quiz.04`
-- **Author 1 story:** `s10.science.story.02`
-- **Deepen 6 lessons:** `s10.science.lesson.01` (2→8), `s10.science.lesson.02` (3→8), `s10.science.lesson.03` (3→8), `s10.science.lesson.04` (3→8), `s10.science.lesson.05` (3→8), `s10.science.lesson.06` (3→8)
-- **Deepen 3 quizzes:** `s10.science.quiz.01` (1→4 questions), `s10.science.quiz.02` (2→4 questions), `s10.science.quiz.03` (2→4 questions)
-- **Deepen 1 stories:** `s10.science.story.01` (3→6 pages)
-- **3 items have no illustration** (emoji fallback): `s10.science.quiz.01`, `s10.science.quiz.02`, `s10.science.quiz.03`
+- ✅ complete
 
 ### Stage 10 — Social Studies (ages 9-10)
 
-- **Author 1 quiz:** `s10.social.quiz.04`
-- **Author 1 story:** `s10.social.story.02`
-- **Deepen 6 lessons:** `s10.social.lesson.01` (2→8), `s10.social.lesson.02` (3→8), `s10.social.lesson.03` (3→8), `s10.social.lesson.04` (3→8), `s10.social.lesson.05` (3→8), `s10.social.lesson.06` (3→8)
-- **Deepen 3 quizzes:** `s10.social.quiz.01` (1→4 questions), `s10.social.quiz.02` (2→4 questions), `s10.social.quiz.03` (2→4 questions)
-- **Deepen 1 stories:** `s10.social.story.01` (3→6 pages)
-- **3 items have no illustration** (emoji fallback): `s10.social.quiz.01`, `s10.social.quiz.02`, `s10.social.quiz.03`
+- ✅ complete
 
 ### Stage 10 — Digital Literacy & Coding (ages 9-10)
 
-- **Author 1 quiz:** `s10.coding.quiz.04`
-- **Author 1 story:** `s10.coding.story.02`
-- **Deepen 6 lessons:** `s10.coding.lesson.01` (3→8), `s10.coding.lesson.02` (3→8), `s10.coding.lesson.03` (3→8), `s10.coding.lesson.04` (3→8), `s10.coding.lesson.05` (3→8), `s10.coding.lesson.06` (3→8)
-- **Deepen 3 quizzes:** `s10.coding.quiz.01` (2→4 questions), `s10.coding.quiz.02` (2→4 questions), `s10.coding.quiz.03` (2→4 questions)
-- **Deepen 1 stories:** `s10.coding.story.01` (3→6 pages)
-- **3 items have no illustration** (emoji fallback): `s10.coding.quiz.01`, `s10.coding.quiz.02`, `s10.coding.quiz.03`
+- ✅ complete
 
 ## Declared audio that does not exist
 

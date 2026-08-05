@@ -45894,6 +45894,36 @@
           "action": "code-run",
           "feedback": "Two print() lines make two lines of output.",
           "mechanic": "codeRun"
+        },
+        {
+          "narration": "Quotation marks tell Python where your message starts and stops.",
+          "action": "watch",
+          "feedback": "Leave one off and the program stops before it prints anything.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "A program printed nothing at all. Tap the most likely cause.",
+          "action": "tap",
+          "feedback": "A missing quotation mark, or a misspelled command. Both are silent.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Tap what the computer does with the words inside the quotation marks.",
+          "action": "tap",
+          "feedback": "Prints them exactly, spaces and all. It never tidies them up for you.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Write a one-line program that prints a message to someone at home.",
+          "action": "celebrate",
+          "feedback": "One line is a real program. Everything else is more lines.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Every program you will ever write is built out of steps this small.",
+          "action": "watch",
+          "feedback": "A big program is not a clever line. It is many small ones in order.",
+          "mechanic": "explain"
         }
       ],
       "recap": [
@@ -45954,6 +45984,37 @@
           "action": "code-run",
           "feedback": "Variables let programs remember things.",
           "mechanic": "codeRun"
+        },
+        {
+          "narration": "A variable is a name pointing at a value. The name stays; the value moves.",
+          "action": "watch",
+          "feedback": "That is why you can print a name and get whatever it holds today.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "A program sets total to 5, then sets total to total plus 7. What does it print?",
+          "action": "input",
+          "feedback": "12. It read its own value, added, then stored the answer back.",
+          "mechanic": "numberAnswer",
+          "answer": 12
+        },
+        {
+          "narration": "Someone set total to 5, then to 9, and expected 14. Tap the mistake.",
+          "action": "tap",
+          "feedback": "Assigning replaces. The 5 was gone the moment the 9 arrived.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Tap why a program prints a name without any quotation marks around it.",
+          "action": "tap",
+          "feedback": "Quotes mean the letters themselves; no quotes means look inside the box.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Name three values a game keeps in variables while you play it.",
+          "action": "celebrate",
+          "feedback": "Score, lives, level. Every number on screen that changes is one.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -46014,6 +46075,38 @@
           "action": "code-run",
           "feedback": "Loops are a programmer's superpower.",
           "mechanic": "codeRun"
+        },
+        {
+          "narration": "The indented lines under a loop are the part that repeats.",
+          "action": "watch",
+          "feedback": "Indentation is not decoration in Python. It is the grammar.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "A loop runs over range(5). How many times does the indented line run?",
+          "action": "input",
+          "feedback": "5. range(5) counts 0, 1, 2, 3, 4 — five turns.",
+          "mechanic": "numberAnswer",
+          "answer": 5
+        },
+        {
+          "narration": "A line printed once instead of five times. Tap the likely reason.",
+          "action": "tap",
+          "feedback": "It was not indented, so it sat outside the loop and ran after it.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "A loop over range(3) prints two lines each time. How many lines in total?",
+          "action": "input",
+          "feedback": "6. Three turns, two lines a turn.",
+          "mechanic": "numberAnswer",
+          "answer": 6
+        },
+        {
+          "narration": "Count something repetitive in your day and say it as a loop out loud.",
+          "action": "celebrate",
+          "feedback": "Twelve stairs, twenty-eight teeth. Loops are how you say them briefly.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -46075,6 +46168,36 @@
           "action": "code-run",
           "feedback": "Now your code can decide.",
           "mechanic": "codeRun"
+        },
+        {
+          "narration": "A condition is checked once, and only one branch runs. Never both.",
+          "action": "watch",
+          "feedback": "The else branch is skipped entirely, not run quietly in the background.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "A score of 10 is tested against 'score is 10 or more'. Tap which branch runs.",
+          "action": "tap",
+          "feedback": "The first. 'Or more' includes exactly ten, which is the usual trap.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Someone wrote a rule with no else branch. Tap what happens on a false test.",
+          "action": "tap",
+          "feedback": "Nothing at all — which is sometimes right, and sometimes the whole bug.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the test a program could actually run: 'the door is locked' or 'the film is good'.",
+          "action": "tap",
+          "feedback": "The lock. A condition needs a fact, and good cannot be measured.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Say a rule from your home as if-else, including the false case.",
+          "action": "celebrate",
+          "feedback": "Most people only ever say the 'if' half. The else is where arguments start.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -46135,6 +46258,36 @@
           "action": "tap",
           "feedback": "Patience is a coding skill.",
           "mechanic": "codeRun"
+        },
+        {
+          "narration": "An error message is not a telling-off. It is the computer showing its working.",
+          "action": "watch",
+          "feedback": "It usually names the line, and the line it names is usually right.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "A misspelled command stops the program. Tap what the computer does with it.",
+          "action": "tap",
+          "feedback": "Reports it and stops. It cannot guess what you meant, and will not try.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the best way to find a bug in a program twenty lines long.",
+          "action": "tap",
+          "feedback": "Run a few lines at a time and watch where it first goes wrong.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "A program runs but prints the wrong number. Tap why that is harder to fix.",
+          "action": "tap",
+          "feedback": "Nothing reports it. A silent wrong answer is worse than a loud crash.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Next time something you built fails, read the message before changing anything.",
+          "action": "celebrate",
+          "feedback": "Most of debugging is reading carefully, not typing cleverly.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -46201,6 +46354,36 @@
             "Its colors"
           ],
           "choiceIndex": 0
+        },
+        {
+          "narration": "A long password beats a clever short one. Length is what makes guessing slow.",
+          "action": "watch",
+          "feedback": "Three unrelated words beat one word with letters swapped for numbers.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Tap the safer password: your dog's name, or three unrelated words joined up.",
+          "action": "tap",
+          "feedback": "The three words. A pet's name is on the internet already, in a photo caption.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "A website has no author's name anywhere. Tap what that should do to your trust.",
+          "action": "tap",
+          "feedback": "Lower it. Somebody willing to be named is somebody who can be checked.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the best way to check whether something online is true.",
+          "action": "tap",
+          "feedback": "Find it somewhere else that has no reason to copy the first one.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Check one thing you read online today against a second, separate source.",
+          "action": "celebrate",
+          "feedback": "Two sources that copied each other are still only one source.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -46236,7 +46419,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/for_loop.png",
+          "desc": "5"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/code_editor.png",
+          "desc": "It was not indented, so it sat outside the loop"
+        }
+      ],
       "questions": [
         {
           "prompt": "What does  print(2 + 3)  show?",
@@ -46269,6 +46463,38 @@
           "answer": 0,
           "correctFeedback": "Joining text gives '23'.",
           "retryFeedback": "Quotes make it text, so it joins. Try again!"
+        },
+        {
+          "prompt": "A loop runs over range(5). How many times does the indented line run?",
+          "options": [
+            {
+              "label": "5",
+              "asset": "img/s10/for_loop.png"
+            },
+            {
+              "label": "4",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "range(5) counts 0, 1, 2, 3, 4 — five turns.",
+          "retryFeedback": "Count the numbers it produces, not the last one."
+        },
+        {
+          "prompt": "A line printed once instead of five times. What is the likely reason?",
+          "options": [
+            {
+              "label": "It was not indented, so it sat outside the loop",
+              "asset": "img/s10/code_editor.png"
+            },
+            {
+              "label": "The loop was too fast",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Indentation is not decoration in Python. It is the grammar.",
+          "retryFeedback": "Look at which lines line up under the loop."
         }
       ]
     },
@@ -46286,7 +46512,18 @@
       "interaction": "single-select",
       "parentNote": null,
       "accessibility": "Code read aloud on tap.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/variables.png",
+          "desc": "12"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/debug.png",
+          "desc": "Reports the error and stops"
+        }
+      ],
       "questions": [
         {
           "prompt": "How many times does this print?  for i in range(4):  print(\"hi\")",
@@ -46327,6 +46564,38 @@
           "answer": 0,
           "correctFeedback": "A variable stores a value you can reuse.",
           "retryFeedback": "Think of a labeled box holding something. Try again!"
+        },
+        {
+          "prompt": "A program sets total to 5, then to total plus 7. What does it print?",
+          "options": [
+            {
+              "label": "12",
+              "asset": "img/s10/variables.png"
+            },
+            {
+              "label": "7",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "It read its own value, added, then stored the answer back.",
+          "retryFeedback": "The variable is on both sides of that line for a reason."
+        },
+        {
+          "prompt": "A misspelled command stops a program. What does the computer do?",
+          "options": [
+            {
+              "label": "Reports the error and stops",
+              "asset": "img/s10/debug.png"
+            },
+            {
+              "label": "Guesses what you meant",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "It cannot guess, and would be dangerous if it tried.",
+          "retryFeedback": "An error message is the computer showing its working."
         }
       ]
     },
@@ -46344,7 +46613,13 @@
       "interaction": "single-select",
       "parentNote": null,
       "accessibility": "Options read aloud.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/online_safety.png",
+          "desc": "Three unrelated words joined together"
+        }
+      ],
       "questions": [
         {
           "prompt": "Which is the strongest password?",
@@ -46381,6 +46656,141 @@
           "answer": 0,
           "correctFeedback": "Keep it private and tell a trusted adult.",
           "retryFeedback": "Personal info stays private. Try again!"
+        },
+        {
+          "prompt": "Which password is stronger?",
+          "options": [
+            {
+              "label": "Three unrelated words joined together",
+              "asset": "img/s10/online_safety.png"
+            },
+            {
+              "label": "Your pet's name with a number",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Length is what makes guessing slow. A pet's name is already online.",
+          "retryFeedback": "Think about what a stranger could already find out about you."
+        },
+        {
+          "prompt": "A website gives no author's name anywhere. What should that do to your trust?",
+          "options": [
+            {
+              "label": "Lower it, and look for the same claim elsewhere",
+              "asset": "img/s10/online_safety.png"
+            },
+            {
+              "label": "Nothing — most sites are like that",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Somebody willing to be named is somebody who can be checked.",
+          "retryFeedback": "Two sources that copied each other are still one source."
+        }
+      ]
+    },
+    {
+      "id": "s10.coding.quiz.04",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Digital Literacy & Coding",
+      "type": "quiz",
+      "title": "Read the Program",
+      "objective": "Trace loops, variables and conditions without running them.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Ask them to predict, then check. Predicting is the skill.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/for_loop.png",
+          "desc": "6"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/variables.png",
+          "desc": "1"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/if_else.png",
+          "desc": "The first one"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/debug.png",
+          "desc": "Nothing reports it"
+        }
+      ],
+      "questions": [
+        {
+          "prompt": "A loop over range(3) prints two lines each turn. How many lines in total?",
+          "options": [
+            {
+              "label": "6",
+              "asset": "img/s10/for_loop.png"
+            },
+            {
+              "label": "3",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Three turns, two lines a turn.",
+          "retryFeedback": "Multiply the turns by the lines inside."
+        },
+        {
+          "prompt": "total is 5, then total becomes total minus 2, twice. What is total?",
+          "options": [
+            {
+              "label": "1",
+              "asset": "img/s10/variables.png"
+            },
+            {
+              "label": "3",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Five, minus two, minus two again.",
+          "retryFeedback": "Apply the step twice, not once."
+        },
+        {
+          "prompt": "A score of 10 is tested against 'score is 10 or more'. Which branch runs?",
+          "options": [
+            {
+              "label": "The first one",
+              "asset": "img/s10/if_else.png"
+            },
+            {
+              "label": "The else branch",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "'Or more' includes exactly ten. That is the usual trap.",
+          "retryFeedback": "Read the words of the condition carefully."
+        },
+        {
+          "prompt": "A program runs but prints the wrong number. Why is that harder to fix?",
+          "options": [
+            {
+              "label": "Nothing reports it",
+              "asset": "img/s10/debug.png"
+            },
+            {
+              "label": "The computer is broken",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "A silent wrong answer is worse than a loud crash.",
+          "retryFeedback": "Errors that stop the program at least tell you where."
         }
       ]
     },
@@ -46391,35 +46801,142 @@
       "subject": "Digital Literacy & Coding",
       "type": "story",
       "title": "Ada and the Stuck Robot",
-      "objective": "Follow a debugging adventure.",
+      "objective": "Debugging is reading your own instructions honestly.",
       "designTier": "grant-autonomy",
       "reading": true,
       "timed": false,
-      "interaction": "read-and-solve",
-      "parentNote": null,
-      "accessibility": "Narration adjustable; the debugging interaction is screen-reader friendly.",
+      "interaction": "listen",
+      "parentNote": "Ask what Ada did before she changed anything.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
         {
           "type": "audio",
           "ref": "audio/s10/ada_robot.mp3",
-          "desc": "Narrator, adjustable speed"
+          "desc": "Curious narrator"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/stuck_robot.png",
+          "desc": "Ada's robot was supposed to walk to the door, but it kept spinning in circles."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/debug.png",
+          "desc": "'It's broken,' said her brother. Ada was not so sure."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/code_editor.png",
+          "desc": "She read the code line by line, running it a few steps at a time."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/robot_code.png",
+          "desc": "One step said 'turn' four times but never 'walk forward'. Tap to spot it."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/for_loop.png",
+          "desc": "The robot had done exactly what she wrote. It had never been broken."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/robot_success.png",
+          "desc": "Ada added 'walk forward' and ran it again. Bugs aren't scary. They're puzzles."
         }
       ],
       "pages": [
         {
-          "narration": "Ada's robot was supposed to walk to the door, but it kept spinning in circles. 'There must be a bug,' she said.",
-          "illustration": "img/s10/stuck_robot.png",
-          "interaction": null
+          "narration": "Ada's robot was supposed to walk to the door, but it kept spinning in circles.",
+          "illustration": "img/s10/stuck_robot.png"
         },
         {
-          "narration": "She read the code line by line. One step said 'turn' four times but never 'walk forward'. Tap to spot the missing step.",
-          "illustration": "img/s10/robot_code.png",
-          "interaction": "tap-to-debug"
+          "narration": "'It's broken,' said her brother. Ada was not so sure.",
+          "illustration": "img/s10/debug.png"
         },
         {
-          "narration": "Ada added 'walk forward' and ran it again. The robot rolled straight to the door! Bugs aren't scary. They're puzzles to solve.",
-          "illustration": "img/s10/robot_success.png",
-          "interaction": null
+          "narration": "She read the code line by line, running it a few steps at a time.",
+          "illustration": "img/s10/code_editor.png"
+        },
+        {
+          "narration": "One step said 'turn' four times but never 'walk forward'. Tap to spot it.",
+          "illustration": "img/s10/robot_code.png"
+        },
+        {
+          "narration": "The robot had done exactly what she wrote. It had never been broken.",
+          "illustration": "img/s10/for_loop.png"
+        },
+        {
+          "narration": "Ada added 'walk forward' and ran it again. Bugs aren't scary. They're puzzles.",
+          "illustration": "img/s10/robot_success.png"
+        }
+      ]
+    },
+    {
+      "id": "s10.coding.story.02",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Digital Literacy & Coding",
+      "type": "story",
+      "title": "The Message That Was Not True",
+      "objective": "Checking a source is a habit, not a suspicion.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "listen",
+      "parentNote": "Check one thing you read online together this week.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/online_safety.png",
+          "desc": "A message went round Kwame's class: the school would close on Friday."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/code_editor.png",
+          "desc": "Everyone had seen it, so everyone believed it. That felt like proof."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/debug.png",
+          "desc": "Kwame looked for the original. It had no author and no date."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/variables.png",
+          "desc": "He checked the school's own notice board. Friday was a normal day."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/robot_success.png",
+          "desc": "He told his class where he had looked, not just what he had found."
+        }
+      ],
+      "pages": [
+        {
+          "narration": "A message went round Kwame's class: the school would close on Friday.",
+          "illustration": "img/s10/online_safety.png"
+        },
+        {
+          "narration": "Everyone had seen it, so everyone believed it. That felt like proof.",
+          "illustration": "img/s10/code_editor.png"
+        },
+        {
+          "narration": "Kwame looked for the original. It had no author and no date.",
+          "illustration": "img/s10/debug.png"
+        },
+        {
+          "narration": "Twenty people sharing one message is still only one message.",
+          "illustration": "img/s10/online_safety.png"
+        },
+        {
+          "narration": "He checked the school's own notice board. Friday was a normal day.",
+          "illustration": "img/s10/variables.png"
+        },
+        {
+          "narration": "He told his class where he had looked, not just what he had found.",
+          "illustration": "img/s10/robot_success.png"
         }
       ]
     },
@@ -46465,6 +46982,38 @@
           "feedback": "1. So 84 ÷ 4 = 21. You used D-M-S-B.",
           "mechanic": "numberAnswer",
           "answer": 1
+        },
+        {
+          "narration": "Long division is four steps on repeat: divide, multiply, subtract, bring down.",
+          "action": "watch",
+          "feedback": "The loop ends when there is nothing left to bring down.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Work 96 ÷ 4. How many 4s go into 9?",
+          "action": "input",
+          "feedback": "2, with 1 left over. That leftover is what you carry across.",
+          "mechanic": "numberAnswer",
+          "answer": 2
+        },
+        {
+          "narration": "Bring down the 6 to make 16. How many 4s go into 16?",
+          "action": "input",
+          "feedback": "4. So 96 ÷ 4 = 24.",
+          "mechanic": "numberAnswer",
+          "answer": 4
+        },
+        {
+          "narration": "Someone forgot to bring the second digit down. Tap what their answer looks like.",
+          "action": "tap",
+          "feedback": "Far too small — a single digit where two belong.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Share a large number of something between four people, on paper.",
+          "action": "celebrate",
+          "feedback": "Long division is just sharing, written down carefully.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -46541,6 +47090,38 @@
             "154"
           ],
           "choiceIndex": 1
+        },
+        {
+          "narration": "Splitting a number by place value turns one hard sum into two easy ones.",
+          "action": "watch",
+          "feedback": "23 × 4 is 20 × 4 and 3 × 4, and you already know both.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Split 41 × 3. What is 40 × 3?",
+          "action": "input",
+          "feedback": "120. Four threes, then the zero.",
+          "mechanic": "numberAnswer",
+          "answer": 120
+        },
+        {
+          "narration": "Now add the other part: 120 + (1 × 3).",
+          "action": "input",
+          "feedback": "123. Two easy sums instead of one hard one.",
+          "mechanic": "numberAnswer",
+          "answer": 123
+        },
+        {
+          "narration": "Someone worked 23 × 4 as 80 and stopped. Tap what they left out.",
+          "action": "tap",
+          "feedback": "The 3 × 4. Splitting only works if you add both parts back.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Work out the cost of 4 items at 23 coins each, in your head, by splitting.",
+          "action": "celebrate",
+          "feedback": "This is the trick people who are fast at mental maths are actually using.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -46602,6 +47183,37 @@
           "action": "tap",
           "feedback": "1/3 = 3/9. Nice!",
           "mechanic": "drag"
+        },
+        {
+          "narration": "Multiplying top and bottom by the same number changes the name, not the amount.",
+          "action": "watch",
+          "feedback": "You are cutting the same cake into more, smaller pieces.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "1/3 is multiplied top and bottom by 3. What is the new bottom number?",
+          "action": "input",
+          "feedback": "9. And the top becomes 3, giving 3/9 — the same amount.",
+          "mechanic": "numberAnswer",
+          "answer": 9
+        },
+        {
+          "narration": "Someone turned 1/2 into 2/3 by adding one to each part. Tap the error.",
+          "action": "tap",
+          "feedback": "Adding changes the value. Only multiplying keeps it the same.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the fraction equal to 1/2: 3/6, 2/5, or 4/9.",
+          "action": "tap",
+          "feedback": "3/6. The bottom is exactly twice the top, which is what a half means.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Fold a strip of paper in half, then in half again, and name what you see.",
+          "action": "celebrate",
+          "feedback": "One half and two quarters are the same fold, counted differently.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -46682,6 +47294,38 @@
             "3/6"
           ],
           "choiceIndex": 2
+        },
+        {
+          "narration": "When the bottoms match, add the tops. The bottom is the size of the piece.",
+          "action": "watch",
+          "feedback": "Adding bottoms too would change the size of every piece mid-sum.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Add 2/7 and 3/7. What is the new top number?",
+          "action": "input",
+          "feedback": "5. Five sevenths — the sevenths never changed.",
+          "mechanic": "numberAnswer",
+          "answer": 5
+        },
+        {
+          "narration": "Now work 4/6 minus 1/6. What is the top number of the answer?",
+          "action": "input",
+          "feedback": "3. Subtracting works exactly the same way.",
+          "mechanic": "numberAnswer",
+          "answer": 3
+        },
+        {
+          "narration": "Someone added 1/4 and 2/4 and wrote 3/8. Tap what they did wrong.",
+          "action": "tap",
+          "feedback": "They added the bottoms too. The pieces cannot shrink halfway through.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Cut a fruit into six and add the pieces back together out loud.",
+          "action": "celebrate",
+          "feedback": "Six sixths is one whole, and hearing yourself say it makes it stick.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -46751,6 +47395,36 @@
           "feedback": "0.5 is bigger. 5 tenths beats 4 tenths.",
           "mechanic": "numberAnswer",
           "answer": 0
+        },
+        {
+          "narration": "The digits after the dot are tenths, then hundredths — the same pattern, smaller.",
+          "action": "watch",
+          "feedback": "Place value does not stop at the dot. It just keeps dividing by ten.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Tap the larger number: 0.6 or 0.59.",
+          "action": "tap",
+          "feedback": "0.6, because six tenths beats five tenths. Length of the number means nothing.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Someone said 0.59 is bigger because it has more digits. Tap the mistake.",
+          "action": "tap",
+          "feedback": "Compare from the left, one place at a time, as you would with whole numbers.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Tap what 0.25 means as a fraction of one whole.",
+          "action": "tap",
+          "feedback": "Twenty-five hundredths, which is also one quarter.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Find two prices in a shop and say which is larger before you look at the labels twice.",
+          "action": "celebrate",
+          "feedback": "Money is decimals, and decimals are where most people slip.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -46833,6 +47507,38 @@
             "12"
           ],
           "choiceIndex": 2
+        },
+        {
+          "narration": "Perimeter is the walk around the edge. Area is the floor inside it.",
+          "action": "watch",
+          "feedback": "They answer different questions: fencing a garden, or turfing it.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "A rectangle is 6 long and 2 wide. What is its area?",
+          "action": "input",
+          "feedback": "12 square units. Length times width, always.",
+          "mechanic": "numberAnswer",
+          "answer": 12
+        },
+        {
+          "narration": "Same rectangle, 6 by 2. What is its perimeter?",
+          "action": "input",
+          "feedback": "16. Six plus two plus six plus two — all four sides.",
+          "mechanic": "numberAnswer",
+          "answer": 16
+        },
+        {
+          "narration": "Someone gave an area in metres, not square metres. Tap why that is wrong.",
+          "action": "tap",
+          "feedback": "Area covers a surface, so its unit is squared. Perimeter is a length.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Measure a table and work out both. One tells you the cloth, the other the trim.",
+          "action": "celebrate",
+          "feedback": "Every builder uses both, and never confuses them.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -46870,7 +47576,18 @@
       "interaction": "single-select",
       "parentNote": null,
       "accessibility": "Options are large and screen-reader labeled.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/long_division.png",
+          "desc": "24"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/area_model.png",
+          "desc": "123"
+        }
+      ],
       "questions": [
         {
           "prompt": "What is 23 × 4?",
@@ -46911,6 +47628,38 @@
           "answer": 0,
           "correctFeedback": "12 × 6 = 72.",
           "retryFeedback": "Try (10×6) + (2×6). Try again!"
+        },
+        {
+          "prompt": "What is 96 divided by 4?",
+          "options": [
+            {
+              "label": "24",
+              "asset": "img/s10/long_division.png"
+            },
+            {
+              "label": "21",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Two into the nine, carry the one, then four into sixteen.",
+          "retryFeedback": "Do not forget to bring the second digit down."
+        },
+        {
+          "prompt": "What is 41 × 3, worked out by splitting 41 into 40 and 1?",
+          "options": [
+            {
+              "label": "123",
+              "asset": "img/s10/area_model.png"
+            },
+            {
+              "label": "120",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "120 and 3. Splitting only works if you add both parts back.",
+          "retryFeedback": "One of the two parts has been left behind."
         }
       ]
     },
@@ -46928,7 +47677,18 @@
       "interaction": "single-select",
       "parentNote": null,
       "accessibility": "Fractions read as 'one half', etc.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/add_fractions.png",
+          "desc": "5/7"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/fraction_bars.png",
+          "desc": "3/9"
+        }
+      ],
       "questions": [
         {
           "prompt": "Which fraction equals 1/2?",
@@ -46969,6 +47729,38 @@
           "answer": 0,
           "correctFeedback": "Same bottom, add the tops. 3/4.",
           "retryFeedback": "Keep the denominator, add the numerators. Try again!"
+        },
+        {
+          "prompt": "Add 2/7 and 3/7. What is the answer?",
+          "options": [
+            {
+              "label": "5/7",
+              "asset": "img/s10/add_fractions.png"
+            },
+            {
+              "label": "5/14",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "The bottoms match, so add the tops. The sevenths never changed.",
+          "retryFeedback": "Adding the bottoms would shrink the pieces halfway through."
+        },
+        {
+          "prompt": "1/3 is multiplied top and bottom by 3. What do you get?",
+          "options": [
+            {
+              "label": "3/9",
+              "asset": "img/s10/fraction_bars.png"
+            },
+            {
+              "label": "4/6",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "The same amount with a new name — the cake is cut into more pieces.",
+          "retryFeedback": "Adding one to each part would change the value, not the name."
         }
       ]
     },
@@ -46986,7 +47778,18 @@
       "interaction": "single-select",
       "parentNote": null,
       "accessibility": "Numbers and units read aloud.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/area_perimeter.png",
+          "desc": "16"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/decimal_grid.png",
+          "desc": "Twenty-five hundredths, or one quarter"
+        }
+      ],
       "questions": [
         {
           "prompt": "Which is larger: 0.6 or 0.59?",
@@ -47027,6 +47830,141 @@
           "answer": 0,
           "correctFeedback": "4 × 3 = 12 square units.",
           "retryFeedback": "Area is length × width. Try again!"
+        },
+        {
+          "prompt": "A rectangle is 6 long and 2 wide. What is its perimeter?",
+          "options": [
+            {
+              "label": "16",
+              "asset": "img/s10/area_perimeter.png"
+            },
+            {
+              "label": "12",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "All four sides: six, two, six, two. Twelve is the area, not the walk round.",
+          "retryFeedback": "Perimeter is the walk around the edge."
+        },
+        {
+          "prompt": "What does 0.25 mean as a fraction of one whole?",
+          "options": [
+            {
+              "label": "Twenty-five hundredths, or one quarter",
+              "asset": "img/s10/decimal_grid.png"
+            },
+            {
+              "label": "Twenty-five tenths",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Two digits after the dot means hundredths.",
+          "retryFeedback": "Count the places after the dot."
+        }
+      ]
+    },
+    {
+      "id": "s10.math.quiz.04",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Math",
+      "type": "quiz",
+      "title": "Divide, Split and Measure",
+      "objective": "Apply long division, place value, fractions and area together.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "The area question is worth doing on a real table.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/long_division.png",
+          "desc": "21"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/fraction_bars.png",
+          "desc": "3/6"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/decimal_grid.png",
+          "desc": "0.6"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/area_perimeter.png",
+          "desc": "12 square units"
+        }
+      ],
+      "questions": [
+        {
+          "prompt": "What is 84 divided by 4?",
+          "options": [
+            {
+              "label": "21",
+              "asset": "img/s10/long_division.png"
+            },
+            {
+              "label": "24",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Two into eight, then one into four. No remainder.",
+          "retryFeedback": "Work the digits left to right, one at a time."
+        },
+        {
+          "prompt": "Which fraction equals 1/2?",
+          "options": [
+            {
+              "label": "3/6",
+              "asset": "img/s10/fraction_bars.png"
+            },
+            {
+              "label": "2/5",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "The bottom is exactly twice the top, which is what a half means.",
+          "retryFeedback": "Check whether doubling the top gives you the bottom."
+        },
+        {
+          "prompt": "Which is larger: 0.6 or 0.59?",
+          "options": [
+            {
+              "label": "0.6",
+              "asset": "img/s10/decimal_grid.png"
+            },
+            {
+              "label": "0.59",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Six tenths beats five tenths. Length of the number means nothing.",
+          "retryFeedback": "Compare from the left, one place at a time."
+        },
+        {
+          "prompt": "A rectangle is 4 by 3. What is its area?",
+          "options": [
+            {
+              "label": "12 square units",
+              "asset": "img/s10/area_perimeter.png"
+            },
+            {
+              "label": "14 square units",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Length times width. Fourteen is the perimeter, not the area.",
+          "retryFeedback": "Area covers the inside; perimeter walks the edge."
         }
       ]
     },
@@ -47037,35 +47975,132 @@
       "subject": "Math",
       "type": "story",
       "title": "The Bake Sale Budget",
-      "objective": "Use multiplication and division to plan a bake sale.",
+      "objective": "Multiplication, costs and profit in one real problem.",
       "designTier": "grant-autonomy",
       "reading": true,
       "timed": false,
-      "interaction": "read-and-solve",
-      "parentNote": null,
-      "accessibility": "Each step can be solved with on-screen manipulatives or read aloud.",
+      "interaction": "listen",
+      "parentNote": "Work out the profit together before the last page.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
         {
           "type": "audio",
           "ref": "audio/s10/bake_sale.mp3",
-          "desc": "Narrator, adjustable speed"
+          "desc": "Warm narrator"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/bake_sale.png",
+          "desc": "Lina's class wants to raise money. Each tray costs 8 coins and holds 12 muffins."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/muffin_trays.png",
+          "desc": "They make 4 trays. How many muffins is that? Tap to work out 4 × 12."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/area_model.png",
+          "desc": "Split it: 4 × 10 is 40, and 4 × 2 is 8. Forty-eight muffins."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/long_division.png",
+          "desc": "At 2 coins each, that is 96 coins in. But the trays cost 32 coins out."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/coins_counted.png",
+          "desc": "96 minus 32 leaves 64. Profit is only ever what is left after costs."
         }
       ],
       "pages": [
         {
-          "narration": "Lina's class wants to raise money. Each tray of muffins costs 8 coins to make and holds 12 muffins.",
-          "illustration": "img/s10/bake_sale.png",
-          "interaction": null
+          "narration": "Lina's class wants to raise money. Each tray costs 8 coins and holds 12 muffins.",
+          "illustration": "img/s10/bake_sale.png"
         },
         {
-          "narration": "They make 4 trays. How many muffins is that? Tap to work it out: 4 × 12.",
-          "illustration": "img/s10/muffin_trays.png",
-          "interaction": "tap-to-solve"
+          "narration": "They make 4 trays. How many muffins is that? Tap to work out 4 × 12.",
+          "illustration": "img/s10/muffin_trays.png"
         },
         {
-          "narration": "48 muffins! If each sells for 2 coins, that's 96 coins. After 32 coins of costs, they keep 64. Teamwork and math win!",
-          "illustration": "img/s10/coins_counted.png",
-          "interaction": null
+          "narration": "Split it: 4 × 10 is 40, and 4 × 2 is 8. Forty-eight muffins.",
+          "illustration": "img/s10/area_model.png"
+        },
+        {
+          "narration": "At 2 coins each, that is 96 coins in. But the trays cost 32 coins out.",
+          "illustration": "img/s10/long_division.png"
+        },
+        {
+          "narration": "96 minus 32 leaves 64. Profit is only ever what is left after costs.",
+          "illustration": "img/s10/coins_counted.png"
+        },
+        {
+          "narration": "64 coins for the class trip. Teamwork and maths, together.",
+          "illustration": "img/s10/bake_sale.png"
+        }
+      ]
+    },
+    {
+      "id": "s10.math.story.02",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Math",
+      "type": "story",
+      "title": "The Rug That Did Not Fit",
+      "objective": "Area and perimeter answer different questions.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "listen",
+      "parentNote": "Measure a room together and work out both numbers.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/area_perimeter.png",
+          "desc": "Mr Oyelaran measured his room and wrote down one number: 16."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/area_model.png",
+          "desc": "He bought a rug of 16 and it covered barely a quarter of the floor."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/fraction_bars.png",
+          "desc": "What a rug needs is the area: six times two, which is twelve."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/coins_counted.png",
+          "desc": "He measured again, twice, and wrote down both. The second rug fitted."
+        }
+      ],
+      "pages": [
+        {
+          "narration": "Mr Oyelaran measured his room and wrote down one number: 16.",
+          "illustration": "img/s10/area_perimeter.png"
+        },
+        {
+          "narration": "He bought a rug of 16 and it covered barely a quarter of the floor.",
+          "illustration": "img/s10/area_model.png"
+        },
+        {
+          "narration": "The 16 was his perimeter — the walk around the edge, six by two.",
+          "illustration": "img/s10/area_perimeter.png"
+        },
+        {
+          "narration": "What a rug needs is the area: six times two, which is twelve.",
+          "illustration": "img/s10/fraction_bars.png"
+        },
+        {
+          "narration": "Perimeter buys skirting board. Area buys carpet. They are never the same job.",
+          "illustration": "img/s10/area_perimeter.png"
+        },
+        {
+          "narration": "He measured again, twice, and wrote down both. The second rug fitted.",
+          "illustration": "img/s10/coins_counted.png"
         }
       ]
     },
@@ -47114,6 +48149,36 @@
             "like"
           ],
           "choiceIndex": 0
+        },
+        {
+          "narration": "Both compare. A simile admits it with 'like' or 'as'; a metaphor does not.",
+          "action": "watch",
+          "feedback": "A metaphor is stronger because it does not ask permission first.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "'The stars were diamonds in the sky.' Tap which kind of comparison this is.",
+          "action": "tap",
+          "feedback": "A metaphor. It says they were, not that they were like.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "'He runs like the wind.' Tap which kind this is.",
+          "action": "tap",
+          "feedback": "A simile. One small word does all the marking.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Someone read 'the classroom was a zoo' and asked which animals. Tap the mistake.",
+          "action": "tap",
+          "feedback": "Read literally. A metaphor is never meant to be true, only vivid.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Describe the weather today twice: once as a simile, once as a metaphor.",
+          "action": "celebrate",
+          "feedback": "Rain like nails, or a sky that is a grey blanket. Both work.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -47180,6 +48245,36 @@
             "Break a leg"
           ],
           "choiceIndex": 0
+        },
+        {
+          "narration": "An idiom means something its words never say. You cannot work it out.",
+          "action": "watch",
+          "feedback": "That is why they are so hard in a language you are learning.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "'A piece of cake' is said about a task. Tap what it means.",
+          "action": "tap",
+          "feedback": "Very easy. Nothing to do with cake, and no clue in the words.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Tap what 'break a leg' means when said before a performance.",
+          "action": "tap",
+          "feedback": "Good luck. Its history is odd, and knowing it is the only way to know it.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Someone learning English took 'raining cats and dogs' literally. Tap what would help.",
+          "action": "tap",
+          "feedback": "Someone telling them. Idioms have to be learned, not reasoned out.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Ask a grown-up for an idiom in another language you both know.",
+          "action": "celebrate",
+          "feedback": "Every language has them, and none of them translate.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -47259,6 +48354,36 @@
             "The book cover"
           ],
           "choiceIndex": 0
+        },
+        {
+          "narration": "The plot is what happened. The theme is what it was about.",
+          "action": "watch",
+          "feedback": "Two stories with completely different events can share one theme.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "A slow tortoise beats a fast hare by never stopping. Tap the theme.",
+          "action": "tap",
+          "feedback": "Persistence beats speed. 'A tortoise won a race' is the plot, not the theme.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the question that leads you to a story's theme.",
+          "action": "tap",
+          "feedback": "What did the character learn? Themes are almost always about change.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Someone said the theme was 'a girl shared her lunch'. Tap why that is the plot.",
+          "action": "tap",
+          "feedback": "It names an event. A theme would be 'kindness builds friendship'.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Name the theme of the last film you watched in four words or fewer.",
+          "action": "celebrate",
+          "feedback": "If you find yourself telling the plot, you have not found it yet.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -47325,6 +48450,36 @@
             "The page count"
           ],
           "choiceIndex": 0
+        },
+        {
+          "narration": "Point of view decides what the reader is allowed to know.",
+          "action": "watch",
+          "feedback": "A first-person narrator cannot tell you what anyone else is thinking.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "'I couldn't believe what I saw.' Tap the point of view.",
+          "action": "tap",
+          "feedback": "First person. The narrator is inside the story, seeing part of it.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "'They opened the mysterious door.' Tap the point of view.",
+          "action": "tap",
+          "feedback": "Third person. The narrator watches from outside.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Tap what changes if a scary scene is told by the person who is frightened.",
+          "action": "tap",
+          "feedback": "You feel it instead of watching it, and you know less than they do not.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Retell one thing from your day in third person, as if you were watching.",
+          "action": "celebrate",
+          "feedback": "It sounds stranger than you expect, and that is the point.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -47397,6 +48552,36 @@
             "In order"
           ],
           "choiceIndex": 1
+        },
+        {
+          "narration": "A summary keeps who, what and why, and lets everything else go.",
+          "action": "watch",
+          "feedback": "If it is nearly as long as the original, it is a retelling, not a summary.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "A passage tells how a rescue dog was found, trained and rehomed. Tap the best summary.",
+          "action": "tap",
+          "feedback": "'A stray dog was rescued and found a new home.' Three stages, one sentence.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "From the same passage, tap the detail a summary should drop.",
+          "action": "tap",
+          "feedback": "The colour of its collar. True, but it changes nothing about the story.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Someone's summary added what they thought of the story. Tap why that is wrong.",
+          "action": "tap",
+          "feedback": "A summary reports the author, not the reader. Opinions belong elsewhere.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Summarise a whole book to somebody in three sentences.",
+          "action": "celebrate",
+          "feedback": "Three is where the skill lives. Ten is just talking.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -47473,6 +48658,36 @@
             "She is hungry"
           ],
           "choiceIndex": 1
+        },
+        {
+          "narration": "An inference is supported by the text but never stated in it.",
+          "action": "watch",
+          "feedback": "It has to come from the clues, not from what you already assume.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "'Mateo zipped his coat and stamped his boots in the snow.' Tap what you infer.",
+          "action": "tap",
+          "feedback": "It is cold. Nothing in the sentence says so — the coat and boots do.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "'Her stomach growled as she eyed the clock.' Tap the best inference.",
+          "action": "tap",
+          "feedback": "She is hungry and waiting for a meal. Two clues, one conclusion.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "From that sentence someone inferred she was bored. Tap why that goes too far.",
+          "action": "tap",
+          "feedback": "The clock fits hunger just as well. Pick the reading that uses both clues.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Watch somebody come through a door and infer one thing about their day.",
+          "action": "celebrate",
+          "feedback": "Then ask, and find out whether your clues were any good.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -47508,7 +48723,18 @@
       "interaction": "single-select",
       "parentNote": null,
       "accessibility": "Sentences read aloud on tap.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/figurative.png",
+          "desc": "They read a metaphor literally"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/idioms.png",
+          "desc": "Very easy"
+        }
+      ],
       "questions": [
         {
           "prompt": "'The stars were diamonds in the sky.' This is a...",
@@ -47541,6 +48767,38 @@
           "answer": 0,
           "correctFeedback": "'Like' makes it a simile.",
           "retryFeedback": "Look for 'like' or 'as'. Try again!"
+        },
+        {
+          "prompt": "Someone read 'the classroom was a zoo' and asked which animals. What went wrong?",
+          "options": [
+            {
+              "label": "They read a metaphor literally",
+              "asset": "img/s10/figurative.png"
+            },
+            {
+              "label": "The sentence is wrong",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "A metaphor is never meant to be true, only vivid.",
+          "retryFeedback": "Ask what feeling the comparison is reaching for."
+        },
+        {
+          "prompt": "What does the idiom 'a piece of cake' mean?",
+          "options": [
+            {
+              "label": "Very easy",
+              "asset": "img/s10/idioms.png"
+            },
+            {
+              "label": "Very sweet",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Nothing to do with cake, and no clue in the words themselves.",
+          "retryFeedback": "Idioms have to be learned, not reasoned out."
         }
       ]
     },
@@ -47558,7 +48816,23 @@
       "interaction": "single-select",
       "parentNote": null,
       "accessibility": "Story summary read aloud.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/theme.png",
+          "desc": "Persistence beats speed"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/summary.png",
+          "desc": "A stray dog was rescued and found a new home"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/inference.png",
+          "desc": "It is cold"
+        }
+      ],
       "questions": [
         {
           "prompt": "A girl shares her lunch with a new student and they become friends. What is the theme?",
@@ -47579,6 +48853,54 @@
           "answer": 0,
           "correctFeedback": "The lesson is that kindness builds friendship.",
           "retryFeedback": "The theme is the big lesson, not a small detail. Try again!"
+        },
+        {
+          "prompt": "A slow tortoise beats a fast hare by never stopping. What is the theme?",
+          "options": [
+            {
+              "label": "Persistence beats speed",
+              "asset": "img/s10/theme.png"
+            },
+            {
+              "label": "A tortoise won a race",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "The second one is the plot. A theme is the lesson underneath it.",
+          "retryFeedback": "Ask what the character learned."
+        },
+        {
+          "prompt": "A passage tells how a rescue dog was found, trained and rehomed. Best summary?",
+          "options": [
+            {
+              "label": "A stray dog was rescued and found a new home",
+              "asset": "img/s10/summary.png"
+            },
+            {
+              "label": "The dog wore a red collar",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Three stages in one sentence. The collar is a detail that changes nothing.",
+          "retryFeedback": "A summary keeps who, what and why."
+        },
+        {
+          "prompt": "'Mateo zipped his coat and stamped his boots in the snow.' What can you infer?",
+          "options": [
+            {
+              "label": "It is cold",
+              "asset": "img/s10/inference.png"
+            },
+            {
+              "label": "He is late",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Nothing in the sentence says so — the coat and the boots do.",
+          "retryFeedback": "Use the clues that are actually there."
         }
       ]
     },
@@ -47596,7 +48918,18 @@
       "interaction": "single-select",
       "parentNote": null,
       "accessibility": "Pronouns announced.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/point_of_view.png",
+          "desc": "What anyone else is thinking"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/inference.png",
+          "desc": "She is hungry and waiting for a meal"
+        }
+      ],
       "questions": [
         {
           "prompt": "'I couldn't believe what I saw.' What point of view is this?",
@@ -47629,6 +48962,141 @@
           "answer": 0,
           "correctFeedback": "'They' means third person.",
           "retryFeedback": "Look at the pronoun. Try again!"
+        },
+        {
+          "prompt": "A first-person narrator cannot tell you what?",
+          "options": [
+            {
+              "label": "What anyone else is thinking",
+              "asset": "img/s10/point_of_view.png"
+            },
+            {
+              "label": "What they saw",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "They only know their own head. That limit is the whole effect.",
+          "retryFeedback": "Think about what one person can actually know."
+        },
+        {
+          "prompt": "'Her stomach growled as she eyed the clock.' What is the best inference?",
+          "options": [
+            {
+              "label": "She is hungry and waiting for a meal",
+              "asset": "img/s10/inference.png"
+            },
+            {
+              "label": "She is bored",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Two clues, one conclusion. Boredom uses only half of them.",
+          "retryFeedback": "Pick the reading that uses both clues."
+        }
+      ]
+    },
+    {
+      "id": "s10.reading.quiz.04",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Reading",
+      "type": "quiz",
+      "title": "Beneath the Words",
+      "objective": "Apply figurative language, idioms, theme and point of view.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Ask which answer needed re-reading. That is where the learning is.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/figurative.png",
+          "desc": "Metaphor"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/idioms.png",
+          "desc": "Good luck"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/theme.png",
+          "desc": "Kindness builds friendship"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/point_of_view.png",
+          "desc": "First person"
+        }
+      ],
+      "questions": [
+        {
+          "prompt": "'The stars were diamonds in the sky.' Simile or metaphor?",
+          "options": [
+            {
+              "label": "Metaphor",
+              "asset": "img/s10/figurative.png"
+            },
+            {
+              "label": "Simile",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "It says they were, not that they were like.",
+          "retryFeedback": "Look for 'like' or 'as'. There is neither here."
+        },
+        {
+          "prompt": "What does 'break a leg' mean before a performance?",
+          "options": [
+            {
+              "label": "Good luck",
+              "asset": "img/s10/idioms.png"
+            },
+            {
+              "label": "Be careful",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Its history is odd, and being told is the only way to know it.",
+          "retryFeedback": "Idioms cannot be worked out from their words."
+        },
+        {
+          "prompt": "A girl shares her lunch with a new student and they become friends. The theme?",
+          "options": [
+            {
+              "label": "Kindness builds friendship",
+              "asset": "img/s10/theme.png"
+            },
+            {
+              "label": "She had a sandwich",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "The other one is the plot. A theme is the lesson underneath.",
+          "retryFeedback": "Ask what the story is really about."
+        },
+        {
+          "prompt": "'I couldn't believe what I saw.' What point of view is this?",
+          "options": [
+            {
+              "label": "First person",
+              "asset": "img/s10/point_of_view.png"
+            },
+            {
+              "label": "Third person",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "The narrator is inside the story, and can only see part of it.",
+          "retryFeedback": "Look at the pronouns doing the telling."
         }
       ]
     },
@@ -47638,36 +49106,128 @@
       "ages": "9-10",
       "subject": "Reading",
       "type": "story",
-      "title": "The Bridge Builder (excerpt)",
-      "objective": "Read a novel excerpt and infer the author's purpose.",
+      "title": "The Bridge Builder",
+      "objective": "Why an author includes something is a question worth asking.",
       "designTier": "grant-autonomy",
       "reading": true,
       "timed": false,
-      "interaction": "read-and-respond",
-      "parentNote": null,
-      "accessibility": "Adjustable reading speed and dyslexia-friendly font; comprehension prompt accepts typed or spoken answers.",
+      "interaction": "listen",
+      "parentNote": "Ask why the grandfather's saying is in the story at all.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
         {
           "type": "audio",
           "ref": "audio/s10/bridge_narration.mp3",
-          "desc": "Narrator, adjustable speed"
+          "desc": "Thoughtful narrator"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/bridge_cliffs.png",
+          "desc": "Ama studied the gap between the two cliffs. The village needed a way across."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/bridge_sketch.png",
+          "desc": "She sketched, erased, and sketched again. Nothing held on paper."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/blank_page.png",
+          "desc": "She stopped rushing. The sketch that worked took three more days."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/bridge_done.png",
+          "desc": "Why do you think the author tells us the grandfather's saying? Tap to share."
         }
       ],
       "pages": [
         {
-          "narration": "Ama studied the gap between the two cliffs. The village needed a way across before the rains came, and she was the only engineer for a hundred miles.",
-          "illustration": "img/s10/bridge_cliffs.png",
-          "interaction": null
+          "narration": "Ama studied the gap between the two cliffs. The village needed a way across.",
+          "illustration": "img/s10/bridge_cliffs.png"
         },
         {
-          "narration": "She sketched, erased, and sketched again. 'A bridge is just patience made of rope and wood,' her grandfather had said.",
-          "illustration": "img/s10/bridge_sketch.png",
-          "interaction": null
+          "narration": "The rains were coming, and she was the only engineer for a hundred miles.",
+          "illustration": "img/s10/bridge_cliffs.png"
         },
         {
-          "narration": "Reflect: Why do you think the author tells us about the grandfather's saying? Tap to share your idea.",
-          "illustration": "img/s10/bridge_done.png",
-          "interaction": "open-response"
+          "narration": "She sketched, erased, and sketched again. Nothing held on paper.",
+          "illustration": "img/s10/bridge_sketch.png"
+        },
+        {
+          "narration": "'A bridge is just patience made of rope and wood,' her grandfather had said.",
+          "illustration": "img/s10/bridge_sketch.png"
+        },
+        {
+          "narration": "She stopped rushing. The sketch that worked took three more days.",
+          "illustration": "img/s10/blank_page.png"
+        },
+        {
+          "narration": "Why do you think the author tells us the grandfather's saying? Tap to share.",
+          "illustration": "img/s10/bridge_done.png"
+        }
+      ]
+    },
+    {
+      "id": "s10.reading.story.02",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Reading",
+      "type": "story",
+      "title": "Two Ways to Tell It",
+      "objective": "Point of view changes what a reader is allowed to know.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "listen",
+      "parentNote": "Retell a family story from somebody else's point of view.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/point_of_view.png",
+          "desc": "Nadia's class wrote about the same lost dog, and no two accounts matched."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/inference.png",
+          "desc": "Nadia wrote 'I heard him barking and my heart jumped.' You felt it with her."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/summary.png",
+          "desc": "Tom wrote 'They searched the park while the dog slept under a bench.'"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/theme.png",
+          "desc": "His reader knew where the dog was the whole time, and worried differently."
+        }
+      ],
+      "pages": [
+        {
+          "narration": "Nadia's class wrote about the same lost dog, and no two accounts matched.",
+          "illustration": "img/s10/point_of_view.png"
+        },
+        {
+          "narration": "Nadia wrote 'I heard him barking and my heart jumped.' You felt it with her.",
+          "illustration": "img/s10/inference.png"
+        },
+        {
+          "narration": "But she could not tell you what the dog's owner was thinking. She never knew.",
+          "illustration": "img/s10/point_of_view.png"
+        },
+        {
+          "narration": "Tom wrote 'They searched the park while the dog slept under a bench.'",
+          "illustration": "img/s10/summary.png"
+        },
+        {
+          "narration": "His reader knew where the dog was the whole time, and worried differently.",
+          "illustration": "img/s10/theme.png"
+        },
+        {
+          "narration": "Same dog, same park. Who is telling it decides what you are allowed to know.",
+          "illustration": "img/s10/point_of_view.png"
         }
       ]
     },
@@ -47710,6 +49270,42 @@
           "action": "build-circuit",
           "feedback": "The light goes out. A broken circuit stops the flow.",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Electricity only flows round a complete loop. One gap stops everything.",
+          "action": "watch",
+          "feedback": "A switch is nothing more than a gap you can open and close on purpose.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Tap what happens to the bulb when you cut the wire anywhere in the loop.",
+          "action": "tap",
+          "feedback": "It goes out. Where the gap is does not matter — only that there is one.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the material that will let the circuit work if you put it in the gap.",
+          "action": "tap",
+          "feedback": "Metal. Wood, plastic and rubber all stop it, which is why wires wear them.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Someone put the bulb in but left the battery out. Tap what is missing.",
+          "action": "tap",
+          "feedback": "The push. A loop with no battery is a road with nothing travelling on it.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Tap why a switch is put in the wire rather than beside it.",
+          "action": "tap",
+          "feedback": "It has to be part of the loop to break it. Beside it, it does nothing.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Find three switches at home and say where the gap is in each.",
+          "action": "celebrate",
+          "feedback": "Every one of them is breaking a loop you cannot see.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -47776,6 +49372,37 @@
             "Longer"
           ],
           "choiceIndex": 1
+        },
+        {
+          "narration": "The four inner planets are rock; the four outer ones are gas and ice.",
+          "action": "watch",
+          "feedback": "That split is about how hot it was where each one formed.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "How many planets lie between Earth and the Sun?",
+          "action": "input",
+          "feedback": "2. Mercury and Venus, in that order.",
+          "mechanic": "numberAnswer",
+          "answer": 2
+        },
+        {
+          "narration": "Tap why a year on Neptune is far longer than a year on Earth.",
+          "action": "tap",
+          "feedback": "Its orbit is enormous, and a year is one lap round the Sun.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Someone said the Sun goes round the Earth. Tap what we actually observe.",
+          "action": "tap",
+          "feedback": "The Earth spins, which makes the Sun appear to cross the sky.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Look for a planet tonight. Venus and Jupiter are the bright ones that do not twinkle.",
+          "action": "celebrate",
+          "feedback": "Twinkling is what starlight does after crossing our air. Planets are too close.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -47842,6 +49469,36 @@
             "Motion"
           ],
           "choiceIndex": 2
+        },
+        {
+          "narration": "Energy is never made or lost. It only changes from one form into another.",
+          "action": "watch",
+          "feedback": "A torch turns chemical energy into light, and some of it into heat.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "A guitar string vibrates. Tap the kind of energy it is making.",
+          "action": "tap",
+          "feedback": "Sound. Vibration is what sound is, all the way to your ear.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Tap what a rolling ball's motion energy becomes when it finally stops.",
+          "action": "tap",
+          "feedback": "Heat, in the ground and the air. It went somewhere; it did not vanish.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Someone said a lamp creates light out of nothing. Tap what is wrong.",
+          "action": "tap",
+          "feedback": "It converts electricity. Trace any energy back and it came from somewhere.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Name three energy changes in your kitchen in the next ten minutes.",
+          "action": "celebrate",
+          "feedback": "A kettle, a radio, a hand rubbing another hand. All three at once.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -47902,6 +49559,36 @@
           "action": "tap",
           "feedback": "Everything in nature is linked.",
           "mechanic": "drag"
+        },
+        {
+          "narration": "A web is many chains sharing links. Most animals eat more than one thing.",
+          "action": "watch",
+          "feedback": "That sharing is exactly what makes a habitat able to take a shock.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Tap what producers use to make their own energy.",
+          "action": "tap",
+          "feedback": "Sunlight. Only plants can do it, and everything else eats to get some.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "If all the grass disappeared, tap what happens to the grasshoppers.",
+          "action": "tap",
+          "feedback": "They have less food, and so does everything that eats them.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Tap why removing one animal affects species that never eat it.",
+          "action": "tap",
+          "feedback": "Their food's food changed. Effects travel two or three links along.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Draw a food web for a garden: leaves, snails, birds and a cat.",
+          "action": "celebrate",
+          "feedback": "Four creatures make more links than you expect. Try removing one.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -47968,6 +49655,36 @@
             "Gas"
           ],
           "choiceIndex": 2
+        },
+        {
+          "narration": "Melting, freezing and evaporating change the state, never the substance.",
+          "action": "watch",
+          "feedback": "Weigh ice, melt it, weigh the water. Nothing has been gained or lost.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Tap what you add to turn a solid into a liquid.",
+          "action": "tap",
+          "feedback": "Heat. Take it away again and it freezes back, exactly as it was.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "A puddle vanishes on a warm day. Tap where the water went.",
+          "action": "tap",
+          "feedback": "Into the air as vapour. You cannot see it, but it is entirely still there.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Someone said melted ice is a different substance from ice. Tap the mistake.",
+          "action": "tap",
+          "feedback": "Same substance, different state. Only the arrangement changed.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Put a lid on a pan of hot water and watch where the drops form.",
+          "action": "celebrate",
+          "feedback": "Evaporation and condensation, in one saucepan, in one minute.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -48040,6 +49757,36 @@
           "action": "tap",
           "feedback": "Observe, test, conclude. That's science.",
           "mechanic": "drag"
+        },
+        {
+          "narration": "A fair test changes one thing and holds everything else still.",
+          "action": "watch",
+          "feedback": "Change two and you will never know which one caused the result.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "You test which paper plane flies furthest. Tap what must stay the same.",
+          "action": "tap",
+          "feedback": "The throw, the paper, the spot you stand. Only the fold should differ.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Tap what a hypothesis is, before you test anything.",
+          "action": "tap",
+          "feedback": "A prediction you are willing to be wrong about, written down first.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Your result disagrees with your hypothesis. Tap the right response.",
+          "action": "tap",
+          "feedback": "Record it and say so. A wrong prediction is a finding, not a failure.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Run one fair test at home this week and write the result before you forget it.",
+          "action": "celebrate",
+          "feedback": "Which paper towel holds most water is a real experiment.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -48075,7 +49822,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/circuit.png",
+          "desc": "It goes out"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/energy_forms.png",
+          "desc": "Sound"
+        }
+      ],
       "questions": [
         {
           "prompt": "When we cannot see the lit Moon at all, it is a...",
@@ -48092,6 +49850,54 @@
           "answer": 0,
           "correctFeedback": "A new moon. The lit side is facing away.",
           "retryFeedback": "Full moon is fully lit; the opposite is... try again!"
+        },
+        {
+          "prompt": "You cut the wire anywhere in a circuit. What happens to the bulb?",
+          "options": [
+            {
+              "label": "It goes out",
+              "asset": "img/s10/circuit.png"
+            },
+            {
+              "label": "It gets dimmer",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Electricity only flows round a complete loop. One gap stops everything.",
+          "retryFeedback": "Where the gap is does not matter — only that there is one."
+        },
+        {
+          "prompt": "A vibrating guitar string makes which kind of energy?",
+          "options": [
+            {
+              "label": "Sound",
+              "asset": "img/s10/energy_forms.png"
+            },
+            {
+              "label": "Light",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Vibration is what sound is, all the way to your ear.",
+          "retryFeedback": "Put a finger on the string and the sound stops with it."
+        },
+        {
+          "prompt": "A rolling ball stops. Where did its motion energy go?",
+          "options": [
+            {
+              "label": "It became heat in the ground and air",
+              "asset": "img/s10/energy_forms.png"
+            },
+            {
+              "label": "It was destroyed",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Energy is never lost. It went somewhere you cannot see.",
+          "retryFeedback": "Rub your hands together and feel where it goes."
         }
       ]
     },
@@ -48109,7 +49915,18 @@
       "interaction": "single-select",
       "parentNote": null,
       "accessibility": "Options read aloud.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/solar_system.png",
+          "desc": "2"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/matter_changes.png",
+          "desc": "Into the air as vapour"
+        }
+      ],
       "questions": [
         {
           "prompt": "A vibrating guitar string makes which kind of energy?",
@@ -48146,6 +49963,38 @@
           "answer": 0,
           "correctFeedback": "Earth is our home, the third planet.",
           "retryFeedback": "It's the third planet from the Sun. Try again!"
+        },
+        {
+          "prompt": "How many planets lie between Earth and the Sun?",
+          "options": [
+            {
+              "label": "2",
+              "asset": "img/s10/solar_system.png"
+            },
+            {
+              "label": "3",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Mercury and Venus. Earth is third, so two lie ahead of it.",
+          "retryFeedback": "Third means two ahead, not three."
+        },
+        {
+          "prompt": "A puddle vanishes on a warm day. Where did the water go?",
+          "options": [
+            {
+              "label": "Into the air as vapour",
+              "asset": "img/s10/matter_changes.png"
+            },
+            {
+              "label": "It was destroyed by the sun",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "You cannot see it, but every drop is still there.",
+          "retryFeedback": "Changing state is not disappearing."
         }
       ]
     },
@@ -48163,7 +50012,18 @@
       "interaction": "single-select",
       "parentNote": null,
       "accessibility": "Prompts read aloud.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/food_web.png",
+          "desc": "Their food's food changed"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/scientific_method.png",
+          "desc": "The throw, the paper and where you stand"
+        }
+      ],
       "questions": [
         {
           "prompt": "In a food web, what do producers (plants) use to make energy?",
@@ -48200,6 +50060,141 @@
           "answer": 0,
           "correctFeedback": "Losing the producers means less food all the way up the web.",
           "retryFeedback": "Grasshoppers eat grass. Try again!"
+        },
+        {
+          "prompt": "Why does removing one animal affect species that never eat it?",
+          "options": [
+            {
+              "label": "Their food's food changed",
+              "asset": "img/s10/food_web.png"
+            },
+            {
+              "label": "They get lonely",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Effects travel two or three links along a web.",
+          "retryFeedback": "Follow the arrows further than one step."
+        },
+        {
+          "prompt": "In a fair test of paper planes, what must stay the same?",
+          "options": [
+            {
+              "label": "The throw, the paper and where you stand",
+              "asset": "img/s10/scientific_method.png"
+            },
+            {
+              "label": "Nothing — change what you like",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Change two things and you never learn which one mattered.",
+          "retryFeedback": "Only the thing you are testing should differ."
+        }
+      ]
+    },
+    {
+      "id": "s10.science.quiz.04",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Science",
+      "type": "quiz",
+      "title": "Circuits, States and Systems",
+      "objective": "Apply circuits, energy, matter and the scientific method.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Three of these can be checked at home in ten minutes.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/circuit.png",
+          "desc": "Metal"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/matter_changes.png",
+          "desc": "Heat"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/food_web.png",
+          "desc": "Sunlight"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/scientific_method.png",
+          "desc": "Record it and say so"
+        }
+      ],
+      "questions": [
+        {
+          "prompt": "Which material will let a circuit work if you put it in the gap?",
+          "options": [
+            {
+              "label": "Metal",
+              "asset": "img/s10/circuit.png"
+            },
+            {
+              "label": "Plastic",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Wood, plastic and rubber all stop it — which is why wires wear them.",
+          "retryFeedback": "Think about what the wire itself is made of."
+        },
+        {
+          "prompt": "What do you add to turn a solid into a liquid?",
+          "options": [
+            {
+              "label": "Heat",
+              "asset": "img/s10/matter_changes.png"
+            },
+            {
+              "label": "Water",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Take it away again and it freezes back, exactly as it was.",
+          "retryFeedback": "The substance never changes — only its state."
+        },
+        {
+          "prompt": "Producers make their own energy from what?",
+          "options": [
+            {
+              "label": "Sunlight",
+              "asset": "img/s10/food_web.png"
+            },
+            {
+              "label": "Soil alone",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Only plants can do it. Everything else has to eat to get some.",
+          "retryFeedback": "Soil provides materials, not energy."
+        },
+        {
+          "prompt": "Your result disagrees with your hypothesis. What should you do?",
+          "options": [
+            {
+              "label": "Record it and say so",
+              "asset": "img/s10/scientific_method.png"
+            },
+            {
+              "label": "Change the hypothesis afterwards",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "A wrong prediction is a finding, not a failure.",
+          "retryFeedback": "Rewriting a guess after the fact is not an experiment."
         }
       ]
     },
@@ -48209,36 +50204,138 @@
       "ages": "9-10",
       "subject": "Science",
       "type": "story",
-      "title": "Nadia and the Night Sky",
-      "objective": "Explore moon phases through a story.",
+      "title": "The Moon Journal",
+      "objective": "Recording what you see is what turns looking into science.",
       "designTier": "grant-autonomy",
       "reading": true,
       "timed": false,
-      "interaction": "read-and-observe",
-      "parentNote": null,
-      "accessibility": "Narration adjustable; moon-phase journal is described for screen readers.",
+      "interaction": "listen",
+      "parentNote": "Start a moon journal tonight; four weeks tells the whole story.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
         {
           "type": "audio",
           "ref": "audio/s10/night_sky.mp3",
-          "desc": "Narrator, adjustable speed"
+          "desc": "Quiet narrator"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/moon_journal.png",
+          "desc": "Every night for a month, Rehema drew the Moon before she went to bed."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/night_sky.png",
+          "desc": "Some nights it was a coin. Some nights a fingernail. One night, nothing at all."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/blank_page.png",
+          "desc": "She almost stopped on the empty night. There was nothing to draw."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/grandpa_telescope.png",
+          "desc": "Her grandfather said: a blank page is data too. Draw the empty sky."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/scientific_method.png",
+          "desc": "One night of looking is a glance. A month of writing it down is science."
         }
       ],
       "pages": [
         {
-          "narration": "Every night, Nadia drew the Moon from her window. Some nights it was a thin sliver; other nights, a full bright circle.",
-          "illustration": "img/s10/night_sky.png",
-          "interaction": null
+          "narration": "Every night for a month, Rehema drew the Moon before she went to bed.",
+          "illustration": "img/s10/moon_journal.png"
         },
         {
-          "narration": "Her drawings showed a pattern: the Moon seemed to grow, then shrink, over about a month. Tap to see her moon journal.",
-          "illustration": "img/s10/moon_journal.png",
-          "interaction": "tap-to-explore"
+          "narration": "Some nights it was a coin. Some nights a fingernail. One night, nothing at all.",
+          "illustration": "img/s10/night_sky.png"
         },
         {
-          "narration": "Grandpa smiled. 'The Moon isn't changing shape. Sunlight just lights up different parts as it orbits Earth.' Nadia grinned: science was everywhere!",
-          "illustration": "img/s10/grandpa_telescope.png",
-          "interaction": null
+          "narration": "She almost stopped on the empty night. There was nothing to draw.",
+          "illustration": "img/s10/blank_page.png"
+        },
+        {
+          "narration": "Her grandfather said: a blank page is data too. Draw the empty sky.",
+          "illustration": "img/s10/grandpa_telescope.png"
+        },
+        {
+          "narration": "By the end she saw the pattern: it repeated, exactly, every 29 nights.",
+          "illustration": "img/s10/moon_journal.png"
+        },
+        {
+          "narration": "One night of looking is a glance. A month of writing it down is science.",
+          "illustration": "img/s10/scientific_method.png"
+        }
+      ]
+    },
+    {
+      "id": "s10.science.story.02",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Science",
+      "type": "story",
+      "title": "The Fair Test",
+      "objective": "Changing one thing at a time is the whole method.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "listen",
+      "parentNote": "Run this test at home. It takes ten minutes and a jug of water.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/scientific_method.png",
+          "desc": "Two friends argued about which paper towel soaked up the most water."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/matter_changes.png",
+          "desc": "They tested both. One used a big sheet, the other a small one."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/blank_page.png",
+          "desc": "The big sheet won, and neither of them had learned anything at all."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/debug.png",
+          "desc": "Two things had changed at once. Nobody could say which one mattered."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/circuit.png",
+          "desc": "So they cut both towels to the same size and poured the same water."
+        }
+      ],
+      "pages": [
+        {
+          "narration": "Two friends argued about which paper towel soaked up the most water.",
+          "illustration": "img/s10/scientific_method.png"
+        },
+        {
+          "narration": "They tested both. One used a big sheet, the other a small one.",
+          "illustration": "img/s10/matter_changes.png"
+        },
+        {
+          "narration": "The big sheet won, and neither of them had learned anything at all.",
+          "illustration": "img/s10/blank_page.png"
+        },
+        {
+          "narration": "Two things had changed at once. Nobody could say which one mattered.",
+          "illustration": "img/s10/debug.png"
+        },
+        {
+          "narration": "So they cut both towels to the same size and poured the same water.",
+          "illustration": "img/s10/circuit.png"
+        },
+        {
+          "narration": "This time the answer meant something. One change is what makes a test fair.",
+          "illustration": "img/s10/scientific_method.png"
         }
       ]
     },
@@ -48275,6 +50372,42 @@
           "action": "tap-map",
           "feedback": "'Together they give every place an address.'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Latitude and longitude cross to give every place on Earth one address.",
+          "action": "watch",
+          "feedback": "Two numbers, and nowhere else on the planet shares them.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Tap the line of latitude that circles the Earth at zero degrees.",
+          "action": "tap",
+          "feedback": "The equator. Latitude is measured north and south from it.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Tap which lines run from pole to pole rather than around the middle.",
+          "action": "tap",
+          "feedback": "Longitude. They meet at the poles, so they are not parallel like latitude.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Someone gave a location with only one number. Tap what is missing.",
+          "action": "tap",
+          "feedback": "The other one. One line is a whole circle round the world.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Tap why sailors needed accurate clocks to find their longitude.",
+          "action": "tap",
+          "feedback": "Longitude is worked out from time differences. A slow clock is a wrong place.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Find the two numbers for your own town, and one place that shares a latitude.",
+          "action": "celebrate",
+          "feedback": "Places on one latitude are often nothing like each other.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -48335,6 +50468,36 @@
           "action": "drag",
           "feedback": "Three branches share power and balance each other.",
           "mechanic": "drag"
+        },
+        {
+          "narration": "Three branches, so that no one person both writes a rule and judges it.",
+          "action": "watch",
+          "feedback": "It is slower on purpose. Speed is not what the design is for.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "A new law is being written. Tap which branch is doing it.",
+          "action": "tap",
+          "feedback": "The legislative branch. Writing the rule is its only job.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Two people disagree in court about what a law means. Tap who decides.",
+          "action": "tap",
+          "feedback": "The judicial branch. Interpreting is deliberately kept separate from writing.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Tap what the executive branch does with a law once it exists.",
+          "action": "tap",
+          "feedback": "Carries it out — the police, the schools, the offices that act on it.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Find one rule at school and name who makes, applies and interprets it.",
+          "action": "celebrate",
+          "feedback": "Often it is the same person, and noticing that is the lesson.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -48407,6 +50570,36 @@
             "Trade"
           ],
           "choiceIndex": 2
+        },
+        {
+          "narration": "A good is a thing you keep. A service is work somebody does for you.",
+          "action": "watch",
+          "feedback": "You can resell a good. You can never resell a haircut.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Tap the service: a loaf of bread, or a bus ride.",
+          "action": "tap",
+          "feedback": "The bus ride. You are buying somebody's driving, not a thing.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Many people want a scarce item. Tap what usually happens to its price.",
+          "action": "tap",
+          "feedback": "It rises. High demand and low supply push in the same direction.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "A shop has far more of something than anyone wants. Tap what happens next.",
+          "action": "tap",
+          "feedback": "The price falls. Supply and demand work in both directions.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "List three goods and three services your family bought this week.",
+          "action": "celebrate",
+          "feedback": "The services are usually the ones nobody thinks to mention.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -48473,6 +50666,36 @@
             "Its color"
           ],
           "choiceIndex": 0
+        },
+        {
+          "narration": "Seven continents and five oceans, and the oceans are one connected body of water.",
+          "action": "watch",
+          "feedback": "The names are ours. The water does not stop at the lines.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Tap the largest ocean on Earth.",
+          "action": "tap",
+          "feedback": "The Pacific. It is wider than every continent put together.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the second-largest continent.",
+          "action": "tap",
+          "feedback": "Africa. Asia is first, and the gap between them is large.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Tap what a map's key is for.",
+          "action": "tap",
+          "feedback": "It defines the symbols. Without it a map is a picture you cannot read.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Name every continent out loud, then find the one you have never heard about.",
+          "action": "celebrate",
+          "feedback": "For most people it is Antarctica, and it is bigger than Europe.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -48539,6 +50762,36 @@
             "Mansa Musa"
           ],
           "choiceIndex": 1
+        },
+        {
+          "narration": "Mali grew rich because it sat between the gold in the south and the salt in the north.",
+          "action": "watch",
+          "feedback": "Salt was worth its weight in gold, because nobody survives without it.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Tap what made Timbuktu famous across the world.",
+          "action": "tap",
+          "feedback": "Its libraries and scholars. It was a centre of learning, not just of trade.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Tap why traders crossed a desert rather than going round it.",
+          "action": "tap",
+          "feedback": "It was shorter, and the goods were worth the risk. Trade shapes routes.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Someone said Africa had no written history before Europeans came. Tap the evidence against it.",
+          "action": "tap",
+          "feedback": "Timbuktu's manuscripts, thousands of them, centuries older than that claim.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Find one thing traded through your own town, now or long ago.",
+          "action": "celebrate",
+          "feedback": "Every town is on somebody's trade route, including yours.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -48605,6 +50858,36 @@
             "By voting"
           ],
           "choiceIndex": 1
+        },
+        {
+          "narration": "Rights and responsibilities are two halves of the same arrangement.",
+          "action": "watch",
+          "feedback": "Your right to speak is everyone else's responsibility to let you.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Tap the responsibility that sits beside the right to a clean park.",
+          "action": "tap",
+          "feedback": "Taking your own litter home. Rights only survive if people carry them.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Tap what voting actually does in a community.",
+          "action": "tap",
+          "feedback": "Chooses who decides, and makes them replaceable. Both parts matter.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Someone said a right means doing whatever you want. Tap what that misses.",
+          "action": "tap",
+          "feedback": "Your rights end where someone else's begin. That limit is what makes them work.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Name one right you use every day and the responsibility that keeps it alive.",
+          "action": "celebrate",
+          "feedback": "A library card is a good place to start looking.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -48640,7 +50923,23 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/three_branches.png",
+          "desc": "The judicial branch"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/mali_empire.png",
+          "desc": "Trade in gold and salt"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/lat_long.png",
+          "desc": "From pole to pole"
+        }
+      ],
       "questions": [
         {
           "prompt": "A large stone home built to defend against attackers was a...",
@@ -48657,6 +50956,54 @@
           "answer": 0,
           "correctFeedback": "A castle. Thick stone walls kept people safe.",
           "retryFeedback": "Think tall stone walls and a moat. Try again!"
+        },
+        {
+          "prompt": "Which branch of government decides what a law means?",
+          "options": [
+            {
+              "label": "The judicial branch",
+              "asset": "img/s10/three_branches.png"
+            },
+            {
+              "label": "The legislative branch",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Interpreting is deliberately kept apart from writing.",
+          "retryFeedback": "Writing a rule and judging it are two different powers."
+        },
+        {
+          "prompt": "What gave the Empire of Mali its wealth?",
+          "options": [
+            {
+              "label": "Trade in gold and salt",
+              "asset": "img/s10/mali_empire.png"
+            },
+            {
+              "label": "Farming alone",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "It sat between the gold of the south and the salt of the north.",
+          "retryFeedback": "Salt was worth its weight in gold — nobody survives without it."
+        },
+        {
+          "prompt": "Longitude lines run which way?",
+          "options": [
+            {
+              "label": "From pole to pole",
+              "asset": "img/s10/lat_long.png"
+            },
+            {
+              "label": "Around the middle",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "They meet at the poles, so unlike latitude they are not parallel.",
+          "retryFeedback": "Latitude is the one that circles the Earth."
         }
       ]
     },
@@ -48674,7 +51021,18 @@
       "interaction": "single-select",
       "parentNote": null,
       "accessibility": "Options read aloud.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/goods_services.png",
+          "desc": "It rises"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/ballot_box.png",
+          "desc": "Chooses who decides, and makes them replaceable"
+        }
+      ],
       "questions": [
         {
           "prompt": "Which branch makes the laws?",
@@ -48707,6 +51065,38 @@
           "answer": 0,
           "correctFeedback": "Judges in the judicial branch interpret the laws.",
           "retryFeedback": "Think about courts. Try again!"
+        },
+        {
+          "prompt": "Many people want a scarce item. What usually happens to its price?",
+          "options": [
+            {
+              "label": "It rises",
+              "asset": "img/s10/goods_services.png"
+            },
+            {
+              "label": "It falls",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "High demand and low supply push in the same direction.",
+          "retryFeedback": "Think about what happens when there is plenty instead."
+        },
+        {
+          "prompt": "What does voting actually do in a community?",
+          "options": [
+            {
+              "label": "Chooses who decides, and makes them replaceable",
+              "asset": "img/s10/ballot_box.png"
+            },
+            {
+              "label": "Settles what is true",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Both halves matter — being chosen, and being able to be unchosen.",
+          "retryFeedback": "A vote cannot make a false thing true."
         }
       ]
     },
@@ -48724,7 +51114,13 @@
       "interaction": "single-select",
       "parentNote": null,
       "accessibility": "Prompts read aloud.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/world_map.png",
+          "desc": "Africa"
+        }
+      ],
       "questions": [
         {
           "prompt": "Which is the largest ocean?",
@@ -48761,6 +51157,141 @@
           "answer": 0,
           "correctFeedback": "A haircut is a service, which is helpful work.",
           "retryFeedback": "Can you hold it in your hand? If not, it's a service. Try again!"
+        },
+        {
+          "prompt": "Which is the second-largest continent?",
+          "options": [
+            {
+              "label": "Africa",
+              "asset": "img/s10/world_map.png"
+            },
+            {
+              "label": "Europe",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Asia is first, and the gap between the two is large.",
+          "retryFeedback": "Europe is one of the smallest, despite how maps often draw it."
+        },
+        {
+          "prompt": "What is a map's key for?",
+          "options": [
+            {
+              "label": "It defines what the symbols mean",
+              "asset": "img/s10/world_map.png"
+            },
+            {
+              "label": "It shows how old the map is",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Without it a map is a picture you cannot read.",
+          "retryFeedback": "Every symbol on the map is defined in one place."
+        }
+      ]
+    },
+    {
+      "id": "s10.social.quiz.04",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Social Studies",
+      "type": "quiz",
+      "title": "Maps, Power and Trade",
+      "objective": "Apply coordinates, branches, economics and history together.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Look up your own coordinates together afterwards.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/lat_long.png",
+          "desc": "The other coordinate"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/three_branches.png",
+          "desc": "They could never be found wrong"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/mali_empire.png",
+          "desc": "Nobody survives without it"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/goods_services.png",
+          "desc": "It falls"
+        }
+      ],
+      "questions": [
+        {
+          "prompt": "Someone gave a location with only one number. What is missing?",
+          "options": [
+            {
+              "label": "The other coordinate",
+              "asset": "img/s10/lat_long.png"
+            },
+            {
+              "label": "The name of the country",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "One line is a whole circle round the world. Two numbers fix a point.",
+          "retryFeedback": "Latitude alone could be anywhere along that circle."
+        },
+        {
+          "prompt": "What could go wrong if one person wrote laws and judged them too?",
+          "options": [
+            {
+              "label": "They could never be found wrong",
+              "asset": "img/s10/three_branches.png"
+            },
+            {
+              "label": "Laws would be shorter",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "That is exactly what splitting the power prevents.",
+          "retryFeedback": "Length is not what the design is protecting."
+        },
+        {
+          "prompt": "Why was salt so valuable in the Empire of Mali?",
+          "options": [
+            {
+              "label": "Nobody survives without it",
+              "asset": "img/s10/mali_empire.png"
+            },
+            {
+              "label": "It was rare and pretty",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "It was worth its weight in gold, and traded straight across for it.",
+          "retryFeedback": "Value follows need more often than beauty."
+        },
+        {
+          "prompt": "A shop has far more of something than anyone wants. What happens to the price?",
+          "options": [
+            {
+              "label": "It falls",
+              "asset": "img/s10/goods_services.png"
+            },
+            {
+              "label": "It rises",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Supply and demand work in both directions.",
+          "retryFeedback": "Think what a shop does with things it cannot sell."
         }
       ]
     },
@@ -48770,36 +51301,133 @@
       "ages": "9-10",
       "subject": "Social Studies",
       "type": "story",
-      "title": "The Town Vote",
-      "objective": "See democracy in action through a story.",
+      "title": "The Speech at the Town Meeting",
+      "objective": "How a community argues, decides, and lives with the result.",
       "designTier": "grant-autonomy",
       "reading": true,
       "timed": false,
-      "interaction": "read-and-respond",
-      "parentNote": null,
-      "accessibility": "Narration adjustable; voting interaction is keyboard and screen-reader friendly.",
+      "interaction": "listen",
+      "parentNote": "Ask what the people who lost the vote did next.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
         {
           "type": "audio",
           "ref": "audio/s10/town_vote.mp3",
-          "desc": "Narrator, adjustable speed"
+          "desc": "Community narrator"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/town_meeting.png",
+          "desc": "The town had money for one thing: a library, or a new park."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/speech_draft.png",
+          "desc": "Jamal was twelve, and he had written a speech for the library."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/speech_day.png",
+          "desc": "He gave three reasons and finished by returning to his first sentence."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/ballot_box.png",
+          "desc": "The park won by eleven votes. Jamal had not expected to lose."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/new_park.png",
+          "desc": "He helped plant the first tree, and asked when the library vote came round again."
         }
       ],
       "pages": [
         {
-          "narration": "Greenfield town had one big question: should the empty lot become a park or a parking area? People disagreed.",
-          "illustration": "img/s10/town_meeting.png",
-          "interaction": null
+          "narration": "The town had money for one thing: a library, or a new park.",
+          "illustration": "img/s10/town_meeting.png"
         },
         {
-          "narration": "At the town meeting, everyone listened to both sides. Then citizens voted. One person, one vote. Tap to cast a vote.",
-          "illustration": "img/s10/ballot_box.png",
-          "interaction": "tap-to-vote"
+          "narration": "Jamal was twelve, and he had written a speech for the library.",
+          "illustration": "img/s10/speech_draft.png"
         },
         {
-          "narration": "The park won by a small margin. Some were disappointed, but all agreed the choice was fair. That's how democracy works!",
-          "illustration": "img/s10/new_park.png",
-          "interaction": null
+          "narration": "He gave three reasons and finished by returning to his first sentence.",
+          "illustration": "img/s10/speech_day.png"
+        },
+        {
+          "narration": "Then a farmer spoke for the park, and her reasons were good too.",
+          "illustration": "img/s10/town_meeting.png"
+        },
+        {
+          "narration": "The park won by eleven votes. Jamal had not expected to lose.",
+          "illustration": "img/s10/ballot_box.png"
+        },
+        {
+          "narration": "He helped plant the first tree, and asked when the library vote came round again.",
+          "illustration": "img/s10/new_park.png"
+        }
+      ]
+    },
+    {
+      "id": "s10.social.story.02",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Social Studies",
+      "type": "story",
+      "title": "The Salt Road",
+      "objective": "Trade routes explain where cities grow and why.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "listen",
+      "parentNote": "Find out what your own town was first built to trade.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/mali_empire.png",
+          "desc": "In the south there was gold. In the north, across the desert, there was salt."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/goods_services.png",
+          "desc": "Gold is beautiful. Salt keeps meat from spoiling, and people alive."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/world_map.png",
+          "desc": "So they traded weight for weight, and both sides thought they had won."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/lat_long.png",
+          "desc": "Traders brought books as well as goods. It became a city of libraries."
+        }
+      ],
+      "pages": [
+        {
+          "narration": "In the south there was gold. In the north, across the desert, there was salt.",
+          "illustration": "img/s10/mali_empire.png"
+        },
+        {
+          "narration": "Gold is beautiful. Salt keeps meat from spoiling, and people alive.",
+          "illustration": "img/s10/goods_services.png"
+        },
+        {
+          "narration": "So they traded weight for weight, and both sides thought they had won.",
+          "illustration": "img/s10/world_map.png"
+        },
+        {
+          "narration": "Halfway between them, where the caravans stopped, a city grew: Timbuktu.",
+          "illustration": "img/s10/mali_empire.png"
+        },
+        {
+          "narration": "Traders brought books as well as goods. It became a city of libraries.",
+          "illustration": "img/s10/lat_long.png"
+        },
+        {
+          "narration": "Look at a map of old cities and you are looking at old roads.",
+          "illustration": "img/s10/world_map.png"
         }
       ]
     },
@@ -48842,6 +51470,36 @@
           "action": "drag",
           "feedback": "Intro, body, conclusion. A strong essay.",
           "mechanic": "drag"
+        },
+        {
+          "narration": "An essay tells the reader where it is going, goes there, then says it arrived.",
+          "action": "watch",
+          "feedback": "That repetition is not padding. It is how a reader keeps their place.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Tap the job of the introduction.",
+          "action": "tap",
+          "feedback": "To say the main idea and make the reader want the rest.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Tap what belongs in the body paragraphs and nowhere else.",
+          "action": "tap",
+          "feedback": "The reasons and evidence. The introduction claims; the body proves.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Someone put a brand-new reason in the conclusion. Tap why that is wrong.",
+          "action": "tap",
+          "feedback": "A conclusion gathers what was argued. New evidence needs a body paragraph.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Sketch a three-part plan for an essay before writing a single sentence.",
+          "action": "celebrate",
+          "feedback": "Ten minutes of planning saves an hour of rewriting.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -48918,6 +51576,36 @@
             "One clear idea"
           ],
           "choiceIndex": 1
+        },
+        {
+          "narration": "A topic sentence makes a claim. Everything under it has to earn that claim.",
+          "action": "watch",
+          "feedback": "If a sentence does not support the claim, it belongs in another paragraph.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "'Dogs make great pets. They are loyal. They help us exercise.' Tap the topic sentence.",
+          "action": "tap",
+          "feedback": "The first. The other two are the reasons it is true.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the sentence that does not belong in that paragraph: 'My bike is red.'",
+          "action": "tap",
+          "feedback": "True, but it does nothing for the claim. That is the only test there is.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Tap where a topic sentence usually goes, and why.",
+          "action": "tap",
+          "feedback": "First, so the reader knows what the paragraph is trying to prove.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Write a topic sentence about your town and two details that earn it.",
+          "action": "celebrate",
+          "feedback": "If a detail would fit any town, it is not earning anything.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -48984,6 +51672,36 @@
             "Because"
           ],
           "choiceIndex": 2
+        },
+        {
+          "narration": "A transition tells the reader what kind of sentence is coming next.",
+          "action": "watch",
+          "feedback": "Use the wrong one and the reader braces for a turn that never comes.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "'I wanted to play outside. ___, it was raining.' Tap the word that fits.",
+          "action": "tap",
+          "feedback": "However. The second sentence works against the first, not with it.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the transition that shows order rather than contrast.",
+          "action": "tap",
+          "feedback": "Finally, or first, or next. Order words move you along a list.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Someone used 'because' between two unrelated sentences. Tap the problem.",
+          "action": "tap",
+          "feedback": "It promises a cause. When there is none, the reader stops to hunt for it.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Retell your week in five sentences using exactly three transitions.",
+          "action": "celebrate",
+          "feedback": "Choosing which three is the whole skill.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -49050,6 +51768,36 @@
             "Every word"
           ],
           "choiceIndex": 0
+        },
+        {
+          "narration": "A new speaker gets a new line. That rule alone makes dialogue readable.",
+          "action": "watch",
+          "feedback": "Without it a reader has to count backwards to work out who is talking.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Tap where the comma goes in: \"Let's go\" said Maria.",
+          "action": "tap",
+          "feedback": "Inside the quotes: \"Let's go,\" said Maria. The tag follows outside.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Tap what goes inside the quotation marks and what stays outside.",
+          "action": "tap",
+          "feedback": "The spoken words and their punctuation inside; who said it, outside.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Two people speak in one paragraph. Tap what a reader will do.",
+          "action": "tap",
+          "feedback": "Lose track. A new line for each speaker costs nothing and fixes it.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Write four lines of dialogue between two people, laid out properly.",
+          "action": "celebrate",
+          "feedback": "If a stranger can tell who is speaking, you have it right.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -49110,6 +51858,36 @@
           "action": "tap",
           "feedback": "Persuasive argues an opinion.",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Narrative tells, informative explains, persuasive asks you to do something.",
+          "action": "watch",
+          "feedback": "The third one is the one to read most carefully.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "'Everyone should recycle because it protects our future.' Tap the kind of writing.",
+          "action": "tap",
+          "feedback": "Persuasive. 'Should' is doing the work, and it is asking something of you.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "'Recycling turns old materials into new products.' Tap the kind.",
+          "action": "tap",
+          "feedback": "Informative. It states how something works and asks nothing of you.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the fact: 'Water boils at 100°C at sea level' or 'Science is the best subject'.",
+          "action": "tap",
+          "feedback": "The boiling point. Anyone can check it; nobody can check 'best'.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Find one of each kind of writing in your home today.",
+          "action": "celebrate",
+          "feedback": "A story, a label on a packet, and something asking you to buy.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -49176,6 +51954,36 @@
             "Revise"
           ],
           "choiceIndex": 1
+        },
+        {
+          "narration": "Revising changes what you said. Editing changes how it is written.",
+          "action": "watch",
+          "feedback": "Do them in that order, or you will polish sentences you later delete.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Tap which job comes first: fixing a spelling, or adding a missing reason.",
+          "action": "tap",
+          "feedback": "The reason. There is no point spelling a sentence you are about to cut.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Tap the editing habit that finds the most mistakes.",
+          "action": "tap",
+          "feedback": "Reading aloud. Your ear catches what your eye has already forgiven.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Someone edited every sentence as they wrote and finished nothing. Tap the fix.",
+          "action": "tap",
+          "feedback": "Write it badly first. You cannot revise a page that does not exist.",
+          "mechanic": "tap"
+        },
+        {
+          "narration": "Take something you wrote a week ago and revise it before editing a word.",
+          "action": "celebrate",
+          "feedback": "A week is long enough to read your own work like a stranger.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -49211,7 +52019,18 @@
       "interaction": "tap",
       "parentNote": null,
       "accessibility": "All narration is also shown as captions; playable audio-only.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/essay_structure.png",
+          "desc": "A conclusion gathers what was argued, it does not add to it"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/revise_edit.png",
+          "desc": "Adding the reason"
+        }
+      ],
       "questions": [
         {
           "prompt": "Which sentence is persuasive (tries to convince you)?",
@@ -49244,6 +52063,38 @@
           "answer": 0,
           "correctFeedback": "That's a measurable fact.",
           "retryFeedback": "An opinion is a feeling; a fact can be checked. Try again!"
+        },
+        {
+          "prompt": "Someone put a brand-new reason in their conclusion. What is wrong with that?",
+          "options": [
+            {
+              "label": "A conclusion gathers what was argued, it does not add to it",
+              "asset": "img/s10/essay_structure.png"
+            },
+            {
+              "label": "Conclusions must be short",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "New evidence needs a body paragraph, where it can be explained.",
+          "retryFeedback": "Length is not the issue here."
+        },
+        {
+          "prompt": "Which job comes first: fixing a spelling, or adding a missing reason?",
+          "options": [
+            {
+              "label": "Adding the reason",
+              "asset": "img/s10/revise_edit.png"
+            },
+            {
+              "label": "Fixing the spelling",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Revising changes what you said; editing changes how it is written.",
+          "retryFeedback": "There is no point spelling a sentence you are about to cut."
         }
       ]
     },
@@ -49261,7 +52112,18 @@
       "interaction": "single-select",
       "parentNote": null,
       "accessibility": "Sentences read aloud.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/topic_sentence.png",
+          "desc": "My bike is red."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/dialogue.png",
+          "desc": "Lose track of who is speaking"
+        }
+      ],
       "questions": [
         {
           "prompt": "Which is the topic sentence? 'Recess is the best part of school. We play games. We get fresh air.'",
@@ -49282,6 +52144,54 @@
           "answer": 0,
           "correctFeedback": "It states the main idea. The others are details.",
           "retryFeedback": "The topic sentence states the big idea. Try again!"
+        },
+        {
+          "prompt": "A paragraph is about dogs. Which sentence does not belong?",
+          "options": [
+            {
+              "label": "My bike is red.",
+              "asset": "img/s10/topic_sentence.png"
+            },
+            {
+              "label": "They are loyal companions.",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "True, but it does nothing for the claim. That is the only test.",
+          "retryFeedback": "Ask what each sentence is doing for the topic sentence."
+        },
+        {
+          "prompt": "Where does a topic sentence usually go, and why?",
+          "options": [
+            {
+              "label": "First, so the reader knows what is being proved",
+              "asset": "img/s10/topic_sentence.png"
+            },
+            {
+              "label": "Last, as a surprise",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Details before the claim leave the reader guessing.",
+          "retryFeedback": "A paragraph works best when it says where it is going."
+        },
+        {
+          "prompt": "Two people speak in one paragraph. What will a reader do?",
+          "options": [
+            {
+              "label": "Lose track of who is speaking",
+              "asset": "img/s10/dialogue.png"
+            },
+            {
+              "label": "Read it faster",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "A new line for each speaker costs nothing and fixes it.",
+          "retryFeedback": "That is the whole reason the rule exists."
         }
       ]
     },
@@ -49299,7 +52209,18 @@
       "interaction": "single-select",
       "parentNote": null,
       "accessibility": "Options read aloud.",
-      "assets": [],
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/writing_types.png",
+          "desc": "Everyone should recycle because it protects our future."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/dialogue.png",
+          "desc": "Shows the reader who is talking without saying so"
+        }
+      ],
       "questions": [
         {
           "prompt": "'I wanted to play outside. ___, it was raining.' Which word fits?",
@@ -49336,6 +52257,141 @@
           "answer": 0,
           "correctFeedback": "'Finally' shows the order.",
           "retryFeedback": "Which word tells when something happens? Try again!"
+        },
+        {
+          "prompt": "Which is persuasive writing?",
+          "options": [
+            {
+              "label": "Everyone should recycle because it protects our future.",
+              "asset": "img/s10/writing_types.png"
+            },
+            {
+              "label": "Recycling turns old materials into new products.",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "'Should' is doing the work. It is asking something of you.",
+          "retryFeedback": "The other one explains and asks nothing."
+        },
+        {
+          "prompt": "What does a new line for each speaker do in dialogue?",
+          "options": [
+            {
+              "label": "Shows the reader who is talking without saying so",
+              "asset": "img/s10/dialogue.png"
+            },
+            {
+              "label": "Makes the page look longer",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "That rule alone makes dialogue readable.",
+          "retryFeedback": "Layout carries meaning, not just tidiness."
+        }
+      ]
+    },
+    {
+      "id": "s10.writing.quiz.04",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Writing",
+      "type": "quiz",
+      "title": "Plan It, Say It, Fix It",
+      "objective": "Apply essay shape, transitions, dialogue and revision.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Ask them to plan something in three parts out loud.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/essay_structure.png",
+          "desc": "The reasons and the evidence"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/transitions.png",
+          "desc": "However"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/dialogue.png",
+          "desc": "Inside the quotes, before the closing mark"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/revise_edit.png",
+          "desc": "Write it badly first, then revise"
+        }
+      ],
+      "questions": [
+        {
+          "prompt": "What belongs in the body paragraphs and nowhere else?",
+          "options": [
+            {
+              "label": "The reasons and the evidence",
+              "asset": "img/s10/essay_structure.png"
+            },
+            {
+              "label": "The main idea",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "The introduction claims; the body proves.",
+          "retryFeedback": "The main idea belongs at the start and the end."
+        },
+        {
+          "prompt": "'I wanted to play outside. ___, it was raining.' Which word fits?",
+          "options": [
+            {
+              "label": "However",
+              "asset": "img/s10/transitions.png"
+            },
+            {
+              "label": "Because",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "The second sentence works against the first, not with it.",
+          "retryFeedback": "'Because' would promise a cause that is not there."
+        },
+        {
+          "prompt": "Where does the comma go in: \"Let's go\" said Maria?",
+          "options": [
+            {
+              "label": "Inside the quotes, before the closing mark",
+              "asset": "img/s10/dialogue.png"
+            },
+            {
+              "label": "After the closing mark",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "The spoken words and their punctuation go inside; the tag stays out.",
+          "retryFeedback": "Read it aloud and hear where the pause falls."
+        },
+        {
+          "prompt": "Someone edited every sentence as they wrote and finished nothing. What is the fix?",
+          "options": [
+            {
+              "label": "Write it badly first, then revise",
+              "asset": "img/s10/revise_edit.png"
+            },
+            {
+              "label": "Write more slowly",
+              "asset": null
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "You cannot revise a page that does not exist yet.",
+          "retryFeedback": "Slower writing still gets edited to a halt."
         }
       ]
     },
@@ -49345,36 +52401,143 @@
       "ages": "9-10",
       "subject": "Writing",
       "type": "story",
-      "title": "Jamal's Big Speech",
-      "objective": "Watch the writing process come together.",
+      "title": "The Speech Jamal Wrote",
+      "objective": "An argument is a structure, not a strong feeling.",
       "designTier": "grant-autonomy",
       "reading": true,
       "timed": false,
-      "interaction": "read-and-respond",
-      "parentNote": null,
-      "accessibility": "Narration adjustable; the improve-the-draft step accepts typed or spoken input.",
+      "interaction": "listen",
+      "parentNote": "Ask what changed between his first draft and his last.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
       "assets": [
         {
           "type": "audio",
           "ref": "audio/s10/jamal_speech.mp3",
-          "desc": "Narrator, adjustable speed"
+          "desc": "Encouraging narrator"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/speech_draft.png",
+          "desc": "Jamal's first draft was three pages of how much he loved the library."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/essay_structure.png",
+          "desc": "His sister read it and asked one question: why should anyone else care?"
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/topic_sentence.png",
+          "desc": "So he cut it to one claim, three reasons and a closing line."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/writing_types.png",
+          "desc": "Each reason was something a listener could check, not something he felt."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/revise_edit.png",
+          "desc": "He read it aloud four times and cut a sentence each time."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/speech_day.png",
+          "desc": "It ran ninety seconds, and the whole hall listened to all of it."
         }
       ],
       "pages": [
         {
-          "narration": "Jamal was chosen to give a speech about why the school needs a garden. He stared at a blank page, unsure how to start.",
-          "illustration": "img/s10/blank_page.png",
-          "interaction": null
+          "narration": "Jamal's first draft was three pages of how much he loved the library.",
+          "illustration": "img/s10/speech_draft.png"
         },
         {
-          "narration": "He made a plan: an introduction, three reasons, and a strong ending. Then he wrote a messy first draft. Tap to help him add a transition word.",
-          "illustration": "img/s10/speech_draft.png",
-          "interaction": "tap-to-improve"
+          "narration": "His sister read it and asked one question: why should anyone else care?",
+          "illustration": "img/s10/essay_structure.png"
         },
         {
-          "narration": "Jamal revised, edited, and practiced aloud. On the big day, his clear, organized speech won applause, and a new school garden!",
-          "illustration": "img/s10/speech_day.png",
-          "interaction": null
+          "narration": "So he cut it to one claim, three reasons and a closing line.",
+          "illustration": "img/s10/topic_sentence.png"
+        },
+        {
+          "narration": "Each reason was something a listener could check, not something he felt.",
+          "illustration": "img/s10/writing_types.png"
+        },
+        {
+          "narration": "He read it aloud four times and cut a sentence each time.",
+          "illustration": "img/s10/revise_edit.png"
+        },
+        {
+          "narration": "It ran ninety seconds, and the whole hall listened to all of it.",
+          "illustration": "img/s10/speech_day.png"
+        }
+      ]
+    },
+    {
+      "id": "s10.writing.story.02",
+      "stage": 10,
+      "ages": "9-10",
+      "subject": "Writing",
+      "type": "story",
+      "title": "The Blank Page",
+      "objective": "A bad first draft is the only way to reach a good last one.",
+      "designTier": "grant-autonomy",
+      "reading": true,
+      "timed": false,
+      "interaction": "listen",
+      "parentNote": "Try the ten-minute rule together: write badly, no stopping.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s10/blank_page.png",
+          "desc": "Priya had to write a story by Friday, and it was already Wednesday."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/revise_edit.png",
+          "desc": "She wrote a sentence, read it, decided it was bad, and deleted it."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/essay_structure.png",
+          "desc": "Her teacher's rule: write badly for ten minutes and do not stop, ever."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/topic_sentence.png",
+          "desc": "The ten minutes gave her four terrible paragraphs and one good idea."
+        },
+        {
+          "type": "image",
+          "ref": "img/s10/writing_types.png",
+          "desc": "She revised the good idea for an hour. You cannot revise a blank page."
+        }
+      ],
+      "pages": [
+        {
+          "narration": "Priya had to write a story by Friday, and it was already Wednesday.",
+          "illustration": "img/s10/blank_page.png"
+        },
+        {
+          "narration": "She wrote a sentence, read it, decided it was bad, and deleted it.",
+          "illustration": "img/s10/revise_edit.png"
+        },
+        {
+          "narration": "She did that eleven times. The page was still blank at bedtime.",
+          "illustration": "img/s10/blank_page.png"
+        },
+        {
+          "narration": "Her teacher's rule: write badly for ten minutes and do not stop, ever.",
+          "illustration": "img/s10/essay_structure.png"
+        },
+        {
+          "narration": "The ten minutes gave her four terrible paragraphs and one good idea.",
+          "illustration": "img/s10/topic_sentence.png"
+        },
+        {
+          "narration": "She revised the good idea for an hour. You cannot revise a blank page.",
+          "illustration": "img/s10/writing_types.png"
         }
       ]
     }
