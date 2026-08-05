@@ -42,13 +42,20 @@ def Q(prompt, opts, answer, correct, retry):
             "correctFeedback": correct, "retryFeedback": retry}
 
 
-def build_quiz(spec, *, stage, ages, tier):
-    """A quiz spec becomes the English library item plus keys for all locales."""
+def build_quiz(spec, *, stage, ages, tier, reading=False):
+    """A quiz spec becomes the English library item plus keys for all locales.
+
+    [reading] defaults False because stages 1-4 are pre-readers, but it must
+    follow the stage: these builders *replace* an item when the id already
+    exists, so a hardcoded False silently flips every rewritten stage-6 quiz
+    from true, and `lesson_recap` reads that flag to decide whether a child can
+    be shown a written recap at all.
+    """
     qid = spec["id"]
     item = {
         "id": qid, "stage": stage, "ages": ages, "subject": spec["subject"],
         "type": "quiz", "title": spec["title"][0], "objective": spec["objective"][0],
-        "designTier": tier, "reading": False, "timed": False,
+        "designTier": tier, "reading": reading, "timed": False,
         "interaction": spec.get("interaction", "tap"),
         "parentNote": spec["parentNote"][0],
         "accessibility": ACCESSIBILITY,
@@ -65,7 +72,10 @@ def build_quiz(spec, *, stage, ages, tier):
             opts.append({"label": label[0], "asset": asset})
             for n, lang in enumerate(LANGS):
                 keys[lang][f"{qid}.questions.{qn}.options.{om}.label"] = label[n]
-            if asset not in seen:
+            # `asset` is None for a word-only option, which is most of them once
+            # a quiz has four questions. Declaring {"ref": null} would put an
+            # image asset with no image in the manifest the art pipeline reads.
+            if asset is not None and asset not in seen:
                 seen.add(asset)
                 item["assets"].append({"type": "image", "ref": asset, "desc": label[0]})
         item["questions"].append({
@@ -80,12 +90,13 @@ def build_quiz(spec, *, stage, ages, tier):
     return item, keys
 
 
-def build_story(spec, *, stage, ages, tier):
+def build_story(spec, *, stage, ages, tier, reading=False):
+    """See [build_quiz] on why [reading] is a parameter and not a constant."""
     sid = spec["id"]
     item = {
         "id": sid, "stage": stage, "ages": ages, "subject": spec["subject"],
         "type": "story", "title": spec["title"][0], "objective": spec["objective"][0],
-        "designTier": tier, "reading": False, "timed": False,
+        "designTier": tier, "reading": reading, "timed": False,
         "interaction": "listen", "parentNote": spec["parentNote"][0],
         "accessibility": ACCESSIBILITY,
         "assets": [], "pages": [],
@@ -94,9 +105,15 @@ def build_story(spec, *, stage, ages, tier):
     for n, lang in enumerate(LANGS):
         keys[lang][f"{sid}.title"] = spec["title"][n]
         keys[lang][f"{sid}.parentNote"] = spec["parentNote"][n]
+    # Deduped like build_quiz's option art: a six-page story that returns to the
+    # same scene twice would otherwise declare the same ref twice, and
+    # worklist.js counts declared refs.
+    seen = set()
     for pn, (narr, ill) in enumerate(spec["pages"]):
         item["pages"].append({"narration": narr[0], "illustration": ill})
-        item["assets"].append({"type": "image", "ref": ill, "desc": narr[0]})
+        if ill is not None and ill not in seen:
+            seen.add(ill)
+            item["assets"].append({"type": "image", "ref": ill, "desc": narr[0]})
         for n, lang in enumerate(LANGS):
             keys[lang][f"{sid}.pages.{pn}.narration"] = narr[n]
     return item, keys
@@ -112,6 +129,9 @@ def apply_stage(
     new_quizzes,
     new_stories,
     min_steps,
+    reading=False,
+    min_questions=None,
+    min_pages=None,
     check_only=False,
 ):
     """Deepen a stage's lessons and add its missing quizzes and stories."""
@@ -136,12 +156,22 @@ def apply_stage(
             continue
         base = item["steps"][:n_base]
         steps = list(base)
-        for action, mechanic, narr, fb in extras:
-            steps.append({
+        for extra in extras:
+            action, mechanic, narr, fb = extra[:4]
+            step = {
                 "narration": narr[0], "action": action, "feedback": fb[0],
                 "mechanic": mechanic,
-            })
-        for offset, (_a, _m, narr, fb) in enumerate(extras):
+            }
+            # Optional 5th element: the numeric answer, authored rather than
+            # inferred. `planStep` otherwise falls back to digging a number out
+            # of the English feedback, which is the same trap baking mechanics
+            # fixed — a translated line loses the numeral and the child is left
+            # typing into a box with no right answer.
+            if len(extra) > 4 and extra[4] is not None:
+                step["answer"] = extra[4]
+            steps.append(step)
+        for offset, extra in enumerate(extras):
+            narr, fb = extra[2], extra[3]
             n = len(base) + offset
             for i, lang in enumerate(LANGS):
                 overlay[lang][f"{lid}.steps.{n}.narration"] = narr[i]
@@ -150,7 +180,8 @@ def apply_stage(
             item["steps"] = steps
 
     for spec in new_quizzes:
-        built, keys = build_quiz(spec, stage=stage, ages=ages, tier=tier)
+        built, keys = build_quiz(spec, stage=stage, ages=ages, tier=tier,
+                                 reading=reading)
         for lang in LANGS:
             overlay[lang].update(keys[lang])
         if not check_only:
@@ -159,7 +190,8 @@ def apply_stage(
             else:
                 lib["content"].append(built)
     for spec in new_stories:
-        built, keys = build_story(spec, stage=stage, ages=ages, tier=tier)
+        built, keys = build_story(spec, stage=stage, ages=ages, tier=tier,
+                                  reading=reading)
         for lang in LANGS:
             overlay[lang].update(keys[lang])
         if not check_only:
@@ -178,6 +210,23 @@ def apply_stage(
             it = next((c for c in cur["content"] if c["id"] == lid), None)
             if it and len(it["steps"]) < min_steps:
                 problems.append(f"{lid} is {len(it['steps'])} steps, needs {min_steps}")
+        # Depth, not just presence. Checking only that a quiz exists is exactly
+        # the gap that let five stages pass as done with one question each.
+        by_cur = {c["id"]: c for c in cur["content"]}
+        if min_questions:
+            for spec in new_quizzes:
+                it = by_cur.get(spec["id"])
+                if it and len(it.get("questions", [])) < min_questions:
+                    problems.append(
+                        f"{spec['id']} is {len(it['questions'])} questions, "
+                        f"needs {min_questions}")
+        if min_pages:
+            for spec in new_stories:
+                it = by_cur.get(spec["id"])
+                if it and len(it.get("pages", [])) < min_pages:
+                    problems.append(
+                        f"{spec['id']} is {len(it['pages'])} pages, "
+                        f"needs {min_pages}")
         for p in problems:
             print("  x " + p)
         print(f"stage {stage} check:", "FAILED" if problems else "OK")

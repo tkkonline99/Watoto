@@ -9,17 +9,24 @@ _Library version 0.13.0, generated 2026-06-17._
 
 | Gap | Count |
 |---|---|
-| Quizzes to author | 29 |
-| Stories to author | 29 |
-| Lessons below their tier's step depth | 164 |
+| Quizzes to author | 24 |
+| Stories to author | 24 |
+| Lessons below their tier's step depth | 134 |
+| Quizzes below their tier's question count | 157 |
+| Stories below their tier's page count | 80 |
 | Lessons with no recap | 138 |
-| Items with no illustration | 109 |
+| Items with no illustration | 116 |
 | Unreferenced PNGs on disk | 0 |
 | Steps with no declared mechanic | 0 |
-| Declared audio files that do not exist | 87 |
+| Declared audio files that do not exist | 83 |
 
-Depth minimums are per design tier — `parent-led` 4, `encourage-effort` 6, `gamify-gently` and
-`grant-autonomy` 8. A stage-7 teaching arc is the wrong shape for a one-year-old.
+Depth minimums are per design tier, for all three item types. Steps per lesson: `parent-led` 4,
+`encourage-effort` 6, `gamify-gently` and `grant-autonomy` 8. Questions per quiz: 2 / 3 / 4 / 4.
+Pages per story: 4 / 5 / 6 / 6. A stage-7 teaching arc is the wrong shape for a one-year-old.
+
+"To author" counts items that do not exist; "below depth" counts shipped items too thin to do
+their job. A stage can be complete on the first and still be unplayable on the second — that is
+how stages 1-5 were called done with one-question quizzes and three-page stories throughout.
 
 Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, then 7-10.
 
@@ -28,163 +35,204 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 
 ### Stage 1 — Sensory Exploration (ages 0-1)
 
+- **Deepen 2 quizzes:** `s01.sensory.quiz.01` (1→2 questions), `s01.sensory.quiz.02` (1→2 questions)
+- **Deepen 2 stories:** `s01.sensory.story.01` (3→4 pages), `s01.sensory.story.02` (3→4 pages)
 - **Add 6 recaps:** `s01.sensory.lesson.01`, `s01.sensory.lesson.02`, `s01.sensory.lesson.03`, `s01.sensory.lesson.04`, `s01.sensory.lesson.05`, `s01.sensory.lesson.06`
 
 ### Stage 1 — Cause & Effect (ages 0-1)
 
+- **Deepen 2 quizzes:** `s01.cause.quiz.01` (1→2 questions), `s01.cause.quiz.02` (1→2 questions)
+- **Deepen 2 stories:** `s01.cause.story.01` (3→4 pages), `s01.cause.story.02` (3→4 pages)
 - **Add 6 recaps:** `s01.cause.lesson.01`, `s01.cause.lesson.02`, `s01.cause.lesson.03`, `s01.cause.lesson.04`, `s01.cause.lesson.05`, `s01.cause.lesson.06`
 
 ### Stage 1 — Object Permanence (ages 0-1)
 
+- **Deepen 2 quizzes:** `s01.object.quiz.01` (1→2 questions), `s01.object.quiz.02` (1→2 questions)
+- **Deepen 2 stories:** `s01.object.story.01` (3→4 pages), `s01.object.story.02` (3→4 pages)
 - **Add 6 recaps:** `s01.object.lesson.01`, `s01.object.lesson.02`, `s01.object.lesson.03`, `s01.object.lesson.04`, `s01.object.lesson.05`, `s01.object.lesson.06`
 
 ### Stage 1 — Early Language (ages 0-1)
 
+- **Deepen 2 quizzes:** `s01.lang.quiz.01` (1→2 questions), `s01.lang.quiz.02` (1→2 questions)
+- **Deepen 2 stories:** `s01.lang.story.01` (3→4 pages), `s01.lang.story.02` (3→4 pages)
 - **Add 6 recaps:** `s01.lang.lesson.01`, `s01.lang.lesson.02`, `s01.lang.lesson.03`, `s01.lang.lesson.04`, `s01.lang.lesson.05`, `s01.lang.lesson.06`
 - **1 items have no illustration** (emoji fallback): `s01.lang.lesson.06`
 
 ### Stage 1 — Motor Imitation (ages 0-1)
 
+- **Deepen 2 quizzes:** `s01.motor.quiz.01` (1→2 questions), `s01.motor.quiz.02` (1→2 questions)
+- **Deepen 2 stories:** `s01.motor.story.01` (3→4 pages), `s01.motor.story.02` (3→4 pages)
 - **Add 6 recaps:** `s01.motor.lesson.01`, `s01.motor.lesson.02`, `s01.motor.lesson.03`, `s01.motor.lesson.04`, `s01.motor.lesson.05`, `s01.motor.lesson.06`
 
 ### Stage 2 — Animals (ages 1-2)
 
+- **Deepen 2 quizzes:** `s02.animals.quiz.02` (1→2 questions), `s02.animals.quiz.03` (1→2 questions)
+- **Deepen 2 stories:** `s02.animals.story.01` (3→4 pages), `s02.animals.story.02` (3→4 pages)
 - **Add 6 recaps:** `s02.animals.lesson.01`, `s02.animals.lesson.02`, `s02.animals.lesson.03`, `s02.animals.lesson.04`, `s02.animals.lesson.05`, `s02.animals.lesson.06`
 
 ### Stage 2 — Body Parts (ages 1-2)
 
+- **Deepen 3 quizzes:** `s02.body.quiz.01` (1→2 questions), `s02.body.quiz.02` (1→2 questions), `s02.body.quiz.03` (1→2 questions)
+- **Deepen 2 stories:** `s02.body.story.01` (3→4 pages), `s02.body.story.02` (3→4 pages)
 - **Add 6 recaps:** `s02.body.lesson.01`, `s02.body.lesson.02`, `s02.body.lesson.03`, `s02.body.lesson.04`, `s02.body.lesson.05`, `s02.body.lesson.06`
 - **1 items have no illustration** (emoji fallback): `s02.body.lesson.02`
 
 ### Stage 2 — Colors & Shapes (ages 1-2)
 
+- **Deepen 2 quizzes:** `s02.colors.quiz.02` (1→2 questions), `s02.colors.quiz.03` (1→2 questions)
+- **Deepen 2 stories:** `s02.colors.story.01` (3→4 pages), `s02.colors.story.02` (3→4 pages)
 - **Add 6 recaps:** `s02.colors.lesson.01`, `s02.colors.lesson.02`, `s02.colors.lesson.03`, `s02.colors.lesson.04`, `s02.colors.lesson.05`, `s02.colors.lesson.06`
 
 ### Stage 2 — Simple Sorting (ages 1-2)
 
+- **Deepen 3 quizzes:** `s02.sorting.quiz.01` (1→2 questions), `s02.sorting.quiz.02` (1→2 questions), `s02.sorting.quiz.03` (1→2 questions)
+- **Deepen 2 stories:** `s02.sorting.story.01` (3→4 pages), `s02.sorting.story.02` (3→4 pages)
 - **Add 6 recaps:** `s02.sorting.lesson.01`, `s02.sorting.lesson.02`, `s02.sorting.lesson.03`, `s02.sorting.lesson.04`, `s02.sorting.lesson.05`, `s02.sorting.lesson.06`
 
 ### Stage 2 — First Numbers (ages 1-2)
 
+- **Deepen 3 quizzes:** `s02.numbers.quiz.01` (1→2 questions), `s02.numbers.quiz.02` (1→2 questions), `s02.numbers.quiz.03` (1→2 questions)
+- **Deepen 2 stories:** `s02.numbers.story.01` (3→4 pages), `s02.numbers.story.02` (3→4 pages)
 - **Add 6 recaps:** `s02.numbers.lesson.01`, `s02.numbers.lesson.02`, `s02.numbers.lesson.03`, `s02.numbers.lesson.04`, `s02.numbers.lesson.05`, `s02.numbers.lesson.06`
 - **2 items have no illustration** (emoji fallback): `s02.numbers.quiz.01`, `s02.numbers.quiz.02`
 
 ### Stage 2 — Music & Routines (ages 1-2)
 
+- **Deepen 3 quizzes:** `s02.music.quiz.01` (1→2 questions), `s02.music.quiz.02` (1→2 questions), `s02.music.quiz.03` (1→2 questions)
+- **Deepen 2 stories:** `s02.music.story.01` (3→4 pages), `s02.music.story.02` (3→4 pages)
 - **Add 6 recaps:** `s02.music.lesson.01`, `s02.music.lesson.02`, `s02.music.lesson.03`, `s02.music.lesson.04`, `s02.music.lesson.05`, `s02.music.lesson.06`
 - **1 items have no illustration** (emoji fallback): `s02.music.lesson.04`
 
 ### Stage 3 — Vocabulary (ages 2-3)
 
+- **Deepen 3 quizzes:** `s03.vocab.quiz.01` (1→2 questions), `s03.vocab.quiz.02` (1→2 questions), `s03.vocab.quiz.03` (1→2 questions)
+- **Deepen 2 stories:** `s03.vocab.story.01` (3→4 pages), `s03.vocab.story.02` (3→4 pages)
 - **Add 6 recaps:** `s03.vocab.lesson.01`, `s03.vocab.lesson.02`, `s03.vocab.lesson.03`, `s03.vocab.lesson.04`, `s03.vocab.lesson.05`, `s03.vocab.lesson.06`
 
 ### Stage 3 — Phonological Awareness (ages 2-3)
 
+- **Deepen 2 quizzes:** `s03.phono.quiz.02` (1→2 questions), `s03.phono.quiz.03` (1→2 questions)
+- **Deepen 2 stories:** `s03.phono.story.01` (3→4 pages), `s03.phono.story.02` (3→4 pages)
 - **Add 6 recaps:** `s03.phono.lesson.01`, `s03.phono.lesson.02`, `s03.phono.lesson.03`, `s03.phono.lesson.04`, `s03.phono.lesson.05`, `s03.phono.lesson.06`
 - **1 items have no illustration** (emoji fallback): `s03.phono.lesson.02`
 
 ### Stage 3 — Counting & Numbers (ages 2-3)
 
+- **Deepen 3 quizzes:** `s03.counting.quiz.01` (1→2 questions), `s03.counting.quiz.02` (1→2 questions), `s03.counting.quiz.03` (1→2 questions)
+- **Deepen 2 stories:** `s03.counting.story.01` (3→4 pages), `s03.counting.story.02` (3→4 pages)
 - **Add 6 recaps:** `s03.counting.lesson.01`, `s03.counting.lesson.02`, `s03.counting.lesson.03`, `s03.counting.lesson.04`, `s03.counting.lesson.05`, `s03.counting.lesson.06`
 - **3 items have no illustration** (emoji fallback): `s03.counting.quiz.01`, `s03.counting.quiz.02`, `s03.counting.quiz.03`
 
 ### Stage 3 — Patterns & Opposites (ages 2-3)
 
+- **Deepen 2 quizzes:** `s03.patterns.quiz.02` (1→2 questions), `s03.patterns.quiz.03` (1→2 questions)
+- **Deepen 2 stories:** `s03.patterns.story.01` (3→4 pages), `s03.patterns.story.02` (3→4 pages)
 - **Add 6 recaps:** `s03.patterns.lesson.01`, `s03.patterns.lesson.02`, `s03.patterns.lesson.03`, `s03.patterns.lesson.04`, `s03.patterns.lesson.05`, `s03.patterns.lesson.06`
 
 ### Stage 3 — Emotions (ages 2-3)
 
+- **Deepen 2 quizzes:** `s03.emotions.quiz.02` (1→2 questions), `s03.emotions.quiz.03` (1→2 questions)
+- **Deepen 2 stories:** `s03.emotions.story.01` (3→4 pages), `s03.emotions.story.02` (3→4 pages)
 - **Add 6 recaps:** `s03.emotions.lesson.01`, `s03.emotions.lesson.02`, `s03.emotions.lesson.03`, `s03.emotions.lesson.04`, `s03.emotions.lesson.05`, `s03.emotions.lesson.06`
 
 ### Stage 3 — Tracing & Stories (ages 2-3)
 
+- **Deepen 3 quizzes:** `s03.tracing.quiz.01` (1→2 questions), `s03.tracing.quiz.02` (1→2 questions), `s03.tracing.quiz.03` (1→2 questions)
+- **Deepen 2 stories:** `s03.stories.story.01` (3→4 pages), `s03.tracing.story.02` (3→4 pages)
 - **Add 6 recaps:** `s03.tracing.lesson.01`, `s03.tracing.lesson.02`, `s03.tracing.lesson.03`, `s03.tracing.lesson.04`, `s03.tracing.lesson.05`, `s03.tracing.lesson.06`
 
 ## P2 — pre-literacy → kindergarten (stages 4-6)
 
 ### Stage 4 — Language & Literacy (ages 3-4)
 
+- **Deepen 4 quizzes:** `s04.literacy.quiz.01` (2→3 questions), `s04.literacy.quiz.02` (1→3 questions), `s04.literacy.quiz.03` (1→3 questions), `s04.literacy.quiz.04` (2→3 questions)
+- **Deepen 2 stories:** `s04.literacy.story.01` (3→5 pages), `s04.literacy.story.02` (3→5 pages)
 - **Add 6 recaps:** `s04.literacy.lesson.01`, `s04.literacy.lesson.02`, `s04.literacy.lesson.03`, `s04.literacy.lesson.04`, `s04.literacy.lesson.05`, `s04.literacy.lesson.06`
 - **4 items have no illustration** (emoji fallback): `s04.literacy.lesson.03`, `s04.literacy.lesson.06`, `s04.literacy.quiz.01`, `s04.literacy.quiz.02`
 
 ### Stage 4 — Math & Logic (ages 3-4)
 
+- **Deepen 4 quizzes:** `s04.math.quiz.01` (1→3 questions), `s04.math.quiz.02` (1→3 questions), `s04.math.quiz.03` (1→3 questions), `s04.math.quiz.04` (2→3 questions)
+- **Deepen 2 stories:** `s04.math.story.01` (3→5 pages), `s04.math.story.02` (3→5 pages)
 - **Add 6 recaps:** `s04.math.lesson.01`, `s04.math.lesson.02`, `s04.math.lesson.03`, `s04.math.lesson.04`, `s04.math.lesson.05`, `s04.math.lesson.06`
 - **1 items have no illustration** (emoji fallback): `s04.math.quiz.02`
 
 ### Stage 4 — Science & Nature (ages 3-4)
 
+- **Deepen 4 quizzes:** `s04.science.quiz.01` (2→3 questions), `s04.science.quiz.02` (1→3 questions), `s04.science.quiz.03` (1→3 questions), `s04.science.quiz.04` (2→3 questions)
+- **Deepen 2 stories:** `s04.science.story.01` (3→5 pages), `s04.science.story.02` (3→5 pages)
 - **Add 6 recaps:** `s04.science.lesson.01`, `s04.science.lesson.02`, `s04.science.lesson.03`, `s04.science.lesson.04`, `s04.science.lesson.05`, `s04.science.lesson.06`
 
 ### Stage 4 — Social Studies (ages 3-4)
 
+- **Deepen 4 quizzes:** `s04.social.quiz.01` (1→3 questions), `s04.social.quiz.02` (1→3 questions), `s04.social.quiz.03` (1→3 questions), `s04.social.quiz.04` (2→3 questions)
+- **Deepen 2 stories:** `s04.social.story.01` (3→5 pages), `s04.social.story.02` (3→5 pages)
 - **Add 6 recaps:** `s04.social.lesson.01`, `s04.social.lesson.02`, `s04.social.lesson.03`, `s04.social.lesson.04`, `s04.social.lesson.05`, `s04.social.lesson.06`
 - **1 items have no illustration** (emoji fallback): `s04.social.quiz.03`
 
 ### Stage 4 — Creative Arts (ages 3-4)
 
+- **Deepen 4 quizzes:** `s04.arts.quiz.01` (1→3 questions), `s04.arts.quiz.02` (1→3 questions), `s04.arts.quiz.03` (1→3 questions), `s04.arts.quiz.04` (2→3 questions)
+- **Deepen 2 stories:** `s04.arts.story.01` (3→5 pages), `s04.arts.story.02` (3→5 pages)
 - **Add 6 recaps:** `s04.arts.lesson.01`, `s04.arts.lesson.02`, `s04.arts.lesson.03`, `s04.arts.lesson.04`, `s04.arts.lesson.05`, `s04.arts.lesson.06`
 - **1 items have no illustration** (emoji fallback): `s04.arts.lesson.05`
 
 ### Stage 4 — Social-Emotional (ages 3-4)
 
+- **Deepen 4 quizzes:** `s04.semotional.quiz.01` (1→3 questions), `s04.semotional.quiz.02` (1→3 questions), `s04.semotional.quiz.03` (1→3 questions), `s04.semotional.quiz.04` (2→3 questions)
+- **Deepen 2 stories:** `s04.semotional.story.01` (3→5 pages), `s04.semotional.story.02` (3→5 pages)
 - **Add 6 recaps:** `s04.semotional.lesson.01`, `s04.semotional.lesson.02`, `s04.semotional.lesson.03`, `s04.semotional.lesson.04`, `s04.semotional.lesson.05`, `s04.semotional.lesson.06`
 - **3 items have no illustration** (emoji fallback): `s04.semotional.quiz.01`, `s04.semotional.quiz.02`, `s04.semotional.quiz.03`
 
 ### Stage 5 — Reading & Writing (ages 4-5)
 
+- **Deepen 4 quizzes:** `s05.reading.quiz.01` (2→3 questions), `s05.reading.quiz.02` (1→3 questions), `s05.reading.quiz.03` (1→3 questions), `s05.reading.quiz.04` (2→3 questions)
+- **Deepen 2 stories:** `s05.reading.story.01` (3→5 pages), `s05.reading.story.02` (3→5 pages)
 - **3 items have no illustration** (emoji fallback): `s05.reading.quiz.01`, `s05.reading.quiz.02`, `s05.reading.quiz.03`
 
 ### Stage 5 — Math (ages 4-5)
 
+- **Deepen 4 quizzes:** `s05.math.quiz.01` (1→3 questions), `s05.math.quiz.02` (1→3 questions), `s05.math.quiz.03` (1→3 questions), `s05.math.quiz.04` (2→3 questions)
+- **Deepen 2 stories:** `s05.math.story.01` (3→5 pages), `s05.math.story.02` (3→5 pages)
 - **3 items have no illustration** (emoji fallback): `s05.math.quiz.01`, `s05.math.quiz.02`, `s05.math.quiz.03`
 
 ### Stage 5 — Science (ages 4-5)
 
+- **Deepen 4 quizzes:** `s05.science.quiz.01` (2→3 questions), `s05.science.quiz.02` (1→3 questions), `s05.science.quiz.03` (1→3 questions), `s05.science.quiz.04` (2→3 questions)
+- **Deepen 2 stories:** `s05.science.story.01` (3→5 pages), `s05.science.story.02` (3→5 pages)
 - **2 items have no illustration** (emoji fallback): `s05.science.quiz.01`, `s05.science.quiz.03`
 
 ### Stage 5 — Social Studies (ages 4-5)
 
+- **Deepen 4 quizzes:** `s05.social.quiz.01` (1→3 questions), `s05.social.quiz.02` (1→3 questions), `s05.social.quiz.03` (1→3 questions), `s05.social.quiz.04` (2→3 questions)
+- **Deepen 2 stories:** `s05.social.story.01` (3→5 pages), `s05.social.story.02` (3→5 pages)
 - **3 items have no illustration** (emoji fallback): `s05.social.quiz.01`, `s05.social.quiz.02`, `s05.social.quiz.03`
 
 ### Stage 5 — Creativity & Coding (ages 4-5)
 
+- **Deepen 4 quizzes:** `s05.coding.quiz.01` (1→3 questions), `s05.coding.quiz.02` (1→3 questions), `s05.coding.quiz.03` (1→3 questions), `s05.coding.quiz.04` (2→3 questions)
+- **Deepen 2 stories:** `s05.coding.story.01` (3→5 pages), `s05.coding.story.02` (3→5 pages)
 - **3 items have no illustration** (emoji fallback): `s05.coding.quiz.01`, `s05.coding.quiz.02`, `s05.coding.quiz.03`
 
 ### Stage 6 — Reading & Writing (ages 5-6)
 
-- **Author 1 quiz:** `s06.reading.quiz.04`
-- **Author 1 story:** `s06.reading.story.02`
-- **Deepen 6 lessons:** `s06.reading.lesson.01` (2→8), `s06.reading.lesson.02` (2→8), `s06.reading.lesson.03` (2→8), `s06.reading.lesson.04` (2→8), `s06.reading.lesson.05` (2→8), `s06.reading.lesson.06` (2→8)
-- **2 items have no illustration** (emoji fallback): `s06.reading.quiz.01`, `s06.reading.quiz.03`
+- **3 items have no illustration** (emoji fallback): `s06.reading.quiz.01`, `s06.reading.quiz.03`, `s06.reading.quiz.04`
 
 ### Stage 6 — Math (ages 5-6)
 
-- **Author 1 quiz:** `s06.math.quiz.04`
-- **Author 1 story:** `s06.math.story.02`
-- **Deepen 6 lessons:** `s06.math.lesson.01` (2→8), `s06.math.lesson.02` (2→8), `s06.math.lesson.03` (2→8), `s06.math.lesson.04` (2→8), `s06.math.lesson.05` (2→8), `s06.math.lesson.06` (2→8)
-- **2 items have no illustration** (emoji fallback): `s06.math.quiz.02`, `s06.math.quiz.03`
+- **4 items have no illustration** (emoji fallback): `s06.math.quiz.02`, `s06.math.quiz.03`, `s06.math.quiz.04`, `s06.math.story.02`
 
 ### Stage 6 — Science (ages 5-6)
 
-- **Author 1 quiz:** `s06.science.quiz.04`
-- **Author 1 story:** `s06.science.story.02`
-- **Deepen 6 lessons:** `s06.science.lesson.01` (3→8), `s06.science.lesson.02` (2→8), `s06.science.lesson.03` (2→8), `s06.science.lesson.04` (2→8), `s06.science.lesson.05` (2→8), `s06.science.lesson.06` (2→8)
-- **1 items have no illustration** (emoji fallback): `s06.science.quiz.01`
+- **3 items have no illustration** (emoji fallback): `s06.science.quiz.01`, `s06.science.quiz.04`, `s06.science.story.02`
 
 ### Stage 6 — Social Studies (ages 5-6)
 
-- **Author 1 quiz:** `s06.social.quiz.04`
-- **Author 1 story:** `s06.social.story.02`
-- **Deepen 6 lessons:** `s06.social.lesson.01` (2→8), `s06.social.lesson.02` (2→8), `s06.social.lesson.03` (2→8), `s06.social.lesson.04` (2→8), `s06.social.lesson.05` (2→8), `s06.social.lesson.06` (2→8)
-- **1 items have no illustration** (emoji fallback): `s06.social.quiz.02`
+- **2 items have no illustration** (emoji fallback): `s06.social.quiz.02`, `s06.social.quiz.04`
 
 ### Stage 6 — Technology & Logic (ages 5-6)
 
-- **Author 1 quiz:** `s06.tech.quiz.04`
-- **Author 1 story:** `s06.tech.story.02`
-- **Deepen 6 lessons:** `s06.tech.lesson.01` (2→8), `s06.tech.lesson.02` (2→8), `s06.tech.lesson.03` (2→8), `s06.tech.lesson.04` (2→8), `s06.tech.lesson.05` (2→8), `s06.tech.lesson.06` (2→8)
-- **2 items have no illustration** (emoji fallback): `s06.tech.quiz.02`, `s06.tech.quiz.03`
+- **3 items have no illustration** (emoji fallback): `s06.tech.quiz.02`, `s06.tech.quiz.03`, `s06.tech.quiz.04`
 
 ## P3 — grades 1-4 (stages 7-10)
 
@@ -193,6 +241,8 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 - **Author 1 quiz:** `s07.reading.quiz.04`
 - **Author 1 story:** `s07.reading.story.02`
 - **Deepen 3 lessons:** `s07.reading.lesson.02` (2→8), `s07.reading.lesson.04` (2→8), `s07.reading.lesson.05` (2→8)
+- **Deepen 3 quizzes:** `s07.reading.quiz.01` (1→4 questions), `s07.reading.quiz.02` (1→4 questions), `s07.reading.quiz.03` (1→4 questions)
+- **Deepen 1 stories:** `s07.reading.story.01` (3→6 pages)
 - **3 items have no illustration** (emoji fallback): `s07.reading.quiz.01`, `s07.reading.quiz.02`, `s07.reading.quiz.03`
 
 ### Stage 7 — Writing & Grammar (ages 6-7)
@@ -200,6 +250,8 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 - **Author 1 quiz:** `s07.writing.quiz.04`
 - **Author 1 story:** `s07.writing.story.02`
 - **Deepen 5 lessons:** `s07.writing.lesson.01` (3→8), `s07.writing.lesson.02` (2→8), `s07.writing.lesson.04` (2→8), `s07.writing.lesson.05` (2→8), `s07.writing.lesson.06` (2→8)
+- **Deepen 3 quizzes:** `s07.writing.quiz.01` (1→4 questions), `s07.writing.quiz.02` (1→4 questions), `s07.writing.quiz.03` (1→4 questions)
+- **Deepen 1 stories:** `s07.writing.story.01` (3→6 pages)
 - **3 items have no illustration** (emoji fallback): `s07.writing.quiz.01`, `s07.writing.quiz.02`, `s07.writing.quiz.03`
 
 ### Stage 7 — Math (ages 6-7)
@@ -207,6 +259,8 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 - **Author 1 quiz:** `s07.math.quiz.04`
 - **Author 1 story:** `s07.math.story.02`
 - **Deepen 2 lessons:** `s07.math.lesson.01` (2→8), `s07.math.lesson.05` (2→8)
+- **Deepen 3 quizzes:** `s07.math.quiz.01` (1→4 questions), `s07.math.quiz.02` (1→4 questions), `s07.math.quiz.03` (1→4 questions)
+- **Deepen 1 stories:** `s07.math.story.01` (3→6 pages)
 - **3 items have no illustration** (emoji fallback): `s07.math.quiz.01`, `s07.math.quiz.02`, `s07.math.quiz.03`
 
 ### Stage 7 — Science (ages 6-7)
@@ -214,6 +268,8 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 - **Author 1 quiz:** `s07.science.quiz.04`
 - **Author 1 story:** `s07.science.story.02`
 - **Deepen 5 lessons:** `s07.science.lesson.01` (2→8), `s07.science.lesson.03` (2→8), `s07.science.lesson.04` (2→8), `s07.science.lesson.05` (2→8), `s07.science.lesson.06` (2→8)
+- **Deepen 3 quizzes:** `s07.science.quiz.01` (1→4 questions), `s07.science.quiz.02` (1→4 questions), `s07.science.quiz.03` (1→4 questions)
+- **Deepen 1 stories:** `s07.science.story.01` (3→6 pages)
 - **2 items have no illustration** (emoji fallback): `s07.science.quiz.01`, `s07.science.quiz.02`
 
 ### Stage 7 — Social Studies (ages 6-7)
@@ -221,6 +277,8 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 - **Author 1 quiz:** `s07.social.quiz.04`
 - **Author 1 story:** `s07.social.story.02`
 - **Deepen 6 lessons:** `s07.social.lesson.01` (2→8), `s07.social.lesson.02` (2→8), `s07.social.lesson.03` (2→8), `s07.social.lesson.04` (2→8), `s07.social.lesson.05` (2→8), `s07.social.lesson.06` (2→8)
+- **Deepen 3 quizzes:** `s07.social.quiz.01` (1→4 questions), `s07.social.quiz.02` (1→4 questions), `s07.social.quiz.03` (1→4 questions)
+- **Deepen 1 stories:** `s07.social.story.01` (3→6 pages)
 - **2 items have no illustration** (emoji fallback): `s07.social.quiz.01`, `s07.social.quiz.03`
 
 ### Stage 7 — Health (ages 6-7)
@@ -228,6 +286,8 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 - **Author 1 quiz:** `s07.health.quiz.04`
 - **Author 1 story:** `s07.health.story.02`
 - **Deepen 5 lessons:** `s07.health.lesson.01` (2→8), `s07.health.lesson.03` (2→8), `s07.health.lesson.04` (2→8), `s07.health.lesson.05` (2→8), `s07.health.lesson.06` (2→8)
+- **Deepen 3 quizzes:** `s07.health.quiz.01` (1→4 questions), `s07.health.quiz.02` (1→4 questions), `s07.health.quiz.03` (1→4 questions)
+- **Deepen 1 stories:** `s07.health.story.01` (3→6 pages)
 - **2 items have no illustration** (emoji fallback): `s07.health.quiz.01`, `s07.health.quiz.02`
 
 ### Stage 8 — Reading (ages 7-8)
@@ -235,6 +295,8 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 - **Author 1 quiz:** `s08.reading.quiz.04`
 - **Author 1 story:** `s08.reading.story.02`
 - **Deepen 6 lessons:** `s08.reading.lesson.01` (2→8), `s08.reading.lesson.02` (2→8), `s08.reading.lesson.03` (2→8), `s08.reading.lesson.04` (2→8), `s08.reading.lesson.05` (2→8), `s08.reading.lesson.06` (2→8)
+- **Deepen 3 quizzes:** `s08.reading.quiz.01` (2→4 questions), `s08.reading.quiz.02` (1→4 questions), `s08.reading.quiz.03` (1→4 questions)
+- **Deepen 1 stories:** `s08.reading.story.01` (3→6 pages)
 - **3 items have no illustration** (emoji fallback): `s08.reading.quiz.01`, `s08.reading.quiz.02`, `s08.reading.quiz.03`
 
 ### Stage 8 — Writing & Grammar (ages 7-8)
@@ -242,6 +304,8 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 - **Author 1 quiz:** `s08.writing.quiz.04`
 - **Author 1 story:** `s08.writing.story.02`
 - **Deepen 6 lessons:** `s08.writing.lesson.01` (2→8), `s08.writing.lesson.02` (2→8), `s08.writing.lesson.03` (2→8), `s08.writing.lesson.04` (2→8), `s08.writing.lesson.05` (2→8), `s08.writing.lesson.06` (2→8)
+- **Deepen 3 quizzes:** `s08.writing.quiz.01` (1→4 questions), `s08.writing.quiz.02` (1→4 questions), `s08.writing.quiz.03` (1→4 questions)
+- **Deepen 1 stories:** `s08.writing.story.01` (3→6 pages)
 - **3 items have no illustration** (emoji fallback): `s08.writing.quiz.01`, `s08.writing.quiz.02`, `s08.writing.quiz.03`
 
 ### Stage 8 — Math (ages 7-8)
@@ -249,6 +313,8 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 - **Author 1 quiz:** `s08.math.quiz.04`
 - **Author 1 story:** `s08.math.story.02`
 - **Deepen 6 lessons:** `s08.math.lesson.01` (3→8), `s08.math.lesson.02` (2→8), `s08.math.lesson.03` (2→8), `s08.math.lesson.04` (2→8), `s08.math.lesson.05` (2→8), `s08.math.lesson.06` (2→8)
+- **Deepen 3 quizzes:** `s08.math.quiz.01` (1→4 questions), `s08.math.quiz.02` (1→4 questions), `s08.math.quiz.03` (1→4 questions)
+- **Deepen 1 stories:** `s08.math.story.01` (3→6 pages)
 - **3 items have no illustration** (emoji fallback): `s08.math.quiz.01`, `s08.math.quiz.02`, `s08.math.quiz.03`
 
 ### Stage 8 — Science (ages 7-8)
@@ -256,6 +322,8 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 - **Author 1 quiz:** `s08.science.quiz.04`
 - **Author 1 story:** `s08.science.story.02`
 - **Deepen 6 lessons:** `s08.science.lesson.01` (2→8), `s08.science.lesson.02` (2→8), `s08.science.lesson.03` (2→8), `s08.science.lesson.04` (2→8), `s08.science.lesson.05` (2→8), `s08.science.lesson.06` (2→8)
+- **Deepen 3 quizzes:** `s08.science.quiz.01` (1→4 questions), `s08.science.quiz.02` (1→4 questions), `s08.science.quiz.03` (1→4 questions)
+- **Deepen 1 stories:** `s08.science.story.01` (3→6 pages)
 - **2 items have no illustration** (emoji fallback): `s08.science.quiz.01`, `s08.science.quiz.03`
 
 ### Stage 8 — Social Studies (ages 7-8)
@@ -263,6 +331,8 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 - **Author 1 quiz:** `s08.social.quiz.04`
 - **Author 1 story:** `s08.social.story.02`
 - **Deepen 6 lessons:** `s08.social.lesson.01` (2→8), `s08.social.lesson.02` (2→8), `s08.social.lesson.03` (2→8), `s08.social.lesson.04` (2→8), `s08.social.lesson.05` (2→8), `s08.social.lesson.06` (2→8)
+- **Deepen 3 quizzes:** `s08.social.quiz.01` (1→4 questions), `s08.social.quiz.02` (1→4 questions), `s08.social.quiz.03` (1→4 questions)
+- **Deepen 1 stories:** `s08.social.story.01` (3→6 pages)
 - **3 items have no illustration** (emoji fallback): `s08.social.quiz.01`, `s08.social.quiz.02`, `s08.social.quiz.03`
 
 ### Stage 8 — Creativity & Tech (ages 7-8)
@@ -270,6 +340,8 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 - **Author 1 quiz:** `s08.tech.quiz.04`
 - **Author 1 story:** `s08.tech.story.02`
 - **Deepen 6 lessons:** `s08.tech.lesson.01` (2→8), `s08.tech.lesson.02` (2→8), `s08.tech.lesson.03` (2→8), `s08.tech.lesson.04` (2→8), `s08.tech.lesson.05` (2→8), `s08.tech.lesson.06` (2→8)
+- **Deepen 3 quizzes:** `s08.tech.quiz.01` (1→4 questions), `s08.tech.quiz.02` (1→4 questions), `s08.tech.quiz.03` (1→4 questions)
+- **Deepen 1 stories:** `s08.tech.story.01` (3→6 pages)
 - **3 items have no illustration** (emoji fallback): `s08.tech.quiz.01`, `s08.tech.quiz.02`, `s08.tech.quiz.03`
 
 ### Stage 9 — Reading (ages 8-9)
@@ -277,6 +349,8 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 - **Author 1 quiz:** `s09.reading.quiz.04`
 - **Author 1 story:** `s09.reading.story.02`
 - **Deepen 6 lessons:** `s09.reading.lesson.01` (2→8), `s09.reading.lesson.02` (2→8), `s09.reading.lesson.03` (2→8), `s09.reading.lesson.04` (2→8), `s09.reading.lesson.05` (2→8), `s09.reading.lesson.06` (2→8)
+- **Deepen 3 quizzes:** `s09.reading.quiz.01` (1→4 questions), `s09.reading.quiz.02` (1→4 questions), `s09.reading.quiz.03` (1→4 questions)
+- **Deepen 1 stories:** `s09.reading.story.01` (3→6 pages)
 - **3 items have no illustration** (emoji fallback): `s09.reading.quiz.01`, `s09.reading.quiz.02`, `s09.reading.quiz.03`
 
 ### Stage 9 — Writing (ages 8-9)
@@ -284,6 +358,8 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 - **Author 1 quiz:** `s09.writing.quiz.04`
 - **Author 1 story:** `s09.writing.story.02`
 - **Deepen 6 lessons:** `s09.writing.lesson.01` (2→8), `s09.writing.lesson.02` (2→8), `s09.writing.lesson.03` (2→8), `s09.writing.lesson.04` (2→8), `s09.writing.lesson.05` (2→8), `s09.writing.lesson.06` (2→8)
+- **Deepen 3 quizzes:** `s09.writing.quiz.01` (1→4 questions), `s09.writing.quiz.02` (1→4 questions), `s09.writing.quiz.03` (1→4 questions)
+- **Deepen 1 stories:** `s09.writing.story.01` (3→6 pages)
 - **3 items have no illustration** (emoji fallback): `s09.writing.quiz.01`, `s09.writing.quiz.02`, `s09.writing.quiz.03`
 
 ### Stage 9 — Math (ages 8-9)
@@ -291,6 +367,8 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 - **Author 1 quiz:** `s09.math.quiz.04`
 - **Author 1 story:** `s09.math.story.02`
 - **Deepen 6 lessons:** `s09.math.lesson.01` (2→8), `s09.math.lesson.02` (2→8), `s09.math.lesson.03` (2→8), `s09.math.lesson.04` (2→8), `s09.math.lesson.05` (2→8), `s09.math.lesson.06` (2→8)
+- **Deepen 3 quizzes:** `s09.math.quiz.01` (1→4 questions), `s09.math.quiz.02` (1→4 questions), `s09.math.quiz.03` (1→4 questions)
+- **Deepen 1 stories:** `s09.math.story.01` (3→6 pages)
 - **3 items have no illustration** (emoji fallback): `s09.math.quiz.01`, `s09.math.quiz.02`, `s09.math.quiz.03`
 
 ### Stage 9 — Science (ages 8-9)
@@ -298,6 +376,8 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 - **Author 1 quiz:** `s09.science.quiz.04`
 - **Author 1 story:** `s09.science.story.02`
 - **Deepen 6 lessons:** `s09.science.lesson.01` (2→8), `s09.science.lesson.02` (2→8), `s09.science.lesson.03` (2→8), `s09.science.lesson.04` (2→8), `s09.science.lesson.05` (2→8), `s09.science.lesson.06` (2→8)
+- **Deepen 3 quizzes:** `s09.science.quiz.01` (1→4 questions), `s09.science.quiz.02` (1→4 questions), `s09.science.quiz.03` (1→4 questions)
+- **Deepen 1 stories:** `s09.science.story.01` (3→6 pages)
 - **3 items have no illustration** (emoji fallback): `s09.science.quiz.01`, `s09.science.quiz.02`, `s09.science.quiz.03`
 
 ### Stage 9 — Social Studies (ages 8-9)
@@ -305,6 +385,8 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 - **Author 1 quiz:** `s09.social.quiz.04`
 - **Author 1 story:** `s09.social.story.02`
 - **Deepen 6 lessons:** `s09.social.lesson.01` (2→8), `s09.social.lesson.02` (2→8), `s09.social.lesson.03` (2→8), `s09.social.lesson.04` (2→8), `s09.social.lesson.05` (2→8), `s09.social.lesson.06` (2→8)
+- **Deepen 3 quizzes:** `s09.social.quiz.01` (1→4 questions), `s09.social.quiz.02` (1→4 questions), `s09.social.quiz.03` (1→4 questions)
+- **Deepen 1 stories:** `s09.social.story.01` (3→6 pages)
 - **3 items have no illustration** (emoji fallback): `s09.social.quiz.01`, `s09.social.quiz.02`, `s09.social.quiz.03`
 
 ### Stage 9 — Logic & Coding (ages 8-9)
@@ -312,6 +394,8 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 - **Author 1 quiz:** `s09.coding.quiz.04`
 - **Author 1 story:** `s09.coding.story.02`
 - **Deepen 6 lessons:** `s09.coding.lesson.01` (2→8), `s09.coding.lesson.02` (2→8), `s09.coding.lesson.03` (2→8), `s09.coding.lesson.04` (2→8), `s09.coding.lesson.05` (2→8), `s09.coding.lesson.06` (2→8)
+- **Deepen 3 quizzes:** `s09.coding.quiz.01` (1→4 questions), `s09.coding.quiz.02` (1→4 questions), `s09.coding.quiz.03` (1→4 questions)
+- **Deepen 1 stories:** `s09.coding.story.01` (3→6 pages)
 - **3 items have no illustration** (emoji fallback): `s09.coding.quiz.01`, `s09.coding.quiz.02`, `s09.coding.quiz.03`
 
 ### Stage 10 — Reading (ages 9-10)
@@ -319,6 +403,8 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 - **Author 1 quiz:** `s10.reading.quiz.04`
 - **Author 1 story:** `s10.reading.story.02`
 - **Deepen 6 lessons:** `s10.reading.lesson.01` (3→8), `s10.reading.lesson.02` (3→8), `s10.reading.lesson.03` (3→8), `s10.reading.lesson.04` (3→8), `s10.reading.lesson.05` (3→8), `s10.reading.lesson.06` (3→8)
+- **Deepen 3 quizzes:** `s10.reading.quiz.01` (2→4 questions), `s10.reading.quiz.02` (1→4 questions), `s10.reading.quiz.03` (2→4 questions)
+- **Deepen 1 stories:** `s10.reading.story.01` (3→6 pages)
 - **3 items have no illustration** (emoji fallback): `s10.reading.quiz.01`, `s10.reading.quiz.02`, `s10.reading.quiz.03`
 
 ### Stage 10 — Writing (ages 9-10)
@@ -326,6 +412,8 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 - **Author 1 quiz:** `s10.writing.quiz.04`
 - **Author 1 story:** `s10.writing.story.02`
 - **Deepen 6 lessons:** `s10.writing.lesson.01` (3→8), `s10.writing.lesson.02` (3→8), `s10.writing.lesson.03` (3→8), `s10.writing.lesson.04` (3→8), `s10.writing.lesson.05` (3→8), `s10.writing.lesson.06` (3→8)
+- **Deepen 3 quizzes:** `s10.writing.quiz.01` (2→4 questions), `s10.writing.quiz.02` (1→4 questions), `s10.writing.quiz.03` (2→4 questions)
+- **Deepen 1 stories:** `s10.writing.story.01` (3→6 pages)
 - **3 items have no illustration** (emoji fallback): `s10.writing.quiz.01`, `s10.writing.quiz.02`, `s10.writing.quiz.03`
 
 ### Stage 10 — Math (ages 9-10)
@@ -333,6 +421,8 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 - **Author 1 quiz:** `s10.math.quiz.04`
 - **Author 1 story:** `s10.math.story.02`
 - **Deepen 6 lessons:** `s10.math.lesson.01` (3→8), `s10.math.lesson.02` (3→8), `s10.math.lesson.03` (3→8), `s10.math.lesson.04` (3→8), `s10.math.lesson.05` (3→8), `s10.math.lesson.06` (3→8)
+- **Deepen 3 quizzes:** `s10.math.quiz.01` (2→4 questions), `s10.math.quiz.02` (2→4 questions), `s10.math.quiz.03` (2→4 questions)
+- **Deepen 1 stories:** `s10.math.story.01` (3→6 pages)
 - **3 items have no illustration** (emoji fallback): `s10.math.quiz.01`, `s10.math.quiz.02`, `s10.math.quiz.03`
 
 ### Stage 10 — Science (ages 9-10)
@@ -340,6 +430,8 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 - **Author 1 quiz:** `s10.science.quiz.04`
 - **Author 1 story:** `s10.science.story.02`
 - **Deepen 6 lessons:** `s10.science.lesson.01` (2→8), `s10.science.lesson.02` (3→8), `s10.science.lesson.03` (3→8), `s10.science.lesson.04` (3→8), `s10.science.lesson.05` (3→8), `s10.science.lesson.06` (3→8)
+- **Deepen 3 quizzes:** `s10.science.quiz.01` (1→4 questions), `s10.science.quiz.02` (2→4 questions), `s10.science.quiz.03` (2→4 questions)
+- **Deepen 1 stories:** `s10.science.story.01` (3→6 pages)
 - **3 items have no illustration** (emoji fallback): `s10.science.quiz.01`, `s10.science.quiz.02`, `s10.science.quiz.03`
 
 ### Stage 10 — Social Studies (ages 9-10)
@@ -347,6 +439,8 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 - **Author 1 quiz:** `s10.social.quiz.04`
 - **Author 1 story:** `s10.social.story.02`
 - **Deepen 6 lessons:** `s10.social.lesson.01` (2→8), `s10.social.lesson.02` (3→8), `s10.social.lesson.03` (3→8), `s10.social.lesson.04` (3→8), `s10.social.lesson.05` (3→8), `s10.social.lesson.06` (3→8)
+- **Deepen 3 quizzes:** `s10.social.quiz.01` (1→4 questions), `s10.social.quiz.02` (2→4 questions), `s10.social.quiz.03` (2→4 questions)
+- **Deepen 1 stories:** `s10.social.story.01` (3→6 pages)
 - **3 items have no illustration** (emoji fallback): `s10.social.quiz.01`, `s10.social.quiz.02`, `s10.social.quiz.03`
 
 ### Stage 10 — Digital Literacy & Coding (ages 9-10)
@@ -354,11 +448,13 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 - **Author 1 quiz:** `s10.coding.quiz.04`
 - **Author 1 story:** `s10.coding.story.02`
 - **Deepen 6 lessons:** `s10.coding.lesson.01` (3→8), `s10.coding.lesson.02` (3→8), `s10.coding.lesson.03` (3→8), `s10.coding.lesson.04` (3→8), `s10.coding.lesson.05` (3→8), `s10.coding.lesson.06` (3→8)
+- **Deepen 3 quizzes:** `s10.coding.quiz.01` (2→4 questions), `s10.coding.quiz.02` (2→4 questions), `s10.coding.quiz.03` (2→4 questions)
+- **Deepen 1 stories:** `s10.coding.story.01` (3→6 pages)
 - **3 items have no illustration** (emoji fallback): `s10.coding.quiz.01`, `s10.coding.quiz.02`, `s10.coding.quiz.03`
 
 ## Declared audio that does not exist
 
-87 refs. The app bundles only the generic SFX in `assets/audio/sfx/`, so every cue
+83 refs. The app bundles only the generic SFX in `assets/audio/sfx/`, so every cue
 below is silent at runtime. `content/validate_content.py --assets` fails on these.
 
 ```
@@ -421,10 +517,6 @@ audio/s05/neighbor.mp3
 audio/s05/phonemes_cat.mp3
 audio/s05/robot_helper.mp3
 audio/s06/anthem.mp3
-audio/s06/class_helps.mp3
-audio/s06/rain_cycle.mp3
-audio/s06/robo_sorts.mp3
-audio/s06/ten_apples.mp3
 audio/s07/class_vote.mp3
 audio/s07/coin_jar.mp3
 audio/s07/egg_butterfly.mp3

@@ -32,6 +32,26 @@ const MIN_STEPS_BY_TIER = {
 };
 const minStepsFor = (item) => MIN_STEPS_BY_TIER[item.designTier] ?? 8;
 
+// Keep in sync with minQuestionsForTier / minPagesForTier in the same test.
+// These arrived five stages later than MIN_STEPS_BY_TIER, which is exactly the
+// problem: "stage N is done" was being read off lesson depth alone, so stages
+// 1-5 were finished with one-question quizzes and three-page stories intact.
+const MIN_QUESTIONS_BY_TIER = {
+  'parent-led': 2,
+  'encourage-effort': 3,
+  'gamify-gently': 4,
+  'grant-autonomy': 4,
+};
+const minQuestionsFor = (item) => MIN_QUESTIONS_BY_TIER[item.designTier] ?? 4;
+
+const MIN_PAGES_BY_TIER = {
+  'parent-led': 4,
+  'encourage-effort': 5,
+  'gamify-gently': 6,
+  'grant-autonomy': 6,
+};
+const minPagesFor = (item) => MIN_PAGES_BY_TIER[item.designTier] ?? 6;
+
 // ---- subject list from the curriculum, in stage order ----
 const subs = [];
 for (const st of j.curriculum.stages) {
@@ -96,7 +116,7 @@ const missingAudio = [...audioRefs].filter((r) => !fs.existsSync(path.join(ROOT,
 const isBare = (s) => !(s.mechanic || '').trim() && s.answer == null;
 
 const rows = [];
-const totals = { quiz: 0, story: 0, shallow: 0, norecap: 0, noart: 0, bare: 0 };
+const totals = { quiz: 0, story: 0, shallow: 0, shallowQuiz: 0, shallowStory: 0, norecap: 0, noart: 0, bare: 0 };
 
 for (const { stage, ages, subject } of subs) {
   const items = bySub[stage + '||' + subject] || [];
@@ -121,6 +141,12 @@ for (const { stage, ages, subject } of subs) {
   const missQuiz = Math.max(0, TARGET.quiz - byType.quiz.length);
   const missStory = Math.max(0, TARGET.story - byType.story.length);
   const shallow = byType.lesson.filter((l) => (l.steps || []).length < minStepsFor(l));
+  // A shipped quiz/story that is too thin to do its job. Distinct from
+  // missQuiz/missStory above, which count items that do not exist at all —
+  // conflating the two is how a stage reads as complete while every quiz in
+  // it asks a single question.
+  const shallowQuiz = byType.quiz.filter((q) => (q.questions || []).length < minQuestionsFor(q));
+  const shallowStory = byType.story.filter((s) => (s.pages || []).length < minPagesFor(s));
   const noRecap = byType.lesson.filter((l) => !l.recap);
   // "Has art" means art the player actually draws. `assets[]` is pipeline
   // metadata that LibraryItem never even parses, so counting only that once
@@ -136,6 +162,8 @@ for (const { stage, ages, subject } of subs) {
   totals.quiz += missQuiz;
   totals.story += missStory;
   totals.shallow += shallow.length;
+  totals.shallowQuiz += shallowQuiz.length;
+  totals.shallowStory += shallowStory.length;
   totals.norecap += noRecap.length;
   totals.noart += noArt.length;
   totals.bare += bare;
@@ -153,6 +181,8 @@ for (const { stage, ages, subject } of subs) {
     authorQuiz: nextIds('quiz', missQuiz),
     authorStory: nextIds('story', missStory),
     shallow: shallow.map((l) => ({ id: l.id, steps: (l.steps || []).length, min: minStepsFor(l) })),
+    shallowQuiz: shallowQuiz.map((q) => ({ id: q.id, n: (q.questions || []).length, min: minQuestionsFor(q) })),
+    shallowStory: shallowStory.map((s) => ({ id: s.id, n: (s.pages || []).length, min: minPagesFor(s) })),
     noRecap: noRecap.map((l) => l.id),
     noArt: noArt.map((it) => it.id),
     bare,
@@ -173,13 +203,19 @@ md += '| Gap | Count |\n|---|---|\n';
 md += `| Quizzes to author | ${totals.quiz} |\n`;
 md += `| Stories to author | ${totals.story} |\n`;
 md += `| Lessons below their tier's step depth | ${totals.shallow} |\n`;
+md += `| Quizzes below their tier's question count | ${totals.shallowQuiz} |\n`;
+md += `| Stories below their tier's page count | ${totals.shallowStory} |\n`;
 md += `| Lessons with no recap | ${totals.norecap} |\n`;
 md += `| Items with no illustration | ${totals.noart} |\n`;
 md += `| Unreferenced PNGs on disk | ${orphans.length} |\n`;
 md += `| Steps with no declared mechanic | ${totals.bare} |\n`;
 md += `| Declared audio files that do not exist | ${missingAudio.length} |\n\n`;
-md += 'Depth minimums are per design tier — `parent-led` 4, `encourage-effort` 6, `gamify-gently` and\n';
-md += '`grant-autonomy` 8. A stage-7 teaching arc is the wrong shape for a one-year-old.\n\n';
+md += 'Depth minimums are per design tier, for all three item types. Steps per lesson: `parent-led` 4,\n';
+md += '`encourage-effort` 6, `gamify-gently` and `grant-autonomy` 8. Questions per quiz: 2 / 3 / 4 / 4.\n';
+md += 'Pages per story: 4 / 5 / 6 / 6. A stage-7 teaching arc is the wrong shape for a one-year-old.\n\n';
+md += '"To author" counts items that do not exist; "below depth" counts shipped items too thin to do\n';
+md += 'their job. A stage can be complete on the first and still be unplayable on the second — that is\n';
+md += 'how stages 1-5 were called done with one-question quizzes and three-page stories throughout.\n\n';
 md += 'Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, then 7-10.\n\n';
 
 let lastBand = null;
@@ -189,7 +225,8 @@ for (const r of rows) {
     md += `\n## ${b}\n`;
     lastBand = b;
   }
-  const gaps = r.authorQuiz.length + r.authorStory.length + r.shallow.length + r.noRecap.length + r.noArt.length + r.bare;
+  const gaps =
+    r.authorQuiz.length + r.authorStory.length + r.shallow.length + r.shallowQuiz.length + r.shallowStory.length + r.noRecap.length + r.noArt.length + r.bare;
   md += `\n### Stage ${r.stage} — ${r.subject}${r.ages ? ` (ages ${r.ages})` : ''}\n\n`;
   if (!gaps) {
     md += '- ✅ complete\n';
@@ -199,6 +236,10 @@ for (const r of rows) {
   if (r.authorStory.length) md += `- **Author ${r.authorStory.length} story:** ${r.authorStory.map((x) => '`' + x + '`').join(', ')}\n`;
   if (r.shallow.length)
     md += `- **Deepen ${r.shallow.length} lessons:** ${r.shallow.map((s) => '`' + s.id + '` (' + s.steps + '→' + s.min + ')').join(', ')}\n`;
+  if (r.shallowQuiz.length)
+    md += `- **Deepen ${r.shallowQuiz.length} quizzes:** ${r.shallowQuiz.map((q) => '`' + q.id + '` (' + q.n + '→' + q.min + ' questions)').join(', ')}\n`;
+  if (r.shallowStory.length)
+    md += `- **Deepen ${r.shallowStory.length} stories:** ${r.shallowStory.map((s) => '`' + s.id + '` (' + s.n + '→' + s.min + ' pages)').join(', ')}\n`;
   if (r.noRecap.length) md += `- **Add ${r.noRecap.length} recaps:** ${r.noRecap.map((x) => '`' + x + '`').join(', ')}\n`;
   if (r.noArt.length) md += `- **${r.noArt.length} items have no illustration** (emoji fallback): ${r.noArt.map((x) => '`' + x + '`').join(', ')}\n`;
   if (r.art.length) md += `- Unused art that may fit: ${r.art.map((x) => '`img/' + x + '`').join(', ')}\n`;
