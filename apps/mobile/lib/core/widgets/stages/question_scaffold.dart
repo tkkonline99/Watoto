@@ -51,6 +51,7 @@ class QuestionScaffold extends StatelessWidget {
     this.textHeavy = false,
     this.stageSemanticLabel,
     this.stageFitsContent = false,
+    this.distributeSlack = true,
   });
 
   /// Curriculum stage 1–10; selects the band (§26.4).
@@ -88,6 +89,16 @@ class QuestionScaffold extends StatelessWidget {
   /// scroll view takes up the slack.
   final bool stageFitsContent;
 
+  /// Collect slack between the prompt and the response (§26.2).
+  ///
+  /// Separate from [stageFitsContent] because the two coincided once and the
+  /// conflation showed: a collapsed stage kept its content pinned to the top
+  /// and left the dead space at the *bottom* instead. Only a canvas-owning
+  /// workspace turns this off, and for a mechanical reason rather than a
+  /// visual one — the slack path measures through IntrinsicHeight, which
+  /// throws on the LayoutBuilder those workspaces build with.
+  final bool distributeSlack;
+
   double get _stageHeight => textHeavy ? 180 : 300;
 
   @override
@@ -98,7 +109,7 @@ class QuestionScaffold extends StatelessWidget {
     // scrolls. It also cannot go through IntrinsicHeight: those workspaces
     // build with a LayoutBuilder, and asking a LayoutBuilder for its intrinsic
     // height throws.
-    if (stageFitsContent) {
+    if (!distributeSlack) {
       return SafeArea(
         child: SingleChildScrollView(child: _body(band, slack: false)),
       );

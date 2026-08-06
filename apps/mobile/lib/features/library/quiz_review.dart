@@ -73,6 +73,11 @@ List<LibQuestion> localizedQuizQuestions({
         answer: quiz.questions[i].answer,
         correctFeedback: loc.questionCorrect(i),
         retryFeedback: loc.questionRetry(i),
+        // Carried through explicitly. This rebuilds the question to localize
+        // its text, so any field not named here is silently dropped — the
+        // declared visual was, and every quiz fell back to a glyph guessed
+        // from the prompt while its scene sat unused in the content.
+        visual: quiz.questions[i].visual,
       ),
   ];
 }

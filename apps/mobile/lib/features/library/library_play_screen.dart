@@ -417,14 +417,25 @@ class _LessonViewState extends ConsumerState<_LessonView> {
       },
     );
 
-    // Part 3 of the skeleton. Three cases, in the order they take precedence:
+    // Part 3 of the skeleton.
     //
-    //  - the code editor and the circuit board *are* the picture, so they take
-    //    the stage themselves rather than being crowded beneath a second one;
-    //  - a staged choice shows no stage art at all, because the art is the
-    //    answer and putting it above the options gives the question away;
-    //  - otherwise the declared visual fills it, falling back to the ladder's
-    //    glyph for anything not yet migrated.
+    // The stage must never repeat what the response zone already shows. Two
+    // ways that happens, and both looked wrong on a real screen:
+    //
+    //  - a staged choice puts the pictures in the options, so reserving 300dp
+    //    above them rendered a blank white box — the exact hole §26.2 exists
+    //    to remove, and worse than the old collapsed layout;
+    //  - a tap stage renders the step's glyph as its own target, so a token
+    //    visual above it showed the same bubbles twice, one dead and one
+    //    alive. That rule predates this change; the port dropped it.
+    //
+    // In both cases the stage collapses rather than reserving empty space. A
+    // slot or a scene still shows, because that is different art from
+    // whatever the response is doing.
+    final visual = step.visual;
+    final stageRepeatsResponse = choice != null ||
+        (stageShowsEmoji(plan.mechanic) && visual is TokenVisual);
+
     final Widget stageContent;
     if (stageOwnsCanvas(plan.mechanic)) {
       stageContent = interaction;
@@ -433,7 +444,7 @@ class _LessonViewState extends ConsumerState<_LessonView> {
         workspace: plan.workspace!,
         filledDigit: _shownAnswer ?? (_interacted ? plan.answer : null),
       );
-    } else if (choice != null) {
+    } else if (stageRepeatsResponse) {
       stageContent = const SizedBox.shrink();
     } else {
       // The stage art is decorative: its meaning is carried by the visual's
@@ -444,7 +455,7 @@ class _LessonViewState extends ConsumerState<_LessonView> {
         child: BreathingArt(
           restartKey: _step,
           child: VisualStage(
-            visual: step.visual,
+            visual: visual,
             fallbackEmoji: emoji,
             data: SceneData(
               count: step.count,
@@ -468,12 +479,17 @@ class _LessonViewState extends ConsumerState<_LessonView> {
           streak: _combo > 1 ? _combo : null,
         ),
         stageVisual: stageContent,
-        stageFitsContent: stageOwnsCanvas(plan.mechanic),
+        // A collapsed stage sizes to nothing rather than holding 300dp of
+        // white; a canvas-owning workspace sizes to whatever it needs.
+        stageFitsContent:
+            stageOwnsCanvas(plan.mechanic) || stageRepeatsResponse,
+        distributeSlack: !stageOwnsCanvas(plan.mechanic),
         // The alt is the screen-reader label (§26.6). Stages that own the
         // canvas are interactive and announce themselves, so labelling them
         // as an image would talk over their own semantics.
-        stageSemanticLabel:
-            stageOwnsCanvas(plan.mechanic) ? null : step.visual?.alt,
+        stageSemanticLabel: stageOwnsCanvas(plan.mechanic) || stageRepeatsResponse
+            ? null
+            : visual?.alt,
         prompt: loc.stepNarration(_step),
         response: Column(
           mainAxisSize: MainAxisSize.min,

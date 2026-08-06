@@ -183,6 +183,24 @@ class QuizViewState extends ConsumerState<QuizView> {
     }
   }
 
+  /// The number a counting scene should draw, taken from the correct answer.
+  ///
+  /// For "How many balls?" the answer *is* the count, so this is the only
+  /// honest source — the prompt never states it. Null when the answer is not
+  /// a bare number, which is most questions; the scene then keeps whatever
+  /// the content declared.
+  /// Read from the English source rather than the localized copy: a French
+  /// build shows "deux", which parses as nothing, and the scene would fall
+  /// back to a default count that is simply wrong.
+  int? _countFromAnswer(int index) {
+    final source = widget.item.questions;
+    if (index < 0 || index >= source.length) return null;
+    final q = source[index];
+    if (q.answer < 0 || q.answer >= q.options.length) return null;
+    final n = int.tryParse(q.options[q.answer].label.trim());
+    return (n != null && n > 0 && n <= 20) ? n : null;
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
@@ -213,7 +231,15 @@ class QuizViewState extends ConsumerState<QuizView> {
           child: VisualStage(
             visual: question.visual,
             fallbackEmoji: illustrationFor(question.prompt) ?? '❓',
-            data: SceneData(text: question.prompt),
+            data: SceneData(
+              // A counting scene has to draw the number the question is
+              // about. Without this it drew its default of five for "How
+              // many balls?" while the answers were 1, 2 and 3 — a child who
+              // counted the picture was being told the wrong thing, which is
+              // the same fault as the tin of food wearing a different hat.
+              count: _countFromAnswer(_q),
+              text: question.prompt,
+            ),
           ),
         ),
         stageSemanticLabel: question.visual?.alt,
