@@ -13,6 +13,7 @@ import 'package:flutter/services.dart';
 
 import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
+import 'circuit_figures.dart';
 import 'content_lexicon.dart';
 import 'play_stage_circuit.dart';
 import 'play_stage_code.dart';
@@ -515,6 +516,44 @@ class ChoiceStageState extends State<ChoiceStage> {
     }
   }
 
+  /// What one option looks like.
+  ///
+  /// A drawn option is the diagram plus its caption: the picture carries the
+  /// answer, the caption says in words what the child is looking at. Reading
+  /// choices ("cap" vs "cape") render as words, and everything else as an
+  /// emoji-sized glyph.
+  Widget _optionChild(ChoiceOption option) {
+    if (option.figure case final figure?) {
+      return Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          CircuitFigureView(figure: figure),
+          const SizedBox(height: 8),
+          Text(
+            option.word,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w700,
+              color: WatotoColors.deep,
+            ),
+          ),
+        ],
+      );
+    }
+    return Text(
+      option.emoji,
+      style: isWordOption(option.emoji)
+          ? const TextStyle(
+              fontFamily: 'Baloo2',
+              fontSize: 28,
+              fontWeight: FontWeight.w800,
+              color: WatotoColors.deep,
+            )
+          : const TextStyle(fontSize: 48),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
@@ -549,11 +588,20 @@ class ChoiceStageState extends State<ChoiceStage> {
                             : 1.0,
                         duration: const Duration(milliseconds: 180),
                         child: Container(
-                          constraints: const BoxConstraints(
+                          constraints: BoxConstraints(
                             minWidth: 92,
                             minHeight: 92,
+                            // A diagram needs room to be read; a glyph does
+                            // not, and stretching every option to fit one
+                            // would leave a wall of white space.
+                            maxWidth: widget.plan.options[i].figure != null
+                                ? 220
+                                : double.infinity,
                           ),
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16,
+                            vertical: 12,
+                          ),
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                             color: Colors.white,
@@ -572,22 +620,7 @@ class ChoiceStageState extends State<ChoiceStage> {
                               ),
                             ],
                           ),
-                          // Reading choices ("cap" vs "cape") render as words,
-                          // not emoji-sized glyphs.
-                          child: isWordOption(widget.plan.options[i].emoji)
-                              ? Text(
-                                  widget.plan.options[i].emoji,
-                                  style: const TextStyle(
-                                    fontFamily: 'Baloo2',
-                                    fontSize: 28,
-                                    fontWeight: FontWeight.w800,
-                                    color: WatotoColors.deep,
-                                  ),
-                                )
-                              : Text(
-                                  widget.plan.options[i].emoji,
-                                  style: const TextStyle(fontSize: 48),
-                                ),
+                          child: _optionChild(widget.plan.options[i]),
                         ),
                       ),
                     ),

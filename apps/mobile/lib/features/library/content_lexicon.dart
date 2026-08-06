@@ -13,6 +13,8 @@
 /// under the FR/SW overlays.
 library;
 
+import 'circuit_figures.dart';
+
 class LexEntry {
   const LexEntry(this.emoji, this.category, {this.choice = true});
 
@@ -331,9 +333,14 @@ const String lexDigitCategory = _digit;
 
 /// One tappable answer in a choice stage.
 class ChoiceOption {
-  const ChoiceOption(this.word, this.emoji);
+  const ChoiceOption(this.word, this.emoji, {this.figure});
   final String word;
   final String emoji;
+
+  /// A drawn diagram to show instead of the glyph, with [word] as its caption.
+  /// Used where the answer *is* a picture — which circuit lights, which
+  /// material closes a gap — and an emoji could not carry the difference.
+  final CircuitFigure? figure;
 }
 
 /// A staged multiple-choice question: tap [options][targetIndex] to advance.

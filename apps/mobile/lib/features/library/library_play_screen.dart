@@ -15,6 +15,7 @@ import '../../l10n/gen/app_localizations.dart';
 import '../auth/entitlements.dart';
 import '../gamification/reward_outcome.dart';
 import 'content_i18n.dart';
+import 'circuit_figures.dart';
 import 'content_lexicon.dart';
 import 'library_models.dart';
 import 'lesson_recap.dart';
@@ -355,8 +356,20 @@ class _LessonViewState extends ConsumerState<_LessonView> {
       // localized content, not the English baked into the plan — the order is
       // fixed by the content file, so plan.choiceIndex still points at the
       // right answer in every language.
+      // Options are drawn when the step names a picture for each one — which
+      // circuit lights, which material closes a gap. The caption stays the
+      // localized text; only the artwork comes from the figure id.
       StepMechanic.multiChoice when plan.choices.length > 1 => ChoicePlan(
-          [for (final c in loc.stepChoices(_step)) ChoiceOption(c, c)],
+          [
+            for (final (i, c) in loc.stepChoices(_step).indexed)
+              ChoiceOption(
+                c,
+                c,
+                figure: i < plan.figures.length
+                    ? circuitFigureFor(plan.figures[i])
+                    : null,
+              ),
+          ],
           plan.choiceIndex,
         ),
       _ => null,

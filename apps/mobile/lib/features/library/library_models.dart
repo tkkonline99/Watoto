@@ -125,6 +125,7 @@ class LessonStep {
     this.prompt,
     this.answer,
     this.choices = const [],
+    this.figures = const [],
     this.choiceIndex,
     this.count,
     this.rows,
@@ -147,6 +148,12 @@ class LessonStep {
   final String? prompt;
   final int? answer;
   final List<String> choices;
+
+  /// Language-neutral picture ids, one per entry in [choices], when the
+  /// options are drawn rather than written (see circuit_figures.dart). Kept
+  /// separate from [choices] so the artwork never depends on the wording,
+  /// which differs in all three languages.
+  final List<String> figures;
   final int? choiceIndex;
   final int? count;
   final int? rows;
@@ -160,6 +167,9 @@ class LessonStep {
         prompt: j['prompt'] as String?,
         answer: (j['answer'] as num?)?.toInt(),
         choices: ((j['choices'] as List?) ?? const [])
+            .map((e) => '$e')
+            .toList(),
+        figures: ((j['figures'] as List?) ?? const [])
             .map((e) => '$e')
             .toList(),
         choiceIndex: (j['choiceIndex'] as num?)?.toInt(),

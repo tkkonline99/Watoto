@@ -49,6 +49,7 @@ class StepPlayPlan {
     required this.mechanic,
     this.answer,
     this.choices = const [],
+    this.figures = const [],
     this.choiceIndex = 0,
     this.count = 3,
     this.rows = 0,
@@ -70,6 +71,9 @@ class StepPlayPlan {
 
   /// Labels for multi-choice (digits as strings or words).
   final List<String> choices;
+
+  /// Picture ids parallel to [choices], when the options are drawn.
+  final List<String> figures;
   final int choiceIndex;
 
   final int count;
@@ -835,6 +839,7 @@ StepPlayPlan? _planFromExplicit(
       return StepPlayPlan(
         mechanic: StepMechanic.multiChoice,
         choices: step.choices,
+        figures: step.figures,
         choiceIndex: step.choiceIndex ?? 0,
         answer: step.answer,
         // The authored question, or nothing when the narration already asks it.

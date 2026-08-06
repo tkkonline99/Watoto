@@ -49545,28 +49545,68 @@
           "mechanic": "explain"
         },
         {
-          "narration": "Tap what happens to the bulb when you cut the wire anywhere in the loop.",
+          "narration": "What happens to the bulb when you cut the wire anywhere in the loop?",
           "action": "tap",
           "feedback": "It goes out. Where the gap is does not matter — only that there is one.",
-          "mechanic": "tap"
+          "mechanic": "multiChoice",
+          "choices": [
+            "The bulb stays lit.",
+            "The bulb goes out."
+          ],
+          "figures": [
+            "loop-lit",
+            "loop-cut"
+          ],
+          "choiceIndex": 1
         },
         {
-          "narration": "Tap the material that will let the circuit work if you put it in the gap.",
+          "narration": "Which material will let the circuit work if you put it in the gap?",
           "action": "tap",
           "feedback": "Metal. Wood, plastic and rubber all stop it, which is why wires wear them.",
-          "mechanic": "tap"
+          "mechanic": "multiChoice",
+          "choices": [
+            "Metal",
+            "Wood",
+            "Plastic"
+          ],
+          "figures": [
+            "gap-metal",
+            "gap-wood",
+            "gap-plastic"
+          ],
+          "choiceIndex": 0
         },
         {
-          "narration": "Someone put the bulb in but left the battery out. Tap what is missing.",
+          "narration": "The bulb is in but the loop stays dark. What is missing?",
           "action": "tap",
           "feedback": "The push. A loop with no battery is a road with nothing travelling on it.",
-          "mechanic": "tap"
+          "mechanic": "multiChoice",
+          "choices": [
+            "The battery",
+            "Another bulb",
+            "More wire"
+          ],
+          "figures": [
+            "part-battery",
+            "part-bulb",
+            "part-wire"
+          ],
+          "choiceIndex": 0
         },
         {
-          "narration": "Tap why a switch is put in the wire rather than beside it.",
+          "narration": "Why is a switch put in the wire rather than beside it?",
           "action": "tap",
           "feedback": "It has to be part of the loop to break it. Beside it, it does nothing.",
-          "mechanic": "tap"
+          "mechanic": "multiChoice",
+          "choices": [
+            "It can break the loop.",
+            "It does nothing."
+          ],
+          "figures": [
+            "switch-in-loop",
+            "switch-beside"
+          ],
+          "choiceIndex": 0
         },
         {
           "narration": "Find three switches at home and say where the gap is in each.",
