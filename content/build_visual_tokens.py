@@ -90,6 +90,29 @@ def load_lexicon() -> dict[str, tuple[str, str]]:
     return out
 
 
+def token_allows(allowed: list[str], claimed: str | None, subject: str | None) -> bool:
+    """Is a token registered for [allowed] legal on this item?
+
+    Matching is hierarchical, not set intersection. `claimed` is the item's
+    most specific skill, and a `for` entry matches when it is that skill or an
+    ancestor of it: `science` covers `science.matter`, `science.matter` covers
+    only itself. That is what lets the registry choose its own tightness — a
+    glyph that suits any science question can be registered for the domain on
+    purpose, while a derived registration stays pinned to the leaf it came
+    from.
+
+    Plain set intersection is what let a cow onto a states-of-matter step: the
+    item claimed both `science` and `science.matter`, and the cow was legal for
+    `science`, so the two sets met.
+    """
+    for entry in allowed:
+        if entry == subject:
+            return True
+        if claimed and (entry == claimed or claimed.startswith(entry + ".")):
+            return True
+    return False
+
+
 def item_text(item: dict) -> str:
     """Every authored English string in an item, lowercased."""
     parts: list[str] = [item.get("title", ""), item.get("objective", "")]
@@ -111,8 +134,23 @@ def word_in(text: str, word: str) -> bool:
     return re.search(rf"(?<![a-z]){re.escape(word)}(?![a-z])", text) is not None
 
 
+def finest(item: dict) -> str | None:
+    """The most specific skill an item declares.
+
+    Registering usage against the coarse domain would quietly destroy the
+    gate. Items carry both levels — ["science", "science.matter"] — so if a
+    word used once in a life-cycles lesson registered for plain `science`,
+    that glyph would become legal on every science question in the library,
+    which is the breadth the fine skill exists to prevent. Only the leaf is
+    recorded; `for` entries higher up the tree still match, but a human has
+    to write them deliberately.
+    """
+    skills = item.get("skills") or []
+    return skills[-1] if skills else None
+
+
 def build(lexicon: dict[str, tuple[str, str]], items: list[dict]) -> dict:
-    texts = [(item_text(i), i.get("skills") or []) for i in items]
+    texts = [(item_text(i), [s] if (s := finest(i)) else []) for i in items]
     tokens: dict[str, dict] = {}
     for word, (glyph, category) in sorted(lexicon.items()):
         if category in EXCLUDED_CATEGORIES:

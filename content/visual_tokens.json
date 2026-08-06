@@ -17,7 +17,6 @@
       "glyph": "🐜",
       "category": "animal",
       "for": [
-        "reading",
         "reading.sight-words"
       ]
     },
@@ -25,18 +24,15 @@
       "glyph": "🍎",
       "category": "food",
       "for": [
-        "coding",
         "coding.debugging",
         "colors",
         "counting",
         "health",
         "literacy",
-        "math",
         "math.arithmetic",
         "math.fractions",
         "numbers",
         "patterns",
-        "social",
         "social.citizenship",
         "sorting",
         "vocab"
@@ -47,17 +43,14 @@
       "category": "food",
       "for": [
         "counting",
-        "math",
         "math.arithmetic",
         "math.counting",
         "math.data",
         "math.place-value",
         "numbers",
-        "social",
         "social.economics",
         "sorting",
         "vocab",
-        "writing",
         "writing.mechanics"
       ]
     },
@@ -65,7 +58,6 @@
       "glyph": "🍂",
       "category": "nature",
       "for": [
-        "science",
         "science.weather"
       ]
     },
@@ -77,11 +69,8 @@
         "lang",
         "motor",
         "object",
-        "science",
         "science.life-cycles",
-        "social",
         "social.family",
-        "writing",
         "writing.grammar"
       ]
     },
@@ -93,28 +82,22 @@
         "colors",
         "lang",
         "literacy",
-        "math",
         "math.shapes",
         "numbers",
         "object",
         "phono",
-        "reading",
         "reading.comprehension",
         "reading.vocabulary",
-        "science",
         "science.animals",
         "science.earth-space",
         "science.energy",
         "science.weather",
         "semotional",
-        "social",
         "social.culture",
         "social.maps",
         "sorting",
-        "tech",
         "tech.logic",
         "vocab",
-        "writing",
         "writing.grammar"
       ]
     },
@@ -124,10 +107,8 @@
       "for": [
         "colors",
         "counting",
-        "math",
         "math.counting",
         "patterns",
-        "science",
         "science.animals",
         "semotional"
       ]
@@ -148,10 +129,8 @@
       "category": "object",
       "for": [
         "health",
-        "math",
         "math.arithmetic",
         "numbers",
-        "social",
         "social.economics",
         "sorting",
         "vocab"
@@ -161,9 +140,7 @@
       "glyph": "🏖️",
       "category": "nature",
       "for": [
-        "reading",
         "reading.literary",
-        "social",
         "social.community"
       ]
     },
@@ -171,12 +148,10 @@
       "glyph": "🐻",
       "category": "animal",
       "for": [
-        "math",
         "math.arithmetic",
         "math.measurement",
         "motor",
         "phono",
-        "science",
         "science.animals",
         "science.ecosystems",
         "vocab"
@@ -187,19 +162,14 @@
       "category": "object",
       "for": [
         "cause",
-        "coding",
         "coding.algorithms",
         "health",
-        "math",
         "math.arithmetic",
         "music",
-        "reading",
         "reading.comprehension",
         "reading.phonics",
         "reading.vocabulary",
-        "science",
         "science.earth-space",
-        "social",
         "social.maps",
         "vocab"
       ]
@@ -210,7 +180,6 @@
       "for": [
         "arts",
         "phono",
-        "reading",
         "reading.comprehension"
       ]
     },
@@ -220,13 +189,10 @@
       "for": [
         "arts",
         "cause",
-        "coding",
         "coding.algorithms",
         "music",
-        "science",
         "science.energy",
         "sensory",
-        "tech",
         "tech.patterns"
       ]
     },
@@ -235,14 +201,10 @@
       "category": "object",
       "for": [
         "health",
-        "reading",
         "reading.comprehension",
-        "science",
         "science.forces",
-        "social",
         "social.community",
         "social.government",
-        "writing",
         "writing.composition",
         "writing.grammar",
         "writing.mechanics"
@@ -252,7 +214,6 @@
       "glyph": "🗑️",
       "category": "object",
       "for": [
-        "social",
         "social.citizenship",
         "social.government",
         "sorting"
@@ -265,18 +226,14 @@
         "animals",
         "arts",
         "literacy",
-        "math",
         "math.arithmetic",
         "numbers",
         "object",
-        "science",
         "science.animals",
         "science.earth-space",
         "science.ecosystems",
         "sensory",
-        "social",
         "social.maps",
-        "writing",
         "writing.grammar"
       ]
     },
@@ -285,7 +242,6 @@
       "category": "object",
       "for": [
         "object",
-        "reading",
         "reading.literary"
       ]
     },
@@ -293,13 +249,10 @@
       "glyph": "🧱",
       "category": "object",
       "for": [
-        "coding",
         "coding.loops",
-        "science",
         "science.energy",
         "semotional",
         "sorting",
-        "tech",
         "tech.algorithms",
         "tech.debugging",
         "tech.loops"
@@ -309,15 +262,11 @@
       "glyph": "🧱",
       "category": "object",
       "for": [
-        "coding",
         "coding.loops",
         "literacy",
-        "math",
         "math.place-value",
-        "reading",
         "reading.comprehension",
         "sorting",
-        "tech",
         "tech.algorithms",
         "tech.debugging",
         "tech.logic"
@@ -329,25 +278,18 @@
       "for": [
         "arts",
         "cause",
-        "coding",
         "coding.digital-literacy",
         "colors",
-        "math",
         "math.patterns",
         "patterns",
-        "reading",
         "reading.comprehension",
         "reading.text-features",
-        "science",
         "science.weather",
-        "social",
         "social.maps",
         "sorting",
-        "tech",
         "tech.logic",
         "tech.loops",
         "tech.patterns",
-        "writing",
         "writing.grammar"
       ]
     },
@@ -355,7 +297,6 @@
       "glyph": "⛵",
       "category": "object",
       "for": [
-        "social",
         "social.community",
         "social.maps"
       ]
@@ -367,27 +308,21 @@
         "health",
         "lang",
         "literacy",
-        "math",
         "math.measurement",
-        "reading",
         "reading.comprehension",
         "reading.literary",
         "reading.mechanics",
         "reading.phonics",
         "reading.text-features",
         "reading.vocabulary",
-        "science",
         "science.ecosystems",
         "science.energy",
         "science.matter",
-        "social",
         "social.community",
         "social.economics",
         "social.government",
-        "tech",
         "tech.logic",
         "tracing",
-        "writing",
         "writing.grammar",
         "writing.mechanics"
       ]
@@ -397,14 +332,11 @@
       "category": "object",
       "for": [
         "literacy",
-        "math",
         "math.data",
-        "social",
         "social.economics",
         "social.government",
         "social.history",
         "sorting",
-        "writing",
         "writing.grammar"
       ]
     },
@@ -412,29 +344,23 @@
       "glyph": "📦",
       "category": "object",
       "for": [
-        "coding",
         "coding.loops",
         "coding.programs",
         "coding.variables",
         "colors",
         "literacy",
-        "math",
         "math.arithmetic",
         "math.place-value",
         "math.shapes",
         "object",
         "patterns",
-        "science",
         "science.energy",
         "science.forces",
-        "social",
         "social.citizenship",
         "social.economics",
         "sorting",
-        "tech",
         "tech.logic",
         "vocab",
-        "writing",
         "writing.grammar"
       ]
     },
@@ -442,7 +368,6 @@
       "glyph": "👦",
       "category": "people",
       "for": [
-        "reading",
         "reading.comprehension"
       ]
     },
@@ -450,20 +375,14 @@
       "glyph": "🍞",
       "category": "food",
       "for": [
-        "coding",
         "coding.algorithms",
         "health",
-        "reading",
         "reading.comprehension",
-        "science",
         "science.body",
-        "social",
         "social.community",
         "social.economics",
-        "tech",
         "tech.algorithms",
         "vocab",
-        "writing",
         "writing.mechanics"
       ]
     },
@@ -471,7 +390,6 @@
       "glyph": "🍃",
       "category": "nature",
       "for": [
-        "science",
         "science.animals",
         "sensory"
       ]
@@ -497,11 +415,9 @@
       "glyph": "🐛",
       "category": "animal",
       "for": [
-        "coding",
         "coding.algorithms",
         "coding.debugging",
         "coding.logic",
-        "tech",
         "tech.algorithms",
         "tech.creative",
         "tech.debugging"
@@ -519,17 +435,13 @@
       "glyph": "🚌",
       "category": "object",
       "for": [
-        "math",
         "math.shapes",
-        "reading",
         "reading.comprehension",
         "reading.phonics",
-        "social",
         "social.community",
         "social.economics",
         "social.government",
         "vocab",
-        "writing",
         "writing.grammar"
       ]
     },
@@ -537,9 +449,7 @@
       "glyph": "🦋",
       "category": "animal",
       "for": [
-        "reading",
         "reading.vocabulary",
-        "science",
         "science.life-cycles"
       ]
     },
@@ -548,9 +458,7 @@
       "category": "food",
       "for": [
         "health",
-        "math",
         "math.fractions",
-        "reading",
         "reading.comprehension",
         "reading.literary",
         "reading.vocabulary"
@@ -560,7 +468,6 @@
       "glyph": "🧢",
       "category": "clothing",
       "for": [
-        "reading",
         "reading.phonics"
       ]
     },
@@ -571,18 +478,14 @@
         "health",
         "object",
         "phono",
-        "reading",
         "reading.comprehension",
         "reading.vocabulary",
-        "science",
         "science.forces",
-        "social",
         "social.community",
         "social.government",
         "social.history",
         "tracing",
         "vocab",
-        "writing",
         "writing.grammar"
       ]
     },
@@ -600,29 +503,23 @@
       "category": "animal",
       "for": [
         "animals",
-        "coding",
         "coding.logic",
         "lang",
         "literacy",
-        "math",
         "math.data",
         "math.multiplication-division",
         "patterns",
         "phono",
-        "reading",
         "reading.comprehension",
         "reading.literary",
         "reading.mechanics",
         "reading.phonics",
         "reading.sight-words",
-        "science",
         "science.ecosystems",
         "science.life-cycles",
         "science.living-things",
-        "tech",
         "tech.algorithms",
         "vocab",
-        "writing",
         "writing.grammar",
         "writing.mechanics"
       ]
@@ -631,15 +528,11 @@
       "glyph": "🪑",
       "category": "object",
       "for": [
-        "reading",
         "reading.phonics",
-        "science",
         "science.living-things",
         "science.matter",
-        "social",
         "social.maps",
         "vocab",
-        "writing",
         "writing.grammar"
       ]
     },
@@ -649,17 +542,13 @@
       "for": [
         "arts",
         "colors",
-        "math",
         "math.patterns",
         "math.shapes",
         "math.time",
         "patterns",
-        "science",
         "science.earth-space",
-        "social",
         "social.government",
         "social.maps",
-        "tech",
         "tech.loops",
         "tech.patterns",
         "tracing"
@@ -670,14 +559,10 @@
       "category": "object",
       "for": [
         "colors",
-        "math",
         "math.time",
-        "reading",
         "reading.comprehension",
         "reading.literary",
-        "science",
         "science.earth-space",
-        "social",
         "social.maps"
       ]
     },
@@ -686,7 +571,6 @@
       "category": "nature",
       "for": [
         "cause",
-        "science",
         "science.ecosystems",
         "science.weather"
       ]
@@ -695,17 +579,12 @@
       "glyph": "🧥",
       "category": "clothing",
       "for": [
-        "coding",
         "coding.logic",
-        "reading",
         "reading.comprehension",
         "reading.literary",
-        "science",
         "science.matter",
         "science.weather",
-        "social",
         "social.economics",
-        "tech",
         "tech.logic",
         "vocab"
       ]
@@ -714,9 +593,7 @@
       "glyph": "🪙",
       "category": "object",
       "for": [
-        "math",
         "math.money",
-        "science",
         "science.earth-space",
         "science.energy",
         "science.forces"
@@ -726,12 +603,10 @@
       "glyph": "🪙",
       "category": "object",
       "for": [
-        "math",
         "math.arithmetic",
         "math.money",
         "math.multiplication-division",
         "math.place-value",
-        "social",
         "social.economics",
         "social.government",
         "social.maps"
@@ -741,14 +616,12 @@
       "glyph": "💻",
       "category": "object",
       "for": [
-        "coding",
         "coding.algorithms",
         "coding.debugging",
         "coding.logic",
         "coding.loops",
         "coding.programs",
         "coding.variables",
-        "tech",
         "tech.algorithms",
         "tech.debugging",
         "tech.digital-literacy",
@@ -769,7 +642,6 @@
         "animals",
         "lang",
         "phono",
-        "science",
         "science.life-cycles"
       ]
     },
@@ -784,7 +656,6 @@
       "glyph": "🖍️",
       "category": "object",
       "for": [
-        "math",
         "math.measurement",
         "tracing"
       ]
@@ -793,7 +664,6 @@
       "glyph": "🎲",
       "category": "object",
       "for": [
-        "math",
         "math.shapes",
         "patterns"
       ]
@@ -803,26 +673,21 @@
       "category": "object",
       "for": [
         "arts",
-        "coding",
         "coding.algorithms",
         "coding.logic",
         "colors",
         "health",
         "lang",
         "literacy",
-        "math",
         "math.place-value",
         "math.shapes",
         "object",
         "patterns",
-        "reading",
         "reading.phonics",
         "reading.vocabulary",
-        "science",
         "science.matter",
         "semotional",
         "sorting",
-        "tech",
         "tech.algorithms",
         "tech.logic",
         "tracing"
@@ -839,9 +704,7 @@
       "glyph": "👨",
       "category": "people",
       "for": [
-        "social",
         "social.economics",
-        "writing",
         "writing.composition"
       ]
     },
@@ -856,7 +719,6 @@
       "glyph": "🛖",
       "category": "object",
       "for": [
-        "science",
         "science.animals"
       ]
     },
@@ -864,12 +726,10 @@
       "glyph": "🧑‍⚕️",
       "category": "people",
       "for": [
-        "social",
         "social.community",
         "social.economics",
         "social.government",
         "social.history",
-        "writing",
         "writing.mechanics"
       ]
     },
@@ -878,26 +738,21 @@
       "category": "animal",
       "for": [
         "animals",
-        "coding",
         "coding.creative",
         "health",
         "lang",
         "literacy",
-        "math",
         "math.data",
         "math.multiplication-division",
         "phono",
-        "reading",
         "reading.comprehension",
         "reading.literary",
         "reading.mechanics",
         "reading.phonics",
         "reading.vocabulary",
-        "science",
         "science.animals",
         "science.life-cycles",
         "science.living-things",
-        "writing",
         "writing.grammar",
         "writing.mechanics"
       ]
@@ -906,25 +761,20 @@
       "glyph": "🚪",
       "category": "object",
       "for": [
-        "coding",
         "coding.debugging",
         "coding.logic",
         "numbers",
         "object",
         "patterns",
-        "reading",
         "reading.comprehension",
         "reading.fluency",
         "reading.literary",
-        "science",
         "science.ecosystems",
         "science.forces",
         "science.weather",
-        "social",
         "social.government",
         "social.maps",
         "vocab",
-        "writing",
         "writing.grammar"
       ]
     },
@@ -932,7 +782,6 @@
       "glyph": "👗",
       "category": "clothing",
       "for": [
-        "science",
         "science.weather"
       ]
     },
@@ -943,15 +792,12 @@
         "arts",
         "body",
         "cause",
-        "coding",
         "coding.algorithms",
         "literacy",
         "music",
-        "science",
         "science.energy",
         "science.plants",
         "sensory",
-        "tech",
         "tech.patterns"
       ]
     },
@@ -960,11 +806,9 @@
       "category": "animal",
       "for": [
         "animals",
-        "coding",
         "coding.algorithms",
         "counting",
         "lang",
-        "math",
         "math.counting",
         "music",
         "numbers",
@@ -980,12 +824,9 @@
       "for": [
         "arts",
         "body",
-        "reading",
         "reading.phonics",
-        "science",
         "science.earth-space",
         "science.energy",
-        "writing",
         "writing.composition",
         "writing.mechanics"
       ]
@@ -994,10 +835,8 @@
       "glyph": "🌍",
       "category": "nature",
       "for": [
-        "science",
         "science.earth-space",
         "science.ecosystems",
-        "social",
         "social.citizenship",
         "social.history",
         "social.maps"
@@ -1007,7 +846,6 @@
       "glyph": "➡️",
       "category": "direction",
       "for": [
-        "social",
         "social.government",
         "social.maps"
       ]
@@ -1017,9 +855,7 @@
       "category": "food",
       "for": [
         "animals",
-        "math",
         "math.multiplication-division",
-        "science",
         "science.life-cycles"
       ]
     },
@@ -1042,11 +878,8 @@
       "glyph": "👁️",
       "category": "people",
       "for": [
-        "reading",
         "reading.phonics",
-        "tech",
         "tech.creative",
-        "writing",
         "writing.composition",
         "writing.mechanics"
       ]
@@ -1060,13 +893,10 @@
         "emotions",
         "literacy",
         "object",
-        "reading",
         "reading.literary",
-        "science",
         "science.body",
         "science.ecosystems",
         "sorting",
-        "writing",
         "writing.composition",
         "writing.grammar",
         "writing.mechanics"
@@ -1081,16 +911,13 @@
         "colors",
         "emotions",
         "health",
-        "math",
         "math.time",
         "music",
         "object",
         "semotional",
         "sensory",
-        "social",
         "social.government",
         "social.maps",
-        "tech",
         "tech.digital-literacy"
       ]
     },
@@ -1100,9 +927,7 @@
       "for": [
         "arts",
         "health",
-        "reading",
         "reading.vocabulary",
-        "science",
         "science.weather"
       ]
     },
@@ -1110,17 +935,14 @@
       "glyph": "👨‍👩‍👧",
       "category": "people",
       "for": [
-        "reading",
         "reading.fluency",
         "reading.phonics",
-        "social",
         "social.culture",
         "social.economics",
         "social.family",
         "social.government",
         "social.history",
         "social.maps",
-        "writing",
         "writing.mechanics"
       ]
     },
@@ -1129,7 +951,6 @@
       "category": "object",
       "for": [
         "animals",
-        "social",
         "social.maps"
       ]
     },
@@ -1137,7 +958,6 @@
       "glyph": "🧑‍🌾",
       "category": "people",
       "for": [
-        "social",
         "social.community",
         "social.economics",
         "social.government",
@@ -1148,9 +968,7 @@
       "glyph": "🔥",
       "category": "nature",
       "for": [
-        "science",
         "science.energy",
-        "social",
         "social.community",
         "social.history"
       ]
@@ -1159,7 +977,6 @@
       "glyph": "🧑‍🚒",
       "category": "people",
       "for": [
-        "social",
         "social.community",
         "social.history"
       ]
@@ -1172,13 +989,10 @@
         "colors",
         "counting",
         "literacy",
-        "math",
         "math.data",
         "math.fractions",
-        "reading",
         "reading.mechanics",
         "reading.phonics",
-        "science",
         "science.animals",
         "science.ecosystems",
         "sensory"
@@ -1188,11 +1002,8 @@
       "glyph": "🚩",
       "category": "object",
       "for": [
-        "coding",
         "coding.debugging",
-        "social",
         "social.government",
-        "tech",
         "tech.algorithms",
         "tech.creative",
         "tech.debugging"
@@ -1205,13 +1016,10 @@
         "cause",
         "emotions",
         "numbers",
-        "reading",
         "reading.comprehension",
         "reading.vocabulary",
-        "science",
         "science.living-things",
         "science.plants",
-        "social",
         "social.government"
       ]
     },
@@ -1220,9 +1028,7 @@
       "category": "people",
       "for": [
         "body",
-        "reading",
         "reading.vocabulary",
-        "writing",
         "writing.grammar"
       ]
     },
@@ -1230,7 +1036,6 @@
       "glyph": "🦴",
       "category": "nature",
       "for": [
-        "science",
         "science.earth-space"
       ]
     },
@@ -1238,7 +1043,6 @@
       "glyph": "🦊",
       "category": "animal",
       "for": [
-        "science",
         "science.ecosystems",
         "vocab"
       ]
@@ -1247,17 +1051,13 @@
       "glyph": "🧒",
       "category": "people",
       "for": [
-        "math",
         "math.arithmetic",
         "math.fractions",
         "math.time",
         "motor",
-        "reading",
         "reading.comprehension",
         "semotional",
-        "social",
         "social.government",
-        "writing",
         "writing.mechanics"
       ]
     },
@@ -1266,17 +1066,13 @@
       "category": "people",
       "for": [
         "emotions",
-        "math",
         "math.arithmetic",
         "math.fractions",
-        "reading",
         "reading.literary",
         "reading.vocabulary",
-        "science",
         "science.ecosystems",
         "science.inquiry",
         "semotional",
-        "social",
         "social.citizenship"
       ]
     },
@@ -1286,9 +1082,7 @@
       "for": [
         "animals",
         "phono",
-        "reading",
         "reading.phonics",
-        "science",
         "science.ecosystems",
         "science.life-cycles",
         "vocab"
@@ -1306,11 +1100,9 @@
       "glyph": "🌷",
       "category": "nature",
       "for": [
-        "math",
         "math.measurement",
         "math.time",
         "phono",
-        "science",
         "science.ecosystems"
       ]
     },
@@ -1318,7 +1110,6 @@
       "glyph": "🦎",
       "category": "animal",
       "for": [
-        "science",
         "science.ecosystems"
       ]
     },
@@ -1328,7 +1119,6 @@
       "for": [
         "emotions",
         "health",
-        "social",
         "social.citizenship"
       ]
     },
@@ -1346,12 +1136,10 @@
       "glyph": "👧",
       "category": "people",
       "for": [
-        "reading",
         "reading.comprehension",
         "reading.fluency",
         "reading.literary",
         "reading.vocabulary",
-        "writing",
         "writing.grammar"
       ]
     },
@@ -1359,7 +1147,6 @@
       "glyph": "🌐",
       "category": "object",
       "for": [
-        "social",
         "social.maps"
       ]
     },
@@ -1377,7 +1164,6 @@
         "animals",
         "arts",
         "colors",
-        "science",
         "science.ecosystems",
         "science.energy",
         "science.weather",
@@ -1390,18 +1176,13 @@
       "for": [
         "arts",
         "colors",
-        "math",
         "math.arithmetic",
         "math.patterns",
-        "science",
         "science.living-things",
         "science.plants",
-        "social",
         "social.citizenship",
         "social.maps",
-        "tech",
         "tech.algorithms",
-        "writing",
         "writing.grammar"
       ]
     },
@@ -1410,21 +1191,16 @@
       "category": "people",
       "for": [
         "body",
-        "coding",
         "coding.algorithms",
         "emotions",
         "health",
         "lang",
         "literacy",
-        "reading",
         "reading.vocabulary",
-        "science",
         "science.life-cycles",
-        "social",
         "social.citizenship",
         "social.government",
         "social.history",
-        "tech",
         "tech.debugging",
         "tech.digital-literacy",
         "tech.loops"
@@ -1436,32 +1212,26 @@
       "for": [
         "body",
         "cause",
-        "coding",
         "coding.algorithms",
         "colors",
         "counting",
         "health",
-        "math",
         "math.arithmetic",
         "math.time",
         "motor",
         "numbers",
         "patterns",
-        "reading",
         "reading.handwriting",
         "reading.phonics",
-        "science",
         "science.body",
         "science.energy",
         "science.matter",
         "science.plants",
         "sensory",
-        "social",
         "social.economics",
         "social.government",
         "social.history",
         "social.maps",
-        "tech",
         "tech.creative",
         "tracing"
       ]
@@ -1473,13 +1243,11 @@
         "arts",
         "body",
         "cause",
-        "coding",
         "coding.algorithms",
         "colors",
         "counting",
         "emotions",
         "health",
-        "math",
         "math.arithmetic",
         "math.measurement",
         "math.money",
@@ -1488,12 +1256,10 @@
         "music",
         "object",
         "patterns",
-        "science",
         "science.body",
         "science.earth-space",
         "semotional",
         "sensory",
-        "social",
         "social.citizenship",
         "social.government",
         "sorting",
@@ -1515,18 +1281,13 @@
         "motor",
         "music",
         "object",
-        "reading",
         "reading.vocabulary",
-        "science",
         "science.plants",
         "semotional",
-        "social",
         "social.citizenship",
         "social.economics",
-        "tech",
         "tech.digital-literacy",
         "tracing",
-        "writing",
         "writing.grammar",
         "writing.mechanics"
       ]
@@ -1536,21 +1297,16 @@
       "category": "clothing",
       "for": [
         "arts",
-        "coding",
         "coding.logic",
         "lang",
         "literacy",
-        "math",
         "math.money",
         "phono",
-        "reading",
         "reading.literary",
         "reading.mechanics",
         "reading.phonics",
-        "science",
         "science.weather",
         "vocab",
-        "writing",
         "writing.composition",
         "writing.grammar"
       ]
@@ -1562,24 +1318,19 @@
         "arts",
         "body",
         "health",
-        "math",
         "math.arithmetic",
         "math.counting",
         "math.multiplication-division",
         "math.place-value",
         "math.time",
-        "reading",
         "reading.literary",
-        "science",
         "science.body",
         "science.ecosystems",
         "science.energy",
         "science.life-cycles",
-        "social",
         "social.community",
         "social.government",
         "vocab",
-        "writing",
         "writing.grammar"
       ]
     },
@@ -1588,17 +1339,12 @@
       "category": "shape",
       "for": [
         "health",
-        "math",
         "math.arithmetic",
         "motor",
-        "reading",
         "reading.literary",
-        "science",
         "science.body",
         "science.plants",
-        "tech",
         "tech.creative",
-        "writing",
         "writing.grammar"
       ]
     },
@@ -1607,7 +1353,6 @@
       "category": "clothing",
       "for": [
         "health",
-        "social",
         "social.government"
       ]
     },
@@ -1616,43 +1361,36 @@
       "category": "object",
       "for": [
         "animals",
-        "coding",
         "coding.digital-literacy",
         "coding.logic",
         "coding.loops",
         "coding.programs",
         "counting",
         "health",
-        "math",
         "math.data",
         "math.multiplication-division",
         "numbers",
         "object",
         "phono",
-        "reading",
         "reading.comprehension",
         "reading.fluency",
         "reading.literary",
         "reading.sight-words",
-        "science",
         "science.animals",
         "science.earth-space",
         "science.ecosystems",
         "science.energy",
         "science.inquiry",
         "semotional",
-        "social",
         "social.economics",
         "social.family",
         "social.government",
         "social.history",
         "social.maps",
         "sorting",
-        "tech",
         "tech.digital-literacy",
         "tracing",
         "vocab",
-        "writing",
         "writing.composition",
         "writing.grammar"
       ]
@@ -1661,7 +1399,6 @@
       "glyph": "🐴",
       "category": "animal",
       "for": [
-        "social",
         "social.history"
       ]
     },
@@ -1669,20 +1406,15 @@
       "glyph": "🏠",
       "category": "object",
       "for": [
-        "coding",
         "coding.algorithms",
         "literacy",
-        "reading",
         "reading.comprehension",
         "reading.literary",
-        "social",
         "social.culture",
         "social.maps",
-        "tech",
         "tech.logic",
         "tracing",
         "vocab",
-        "writing",
         "writing.grammar",
         "writing.mechanics"
       ]
@@ -1704,10 +1436,8 @@
       "for": [
         "emotions",
         "patterns",
-        "reading",
         "reading.comprehension",
         "reading.text-features",
-        "science",
         "science.earth-space",
         "science.ecosystems",
         "science.energy",
@@ -1719,7 +1449,6 @@
       "glyph": "🏝️",
       "category": "nature",
       "for": [
-        "social",
         "social.maps"
       ]
     },
@@ -1727,28 +1456,21 @@
       "glyph": "👷",
       "category": "people",
       "for": [
-        "coding",
         "coding.algorithms",
         "health",
-        "math",
         "math.measurement",
         "math.place-value",
-        "reading",
         "reading.comprehension",
-        "science",
         "science.body",
         "science.life-cycles",
         "science.matter",
         "semotional",
-        "social",
         "social.community",
         "social.economics",
         "social.government",
         "social.history",
         "sorting",
-        "tech",
         "tech.creative",
-        "writing",
         "writing.composition",
         "writing.grammar",
         "writing.mechanics"
@@ -1759,7 +1481,6 @@
       "category": "nature",
       "for": [
         "animals",
-        "science",
         "science.ecosystems"
       ]
     },
@@ -1767,7 +1488,6 @@
       "glyph": "🪐",
       "category": "nature",
       "for": [
-        "science",
         "science.earth-space",
         "science.ecosystems"
       ]
@@ -1776,11 +1496,8 @@
       "glyph": "🔑",
       "category": "object",
       "for": [
-        "reading",
         "reading.comprehension",
-        "science",
         "science.forces",
-        "social",
         "social.economics",
         "social.maps"
       ]
@@ -1789,11 +1506,8 @@
       "glyph": "🪁",
       "category": "object",
       "for": [
-        "math",
         "math.money",
-        "reading",
         "reading.phonics",
-        "tech",
         "tech.logic",
         "tracing"
       ]
@@ -1804,9 +1518,7 @@
       "for": [
         "numbers",
         "object",
-        "reading",
         "reading.literary",
-        "science",
         "science.life-cycles"
       ]
     },
@@ -1816,7 +1528,6 @@
       "for": [
         "cause",
         "health",
-        "science",
         "science.energy",
         "sensory"
       ]
@@ -1827,13 +1538,10 @@
       "for": [
         "animals",
         "arts",
-        "coding",
         "coding.algorithms",
         "colors",
-        "math",
         "math.counting",
         "object",
-        "science",
         "science.earth-space",
         "science.ecosystems",
         "science.forces",
@@ -1847,7 +1555,6 @@
       "category": "object",
       "for": [
         "colors",
-        "science",
         "science.forces",
         "science.matter"
       ]
@@ -1858,10 +1565,8 @@
       "for": [
         "animals",
         "arts",
-        "reading",
         "reading.comprehension",
         "reading.literary",
-        "science",
         "science.ecosystems"
       ]
     },
@@ -1876,7 +1581,6 @@
       "glyph": "🦎",
       "category": "animal",
       "for": [
-        "science",
         "science.animals"
       ]
     },
@@ -1885,10 +1589,8 @@
       "category": "people",
       "for": [
         "health",
-        "science",
         "science.body",
         "science.plants",
-        "social",
         "social.history"
       ]
     },
@@ -1896,7 +1598,6 @@
       "glyph": "🧲",
       "category": "object",
       "for": [
-        "science",
         "science.earth-space",
         "science.ecosystems",
         "science.energy",
@@ -1917,7 +1618,6 @@
       "glyph": "🥭",
       "category": "food",
       "for": [
-        "math",
         "math.money"
       ]
     },
@@ -1925,10 +1625,8 @@
       "glyph": "🗺️",
       "category": "object",
       "for": [
-        "reading",
         "reading.phonics",
         "reading.text-features",
-        "social",
         "social.community",
         "social.economics",
         "social.government",
@@ -1939,7 +1637,6 @@
       "glyph": "🧑‍💼",
       "category": "people",
       "for": [
-        "social",
         "social.government"
       ]
     },
@@ -1949,11 +1646,9 @@
       "for": [
         "health",
         "phono",
-        "science",
         "science.animals",
         "science.matter",
         "vocab",
-        "writing",
         "writing.mechanics"
       ]
     },
@@ -1980,7 +1675,6 @@
         "music",
         "patterns",
         "phono",
-        "science",
         "science.earth-space",
         "science.plants"
       ]
@@ -1989,10 +1683,8 @@
       "glyph": "⛰️",
       "category": "nature",
       "for": [
-        "science",
         "science.earth-space",
         "science.ecosystems",
-        "social",
         "social.maps",
         "tracing"
       ]
@@ -2026,9 +1718,7 @@
       "for": [
         "animals",
         "object",
-        "science",
         "science.animals",
-        "writing",
         "writing.grammar"
       ]
     },
@@ -2041,10 +1731,8 @@
         "lang",
         "music",
         "patterns",
-        "reading",
         "reading.comprehension",
         "reading.literary",
-        "science",
         "science.earth-space",
         "science.weather",
         "sensory"
@@ -2054,9 +1742,7 @@
       "glyph": "⬆️",
       "category": "direction",
       "for": [
-        "science",
         "science.energy",
-        "social",
         "social.economics",
         "social.government",
         "social.history",
@@ -2069,7 +1755,6 @@
       "for": [
         "arts",
         "body",
-        "science",
         "science.body",
         "semotional"
       ]
@@ -2079,9 +1764,7 @@
       "category": "nature",
       "for": [
         "animals",
-        "science",
         "science.ecosystems",
-        "social",
         "social.economics",
         "social.maps"
       ]
@@ -2092,9 +1775,7 @@
       "for": [
         "arts",
         "colors",
-        "math",
         "math.fractions",
-        "social",
         "social.maps",
         "tracing"
       ]
@@ -2103,26 +1784,20 @@
       "glyph": "📄",
       "category": "object",
       "for": [
-        "math",
         "math.data",
         "math.fractions",
         "math.multiplication-division",
         "math.shapes",
-        "reading",
         "reading.literary",
-        "science",
         "science.ecosystems",
         "science.energy",
         "science.inquiry",
         "science.matter",
         "sensory",
-        "social",
         "social.government",
         "social.maps",
-        "tech",
         "tech.creative",
         "tracing",
-        "writing",
         "writing.mechanics"
       ]
     },
@@ -2130,7 +1805,6 @@
       "glyph": "📎",
       "category": "object",
       "for": [
-        "science",
         "science.earth-space",
         "science.ecosystems",
         "science.energy",
@@ -2141,7 +1815,6 @@
       "glyph": "🧑",
       "category": "people",
       "for": [
-        "social",
         "social.family"
       ]
     },
@@ -2149,7 +1822,6 @@
       "glyph": "🖊️",
       "category": "object",
       "for": [
-        "social",
         "social.history"
       ]
     },
@@ -2157,7 +1829,6 @@
       "glyph": "✏️",
       "category": "object",
       "for": [
-        "math",
         "math.measurement"
       ]
     },
@@ -2165,7 +1836,6 @@
       "glyph": "📱",
       "category": "object",
       "for": [
-        "social",
         "social.history"
       ]
     },
@@ -2173,7 +1843,6 @@
       "glyph": "🐷",
       "category": "animal",
       "for": [
-        "reading",
         "reading.phonics"
       ]
     },
@@ -2181,7 +1850,6 @@
       "glyph": "🍕",
       "category": "food",
       "for": [
-        "math",
         "math.fractions"
       ]
     },
@@ -2190,10 +1858,8 @@
       "category": "object",
       "for": [
         "arts",
-        "science",
         "science.forces",
         "science.inquiry",
-        "social",
         "social.community",
         "social.maps"
       ]
@@ -2202,10 +1868,8 @@
       "glyph": "🪐",
       "category": "nature",
       "for": [
-        "science",
         "science.earth-space",
         "science.ecosystems",
-        "social",
         "social.maps"
       ]
     },
@@ -2213,20 +1877,14 @@
       "glyph": "🪴",
       "category": "nature",
       "for": [
-        "coding",
         "coding.algorithms",
         "colors",
-        "reading",
         "reading.comprehension",
-        "science",
         "science.ecosystems",
         "science.living-things",
         "science.plants",
-        "social",
         "social.government",
-        "tech",
         "tech.loops",
-        "writing",
         "writing.transitions"
       ]
     },
@@ -2238,9 +1896,7 @@
         "counting",
         "health",
         "numbers",
-        "reading",
         "reading.comprehension",
-        "science",
         "science.weather",
         "vocab"
       ]
@@ -2250,15 +1906,11 @@
       "category": "object",
       "for": [
         "cause",
-        "coding",
         "coding.algorithms",
         "music",
-        "science",
         "science.matter",
         "science.plants",
-        "social",
         "social.history",
-        "writing",
         "writing.grammar",
         "writing.mechanics"
       ]
@@ -2267,10 +1919,8 @@
       "glyph": "😌",
       "category": "people",
       "for": [
-        "reading",
         "reading.literary",
         "semotional",
-        "social",
         "social.government"
       ]
     },
@@ -2278,7 +1928,6 @@
       "glyph": "💧",
       "category": "nature",
       "for": [
-        "science",
         "science.earth-space",
         "science.matter",
         "science.weather"
@@ -2291,10 +1940,8 @@
         "animals",
         "cause",
         "object",
-        "reading",
         "reading.comprehension",
         "reading.fluency",
-        "science",
         "science.life-cycles",
         "science.living-things",
         "vocab"
@@ -2318,7 +1965,6 @@
       "glyph": "🪶",
       "category": "object",
       "for": [
-        "social",
         "social.history"
       ]
     },
@@ -2328,7 +1974,6 @@
       "for": [
         "counting",
         "patterns",
-        "science",
         "science.animals",
         "science.ecosystems"
       ]
@@ -2338,13 +1983,11 @@
       "category": "nature",
       "for": [
         "cause",
-        "reading",
         "reading.comprehension",
         "reading.literary",
         "reading.phonics",
         "reading.text-features",
         "reading.vocabulary",
-        "science",
         "science.ecosystems",
         "science.forces",
         "science.plants",
@@ -2357,9 +2000,7 @@
       "for": [
         "arts",
         "health",
-        "reading",
         "reading.vocabulary",
-        "science",
         "science.weather"
       ]
     },
@@ -2377,30 +2018,24 @@
       "category": "color",
       "for": [
         "arts",
-        "coding",
         "coding.logic",
         "colors",
         "counting",
-        "math",
         "math.arithmetic",
         "math.patterns",
         "patterns",
-        "reading",
         "reading.comprehension",
         "reading.literary",
         "reading.mechanics",
         "reading.phonics",
-        "social",
         "social.citizenship",
         "social.government",
         "sorting",
-        "tech",
         "tech.creative",
         "tech.debugging",
         "tech.logic",
         "tech.loops",
         "tech.patterns",
-        "writing",
         "writing.composition",
         "writing.grammar",
         "writing.mechanics"
@@ -2410,19 +2045,15 @@
       "glyph": "🏞️",
       "category": "nature",
       "for": [
-        "reading",
         "reading.comprehension",
         "reading.phonics",
-        "science",
         "science.animals",
         "science.earth-space",
         "science.forces",
         "science.weather",
-        "social",
         "social.economics",
         "social.history",
         "social.maps",
-        "writing",
         "writing.grammar",
         "writing.mechanics"
       ]
@@ -2431,11 +2062,9 @@
       "glyph": "🤖",
       "category": "object",
       "for": [
-        "coding",
         "coding.algorithms",
         "coding.debugging",
         "coding.loops",
-        "tech",
         "tech.algorithms",
         "tech.creative",
         "tech.debugging",
@@ -2447,7 +2076,6 @@
       "glyph": "🪨",
       "category": "nature",
       "for": [
-        "science",
         "science.earth-space",
         "science.ecosystems",
         "science.energy",
@@ -2462,11 +2090,9 @@
       "for": [
         "arts",
         "emotions",
-        "reading",
         "reading.fluency",
         "reading.text-features",
         "semotional",
-        "social",
         "social.government"
       ]
     },
@@ -2474,7 +2100,6 @@
       "glyph": "🪐",
       "category": "nature",
       "for": [
-        "science",
         "science.earth-space"
       ]
     },
@@ -2483,7 +2108,6 @@
       "category": "people",
       "for": [
         "emotions",
-        "tech",
         "tech.digital-literacy",
         "tech.loops"
       ]
@@ -2492,7 +2116,6 @@
       "glyph": "🧣",
       "category": "clothing",
       "for": [
-        "science",
         "science.weather"
       ]
     },
@@ -2500,23 +2123,16 @@
       "glyph": "🏫",
       "category": "object",
       "for": [
-        "coding",
         "coding.digital-literacy",
-        "math",
         "math.time",
-        "reading",
         "reading.sight-words",
-        "science",
         "science.energy",
-        "social",
         "social.community",
         "social.government",
         "social.history",
         "social.maps",
-        "tech",
         "tech.debugging",
         "tech.digital-literacy",
-        "writing",
         "writing.grammar",
         "writing.mechanics"
       ]
@@ -2526,15 +2142,11 @@
       "category": "nature",
       "for": [
         "animals",
-        "reading",
         "reading.sight-words",
-        "science",
         "science.animals",
         "science.earth-space",
         "science.ecosystems",
-        "social",
         "social.community",
-        "writing",
         "writing.composition",
         "writing.grammar"
       ]
@@ -2543,9 +2155,7 @@
       "glyph": "🍂",
       "category": "nature",
       "for": [
-        "science",
         "science.weather",
-        "social",
         "social.government"
       ]
     },
@@ -2554,16 +2164,11 @@
       "category": "nature",
       "for": [
         "cause",
-        "reading",
         "reading.comprehension",
-        "science",
         "science.life-cycles",
         "science.plants",
-        "social",
         "social.government",
-        "tech",
         "tech.loops",
-        "writing",
         "writing.transitions"
       ]
     },
@@ -2571,7 +2176,6 @@
       "glyph": "👤",
       "category": "nature",
       "for": [
-        "science",
         "science.energy",
         "sensory"
       ]
@@ -2581,7 +2185,6 @@
       "category": "object",
       "for": [
         "arts",
-        "coding",
         "coding.algorithms",
         "music"
       ]
@@ -2591,7 +2194,6 @@
       "category": "animal",
       "for": [
         "animals",
-        "science",
         "science.life-cycles"
       ]
     },
@@ -2600,7 +2202,6 @@
       "category": "object",
       "for": [
         "arts",
-        "math",
         "math.shapes",
         "sorting"
       ]
@@ -2609,9 +2210,7 @@
       "glyph": "🐚",
       "category": "nature",
       "for": [
-        "reading",
         "reading.phonics",
-        "science",
         "science.earth-space",
         "science.ecosystems"
       ]
@@ -2621,9 +2220,7 @@
       "category": "clothing",
       "for": [
         "lang",
-        "reading",
         "reading.phonics",
-        "social",
         "social.economics",
         "social.government",
         "vocab"
@@ -2635,19 +2232,15 @@
       "for": [
         "arts",
         "cause",
-        "coding",
         "coding.logic",
         "colors",
         "object",
-        "reading",
         "reading.literary",
         "reading.text-features",
         "reading.vocabulary",
-        "science",
         "science.earth-space",
         "science.plants",
         "science.weather",
-        "social",
         "social.community"
       ]
     },
@@ -2659,7 +2252,6 @@
         "emotions",
         "lang",
         "music",
-        "reading",
         "reading.comprehension",
         "reading.vocabulary",
         "sensory"
@@ -2676,7 +2268,6 @@
       "glyph": "🐌",
       "category": "animal",
       "for": [
-        "science",
         "science.forces"
       ]
     },
@@ -2686,10 +2277,8 @@
       "for": [
         "animals",
         "literacy",
-        "math",
         "math.measurement",
         "phono",
-        "science",
         "science.animals",
         "tracing"
       ]
@@ -2698,10 +2287,8 @@
       "glyph": "❄️",
       "category": "nature",
       "for": [
-        "reading",
         "reading.comprehension",
         "reading.literary",
-        "science",
         "science.weather"
       ]
     },
@@ -2712,7 +2299,6 @@
         "literacy",
         "numbers",
         "phono",
-        "reading",
         "reading.phonics",
         "sorting"
       ]
@@ -2722,7 +2308,6 @@
       "category": "food",
       "for": [
         "patterns",
-        "reading",
         "reading.text-features",
         "vocab"
       ]
@@ -2731,7 +2316,6 @@
       "glyph": "⬇️",
       "category": "direction",
       "for": [
-        "social",
         "social.economics",
         "social.government",
         "social.history",
@@ -2742,10 +2326,8 @@
       "glyph": "🕷️",
       "category": "animal",
       "for": [
-        "coding",
         "coding.logic",
         "coding.variables",
-        "science",
         "science.animals"
       ]
     },
@@ -2756,7 +2338,6 @@
         "counting",
         "music",
         "patterns",
-        "science",
         "science.matter"
       ]
     },
@@ -2764,9 +2345,7 @@
       "glyph": "🌼",
       "category": "nature",
       "for": [
-        "coding",
         "coding.algorithms",
-        "science",
         "science.weather"
       ]
     },
@@ -2775,19 +2354,16 @@
       "category": "shape",
       "for": [
         "arts",
-        "coding",
         "coding.algorithms",
         "coding.debugging",
         "coding.loops",
         "colors",
-        "math",
         "math.decimals",
         "math.fractions",
         "math.measurement",
         "math.patterns",
         "math.shapes",
         "patterns",
-        "tech",
         "tech.creative",
         "tech.debugging",
         "tech.logic",
@@ -2800,25 +2376,19 @@
       "category": "nature",
       "for": [
         "cause",
-        "coding",
         "coding.algorithms",
         "counting",
         "lang",
-        "math",
         "math.counting",
         "motor",
         "numbers",
         "phono",
-        "reading",
         "reading.phonics",
-        "science",
         "science.earth-space",
         "sensory",
-        "social",
         "social.economics",
         "social.government",
         "social.maps",
-        "tech",
         "tech.algorithms"
       ]
     },
@@ -2829,17 +2399,13 @@
         "cause",
         "counting",
         "lang",
-        "math",
         "math.comparison",
         "math.counting",
         "motor",
         "numbers",
-        "reading",
         "reading.literary",
         "reading.vocabulary",
-        "science",
         "science.earth-space",
-        "social",
         "social.government"
       ]
     },
@@ -2847,7 +2413,6 @@
       "glyph": "♨️",
       "category": "nature",
       "for": [
-        "science",
         "science.ecosystems",
         "science.matter",
         "science.weather",
@@ -2858,11 +2423,8 @@
       "glyph": "🏪",
       "category": "object",
       "for": [
-        "coding",
         "coding.variables",
-        "social",
         "social.community",
-        "tech",
         "tech.logic"
       ]
     },
@@ -2871,19 +2433,14 @@
       "category": "object",
       "for": [
         "health",
-        "math",
         "math.shapes",
-        "reading",
         "reading.fluency",
         "reading.literary",
-        "science",
         "science.ecosystems",
-        "social",
         "social.citizenship",
         "social.community",
         "social.government",
         "social.maps",
-        "writing",
         "writing.mechanics"
       ]
     },
@@ -2891,9 +2448,7 @@
       "glyph": "☀️",
       "category": "nature",
       "for": [
-        "science",
         "science.weather",
-        "writing",
         "writing.grammar"
       ]
     },
@@ -2906,17 +2461,14 @@
         "colors",
         "lang",
         "literacy",
-        "math",
         "math.shapes",
         "music",
         "patterns",
         "phono",
-        "reading",
         "reading.comprehension",
         "reading.mechanics",
         "reading.phonics",
         "reading.vocabulary",
-        "science",
         "science.earth-space",
         "science.ecosystems",
         "science.energy",
@@ -2924,11 +2476,9 @@
         "science.plants",
         "science.weather",
         "sensory",
-        "social",
         "social.economics",
         "social.maps",
         "vocab",
-        "writing",
         "writing.mechanics"
       ]
     },
@@ -2936,11 +2486,9 @@
       "glyph": "🧑‍🏫",
       "category": "people",
       "for": [
-        "social",
         "social.community",
         "social.economics",
         "social.history",
-        "writing",
         "writing.composition",
         "writing.grammar",
         "writing.mechanics"
@@ -2950,14 +2498,11 @@
       "glyph": "🦷",
       "category": "people",
       "for": [
-        "coding",
         "coding.algorithms",
         "coding.loops",
         "health",
         "music",
-        "reading",
         "reading.comprehension",
-        "tech",
         "tech.algorithms"
       ]
     },
@@ -2965,7 +2510,6 @@
       "glyph": "🐯",
       "category": "animal",
       "for": [
-        "coding",
         "coding.digital-literacy"
       ]
     },
@@ -2983,9 +2527,7 @@
       "for": [
         "cause",
         "music",
-        "reading",
         "reading.comprehension",
-        "science",
         "science.inquiry",
         "science.matter"
       ]
@@ -2995,13 +2537,11 @@
       "category": "object",
       "for": [
         "object",
-        "science",
         "science.animals",
         "science.living-things",
         "science.plants",
         "semotional",
         "sensory",
-        "social",
         "social.citizenship",
         "social.economics",
         "sorting",
@@ -3014,7 +2554,6 @@
       "for": [
         "object",
         "phono",
-        "reading",
         "reading.phonics"
       ]
     },
@@ -3026,14 +2565,11 @@
         "arts",
         "colors",
         "counting",
-        "reading",
         "reading.text-features",
-        "science",
         "science.energy",
         "science.forces",
         "science.living-things",
         "science.matter",
-        "social",
         "social.government",
         "social.maps",
         "sorting",
@@ -3045,14 +2581,11 @@
       "category": "shape",
       "for": [
         "arts",
-        "coding",
         "coding.loops",
         "coding.variables",
         "colors",
-        "math",
         "math.patterns",
         "math.shapes",
-        "tech",
         "tech.debugging",
         "tech.loops"
       ]
@@ -3069,7 +2602,6 @@
       "category": "animal",
       "for": [
         "patterns",
-        "science",
         "science.forces"
       ]
     },
@@ -3077,13 +2609,9 @@
       "glyph": "☂️",
       "category": "object",
       "for": [
-        "coding",
         "coding.logic",
-        "reading",
         "reading.comprehension",
-        "science",
         "science.weather",
-        "tech",
         "tech.logic",
         "tech.loops"
       ]
@@ -3094,14 +2622,11 @@
       "for": [
         "animals",
         "cause",
-        "coding",
         "coding.algorithms",
         "health",
-        "reading",
         "reading.comprehension",
         "reading.mechanics",
         "reading.phonics",
-        "science",
         "science.animals",
         "science.earth-space",
         "science.ecosystems",
@@ -3112,7 +2637,6 @@
         "science.matter",
         "science.plants",
         "science.weather",
-        "social",
         "social.citizenship",
         "social.community",
         "social.economics",
@@ -3121,7 +2645,6 @@
         "social.maps",
         "stories",
         "tracing",
-        "writing",
         "writing.composition",
         "writing.grammar",
         "writing.transitions"
@@ -3131,7 +2654,6 @@
       "glyph": "⬅️",
       "category": "direction",
       "for": [
-        "social",
         "social.government",
         "social.history",
         "social.maps"
@@ -3142,7 +2664,6 @@
       "category": "animal",
       "for": [
         "animals",
-        "science",
         "science.animals"
       ]
     },
@@ -3151,7 +2672,6 @@
       "category": "object",
       "for": [
         "colors",
-        "science",
         "science.forces"
       ]
     },
@@ -3160,21 +2680,15 @@
       "category": "object",
       "for": [
         "animals",
-        "math",
         "math.multiplication-division",
         "patterns",
-        "reading",
         "reading.comprehension",
-        "science",
         "science.ecosystems",
         "science.matter",
         "science.weather",
-        "social",
         "social.maps",
-        "tech",
         "tech.digital-literacy",
         "vocab",
-        "writing",
         "writing.grammar"
       ]
     },
@@ -3182,9 +2696,7 @@
       "glyph": "❄️",
       "category": "nature",
       "for": [
-        "science",
         "science.weather",
-        "social",
         "social.culture",
         "social.economics"
       ]
@@ -3193,9 +2705,7 @@
       "glyph": "🪵",
       "category": "object",
       "for": [
-        "reading",
         "reading.literary",
-        "science",
         "science.energy",
         "science.matter"
       ]
@@ -3204,7 +2714,6 @@
       "glyph": "😟",
       "category": "people",
       "for": [
-        "reading",
         "reading.literary",
         "semotional"
       ]
@@ -3215,9 +2724,7 @@
       "for": [
         "arts",
         "colors",
-        "math",
         "math.patterns",
-        "tech",
         "tech.logic"
       ]
     },
@@ -3225,10 +2732,8 @@
       "glyph": "🦓",
       "category": "object",
       "for": [
-        "reading",
         "reading.comprehension",
         "reading.literary",
-        "writing",
         "writing.composition"
       ]
     }

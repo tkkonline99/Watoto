@@ -52,6 +52,7 @@ import sys
 from collections import Counter
 
 from authoring import LIBRARIES, ROOT
+from build_visual_tokens import token_allows
 
 TOKENS_PATH = ROOT / "content/visual_tokens.json"
 MANIFEST = ROOT / "content/production/images/image_manifest.csv"
@@ -255,11 +256,12 @@ def token_for(text: str, item: dict, tokens: dict) -> str | None:
     than words keeps synonyms together: "a puddle... where did the water go"
     names two words for one picture, and that still resolves.
     """
-    skills = set(item.get("skills") or []) | {item.get("subject")}
+    claimed = (item.get("skills") or [None])[-1]
+    subject = item.get("subject")
     low = text.lower()
     by_glyph: dict[str, str] = {}
     for name, tok in tokens.items():
-        if not set(tok["for"]) & skills:
+        if not token_allows(tok["for"], claimed, subject):
             continue
         word = name.replace(".", " ")
         if not re.search(rf"(?<![a-z]){re.escape(word)}(?![a-z])", low):
