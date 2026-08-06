@@ -32,6 +32,11 @@ void main() {
     // widgets it is built from, so the shared ones are checked too.
     'lib/core/widgets/subject_island.dart',
     'lib/core/widgets/mascot_widget.dart',
+    // Every question, activity and story page renders on this skeleton
+    // (docs/26 §26.2), so the stage's alt text and the prompt's live region
+    // are declared once here rather than per screen. Same reasoning as the two
+    // shared widgets above.
+    'lib/core/widgets/stages/question_scaffold.dart',
   ];
 
   test('every interactive surface declares screen-reader semantics', () {

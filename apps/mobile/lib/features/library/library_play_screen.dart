@@ -11,6 +11,8 @@ import '../../core/audio/sound_effects.dart';
 import '../../core/offline/offline_providers.dart';
 import '../../core/state/app_state.dart';
 import '../../core/theme/watoto_theme.dart';
+import '../../core/widgets/stages/question_scaffold.dart';
+import '../../core/widgets/stages/stage_scenes.dart';
 import '../../l10n/gen/app_localizations.dart';
 import '../auth/entitlements.dart';
 import '../gamification/reward_outcome.dart';
@@ -29,6 +31,7 @@ import 'play_recap_view.dart';
 import 'play_stages.dart';
 import 'play_story_view.dart';
 import 'step_visuals.dart';
+import 'visual_stage.dart';
 import '../../router/return_to.dart';
 
 /// Plays a single library item by id, dispatching to the right player. Content
@@ -391,158 +394,149 @@ class _LessonViewState extends ConsumerState<_LessonView> {
       narration: narrationEn,
       visual: widget.item.steps[_step].visual,
     );
-    // One caption widget, placed either above the stage or below it — see
-    // stageCaptionsBelow. Building it twice would announce it twice.
-    final caption = Semantics(
-      liveRegion: true,
-      child: Text(
-        loc.stepNarration(_step),
-        textAlign: TextAlign.center,
-        style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w800),
-      ),
+    // The narration is now the skeleton's prompt (part 4) rather than a
+    // caption floated above or below the stage, so there is one of it by
+    // construction and no need to choose a side.
+    final interaction = SmartInteractionStage(
+      key: ValueKey('step-$_step'),
+      plan: plan,
+      prompt: stepPrompt,
+      emoji: emoji,
+      choice: choice,
+      done: _interacted,
+      onCompleted: _onInteracted,
+      onTapSound: () => ref.read(soundEffectsProvider).tap(),
+      onWrong: () {
+        setState(() {
+          _combo = 0;
+          _mistakes++;
+        });
+        // A distinct, gentle "not that one" — the plain tap sound gave a
+        // wrong pick no feedback at all.
+        ref.read(soundEffectsProvider).retry();
+      },
     );
+
+    // Part 3 of the skeleton. Three cases, in the order they take precedence:
+    //
+    //  - the code editor and the circuit board *are* the picture, so they take
+    //    the stage themselves rather than being crowded beneath a second one;
+    //  - a staged choice shows no stage art at all, because the art is the
+    //    answer and putting it above the options gives the question away;
+    //  - otherwise the declared visual fills it, falling back to the ladder's
+    //    glyph for anything not yet migrated.
+    final Widget stageContent;
+    if (stageOwnsCanvas(plan.mechanic)) {
+      stageContent = interaction;
+    } else if (plan.workspace != null) {
+      stageContent = DivisionWorkspace(
+        workspace: plan.workspace!,
+        filledDigit: _shownAnswer ?? (_interacted ? plan.answer : null),
+      );
+    } else if (choice != null) {
+      stageContent = const SizedBox.shrink();
+    } else {
+      // The stage art is decorative: its meaning is carried by the visual's
+      // alt, which _Stage announces, and by the prompt underneath. Without
+      // this the reader walks into the glyph and reads its Unicode name —
+      // the same fault SubjectIsland shipped with.
+      stageContent = ExcludeSemantics(
+        child: BreathingArt(
+          restartKey: _step,
+          child: VisualStage(
+            visual: step.visual,
+            fallbackEmoji: emoji,
+            data: SceneData(
+              count: step.count,
+              rows: step.rows,
+              cols: step.cols,
+              text: narrationEn,
+            ),
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       appBar: playAppBar(context, loc.title),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: ProgressDots(
-                      count: steps.length,
-                      active: _step,
-                    ),
+      body: QuestionScaffold(
+        stage: widget.item.stage,
+        textHeavy: widget.item.reading,
+        progress: QuestionProgress(
+          index: _step,
+          total: steps.length,
+          streak: _combo > 1 ? _combo : null,
+        ),
+        stageVisual: stageContent,
+        stageFitsContent: stageOwnsCanvas(plan.mechanic),
+        // The alt is the screen-reader label (§26.6). Stages that own the
+        // canvas are interactive and announce themselves, so labelling them
+        // as an image would talk over their own semantics.
+        stageSemanticLabel:
+            stageOwnsCanvas(plan.mechanic) ? null : step.visual?.alt,
+        prompt: loc.stepNarration(_step),
+        response: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (!stageOwnsCanvas(plan.mechanic)) interaction,
+            if (_interacted) ...[
+              const SizedBox(height: 16),
+              // Feedback appears after the child acts, so it has to announce
+              // itself — a reader that only speaks on focus change would never
+              // reach it. §26.6: correct is leaf, never red and never a cross.
+              Semantics(
+                liveRegion: true,
+                child: Text(
+                  loc.stepFeedback(_step),
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w700,
+                    color: WatotoColors.leaf,
                   ),
-                  if (_combo > 1)
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 4,
-                      ),
-                      decoration: BoxDecoration(
-                        color: WatotoColors.mango.withValues(alpha: 0.2),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Text(
-                        '🔥 ×$_combo',
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w800,
-                          color: WatotoColors.mango,
-                        ),
-                      ),
-                    ),
-                ],
-              ),
-              Expanded(
-                child: Center(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        if (!stageCaptionsBelow(plan.mechanic)) caption,
-                        if (stepPrompt != null &&
-                            !_interacted &&
-                            !stageShowsPrompt(plan.mechanic)) ...[
-                          const SizedBox(height: 6),
-                          Text(
-                            stepPrompt,
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              color: WatotoColors.deep.withValues(alpha: 0.55),
-                            ),
-                          ),
-                        ],
-                        const SizedBox(height: 12),
-                        if (plan.workspace != null)
-                          DivisionWorkspace(
-                            workspace: plan.workspace!,
-                            filledDigit: _shownAnswer ??
-                                (_interacted ? plan.answer : null),
-                          )
-                        // No illustration above a staged choice: the art *is*
-                        // the answer, so showing it next to the options gives
-                        // the question away. Stages that already render the
-                        // step's emoji as their tap target skip it too — the
-                        // child was seeing the same picture twice, once dead
-                        // and once alive.
-                        else if (!stageOwnsCanvas(plan.mechanic) &&
-                            choice == null)
-                          ExcludeSemantics(
-                            // Emoji-showing stages get the bundled artwork or
-                            // nothing; other stages still get the emoji, since
-                            // there it is the only picture on screen.
-                            child: BreathingArt(
-                              restartKey: _step,
-                              child: stageShowsEmoji(plan.mechanic)
-                                  ? stepArt(
-                                      widget.item,
-                                      _step,
-                                      visual: widget.item.steps[_step].visual,
-                                    )
-                                  : artOrEmoji(widget.item, emoji),
-                            ),
-                          ),
-                        const SizedBox(height: 16),
-                        SmartInteractionStage(
-                          key: ValueKey('step-$_step'),
-                          plan: plan,
-                          prompt: stepPrompt,
-                          emoji: emoji,
-                          choice: choice,
-                          done: _interacted,
-                          onCompleted: _onInteracted,
-                          onTapSound: () =>
-                              ref.read(soundEffectsProvider).tap(),
-                          onWrong: () {
-                            setState(() {
-                              _combo = 0;
-                              _mistakes++;
-                            });
-                            // A distinct, gentle "not that one" — the plain
-                            // tap sound gave a wrong pick no feedback at all.
-                            ref.read(soundEffectsProvider).retry();
-                          },
-                        ),
-                        if (stageCaptionsBelow(plan.mechanic)) ...[
-                          const SizedBox(height: 20),
-                          caption,
-                        ],
-                        if (_interacted) ...[
-                          const SizedBox(height: 16),
-                          Text(
-                            loc.stepFeedback(_step),
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w700,
-                              color: WatotoColors.leaf,
-                            ),
-                          ),
-                        ],
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              CoPlayTip(item: widget.item),
-              const SizedBox(height: 12),
-              SizedBox(
-                width: double.infinity,
-                child: FilledButton(
-                  onPressed: _interacted ? _next : null,
-                  child: Text(isLast ? l10n.done : l10n.next),
                 ),
               ),
             ],
-          ),
+            const SizedBox(height: 12),
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton(
+                onPressed: _interacted ? _next : null,
+                child: Text(isLast ? l10n.done : l10n.next),
+              ),
+            ),
+          ],
+        ),
+        assist: _Assist(
+          item: widget.item,
+          hint: stepPrompt != null &&
+                  !_interacted &&
+                  !stageShowsPrompt(plan.mechanic)
+              ? stepPrompt
+              : null,
         ),
       ),
     );
   }
+}
+
+/// Part 6 — what to do next, never a scold (§26.2). Carries the planner's
+/// hint when the stage does not print it itself, and the co-play tip for the
+/// bands where a grown-up is the primary user.
+class _Assist extends StatelessWidget {
+  const _Assist({required this.item, this.hint});
+
+  final LibraryItem item;
+  final String? hint;
+
+  @override
+  Widget build(BuildContext context) => Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (hint case final h?) Text(h, textAlign: TextAlign.center),
+          CoPlayTip(item: item),
+        ],
+      );
 }
 
 // -------------------------------------------------- interaction mechanics
