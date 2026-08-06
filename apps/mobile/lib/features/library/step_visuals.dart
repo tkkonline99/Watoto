@@ -199,6 +199,10 @@ String subjectEmoji(String subject) {
 /// subject fallback and one chosen by a word in the narration can be the same
 /// glyph, and counting them together hides how much art is actually generic.
 enum IllustrationTier {
+  /// The author said what the stage shows (docs/26 §26.3). Outranks every
+  /// guess below it — that is the entire point of the visual contract.
+  declared,
+
   /// A concrete word in the narration ("Tap the ball" → ⚽).
   lexicon,
 
@@ -216,7 +220,18 @@ enum IllustrationTier {
 ({String emoji, IllustrationTier tier}) stepIllustrationDetail({
   required LibraryItem item,
   required String narration,
+  Visual? visual,
 }) {
+  // A declared token names the glyph outright. Token ids are lexicon keys by
+  // construction — visual_tokens.json is generated from the same map — so this
+  // lookup cannot disagree with the registry the validator enforces.
+  if (visual is TokenVisual) {
+    final declared = lexiconLookup(visual.ref);
+    if (declared != null) {
+      return (emoji: declared.emoji, tier: IllustrationTier.declared);
+    }
+  }
+
   final word = lexiconEntryFor(narration);
   // A bare numeral is a weak picture when the step is about something else
   // ("Draw two eyes and a nose" is about drawing, not about 2), so let a topic
@@ -241,8 +256,10 @@ enum IllustrationTier {
 String stepIllustration({
   required LibraryItem item,
   required String narration,
+  Visual? visual,
 }) =>
-    stepIllustrationDetail(item: item, narration: narration).emoji;
+    stepIllustrationDetail(item: item, narration: narration, visual: visual)
+        .emoji;
 
 /// Item-level picture (celebration screens, subject tiles) — same ladder
 /// without a step to look at.
