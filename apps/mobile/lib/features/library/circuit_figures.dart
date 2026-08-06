@@ -56,6 +56,22 @@ CircuitFigure? circuitFigureFor(String id) {
   return null;
 }
 
+/// Whether [figure] shows its bulb lit.
+///
+/// Deliberately a named list rather than "lit whenever the loop is closed".
+/// Metal in the gap *does* close the circuit, but lighting that bulb would
+/// answer step 4 — "which material will let the circuit work?" — inside the
+/// very picture the child is choosing between. All three gap materials stay
+/// dark so the question survives.
+///
+/// [CircuitFigure.switchBeside] is lit for the opposite reason: it is the
+/// whole point of step 6. A switch beside the wire does nothing, so the bulb
+/// it does nothing to is still on — next to an in-loop switch that has broken
+/// its own loop and gone dark. Without that contrast the two options differ
+/// only by where a small lever sits.
+bool circuitFigureIsLit(CircuitFigure figure) =>
+    figure == CircuitFigure.loopLit || figure == CircuitFigure.switchBeside;
+
 // The palette is the diagram's own, not the app chrome's: a wire has to read
 // as a wire, and a AA battery as a battery, before it reads as Watoto.
 const _wire = Color(0xFF1C3D5E);
@@ -120,6 +136,8 @@ class _CircuitPainter extends CustomPainter {
           true,
         _ => false,
       };
+
+  bool get _bulbIsLit => circuitFigureIsLit(figure);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -190,12 +208,7 @@ class _CircuitPainter extends CustomPainter {
     }
 
     _drawBattery(canvas, Offset(rect.center.dx, rect.bottom), w);
-    _drawBulb(
-      canvas,
-      Offset(rect.center.dx, rect.top),
-      w,
-      lit: figure == CircuitFigure.loopLit,
-    );
+    _drawBulb(canvas, Offset(rect.center.dx, rect.top), w, lit: _bulbIsLit);
   }
 
   /// The loop, optionally interrupted on the right edge. Drawn segment by
@@ -382,7 +395,7 @@ class _CircuitPainter extends CustomPainter {
     // Hinged on the lower contact and swung out towards the upper one without
     // reaching it. That space between lever tip and contact is what "off"
     // looks like, and it is the whole difference between these two figures.
-    final lever = Offset(lower.dx + span * 0.62, lower.dy - span * 0.78);
+    final lever = Offset(lower.dx + span * 0.50, lower.dy - span * 0.80);
     canvas.drawLine(lower, lever, stroke);
     final dot = Paint()..color = _wire;
     canvas.drawCircle(lower, w * 0.030, dot);

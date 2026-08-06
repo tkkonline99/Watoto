@@ -101,6 +101,38 @@ void main() {
     }
   });
 
+  group('which bulbs are lit', () {
+    test('the step-6 pair differs by more than a lever', () {
+      // "It can break the loop" versus "It does nothing" is only a real
+      // question if the pictures show the difference. The in-loop switch is
+      // open, so its bulb is out; the switch beside the wire does nothing, so
+      // the bulb it does nothing to is still on.
+      expect(circuitFigureIsLit(CircuitFigure.switchInLoop), isFalse);
+      expect(circuitFigureIsLit(CircuitFigure.switchBeside), isTrue);
+    });
+
+    test('no gap material lights its bulb', () {
+      // Metal really does close the circuit — and drawing that would answer
+      // step 4 inside the option the child is being asked to pick.
+      for (final f in [
+        CircuitFigure.gapMetal,
+        CircuitFigure.gapWood,
+        CircuitFigure.gapPlastic,
+      ]) {
+        expect(
+          circuitFigureIsLit(f),
+          isFalse,
+          reason: '$f gives away "which material will let the circuit work?"',
+        );
+      }
+    });
+
+    test('the step-3 pair is lit and dark', () {
+      expect(circuitFigureIsLit(CircuitFigure.loopLit), isTrue);
+      expect(circuitFigureIsLit(CircuitFigure.loopCut), isFalse);
+    });
+  });
+
   testWidgets('a drawn option renders its diagram and its caption',
       (tester) async {
     final plan = ChoicePlan(
