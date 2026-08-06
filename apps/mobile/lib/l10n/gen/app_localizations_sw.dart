@@ -676,6 +676,9 @@ class AppLocalizationsSw extends AppLocalizations {
   String get quizHint => 'Unahitaji kidokezo?';
 
   @override
+  String get grownUpNeeded => 'MTU MZIMA ANAHITAJIKA';
+
+  @override
   String get quizHintBody =>
       'Angalia vizuri… chaguo moja limeondolewa. Unaweza!';
 

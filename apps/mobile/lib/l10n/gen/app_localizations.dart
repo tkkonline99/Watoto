@@ -1324,6 +1324,12 @@ abstract class AppLocalizations {
   /// **'Need a hint?'**
   String get quizHint;
 
+  /// Chip on the assist line for an activity that happens away from the screen (docs/26 26.5).
+  ///
+  /// In en, this message translates to:
+  /// **'GROWN-UP NEEDED'**
+  String get grownUpNeeded;
+
   /// No description provided for @quizHintBody.
   ///
   /// In en, this message translates to:

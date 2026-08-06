@@ -355,6 +355,10 @@
     }
   },
   "quizHint": "Need a hint?",
+  "grownUpNeeded": "GROWN-UP NEEDED",
+  "@grownUpNeeded": {
+    "description": "Chip on the assist line for an activity that happens away from the screen (docs/26 26.5)."
+  },
   "quizHintBody": "Look carefully… one choice is gone. You've got this!",
   "quizNiceTry": "Yes! You figured it out!",
   "quizPerfect": "Perfect score!",
