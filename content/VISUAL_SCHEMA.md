@@ -80,11 +80,27 @@ Each item gets two entries, coarse then fine:
   keyword — `Ice and Water` and `States of Matter` are both `science.matter`,
   `Food Chains` and `Habitats` are both `science.ecosystems`.
 
-Two levels lets the registry choose its own tightness. A glyph that suits any
-science item registers `for: ["science"]`; one that only makes sense for matter
-registers `for: ["science.matter"]` and is rejected everywhere else. An item
-whose title matches no rule gets the domain alone, which is honest — it says
-"we know the subject, not the sub-skill" rather than inventing one.
+An item whose title matches no rule gets the domain alone, which is honest — it
+says "we know the subject, not the sub-skill" rather than inventing one.
+
+### How a `for` entry matches
+
+Matching is **hierarchical against the item's most specific skill**, not a set
+intersection of everything it declares. A `for` entry matches when it is that
+skill or an ancestor of it: `science` covers `science.matter`, and
+`science.matter` covers only itself.
+
+That distinction is the whole gate. Set intersection let a cow onto a
+states-of-matter step: the item declared both `science` and `science.matter`,
+the cow was legal for `science` because the word occurs in a life-cycles
+lesson, the two sets met, and the wrong picture passed. Under hierarchical
+matching the cow is measured against `science.matter` alone and is rejected.
+
+For the same reason, `build_visual_tokens.py` registers derived usage against
+the **leaf** skill only. A word used once in a life-cycles lesson must not
+become legal across all of science. Registering a glyph for a whole domain is
+still possible — it is just something a human writes deliberately rather than
+something the generator does by accident.
 
 Subjects remain valid in a `for` array, so a token can also be gated the coarse
 way (`for: ["Colors & Shapes"]`) without any skill at all.
