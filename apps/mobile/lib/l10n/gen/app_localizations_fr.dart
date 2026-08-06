@@ -678,6 +678,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get quizHint => 'Un indice ?';
 
   @override
+  String get grownUpNeeded => 'UN ADULTE EST NÉCESSAIRE';
+
+  @override
   String get quizHintBody =>
       'Regarde bien… un choix a disparu. Tu peux le faire !';
 

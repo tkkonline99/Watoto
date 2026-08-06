@@ -514,6 +514,10 @@ class _LessonViewState extends ConsumerState<_LessonView> {
                   !stageShowsPrompt(plan.mechanic)
               ? stepPrompt
               : null,
+          // §26.5. `real-world` is the authored action for a step that happens
+          // away from the screen — 103 of them — so the chip is driven by the
+          // content rather than guessed from the wording.
+          grownUpNeeded: step.action == 'real-world',
         ),
       ),
     );
@@ -524,19 +528,44 @@ class _LessonViewState extends ConsumerState<_LessonView> {
 /// hint when the stage does not print it itself, and the co-play tip for the
 /// bands where a grown-up is the primary user.
 class _Assist extends StatelessWidget {
-  const _Assist({required this.item, this.hint});
+  const _Assist({required this.item, this.hint, this.grownUpNeeded = false});
 
   final LibraryItem item;
   final String? hint;
 
+  /// The step happens away from the screen, so a grown-up has to be there.
+  final bool grownUpNeeded;
+
   @override
-  Widget build(BuildContext context) => Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          if (hint case final h?) Text(h, textAlign: TextAlign.center),
-          CoPlayTip(item: item),
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (grownUpNeeded) ...[
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+            decoration: BoxDecoration(
+              color: WatotoColors.mango.withValues(alpha: 0.18),
+              borderRadius: BorderRadius.circular(999),
+            ),
+            child: Text(
+              l10n.grownUpNeeded,
+              style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w800,
+                letterSpacing: 0.6,
+                color: WatotoColors.deep,
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
         ],
-      );
+        if (hint case final h?) Text(h, textAlign: TextAlign.center),
+        CoPlayTip(item: item),
+      ],
+    );
+  }
 }
 
 // -------------------------------------------------- interaction mechanics

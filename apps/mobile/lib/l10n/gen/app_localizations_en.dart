@@ -677,6 +677,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get quizHint => 'Need a hint?';
 
   @override
+  String get grownUpNeeded => 'GROWN-UP NEEDED';
+
+  @override
   String get quizHintBody =>
       'Look carefully… one choice is gone. You\'ve got this!';
 
