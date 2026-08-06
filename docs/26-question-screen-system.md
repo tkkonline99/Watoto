@@ -13,13 +13,17 @@ item's subject — and whatever falls out is what renders. Nothing checks that t
 result has anything to do with the question, and nothing gives it a defined
 place on screen.
 
-The result in the field: `s08.science.lesson.05` ("The Water Cycle") teaches
-condensation, and the step "It cools into clouds, then falls as rain" has no
-lexicon word the ladder recognises, so it lands on a topic cue and shows
-whatever that cue maps to. The item already carries a perfectly good art brief —
-`img/s08/water_cycle.png` in its `assets[]` — and nothing reads it. Meanwhile
-roughly half the screen sits empty above the content, because the column is
-centred in whatever space the prompt does not use.
+The result in the field, traced end to end: `s10.science.lesson.05` ("Changes
+of Matter") closes with the step *"Put a lid on a pan of hot water and watch
+where the drops form."* The ladder's first rung takes the first lexicon word in
+reading order, that word is **lid**, and `content_lexicon.dart` maps `'lid'` to
+🥫 — a tin of food. So a condensation activity renders a tin, and it does so
+deterministically, every time, in all three languages.
+
+Nothing is malfunctioning. The ladder is doing exactly what it was written to
+do; it was simply never told what the step is *about*. Meanwhile roughly half
+the screen sits empty above the content, because the column is centred in
+whatever space the prompt does not use.
 
 Two separate faults:
 

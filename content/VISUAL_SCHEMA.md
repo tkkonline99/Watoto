@@ -12,25 +12,28 @@ the size of the migration, and it is why the visuals are authored by script
 
 ```json
 {
-  "id": "s08.science.lesson.05",
-  "stage": 8,
+  "id": "s10.science.lesson.05",
+  "stage": 10,
   "subject": "Science",
   "type": "lesson",
-  "skills": ["science", "science.weather"],
+  "skills": ["science", "science.matter"],
   "steps": [
     {
-      "narration": "It cools into clouds, then falls as rain.",
-      "action": "tap",
-      "feedback": "Evaporate, condense, precipitate. The water cycle.",
+      "narration": "Put a lid on a pan of hot water and watch where the drops form.",
+      "action": "observe",
+      "feedback": "You made a cloud indoors.",
       "visual": {
         "mode": "slot",
-        "ref": "img/s08/water_cycle.png",
-        "alt": "Water cycle diagram with sun, cloud and falling rain"
+        "ref": "img/s10/condensation-pan.png",
+        "alt": "Cutaway of a pan of hot water, lid on, droplets clinging underneath"
       }
     }
   ]
 }
 ```
+
+This is the step docs/26 §26.1 traces: without a declared visual the lexicon
+takes the first noun it recognises — `lid` — and renders 🥫.
 
 ## Field rules
 
@@ -41,9 +44,22 @@ the size of the migration, and it is why the visuals are authored by script
 | `alt` | Free text, ≥ 4 words. Doubles as the screen-reader label and the art brief. Required. |
 
 A `token` ref is only valid if `visual_tokens.json` lists at least one of the
-item's `skills[]` (or its `subject`) under that token's `for` array. This is
-what stops a tin of food landing on a condensation activity: the glyph is not
-registered for `science.weather`, so the build fails.
+item's `skills[]` (or its `subject`) under that token's `for` array.
+
+Be precise about what that gate does and does not do, because it is easy to
+credit it with more than it earns. Each token's `for` array is derived from the
+skills where that word actually appears in authored text, so the gate rejects a
+glyph used on a *kind of question it has never legitimately illustrated* — 🐄
+on a fractions question, 🧊 on a government one.
+
+It does **not** catch the condensation case above. `lid` really does appear in
+that item, so 🥫 is registered for `science.matter` and would pass. What fixes
+that step is the declared `slot`: once the author states the visual, the
+lexicon is never consulted, and the glyph it would have guessed is irrelevant.
+
+So the two mechanisms divide the work. **Declaring** the visual is what makes
+the right picture appear; the **registry** is a backstop that keeps a careless
+token from wandering into a subject it has no business in.
 
 ## The `skills[]` field
 
