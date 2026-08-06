@@ -18,6 +18,8 @@ import 'package:watoto_mobile/features/onboarding/consent.dart';
 import 'package:watoto_mobile/features/onboarding/savanna_background.dart';
 import 'package:watoto_mobile/router/app_router.dart';
 
+import 'support/phone_viewport.dart';
+
 /// Long enough to reveal a step's feedback, short enough that the player's
 /// auto-advance (1400ms after the interaction) has not fired yet.
 const _feedbackBeat = Duration(milliseconds: 300);
@@ -145,9 +147,11 @@ void main() {
 
   setUp(() async {
     store = await OfflineStore.open(inMemory: true);
+    usePhoneViewport();
   });
 
   tearDown(() async {
+    resetPhoneViewport();
     await store.close();
   });
 
