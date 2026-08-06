@@ -16,7 +16,7 @@ the size of the migration, and it is why the visuals are authored by script
   "stage": 8,
   "subject": "Science",
   "type": "lesson",
-  "skills": ["science", "science.matter"],
+  "skills": ["science", "science.weather"],
   "steps": [
     {
       "narration": "It cools into clouds, then falls as rain.",
@@ -43,7 +43,7 @@ the size of the migration, and it is why the visuals are authored by script
 A `token` ref is only valid if `visual_tokens.json` lists at least one of the
 item's `skills[]` (or its `subject`) under that token's `for` array. This is
 what stops a tin of food landing on a condensation activity: the glyph is not
-registered for `science.matter`, so the build fails.
+registered for `science.weather`, so the build fails.
 
 ## The `skills[]` field
 
