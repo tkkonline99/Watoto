@@ -386,7 +386,11 @@ class _LessonViewState extends ConsumerState<_LessonView> {
     final stepPrompt = widget.item.steps[_step].prompt != null
         ? loc.stepPrompt(_step)
         : (loc.lang == 'en' ? plan.promptHint : null);
-    final emoji = stepIllustration(item: widget.item, narration: narrationEn);
+    final emoji = stepIllustration(
+      item: widget.item,
+      narration: narrationEn,
+      visual: widget.item.steps[_step].visual,
+    );
     // One caption widget, placed either above the stage or below it — see
     // stageCaptionsBelow. Building it twice would announce it twice.
     final caption = Semantics(
@@ -474,7 +478,11 @@ class _LessonViewState extends ConsumerState<_LessonView> {
                             child: BreathingArt(
                               restartKey: _step,
                               child: stageShowsEmoji(plan.mechanic)
-                                  ? stepArt(widget.item, _step)
+                                  ? stepArt(
+                                      widget.item,
+                                      _step,
+                                      visual: widget.item.steps[_step].visual,
+                                    )
                                   : artOrEmoji(widget.item, emoji),
                             ),
                           ),

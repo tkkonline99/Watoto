@@ -211,12 +211,18 @@ Widget? artOnly(LibraryItem item) => itemArt(item);
 /// item-level and stops at stage 3, so a stage-9 reading step has no picture of
 /// what it is describing. `image_manifest.csv` holds an `art_brief` for every
 /// step; rendering one to the path [stepArtAsset] names makes it appear here.
-Widget stepArt(LibraryItem item, int stepIndex) {
+/// [visual] is the step's declared visual (docs/26). A declared slot names the
+/// art outright, which is how a step points at a file the naming convention
+/// would never have found; without one this falls back to the convention.
+Widget stepArt(LibraryItem item, int stepIndex, {Visual? visual}) {
   final fallback = itemArt(item) ?? const SizedBox.shrink();
+  final path = visual is SlotVisual
+      ? visual.assetPath
+      : stepArtAsset(item, stepIndex);
   return ClipRRect(
     borderRadius: BorderRadius.circular(24),
     child: Image.asset(
-      stepArtAsset(item, stepIndex),
+      path,
       width: 180,
       height: 180,
       fit: BoxFit.cover,
@@ -233,7 +239,11 @@ Widget stepArt(LibraryItem item, int stepIndex) {
 /// whole library, so unlike [stepArt] a miss here is the exception, not the
 /// normal path.
 Widget storyPageArt(LibraryItem item, LibPage page, String emoji) {
-  final path = pageArtAsset(page);
+  // The page's declared visual is authoritative; `illustration` is the same
+  // ref for every page authored so far, so this is a no-op today and the seam
+  // a page needing a scene or token would come through.
+  final visual = page.visual;
+  final path = visual is SlotVisual ? visual.assetPath : pageArtAsset(page);
   final fallback = artOrEmoji(item, emoji);
   if (path == null) return fallback;
   return ClipRRect(

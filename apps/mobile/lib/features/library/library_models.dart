@@ -5,6 +5,70 @@ library;
 
 enum LibraryType { lesson, quiz, story }
 
+/// What fills the stage on one rendered part (docs/26 §26.3).
+///
+/// Before this existed the picture was guessed from the narration text by the
+/// ladder in step_visuals.dart, which is how "Put a lid on a pan of hot water"
+/// came to show a tin of food: `lid` is the first noun the lexicon knows. A
+/// declared visual is the author saying what the stage shows, so the guess is
+/// only consulted when nothing was declared.
+sealed class Visual {
+  const Visual({required this.alt});
+
+  /// Screen-reader label and art brief at once — never empty, and required by
+  /// `validate_content.py` to be a real description rather than one word.
+  final String alt;
+
+  /// The scene/token/slot id. Kept on the base class because every caller that
+  /// wants to key off a visual wants this.
+  String get ref;
+
+  static Visual? fromJson(Map<String, dynamic>? j) {
+    if (j == null) return null;
+    final ref = j['ref'] as String?;
+    final alt = j['alt'] as String? ?? '';
+    if (ref == null || ref.isEmpty) return null;
+    return switch (j['mode'] as String?) {
+      'token' => TokenVisual(ref: ref, alt: alt),
+      'scene' => SceneVisual(ref: ref, alt: alt),
+      'slot' => SlotVisual(ref: ref, alt: alt),
+      // An unknown mode is content from a newer schema than this build. Falling
+      // back to the ladder shows *something* rather than an empty stage.
+      _ => null,
+    };
+  }
+}
+
+/// A vetted glyph on a tinted disc. [ref] is a key in `visual_tokens.json`,
+/// which is generated from the lexicon — so the glyph resolves through
+/// `lexiconLookup` and the two cannot disagree.
+class TokenVisual extends Visual {
+  const TokenVisual({required this.ref, required super.alt});
+  @override
+  final String ref;
+}
+
+/// Composed shapes that encode the maths or the structure. [ref] names a
+/// builder in `core/widgets/stages/`; `validate_content.py` rejects a ref with
+/// no builder behind it.
+class SceneVisual extends Visual {
+  const SceneVisual({required this.ref, required super.alt});
+  @override
+  final String ref;
+}
+
+/// Commissioned art, or a brief for art not yet drawn. [ref] is a path under
+/// `assets/images/`. A missing file is the normal case for a brief and renders
+/// as the striped placeholder carrying [alt] — an unfinished asset should look
+/// unfinished rather than silently resolve to something wrong.
+class SlotVisual extends Visual {
+  const SlotVisual({required this.ref, required super.alt});
+  @override
+  final String ref;
+
+  String get assetPath => 'assets/images/$ref';
+}
+
 class LibraryItem {
   const LibraryItem({
     required this.id,
@@ -130,11 +194,16 @@ class LessonStep {
     this.count,
     this.rows,
     this.cols,
+    this.visual,
   });
 
   final String narration;
   final String action;
   final String feedback;
+
+  /// What fills this step's stage (docs/26 §26.3), or null on content authored
+  /// before the contract — those fall back to the step_visuals ladder.
+  final Visual? visual;
 
   /// Optional explicit mechanic (locale-safe). When set, the player prefers
   /// this over English-keyword heuristics in [planStep].
@@ -176,6 +245,7 @@ class LessonStep {
         count: (j['count'] as num?)?.toInt(),
         rows: (j['rows'] as num?)?.toInt(),
         cols: (j['cols'] as num?)?.toInt(),
+        visual: Visual.fromJson(j['visual'] as Map<String, dynamic>?),
       );
 }
 
@@ -194,12 +264,14 @@ class LibQuestion {
     required this.answer,
     required this.correctFeedback,
     required this.retryFeedback,
+    this.visual,
   });
   final String prompt;
   final List<LibOption> options;
   final int answer;
   final String correctFeedback;
   final String retryFeedback;
+  final Visual? visual;
   factory LibQuestion.fromJson(Map<String, dynamic> j) => LibQuestion(
         prompt: j['prompt'] as String? ?? '',
         options: ((j['options'] as List?) ?? const [])
@@ -208,17 +280,36 @@ class LibQuestion {
         answer: j['answer'] as int? ?? 0,
         correctFeedback: j['correctFeedback'] as String? ?? '',
         retryFeedback: j['retryFeedback'] as String? ?? '',
+        visual: Visual.fromJson(j['visual'] as Map<String, dynamic>?),
       );
 }
 
 class LibPage {
-  const LibPage({required this.narration, this.illustration, this.interaction});
+  const LibPage({
+    required this.narration,
+    this.illustration,
+    this.interaction,
+    this.visual,
+  });
   final String narration;
   final String? illustration;
   final String? interaction;
-  factory LibPage.fromJson(Map<String, dynamic> j) => LibPage(
-        narration: j['narration'] as String? ?? '',
-        illustration: j['illustration'] as String?,
-        interaction: j['interaction'] as String?,
-      );
+  final Visual? visual;
+
+  factory LibPage.fromJson(Map<String, dynamic> j) {
+    final illustration = j['illustration'] as String?;
+    // docs/26 §26.7: `illustration` is the existing slot field, so a page
+    // without an explicit visual reads as a slot pointing at it. That is what
+    // lets 594 story pages migrate without being retyped.
+    final visual = Visual.fromJson(j['visual'] as Map<String, dynamic>?) ??
+        (illustration != null && illustration.isNotEmpty
+            ? SlotVisual(ref: illustration, alt: j['narration'] as String? ?? '')
+            : null);
+    return LibPage(
+      narration: j['narration'] as String? ?? '',
+      illustration: illustration,
+      interaction: j['interaction'] as String?,
+      visual: visual,
+    );
+  }
 }
