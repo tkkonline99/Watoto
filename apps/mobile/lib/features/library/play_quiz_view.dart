@@ -12,6 +12,8 @@ import '../../core/audio/sound_effects.dart';
 import '../../core/offline/offline_providers.dart';
 import '../../core/state/app_state.dart';
 import '../../core/theme/watoto_theme.dart';
+import '../../core/widgets/stages/question_scaffold.dart';
+import '../../core/widgets/stages/stage_scenes.dart';
 import '../../l10n/gen/app_localizations.dart';
 import 'content_i18n.dart';
 import 'content_lexicon.dart';
@@ -20,6 +22,7 @@ import 'play_celebration.dart';
 import 'play_shared.dart';
 import 'library_repository.dart';
 import 'quiz_review.dart';
+import 'visual_stage.dart';
 
 class QuizView extends ConsumerStatefulWidget {
   const QuizView({super.key, required this.item});
@@ -196,96 +199,95 @@ class QuizViewState extends ConsumerState<QuizView> {
     final question = _questions[_q];
     return Scaffold(
       appBar: playAppBar(context, loc.title),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            children: [
-              ProgressDots(count: _questions.length, active: _q),
-              const SizedBox(height: 12),
-              // Prefer bundled art, then emoji illustration.
-              ExcludeSemantics(
-                child: artOrEmoji(
-                  widget.item,
-                  illustrationFor(question.prompt) ?? '❓',
+      body: QuestionScaffold(
+        stage: widget.item.stage,
+        // A quiz a child reads is text-heavy by definition: the prompt and
+        // four full-width answers need the room more than the picture does.
+        textHeavy: widget.item.reading,
+        progress: QuestionProgress(
+          index: _q,
+          total: _questions.length,
+          asCount: true,
+        ),
+        stageVisual: ExcludeSemantics(
+          child: VisualStage(
+            visual: question.visual,
+            fallbackEmoji: illustrationFor(question.prompt) ?? '❓',
+            data: SceneData(text: question.prompt),
+          ),
+        ),
+        stageSemanticLabel: question.visual?.alt,
+        prompt: question.prompt,
+        response: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            for (var i = 0; i < question.options.length; i++)
+              if (i != _hintHideIndex)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 6),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: FilledButton(
+                      style: FilledButton.styleFrom(
+                        backgroundColor: WatotoColors.sky,
+                        foregroundColor: Colors.white,
+                        minimumSize: const Size.fromHeight(52),
+                      ),
+                      onPressed: () => _pick(i),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          // Illustrate one-word answers ("Ball" → ⚽)
+                          // from the English source label.
+                          if (lexiconLookup(
+                                question.options[i].label
+                                    .trim()
+                                    .toLowerCase(),
+                              )
+                              case final LexEntry e) ...[
+                            ExcludeSemantics(
+                              child: Text(
+                                e.emoji,
+                                style: const TextStyle(fontSize: 22),
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                          ],
+                          Flexible(child: Text(loc.optionLabel(_q, i))),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                question.prompt,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
-              if (_wrongThisQ && !_hintShown) ...[
-                const SizedBox(height: 8),
-                TextButton.icon(
-                  onPressed: _offerHint,
-                  icon: const Icon(Icons.lightbulb_outline),
-                  label: Text(l10n.quizHint),
-                ),
-              ],
-              if (_feedback != null) ...[
-                const SizedBox(height: 8),
-                Text(
+          ],
+        ),
+        assist: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (_feedback != null)
+              // Announced rather than merely shown: it appears in response to
+              // a tap, so a reader that only speaks on focus never reaches it.
+              // §26.6 — retry is berry, never red and never a cross.
+              Semantics(
+                liveRegion: true,
+                child: Text(
                   _feedback!,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
-                    color: _feedbackGood ? WatotoColors.leaf : WatotoColors.mango,
+                    color:
+                        _feedbackGood ? WatotoColors.leaf : WatotoColors.berry,
                   ),
                 ),
-              ],
-              const SizedBox(height: 16),
-              Expanded(
-                child: ListView(
-                  children: [
-                    for (var i = 0; i < question.options.length; i++)
-                      if (i != _hintHideIndex)
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 6),
-                        child: SizedBox(
-                          width: double.infinity,
-                          child: FilledButton(
-                            style: FilledButton.styleFrom(
-                              backgroundColor: WatotoColors.sky,
-                              foregroundColor: Colors.white,
-                              minimumSize: const Size.fromHeight(52),
-                            ),
-                            onPressed: () => _pick(i),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                // Illustrate one-word answers ("Ball" → ⚽)
-                                // from the English source label.
-                                if (lexiconLookup(
-                                      question.options[i].label
-                                          .trim()
-                                          .toLowerCase(),
-                                    )
-                                    case final LexEntry e) ...[
-                                  ExcludeSemantics(
-                                    child: Text(
-                                      e.emoji,
-                                      style: const TextStyle(fontSize: 22),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 8),
-                                ],
-                                Flexible(child: Text(loc.optionLabel(_q, i))),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                  ],
-                ),
               ),
-            ],
-          ),
+            if (_wrongThisQ && !_hintShown)
+              TextButton.icon(
+                onPressed: _offerHint,
+                icon: const Icon(Icons.lightbulb_outline),
+                label: Text(l10n.quizHint),
+              ),
+          ],
         ),
       ),
     );

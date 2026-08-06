@@ -11,6 +11,7 @@ import '../../core/audio/narration.dart';
 import '../../core/audio/sound_effects.dart';
 import '../../core/offline/offline_providers.dart';
 import '../../core/state/app_state.dart';
+import '../../core/widgets/stages/question_scaffold.dart';
 import '../../l10n/gen/app_localizations.dart';
 import 'content_i18n.dart';
 import 'content_lexicon.dart';
@@ -74,73 +75,50 @@ class StoryViewState extends ConsumerState<StoryView> {
     }
     final pages = widget.item.pages;
     final isLast = _page == pages.length - 1;
+    final page = pages[_page];
     return Scaffold(
       appBar: playAppBar(context, loc.title),
-      body: SafeArea(
-        child: Column(
+      body: QuestionScaffold(
+        stage: widget.item.stage,
+        // §26.2: a story page is text-heavy, so the stage takes 180dp and the
+        // narration gets the rest. The picture still has a fixed home, which
+        // is what stops a two-line page and a six-line page laying out
+        // differently.
+        textHeavy: true,
+        progress: QuestionProgress(
+          index: _page,
+          total: pages.length,
+          asCount: true,
+        ),
+        // This page's own drawn picture; the item's art, then an emoji, only
+        // if the page names none.
+        stageVisual: storyPageArt(
+          widget.item,
+          page,
+          illustrationFor(page.narration) ?? '📖',
+        ),
+        stageSemanticLabel: page.visual?.alt,
+        prompt: loc.pageNarration(_page),
+        response: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Expanded(
-              // Scroll-safe: long page narrations at large text sizes must
-              // never overflow on small screens.
-              child: Center(
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(24),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      // This page's own drawn picture; the item's art, then an
-                      // emoji, only if the page names none.
-                      storyPageArt(
-                        widget.item,
-                        widget.item.pages[_page],
-                        illustrationFor(
-                              widget.item.pages[_page].narration,
-                            ) ??
-                            '📖',
-                      ),
-                      const SizedBox(height: 24),
-                      Text(
-                        loc.pageNarration(_page),
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          height: 1.5,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+            IconButton.filledTonal(
+              onPressed: _page == 0 ? null : () => _go(-1),
+              icon: const Icon(Icons.chevron_left),
             ),
-            // A bedtime story for a one-year-old is read *by* someone. The
-            // note tells them how ("Dim your screen and read in a low voice").
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: CoPlayTip(item: widget.item),
+            Text(
+              '${_page + 1} / ${pages.length}',
+              style: const TextStyle(fontWeight: FontWeight.w700),
             ),
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton.filledTonal(
-                    onPressed: _page == 0 ? null : () => _go(-1),
-                    icon: const Icon(Icons.chevron_left),
-                  ),
-                  Text(
-                    '${_page + 1} / ${pages.length}',
-                    style: const TextStyle(fontWeight: FontWeight.w700),
-                  ),
-                  FilledButton(
-                    onPressed: isLast ? _finish : () => _go(1),
-                    child: Text(isLast ? l10n.done : l10n.next),
-                  ),
-                ],
-              ),
+            FilledButton(
+              onPressed: isLast ? _finish : () => _go(1),
+              child: Text(isLast ? l10n.done : l10n.next),
             ),
           ],
         ),
+        // A bedtime story for a one-year-old is read *by* someone. The note
+        // tells them how ("Dim your screen and read in a low voice").
+        assist: CoPlayTip(item: widget.item),
       ),
     );
   }
