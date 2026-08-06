@@ -327,6 +327,15 @@ LexEntry? lexiconEntryFor(String text) {
 /// Emoji for the first lexicon word mentioned in [text], or null.
 String? illustrationFor(String text) => lexiconEntryFor(text)?.emoji;
 
+/// The glyph a declared `TokenVisual` names (docs/26 §26.3).
+///
+/// Token ids in `content/visual_tokens.json` are keys of this map by
+/// construction — `build_visual_tokens.py` generates the registry by parsing
+/// it — so the picture the validator approved and the picture the app draws
+/// cannot disagree. A miss means the registry was hand-edited out of step,
+/// and the caller falls back to the ladder rather than showing nothing.
+String? tokenGlyph(String ref) => lexiconLookup(ref)?.emoji;
+
 /// Category name used for bare numerals, so callers can prefer a topic picture
 /// over "2️⃣" when the step is about drawing a face rather than about two.
 const String lexDigitCategory = _digit;
