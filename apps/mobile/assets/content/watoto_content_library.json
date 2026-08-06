@@ -49694,16 +49694,36 @@
           "answer": 2
         },
         {
-          "narration": "Tap why a year on Neptune is far longer than a year on Earth.",
+          "narration": "Why is a year on Neptune far longer than a year on Earth?",
           "action": "tap",
           "feedback": "Its orbit is enormous, and a year is one lap round the Sun.",
-          "mechanic": "tap"
+          "mechanic": "multiChoice",
+          "choices": [
+            "Its orbit is bigger.",
+            "It spins slower.",
+            "It is a gas giant."
+          ],
+          "figures": [
+            "",
+            "",
+            ""
+          ],
+          "choiceIndex": 0
         },
         {
-          "narration": "Someone said the Sun goes round the Earth. Tap what we actually observe.",
+          "narration": "Someone said the Sun goes round the Earth. What do we actually observe?",
           "action": "tap",
           "feedback": "The Earth spins, which makes the Sun appear to cross the sky.",
-          "mechanic": "tap"
+          "mechanic": "multiChoice",
+          "choices": [
+            "The Earth spins.",
+            "The Sun orbits us."
+          ],
+          "figures": [
+            "earth",
+            "sun"
+          ],
+          "choiceIndex": 0
         },
         {
           "narration": "Look for a planet tonight. Venus and Jupiter are the bright ones that do not twinkle.",
@@ -49775,7 +49795,12 @@
             "Sound",
             "Motion"
           ],
-          "choiceIndex": 2
+          "choiceIndex": 2,
+          "figures": [
+            "lamp",
+            "sound",
+            "ball"
+          ]
         },
         {
           "narration": "A lamp, a drum, a rolling ball: energy is never made or lost, only changed in form.",
@@ -49784,22 +49809,55 @@
           "mechanic": "explain"
         },
         {
-          "narration": "A guitar string vibrates. Tap the kind of energy it is making.",
+          "narration": "A guitar string vibrates. What kind of energy is it making?",
           "action": "tap",
           "feedback": "Sound. Vibration is what sound is, all the way to your ear.",
-          "mechanic": "tap"
+          "mechanic": "multiChoice",
+          "choices": [
+            "Sound",
+            "Light",
+            "Heat"
+          ],
+          "figures": [
+            "sound",
+            "lamp",
+            "fire"
+          ],
+          "choiceIndex": 0
         },
         {
-          "narration": "Tap what a rolling ball's motion energy becomes when it finally stops.",
+          "narration": "What does a rolling ball's motion energy become when it stops?",
           "action": "tap",
           "feedback": "Heat, in the ground and the air. It went somewhere; it did not vanish.",
-          "mechanic": "tap"
+          "mechanic": "multiChoice",
+          "choices": [
+            "Heat",
+            "Light",
+            "Sound"
+          ],
+          "figures": [
+            "fire",
+            "lamp",
+            "sound"
+          ],
+          "choiceIndex": 0
         },
         {
-          "narration": "Someone said a lamp creates light out of nothing. Tap what is wrong.",
+          "narration": "Someone said a lamp creates light out of nothing. What is wrong?",
           "action": "tap",
           "feedback": "It converts electricity. Trace any energy back and it came from somewhere.",
-          "mechanic": "tap"
+          "mechanic": "multiChoice",
+          "choices": [
+            "It uses electricity.",
+            "Light needs no source.",
+            "Lamps make new energy."
+          ],
+          "figures": [
+            "",
+            "",
+            ""
+          ],
+          "choiceIndex": 0
         },
         {
           "narration": "Name three energy changes in your kitchen in the next ten minutes.",
@@ -49874,22 +49932,55 @@
           "mechanic": "explain"
         },
         {
-          "narration": "Tap what producers use to make their own energy.",
+          "narration": "What do producers use to make their own energy?",
           "action": "tap",
           "feedback": "Sunlight. Only plants can do it, and everything else eats to get some.",
-          "mechanic": "tap"
+          "mechanic": "multiChoice",
+          "choices": [
+            "Sunlight",
+            "Other plants",
+            "Small animals"
+          ],
+          "figures": [
+            "sun",
+            "plant",
+            "frog"
+          ],
+          "choiceIndex": 0
         },
         {
-          "narration": "If all the grass disappeared, tap what happens to the grasshoppers.",
+          "narration": "If all the grass disappeared, what happens to the grasshoppers?",
           "action": "tap",
           "feedback": "They have less food, and so does everything that eats them.",
-          "mechanic": "tap"
+          "mechanic": "multiChoice",
+          "choices": [
+            "They have less food.",
+            "They eat more grass.",
+            "Nothing changes."
+          ],
+          "figures": [
+            "",
+            "",
+            ""
+          ],
+          "choiceIndex": 0
         },
         {
-          "narration": "Tap why removing one animal affects species that never eat it.",
+          "narration": "Why does removing one animal affect species that never eat it?",
           "action": "tap",
           "feedback": "Their food's food changed. Effects travel two or three links along.",
-          "mechanic": "tap"
+          "mechanic": "multiChoice",
+          "choices": [
+            "They share a chain.",
+            "They eat it secretly.",
+            "Nothing links them."
+          ],
+          "figures": [
+            "",
+            "",
+            ""
+          ],
+          "choiceIndex": 0
         },
         {
           "narration": "Draw a food web for a garden: leaves, snails, birds and a cat.",
@@ -49946,7 +50037,7 @@
           "mechanic": "tap"
         },
         {
-          "narration": "Cooling freezes a liquid back to solid: water into ice. Tap to freeze.",
+          "narration": "Cooling freezes a liquid back to solid: water into ice. Tap the water to freeze it.",
           "action": "tap",
           "feedback": "Freezing removes heat.",
           "mechanic": "tap"
@@ -49970,22 +50061,55 @@
           "mechanic": "explain"
         },
         {
-          "narration": "Tap what you add to turn a solid into a liquid.",
+          "narration": "What do you add to turn a solid into a liquid?",
           "action": "tap",
           "feedback": "Heat. Take it away again and it freezes back, exactly as it was.",
-          "mechanic": "tap"
+          "mechanic": "multiChoice",
+          "choices": [
+            "Heat",
+            "Cold",
+            "Water"
+          ],
+          "figures": [
+            "fire",
+            "ice",
+            "water"
+          ],
+          "choiceIndex": 0
         },
         {
-          "narration": "A puddle vanishes on a warm day. Tap where the water went.",
+          "narration": "A puddle vanishes on a warm day. Where did the water go?",
           "action": "tap",
           "feedback": "Into the air as vapour. You cannot see it, but it is entirely still there.",
-          "mechanic": "tap"
+          "mechanic": "multiChoice",
+          "choices": [
+            "Into the air.",
+            "Into the ground.",
+            "It vanished."
+          ],
+          "figures": [
+            "",
+            "",
+            ""
+          ],
+          "choiceIndex": 0
         },
         {
-          "narration": "Someone said melted ice is a different substance from ice. Tap the mistake.",
+          "narration": "Someone said melted ice is a different substance. What is the mistake?",
           "action": "tap",
           "feedback": "Same substance, different state. Only the arrangement changed.",
-          "mechanic": "tap"
+          "mechanic": "multiChoice",
+          "choices": [
+            "Same stuff, new state.",
+            "Melting makes water.",
+            "Ice is not water."
+          ],
+          "figures": [
+            "",
+            "",
+            ""
+          ],
+          "choiceIndex": 0
         },
         {
           "narration": "Put a lid on a pan of hot water and watch where the drops form.",
@@ -50072,22 +50196,55 @@
           "mechanic": "explain"
         },
         {
-          "narration": "You test which paper plane flies furthest. Tap what must stay the same.",
+          "narration": "You test which paper plane flies furthest. What must stay the same?",
           "action": "tap",
           "feedback": "The throw, the paper, the spot you stand. Only the fold should differ.",
-          "mechanic": "tap"
+          "mechanic": "multiChoice",
+          "choices": [
+            "The throw and paper.",
+            "The fold of the plane.",
+            "Nothing at all."
+          ],
+          "figures": [
+            "",
+            "",
+            ""
+          ],
+          "choiceIndex": 0
         },
         {
-          "narration": "Before you throw a single paper plane, tap what a hypothesis is.",
+          "narration": "Before you throw a single paper plane, what is a hypothesis?",
           "action": "tap",
           "feedback": "A prediction you are willing to be wrong about, written down first.",
-          "mechanic": "tap"
+          "mechanic": "multiChoice",
+          "choices": [
+            "A prediction.",
+            "A result.",
+            "A conclusion."
+          ],
+          "figures": [
+            "",
+            "",
+            ""
+          ],
+          "choiceIndex": 0
         },
         {
-          "narration": "Your result disagrees with your hypothesis. Tap the right response.",
+          "narration": "Your result disagrees with your hypothesis. What is the right response?",
           "action": "tap",
           "feedback": "Record it and say so. A wrong prediction is a finding, not a failure.",
-          "mechanic": "tap"
+          "mechanic": "multiChoice",
+          "choices": [
+            "Record it and say so.",
+            "Change the result.",
+            "Try until it agrees."
+          ],
+          "figures": [
+            "",
+            "",
+            ""
+          ],
+          "choiceIndex": 0
         },
         {
           "narration": "Run one fair test at home this week and write the result before you forget it.",

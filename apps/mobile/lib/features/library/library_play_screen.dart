@@ -204,6 +204,16 @@ class _LessonViewState extends ConsumerState<_LessonView> {
     super.dispose();
   }
 
+  /// One answer option: its localized [label], plus whatever picture the
+  /// step's figure id names. Unknown ids fall through to a plain word option
+  /// rather than breaking the lesson.
+  ChoiceOption _option(String label, String figureId) {
+    if (figureId.isEmpty) return ChoiceOption(label, label);
+    final circuit = circuitFigureFor(figureId);
+    if (circuit != null) return ChoiceOption(label, label, figure: circuit);
+    return ChoiceOption(label, label, hero: illustrationFor(figureId));
+  }
+
   /// Speaks the current step's narration (the caption), if narration is on.
   void _speakStep() {
     if (widget.item.steps.isEmpty) return;
@@ -356,19 +366,15 @@ class _LessonViewState extends ConsumerState<_LessonView> {
       // localized content, not the English baked into the plan — the order is
       // fixed by the content file, so plan.choiceIndex still points at the
       // right answer in every language.
-      // Options are drawn when the step names a picture for each one — which
-      // circuit lights, which material closes a gap. The caption stays the
-      // localized text; only the artwork comes from the figure id.
+      // Options are drawn when the step names a picture for each one: a
+      // circuit diagram where the answer *is* a circuit, otherwise a lexicon
+      // emoji for answers that are a concrete thing. The caption stays the
+      // localized text; only the artwork comes from the figure id, which is
+      // why the id is language-neutral.
       StepMechanic.multiChoice when plan.choices.length > 1 => ChoicePlan(
           [
             for (final (i, c) in loc.stepChoices(_step).indexed)
-              ChoiceOption(
-                c,
-                c,
-                figure: i < plan.figures.length
-                    ? circuitFigureFor(plan.figures[i])
-                    : null,
-              ),
+              _option(c, i < plan.figures.length ? plan.figures[i] : ''),
           ],
           plan.choiceIndex,
         ),

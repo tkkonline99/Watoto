@@ -523,23 +523,28 @@ class ChoiceStageState extends State<ChoiceStage> {
   /// choices ("cap" vs "cape") render as words, and everything else as an
   /// emoji-sized glyph.
   Widget _optionChild(ChoiceOption option) {
-    if (option.figure case final figure?) {
-      return Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          CircuitFigureView(figure: figure),
-          const SizedBox(height: 8),
-          Text(
-            option.word,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w700,
-              color: WatotoColors.deep,
+    Widget captioned(Widget picture) => Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            picture,
+            const SizedBox(height: 8),
+            Text(
+              option.word,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.w700,
+                color: WatotoColors.deep,
+              ),
             ),
-          ),
-        ],
-      );
+          ],
+        );
+
+    if (option.figure case final figure?) {
+      return captioned(CircuitFigureView(figure: figure));
+    }
+    if (option.hero case final hero?) {
+      return captioned(Text(hero, style: const TextStyle(fontSize: 52)));
     }
     return Text(
       option.emoji,

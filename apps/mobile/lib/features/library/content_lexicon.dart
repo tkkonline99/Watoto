@@ -333,7 +333,7 @@ const String lexDigitCategory = _digit;
 
 /// One tappable answer in a choice stage.
 class ChoiceOption {
-  const ChoiceOption(this.word, this.emoji, {this.figure});
+  const ChoiceOption(this.word, this.emoji, {this.figure, this.hero});
   final String word;
   final String emoji;
 
@@ -341,6 +341,12 @@ class ChoiceOption {
   /// Used where the answer *is* a picture — which circuit lights, which
   /// material closes a gap — and an emoji could not carry the difference.
   final CircuitFigure? figure;
+
+  /// A big emoji above [word], for answers that are a concrete thing — heat,
+  /// sunlight, a drum. The word alone is readable but a ten-year-old picking
+  /// between "Heat" and "Sound" reads three cards faster with a picture on
+  /// each. Null where the answer is a phrase no emoji honestly depicts.
+  final String? hero;
 }
 
 /// A staged multiple-choice question: tap [options][targetIndex] to advance.
