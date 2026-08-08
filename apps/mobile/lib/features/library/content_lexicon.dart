@@ -310,6 +310,27 @@ final _directive = RegExp(
 List<String> _words(String text) =>
     text.toLowerCase().split(_wordSplit).where((w) => w.isNotEmpty).toList();
 
+final _bareNumber = RegExp(r'\b(\d{1,3})\b');
+
+/// A number written as part of a larger token — a fraction (`1/2`), a time
+/// (`2:15`), or a decimal (`0.6`).
+final _compoundNumber = RegExp(r'\b\d{1,3}(?:[/:.]\d{1,3})+\b');
+
+/// Blanks out compound numbers so the bare-numeral scan cannot pick a digit
+/// out of the middle of one.
+///
+/// `\b` treats `/`, `:` and `.` as word boundaries, so "Tap the fraction equal
+/// to 1/2: 3/6, 2/5, or 4/9" used to match the **1** of `1/2` and stage "tap
+/// the number 1" — the child was scored on a numeral the question never
+/// offered, while the fractions it did offer went unstaged. Masking first
+/// means such a step finds no bare number at all and falls back to the plain
+/// tap stage; a step that genuinely names one ("Tap 13") is untouched. The
+/// replacement keeps the original length so any offsets stay valid.
+String _maskCompounds(String text) => text.replaceAllMapped(
+      _compoundNumber,
+      (m) => '#' * m.group(0)!.length,
+    );
+
 /// The lexicon entry that best illustrates [text], or null. Concrete words win
 /// over concepts ("Read the word cat" illustrates the cat, not reading), so the
 /// picture matches what the step is actually about.
@@ -461,7 +482,7 @@ ChoicePlan? choicePlanFor(String itemId, int step, String narration) {
     // "Tap the number 3" — keycaps up to ten, plain numerals beyond
     // ("Ten and 3 more is 13. Tap 13."), with the step's other numbers as
     // distractors.
-    final nm = RegExp(r'\b(\d{1,3})\b').firstMatch(clause);
+    final nm = _bareNumber.firstMatch(_maskCompounds(clause));
     if (nm != null) {
       final n = int.parse(nm.group(1)!);
       if (n >= 1 && n <= 10) {
@@ -486,10 +507,16 @@ ChoicePlan? choicePlanFor(String itemId, int step, String narration) {
         );
       }
       final others = <String>[];
-      for (final m in RegExp(r'\b(\d{1,3})\b').allMatches(narration)) {
+      for (final m in _bareNumber.allMatches(_maskCompounds(narration))) {
         final v = m.group(1)!;
         if (v != '$n' && !others.contains(v)) others.add(v);
       }
+      // Distractors have to come from the step. Inventing them by counting up
+      // turned "Tap the equator (0 degrees)" into a choice between 0, 1 and 2
+      // — a geography step scored as arithmetic. With nothing to contrast the
+      // number against there is no honest question here, so fall back to the
+      // plain tap stage rather than manufacture one.
+      if (others.isEmpty) return null;
       var fill = n;
       while (others.length < 2) {
         fill++;
