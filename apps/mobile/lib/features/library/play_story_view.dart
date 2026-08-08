@@ -99,6 +99,7 @@ class StoryViewState extends ConsumerState<StoryView> {
         ),
         stageSemanticLabel: page.visual?.alt,
         prompt: loc.pageNarration(_page),
+        promptAudio: ReplayNarrationButton(onReplay: _speakPage),
         response: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

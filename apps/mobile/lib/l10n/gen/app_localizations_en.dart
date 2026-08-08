@@ -471,6 +471,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get textSizeLarge => 'Large';
 
   @override
+  String get hearItAgain => 'Hear it again';
+
+  @override
   String get readAloud => 'Read aloud';
 
   @override

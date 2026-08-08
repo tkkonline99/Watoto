@@ -471,6 +471,9 @@ class AppLocalizationsSw extends AppLocalizations {
   String get textSizeLarge => 'Kubwa';
 
   @override
+  String get hearItAgain => 'Sikiliza tena';
+
+  @override
   String get readAloud => 'Soma kwa sauti';
 
   @override

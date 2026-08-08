@@ -484,6 +484,10 @@ class _LessonViewState extends ConsumerState<_LessonView> {
         stageFitsContent:
             stageOwnsCanvas(plan.mechanic) || stageRepeatsResponse,
         distributeSlack: !stageOwnsCanvas(plan.mechanic),
+        // The narration is the question on these bands, and it speaks once.
+        // Offer it back rather than making the child finish a step they did
+        // not hear.
+        promptAudio: ReplayNarrationButton(onReplay: _speakStep),
         // The alt is the screen-reader label (§26.6). Stages that own the
         // canvas are interactive and announce themselves, so labelling them
         // as an image would talk over their own semantics.
