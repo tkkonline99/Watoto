@@ -41,13 +41,28 @@ SIZE = 512
 
 # source file -> (lexicon word, focus box or None)
 #
-# A focus box (left, top, right, bottom) is picked by eye for a photo shot
-# against a background that cannot be detected — bokeh is not a flat colour.
-# None means the subject is cut out against a flat background and can be found.
+# A focus box (left, top, right, bottom) in the *source's own* pixels, picked
+# by eye for a photo shot against a background that cannot be detected — bokeh
+# and grass are not flat colours. None means the subject is a cut-out against a
+# flat background and can be found automatically.
+#
+# The boxes crop tight on the animal's head and shoulders rather than framing
+# the whole creature. At 58dp a full-body shot is a smudge; what a child
+# recognises is a face. That is why the flying owl is cropped to its face and
+# not to its wingspan, and why only the sharp hen from a field of six is kept.
 PLAN = {
-    "dog.png": ("dog", (95, 0, 475, 380)),
-    "owl.png": ("owl", (60, 30, 500, 470)),
-    "hen.png": ("chicken", None),
+    "dog.jpg": ("dog", (1000, 900, 3300, 3200)),
+    "owl.jpg": ("owl", (924, 1802, 1524, 2402)),
+    "hen.jpg": ("chicken", (1880, 1160, 3520, 2800)),
+}
+
+# Where each source came from, so the provenance of anything that ships is
+# auditable. All three are Unsplash, whose licence grants free commercial use
+# with no attribution required — which is the reason they can be here at all.
+SOURCES = {
+    "dog.jpg": "https://unsplash.com/photos/rFao8fcvTdY",
+    "owl.jpg": "https://unsplash.com/photos/xWQcud4Xtr4",
+    "hen.jpg": "https://unsplash.com/photos/4W8FgDVyUME",
 }
 
 
@@ -148,6 +163,30 @@ def main():
         with open(dst, "wb") as f:
             f.write(data)
         print(f"{src_name} -> {word}.jpg  {len(data) // 1024} KB")
+
+    # Provenance sits beside the files rather than in a doc somewhere, because
+    # the question it answers ("may we ship this?") gets asked about the files.
+    credits = [
+        "Photographs bundled with Watoto",
+        "",
+        "Source: Unsplash (https://unsplash.com). The Unsplash Licence grants",
+        "free use, including commercially, with no attribution required and no",
+        "permission needed. Retained here so the provenance of anything that",
+        "ships is auditable at release time.",
+        "",
+        "Cropped and re-encoded by content/prep_photos.py; the originals are",
+        "unmodified at the URLs below.",
+        "",
+    ]
+    for src_name, (word, _) in sorted(PLAN.items()):
+        credits.append(f"{word}.jpg  <-  {SOURCES.get(src_name, 'UNKNOWN')}")
+    credits.append("")
+    credits.append("Photographer names are not recorded: the licence does not")
+    credits.append("require them and the photo pages are behind a bot check.")
+    credits.append("Add them here if you would rather credit by name.")
+    sources_path = os.path.join(OUT_DIR, "SOURCES.txt")
+    with open(sources_path, "w", encoding="utf-8") as f:
+        f.write("\n".join(credits) + "\n")
 
     if args.preview:
         write_preview(images, args.preview)
