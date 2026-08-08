@@ -18,6 +18,7 @@ import '../../l10n/gen/app_localizations.dart';
 import 'content_i18n.dart';
 import 'content_lexicon.dart';
 import 'library_models.dart';
+import 'option_photos.dart';
 import 'play_celebration.dart';
 import 'play_shared.dart';
 import 'play_stages.dart';
@@ -279,13 +280,16 @@ class QuizViewState extends ConsumerState<QuizView> {
                             children: [
                               // Illustrate one-word answers ("Ball" → ⚽)
                               // from the English source label.
-                              if (lexiconLookup(
-                                    question.options[i].label
-                                        .trim()
-                                        .toLowerCase(),
-                                  )
-                                  case final LexEntry e) ...[
-                                AnswerPictureDisc(glyph: e.emoji, size: 44),
+                              if (question.options[i].label
+                                      .trim()
+                                      .toLowerCase()
+                                  case final word
+                                      when lexiconLookup(word) != null) ...[
+                                AnswerPictureDisc(
+                                  glyph: lexiconLookup(word)!.emoji,
+                                  photoAsset: optionPhotoAsset(word),
+                                  size: 44,
+                                ),
                                 const SizedBox(width: 14),
                               ],
                               Expanded(

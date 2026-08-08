@@ -15,6 +15,7 @@ import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
 import 'circuit_figures.dart';
 import 'content_lexicon.dart';
+import 'option_photos.dart';
 import 'option_words.dart';
 import 'play_stage_circuit.dart';
 import 'play_stage_code.dart';
@@ -567,7 +568,10 @@ class ChoiceStageState extends State<ChoiceStage> {
       }
       return Row(
         children: [
-          AnswerPictureDisc(glyph: glyph),
+          AnswerPictureDisc(
+            glyph: glyph,
+            photoAsset: optionPhotoAsset(option.word),
+          ),
           const SizedBox(width: 16),
           Expanded(child: Text(label, style: answerLabelStyle)),
         ],
@@ -678,23 +682,47 @@ class ChoiceStageState extends State<ChoiceStage> {
 ///
 /// [size] shrinks for a quiz, which offers up to four answers and cannot spend
 /// a lesson's height on each one.
+///
+/// A word with a bundled photograph (option_photos.dart) shows that instead of
+/// the glyph, filling the disc. The glyph stays the fallback for everything
+/// else and for a photo that will not load, so the disc is never empty.
 class AnswerPictureDisc extends StatelessWidget {
-  const AnswerPictureDisc({super.key, required this.glyph, this.size = 58});
+  const AnswerPictureDisc({
+    super.key,
+    required this.glyph,
+    this.photoAsset,
+    this.size = 58,
+  });
 
   final String glyph;
+  final String? photoAsset;
   final double size;
 
   @override
-  Widget build(BuildContext context) => Container(
-        width: size,
-        height: size,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: WatotoColors.sun.withValues(alpha: 0.18),
-        ),
-        alignment: Alignment.center,
-        child: Text(glyph, style: TextStyle(fontSize: size * 0.55)),
-      );
+  Widget build(BuildContext context) {
+    final glyphChild = Text(glyph, style: TextStyle(fontSize: size * 0.55));
+    return Container(
+      width: size,
+      height: size,
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: WatotoColors.sun.withValues(alpha: 0.18),
+      ),
+      alignment: Alignment.center,
+      child: photoAsset == null
+          ? glyphChild
+          : Image.asset(
+              photoAsset!,
+              width: size,
+              height: size,
+              // The crop already centres the animal; cover fills the circle so
+              // there is no pale wedge between photo and rim.
+              fit: BoxFit.cover,
+              errorBuilder: (_, _, _) => glyphChild,
+            ),
+    );
+  }
 }
 
 /// The card every answer sits on, wherever the question came from.
