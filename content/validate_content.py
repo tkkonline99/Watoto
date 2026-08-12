@@ -49,8 +49,8 @@ VISUAL_MODES = {"token", "scene", "slot"}
 # author_visuals.py's SCENES — a ref in one and not the other is how a scene
 # ships with no builder behind it.
 SCENES = {
-    "counting.array", "counting.tens-and-units", "fraction.bars",
-    "shape.loose-objects", "glyph.trace", "audio.waveform",
+    "counting.array", "counting.tens-and-units", "arithmetic.number-sentence",
+    "fraction.bars", "shape.loose-objects", "glyph.trace", "audio.waveform",
     "colour.field", "sentence.card",
 }
 

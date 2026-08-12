@@ -62,10 +62,16 @@ IMAGE_ROOT = ROOT / "apps/mobile/assets/images"
 # widget builders in core/widgets/stages/ — a ref in one and not the others is
 # a validation error, which is what stops a scene shipping with no builder.
 SCENES = {
-    "counting.array", "counting.tens-and-units", "fraction.bars",
-    "shape.loose-objects", "glyph.trace", "audio.waveform",
+    "counting.array", "counting.tens-and-units", "arithmetic.number-sentence",
+    "fraction.bars", "shape.loose-objects", "glyph.trace", "audio.waveform",
     "colour.field", "sentence.card",
 }
+
+# Scenes that decorate rather than encode. Every other scene draws the maths or
+# the structure the part is about, so it beats a glyph that merely names a noun
+# in the sentence; the waveform draws the same 21 bars whatever it is given, so
+# it loses to a token that names the actual thing. See resolve().
+DECORATIVE = {"audio.waveform"}
 
 # Leading instruction verbs. Stripping these turns narration into a description
 # of what the picture shows, which is what an art brief and a screen-reader
@@ -173,6 +179,13 @@ def load_manifest_briefs() -> dict[str, str]:
 # rule that fired on skill alone would put a counting array on both, which is
 # the lexicon's mistake wearing a different hat.
 _CONFIRM = {
+    # The only confirm that has to find a *specific* thing rather than a topic:
+    # the scene draws these two numbers, so a part that does not state a sum
+    # has nothing for it to draw. The `/` guards keep "1/2 + 1/4" from reading
+    # as "2 + 1". Mirrored by _sumInText() in core/widgets/stages/
+    # stage_scenes.dart — the script decides, and the painter re-reads.
+    "arithmetic.number-sentence": re.compile(
+        r"(?<![\d/])\d{1,2}\s*[+\-−]\s*\d{1,2}(?![\d/])"),
     "counting.array": re.compile(
         r"\bhow many\b|\bcount\b|\bcounting\b|\barray\b|\brows?\b|\d"),
     "counting.tens-and-units": re.compile(
@@ -202,11 +215,20 @@ _CONFIRM = {
 # skill -> the scene it proposes, most specific skill first.
 _PROPOSE: list[tuple[frozenset[str], str]] = [
     (frozenset({"math.fractions", "math.decimals"}), "fraction.bars"),
+    # Below fractions on purpose: a fractions item that also claims arithmetic
+    # is about the fraction, and fraction.bars should answer for it first.
+    # Above place-value for the mirror reason — where a part states a sum, the
+    # sum is the subject, and a single base-ten value would show only half of it.
+    (frozenset({"math.arithmetic"}), "arithmetic.number-sentence"),
     (frozenset({"math.place-value"}), "counting.tens-and-units"),
     (frozenset({"math.shapes", "sorting"}), "shape.loose-objects"),
     (frozenset({"colors"}), "colour.field"),
     (frozenset({"tracing", "reading.handwriting"}), "glyph.trace"),
-    (frozenset({"phono", "music"}), "audio.waveform"),
+    # `reading.phonics` is the same domain as `phono` under the name the later
+    # stages use — 19 items carry it, and they were reaching the art backlog
+    # for want of a line here. The waveform reads nothing off SceneData, so it
+    # can only ever be decorative: there is no number for it to get wrong.
+    (frozenset({"phono", "reading.phonics", "music"}), "audio.waveform"),
     (frozenset({"reading.mechanics", "writing.mechanics",
                 "writing.grammar"}), "sentence.card"),
     (frozenset({"math.counting", "counting", "numbers",
@@ -294,12 +316,19 @@ def resolve(item, part, kind, index, tokens, briefs, on_disk):
             return {"mode": "slot", "ref": ref, "alt": alt}, "drawn"
 
     scene = scene_for(item, part, kind)
-    if scene:
+    if scene and scene not in DECORATIVE:
         return {"mode": "scene", "ref": scene, "alt": alt}, "scene"
 
     token = token_for(body, item, tokens)
     if token:
         return {"mode": "token", "ref": token, "alt": alt}, "token"
+
+    # A decorative scene outranks an undrawn brief but not a token. "Tap
+    # 'kite'. Listen for the long i." names a kite and the lexicon has one;
+    # a waveform there would trade a picture of the actual word for a shape
+    # that says only "this step has sound", which every phonics step does.
+    if scene:
+        return {"mode": "scene", "ref": scene, "alt": alt}, "scene-decorative"
 
     ref = step_ref(item, index) if kind == "step" else question_ref(item, index)
     return {"mode": "slot", "ref": ref, "alt": alt}, "brief"

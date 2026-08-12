@@ -117,6 +117,21 @@ class QuestionScaffold extends StatelessWidget {
 
   double get _stageHeight => textHeavy ? 180 : 300;
 
+  /// [stageSemanticLabel], unless it only repeats the prompt sitting under it.
+  ///
+  /// 478 parts describe their picture with the very question being asked —
+  /// "Which animal says 'moo'?" is both the prompt and the visual's alt,
+  /// because for a question there is often nothing truer to say about the
+  /// picture. Labelling the artwork with it made a screen reader reach the
+  /// answers having said the question twice. Where the alt adds nothing, the
+  /// stage is better left silent: the prompt below is a liveRegion and is
+  /// announced on its own.
+  String? get _stageLabel {
+    final label = stageSemanticLabel?.trim();
+    if (label == null || label.isEmpty) return null;
+    return label == prompt.trim() ? null : label;
+  }
+
   @override
   Widget build(BuildContext context) {
     final band = bandForStage(stage);
@@ -162,7 +177,7 @@ class QuestionScaffold extends StatelessWidget {
             ],
             _Stage(
               height: stageFitsContent ? null : _stageHeight,
-              label: stageSemanticLabel,
+              label: _stageLabel,
               child: stageVisual,
             ),
             const SizedBox(height: 20),

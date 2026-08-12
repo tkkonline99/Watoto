@@ -461,7 +461,12 @@ class _LessonViewState extends ConsumerState<_LessonView> {
               count: step.count,
               rows: step.rows,
               cols: step.cols,
-              text: narrationEn,
+              // Narration *and* prompt, because author_visuals.py picks the
+              // scene from both. Three "make ten" steps teach in the narration
+              // and keep the sum in the prompt ("10 − 2 = ?"); with narration
+              // alone the number sentence had nothing to read and fell back to
+              // a glyph on exactly the steps it was chosen for.
+              text: step.sceneText,
             ),
           ),
         ),

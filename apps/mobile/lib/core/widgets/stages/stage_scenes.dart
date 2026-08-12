@@ -41,6 +41,7 @@ class SceneData {
 const Set<String> registeredScenes = {
   'counting.array',
   'counting.tens-and-units',
+  'arithmetic.number-sentence',
   'fraction.bars',
   'shape.loose-objects',
   'glyph.trace',
@@ -49,11 +50,17 @@ const Set<String> registeredScenes = {
   'sentence.card',
 };
 
-/// The widget for [ref], or null when nothing is registered under that id.
+/// The widget for [ref], or null when nothing is registered under that id —
+/// or when a registered scene cannot honestly draw *this* part. The second
+/// case is why the return stays nullable: `arithmetic.number-sentence` reads
+/// its numbers out of the part's own text, and a scene that guessed when the
+/// text held no sum would state something false. Both nulls land on the same
+/// `?? _TokenDisc(...)` in VisualStage, so the stage is still never empty.
 Widget? buildScene(String ref, {SceneData data = const SceneData()}) =>
     switch (ref) {
       'counting.array' => _Scene(painter: _CountingArrayPainter(data)),
       'counting.tens-and-units' => _Scene(painter: _TensAndUnitsPainter(data)),
+      'arithmetic.number-sentence' => _numberSentence(data),
       'fraction.bars' => _Scene(painter: _FractionBarsPainter(data)),
       'shape.loose-objects' => _Scene(painter: _LooseObjectsPainter(data)),
       'glyph.trace' => _Scene(painter: _GlyphTracePainter(data)),
@@ -174,6 +181,189 @@ class _TensAndUnitsPainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant _TensAndUnitsPainter old) =>
       old.data.count != data.count;
+}
+
+/// The first `a + b` or `a − b` in [text], when both operands fit base-ten
+/// blocks.
+///
+/// Two digits is the ceiling because a third rank stops being countable at
+/// stage size, and `×`/`÷` are deliberately not read: an array says those,
+/// and `math.multiplication-division` already proposes `counting.array`.
+///
+/// The `/` guards keep fractions out. Without them "1/2 + 1/4" reads as
+/// "2 + 1" and the stage would draw two blocks beside one for a question
+/// about quarters.
+({int a, String op, int b})? _sumInText(String? text) {
+  if (text == null) return null;
+  final m = RegExp(r'(?<![\d/])(\d{1,2})\s*([+\-−])\s*(\d{1,2})(?![\d/])')
+      .firstMatch(text);
+  if (m == null) return null;
+  return (
+    a: int.parse(m.group(1)!),
+    op: m.group(2)! == '+' ? '+' : '−',
+    b: int.parse(m.group(3)!),
+  );
+}
+
+Widget? _numberSentence(SceneData data) {
+  final sum = _sumInText(data.text);
+  if (sum == null) return null;
+  return _NumberSentence(a: sum.a, op: sum.op, b: sum.b);
+}
+
+/// A number sentence drawn as quantity: each operand in tens rods and unit
+/// squares, with the operator between them.
+///
+/// It draws the *problem* and never the result — finding that is what the
+/// child is being asked to do. This is also why the operands are read out of
+/// the part's own text instead of [SceneData.count]: on a quiz `count` is
+/// derived from the correct answer, so drawing it would hand the answer over.
+class _NumberSentence extends StatelessWidget {
+  const _NumberSentence({required this.a, required this.op, required this.b});
+
+  final int a;
+  final String op;
+  final int b;
+
+  @override
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.all(20),
+        child: LayoutBuilder(
+          builder: (context, box) {
+            // One rod width for both operands, worked out here rather than
+            // inside each painter. Sized apart, "63 − 28" drew a wider ten on
+            // the small side than on the big one, and a rod that changes size
+            // between the two halves of a sum stops reading as ten.
+            const opW = 44.0;
+            final blocks = math.max(box.maxHeight - 30, 24.0);
+            final rodW = math.min(
+              (box.maxWidth - opW) / (_slotsFor(a) + _slotsFor(b) + 1.2),
+              blocks * 0.2,
+            );
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _Operand(value: a, rodW: rodW),
+                SizedBox(
+                  width: opW,
+                  child: Center(
+                    child: Text(
+                      op,
+                      style: const TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w800,
+                        color: WatotoColors.deep,
+                      ),
+                    ),
+                  ),
+                ),
+                _Operand(value: b, rodW: rodW),
+              ],
+            );
+          },
+        ),
+      );
+}
+
+/// How wide [v] is in rod-widths: a rod and its gap each, plus the two-column
+/// stack the loose units sit in. Mirrors the geometry [_BaseTenPainter] draws.
+double _slotsFor(int v) => (v ~/ 10) * 1.55 + (v % 10 > 0 ? 2.13 : 0);
+
+/// One operand: its blocks, and its numeral underneath.
+///
+/// The numeral is here so the symbol and the quantity are learned against each
+/// other, and so the scene still says something exact to a child who cannot
+/// yet count six rods at a glance.
+class _Operand extends StatelessWidget {
+  const _Operand({required this.value, required this.rodW});
+
+  final int value;
+  final double rodW;
+
+  @override
+  Widget build(BuildContext context) => SizedBox(
+        width: _slotsFor(value) * rodW,
+        child: Column(
+          children: [
+            Expanded(
+              child: CustomPaint(
+                painter: _BaseTenPainter(value, rodW),
+                size: Size.infinite,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              '$value',
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w800,
+                color: WatotoColors.deep,
+              ),
+            ),
+          ],
+        ),
+      );
+}
+
+/// [value] as tens rods and unit squares, centred in the space it is given.
+///
+/// Proportions and notching follow [_TensAndUnitsPainter] so a child meets the
+/// same rod in both scenes.
+class _BaseTenPainter extends CustomPainter {
+  _BaseTenPainter(this.value, this.rodW);
+
+  final int value;
+
+  /// Handed down by [_NumberSentence] so both operands share one scale.
+  final double rodW;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final tens = (value ~/ 10).clamp(0, 9);
+    final units = value % 10;
+
+    final slots = tens * 1.55 + (units > 0 ? 2.13 : 0);
+    if (slots <= 0) return;
+    final gap = rodW * 0.55;
+    final unitS = rodW * 0.82;
+    final rodH = size.height * 0.84;
+    final baseY = size.height;
+
+    var x = (size.width - slots * rodW) / 2;
+
+    final rod = Paint()..color = WatotoColors.sky;
+    final unit = Paint()..color = WatotoColors.mango;
+    final edge = Paint()
+      ..color = WatotoColors.deep.withValues(alpha: 0.5)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2;
+
+    for (var i = 0; i < tens; i++) {
+      final rect = RRect.fromLTRBR(
+          x, baseY - rodH, x + rodW, baseY, const Radius.circular(5));
+      canvas.drawRRect(rect, rod);
+      canvas.drawRRect(rect, edge);
+      // Ten notches, so the rod reads as ten and not as a colour (§26.6).
+      for (var n = 1; n < 10; n++) {
+        final y = baseY - rodH * n / 10;
+        canvas.drawLine(Offset(x, y), Offset(x + rodW, y), edge);
+      }
+      x += rodW + gap;
+    }
+    for (var i = 0; i < units; i++) {
+      final col = i % 2, row = i ~/ 2;
+      final left = x + col * (unitS + 4);
+      final top = baseY - (row + 1) * (unitS + 4);
+      final rect = RRect.fromLTRBR(
+          left, top, left + unitS, top + unitS, const Radius.circular(4));
+      canvas.drawRRect(rect, unit);
+      canvas.drawRRect(rect, edge);
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _BaseTenPainter old) =>
+      old.value != value || old.rodW != rodW;
 }
 
 // -------------------------------------------------------------- fractions

@@ -57,22 +57,46 @@ void main() {
     });
 
     test('every declared scene has a builder behind it', () {
+      // Each scene is built with the data the *player* will hand it, not an
+      // empty SceneData. `arithmetic.number-sentence` reads its two numbers
+      // out of that text, so building it bare would prove nothing about the
+      // parts that actually declare it — and this is what catches a part
+      // whose sum sits in a field the player never passes through.
       final refs = <String>{};
+      final blank = <String>[];
+
       for (final item in items) {
-        for (final part in [
-          ...item.steps.map((s) => s.visual),
-          ...item.questions.map((q) => q.visual),
-          ...item.pages.map((p) => p.visual),
-        ]) {
-          if (part is SceneVisual) refs.add(part.ref);
+        for (var i = 0; i < item.steps.length; i++) {
+          final s = item.steps[i];
+          final v = s.visual;
+          if (v is! SceneVisual) continue;
+          refs.add(v.ref);
+          final built = buildScene(v.ref,
+              data: SceneData(
+                count: s.count,
+                rows: s.rows,
+                cols: s.cols,
+                text: s.sceneText,
+              ));
+          if (built == null) blank.add('${item.id} step $i (${v.ref})');
+        }
+        for (var i = 0; i < item.questions.length; i++) {
+          final q = item.questions[i];
+          final v = q.visual;
+          if (v is! SceneVisual) continue;
+          refs.add(v.ref);
+          // count is left null: the player derives it from the answer, and no
+          // scene's *existence* depends on it — only its numbers do.
+          final built = buildScene(v.ref, data: SceneData(text: q.prompt));
+          if (built == null) blank.add('${item.id} question $i (${v.ref})');
         }
       }
+
       expect(refs, isNotEmpty);
-      for (final ref in refs) {
-        expect(buildScene(ref), isNotNull,
-            reason: '$ref is authored but core/widgets/stages builds nothing '
-                'for it — the stage would be empty');
-      }
+      expect(blank, isEmpty,
+          reason: 'authored a scene that core/widgets/stages builds nothing '
+              'for, given that part\'s own data — the stage falls back to a '
+              'glyph instead of the scene chosen for it: ${blank.take(5)}');
     });
 
     test('alt text is a real description everywhere', () {
@@ -198,6 +222,38 @@ void main() {
         tester.getSemantics(find.text('What is 12 × 6?')),
         matchesSemantics(label: 'What is 12 × 6?', isLiveRegion: true),
       );
+      handle.dispose();
+    });
+
+    testWidgets('the stage stays silent when its alt only repeats the prompt',
+        (tester) async {
+      final handle = tester.ensureSemantics();
+      // 478 parts give the picture the same words as the question, because for
+      // a question there is often nothing truer to say about it. Announcing
+      // both made a reader say the question twice before the answers.
+      await tester.pumpWidget(host(const QuestionScaffold(
+        stage: 2,
+        stageVisual: SizedBox.shrink(),
+        stageSemanticLabel: "Which animal says 'moo'?",
+        prompt: "Which animal says 'moo'?",
+        response: SizedBox(height: 40),
+      )));
+      expect(
+        find.bySemanticsLabel("Which animal says 'moo'?"),
+        findsOneWidget,
+        reason: 'the prompt should still be announced, exactly once',
+      );
+
+      // An alt that says something the prompt does not still gets announced.
+      await tester.pumpWidget(host(const QuestionScaffold(
+        stage: 2,
+        stageVisual: SizedBox.shrink(),
+        stageSemanticLabel: 'A cow standing in a green field',
+        prompt: "Which animal says 'moo'?",
+        response: SizedBox(height: 40),
+      )));
+      expect(find.bySemanticsLabel('A cow standing in a green field'),
+          findsOneWidget);
       handle.dispose();
     });
   });

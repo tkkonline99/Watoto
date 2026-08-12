@@ -228,6 +228,16 @@ class LessonStep {
   final int? rows;
   final int? cols;
 
+  /// Everything this step says, for a scene that reads its subject out of the
+  /// words (see `_sumInText` in core/widgets/stages/stage_scenes.dart).
+  ///
+  /// Both halves, because content splits them either way: the "make ten" steps
+  /// teach in [narration] and keep the sum in [prompt]. It lives here so the
+  /// player and the contract test read a part the same way — when they each
+  /// composed their own, three steps were assigned a scene the player could
+  /// not build.
+  String get sceneText => [narration, prompt ?? ''].join(' ').trim();
+
   factory LessonStep.fromJson(Map<String, dynamic> j) => LessonStep(
         narration: j['narration'] as String? ?? '',
         action: j['action'] as String? ?? '',

@@ -8747,8 +8747,8 @@
           "feedback": "Boom! So loud.",
           "mechanic": "tap",
           "visual": {
-            "mode": "scene",
-            "ref": "audio.waveform",
+            "mode": "token",
+            "ref": "drum",
             "alt": "The big drum. That's loud"
           }
         },
@@ -8758,8 +8758,8 @@
           "feedback": "Ting. So soft and quiet.",
           "mechanic": "tap",
           "visual": {
-            "mode": "scene",
-            "ref": "audio.waveform",
+            "mode": "token",
+            "ref": "bell",
             "alt": "The little bell. That's quiet"
           }
         },
@@ -13511,8 +13511,8 @@
           "correctFeedback": "Cat and hat rhyme! 🎵",
           "retryFeedback": "Say them slowly: caaat, haaat. Try again!",
           "visual": {
-            "mode": "scene",
-            "ref": "audio.waveform",
+            "mode": "token",
+            "ref": "cat",
             "alt": "'Cat', from the quiz 'Which Words Rhyme?'"
           }
         },
@@ -13532,8 +13532,8 @@
           "correctFeedback": "You heard it. Star and car rhyme.",
           "retryFeedback": "Listen for the same ending. Try again!",
           "visual": {
-            "mode": "scene",
-            "ref": "audio.waveform",
+            "mode": "token",
+            "ref": "star",
             "alt": "'Star', from the quiz 'Which Words Rhyme?'"
           }
         }
@@ -13590,8 +13590,8 @@
           "correctFeedback": "Dog and frog rhyme!",
           "retryFeedback": "Say them slowly: dog, frog. Try again!",
           "visual": {
-            "mode": "scene",
-            "ref": "audio.waveform",
+            "mode": "token",
+            "ref": "dog",
             "alt": "'Dog', from the quiz 'Which Two Rhyme?'"
           }
         },
@@ -13611,8 +13611,8 @@
           "correctFeedback": "Cat and hat rhyme!",
           "retryFeedback": "Say them slowly: cat, hat. Try again!",
           "visual": {
-            "mode": "scene",
-            "ref": "audio.waveform",
+            "mode": "token",
+            "ref": "cat",
             "alt": "'Cat', from the quiz 'Which Two Rhyme?'"
           }
         }
@@ -24079,8 +24079,8 @@
           "feedback": "Both are 3! Order does not change a sum.",
           "mechanic": "numberAnswer",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s05/step_math_lesson_01_4.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "2 + 1 and 1 + 2"
           }
         },
@@ -24746,8 +24746,8 @@
           "correctFeedback": "2 + 1 = 3.",
           "retryFeedback": "Count on from 2: 3. Try again!",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s05/q_math_quiz_01_0.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "What is 2 + 1?"
           }
         },
@@ -24771,8 +24771,8 @@
           "correctFeedback": "Five. Three, then two more.",
           "retryFeedback": "Count on from three: four, five.",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s05/q_math_quiz_01_1.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "What is 3 + 2?"
           }
         },
@@ -24792,8 +24792,8 @@
           "correctFeedback": "Eight. A double!",
           "retryFeedback": "Four fingers on each hand. Count them all.",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s05/q_math_quiz_01_2.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "What is 4 + 4?"
           }
         }
@@ -24839,8 +24839,8 @@
           "correctFeedback": "5 - 2 = 3.",
           "retryFeedback": "Start at 5, count back 2. Try again!",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s05/q_math_quiz_02_0.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "What is 5 - 2?"
           }
         },
@@ -24864,8 +24864,8 @@
           "correctFeedback": "Three. Half of six.",
           "retryFeedback": "Start at six and count back three.",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s05/q_math_quiz_02_1.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "What is 6 - 3?"
           }
         },
@@ -25306,8 +25306,8 @@
           "feedback": "Each letter lights up and says its sound.",
           "mechanic": "tap",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s05/step_reading_lesson_01_0.png",
+            "mode": "scene",
+            "ref": "audio.waveform",
             "alt": "Each sound: /c/, from the lesson 'Blend the Sounds: c-a-t'"
           }
         },
@@ -25328,8 +25328,8 @@
           "feedback": "/h/ ... /a/ ... /t/. Three sounds.",
           "mechanic": "tap",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s05/step_reading_lesson_01_2.png",
+            "mode": "scene",
+            "ref": "audio.waveform",
             "alt": "Now try h-a-t, from the lesson 'Blend the Sounds: c-a-t'"
           }
         },
@@ -25339,8 +25339,8 @@
           "feedback": "'hat!' You blended it yourself.",
           "mechanic": "tap",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s05/step_reading_lesson_01_3.png",
+            "mode": "scene",
+            "ref": "audio.waveform",
             "alt": "What word do those three sounds make?"
           }
         },
@@ -25645,8 +25645,8 @@
           "feedback": "'dog!' You read it!",
           "mechanic": "tap",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s05/step_reading_lesson_04_0.png",
+            "mode": "scene",
+            "ref": "audio.waveform",
             "alt": "Sound it out: d-o-g. Blend"
           }
         },
@@ -25672,8 +25672,8 @@
           "feedback": "'sun!' Three sounds, one word.",
           "mechanic": "tap",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s05/step_reading_lesson_04_2.png",
+            "mode": "scene",
+            "ref": "audio.waveform",
             "alt": "Sound it out: s-u-n"
           }
         },
@@ -25694,8 +25694,8 @@
           "feedback": "'dog'. The middle sound matters as much as the first.",
           "mechanic": "tap",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s05/step_reading_lesson_04_4.png",
+            "mode": "scene",
+            "ref": "audio.waveform",
             "alt": "Which word has the /o/ sound in the middle?"
           }
         },
@@ -25791,8 +25791,8 @@
           "feedback": "'fig!' Same ending, new beginning.",
           "mechanic": "tap",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s05/step_reading_lesson_05_2.png",
+            "mode": "scene",
+            "ref": "audio.waveform",
             "alt": "F + ig = ?"
           }
         },
@@ -29205,8 +29205,8 @@
           ],
           "choiceIndex": 2,
           "visual": {
-            "mode": "slot",
-            "ref": "img/s06/step_math_lesson_02_1.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "6 + 3 = 9. DO NOT depict the answer (9) or anything that reveals it; draw only what the sentence states"
           }
         },
@@ -29349,8 +29349,8 @@
           ],
           "choiceIndex": 0,
           "visual": {
-            "mode": "slot",
-            "ref": "img/s06/step_math_lesson_03_1.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "10 - 4 = 6. DO NOT depict the answer (6) or anything that reveals it; draw only what the sentence states"
           }
         },
@@ -30016,8 +30016,8 @@
           "correctFeedback": "6 + 3 = 9.",
           "retryFeedback": "Count on from 6. Try again!",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s06/q_math_quiz_02_0.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "What is 6 + 3?"
           }
         },
@@ -30041,8 +30041,8 @@
           "correctFeedback": "5 + 4 = 9. Same answer, different pair!",
           "retryFeedback": "Start at 5 and count on four. Try again!",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s06/q_math_quiz_02_1.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "What is 5 + 4?"
           }
         },
@@ -30091,8 +30091,8 @@
           "correctFeedback": "8. Doubles are worth learning by heart.",
           "retryFeedback": "Two fours. Count them all. Try again!",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s06/q_math_quiz_02_3.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "4 + 4 is a double"
           }
         }
@@ -30138,8 +30138,8 @@
           "correctFeedback": "10 - 4 = 6.",
           "retryFeedback": "Count back 4 from 10. Try again!",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s06/q_math_quiz_03_0.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "What is 10 - 4?"
           }
         },
@@ -30163,8 +30163,8 @@
           "correctFeedback": "8 - 3 = 5.",
           "retryFeedback": "7, 6, 5. Count back three. Try again!",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s06/q_math_quiz_03_1.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "What is 8 - 3?"
           }
         },
@@ -30565,8 +30565,8 @@
           "feedback": "'sh-ip. Ship!'",
           "mechanic": "tap",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s06/step_reading_lesson_01_0.png",
+            "mode": "scene",
+            "ref": "audio.waveform",
             "alt": "Makes one sound: shhh. Tap"
           }
         },
@@ -30587,8 +30587,8 @@
           "feedback": "sh-o-p. Shop!",
           "mechanic": "tap",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s06/step_reading_lesson_01_2.png",
+            "mode": "scene",
+            "ref": "audio.waveform",
             "alt": "For shhh at the start"
           }
         },
@@ -30598,8 +30598,8 @@
           "feedback": "Two letters, one sound. That is a digraph.",
           "mechanic": "explain",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s06/step_reading_lesson_01_3.png",
+            "mode": "scene",
+            "ref": "audio.waveform",
             "alt": "S and h stand together and make one new sound"
           }
         },
@@ -30642,8 +30642,8 @@
           "feedback": "Shhh. That is a reader's ear.",
           "mechanic": "celebrate",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s06/step_reading_lesson_01_7.png",
+            "mode": "scene",
+            "ref": "audio.waveform",
             "alt": "You can hear 'sh' anywhere in a word now"
           }
         }
@@ -30721,8 +30721,8 @@
           "feedback": "ch-i-n. Chin!",
           "mechanic": "tap",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s06/step_reading_lesson_02_2.png",
+            "mode": "scene",
+            "ref": "audio.waveform",
             "alt": "'chin', from the lesson 'Digraph: ch'"
           }
         },
@@ -30776,8 +30776,8 @@
           "feedback": "You are reading real words.",
           "mechanic": "celebrate",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s06/step_reading_lesson_02_7.png",
+            "mode": "scene",
+            "ref": "audio.waveform",
             "alt": "Sh and ch are two sounds you own now"
           }
         }
@@ -31142,8 +31142,8 @@
           "feedback": "Slow speech shows you the letters.",
           "mechanic": "explain",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s06/step_reading_lesson_05_3.png",
+            "mode": "scene",
+            "ref": "audio.waveform",
             "alt": "Say the word slowly, and write the sound you hear first"
           }
         },
@@ -31502,8 +31502,8 @@
           "correctFeedback": "Ship has the 'sh' sound.",
           "retryFeedback": "Listen for shhh. Try again!",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s06/q_reading_quiz_02_0.png",
+            "mode": "scene",
+            "ref": "audio.waveform",
             "alt": "Which word has the 'sh' sound?"
           }
         },
@@ -31548,8 +31548,8 @@
           "correctFeedback": "One. Two letters, one sound. That is a digraph.",
           "retryFeedback": "Say shhh. Is that one sound or two? Try again!",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s06/q_reading_quiz_02_2.png",
+            "mode": "scene",
+            "ref": "audio.waveform",
             "alt": "How many sounds does 'sh' make?"
           }
         },
@@ -37974,8 +37974,8 @@
           "feedback": "Making ten first is faster than counting every hop.",
           "mechanic": "explain",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s07/step_math_lesson_01_3.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "The shortcut: 9 + 6 is 10 + 5, because one hops over"
           }
         },
@@ -37986,8 +37986,8 @@
           "mechanic": "numberAnswer",
           "answer": 15,
           "visual": {
-            "mode": "slot",
-            "ref": "img/s07/step_math_lesson_01_4.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "Use the shortcut: 8 + 7"
           }
         },
@@ -37998,8 +37998,8 @@
           "mechanic": "numberAnswer",
           "answer": 9,
           "visual": {
-            "mode": "slot",
-            "ref": "img/s07/step_math_lesson_01_5.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "Now backward: 16 - 7"
           }
         },
@@ -38080,8 +38080,8 @@
           "feedback": "Let's find a trick.",
           "mechanic": "explain",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s07/step_math_lesson_02_0.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "Big sums can be easy. Watch this one: 8 + 7"
           }
         },
@@ -38120,8 +38120,8 @@
           "feedback": "Let's see how much is left.",
           "mechanic": "explain",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s07/step_math_lesson_02_3.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "We borrowed that 2 from the 7. Now take it away: 7 - 2"
           }
         },
@@ -38133,8 +38133,8 @@
           "prompt": "7 − 2 = ?",
           "answer": 5,
           "visual": {
-            "mode": "slot",
-            "ref": "img/s07/step_math_lesson_02_4.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "Seven, give away two"
           }
         },
@@ -38151,8 +38151,8 @@
           ],
           "choiceIndex": 1,
           "visual": {
-            "mode": "slot",
-            "ref": "img/s07/step_math_lesson_02_5.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "Now the hard sum has become an easy one: 10 + 5. DO NOT depict the answer (15) or anything that reveals it; draw only what the sentence states"
           }
         },
@@ -38162,8 +38162,8 @@
           "feedback": "That trick works every time.",
           "mechanic": "explain",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s07/step_math_lesson_02_6.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "Making ten turned a hard sum into an easy one"
           }
         },
@@ -38180,8 +38180,8 @@
           ],
           "choiceIndex": 0,
           "visual": {
-            "mode": "slot",
-            "ref": "img/s07/step_math_lesson_02_7.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "Your turn. We want to add 9 + 6. DO NOT depict the answer (1) or anything that reveals it; draw only what the sentence states"
           }
         },
@@ -38193,8 +38193,8 @@
           "prompt": "9 + 6 = ?",
           "answer": 15,
           "visual": {
-            "mode": "slot",
-            "ref": "img/s07/step_math_lesson_02_8.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "Take 1 from the 6 to make ten, then add what is left"
           }
         },
@@ -38206,8 +38206,8 @@
           "prompt": "7 + 5 = ?",
           "answer": 12,
           "visual": {
-            "mode": "slot",
-            "ref": "img/s07/step_math_lesson_02_9.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "Last one, all by yourself: 7 + 5"
           }
         }
@@ -38264,8 +38264,8 @@
           "feedback": "Watch how we do it.",
           "mechanic": "explain",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s07/step_math_lesson_03_0.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "Taking away can use the same ten trick. Try 15 − 7"
           }
         },
@@ -38317,8 +38317,8 @@
           "prompt": "10 − 2 = ?",
           "answer": 8,
           "visual": {
-            "mode": "slot",
-            "ref": "img/s07/step_math_lesson_03_4.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "Take the last 2 from our ten"
           }
         },
@@ -38346,8 +38346,8 @@
           ],
           "choiceIndex": 1,
           "visual": {
-            "mode": "slot",
-            "ref": "img/s07/step_math_lesson_03_6.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "This one lands on ten in a single step. DO NOT depict the answer (10) or anything that reveals it; draw only what the sentence states"
           }
         },
@@ -38359,8 +38359,8 @@
           "prompt": "14 − 5 = ?",
           "answer": 9,
           "visual": {
-            "mode": "slot",
-            "ref": "img/s07/step_math_lesson_03_7.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "Step down to ten, then take what is left"
           }
         },
@@ -38372,8 +38372,8 @@
           "prompt": "13 − 4 = ?",
           "answer": 9,
           "visual": {
-            "mode": "slot",
-            "ref": "img/s07/step_math_lesson_03_8.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "One more on your own: 13 − 4"
           }
         }
@@ -39034,8 +39034,8 @@
           "correctFeedback": "8 + 7 = 15.",
           "retryFeedback": "Make ten first: 8 + 2, then 5. Try again!",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s07/q_math_quiz_02_0.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "What is 8 + 7?"
           }
         },
@@ -39059,8 +39059,8 @@
           "correctFeedback": "15. Same answer as 8 + 7 — there are many roads to a number.",
           "retryFeedback": "9 + 1 is 10, then 5 more. Try again!",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s07/q_math_quiz_02_1.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "What is 9 + 6?"
           }
         },
@@ -39084,8 +39084,8 @@
           "correctFeedback": "8. Hop back five from thirteen.",
           "retryFeedback": "Count back: 12, 11, 10... Try again!",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s07/q_math_quiz_02_2.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "What is 13 - 5?"
           }
         },
@@ -39595,8 +39595,8 @@
           ],
           "choiceIndex": 0,
           "visual": {
-            "mode": "slot",
-            "ref": "img/s07/step_reading_lesson_01_2.png",
+            "mode": "scene",
+            "ref": "audio.waveform",
             "alt": "Read it again: cape. The new e is silent. You never say it out loud. DO NOT depict the answer (cape) or anything that reveals it; draw only what the sentence states"
           }
         },
@@ -39624,8 +39624,8 @@
           ],
           "choiceIndex": 1,
           "visual": {
-            "mode": "slot",
-            "ref": "img/s07/step_reading_lesson_01_4.png",
+            "mode": "scene",
+            "ref": "audio.waveform",
             "alt": "Look for the quiet e at the end of the word. DO NOT depict the answer (hope) or anything that reveals it; draw only what the sentence states"
           }
         },
@@ -39671,8 +39671,8 @@
           ],
           "choiceIndex": 0,
           "visual": {
-            "mode": "slot",
-            "ref": "img/s07/step_reading_lesson_01_7.png",
+            "mode": "scene",
+            "ref": "audio.waveform",
             "alt": "Listen for that same /ay/ sound in another word. DO NOT depict the answer (train) or anything that reveals it; draw only what the sentence states"
           }
         },
@@ -39834,8 +39834,8 @@
           "feedback": "A silent e at the end is your clue.",
           "mechanic": "celebrate",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s07/step_reading_lesson_02_7.png",
+            "mode": "scene",
+            "ref": "audio.waveform",
             "alt": "Short vowels say their sound; long vowels say their name"
           }
         }
@@ -39891,8 +39891,8 @@
           "feedback": "/b/ and /l/, close together but both there.",
           "mechanic": "explain",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s07/step_reading_lesson_03_0.png",
+            "mode": "scene",
+            "ref": "audio.waveform",
             "alt": "Sometimes two letters stand side by side and you hear both. Listen: bl in black"
           }
         },
@@ -39909,8 +39909,8 @@
           ],
           "choiceIndex": 0,
           "visual": {
-            "mode": "slot",
-            "ref": "img/s07/step_reading_lesson_03_1.png",
+            "mode": "scene",
+            "ref": "audio.waveform",
             "alt": "Say black slowly and listen to the very start. DO NOT depict the answer (bl) or anything that reveals it; draw only what the sentence states"
           }
         },
@@ -39922,8 +39922,8 @@
           "prompt": "How many sounds do you hear in 'bl'?",
           "answer": 2,
           "visual": {
-            "mode": "slot",
-            "ref": "img/s07/step_reading_lesson_03_2.png",
+            "mode": "scene",
+            "ref": "audio.waveform",
             "alt": "A blend is two sounds, not one new sound"
           }
         },
@@ -39951,8 +39951,8 @@
           ],
           "choiceIndex": 1,
           "visual": {
-            "mode": "slot",
-            "ref": "img/s07/step_reading_lesson_03_4.png",
+            "mode": "scene",
+            "ref": "audio.waveform",
             "alt": "Which of these begins with that st sound. DO NOT depict the answer (star) or anything that reveals it; draw only what the sentence states"
           }
         },
@@ -39980,8 +39980,8 @@
           ],
           "choiceIndex": 1,
           "visual": {
-            "mode": "slot",
-            "ref": "img/s07/step_reading_lesson_03_6.png",
+            "mode": "scene",
+            "ref": "audio.waveform",
             "alt": "Say each one and listen to the last part. DO NOT depict the answer (sand) or anything that reveals it; draw only what the sentence states"
           }
         },
@@ -40009,8 +40009,8 @@
           "feedback": "That is what blends are for.",
           "mechanic": "explain",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s07/step_reading_lesson_03_8.png",
+            "mode": "scene",
+            "ref": "audio.waveform",
             "alt": "Bl, st, nd, fr. You can now sound out words you have never seen before"
           }
         }
@@ -47961,8 +47961,8 @@
           "correctFeedback": "You carried the ten. 24 + 18 = 42.",
           "retryFeedback": "Add ones, then carry the ten. Try again!",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s08/q_math_quiz_01_0.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "What is 24 + 18?"
           }
         },
@@ -47986,8 +47986,8 @@
           "correctFeedback": "62. The ones made 12, so a ten was carried.",
           "retryFeedback": "Add the ones first, then carry.",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s08/q_math_quiz_01_1.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "What is 37 + 25?"
           }
         },
@@ -48011,8 +48011,8 @@
           "correctFeedback": "35. You borrowed a ten, so the 6 became a 5.",
           "retryFeedback": "Do not forget to take the ten off the top row.",
           "visual": {
-            "mode": "slot",
-            "ref": "img/s08/q_math_quiz_01_2.png",
+            "mode": "scene",
+            "ref": "arithmetic.number-sentence",
             "alt": "What is 63 - 28?"
           }
         },
