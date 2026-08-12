@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:watoto_mobile/core/audio/narration.dart';
 
@@ -68,6 +69,46 @@ void main() {
           reason: '$lang has no chain, so it can only ever try one tag',
         );
         expect(NarrationController.localeChain[lang]!.length, greaterThan(1));
+      }
+    });
+  });
+
+  /// flutter_tts hands the same double to four engines that each mean
+  /// something different by it. The app used to pass one constant, so the
+  /// browser build spoke at 40% while Android spoke at 80% — the reason
+  /// narration sounded like a slowed-down recording on web.
+  group('speech rate', () {
+    const rate = NarrationController.engineRate;
+
+    // What each platform must receive for the child to hear 80% of normal.
+    test('one pace lands on the same speed on every platform', () {
+      // web: utterance.rate, normal 1.0 -> pass it straight through.
+      expect(rate(0.80, isWeb: true, platform: TargetPlatform.android), 0.80);
+      // Android: the plugin doubles it before the engine sees it.
+      expect(rate(0.80, isWeb: false, platform: TargetPlatform.android), 0.40);
+      // iOS/macOS: AVSpeechUtteranceDefaultSpeechRate is 0.5, not 1.0.
+      expect(rate(0.80, isWeb: false, platform: TargetPlatform.iOS), 0.40);
+      expect(rate(0.80, isWeb: false, platform: TargetPlatform.macOS), 0.40);
+      // Windows: the plugin adds 0.5 before setting SpeakingRate.
+      expect(
+        rate(0.80, isWeb: false, platform: TargetPlatform.windows),
+        closeTo(0.30, 1e-9),
+      );
+    });
+
+    test('web is never handed the mobile number', () {
+      // The regression itself: 0.40 on web is 40% speed, half what is meant.
+      final web = rate(0.80, isWeb: true, platform: TargetPlatform.android);
+      expect(web, greaterThan(0.6),
+          reason: 'anything near 0.4 on web is the slowed-down-recording bug');
+    });
+
+    test('stays inside every engine\'s accepted range', () {
+      for (final pace in [0.1, 0.5, 0.72, 0.8, 1.0]) {
+        for (final p in TargetPlatform.values) {
+          expect(rate(pace, isWeb: false, platform: p), greaterThanOrEqualTo(0));
+          expect(rate(pace, isWeb: true, platform: p), greaterThanOrEqualTo(0.1));
+        }
       }
     });
   });
