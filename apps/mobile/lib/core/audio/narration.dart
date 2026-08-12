@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
@@ -17,6 +18,10 @@ class NarrationController extends Notifier<bool> {
   bool _configured = false;
   String? _langReady;
   final Map<String, Map<String, String>> _preferredVoice = {};
+
+  /// Languages whose voice list has been enumerated, whether or not a
+  /// preferred voice came out of it. See [_ensureVoice].
+  final Set<String> _voiceProbed = {};
 
   /// Resolved engine locale per app language, or null when this device has no
   /// voice for it. Populated on first speak; `containsKey` distinguishes
@@ -45,14 +50,65 @@ class NarrationController extends Notifier<bool> {
     'fr': ['fr-FR', 'fr-CA', 'fr-BE', 'fr'],
   };
 
-  /// Slightly different pacing per language (research: FR/SW benefit from
-  /// a touch slower for clarity on stock engines).
-  // Slightly slower = clearer for kids on stock Chrome/Windows voices.
-  static double _rateFor(String lang) => switch (lang) {
-        'fr' => 0.38,
-        'sw' => 0.36,
-        _ => 0.40,
+  /// How fast to speak, as a fraction of the engine's **normal** rate. FR/SW
+  /// go a little slower again for clarity on stock engines.
+  ///
+  /// Tuned by ear at 0.70 rather than the 0.80 that Android and iOS carried
+  /// for years: 0.80 is an adult reading aloud at a normal clip, and with no
+  /// pause between sentences it runs them together faster than a child
+  /// following along can take in.
+  ///
+  /// Deliberately not the number handed to the engine: see [engineRate].
+  static double _paceFor(String lang) => switch (lang) {
+        'fr' => 0.66,
+        'sw' => 0.62,
+        _ => 0.70,
       };
+
+  /// [pace] converted into whatever number *this* platform's engine wants.
+  ///
+  /// flutter_tts does not normalise `setSpeechRate`, and every platform means
+  /// something different by the same double:
+  ///
+  /// | platform | what the plugin does        | normal |
+  /// |----------|-----------------------------|--------|
+  /// | Android  | `setSpeechRate(rate * 2.0)` | 1.0    |
+  /// | iOS/macOS| `utterance.rate = rate`     | 0.5    |
+  /// | Windows  | `SpeakingRate(rate + 0.5)`  | 1.0    |
+  /// | web      | `utterance.rate = rate`     | 1.0    |
+  ///
+  /// So the single constant 0.40 this used to pass meant 80% speed on Android
+  /// and iOS — the intended "slightly slower" — but **40% on web**, which is
+  /// what made the browser build sound like a slowed-down recording. Pace is
+  /// now stated once, in the one unit a human can reason about, and converted
+  /// here.
+  ///
+  /// Pure and separately tested: the conversion is the part that was wrong,
+  /// and it should not need an audio engine to verify.
+  @visibleForTesting
+  static double engineRate(
+    double pace, {
+    required bool isWeb,
+    required TargetPlatform platform,
+  }) {
+    if (isWeb) return pace.clamp(0.1, 10.0);
+    return switch (platform) {
+      TargetPlatform.android => (pace / 2).clamp(0.0, 1.0),
+      // AVSpeechUtteranceDefaultSpeechRate is 0.5, not 1.0.
+      TargetPlatform.iOS || TargetPlatform.macOS => (pace / 2).clamp(0.0, 1.0),
+      // SpeakingRate floors at 0.5, which is the offset the plugin adds.
+      TargetPlatform.windows => (pace - 0.5).clamp(0.0, 5.5),
+      // Anything else: assume the engine's own scale, normal being 1.0.
+      _ => pace.clamp(0.0, 1.0),
+    };
+  }
+
+  /// [engineRate] for the platform actually running.
+  static double _rateFor(String lang, {double? pace}) => engineRate(
+        pace ?? _paceFor(lang),
+        isWeb: kIsWeb,
+        platform: defaultTargetPlatform,
+      );
 
   /// Soft, friendly pitch — not cartoonish, not flat.
   static double _pitchFor(String lang) => switch (lang) {
@@ -150,18 +206,27 @@ class NarrationController extends Notifier<bool> {
   Future<void> _ensureVoice(FlutterTts tts, String langCode) async {
     final localeTag =
         _resolvedLocale[langCode] ?? _locale[langCode] ?? 'en-US';
-    if (_langReady == localeTag && _preferredVoice.containsKey(langCode)) {
-      try {
-        await tts.setVoice(_preferredVoice[langCode]!);
-      } catch (_) {}
+    // Keyed on "we have probed", not "we found something". Keyed on the latter
+    // — as it was — a device whose voices carry no usable name never satisfied
+    // the guard, so setLanguage and a full getVoices enumeration ran again for
+    // every sentence spoken, which is a stutter before each one.
+    if (_langReady == localeTag && _voiceProbed.contains(langCode)) {
+      final preferred = _preferredVoice[langCode];
+      if (preferred != null) {
+        try {
+          await tts.setVoice(preferred);
+        } catch (_) {}
+      }
       return;
     }
 
     await tts.setLanguage(localeTag);
 
+    var sawVoices = false;
     try {
       final raw = await tts.getVoices;
       if (raw is List) {
+        sawVoices = raw.isNotEmpty;
         final voices = <Map<String, String>>[];
         for (final v in raw) {
           if (v is Map) {
@@ -214,9 +279,14 @@ class NarrationController extends Notifier<bool> {
       // Voice enumeration unsupported — language alone is fine.
     }
 
-    await tts.setSpeechRate(_rateFor(langCode));
-    await tts.setPitch(_pitchFor(langCode));
+    // Only a probe that actually saw voices settles the question. On web
+    // getVoices() is empty until the browser finishes loading them, and
+    // caching that emptiness would pin the whole session to the default voice.
+    if (sawVoices) _voiceProbed.add(langCode);
     _langReady = localeTag;
+    // Rate and pitch are not set here: speak() applies them per utterance
+    // anyway, for the style it is speaking in, so doing it here too was two
+    // extra engine round trips before every sentence.
   }
 
   /// How each language says the symbols that appear in lesson text.
@@ -486,30 +556,30 @@ class NarrationController extends Notifier<bool> {
       await tts.stop();
       await _ensureVoice(tts, langCode);
 
-      var rate = _rateFor(langCode);
+      // Style nudges are applied to the pace, not to the engine number, so
+      // "a little brighter" is the same nudge on every platform.
+      var pace = _paceFor(langCode);
       var pitch = _pitchFor(langCode);
       switch (style) {
         case SpeakStyle.cheer:
           pitch = (pitch + 0.06).clamp(0.5, 2.0);
-          rate = (rate + 0.03).clamp(0.1, 1.0);
+          pace = (pace + 0.06).clamp(0.1, 1.0);
         case SpeakStyle.hint:
-          rate = (rate - 0.04).clamp(0.1, 1.0);
+          pace = (pace - 0.08).clamp(0.1, 1.0);
           pitch = (pitch - 0.02).clamp(0.5, 2.0);
         case SpeakStyle.lesson:
           break;
       }
-      await tts.setSpeechRate(rate);
+      await tts.setSpeechRate(_rateFor(langCode, pace: pace));
       await tts.setPitch(pitch);
 
-      final chunks = chunkForSpeech(text, lang: langCode);
-      for (var i = 0; i < chunks.length; i++) {
+      // No pause between chunks: awaitSpeakCompletion already holds each call
+      // until the engine finishes the sentence, and the engine's own
+      // end-of-sentence pause follows the terminal punctuation naturalize()
+      // guarantees. The extra 280ms on top read as the narrator hesitating.
+      for (final chunk in chunkForSpeech(text, lang: langCode)) {
         if (!state) break;
-        await tts.speak(chunks[i]);
-        // Brief inter-sentence breath (awaitSpeakCompletion already waited).
-        if (i < chunks.length - 1) {
-          // Slightly longer breath between sentences = less robotic.
-          await Future<void>.delayed(const Duration(milliseconds: 280));
-        }
+        await tts.speak(chunk);
       }
     } catch (_) {
       // No TTS engine available (desktop/test) — degrade to silent captions.
