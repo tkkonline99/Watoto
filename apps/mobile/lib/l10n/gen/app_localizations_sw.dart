@@ -410,6 +410,21 @@ class AppLocalizationsSw extends AppLocalizations {
   String get theEnd => 'Mwisho!';
 
   @override
+  String get pressItGrew => 'Limekua!';
+
+  @override
+  String get pressSunCameUp => 'Jua limechomoza!';
+
+  @override
+  String get pressRainFalls => 'Mvua!';
+
+  @override
+  String get pressItTwinkles => 'Linameta!';
+
+  @override
+  String get pressYouDidIt => 'Umefanya!';
+
+  @override
   String get readAgain => 'Soma tena';
 
   @override

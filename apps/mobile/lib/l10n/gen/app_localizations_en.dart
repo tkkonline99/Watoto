@@ -410,6 +410,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get theEnd => 'The End!';
 
   @override
+  String get pressItGrew => 'It grew!';
+
+  @override
+  String get pressSunCameUp => 'The sun came up!';
+
+  @override
+  String get pressRainFalls => 'Rain!';
+
+  @override
+  String get pressItTwinkles => 'It twinkles!';
+
+  @override
+  String get pressYouDidIt => 'You did it!';
+
+  @override
   String get readAgain => 'Read again';
 
   @override

@@ -11,6 +11,7 @@ import '../../core/audio/narration.dart';
 import '../../core/audio/sound_effects.dart';
 import '../../core/offline/offline_providers.dart';
 import '../../core/state/app_state.dart';
+import '../../core/theme/watoto_theme.dart';
 import '../../core/widgets/stages/question_scaffold.dart';
 import '../../l10n/gen/app_localizations.dart';
 import 'content_i18n.dart';
@@ -18,6 +19,7 @@ import 'content_lexicon.dart';
 import 'library_models.dart';
 import 'play_celebration.dart';
 import 'play_shared.dart';
+import 'press_scenes.dart';
 
 class StoryView extends ConsumerStatefulWidget {
   const StoryView({super.key, required this.item});
@@ -30,10 +32,49 @@ class StoryViewState extends ConsumerState<StoryView> {
   int _page = 0;
   bool _done = false;
 
+  /// Whether the child has answered *this* page's invitation to press.
+  /// Cleared on every page turn: the next page asks again.
+  bool _pressed = false;
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) => _speakPage());
+  }
+
+  /// Does this page's own narration promise the child a touch?
+  bool get _invitesPress {
+    final pages = widget.item.pages;
+    if (_page < 0 || _page >= pages.length) return false;
+    // The English narration decides, not the translated one: the promise is a
+    // property of the page, and a page must not become inert in Swahili
+    // because the verb was rendered differently there.
+    return pageInvitesPress(pages[_page].narration);
+  }
+
+  /// What the stage says once it has answered. Named for the four drawn Cause
+  /// & Effect scenes — "It grew!" is the effect the child just caused, and
+  /// naming it is the whole point — and a shared cheer everywhere else, where
+  /// the page keeps its own art and there is no specific effect to name.
+  String _bannerText(AppLocalizations l10n, LibPage page) =>
+      switch (pressSceneForAsset(page.illustration)) {
+        PressScene.seedFlower => l10n.pressItGrew,
+        PressScene.skySun => l10n.pressSunCameUp,
+        PressScene.cloudRain => l10n.pressRainFalls,
+        PressScene.star => l10n.pressItTwinkles,
+        null => l10n.pressYouDidIt,
+      };
+
+  void _onPressed() {
+    if (_pressed) {
+      // Replays are welcome — a one-year-old confirms they caused something by
+      // doing it again — but the cheer is not re-fired, so it stays a reward
+      // for making it happen rather than a noise that follows every tap.
+      ref.read(soundEffectsProvider).tap();
+      return;
+    }
+    setState(() => _pressed = true);
+    ref.read(soundEffectsProvider).celebrate();
   }
 
   void _speakPage() {
@@ -48,7 +89,10 @@ class StoryViewState extends ConsumerState<StoryView> {
   }
 
   void _go(int delta) {
-    setState(() => _page += delta);
+    setState(() {
+      _page += delta;
+      _pressed = false;
+    });
     ref.read(soundEffectsProvider).page();
     _speakPage();
   }
@@ -84,19 +128,45 @@ class StoryViewState extends ConsumerState<StoryView> {
         // narration gets the rest. The picture still has a fixed home, which
         // is what stops a two-line page and a six-line page laying out
         // differently.
-        textHeavy: true,
+        //
+        // Except on a page whose picture *is* the activity. The four Cause &
+        // Effect pages are pressed, not read — the narration is one short line
+        // and the child's whole job is the flower — so those take the full
+        // 300dp stage and the scene fills it. Pages that keep a 180dp bitmap
+        // stay text-heavy; giving them 300 would only add white space.
+        textHeavy: pressSceneForAsset(page.illustration) == null,
         progress: QuestionProgress(
           index: _page,
           total: pages.length,
           asCount: true,
         ),
         // This page's own drawn picture; the item's art, then an emoji, only
-        // if the page names none.
-        stageVisual: storyPageArt(
-          widget.item,
-          page,
-          illustrationFor(page.narration) ?? '📖',
-        ),
+        // if the page names none. Where the page's text promises a touch, that
+        // picture becomes the tap target and answers it.
+        stageVisual: _invitesPress
+            ? PressableStage(
+                // Per page: the growth is State, and a page turn must start
+                // its own scene from the seed rather than inherit the last
+                // page's finished one.
+                key: ValueKey('press-${widget.item.id}-$_page'),
+                scene: pressSceneForAsset(page.illustration),
+                semanticLabel: loc.pageNarration(_page),
+                onPressed: _onPressed,
+                child: storyPageArt(
+                  widget.item,
+                  page,
+                  illustrationFor(page.narration) ?? '📖',
+                ),
+              )
+            : storyPageArt(
+                widget.item,
+                page,
+                illustrationFor(page.narration) ?? '📖',
+              ),
+        stageInteractive: _invitesPress,
+        stageBanner: _invitesPress
+            ? _PressBanner(shown: _pressed, text: _bannerText(l10n, page))
+            : null,
         stageSemanticLabel: page.visual?.alt,
         prompt: loc.pageNarration(_page),
         promptAudio: ReplayNarrationButton(onReplay: _speakPage),
@@ -123,4 +193,40 @@ class StoryViewState extends ConsumerState<StoryView> {
       ),
     );
   }
+}
+
+/// The line above the stage naming what the child just caused.
+///
+/// It holds its height from the start and only fades its text in. Inserting a
+/// line on press would shove the picture down the screen at the exact moment
+/// the child is looking at it — and on a page they can replay, it would jump
+/// on every tap.
+class _PressBanner extends StatelessWidget {
+  const _PressBanner({required this.shown, required this.text});
+
+  final bool shown;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) => SizedBox(
+        height: 34,
+        child: Center(
+          child: AnimatedOpacity(
+            opacity: shown ? 1 : 0,
+            duration: const Duration(milliseconds: 260),
+            child: Semantics(
+              liveRegion: true,
+              child: Text(
+                shown ? text : '',
+                style: const TextStyle(
+                  fontFamily: 'Baloo2',
+                  fontSize: 20,
+                  fontWeight: FontWeight.w800,
+                  color: WatotoColors.berry,
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
 }

@@ -60,6 +60,8 @@ class QuestionScaffold extends StatelessWidget {
     this.promptAudio,
     this.textHeavy = false,
     this.stageSemanticLabel,
+    this.stageBanner,
+    this.stageInteractive = false,
     this.stageFitsContent = false,
     this.distributeSlack = true,
   });
@@ -94,6 +96,19 @@ class QuestionScaffold extends StatelessWidget {
 
   /// The visual's `alt`, announced in place of the artwork.
   final String? stageSemanticLabel;
+
+  /// A short line directly above the stage, for what the stage has just done
+  /// ("It grew!"). Reserved space rather than an insertion: it occupies its
+  /// slot whether or not it has anything to say, so the card does not jump
+  /// down the screen the moment a child presses it.
+  final Widget? stageBanner;
+
+  /// True when the stage itself is the tap target.
+  ///
+  /// [_Stage] otherwise labels the artwork and sets `excludeSemantics`, which
+  /// is right for a picture and wrong for a button — it would swallow the
+  /// child's only control. An interactive stage labels itself instead.
+  final bool stageInteractive;
 
   /// Let the stage size to its content instead of the banded height.
   ///
@@ -175,9 +190,10 @@ class QuestionScaffold extends StatelessWidget {
               _Progress(progress: p),
               const SizedBox(height: 12),
             ],
+            ?stageBanner,
             _Stage(
               height: stageFitsContent ? null : _stageHeight,
-              label: _stageLabel,
+              label: stageInteractive ? null : _stageLabel,
               child: stageVisual,
             ),
             const SizedBox(height: 20),

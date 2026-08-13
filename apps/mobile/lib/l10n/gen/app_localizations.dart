@@ -844,6 +844,36 @@ abstract class AppLocalizations {
   /// **'The End!'**
   String get theEnd;
 
+  /// No description provided for @pressItGrew.
+  ///
+  /// In en, this message translates to:
+  /// **'It grew!'**
+  String get pressItGrew;
+
+  /// No description provided for @pressSunCameUp.
+  ///
+  /// In en, this message translates to:
+  /// **'The sun came up!'**
+  String get pressSunCameUp;
+
+  /// No description provided for @pressRainFalls.
+  ///
+  /// In en, this message translates to:
+  /// **'Rain!'**
+  String get pressRainFalls;
+
+  /// No description provided for @pressItTwinkles.
+  ///
+  /// In en, this message translates to:
+  /// **'It twinkles!'**
+  String get pressItTwinkles;
+
+  /// No description provided for @pressYouDidIt.
+  ///
+  /// In en, this message translates to:
+  /// **'You did it!'**
+  String get pressYouDidIt;
+
   /// No description provided for @readAgain.
   ///
   /// In en, this message translates to:

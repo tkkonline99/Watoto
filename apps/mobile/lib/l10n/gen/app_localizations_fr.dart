@@ -411,6 +411,21 @@ class AppLocalizationsFr extends AppLocalizations {
   String get theEnd => 'Fin !';
 
   @override
+  String get pressItGrew => 'Ça a poussé !';
+
+  @override
+  String get pressSunCameUp => 'Le soleil se lève !';
+
+  @override
+  String get pressRainFalls => 'De la pluie !';
+
+  @override
+  String get pressItTwinkles => 'Elle scintille !';
+
+  @override
+  String get pressYouDidIt => 'Tu l\'as fait !';
+
+  @override
   String get readAgain => 'Relire';
 
   @override
