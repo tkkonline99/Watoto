@@ -312,6 +312,19 @@ final _directive = RegExp(
 /// Neither can be staged from the wording alone — see [choicePlanFor].
 final _truthValue = RegExp(r'\b(?:true|false)\b', caseSensitive: false);
 
+/// A directive asking for a reason, a place, a consequence or a selection
+/// between claims — none of which the lexicon can answer, because it stages
+/// nouns and these questions are not answered by a noun in the question. See
+/// [choicePlanFor].
+final _asksForExplanation = RegExp(
+  r'\b(?:why|what|which|how|where|when|whether)\b',
+  caseSensitive: false,
+);
+
+/// A single-quoted span, so a quoted word can be lifted out of a clause
+/// before it is scanned for question words.
+final _quotedSpan = RegExp(r"'[^']*'");
+
 List<String> _words(String text) =>
     text.toLowerCase().split(_wordSplit).where((w) => w.isNotEmpty).toList();
 
@@ -420,6 +433,30 @@ ChoicePlan? choicePlanFor(String itemId, int step, String narration) {
   final clause = _directive.firstMatch(narration)?.group(1);
   if (clause == null) return null;
   final lower = clause.toLowerCase();
+
+  // "Tap why most big cities grew up beside rivers", "Tap what a cloud
+  // actually is", "Tap where the big hand goes". The lexicon answers "which
+  // of these things is it" by staging a noun and its look-alikes, and a
+  // question asking for a reason, a place or a consequence has no such
+  // answer — so it staged a noun **out of the question itself**: rivers for
+  // why cities grew beside rivers, cloud for what a cloud is, and (from the
+  // body-part pool) `hand` for where the big hand goes, whose real answer is
+  // "on the 4". A child who knew the answer could not even express it.
+  //
+  // The quoted spans come out before the scan: "Tap 'Where'" is a spelling
+  // step whose interrogative is the word being taught, while "Tap what an
+  // 'else' branch is for" is a real question wrapped around a quote.
+  //
+  // An opposite pair is the one shape that does answer this — "Tap what goes
+  // down" is answered by `down` itself — so it is tried before refusing. Only
+  // when the clause names nothing else, though: "where the big hand goes"
+  // carries a noun (hand) and an incidental opposite (big), and is a question
+  // about neither. That is the same condition the opposite plan already runs
+  // under further down.
+  if (_asksForExplanation.hasMatch(lower.replaceAll(_quotedSpan, ' '))) {
+    if (_scanForTarget(clause) != null) return null;
+    return _oppositePlan(itemId, step, lower);
+  }
 
   // "Tap 'cap'" — reading steps quote the word itself: stage it as tappable
   // TEXT against minimal-pair distractors (the other quoted words in the
