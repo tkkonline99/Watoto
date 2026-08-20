@@ -307,6 +307,11 @@ final _directive = RegExp(
   caseSensitive: false,
 );
 
+/// A directive that names a truth value, whether it is asking for one ("tap
+/// true or false") or only mentioning it ("tap why that cannot be true").
+/// Neither can be staged from the wording alone — see [choicePlanFor].
+final _truthValue = RegExp(r'\b(?:true|false)\b', caseSensitive: false);
+
 List<String> _words(String text) =>
     text.toLowerCase().split(_wordSplit).where((w) => w.isNotEmpty).toList();
 
@@ -465,13 +470,21 @@ ChoicePlan? choicePlanFor(String itemId, int step, String narration) {
     );
   }
 
-  // "Is that TRUE or FALSE? Tap true."
-  final tf = RegExp(r'\b(true|false)\b').firstMatch(lower);
-  if (tf != null) {
-    final t = tf.group(1)!;
-    final o = t == 'true' ? 'false' : 'true';
-    return _pairPlan(itemId, step, ChoiceOption(t, t), ChoiceOption(o, o));
-  }
+  // "Tap true or false: 7 is greater than 10." The words cannot answer this.
+  // The old pair plan took whichever literal it saw first as the target, and
+  // "true or false" names true first whatever the answer is — so that step
+  // scored **true**, and a child who worked out that 7 is not greater than 10
+  // and tapped false was marked wrong. The same branch fired on every
+  // directive that merely mentions truth ("Tap why that cannot be true", "Tap
+  // what happens on a false test") and offered two cards that cannot answer a
+  // why or a what. It also baked the English literals on as both word and
+  // glyph, so a Swahili or French child read "true"/"false".
+  //
+  // Refusing drops the step to the plain tap stage instead of scoring the
+  // wrong card. The steps that really do ask this carry authored
+  // `choices`/`choiceIndex` (content/ask_true_false_steps.py), which
+  // `_planFromExplicit` reads before this function is ever called.
+  if (_truthValue.hasMatch(lower)) return null;
 
   var target = _scanForTarget(clause);
 
