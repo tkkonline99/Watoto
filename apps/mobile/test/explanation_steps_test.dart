@@ -29,19 +29,64 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:watoto_mobile/features/library/content_lexicon.dart';
 import 'package:watoto_mobile/features/library/library_models.dart';
+import 'package:watoto_mobile/features/library/step_play.dart';
 
-/// Steps the sweep caught scoring a noun lifted out of the question, with the
-/// answer each step's feedback actually gives. None may stage a choice until
-/// that answer is authored as an option.
-const _mustNotStage = {
+/// The steps the sweep caught scoring a noun lifted out of the question, and
+/// the answer each one's own feedback gives. Authored by
+/// content/ask_explanation_steps.py.
+const _authored = {
+  ('s03.emotions.lesson.02', 2): 'A grown-up you trust',
+  ('s07.writing.lesson.01', 6): 'sings',
+  ('s08.tech.lesson.03', 5): 'What happens if no',
+  ('s08.math.lesson.06', 6): 'On the 4',
+  ('s08.science.lesson.02', 5): 'It would overheat',
+  ('s08.science.lesson.03', 3): 'Grass plants',
+  ('s08.science.lesson.03', 6): 'It grows thick',
+  ('s08.science.lesson.04', 6): 'Heat',
   ('s08.science.lesson.05', 4): 'The sun',
-  ('s08.science.lesson.05', 5): 'water cooled into drops',
-  ('s08.math.lesson.06', 6): 'on the 4',
+  ('s08.science.lesson.05', 5): 'Tiny water drops',
+  ('s08.science.lesson.06', 5): 'Yes, it still works',
   ('s08.social.lesson.02', 4): 'East',
-  ('s08.social.lesson.04', 6): 'water, soil and transport',
-  ('s09.science.lesson.02', 3): 'cold',
-  ('s09.science.lesson.06', 5): 'a bigger orbit',
-  ('s03.emotions.lesson.02', 2): 'a person, not an emotion',
+  ('s08.social.lesson.04', 6): 'Water, soil and roads',
+  ('s08.writing.lesson.02', 4): 'river',
+  ('s08.writing.lesson.03', 3): 'After bread and milk',
+  ('s08.writing.lesson.03', 4): 'One',
+  ('s08.writing.lesson.03', 5): 'Everything',
+  ('s08.writing.lesson.05', 5): 'Three words, one idea',
+  ('s09.coding.lesson.05', 5): 'Beauty is not a fact',
+  ('s09.science.lesson.01', 4): 'Pulls it without touch',
+  ('s09.science.lesson.01', 6): 'Ice, less friction',
+  ('s09.science.lesson.02', 3): 'Cold',
+  ('s09.science.lesson.03', 5): 'More grass grows',
+  ('s09.science.lesson.04', 3): 'How it moved',
+  ('s09.science.lesson.04', 5): 'No hard parts last',
+  ('s09.science.lesson.06', 5): 'Its orbit is bigger',
+  ('s09.social.lesson.02', 0): 'The capital city',
+  ('s09.social.lesson.02', 6): 'It shows direction',
+  ('s09.social.lesson.04', 5): 'It takes 3x as long',
+  ('s09.social.lesson.04', 6): 'The bus fare',
+  ('s09.social.lesson.06', 3): 'Rural area',
+  ('s09.social.lesson.06', 5): 'Things are further',
+  ('s09.writing.lesson.03', 3): 'Inside the quotes',
+  ('s09.writing.lesson.03', 4): 'What Ana said',
+  ('s09.writing.lesson.04', 4): 'Tanzania',
+  ('s10.coding.lesson.01', 5): 'Prints them exactly',
+  ('s10.coding.lesson.02', 6): 'It is a variable',
+  ('s10.coding.lesson.05', 4): 'Reports it and stops',
+  ('s10.social.lesson.01', 6): 'Longitude uses time',
+  ('s10.social.lesson.04', 6): 'It explains symbols',
+  ('s10.writing.lesson.04', 4): 'Inside the quotes',
+  ('s10.writing.lesson.04', 5): 'The spoken words',
+  ('s10.writing.lesson.06', 4): 'Adding the reason',
+};
+
+/// Options that stay English because the English *is* the lesson: which word
+/// is the verb, and which English words take a capital. Registered in
+/// content/i18n/english_by_design.json.
+const _englishByDesign = {
+  ('s07.writing.lesson.01', 6),
+  ('s08.writing.lesson.02', 4),
+  ('s09.writing.lesson.04', 4),
 };
 
 void main() {
@@ -123,25 +168,80 @@ void main() {
     });
   });
 
-  test('no library step scores a noun taken from its own question', () {
-    final scored = <String>[];
-    _mustNotStage.forEach((where, answer) {
+  test('each of the 43 now scores the answer its feedback gives', () {
+    final wrong = <String>[];
+    _authored.forEach((where, answer) {
       final (itemId, index) = where;
       final item = byId[itemId];
       if (item == null) {
-        scored.add('$itemId: not in the library');
+        wrong.add('$itemId: not in the library');
         return;
       }
       final step = item.steps[index];
-      // Authored choices are the fix; until then nothing may be staged.
-      if (step.choices.isNotEmpty) return;
-      final plan = choicePlanFor(itemId, index, step.narration);
-      if (plan != null) {
-        scored.add('$itemId step$index scores '
-            '"${plan.options[plan.targetIndex].word}" for '
-            '"${step.narration}" — the answer is $answer');
+      final plan = planStep(item: item, stepIndex: index, step: step);
+      if (plan.mechanic != StepMechanic.multiChoice) {
+        wrong.add('$itemId step$index: ${plan.mechanic.name}, '
+            'expected multiChoice');
+        return;
+      }
+      if (plan.choiceIndex < 0 || plan.choiceIndex >= plan.choices.length) {
+        wrong.add('$itemId step$index: answer index out of range');
+        return;
+      }
+      if (plan.choices.length < 2) {
+        wrong.add('$itemId step$index: only ${plan.choices.length} option');
+      }
+      final scored = plan.choices[plan.choiceIndex];
+      if (scored != answer) {
+        wrong.add('$itemId step$index: scores "$scored", '
+            'feedback says "$answer"');
       }
     });
-    expect(scored, isEmpty, reason: scored.join('\n'));
+    expect(wrong, isEmpty, reason: wrong.join('\n'));
+  });
+
+  test('no step both asks an explanation question and stages from the '
+      'lexicon', () {
+    // The library-wide form of the guard: wherever a directive asks for a
+    // reason, the options must be authored, never scraped out of the
+    // question. This is what would catch a new lesson reintroducing it.
+    final staged = <String>[];
+    for (final item in byId.values) {
+      for (var i = 0; i < item.steps.length; i++) {
+        final step = item.steps[i];
+        if (step.choices.isNotEmpty) continue;
+        final clause = _directive.firstMatch(step.narration)?.group(1);
+        if (clause == null) continue;
+        if (!_asks.hasMatch(clause.toLowerCase().replaceAll(_quoted, ' '))) {
+          continue;
+        }
+        final plan = choicePlanFor(item.id, i, step.narration);
+        if (plan == null) continue;
+        // An opposite pair answers its own question and is allowed.
+        final words = plan.options.map((o) => o.word).toSet();
+        if (words.length == 2) continue;
+        staged.add('${item.id} step$i: "${step.narration}" '
+            'stages ${plan.options.map((o) => o.word).join("/")}');
+      }
+    }
+    expect(staged, isEmpty, reason: staged.join('\n'));
+  });
+
+  test('the English-taught options carry no invented translation', () {
+    // "sings" is only the verb in English, and Tanzania-versus-town is a
+    // question about English orthography. A Swahili string here would not be
+    // a localization, it would be a different (wrong) exercise.
+    for (final (itemId, index) in _englishByDesign) {
+      final step = byId[itemId]!.steps[index];
+      expect(step.choices, isNotEmpty, reason: '$itemId step$index');
+    }
   });
 }
+
+final _directive = RegExp(
+  r'\b(?:tap|touch|find|point to|pick|press|choose)\b([^.!?]*)',
+  caseSensitive: false,
+);
+final _asks = RegExp(r'\b(?:why|what|which|how|where|when|whether)\b',
+    caseSensitive: false);
+final _quoted = RegExp(r"'[^']*'");
