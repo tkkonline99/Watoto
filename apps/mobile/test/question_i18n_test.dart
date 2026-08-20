@@ -40,6 +40,26 @@ const _languageSubjects = {
 /// it must never rise.
 const int _awaitingTranslation = 10;
 
+/// Keys whose English is deliberate and final, registered in
+/// `content/i18n/english_by_design.json` — the same register `check_i18n.py`
+/// reads so that nobody clears a translation backlog by making the exercises
+/// wrong. These are *done*, not awaiting, so they do not spend the budget
+/// above.
+///
+/// The register lives outside the Flutter package, so it is absent when only
+/// `apps/mobile` has been copied to a build workspace. That is the same shape
+/// as media_assets_test's VO manifest: skip when `../../content` is absent,
+/// and fail loudly when it exists but the file does not.
+Set<String> _englishByDesignKeys() {
+  if (!Directory('../../content').existsSync()) return const {};
+  final file = File('../../content/i18n/english_by_design.json');
+  if (!file.existsSync()) {
+    fail('content/ is present but i18n/english_by_design.json is missing');
+  }
+  final decoded = jsonDecode(file.readAsStringSync()) as Map<String, dynamic>;
+  return ((decoded['keys'] as Map<String, dynamic>?) ?? const {}).keys.toSet();
+}
+
 void main() {
   final lessons = _lessons();
   final en = _bundle('en');
@@ -72,6 +92,7 @@ void main() {
     // A step is translated or it is not; a French question above English
     // options would be worse than leaving the screen in English.
     final partial = <String>[];
+    final byDesign = _englishByDesignKeys();
     var awaiting = 0;
 
     for (final item in lessons) {
@@ -86,6 +107,10 @@ void main() {
           for (var o = 0; o < choices.length; o++)
             '${item['id']}.steps.$i.choices.$o',
         ];
+
+        // A step whose every key is English by design is finished, not
+        // pending: there is nothing left for a translator to do to it.
+        if (keys.every(byDesign.contains)) continue;
 
         for (final entry in {'fr': fr, 'sw': sw}.entries) {
           final have = keys.where(entry.value.containsKey).length;

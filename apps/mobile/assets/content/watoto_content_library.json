@@ -11400,12 +11400,17 @@
           "narration": "Tap the person who helps when you feel scared.",
           "action": "tap",
           "feedback": "Someone always comes. You are not alone.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "scared",
             "alt": "The person who helps when you feel scared"
-          }
+          },
+          "choices": [
+            "Nobody",
+            "A grown-up you trust"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Have a real hug right now.",
@@ -44111,12 +44116,18 @@
           "narration": "Now the action. Tap what the bird does.",
           "action": "tap",
           "feedback": "'sings'. That is the verb.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "bird",
             "alt": "Now the action, from the lesson 'Nouns, Verbs, Adjectives'"
-          }
+          },
+          "choices": [
+            "bird",
+            "sings",
+            "the"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "In 'A red car stops', which word is the noun? Tap 'car'.",
@@ -45877,12 +45888,18 @@
           "narration": "The light is not red. Tap what an 'else' branch is for.",
           "action": "tap",
           "feedback": "What to do when the answer is no. Without it, nothing happens.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "red",
             "alt": "The light is not red"
-          }
+          },
+          "choices": [
+            "It repeats the rule",
+            "What happens if no",
+            "It stops everything"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Build one with both branches: if it is dark, turn on the light; else, turn it off.",
@@ -47876,12 +47893,18 @@
           "narration": "Set the clock to 3:20. Tap where the big hand goes.",
           "action": "tap",
           "feedback": "On the 4. Twenty minutes is four jumps of five.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_math_lesson_06_6.png",
             "alt": "Set the clock to 3:20"
-          }
+          },
+          "choices": [
+            "On the 20",
+            "On the 4",
+            "On the 3"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Read a real clock out loud at three different times today.",
@@ -50346,12 +50369,18 @@
           "narration": "Tap what would happen if you moved the polar bear to the desert.",
           "action": "tap",
           "feedback": "It would overheat. The fur that saves it in one place kills it in another.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "bear",
             "alt": "What would happen if you moved the polar bear to the desert"
-          }
+          },
+          "choices": [
+            "It would grow more fur",
+            "It would overheat",
+            "It would feel colder"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap the one thing a habitat does not have to provide: food, shelter, friends, water.",
@@ -50458,12 +50487,17 @@
           "narration": "Tap which there are more of in a field: grass plants or rabbits.",
           "action": "tap",
           "feedback": "Grass, by far. Each level needs a much bigger level under it.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "grass",
             "alt": "Which there are more of in a field: grass plants or rabbits"
-          }
+          },
+          "choices": [
+            "Rabbits",
+            "Grass plants"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap the animal that would need the biggest area to survive: rabbit or fox.",
@@ -50491,12 +50525,18 @@
           "narration": "Tap what happens to the grass if all the rabbits leave.",
           "action": "tap",
           "feedback": "It grows thick and wild. Chains work downwards as well as up.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "grass",
             "alt": "What happens to the grass if all the rabbits leave"
-          }
+          },
+          "choices": [
+            "It dies back",
+            "It grows thick",
+            "Nothing changes"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Look for a food chain on your street: a plant, an insect, a bird.",
@@ -50625,12 +50665,18 @@
           "narration": "Tap what you would add to turn ice into steam.",
           "action": "tap",
           "feedback": "Heat, twice. Solid to liquid, then liquid to gas.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_science_lesson_04_6.png",
             "alt": "What you would add to turn ice into steam"
-          }
+          },
+          "choices": [
+            "Cold",
+            "Heat",
+            "More ice"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Watch a kettle or a cold glass today and name the state change out loud.",
@@ -50742,23 +50788,35 @@
           "narration": "Tap what lifts the water and drives the whole cycle.",
           "action": "tap",
           "feedback": "The sun. Without it water would never rise at all.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "water",
             "alt": "What lifts the water and drives the whole cycle"
-          }
+          },
+          "choices": [
+            "The wind",
+            "The sun",
+            "The rain"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap what a cloud actually is.",
           "action": "tap",
           "feedback": "Water that has cooled back into tiny drops. Not steam, and not smoke.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "cloud",
             "alt": "What a cloud actually is"
-          }
+          },
+          "choices": [
+            "Steam",
+            "Tiny water drops",
+            "Smoke"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Someone said rain is new water. Tap why that cannot be true.",
@@ -50893,12 +50951,17 @@
           "narration": "Tap whether a magnet still works through a sheet of paper.",
           "action": "tap",
           "feedback": "It does. Magnetism passes through things that are not magnetic.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_science_lesson_06_5.png",
             "alt": "Whether a magnet still works through a sheet of paper"
-          }
+          },
+          "choices": [
+            "Yes, it still works",
+            "No, paper blocks it"
+          ],
+          "choiceIndex": 0
         },
         {
           "narration": "Someone said magnets attract all metals. Tap the metal that proves them wrong.",
@@ -51833,12 +51896,18 @@
           "narration": "You face north. Tap what is on your right hand.",
           "action": "tap",
           "feedback": "East. And west is on your left. Turning changes it all.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_social_lesson_02_4.png",
             "alt": "You face north, from the lesson 'Cardinal Directions'"
-          }
+          },
+          "choices": [
+            "West",
+            "East",
+            "South"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap the direction the sun rises from, anywhere on Earth.",
@@ -52129,12 +52198,18 @@
           "narration": "Tap why most big cities grew up beside rivers.",
           "action": "tap",
           "feedback": "Water to drink, soil to farm, and a road that moves boats for free.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_social_lesson_04_6.png",
             "alt": "Why most big cities grew up beside rivers"
-          }
+          },
+          "choices": [
+            "Rivers look pretty",
+            "Water, soil and roads",
+            "Rivers stop floods"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Name the highest hill and the lowest valley you can see from your window.",
@@ -53341,12 +53416,19 @@
           "narration": "Tap which of these does NOT need a capital: monday, river, october, spain.",
           "action": "tap",
           "feedback": "River. It is only a capital if it is the name of one, like the Nile.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "scene",
             "ref": "sentence.card",
             "alt": "Which of these does NOT need a capital: monday, river, october, spain"
-          }
+          },
+          "choices": [
+            "monday",
+            "river",
+            "october",
+            "spain"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Someone capitalised every long word. Tap what rule they invented.",
@@ -53470,34 +53552,52 @@
           "narration": "Tap where the commas go: 'I need bread milk eggs and rice.'",
           "action": "tap",
           "feedback": "After bread and after milk. The last item joins with 'and'.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_writing_lesson_03_3.png",
             "alt": "Where the commas go: 'I need bread milk eggs and rice.'"
-          }
+          },
+          "choices": [
+            "After every word",
+            "After bread and milk",
+            "Only after rice"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap how many commas a list of three things needs.",
           "action": "tap",
           "feedback": "One. Three items, two gaps, and the last gap gets 'and' instead.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_writing_lesson_03_4.png",
             "alt": "How many commas a list of three things needs"
-          }
+          },
+          "choices": [
+            "Two",
+            "One",
+            "Three"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Read this aloud: 'Let's eat Grandma.' Tap what a comma would change.",
           "action": "tap",
           "feedback": "Everything. 'Let's eat, Grandma' is an invitation, not a plan.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "scene",
             "ref": "sentence.card",
             "alt": "This aloud: 'Let's eat Grandma.' Tap what a comma would change"
-          }
+          },
+          "choices": [
+            "Nothing at all",
+            "Everything",
+            "Only the sound"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Punctuate your own list of four things you would pack for a trip.",
@@ -53773,12 +53873,18 @@
           "narration": "Tap what is wrong with 'a big, large, huge dog'.",
           "action": "tap",
           "feedback": "Three adjectives all saying one thing. One strong word beats three weak ones.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "dog",
             "alt": "What is wrong with 'a big, large, huge dog'"
-          }
+          },
+          "choices": [
+            "Too few words",
+            "Three words, one idea",
+            "The dog is missing"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Replace the weak adjective: 'a nice meal' — choose something exact.",
@@ -55304,12 +55410,18 @@
           "narration": "'The sky is beautiful.' Tap why a computer cannot check this.",
           "action": "tap",
           "feedback": "Beautiful cannot be measured. Conditions need facts, not feelings.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_coding_lesson_05_5.png",
             "alt": "'The sky is beautiful.' Tap why a computer cannot check this"
-          }
+          },
+          "choices": [
+            "It is too long",
+            "Beauty is not a fact",
+            "The sky moves"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap the one a program could actually test: 'the door is locked' or 'the room is cosy'.",
@@ -59365,12 +59477,18 @@
           "narration": "Tap what a magnet does to a paperclip from a short distance away.",
           "action": "tap",
           "feedback": "Pulls it, without touching. Magnetism is a force that reaches across a gap.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_science_lesson_01_4.png",
             "alt": "What a magnet does to a paperclip from a short distance away"
-          }
+          },
+          "choices": [
+            "Pushes it away",
+            "Pulls it without touch",
+            "Nothing at all"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Someone said a heavy box is hard to push because it has no force. Tap the mistake.",
@@ -59387,12 +59505,18 @@
           "narration": "Tap which is easier to push on ice than on carpet, and why.",
           "action": "tap",
           "feedback": "Ice is smooth, so friction is small. Same push, much more movement.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "ice",
             "alt": "Which is easier to push on ice than on carpet, and why"
-          }
+          },
+          "choices": [
+            "Carpet grips more",
+            "Ice, less friction",
+            "Both are the same"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Slide a book across a table, then across a rug, with the same push.",
@@ -59488,12 +59612,18 @@
           "narration": "Tap what a polar bear's thick fur is an adaptation to.",
           "action": "tap",
           "feedback": "Cold. Every adaptation answers a problem the habitat sets.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "bear",
             "alt": "What a polar bear's thick fur is an adaptation to"
-          }
+          },
+          "choices": [
+            "Sand",
+            "Cold",
+            "Rain"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "A gecko is the same colour as its branch. Tap what that adaptation is called.",
@@ -59650,12 +59780,18 @@
           "narration": "Tap what happens to the grass when the hawk eats more rabbits.",
           "action": "tap",
           "feedback": "More grass grows. Every change travels both up and down the web.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "grass",
             "alt": "What happens to the grass when the hawk eats more rabbits"
-          }
+          },
+          "choices": [
+            "Less grass grows",
+            "More grass grows",
+            "Nothing changes"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap why a web with many links survives a loss better than a single chain.",
@@ -59768,12 +59904,18 @@
           "narration": "Tap what a fossil footprint can tell you that a fossil bone cannot.",
           "action": "tap",
           "feedback": "How the animal moved, and how fast. Bones show shape; tracks show life.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "fossil",
             "alt": "What a fossil footprint can tell you that a fossil bone cannot"
-          }
+          },
+          "choices": [
+            "Its colour",
+            "How it moved",
+            "How old it was"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Fossils of sea shells are found on a mountain. Tap what that tells us.",
@@ -59790,12 +59932,18 @@
           "narration": "Tap why soft-bodied animals like jellyfish are rare as fossils.",
           "action": "tap",
           "feedback": "Nothing hard is left to be replaced by stone. Bones and shells last.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_science_lesson_04_5.png",
             "alt": "Why soft-bodied animals like jellyfish are rare as fossils"
-          }
+          },
+          "choices": [
+            "They lived in water",
+            "No hard parts last",
+            "They were too small"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Someone said fossils prove dinosaurs died out last year. Tap the problem.",
@@ -60065,12 +60213,18 @@
           "narration": "Tap why a year on Neptune is much longer than a year on Earth.",
           "action": "tap",
           "feedback": "Its orbit is far bigger, so one lap round the Sun takes far longer.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "earth",
             "alt": "Why a year on Neptune is much longer than a year on Earth"
-          }
+          },
+          "choices": [
+            "It spins slowly",
+            "Its orbit is bigger",
+            "It is colder there"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Someone said the Sun orbits the Earth. Tap what we actually observe.",
@@ -60969,12 +61123,18 @@
           "narration": "A legend explains the map's symbols. Tap the legend to learn what a star means.",
           "action": "tap",
           "feedback": "A star is the capital city.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_social_lesson_02_0.png",
             "alt": "A legend explains the map's symbols. The legend to learn what a star means"
-          }
+          },
+          "choices": [
+            "A big city park",
+            "The capital city",
+            "A mountain"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "The scale shows real distance. Tap it.",
@@ -61036,12 +61196,18 @@
           "narration": "Tap what a compass rose on a map is for.",
           "action": "tap",
           "feedback": "It tells you which way is north, so the map matches the ground.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "map",
             "alt": "What a compass rose on a map is for"
-          }
+          },
+          "choices": [
+            "It shows distance",
+            "It shows direction",
+            "It names the towns"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Draw a map of your street with a legend of three symbols.",
@@ -61301,23 +61467,34 @@
           "narration": "Tap what happens to your savings plan if you spend 2 coins on sweets each week.",
           "action": "tap",
           "feedback": "It takes three times as long. Small regular spending is the slow leak.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "coins",
             "alt": "What happens to your savings plan if you spend 2 coins on sweets each week"
-          }
+          },
+          "choices": [
+            "It finishes sooner",
+            "It takes 3x as long",
+            "Nothing changes"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap which to put in a budget first: the bus fare, or a comic.",
           "action": "tap",
           "feedback": "The fare. Needs before wants is what makes a budget hold up.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "bus",
             "alt": "Which to put in a budget first: the bus fare, or a comic"
-          }
+          },
+          "choices": [
+            "The comic",
+            "The bus fare"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Write a budget for something you want, with a date you would reach it.",
@@ -61554,12 +61731,18 @@
           "narration": "Tap the area where you would find farms and long distances between houses.",
           "action": "tap",
           "feedback": "Rural. Space is the thing there is most of.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_social_lesson_06_3.png",
             "alt": "The area where you would find farms and long distances between houses"
-          }
+          },
+          "choices": [
+            "City centre",
+            "Rural area",
+            "Suburb"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap the area with tall buildings, buses and crowded pavements.",
@@ -61576,12 +61759,18 @@
           "narration": "Tap why a suburb usually has more cars per family than a city centre.",
           "action": "tap",
           "feedback": "Things are further apart and buses are rarer. Distance decides.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "family",
             "alt": "Why a suburb usually has more cars per family than a city centre"
-          }
+          },
+          "choices": [
+            "Cars are cheaper",
+            "Things are further",
+            "More people live there"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Someone said the city is always better than the farm. Tap what that misses.",
@@ -62666,23 +62855,34 @@
           "narration": "Tap where the comma goes in: \"Hello\" said Ana.",
           "action": "tap",
           "feedback": "Inside the quotes, before the closing mark: \"Hello,\" said Ana.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "scene",
             "ref": "sentence.card",
             "alt": "Where the comma goes in: \"Hello\" said Ana"
-          }
+          },
+          "choices": [
+            "After the name",
+            "Inside the quotes",
+            "At the very end"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap which needs quotation marks: what Ana said, or what Ana thought.",
           "action": "tap",
           "feedback": "Said. Thoughts are not spoken, so they take no marks.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_writing_lesson_03_4.png",
             "alt": "Which needs quotation marks: what Ana said, or what Ana thought"
-          }
+          },
+          "choices": [
+            "What Ana thought",
+            "What Ana said"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Someone quoted a friend but changed two words. Tap why that is not a quotation.",
@@ -62811,12 +63011,17 @@
           "narration": "Tap which of these needs a capital: teacher, Tuesday, town, Tanzania.",
           "action": "tap",
           "feedback": "Tuesday and Tanzania. The other two name kinds, not particular ones.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "scene",
             "ref": "sentence.card",
             "alt": "Which of these needs a capital: teacher, Tuesday, town, Tanzania"
-          }
+          },
+          "choices": [
+            "town",
+            "Tanzania"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Someone capitalised 'Doctor' in 'I saw a doctor'. Tap why that is wrong.",
@@ -63947,12 +64152,18 @@
           "narration": "Tap what the computer does with the words inside the quotation marks.",
           "action": "tap",
           "feedback": "Prints them exactly, spaces and all. It never tidies them up for you.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "computer",
             "alt": "What the computer does with the words inside the quotation marks"
-          }
+          },
+          "choices": [
+            "Tidies the spaces",
+            "Prints them exactly",
+            "Ignores them"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Write a one-line program that prints a message to someone at home.",
@@ -64093,12 +64304,18 @@
           "narration": "Tap why a program prints a name without any quotation marks around it.",
           "action": "tap",
           "feedback": "Quotes mean the letters themselves; no quotes means look inside the box.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_coding_lesson_02_6.png",
             "alt": "Why a program prints a name without any quotation marks around it"
-          }
+          },
+          "choices": [
+            "It is a mistake",
+            "It is a variable",
+            "Quotes are optional"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Name three values a game keeps in variables while you play it.",
@@ -64482,12 +64699,18 @@
           "narration": "A misspelled command stops the program. Tap what the computer does with it.",
           "action": "tap",
           "feedback": "Reports it and stops. It cannot guess what you meant, and will not try.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "computer",
             "alt": "A misspelled command stops the program"
-          }
+          },
+          "choices": [
+            "Guesses what you meant",
+            "Reports it and stops",
+            "Skips that line"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap the best way to find a bug in a program twenty lines long.",
@@ -70374,12 +70597,18 @@
           "narration": "Tap why sailors needed accurate clocks to find their longitude.",
           "action": "tap",
           "feedback": "Longitude is worked out from time differences. A slow clock is a wrong place.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_social_lesson_01_6.png",
             "alt": "Why sailors needed accurate clocks to find their longitude"
-          }
+          },
+          "choices": [
+            "To time their meals",
+            "Longitude uses time",
+            "To follow the stars"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Find the two numbers for your own town, and one place that shares a latitude.",
@@ -70794,12 +71023,18 @@
           "narration": "Tap what a map's key is for.",
           "action": "tap",
           "feedback": "It defines the symbols. Without it a map is a picture you cannot read.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_social_lesson_04_6.png",
             "alt": "What a map's key is for"
-          }
+          },
+          "choices": [
+            "It shows the scale",
+            "It explains symbols",
+            "It names the maker"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Name every continent out loud, then find the one you have never heard about.",
@@ -72302,23 +72537,35 @@
           "narration": "Tap where the comma goes in: \"Let's go\" said Maria.",
           "action": "tap",
           "feedback": "Inside the quotes: \"Let's go,\" said Maria. The tag follows outside.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "scene",
             "ref": "sentence.card",
             "alt": "Where the comma goes in: \"Let's go\" said Maria"
-          }
+          },
+          "choices": [
+            "After the name",
+            "Inside the quotes",
+            "At the very end"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap what goes inside the quotation marks and what stays outside.",
           "action": "tap",
           "feedback": "The spoken words and their punctuation inside; who said it, outside.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_writing_lesson_04_5.png",
             "alt": "What goes inside the quotation marks and what stays outside"
-          }
+          },
+          "choices": [
+            "The speaker's name",
+            "The spoken words",
+            "The whole sentence"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Two people speak in one paragraph. Tap what a reader will do.",
@@ -72576,12 +72823,17 @@
           "narration": "Tap which job comes first: fixing a spelling, or adding a missing reason.",
           "action": "tap",
           "feedback": "The reason. There is no point spelling a sentence you are about to cut.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "job",
             "alt": "Which job comes first: fixing a spelling, or adding a missing reason"
-          }
+          },
+          "choices": [
+            "Fixing the spelling",
+            "Adding the reason"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap the editing habit that finds the most mistakes.",
