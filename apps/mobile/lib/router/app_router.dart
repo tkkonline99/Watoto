@@ -15,7 +15,6 @@ import '../features/curriculum/subject_detail_screen.dart';
 import '../features/gamification/avatar_shop_screen.dart';
 import '../features/gamification/certificate_screen.dart';
 import '../features/legal/legal_doc_screen.dart';
-import '../features/lesson_player/lesson_player_screen.dart';
 import '../features/library/library_play_screen.dart';
 import '../features/onboarding/language_select_screen.dart';
 import '../features/onboarding/onboarding_screen.dart';
@@ -25,7 +24,6 @@ import '../features/parent/parent_zone_gate_screen.dart';
 import '../features/parent/rest_screen.dart';
 import '../features/profiles/add_child_screen.dart';
 import '../features/profiles/profile_picker_screen.dart';
-import '../features/quiz/quiz_runner_screen.dart';
 import '../features/stories/story_library_screen.dart';
 import 'return_to.dart';
 import '../core/offline/offline_store.dart';
@@ -34,6 +32,18 @@ import '../core/offline/offline_store.dart';
 /// first. Tests that exercise the gate itself leave it false.
 @visibleForTesting
 bool debugSkipLoginGate = false;
+
+/// Opens a demo or screenshot build past the login gate:
+///
+///     flutter build web --release -t lib/main_demo.dart \
+///       --dart-define=DEMO_SKIP_LOGIN=true
+///
+/// The gate asks for a PIN on every launch, which a demo has nobody to type —
+/// and browser automation cannot drive (or even screenshot) a page holding a
+/// password field, so store screenshots and walkthroughs stalled on it. This
+/// is compile-time and defaults to false, so a build that does not ask for it
+/// is gated exactly as before.
+const kDemoSkipLoginGate = bool.fromEnvironment('DEMO_SKIP_LOGIN');
 
 /// Router is provided (not a global) so each app instance — and each widget
 /// test — gets fresh navigation state. Guards enforce the deployment-required
@@ -79,7 +89,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       // Nothing else opens until the family has logged in *this run*. Watoto
       // keeps no session across launches, so this is the front door on every
       // start, not just the first one.
-      if (!s.authenticated && !debugSkipLoginGate) {
+      if (!s.authenticated && !debugSkipLoginGate && !kDemoSkipLoginGate) {
         if (loc == '/login') return null;
         return gateWithReturn('/login', state.uri.toString());
       }
@@ -174,14 +184,6 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       ),
       GoRoute(path: '/account/pin', builder: (c, s) => const ChangePinScreen()),
       GoRoute(path: '/account/email', builder: (c, s) => const AddEmailScreen()),
-      GoRoute(
-        path: '/lesson/:slug',
-        builder: (c, s) => LessonPlayerScreen(slug: s.pathParameters['slug']!),
-      ),
-      GoRoute(
-        path: '/quiz/:slug',
-        builder: (c, s) => QuizRunnerScreen(slug: s.pathParameters['slug']!),
-      ),
       GoRoute(path: '/curriculum', builder: (c, s) => const CurriculumScreen()),
       GoRoute(
         path: '/subject/:stage/:name',
