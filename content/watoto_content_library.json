@@ -12511,12 +12511,18 @@
           "narration": "A longer one: red, red, blue. Tap what comes next.",
           "action": "tap",
           "feedback": "'Red!' Patterns can be longer than two.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s03/step_patterns_lesson_05_2.png",
             "alt": "A longer one: red, red, blue"
-          }
+          },
+          "choices": [
+            "Blue",
+            "Red",
+            "Green"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Line up spoons and forks in a pattern.",
@@ -20862,12 +20868,18 @@
           "narration": "Someone gives you a gift. Tap what you say.",
           "action": "tap",
           "feedback": "'Thank you!' Straight away.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "gift",
             "alt": "Someone gives you a gift"
-          }
+          },
+          "choices": [
+            "Nothing",
+            "Thank you!",
+            "Give it back"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "You bump into someone by accident. What now? Tap your answer.",
@@ -31290,12 +31302,18 @@
           "narration": "This sentence is missing its period. Tap where it should go.",
           "action": "tap",
           "feedback": "At the very end. Now it stops properly.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "scene",
             "ref": "sentence.card",
             "alt": "This sentence is missing its period"
-          }
+          },
+          "choices": [
+            "At the start",
+            "At the very end",
+            "After each word"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap the sentence written correctly: 'the sun is hot.' or 'The sun is hot.'",
@@ -32118,12 +32136,18 @@
           "narration": "Ice on a warm day turns to water. Tap what it became.",
           "action": "tap",
           "feedback": "Liquid! Heat changed its state.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s06/step_science_lesson_01_6.png",
             "alt": "Ice on a warm day turns to water"
-          }
+          },
+          "choices": [
+            "A gas",
+            "A liquid",
+            "A solid"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Solid, liquid, gas — the same water can be all three.",
@@ -32243,12 +32267,18 @@
           "narration": "A fish lives in the river. Tap what it takes from there.",
           "action": "tap",
           "feedback": "Water! The river is its home and its drink.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s06/step_science_lesson_02_5.png",
             "alt": "A fish lives in the river"
-          }
+          },
+          "choices": [
+            "Sand",
+            "Water",
+            "Sunlight"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Which is not a need: water, food, or a ball? Tap the ball.",
@@ -35390,12 +35420,18 @@
           "narration": "Red, red, blue, red, red, blue... tap what's next.",
           "action": "tap",
           "feedback": "'Red!' You see the pattern.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s06/step_tech_lesson_04_0.png",
             "alt": "Red, red, blue, red, red, blue... What's next"
-          }
+          },
+          "choices": [
+            "Blue",
+            "Red",
+            "Green"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Patterns repeat. What comes after that?",
@@ -35418,12 +35454,18 @@
           "narration": "Circle, square, circle, square... tap what comes next.",
           "action": "tap",
           "feedback": "Circle! Two things, taking turns.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s06/step_tech_lesson_04_2.png",
             "alt": "Square, circle, square, from the lesson 'Spot the Pattern'"
-          }
+          },
+          "choices": [
+            "Square",
+            "Circle",
+            "Triangle"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Watch: find the part of the pattern that repeats, then say it again.",
@@ -35440,12 +35482,18 @@
           "narration": "Listen: drum, drum, bell, drum, drum, bell... tap what comes next.",
           "action": "tap",
           "feedback": "Drum! Patterns work in sound too.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s06/step_tech_lesson_04_4.png",
             "alt": "Drum, drum, bell, drum, drum, bell"
-          }
+          },
+          "choices": [
+            "Bell",
+            "Drum",
+            "Whistle"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Make your own pattern with two colours and tap when done.",
@@ -40113,23 +40161,35 @@
           "narration": "In 'The girl reads a book', tap what she reads.",
           "action": "tap",
           "feedback": "The book. That is the what.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s07/step_reading_lesson_04_4.png",
             "alt": "In 'The girl reads a book', tap what she reads"
-          }
+          },
+          "choices": [
+            "The girl",
+            "The book",
+            "Reading"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "'The dog runs to the river.' Tap where it runs to.",
           "action": "tap",
           "feedback": "The river. Sentences can answer where, too.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s07/step_reading_lesson_04_5.png",
             "alt": "'The dog runs to the river.' Tap where it runs to"
-          }
+          },
+          "choices": [
+            "The dog",
+            "The river",
+            "Running"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "In 'The cat sleeps on the bed', who sleeps? Tap the cat.",
@@ -42801,12 +42861,18 @@
           "narration": "A globe has no edge. Tap where it ends.",
           "action": "tap",
           "feedback": "Nowhere! Go far enough and you come back round.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "globe",
             "alt": "A globe has no edge"
-          }
+          },
+          "choices": [
+            "At the North Pole",
+            "Nowhere",
+            "At the equator"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Which one is round like Earth: the map or the globe? Tap the globe.",
@@ -45877,12 +45943,18 @@
           "narration": "The cup is full. Tap what the rule does now.",
           "action": "tap",
           "feedback": "Nothing at all. A false condition means the action never runs.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "cup",
             "alt": "The cup is full"
-          }
+          },
+          "choices": [
+            "It fills again",
+            "Nothing at all",
+            "It empties"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "The light is not red. Tap what an 'else' branch is for.",
@@ -46022,12 +46094,18 @@
           "narration": "The robot goes the wrong way entirely. Tap what to check first.",
           "action": "tap",
           "feedback": "The turn blocks. Wrong direction is usually one wrong turn, early on.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "robot",
             "alt": "The robot goes the wrong way entirely"
-          }
+          },
+          "choices": [
+            "The colours",
+            "The turn blocks",
+            "The last step"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap the best way to find a bug in a long program.",
@@ -46162,34 +46240,52 @@
           "narration": "Someone sends you something that makes you feel scared. Tap what to do first.",
           "action": "tap",
           "feedback": "Tell a grown-up you trust. Do not reply, and do not delete it.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "scared",
             "alt": "Someone sends you something that makes you feel scared"
-          }
+          },
+          "choices": [
+            "Reply to them",
+            "Tell a grown-up",
+            "Delete it quietly"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap what you should never put in a message to someone you have not met.",
           "action": "tap",
           "feedback": "Where you live, your school, or a photo of either.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_tech_lesson_05_5.png",
             "alt": "What you should never put in a message to someone you have not met"
-          }
+          },
+          "choices": [
+            "A joke",
+            "Where you live",
+            "Your favourite song"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap what happens to a message after you delete it from your screen.",
           "action": "tap",
           "feedback": "Other people may still have it. Deleting yours does not delete theirs.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_tech_lesson_05_6.png",
             "alt": "What happens to a message after you delete it from your screen"
-          }
+          },
+          "choices": [
+            "It is gone forever",
+            "Others still have it",
+            "Nobody ever saw it"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Before you send anything today, read it once as if you were receiving it.",
@@ -46303,12 +46399,18 @@
           "narration": "Tap what happens to a picture when you use fewer, bigger pixels.",
           "action": "tap",
           "feedback": "It gets blocky. Detail needs more squares, not bigger ones.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_tech_lesson_06_4.png",
             "alt": "What happens to a picture when you use fewer, bigger pixels"
-          }
+          },
+          "choices": [
+            "It gets sharper",
+            "It gets blocky",
+            "It gets brighter"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Colour a symmetrical shape on the grid — the same on both halves.",
@@ -46325,12 +46427,18 @@
           "narration": "Tap why a photo takes up more space on a device than a pixel drawing.",
           "action": "tap",
           "feedback": "Millions of pixels instead of sixteen. Every one has to be stored.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_tech_lesson_06_6.png",
             "alt": "Why a photo takes up more space on a device than a pixel drawing"
-          }
+          },
+          "choices": [
+            "Photos are prettier",
+            "Millions of pixels",
+            "Photos use colour"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Draw your initial on squared paper, one square at a time.",
@@ -47295,12 +47403,18 @@
           "narration": "Someone wrote 37 + 25 = 512. Tap what they forgot to do.",
           "action": "tap",
           "feedback": "They wrote both answers side by side instead of carrying. Very common.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "scene",
             "ref": "counting.tens-and-units",
             "alt": "Someone wrote 37 + 25 = 512"
-          }
+          },
+          "choices": [
+            "To add the ones",
+            "To carry the ten",
+            "To line up digits"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Your turn, no help: 46 + 28.",
@@ -47882,12 +47996,18 @@
           "narration": "Someone read the big hand on 4 as 'four minutes past'. Tap what they missed.",
           "action": "tap",
           "feedback": "They read the number, not the fives. 4 means 20 minutes.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "hand",
             "alt": "Someone read the big hand on 4 as 'four minutes past'"
-          }
+          },
+          "choices": [
+            "They counted in fives",
+            "They read the number",
+            "They used one hand"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Set the clock to 3:20. Tap where the big hand goes.",
@@ -48862,12 +48982,18 @@
           "narration": "'Unlock' really does mean not locked. But someone said 'uncle' means 'not cle'. Tap why that is wrong.",
           "action": "tap",
           "feedback": "'cle' is not a word. A prefix only counts if a real word is left behind.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_reading_lesson_02_5.png",
             "alt": "'Unlock' really does mean not locked"
-          }
+          },
+          "choices": [
+            "'un' is not a prefix",
+            "'cle' is not a word",
+            "'uncle' is too short"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap the word that means 'did not do it right the first time'.",
@@ -48985,23 +49111,35 @@
           "narration": "'The bridge was so narrow only one person could pass.' Tap what narrow means.",
           "action": "tap",
           "feedback": "Not wide. The rest of the sentence told you, not the word itself.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_reading_lesson_03_3.png",
             "alt": "'The bridge was so narrow only one person could pass.' Tap what narrow means"
-          }
+          },
+          "choices": [
+            "Very long",
+            "Not wide",
+            "Very old"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "'She was famished, so she ate two whole bowls.' Tap what famished means.",
           "action": "tap",
           "feedback": "Very hungry. What she did next gave it away.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_reading_lesson_03_4.png",
             "alt": "'She was famished, so she ate two whole bowls.' Tap what famished means"
-          }
+          },
+          "choices": [
+            "Very tired",
+            "Very hungry",
+            "Very angry"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "'The dog was enormous.' Tap the word in this sentence that is NOT a clue.",
@@ -49018,12 +49156,18 @@
           "narration": "'It was drizzling, so we did not need umbrellas.' Tap what drizzling means.",
           "action": "tap",
           "feedback": "Raining only a little. 'So we did not need' is the clue.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_reading_lesson_03_6.png",
             "alt": "'It was drizzling, so we did not need umbrellas.' Tap what drizzling means"
-          }
+          },
+          "choices": [
+            "Snowing hard",
+            "Raining a little",
+            "Very windy"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Next time you hit a word you do not know, finish the sentence first.",
@@ -49146,12 +49290,18 @@
           "narration": "Someone said the setting of that story is 'waiting'. Tap why not.",
           "action": "tap",
           "feedback": "Waiting is what happens, not where. That is plot, not setting.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_reading_lesson_04_5.png",
             "alt": "Someone said the setting of that story is 'waiting'"
-          }
+          },
+          "choices": [
+            "It is too short",
+            "It is not a place",
+            "Nothing is wrong"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Sort these into character and setting: Amina, the market, midnight, the old dog.",
@@ -49425,12 +49575,18 @@
           "narration": "Someone said the main idea is 'honey'. Tap why that is too small.",
           "action": "tap",
           "feedback": "Honey is one detail. A main idea has to cover all of them.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_reading_lesson_06_5.png",
             "alt": "Someone said the main idea is 'honey'"
-          }
+          },
+          "choices": [
+            "It is not in the text",
+            "It is only one detail",
+            "It is too long"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Drag these under the right heading: 'Volcanoes are dangerous' / 'lava burns' / 'ash blocks the sun'.",
@@ -50223,23 +50379,35 @@
           "narration": "Someone put the fox before the rabbit. Tap what goes wrong.",
           "action": "tap",
           "feedback": "The fox does not feed the rabbit. The arrows would point backwards.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_science_lesson_01_4.png",
             "alt": "Someone put the fox before the rabbit"
-          }
+          },
+          "choices": [
+            "Nothing goes wrong",
+            "The arrows flip",
+            "The fox gets bigger"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "If every rabbit disappeared, tap what happens to the foxes.",
           "action": "tap",
           "feedback": "They go hungry. Remove one link and everything above it suffers.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "rabbit",
             "alt": "If every rabbit disappeared, tap what happens to the foxes"
-          }
+          },
+          "choices": [
+            "They grow in number",
+            "They go hungry",
+            "Nothing changes"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Build a sea chain: sun, seaweed, small fish, seal.",
@@ -50654,12 +50822,18 @@
           "narration": "Someone said ice and water are different substances. Tap why that is wrong.",
           "action": "tap",
           "feedback": "Same substance, different state. Melting changes the state, not the stuff.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_science_lesson_04_5.png",
             "alt": "Someone said ice and water are different substances"
-          }
+          },
+          "choices": [
+            "Ice is heavier",
+            "Same stuff, new state",
+            "Water is warmer"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap what you would add to turn ice into steam.",
@@ -50940,12 +51114,18 @@
           "narration": "Two north poles are brought together. Tap what they do.",
           "action": "tap",
           "feedback": "Push apart. Same poles repel; opposite poles attract.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "north",
             "alt": "Two north poles are brought together"
-          }
+          },
+          "choices": [
+            "Pull together",
+            "Push apart",
+            "Do nothing"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap whether a magnet still works through a sheet of paper.",
@@ -51717,12 +51897,18 @@
           "narration": "Tap the pyramid to learn what it was for.",
           "action": "tap",
           "feedback": "'Pyramids were huge tombs for pharaohs.'",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_social_lesson_01_0.png",
             "alt": "The pyramid to learn what it was for"
-          }
+          },
+          "choices": [
+            "A royal palace",
+            "A tomb",
+            "A grain store"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap the hieroglyphs.",
@@ -51750,34 +51936,52 @@
           "narration": "Tap what the pyramids were actually built to be.",
           "action": "tap",
           "feedback": "Tombs. Enormous stone graves for pharaohs and their belongings.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_social_lesson_01_3.png",
             "alt": "What the pyramids were actually built to be"
-          }
+          },
+          "choices": [
+            "Palaces",
+            "Tombs",
+            "Temples"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap why the Nile mattered more than anything else in Egypt.",
           "action": "tap",
           "feedback": "It flooded every year and left rich soil. No Nile, no farming, no Egypt.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_social_lesson_01_4.png",
             "alt": "Why the Nile mattered more than anything else in Egypt"
-          }
+          },
+          "choices": [
+            "It was very long",
+            "It left rich soil",
+            "It was easy to cross"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Hieroglyphs were a real writing system. Tap what that means.",
           "action": "tap",
           "feedback": "The pictures stood for sounds and words, not just drawings of things.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_social_lesson_01_5.png",
             "alt": "Hieroglyphs were a real writing system"
-          }
+          },
+          "choices": [
+            "They were just art",
+            "Pictures meant sounds",
+            "Only kings could read"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Put these in order, oldest first: pyramids built, Cleopatra rules, today.",
@@ -51885,12 +52089,18 @@
           "narration": "You face north. Tap which direction is behind you.",
           "action": "tap",
           "feedback": "South. Opposites are always across the circle from each other.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_social_lesson_02_3.png",
             "alt": "You face north, from the lesson 'Cardinal Directions'"
-          }
+          },
+          "choices": [
+            "East",
+            "South",
+            "West"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "You face north. Tap what is on your right hand.",
@@ -51924,12 +52134,18 @@
           "narration": "Someone said north is always uphill. Tap why that is wrong.",
           "action": "tap",
           "feedback": "North is up on a map, not on the ground. Maps are drawings, not hills.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "north",
             "alt": "Someone said north is always uphill"
-          }
+          },
+          "choices": [
+            "North is downhill",
+            "Maps are not hills",
+            "Hills have no north"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Work out which way your front door faces, using the sun.",
@@ -52031,23 +52247,35 @@
           "narration": "Tap who decides what a town's money is spent on.",
           "action": "tap",
           "feedback": "The council and the mayor — chosen by the people who live there.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_social_lesson_03_3.png",
             "alt": "Who decides what a town's money is spent on"
-          }
+          },
+          "choices": [
+            "The shopkeepers",
+            "The elected council",
+            "The oldest person"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap what makes a leader different from a boss.",
           "action": "tap",
           "feedback": "A leader can be voted out. That is the whole difference.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_social_lesson_03_4.png",
             "alt": "What makes a leader different from a boss"
-          }
+          },
+          "choices": [
+            "A leader is older",
+            "A leader is elected",
+            "A leader is richer"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Sort these into 'the whole town decides' and 'one family decides': a new park, bedtime, a bus route.",
@@ -52064,12 +52292,18 @@
           "narration": "Tap what people can do if they think a leader has decided badly.",
           "action": "tap",
           "feedback": "Speak at a meeting, write to them, and vote differently next time.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_social_lesson_03_6.png",
             "alt": "What people can do if they think a leader has decided badly"
-          }
+          },
+          "choices": [
+            "Nothing at all",
+            "Speak up and vote",
+            "Move away"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Find out who leads your town or district, and one thing they decided.",
@@ -52176,12 +52410,18 @@
           "narration": "Tap what a valley usually has running through the bottom of it.",
           "action": "tap",
           "feedback": "A river. The river is usually what cut the valley in the first place.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_social_lesson_04_4.png",
             "alt": "What a valley usually has running through the bottom of it"
-          }
+          },
+          "choices": [
+            "A road",
+            "A river",
+            "A wall"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Sort by height: mountain, hill, plain, valley.",
@@ -52316,23 +52556,35 @@
           "narration": "Tap what the tailor becomes the moment they buy thread.",
           "action": "tap",
           "feedback": "A consumer. The same person swaps roles many times a day.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_social_lesson_05_4.png",
             "alt": "What the tailor becomes the moment they buy thread"
-          }
+          },
+          "choices": [
+            "A producer",
+            "A consumer",
+            "A seller"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap why a town needs both producers and consumers.",
           "action": "tap",
           "feedback": "Making with nobody buying is waste; buying with nobody making is nothing.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_social_lesson_05_5.png",
             "alt": "Why a town needs both producers and consumers"
-          }
+          },
+          "choices": [
+            "Producers earn more",
+            "One needs the other",
+            "Consumers work less"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Trace a loaf of bread back: baker, miller, farmer. Put them in order.",
@@ -52445,12 +52697,18 @@
           "narration": "Tap what most harvest festivals are really saying thank you for.",
           "action": "tap",
           "feedback": "Enough food to last the winter. That used to be far from certain.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_social_lesson_06_3.png",
             "alt": "What most harvest festivals are really saying thank you for"
-          }
+          },
+          "choices": [
+            "A day off work",
+            "Enough food for winter",
+            "Good weather"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap the thing almost every celebration in the world includes.",
@@ -53288,12 +53546,18 @@
           "narration": "Someone wrote 'I goed home'. Tap why that is wrong.",
           "action": "tap",
           "feedback": "'Go' is irregular. Its past is 'went', and no rule predicts it.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "home",
             "alt": "Someone wrote 'I goed home'"
-          }
+          },
+          "choices": [
+            "The past is 'went'",
+            "'Go' has no past",
+            "'Home' needs a capital"
+          ],
+          "choiceIndex": 0
         },
         {
           "narration": "Sort into regular and irregular: walked, ran, jumped, ate.",
@@ -53434,12 +53698,18 @@
           "narration": "Someone capitalised every long word. Tap what rule they invented.",
           "action": "tap",
           "feedback": "Length has nothing to do with it. Only names get capitals.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "scene",
             "ref": "sentence.card",
             "alt": "Someone capitalised every long word"
-          }
+          },
+          "choices": [
+            "Names get capitals",
+            "Long words do",
+            "Verbs get capitals"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap the capital that is wrong: 'My Sister lives in Kenya.'",
@@ -53726,23 +53996,34 @@
           "narration": "Tap which is correct: 'its raining' or \"it's raining\".",
           "action": "tap",
           "feedback": "It's — short for 'it is'. 'Its' without one means belonging to it.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_writing_lesson_04_5.png",
             "alt": "Which is correct: 'its raining' or \"it's raining\""
-          }
+          },
+          "choices": [
+            "its raining",
+            "it's raining"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Someone wrote 'do'nt'. Tap where the apostrophe belongs.",
           "action": "tap",
           "feedback": "Between n and t, where the 'o' of 'not' was removed.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_writing_lesson_04_6.png",
             "alt": "Someone wrote 'do'nt', from the lesson 'Contractions'"
-          }
+          },
+          "choices": [
+            "do'nt",
+            "don't",
+            "dont'"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Write a sentence with two contractions and say what letters each one hides.",
@@ -54014,12 +54295,18 @@
           "narration": "Tap how many main points one paragraph should carry.",
           "action": "tap",
           "feedback": "One. Two points means you needed two paragraphs.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_writing_lesson_06_5.png",
             "alt": "How many main points one paragraph should carry"
-          }
+          },
+          "choices": [
+            "Two",
+            "One",
+            "As many as you like"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Write a topic sentence for a paragraph about your favourite meal, then two details.",
@@ -54967,23 +55254,35 @@
           "narration": "The gate is already open. Tap which branch of 'if open, go through; else knock' runs.",
           "action": "tap",
           "feedback": "The first. The else branch is skipped entirely, not run quietly.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_coding_lesson_02_4.png",
             "alt": "The gate is already open"
-          }
+          },
+          "choices": [
+            "The else branch",
+            "The first branch",
+            "Both of them"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Someone wrote 'if it is cold, wear a coat' with no else. Tap what is missing.",
           "action": "tap",
           "feedback": "Nothing happens when it is warm — which may be fine, or may be the bug.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "coat",
             "alt": "Someone wrote 'if it is cold, wear a coat' with no else"
-          }
+          },
+          "choices": [
+            "The condition",
+            "The warm-day case",
+            "The coat"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Write an if-else for a traffic light: red, and everything else.",
@@ -55539,12 +55838,18 @@
           "narration": "A recipe says 'add the right amount of salt'. Tap why that is a bad step.",
           "action": "tap",
           "feedback": "'Right' is not a measurement. The follower has to guess, so it will vary.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_coding_lesson_06_4.png",
             "alt": "A recipe says 'add the right amount of salt'"
-          }
+          },
+          "choices": [
+            "It is too short",
+            "'Right' is a guess",
+            "Salt is not needed"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap the step that is out of order: wake up, eat breakfast, get out of bed.",
@@ -56391,12 +56696,18 @@
           "narration": "Someone said 24 ÷ 6 = 4, so 4 ÷ 24 = 6. Tap why that is wrong.",
           "action": "tap",
           "feedback": "Division does not flip like multiplication. The whole comes first.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "scene",
             "ref": "counting.array",
             "alt": "Someone said 24 ÷ 6 = 4, so 4 ÷ 24 = 6"
-          }
+          },
+          "choices": [
+            "6 is the wrong answer",
+            "Division cannot flip",
+            "24 is too big"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Eight children share 32 mangoes equally. How many each?",
@@ -56535,12 +56846,18 @@
           "narration": "A cake was cut into 4 pieces, but one is much bigger. Tap why these are not quarters.",
           "action": "tap",
           "feedback": "Fractions need equal parts. Four pieces is not the same as four quarters.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "scene",
             "ref": "fraction.bars",
             "alt": "A cake was cut into 4 pieces, but one is much bigger"
-          }
+          },
+          "choices": [
+            "There are too few",
+            "The parts are unequal",
+            "A cake has no parts"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "You eat 3 slices of a cake cut into 8. Tap the fraction you ate.",
@@ -56828,12 +57145,18 @@
           "narration": "Someone worked out 6 × 20 as 62. Tap what they did wrong.",
           "action": "tap",
           "feedback": "They wrote the zero beside the 6 instead of multiplying by 2 first.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "scene",
             "ref": "counting.array",
             "alt": "Someone worked out 6 × 20 as 62"
-          }
+          },
+          "choices": [
+            "They added instead",
+            "They just added a 0",
+            "They forgot the 6"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Five boxes hold 40 pencils each. How many pencils altogether?",
@@ -57129,23 +57452,34 @@
           "narration": "Someone read a bar as 5 without checking the scale. Tap what could go wrong.",
           "action": "tap",
           "feedback": "If each step is worth 2, that bar is 10. The scale changes everything.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_math_lesson_06_5.png",
             "alt": "Someone read a bar as 5 without checking the scale"
-          }
+          },
+          "choices": [
+            "The bar is too short",
+            "Each step may be 2",
+            "Bars cannot be read"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap the question a bar graph cannot answer: 'which pet is most common?' or 'which pet is nicest?'",
           "action": "tap",
           "feedback": "Nicest is an opinion. Graphs count things; they do not judge them.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_math_lesson_06_6.png",
             "alt": "The question a bar graph cannot answer: 'which pet is most common?' or 'which pet is nicest?'"
-          }
+          },
+          "choices": [
+            "Which pet is common",
+            "Which pet is nicest"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Count something at home three ways and draw the bars: shoes, cups, books.",
@@ -57942,23 +58276,35 @@
           "narration": "'Her voice was like thunder.' Tap which kind of comparison this is.",
           "action": "tap",
           "feedback": "A simile — the word 'like' gives it away every time.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_reading_lesson_01_3.png",
             "alt": "'Her voice was like thunder.' Tap which kind of comparison this is"
-          }
+          },
+          "choices": [
+            "A metaphor",
+            "A simile",
+            "A fact"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "'The classroom was a zoo.' Tap which kind this is.",
           "action": "tap",
           "feedback": "A metaphor. It does not say like a zoo; it says it was one.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "zoo",
             "alt": "'The classroom was a zoo.' Tap which kind this is"
-          }
+          },
+          "choices": [
+            "A simile",
+            "A metaphor",
+            "A fact"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Someone read 'the classroom was a zoo' and asked which animals. Tap the mistake.",
@@ -58087,34 +58433,52 @@
           "narration": "'Mia grabbed her umbrella and frowned at the window.' Tap what you can infer.",
           "action": "tap",
           "feedback": "It is raining, and she is not pleased about it. Neither was written.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_reading_lesson_02_3.png",
             "alt": "'Mia grabbed her umbrella and frowned at the window.' Tap what you can infer"
-          }
+          },
+          "choices": [
+            "She is going to bed",
+            "It is raining",
+            "She lost her coat"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "'Ben's plate was empty before anyone else had started.' Tap what you can infer.",
           "action": "tap",
           "feedback": "He was very hungry, or ate very fast. The text says neither.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "plate",
             "alt": "'Ben's plate was empty before anyone else had started.' Tap what you can infer"
-          }
+          },
+          "choices": [
+            "He was not hungry",
+            "He was very hungry",
+            "He cooked the meal"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "From the same sentence someone inferred Ben is greedy. Tap why that goes too far.",
           "action": "tap",
           "feedback": "One meal is not a character. An inference has to stay near its clue.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_reading_lesson_02_5.png",
             "alt": "From the same sentence someone inferred Ben is greedy"
-          }
+          },
+          "choices": [
+            "It is not written",
+            "One meal is not him",
+            "Ben is not real"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "'The house was dark and the post had piled up.' Tap the best inference.",
@@ -58371,23 +58735,35 @@
           "narration": "You want the section about volcanoes in a long book. Tap what you use.",
           "action": "tap",
           "feedback": "The headings, or the contents list built from them.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "book",
             "alt": "You want the section about volcanoes in a long book"
-          }
+          },
+          "choices": [
+            "The first page",
+            "The headings",
+            "The pictures"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap what a word in bold is telling you.",
           "action": "tap",
           "feedback": "That it matters, and is probably explained nearby or in a glossary.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_reading_lesson_04_5.png",
             "alt": "What a word in bold is telling you"
-          }
+          },
+          "choices": [
+            "It is a mistake",
+            "It matters here",
+            "It is a new page"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Someone read every page to find one fact. Tap the feature that would have saved them.",
@@ -58511,23 +58887,35 @@
           "narration": "Tap what a summary should leave out.",
           "action": "tap",
           "feedback": "Examples, numbers and side comments — everything that proves rather than states.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_reading_lesson_05_4.png",
             "alt": "What a summary should leave out"
-          }
+          },
+          "choices": [
+            "The main point",
+            "The examples",
+            "The title"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Someone's summary added their own opinion of the text. Tap why that is wrong.",
           "action": "tap",
           "feedback": "A summary reports what the author said, not what you thought of it.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_reading_lesson_05_5.png",
             "alt": "Someone's summary added their own opinion of the text"
-          }
+          },
+          "choices": [
+            "It was too short",
+            "It is not the author's",
+            "Opinions are wrong"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap the best test of a summary.",
@@ -58661,12 +59049,18 @@
           "narration": "Tap why knowing the purpose matters when reading an advert.",
           "action": "tap",
           "feedback": "Persuading text picks the facts that help it and leaves out the rest.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_reading_lesson_06_5.png",
             "alt": "Why knowing the purpose matters when reading an advert"
-          }
+          },
+          "choices": [
+            "Adverts are all true",
+            "It leaves facts out",
+            "Adverts are too long"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "A funny poem about a cat that loses its hat. Tap the purpose.",
@@ -59629,23 +60023,35 @@
           "narration": "A gecko is the same colour as its branch. Tap what that adaptation is called.",
           "action": "tap",
           "feedback": "Camouflage. It works on the eyes of whatever is hunting it.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "gecko",
             "alt": "A gecko is the same colour as its branch"
-          }
+          },
+          "choices": [
+            "Migration",
+            "Camouflage",
+            "Hibernation"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap why a camel's adaptations would be useless in the Arctic.",
           "action": "tap",
           "feedback": "They solve heat and thirst. The Arctic sets the opposite problems.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_science_lesson_02_5.png",
             "alt": "Why a camel's adaptations would be useless in the Arctic"
-          }
+          },
+          "choices": [
+            "Camels are too big",
+            "The Arctic is cold",
+            "Camels cannot walk"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "A cactus stores water in its stem. Tap the problem that adaptation solves.",
@@ -59769,12 +60175,18 @@
           "narration": "The mice disappear. Tap what the hawk does.",
           "action": "tap",
           "feedback": "Eats more rabbits. A web bends where a chain would snap.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_science_lesson_03_4.png",
             "alt": "The mice disappear, from the lesson 'Food Webs'"
-          }
+          },
+          "choices": [
+            "It goes hungry",
+            "It eats more rabbits",
+            "It leaves the web"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap what happens to the grass when the hawk eats more rabbits.",
@@ -59797,12 +60209,18 @@
           "narration": "Tap why a web with many links survives a loss better than a single chain.",
           "action": "tap",
           "feedback": "Every animal has somewhere else to turn. Variety is the safety.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_science_lesson_03_6.png",
             "alt": "Why a web with many links survives a loss better than a single chain"
-          }
+          },
+          "choices": [
+            "Webs are shorter",
+            "There is another way",
+            "Chains have no links"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Draw a web for a garden: leaves, snails, birds, and a cat.",
@@ -59921,12 +60339,18 @@
           "narration": "Fossils of sea shells are found on a mountain. Tap what that tells us.",
           "action": "tap",
           "feedback": "That land was once under the sea. Rock moves, over long enough time.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_science_lesson_04_4.png",
             "alt": "Fossils of sea shells are found on a mountain"
-          }
+          },
+          "choices": [
+            "Shells can climb",
+            "It was once seabed",
+            "Someone left them"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap why soft-bodied animals like jellyfish are rare as fossils.",
@@ -60050,34 +60474,52 @@
           "narration": "Tap why a long ramp is easier than a short steep one, for the same height.",
           "action": "tap",
           "feedback": "The same lift spread over more distance. Less push, for longer.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_science_lesson_05_3.png",
             "alt": "Why a long ramp is easier than a short steep one, for the same height"
-          }
+          },
+          "choices": [
+            "It is shorter",
+            "Less push, for longer",
+            "It weighs less"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap where to push on a lever to lift the heaviest load.",
           "action": "tap",
           "feedback": "Far from the pivot. Distance from the pivot is what multiplies your push.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_science_lesson_05_4.png",
             "alt": "Where to push on a lever to lift the heaviest load"
-          }
+          },
+          "choices": [
+            "Close to the pivot",
+            "Far from the pivot",
+            "On the load itself"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap what a pulley changes about lifting a bucket from a well.",
           "action": "tap",
           "feedback": "The direction. You pull down, and the bucket comes up.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_science_lesson_05_5.png",
             "alt": "What a pulley changes about lifting a bucket from a well"
-          }
+          },
+          "choices": [
+            "The weight",
+            "The direction",
+            "The depth"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Someone said pushing a box up a ramp is less total work. Tap what is actually true.",
@@ -60230,12 +60672,18 @@
           "narration": "Someone said the Sun orbits the Earth. Tap what we actually observe.",
           "action": "tap",
           "feedback": "The Earth spins, which makes the Sun appear to move across the sky.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_science_lesson_06_6.png",
             "alt": "Someone said the Sun orbits the Earth"
-          }
+          },
+          "choices": [
+            "The Sun goes round",
+            "The Earth spins",
+            "Neither one moves"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Look for one planet in tonight's sky. Venus and Jupiter are the bright ones.",
@@ -61044,12 +61492,18 @@
           "narration": "Tap what could go wrong if one person made laws and judged them too.",
           "action": "tap",
           "feedback": "They could never be found wrong. That is exactly what the split prevents.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_social_lesson_01_5.png",
             "alt": "What could go wrong if one person made laws and judged them too"
-          }
+          },
+          "choices": [
+            "Laws would be shorter",
+            "Nobody could check it",
+            "Judges would be busy"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Sort these: passing a budget, arresting a thief, ruling a law unfair.",
@@ -61162,12 +61616,18 @@
           "narration": "You see a star symbol on a map. Tap what you check to find out what it means.",
           "action": "tap",
           "feedback": "The legend. Symbols mean nothing until the map defines them.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_social_lesson_02_3.png",
             "alt": "You see a star symbol on a map"
-          }
+          },
+          "choices": [
+            "The scale",
+            "The legend",
+            "The title"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "On a map, 1 centimetre means 2 kilometres. Two towns are 4 cm apart. How many kilometres?",
@@ -61185,12 +61645,18 @@
           "narration": "Someone used a city map's scale on a country map. Tap what goes wrong.",
           "action": "tap",
           "feedback": "Every distance comes out wildly wrong. Each map carries its own scale.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "map",
             "alt": "Someone used a city map's scale on a country map"
-          }
+          },
+          "choices": [
+            "The symbols change",
+            "Distances go wrong",
+            "The north moves"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap what a compass rose on a map is for.",
@@ -61597,12 +62063,18 @@
           "narration": "Tap the end of a timeline where the most recent event goes.",
           "action": "tap",
           "feedback": "The right. Left is oldest, right is newest, always.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_social_lesson_05_3.png",
             "alt": "The end of a timeline where the most recent event goes"
-          }
+          },
+          "choices": [
+            "The left end",
+            "The right end",
+            "The middle"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Place these in order: you were born, you started school, you learned to walk.",
@@ -61619,12 +62091,18 @@
           "narration": "Two events sit close together on a timeline. Tap what that tells you.",
           "action": "tap",
           "feedback": "Little time passed between them. Distance on the line is time.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_social_lesson_05_5.png",
             "alt": "Two events sit close together on a timeline"
-          }
+          },
+          "choices": [
+            "They are alike",
+            "Little time passed",
+            "One caused the other"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Someone put an event on the wrong side because it was more important. Tap the mistake.",
@@ -61776,12 +62254,18 @@
           "narration": "Someone said the city is always better than the farm. Tap what that misses.",
           "action": "tap",
           "feedback": "Each one trades something: space for services, or quiet for choice.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "farm",
             "alt": "Someone said the city is always better than the farm"
-          }
+          },
+          "choices": [
+            "Cities are bigger",
+            "Each trades something",
+            "Farms are older"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Decide which of the three you live in, and name two reasons.",
@@ -62581,12 +63065,18 @@
           "narration": "'Recess should be longer.' Tap which part of the paragraph this is.",
           "action": "tap",
           "feedback": "The opinion. It goes first, so the reader knows what you are arguing.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_writing_lesson_01_3.png",
             "alt": "'Recess should be longer.' Tap which part of the paragraph this is"
-          }
+          },
+          "choices": [
+            "A reason",
+            "The opinion",
+            "The closing"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap the better reason: 'because it is fun' or 'because we concentrate better after moving'.",
@@ -62603,12 +63093,18 @@
           "narration": "Someone wrote three reasons and no closing sentence. Tap what is missing.",
           "action": "tap",
           "feedback": "A close that returns to the opinion. Without it the paragraph just stops.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_writing_lesson_01_5.png",
             "alt": "Someone wrote three reasons and no closing sentence"
-          }
+          },
+          "choices": [
+            "Another reason",
+            "A closing sentence",
+            "A longer opinion"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Build one: opinion, reason, reason, close, about a longer library time.",
@@ -62748,12 +63244,18 @@
           "narration": "Tap what happens to a paragraph with a transition on every sentence.",
           "action": "tap",
           "feedback": "It gets clunky. Transitions are signposts, and too many is a cluttered road.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_writing_lesson_02_6.png",
             "alt": "What happens to a paragraph with a transition on every sentence"
-          }
+          },
+          "choices": [
+            "It reads better",
+            "It gets cluttered",
+            "It gets shorter"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Retell your day in five sentences using only three transitions.",
@@ -62888,12 +63390,18 @@
           "narration": "Someone quoted a friend but changed two words. Tap why that is not a quotation.",
           "action": "tap",
           "feedback": "Quotation marks promise the exact words. Changed words need reporting, not quoting.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "friend",
             "alt": "Someone quoted a friend but changed two words"
-          }
+          },
+          "choices": [
+            "It was too short",
+            "The words changed",
+            "Friends cannot speak"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Punctuate this: I am late shouted Omar from the gate.",
@@ -63027,12 +63535,18 @@
           "narration": "Someone capitalised 'Doctor' in 'I saw a doctor'. Tap why that is wrong.",
           "action": "tap",
           "feedback": "Any doctor, not a named one. 'Doctor Amina' would take the capital.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "scene",
             "ref": "sentence.card",
             "alt": "Someone capitalised 'Doctor' in 'I saw a doctor'"
-          }
+          },
+          "choices": [
+            "Doctors are important",
+            "It names no one",
+            "It is a long word"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap the proper noun in: 'My dog Bruno chased a cat down the street.'",
@@ -63177,12 +63691,18 @@
           "narration": "Tap why instructions are usually written in the present tense.",
           "action": "tap",
           "feedback": "The reader is doing it now. 'Stir the pot', not 'you will stir the pot'.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "scene",
             "ref": "sentence.card",
             "alt": "Why instructions are usually written in the present tense"
-          }
+          },
+          "choices": [
+            "It sounds older",
+            "The reader acts now",
+            "It is easier to spell"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Write two sentences about yesterday, then rewrite them as tomorrow.",
@@ -63289,12 +63809,18 @@
           "narration": "'my dog runs fast' — tap what is missing.",
           "action": "tap",
           "feedback": "A capital at the start and a full stop at the end. Both, every time.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "dog",
             "alt": "'my dog runs fast' — tap what is missing"
-          }
+          },
+          "choices": [
+            "Only a capital",
+            "A capital and a stop",
+            "Only a full stop"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap the best time to edit a piece of writing.",
@@ -64559,12 +65085,18 @@
           "narration": "A score of 10 is tested against 'score is 10 or more'. Tap which branch runs.",
           "action": "tap",
           "feedback": "The first. 'Or more' includes exactly ten, which is the usual trap.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_coding_lesson_04_4.png",
             "alt": "A score of 10 is tested against 'score is 10 or more'"
-          }
+          },
+          "choices": [
+            "The else branch",
+            "The first branch",
+            "Neither branch"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Someone wrote a rule with no else branch. Tap what happens on a false test.",
@@ -64727,12 +65259,18 @@
           "narration": "A program runs but prints the wrong number. Tap why that is harder to fix.",
           "action": "tap",
           "feedback": "Nothing reports it. A silent wrong answer is worse than a loud crash.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_coding_lesson_05_6.png",
             "alt": "A program runs but prints the wrong number"
-          }
+          },
+          "choices": [
+            "It takes longer",
+            "Nothing reports it",
+            "The code is longer"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Next time something you built fails, read the message before changing anything.",
@@ -64856,12 +65394,18 @@
           "narration": "A website has no author's name anywhere. Tap what that should do to your trust.",
           "action": "tap",
           "feedback": "Lower it. Somebody willing to be named is somebody who can be checked.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_coding_lesson_06_5.png",
             "alt": "A website has no author's name anywhere"
-          }
+          },
+          "choices": [
+            "Raise it",
+            "Lower it",
+            "Change nothing"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap the best way to check whether something online is true.",
@@ -65711,12 +66255,18 @@
           "narration": "Someone forgot to bring the second digit down. Tap what their answer looks like.",
           "action": "tap",
           "feedback": "Far too small — a single digit where two belong.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_math_lesson_01_6.png",
             "alt": "Someone forgot to bring the second digit down"
-          }
+          },
+          "choices": [
+            "Far too big",
+            "Far too small",
+            "Exactly right"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Share a large number of something between four people, on paper.",
@@ -65863,12 +66413,18 @@
           "narration": "Someone worked 23 × 4 as 80 and stopped. Tap what they left out.",
           "action": "tap",
           "feedback": "The 3 × 4. Splitting only works if you add both parts back.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "scene",
             "ref": "counting.array",
             "alt": "Someone worked 23 × 4 as 80 and stopped"
-          }
+          },
+          "choices": [
+            "The 20 x 4",
+            "The 3 x 4",
+            "Nothing at all"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Work out the cost of 4 items at 23 coins each, in your head, by splitting.",
@@ -66161,12 +66717,18 @@
           "narration": "Someone added 1/4 and 2/4 and wrote 3/8. Tap what they did wrong.",
           "action": "tap",
           "feedback": "They added the bottoms too. The pieces cannot shrink halfway through.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "scene",
             "ref": "fraction.bars",
             "alt": "Someone added 1/4 and 2/4 and wrote 3/8"
-          }
+          },
+          "choices": [
+            "They added the tops",
+            "They added the bottoms",
+            "They forgot to add"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Cut a fruit into six and add the pieces back together out loud.",
@@ -66473,12 +67035,18 @@
           "narration": "Someone gave an area in metres, not square metres. Tap why that is wrong.",
           "action": "tap",
           "feedback": "Area covers a surface, so its unit is squared. Perimeter is a length.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "square",
             "alt": "Someone gave an area in metres, not square metres"
-          }
+          },
+          "choices": [
+            "Metres are too small",
+            "Area needs squares",
+            "Area has no unit"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Measure a table and work out both. One tells you the cloth, the other the trim.",
@@ -67299,23 +67867,35 @@
           "narration": "'The stars were diamonds in the sky.' Tap which kind of comparison this is.",
           "action": "tap",
           "feedback": "A metaphor. It says they were, not that they were like.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_reading_lesson_01_4.png",
             "alt": "'The stars were diamonds in the sky.' Tap which kind of comparison this is"
-          }
+          },
+          "choices": [
+            "A simile",
+            "A metaphor",
+            "A fact"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "'He runs like the wind.' Tap which kind this is.",
           "action": "tap",
           "feedback": "A simile. One small word does all the marking.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_reading_lesson_01_5.png",
             "alt": "'He runs like the wind.' Tap which kind this is"
-          }
+          },
+          "choices": [
+            "A metaphor",
+            "A simile",
+            "A fact"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Someone read 'the classroom was a zoo' and asked which animals. Tap the mistake.",
@@ -67439,34 +68019,52 @@
           "narration": "'A piece of cake' is said about a task. Tap what it means.",
           "action": "tap",
           "feedback": "Very easy. Nothing to do with cake, and no clue in the words.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "cake",
             "alt": "'A piece of cake' is said about a task"
-          }
+          },
+          "choices": [
+            "Very tasty",
+            "Very easy",
+            "Very slow"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "An actor is about to walk on stage. Tap what 'break a leg' means.",
           "action": "tap",
           "feedback": "Good luck. Its history is odd, and knowing it is the only way to know it.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_reading_lesson_02_5.png",
             "alt": "An actor is about to walk on stage"
-          }
+          },
+          "choices": [
+            "Be careful",
+            "Good luck",
+            "Sit down"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Someone learning English took 'raining cats and dogs' literally. Tap what would help.",
           "action": "tap",
           "feedback": "Someone telling them. Idioms have to be learned, not reasoned out.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_reading_lesson_02_6.png",
             "alt": "Someone learning English took 'raining cats and dogs' literally"
-          }
+          },
+          "choices": [
+            "A dictionary",
+            "Someone telling them",
+            "Reading it again"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Ask a grown-up for an idiom in another language you both know.",
@@ -67614,12 +68212,18 @@
           "narration": "Someone said the theme was 'a girl shared her lunch'. Tap why that is the plot.",
           "action": "tap",
           "feedback": "It names an event. A theme would be 'kindness builds friendship'.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "girl",
             "alt": "Someone said the theme was 'a girl shared her lunch'"
-          }
+          },
+          "choices": [
+            "It is too short",
+            "It names an event",
+            "It is not in the book"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Name the theme of the last film you watched in four words or fewer.",
@@ -67754,12 +68358,18 @@
           "narration": "A dark house at midnight, told by the frightened child inside it. Tap what changes.",
           "action": "tap",
           "feedback": "You feel it instead of watching it, and you know less than they do not.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "house",
             "alt": "A dark house at midnight, told by the frightened child inside it"
-          }
+          },
+          "choices": [
+            "The house changes",
+            "You feel it, not watch",
+            "The story gets longer"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Retell one thing from your day in third person, as if you were watching.",
@@ -67900,12 +68510,18 @@
           "narration": "Someone's summary added what they thought of the story. Tap why that is wrong.",
           "action": "tap",
           "feedback": "A summary reports the author, not the reader. Opinions belong elsewhere.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_reading_lesson_05_6.png",
             "alt": "Someone's summary added what they thought of the story"
-          }
+          },
+          "choices": [
+            "It was too long",
+            "It reports the reader",
+            "Summaries are wrong"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Summarise a whole book to somebody in three sentences.",
@@ -68028,12 +68644,18 @@
           "narration": "'Mateo zipped his coat and stamped his boots in the snow.' Tap what you infer.",
           "action": "tap",
           "feedback": "It is cold. Nothing in the sentence says so — the coat and boots do.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_reading_lesson_06_4.png",
             "alt": "'Mateo zipped his coat and stamped his boots in the snow.' Tap what you infer"
-          }
+          },
+          "choices": [
+            "He is late",
+            "It is cold",
+            "He is happy"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "'Her stomach growled as she eyed the clock.' Tap the best inference.",
@@ -68050,12 +68672,18 @@
           "narration": "From that sentence someone inferred she was bored. Tap why that goes too far.",
           "action": "tap",
           "feedback": "The clock fits hunger just as well. Pick the reading that uses both clues.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_reading_lesson_06_6.png",
             "alt": "From that sentence someone inferred she was bored"
-          }
+          },
+          "choices": [
+            "Boredom is not a clue",
+            "Hunger fits too",
+            "The clock is broken"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Watch somebody come through a door and infer one thing about their day.",
@@ -70575,23 +71203,35 @@
           "narration": "Tap which lines run from pole to pole rather than around the middle.",
           "action": "tap",
           "feedback": "Longitude. They meet at the poles, so they are not parallel like latitude.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_social_lesson_01_4.png",
             "alt": "Which lines run from pole to pole rather than around the middle"
-          }
+          },
+          "choices": [
+            "Latitude",
+            "Longitude",
+            "The equator"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Someone gave a location with only one number. Tap what is missing.",
           "action": "tap",
           "feedback": "The other one. One line is a whole circle round the world.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_social_lesson_01_5.png",
             "alt": "Someone gave a location with only one number"
-          }
+          },
+          "choices": [
+            "The map",
+            "The other number",
+            "The scale"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap why sailors needed accurate clocks to find their longitude.",
@@ -70715,12 +71355,18 @@
           "narration": "A new law is being written. Tap which branch is doing it.",
           "action": "tap",
           "feedback": "The legislative branch. Writing the rule is its only job.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_social_lesson_02_4.png",
             "alt": "A new law is being written"
-          }
+          },
+          "choices": [
+            "The executive",
+            "The legislative",
+            "The judicial"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Two people disagree in court about what a law means. Tap who decides.",
@@ -70737,12 +71383,18 @@
           "narration": "Tap what the executive branch does with a law once it exists.",
           "action": "tap",
           "feedback": "Carries it out — the police, the schools, the offices that act on it.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_social_lesson_02_6.png",
             "alt": "What the executive branch does with a law once it exists"
-          }
+          },
+          "choices": [
+            "Writes it",
+            "Carries it out",
+            "Judges it"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Find one rule at school and name who makes, applies and interprets it.",
@@ -70872,23 +71524,35 @@
           "narration": "Many people want a scarce item. Tap what usually happens to its price.",
           "action": "tap",
           "feedback": "It rises. High demand and low supply push in the same direction.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_social_lesson_03_5.png",
             "alt": "Many people want a scarce item"
-          }
+          },
+          "choices": [
+            "It falls",
+            "It rises",
+            "It stays the same"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "A shop has far more of something than anyone wants. Tap what happens next.",
           "action": "tap",
           "feedback": "The price falls. Supply and demand work in both directions.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_social_lesson_03_6.png",
             "alt": "A shop has far more of something than anyone wants"
-          }
+          },
+          "choices": [
+            "The price rises",
+            "The price falls",
+            "The shop closes"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "List three goods and three services your family bought this week.",
@@ -71147,23 +71811,35 @@
           "narration": "Tap what made Timbuktu famous across the world.",
           "action": "tap",
           "feedback": "Its libraries and scholars. It was a centre of learning, not just of trade.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_social_lesson_05_4.png",
             "alt": "What made Timbuktu famous across the world"
-          }
+          },
+          "choices": [
+            "Its gold mines",
+            "Its libraries",
+            "Its high walls"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap why traders crossed a desert rather than going round it.",
           "action": "tap",
           "feedback": "It was shorter, and the goods were worth the risk. Trade shapes routes.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_social_lesson_05_5.png",
             "alt": "Why traders crossed a desert rather than going round it"
-          }
+          },
+          "choices": [
+            "It was safer",
+            "It was much shorter",
+            "It was more scenic"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Someone said Africa had no written history before Europeans came. Tap the evidence against it.",
@@ -71298,23 +71974,35 @@
           "narration": "Tap what voting actually does in a community.",
           "action": "tap",
           "feedback": "Chooses who decides, and makes them replaceable. Both parts matter.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_social_lesson_06_5.png",
             "alt": "What voting actually does in a community"
-          }
+          },
+          "choices": [
+            "It ends all argument",
+            "It picks who decides",
+            "It writes the laws"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Someone said a right means doing whatever you want. Tap what that misses.",
           "action": "tap",
           "feedback": "Your rights end where someone else's begin. That limit is what makes them work.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_social_lesson_06_6.png",
             "alt": "Someone said a right means doing whatever you want"
-          }
+          },
+          "choices": [
+            "Rights are for adults",
+            "Others have rights too",
+            "Rights can be bought"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Name one right you use every day and the responsibility that keeps it alive.",
@@ -72118,23 +72806,35 @@
           "narration": "Tap what belongs in the body paragraphs and nowhere else.",
           "action": "tap",
           "feedback": "The reasons and evidence. The introduction claims; the body proves.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_writing_lesson_01_5.png",
             "alt": "What belongs in the body paragraphs and nowhere else"
-          }
+          },
+          "choices": [
+            "The main claim",
+            "The evidence",
+            "The closing line"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "The last page of an essay adds a brand-new reason. Tap why that is wrong.",
           "action": "tap",
           "feedback": "A conclusion gathers what was argued. New evidence needs a body paragraph.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_writing_lesson_01_6.png",
             "alt": "The last page of an essay adds a brand-new reason"
-          }
+          },
+          "choices": [
+            "Conclusions are short",
+            "A conclusion gathers",
+            "Reasons are boring"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Sketch a three-part plan for an essay before writing a single sentence.",
@@ -72279,12 +72979,18 @@
           "narration": "Tap where a topic sentence usually goes, and why.",
           "action": "tap",
           "feedback": "First, so the reader knows what the paragraph is trying to prove.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "scene",
             "ref": "sentence.card",
             "alt": "Where a topic sentence usually goes, and why"
-          }
+          },
+          "choices": [
+            "Last, as a summary",
+            "First, to set it up",
+            "Anywhere at all"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Write a topic sentence about your town and two details that earn it.",
@@ -72571,12 +73277,18 @@
           "narration": "Two people speak in one paragraph. Tap what a reader will do.",
           "action": "tap",
           "feedback": "Lose track. A new line for each speaker costs nothing and fixes it.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_writing_lesson_04_6.png",
             "alt": "Two people speak in one paragraph"
-          }
+          },
+          "choices": [
+            "Read it twice",
+            "Lose track of who",
+            "Enjoy it more"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Write four lines of dialogue between two people, laid out properly.",
