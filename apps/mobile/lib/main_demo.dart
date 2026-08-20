@@ -19,6 +19,11 @@ import 'features/parent/family_layer.dart';
 ///
 ///   flutter run -t lib/main_demo.dart -d windows
 ///   flutter run -t lib/main_demo.dart -d chrome --dart-define=START=/
+///
+/// The seeded family has a PIN, and the login gate asks for it on every
+/// launch, so add `--dart-define=DEMO_SKIP_LOGIN=true` (see
+/// [kDemoSkipLoginGate]) for a demo or screenshot run that nobody is sitting
+/// at to type it.
 Future<void> main() async {
   final container = await bootstrapWatoto(seedDemoFamily: true);
   await _seedShowcase(container);

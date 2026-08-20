@@ -50764,12 +50764,18 @@
           "narration": "Someone said rain is new water. Tap why that cannot be true.",
           "action": "tap",
           "feedback": "It is the same water going round. Nothing new is made, only moved.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_science_lesson_05_6.png",
             "alt": "Someone said rain is new water"
-          }
+          },
+          "choices": [
+            "Clouds make new water",
+            "It is the same water",
+            "The sun makes water"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Find the cycle in one day: a puddle gone by noon, a cold window at night.",
@@ -55241,10 +55247,10 @@
           "feedback": "Boolean logic.",
           "mechanic": "multiChoice",
           "choices": [
-            "False",
-            "3"
+            "True",
+            "False"
           ],
-          "choiceIndex": 0,
+          "choiceIndex": 1,
           "visual": {
             "mode": "token",
             "ref": "cat",
@@ -55266,23 +55272,33 @@
           "narration": "Tap whether this is true or false: a spider has eight legs.",
           "action": "tap",
           "feedback": "True, and checkable. That is what makes it a condition and not an opinion.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "spider",
             "alt": "Whether this is true or false: a spider has eight legs"
-          }
+          },
+          "choices": [
+            "True",
+            "False"
+          ],
+          "choiceIndex": 0
         },
         {
           "narration": "Tap true or false: 7 is greater than 10.",
           "action": "tap",
           "feedback": "False. The computer does not argue, it just takes the else branch.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_coding_lesson_05_4.png",
             "alt": "True or false: 7 is greater than 10"
-          }
+          },
+          "choices": [
+            "True",
+            "False"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "'The sky is beautiful.' Tap why a computer cannot check this.",
@@ -59919,12 +59935,18 @@
           "narration": "Someone said pushing a box up a ramp is less total work. Tap what is actually true.",
           "action": "tap",
           "feedback": "Same work, spread thinner. Machines make it possible, not free.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "token",
             "ref": "box",
             "alt": "Someone said pushing a box up a ramp is less total work"
-          }
+          },
+          "choices": [
+            "Less work in total",
+            "Same work, less push",
+            "No work at all"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Find three simple machines in your kitchen: scissors, a tap handle, a jar lid.",
@@ -64331,12 +64353,18 @@
           "narration": "Someone wrote a rule with no else branch. Tap what happens on a false test.",
           "action": "tap",
           "feedback": "Nothing at all — which is sometimes right, and sometimes the whole bug.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_coding_lesson_04_5.png",
             "alt": "Someone wrote a rule with no else branch"
-          }
+          },
+          "choices": [
+            "The else branch runs",
+            "Nothing happens",
+            "It shows an error"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Tap the test a program could actually run: 'the door is locked' or 'the film is good'.",
@@ -64616,12 +64644,18 @@
           "narration": "Tap the best way to check whether something online is true.",
           "action": "tap",
           "feedback": "Find it somewhere else that has no reason to copy the first one.",
-          "mechanic": "tap",
+          "mechanic": "multiChoice",
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_coding_lesson_06_6.png",
             "alt": "The best way to check whether something online is true"
-          }
+          },
+          "choices": [
+            "See if it looks real",
+            "Check a second source",
+            "Count who shares it"
+          ],
+          "choiceIndex": 1
         },
         {
           "narration": "Check one thing you read online today against a second, separate source.",

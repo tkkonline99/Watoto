@@ -94,12 +94,17 @@ void main(List<String> args) {
           stepMap['rows'] = plan.rows;
           stepMap['cols'] = plan.cols;
           if (plan.answer != null) stepMap['answer'] = plan.answer;
+        // Nothing to bake beyond the name. buildCircuit carries a mode, but
+        // `planStep` reads it back off the narration on every play
+        // (`_circuitModeFrom`) rather than storing it, so there is no field
+        // here to write.
         case StepMechanic.tap:
         case StepMechanic.drag:
         case StepMechanic.celebrate:
         case StepMechanic.codeRun:
         case StepMechanic.explain:
         case StepMechanic.multiChoice:
+        case StepMechanic.buildCircuit:
           break;
       }
     }
