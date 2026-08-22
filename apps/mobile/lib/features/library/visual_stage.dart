@@ -19,6 +19,7 @@ import '../../core/theme/watoto_theme.dart';
 import '../../core/widgets/stages/stage_scenes.dart';
 import 'content_lexicon.dart';
 import 'library_models.dart';
+import 'option_photos.dart';
 
 class VisualStage extends StatelessWidget {
   const VisualStage({
@@ -38,7 +39,14 @@ class VisualStage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => switch (visual) {
-        TokenVisual(:final ref) => _TokenDisc(glyph: tokenGlyph(ref) ?? fallbackEmoji),
+        // A photographed word shows its photograph here too. `dog` is a token
+        // visual on 28 parts, so without this a lesson would put a real dog in
+        // the answers and 🐶 on the stage above them — the same animal, twice,
+        // in two registers.
+        TokenVisual(:final ref) => _TokenDisc(
+            glyph: tokenGlyph(ref) ?? fallbackEmoji,
+            photoAsset: optionPhotoAsset(ref),
+          ),
         SceneVisual(:final ref) =>
           buildScene(ref, data: data) ?? _TokenDisc(glyph: fallbackEmoji),
         SlotVisual(:final assetPath, :final alt) =>
@@ -47,23 +55,38 @@ class VisualStage extends StatelessWidget {
       };
 }
 
-/// A vetted glyph on a tinted disc, 150dp (§26.3).
+/// A vetted glyph on a tinted disc, 150dp (§26.3) — or the word's photograph,
+/// where one is bundled. The glyph remains the fallback, so the stage still
+/// cannot be empty.
 class _TokenDisc extends StatelessWidget {
-  const _TokenDisc({required this.glyph});
+  const _TokenDisc({required this.glyph, this.photoAsset});
 
   final String glyph;
+  final String? photoAsset;
 
   @override
-  Widget build(BuildContext context) => Container(
-        width: 150,
-        height: 150,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: WatotoColors.sun.withValues(alpha: 0.18),
-        ),
-        alignment: Alignment.center,
-        child: Text(glyph, style: const TextStyle(fontSize: 86)),
-      );
+  Widget build(BuildContext context) {
+    final glyphChild = Text(glyph, style: const TextStyle(fontSize: 86));
+    return Container(
+      width: 150,
+      height: 150,
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: WatotoColors.sun.withValues(alpha: 0.18),
+      ),
+      alignment: Alignment.center,
+      child: photoAsset == null
+          ? glyphChild
+          : Image.asset(
+              photoAsset!,
+              width: 150,
+              height: 150,
+              fit: BoxFit.cover,
+              errorBuilder: (_, _, _) => glyphChild,
+            ),
+    );
+  }
 }
 
 class _Slot extends StatelessWidget {

@@ -7,8 +7,17 @@
 /// content collapsed into a void at the top and a screen with a lot of content
 /// crowded, because the column was centred in whatever space was left over.
 ///
-/// Vertical slack collects *between the prompt and the response zone*, so a
-/// sparse screen breathes in the middle rather than leaving a hole above.
+/// Vertical slack is split around the response zone — half above it, half
+/// below — so a sparse screen breathes rather than leaving a hole above.
+///
+/// It all used to collect in the single gap between the prompt and the
+/// response. That was fine while the stage was always 300dp tall, and wrong as
+/// soon as a screen gave the stage back: a staged choice puts the pictures in
+/// the answers, so the stage collapses, and *every* spare pixel then pooled
+/// into one gap. On a tall window the question sat at the top, the answers sat
+/// near the bottom, and 500px of empty cream sat between them. Splitting it
+/// reads as the answers being centred, which is what it is, and it pins the
+/// assist line to the foot of the screen where a footer belongs.
 ///
 /// The scaffold owns parts 1–3 and 6. Stage widgets supply only the prompt and
 /// the response zone; that split is what keeps the skeleton honest, because a
@@ -48,6 +57,7 @@ class QuestionScaffold extends StatelessWidget {
     required this.response,
     this.progress,
     this.assist,
+    this.promptAudio,
     this.textHeavy = false,
     this.stageSemanticLabel,
     this.stageFitsContent = false,
@@ -68,6 +78,12 @@ class QuestionScaffold extends StatelessWidget {
 
   /// Part 2. Omitted on screens with nothing to count.
   final QuestionProgress? progress;
+
+  /// The offer to hear the prompt again, directly under the sentence it
+  /// replays. Sits with the prompt rather than in the assist line because it
+  /// *is* the prompt — a second way to receive part 4, for a child who cannot
+  /// yet read the first way.
+  final Widget? promptAudio;
 
   /// Part 6. What to do next, or the audio-repeat offer. Never a scold.
   final Widget? assist;
@@ -167,10 +183,15 @@ class QuestionScaffold extends StatelessWidget {
                 ),
               ),
             ),
-            // The slack lives here, between prompt and response — see the
-            // library docstring.
+            if (promptAudio case final a?) ...[
+              const SizedBox(height: 14),
+              Center(child: a),
+            ],
+            // The slack is split around the response, half above and half
+            // below — see the library docstring.
             if (slack) const Spacer() else const SizedBox(height: 24),
             response,
+            if (slack) const Spacer(),
             if (assist case final a?) ...[
               const SizedBox(height: 12),
               DefaultTextStyle.merge(

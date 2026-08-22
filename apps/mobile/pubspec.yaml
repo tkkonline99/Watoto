@@ -83,6 +83,10 @@ flutter:
     - assets/images/img/s08/
     - assets/images/img/s09/
     - assets/images/img/s10/
+    # Photographs that stand in for a lexicon glyph, so they belong to a word
+    # rather than to a stage. test/option_photos_test.dart fails if one the
+    # registry names is not bundled.
+    - assets/images/img/photo/
     # The rendered VO pack (assets/audio/{en,fr,sw}) is deliberately NOT listed.
     # It is 184 MB — past Play's base-download ceiling — and is not in git, so a
     # fresh clone would fail `flutter pub get` on a missing directory. Narration

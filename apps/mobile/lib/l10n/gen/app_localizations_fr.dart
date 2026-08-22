@@ -472,6 +472,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get textSizeLarge => 'Grand';
 
   @override
+  String get hearItAgain => 'Réécouter';
+
+  @override
   String get readAloud => 'Lecture à voix haute';
 
   @override

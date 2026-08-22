@@ -377,6 +377,15 @@ class ChoiceOption {
   /// between "Heat" and "Sound" reads three cards faster with a picture on
   /// each. Null where the answer is a phrase no emoji honestly depicts.
   final String? hero;
+
+  /// Whether this option shows a *picture of* its word rather than the word
+  /// itself, and so needs the word written next to it.
+  ///
+  /// A reading minimal pair stages 'cap' against 'cape': the glyph is the word,
+  /// there is nothing to caption, and naming it would print the same string
+  /// twice. A lexicon noun stages 🐕 for 'dog', where a card with no writing on
+  /// it tells the child — and the grown-up reading with them — nothing at all.
+  bool get isPictorial => figure != null || hero != null || emoji != word;
 }
 
 /// A staged multiple-choice question: tap [options][targetIndex] to advance.
@@ -534,15 +543,13 @@ ChoicePlan? choicePlanFor(String itemId, int step, String narration) {
   }
 
   final targetEntry = lexiconLookup(target)!;
-  // Same-category pool, deduped by emoji, excluding the target's emoji.
-  final seen = <String>{targetEntry.emoji};
-  final pool = <ChoiceOption>[];
-  for (final w in lexicon.keys.toList()..sort()) {
-    final e = lexicon[w]!;
-    if (e.category == targetEntry.category && e.choice && seen.add(e.emoji)) {
-      pool.add(ChoiceOption(w, e.emoji));
-    }
-  }
+  // Distractors come from the target's own kind where it has one, and from its
+  // category otherwise. "Tap the smiling grown-up" drew 👂 Ear against 😊 and
+  // 😠, because `people` holds expressions, body parts and persons in one bag —
+  // so the question offered a child a face, a face, and an ear. Narrowing gives
+  // the fair look-alike question the category pool was meant to give.
+  var pool = _distractorPool(targetEntry, _kindOf(target));
+  if (pool.length < 2) pool = _distractorPool(targetEntry, null);
   if (pool.length < 2) return null;
 
   var s = _seed(itemId, step);
@@ -557,6 +564,51 @@ ChoicePlan? choicePlanFor(String itemId, int step, String narration) {
   final options = List.of(distractors)
     ..insert(targetIndex, ChoiceOption(target, targetEntry.emoji));
   return ChoicePlan(options, targetIndex);
+}
+
+/// Choosable words of [targetEntry]'s category, deduped by emoji and never
+/// including the target's own picture. Restricted to one [kind] when given.
+List<ChoiceOption> _distractorPool(LexEntry targetEntry, String? kind) {
+  final seen = <String>{targetEntry.emoji};
+  final pool = <ChoiceOption>[];
+  for (final w in lexicon.keys.toList()..sort()) {
+    final e = lexicon[w]!;
+    if (e.category != targetEntry.category || !e.choice) continue;
+    if (kind != null && _kindOf(w) != kind) continue;
+    if (!seen.add(e.emoji)) continue;
+    pool.add(ChoiceOption(w, e.emoji));
+  }
+  return pool;
+}
+
+/// The `people` category holds three unrelated kinds of thing, and a question
+/// that mixes them is not a question — being asked to find the smiling grown-up
+/// among a smile, a scowl and an ear tells you nothing about whether the child
+/// knows what smiling is.
+///
+/// Only `people` is split, because it is the only category whose members are
+/// not interchangeable: an answer drawn from `animal` or `food` is always a
+/// fair alternative to any other animal or food. Words outside these sets
+/// (`hug`) keep the whole category, as before.
+const _expressionWords = {
+  'happy', 'smiling', 'sad', 'angry', 'scared',
+  'excited', 'sleepy', 'proud', 'frustrated', 'worried',
+};
+const _bodyWords = {
+  'head', 'lips', 'toes', 'lungs', 'eyes', 'eye',
+  'nose', 'mouth', 'ear', 'hand', 'hands', 'foot', 'teeth',
+};
+const _personWords = {
+  'job', 'doctor', 'firefighter', 'teacher', 'farmer', 'baby', 'family',
+  'friend', 'friends', 'mom', 'mama', 'dad', 'dada', 'grown', 'parent',
+  'girl', 'boy', 'mayor',
+};
+
+String? _kindOf(String word) {
+  if (_expressionWords.contains(word)) return 'expression';
+  if (_bodyWords.contains(word)) return 'body';
+  if (_personWords.contains(word)) return 'person';
+  return null;
 }
 
 /// A clause that names nothing itself ("Tap it."): only glue words remain.

@@ -952,6 +952,12 @@ abstract class AppLocalizations {
   /// **'Large'**
   String get textSizeLarge;
 
+  /// No description provided for @hearItAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Hear it again'**
+  String get hearItAgain;
+
   /// No description provided for @readAloud.
   ///
   /// In en, this message translates to:

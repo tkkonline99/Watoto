@@ -133,6 +133,75 @@ class NarrationButton extends ConsumerWidget {
   }
 }
 
+/// "Hear it again" — replays the sentence the child is answering.
+///
+/// The narration speaks itself once when a step arrives and is then gone. A
+/// two-year-old who missed it had no way to ask for it back: the only audio
+/// control on the screen was the app-bar toggle, which *silences* narration
+/// rather than repeating it, and reads as a mute button to anyone who does not
+/// already know better.
+///
+/// Hidden when narration is switched off, because a button offering to say
+/// something aloud must not be there when nothing will be said.
+class ReplayNarrationButton extends ConsumerWidget {
+  const ReplayNarrationButton({super.key, required this.onReplay});
+
+  final VoidCallback onReplay;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    if (!ref.watch(narrationProvider)) return const SizedBox.shrink();
+    final l10n = AppLocalizations.of(context);
+    return Semantics(
+      button: true,
+      label: l10n.hearItAgain,
+      child: InkWell(
+        onTap: onReplay,
+        borderRadius: BorderRadius.circular(20),
+        child: ExcludeSemantics(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: 76,
+                  height: 76,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: WatotoColors.sun,
+                    boxShadow: [
+                      BoxShadow(
+                        color: WatotoColors.deep.withValues(alpha: 0.14),
+                        blurRadius: 12,
+                        offset: const Offset(0, 5),
+                      ),
+                    ],
+                  ),
+                  child: const Icon(
+                    Icons.volume_up_rounded,
+                    size: 38,
+                    color: WatotoColors.deep,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  l10n.hearItAgain,
+                  style: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w800,
+                    color: WatotoColors.mango,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 /// Stages that print the step's prompt themselves, right beside the thing the
 /// child touches. The caption-level hint is suppressed for these so the same
 /// instruction is never shown twice on one screen.

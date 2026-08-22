@@ -18,8 +18,10 @@ import '../../l10n/gen/app_localizations.dart';
 import 'content_i18n.dart';
 import 'content_lexicon.dart';
 import 'library_models.dart';
+import 'option_photos.dart';
 import 'play_celebration.dart';
 import 'play_shared.dart';
+import 'play_stages.dart';
 import 'library_repository.dart';
 import 'quiz_review.dart';
 import 'visual_stage.dart';
@@ -244,6 +246,7 @@ class QuizViewState extends ConsumerState<QuizView> {
         ),
         stageSemanticLabel: question.visual?.alt,
         prompt: question.prompt,
+        promptAudio: ReplayNarrationButton(onReplay: _speakPrompt),
         response: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -251,36 +254,53 @@ class QuizViewState extends ConsumerState<QuizView> {
               if (i != _hintHideIndex)
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 6),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: FilledButton(
-                      style: FilledButton.styleFrom(
-                        backgroundColor: WatotoColors.sky,
-                        foregroundColor: Colors.white,
-                        minimumSize: const Size.fromHeight(52),
-                      ),
-                      onPressed: () => _pick(i),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          // Illustrate one-word answers ("Ball" → ⚽)
-                          // from the English source label.
-                          if (lexiconLookup(
-                                question.options[i].label
-                                    .trim()
-                                    .toLowerCase(),
-                              )
-                              case final LexEntry e) ...[
-                            ExcludeSemantics(
-                              child: Text(
-                                e.emoji,
-                                style: const TextStyle(fontSize: 22),
+                  // Same card as a lesson's answers (play_stages.dart), so the
+                  // quiz half of an activity does not look like a different
+                  // app from the lesson half. Smaller disc: a quiz offers up
+                  // to four answers under a 300dp stage.
+                  child: Semantics(
+                    button: true,
+                    label: loc.optionLabel(_q, i),
+                    child: InkWell(
+                      onTap: () => _pick(i),
+                      borderRadius: BorderRadius.circular(22),
+                      // Excluded inside the InkWell, never on the Semantics
+                      // above it — the short form drops the tap action and
+                      // leaves a button a reader cannot activate.
+                      child: ExcludeSemantics(
+                        child: Container(
+                          width: double.infinity,
+                          constraints: const BoxConstraints(minHeight: 64),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 14,
+                            vertical: 10,
+                          ),
+                          decoration: answerCardDecoration(),
+                          child: Row(
+                            children: [
+                              // Illustrate one-word answers ("Ball" → ⚽)
+                              // from the English source label.
+                              if (question.options[i].label
+                                      .trim()
+                                      .toLowerCase()
+                                  case final word
+                                      when lexiconLookup(word) != null) ...[
+                                AnswerPictureDisc(
+                                  glyph: lexiconLookup(word)!.emoji,
+                                  photoAsset: optionPhotoAsset(word),
+                                  size: 44,
+                                ),
+                                const SizedBox(width: 14),
+                              ],
+                              Expanded(
+                                child: Text(
+                                  loc.optionLabel(_q, i),
+                                  style: answerLabelStyle,
+                                ),
                               ),
-                            ),
-                            const SizedBox(width: 8),
-                          ],
-                          Flexible(child: Text(loc.optionLabel(_q, i))),
-                        ],
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                   ),

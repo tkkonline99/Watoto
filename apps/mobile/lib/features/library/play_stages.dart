@@ -15,6 +15,8 @@ import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
 import 'circuit_figures.dart';
 import 'content_lexicon.dart';
+import 'option_photos.dart';
+import 'option_words.dart';
 import 'play_stage_circuit.dart';
 import 'play_stage_code.dart';
 import 'step_motion.dart';
@@ -516,38 +518,69 @@ class ChoiceStageState extends State<ChoiceStage> {
     }
   }
 
+  /// The name written on an option, or null when the option is its own name.
+  ///
+  /// Authored choices arrive already localized, so their own word is the
+  /// caption. Lexicon-staged ones carry an English key, which [optionLabel]
+  /// translates — and deliberately declines to translate for the nonsense of a
+  /// reading minimal pair, where there is nothing to name.
+  String? _labelFor(ChoiceOption option, String lang) {
+    if (option.figure != null || option.hero != null) return option.word;
+    return optionLabel(option.word, lang);
+  }
+
   /// What one option looks like.
   ///
-  /// A drawn option is the diagram plus its caption: the picture carries the
-  /// answer, the caption says in words what the child is looking at. Reading
-  /// choices ("cap" vs "cape") render as words, and everything else as an
-  /// emoji-sized glyph.
-  Widget _optionChild(ChoiceOption option) {
-    Widget captioned(Widget picture) => Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            picture,
-            const SizedBox(height: 8),
-            Text(
-              option.word,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.w700,
-                color: WatotoColors.deep,
-              ),
-            ),
-          ],
-        );
-
+  /// Three interiors in one card. A picture gets its name written beside it,
+  /// because three bare emoji told the child nothing about what they were
+  /// choosing between — 🧑 😠 😊 on a first-words lesson is a guess, not a
+  /// question. A drawn diagram keeps its caption underneath, since shrinking
+  /// one into a 60dp disc would hide the very difference it asks about. And an
+  /// option that *is* its word — a quiz answer, 'cap' against 'cape' — stays
+  /// centred text, with nothing to caption it with.
+  Widget _optionChild(ChoiceOption option, String lang) {
     if (option.figure case final figure?) {
-      return captioned(CircuitFigureView(figure: figure));
+      return Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          CircuitFigureView(figure: figure),
+          const SizedBox(height: 8),
+          Text(
+            option.word,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w700,
+              color: WatotoColors.deep,
+            ),
+          ),
+        ],
+      );
     }
-    if (option.hero case final hero?) {
-      return captioned(Text(hero, style: const TextStyle(fontSize: 52)));
+
+    final label = _labelFor(option, lang);
+    if (option.isPictorial) {
+      final glyph = option.hero ?? option.emoji;
+      // No name for this picture in this language: show it alone rather than
+      // captioning it in English.
+      if (label == null) {
+        return Text(glyph, style: const TextStyle(fontSize: 48));
+      }
+      return Row(
+        children: [
+          AnswerPictureDisc(
+            glyph: glyph,
+            photoAsset: optionPhotoAsset(option.word),
+          ),
+          const SizedBox(width: 16),
+          Expanded(child: Text(label, style: answerLabelStyle)),
+        ],
+      );
     }
+
     return Text(
       option.emoji,
+      textAlign: TextAlign.center,
       style: isWordOption(option.emoji)
           ? const TextStyle(
               fontFamily: 'Baloo2',
@@ -562,6 +595,11 @@ class ChoiceStageState extends State<ChoiceStage> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    // The two-letter app language. Taken from the localizations rather than
+    // plumbed down from the player because every caller already builds one,
+    // and a stage that has to be handed its locale is a stage someone will
+    // eventually forget to hand it to.
+    final lang = l10n.localeName.split('_').first;
     return Column(
       children: [
         Wrap(
@@ -572,7 +610,10 @@ class ChoiceStageState extends State<ChoiceStage> {
             for (var i = 0; i < widget.plan.options.length; i++)
               Semantics(
                 button: true,
-                label: widget.plan.options[i].word,
+                // The reader announces what the card says, so a Swahili child
+                // hears "Mtu mzima", not the lexicon's English key.
+                label: _labelFor(widget.plan.options[i], lang) ??
+                    widget.plan.options[i].word,
                 child: GestureDetector(
                   onTap: () => _pick(i),
                   // The option's word is the Semantics label above; the glyph inside
@@ -608,24 +649,10 @@ class ChoiceStageState extends State<ChoiceStage> {
                             vertical: 12,
                           ),
                           alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(22),
-                            border: Border.all(
-                              color: _done && i == widget.plan.targetIndex
-                                  ? WatotoColors.leaf
-                                  : WatotoColors.sky.withValues(alpha: 0.25),
-                              width: 3,
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: WatotoColors.deep.withValues(alpha: 0.08),
-                                blurRadius: 10,
-                                offset: const Offset(0, 4),
-                              ),
-                            ],
+                          decoration: answerCardDecoration(
+                            highlight: _done && i == widget.plan.targetIndex,
                           ),
-                          child: _optionChild(widget.plan.options[i]),
+                          child: _optionChild(widget.plan.options[i], lang),
                         ),
                       ),
                     ),
@@ -645,6 +672,90 @@ class ChoiceStageState extends State<ChoiceStage> {
     );
   }
 }
+
+/// The picture half of a labelled option: the glyph on a soft disc, so the
+/// answer reads as one object rather than an emoji floating in a white card.
+///
+/// Sized to match the stage's own token disc in visual_stage.dart, scaled down
+/// — the same shape at the same tint, so a picture the child saw on the stage
+/// is recognisably the same picture when it turns up as an answer.
+///
+/// [size] shrinks for a quiz, which offers up to four answers and cannot spend
+/// a lesson's height on each one.
+///
+/// A word with a bundled photograph (option_photos.dart) shows that instead of
+/// the glyph, filling the disc. The glyph stays the fallback for everything
+/// else and for a photo that will not load, so the disc is never empty.
+class AnswerPictureDisc extends StatelessWidget {
+  const AnswerPictureDisc({
+    super.key,
+    required this.glyph,
+    this.photoAsset,
+    this.size = 58,
+  });
+
+  final String glyph;
+  final String? photoAsset;
+  final double size;
+
+  @override
+  Widget build(BuildContext context) {
+    final glyphChild = Text(glyph, style: TextStyle(fontSize: size * 0.55));
+    return Container(
+      width: size,
+      height: size,
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: WatotoColors.sun.withValues(alpha: 0.18),
+      ),
+      alignment: Alignment.center,
+      child: photoAsset == null
+          ? glyphChild
+          : Image.asset(
+              photoAsset!,
+              width: size,
+              height: size,
+              // The crop already centres the animal; cover fills the circle so
+              // there is no pale wedge between photo and rim.
+              fit: BoxFit.cover,
+              errorBuilder: (_, _, _) => glyphChild,
+            ),
+    );
+  }
+}
+
+/// The card every answer sits on, wherever the question came from.
+///
+/// Lessons and quizzes used to disagree about what an answer looked like — a
+/// white card with a picture on one screen, a flat blue pill on the next —
+/// which made two halves of the same activity read as two different apps.
+BoxDecoration answerCardDecoration({bool highlight = false}) => BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.circular(22),
+      border: Border.all(
+        color: highlight
+            ? WatotoColors.leaf
+            : WatotoColors.sky.withValues(alpha: 0.25),
+        width: 3,
+      ),
+      boxShadow: [
+        BoxShadow(
+          color: WatotoColors.deep.withValues(alpha: 0.08),
+          blurRadius: 10,
+          offset: const Offset(0, 4),
+        ),
+      ],
+    );
+
+/// The name written on an answer card.
+const answerLabelStyle = TextStyle(
+  fontFamily: 'Baloo2',
+  fontSize: 21,
+  fontWeight: FontWeight.w800,
+  height: 1.2,
+  color: WatotoColors.deep,
+);
 
 /// A multi-letter alphabetic option is a word to read, not an emoji/symbol.
 /// True for anything meant to be *read* — a word, a number, "80 and 12" — as

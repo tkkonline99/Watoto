@@ -353,9 +353,18 @@ void main() {
     await tester.tap(find.text('Keep going!'));
     await tester.pumpAndSettle();
 
-    // …which opens directly, with the illustrated option ("Dog" → 🐶).
+    // …which opens directly, with the illustrated option. "Dog" is one of the
+    // handful of words carrying a photograph (option_photos.dart), so it is
+    // illustrated by that rather than by 🐶 — the emoji is the fallback now,
+    // not the picture.
     expect(find.text('Which one says woof?'), findsOneWidget);
-    expect(find.text('🐶'), findsOneWidget);
+    expect(find.text('🐶'), findsNothing);
+    final dogPhoto = tester
+        .widgetList<Image>(find.byType(Image))
+        .where((i) => i.image is AssetImage)
+        .where((i) => (i.image as AssetImage).assetName.contains('dog.jpg'));
+    expect(dogPhoto, hasLength(1),
+        reason: 'the Dog answer should show its photograph');
   });
 
   testWidgets('chaining lesson -> lesson opens the new lesson, not the '
