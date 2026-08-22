@@ -16,6 +16,8 @@ const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 const LIB = path.join(ROOT, 'apps/mobile/assets/content/watoto_content_library.json');
 const IMGDIR = path.join(ROOT, 'apps/mobile/assets/images/img');
+const PHOTO_REGISTRY = path.join(
+  ROOT, 'apps/mobile/lib/features/library/option_photos.dart');
 
 const j = JSON.parse(fs.readFileSync(LIB, 'utf8'));
 const arr = j.content;
@@ -90,8 +92,23 @@ const stepArtRef = (item, stepIndex) => {
   return `s${stage}/step_${slug}_${stepIndex}.png`;
 };
 
-// ---- PNGs on disk that no item references ----
-const referenced = new Set();
+// A photograph that stands in for a lexicon glyph belongs to a *word*, not to
+// an item, so it is named in the Dart registry rather than anywhere in the
+// JSON. Same blind spot as `stepArtRef` above, and the same remedy: read the
+// other place a file can be claimed from, or every photo in the pack is
+// reported as an orphan the moment it is added.
+const photoRefs = () => {
+  try {
+    const src = fs.readFileSync(PHOTO_REGISTRY, 'utf8');
+    return [...src.matchAll(/assets\/images\/img\/(\S+?)'/g)].map((m) => m[1]);
+  } catch {
+    return [];
+  }
+};
+
+// ---- image files on disk that nothing references ----
+const IMAGE_EXT = /\.(png|jpe?g|webp)$/i;
+const referenced = new Set(photoRefs());
 for (const it of arr) {
   for (const a of it.assets || []) if (a.type === 'image') referenced.add(a.ref.replace(/^img\//, ''));
   for (const q of it.questions || []) for (const o of q.options || []) if (o.asset) referenced.add(o.asset.replace(/^img\//, ''));
@@ -104,6 +121,8 @@ for (const d of fs.readdirSync(IMGDIR)) {
   if (!fs.statSync(p).isDirectory()) continue;
   for (const f of fs.readdirSync(p)) {
     const rel = d + '/' + f;
+    // A licence or sources file sitting beside the art is not an orphan image.
+    if (!IMAGE_EXT.test(f)) continue;
     if (!referenced.has(rel)) orphans.push({ stage: parseInt(d.replace('s', ''), 10), file: f, rel });
   }
 }
@@ -234,7 +253,7 @@ md += `| Quizzes below their tier's question count | ${totals.shallowQuiz} |\n`;
 md += `| Stories below their tier's page count | ${totals.shallowStory} |\n`;
 md += `| Reading lessons with no recap | ${totals.norecap} |\n`;
 md += `| Items with no illustration | ${totals.noart} |\n`;
-md += `| Unreferenced PNGs on disk | ${orphans.length} |\n`;
+md += `| Unreferenced images on disk | ${orphans.length} |\n`;
 md += `| Steps with no declared mechanic | ${totals.bare} |\n`;
 md += `| Audio briefs with nothing recorded (the app loads none of them) | ${missingAudio.length} |\n\n`;
 md += 'Depth minimums are per design tier, for all three item types. Steps per lesson: `parent-led` 4,\n';
@@ -294,4 +313,4 @@ if (!missingAudio.length) {
 
 fs.writeFileSync(path.join(ROOT, 'docs/CONTENT_WORKLIST.md'), md);
 console.log('wrote docs/CONTENT_WORKLIST.md');
-console.log('totals:', JSON.stringify(totals), '| orphan PNGs:', orphans.length, '| missing audio:', missingAudio.length);
+console.log('totals:', JSON.stringify(totals), '| orphan images:', orphans.length, '| missing audio:', missingAudio.length);

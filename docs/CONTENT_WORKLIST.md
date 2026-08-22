@@ -16,7 +16,7 @@ _Library version 0.13.0, generated 2026-06-17._
 | Stories below their tier's page count | 0 |
 | Reading lessons with no recap | 0 |
 | Items with no illustration | 48 |
-| Unreferenced PNGs on disk | 0 |
+| Unreferenced images on disk | 0 |
 | Steps with no declared mechanic | 0 |
 | Audio briefs with nothing recorded (the app loads none of them) | 77 |
 

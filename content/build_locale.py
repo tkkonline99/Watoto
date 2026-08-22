@@ -1,13 +1,23 @@
 #!/usr/bin/env python3
 """
-Build French (fr) and Swahili (sw) locale bundles.
+Seed the French (fr) and Swahili (sw) locale bundles with the hand-written
+Stage 1 translations held below.
 
-Translators add keys here (or to the JSON directly); every key mirrors a key
-in i18n/en.json. Missing keys fall back to English at runtime, so a partial
-bundle is always safe to ship. This pass fully localizes Stage 1 (the
-pre-reader band, ages 0-1) into FR and SW.
+Every key mirrors a key in i18n/en.json. Missing keys fall back to English at
+runtime, so a partial bundle is always safe to ship.
+
+**This script merges; it does not rebuild.** It was written when the bundles
+held only what is in this file, and it wrote them with a plain `json.dump` -- so
+running it after `translate_content.py` had taken the two locales to 12,149 keys
+replaced all of them with the ~75 below, destroying every translation not
+hand-written here. That is not a hypothetical: it happened. The keys in this
+file are the authoritative version of *those* keys, and nothing else in the
+bundle is touched.
+
+    python build_locale.py            # merge the seeds into fr.json / sw.json
+    python build_locale.py --check    # report what would change, write nothing
 """
-import json, os
+import json, os, sys
 
 OUTDIR = "i18n"
 
@@ -195,8 +205,23 @@ sw = {
     "s01.sensory.lesson.03.parentNote": "Taja kila sauti kwa sauti wakati mtoto wako anagusa.",
 }
 
+check = "--check" in sys.argv
 os.makedirs(OUTDIR, exist_ok=True)
-for code, bundle in (("fr", fr), ("sw", sw)):
-    with open(f"{OUTDIR}/{code}.json", "w", encoding="utf-8", newline="\n") as f:
+for code, seeds in (("fr", fr), ("sw", sw)):
+    path = f"{OUTDIR}/{code}.json"
+    try:
+        with open(path, encoding="utf-8") as f:
+            bundle = json.load(f)
+    except FileNotFoundError:
+        bundle = {}
+    before = len(bundle)
+    changed = [k for k, v in seeds.items() if bundle.get(k) != v]
+    if check:
+        print(f"{path}: {before} strings, {len(changed)} of {len(seeds)} "
+              f"seeds would change")
+        continue
+    bundle.update(seeds)
+    with open(path, "w", encoding="utf-8", newline="\n") as f:
         json.dump(dict(sorted(bundle.items())), f, indent=2, ensure_ascii=False)
-    print(f"wrote {OUTDIR}/{code}.json — {len(bundle)} strings")
+    print(f"{path}: merged {len(seeds)} seeds, {before} -> {len(bundle)} "
+          f"strings, {len(changed)} changed")
