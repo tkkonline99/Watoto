@@ -1,0 +1,17 @@
+Photographs bundled with Watoto
+
+Source: Unsplash (https://unsplash.com). The Unsplash Licence grants
+free use, including commercially, with no attribution required and no
+permission needed. Retained here so the provenance of anything that
+ships is auditable at release time.
+
+Cropped and re-encoded by content/prep_photos.py; the originals are
+unmodified at the URLs below.
+
+dog.jpg  <-  https://unsplash.com/photos/rFao8fcvTdY
+chicken.jpg  <-  https://unsplash.com/photos/4W8FgDVyUME
+owl.jpg  <-  https://unsplash.com/photos/xWQcud4Xtr4
+
+Photographer names are not recorded: the licence does not
+require them and the photo pages are behind a bot check.
+Add them here if you would rather credit by name.
