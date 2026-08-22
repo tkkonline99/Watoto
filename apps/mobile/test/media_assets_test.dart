@@ -107,7 +107,7 @@ void main() {
       final refs = <String>{};
       for (final item in content.cast<Map<String, dynamic>>()) {
         if (item['type'] != 'story') continue;
-        for (final page in (item['pages'] as List? ?? []).cast<Map>()) {
+        for (final page in (item['pages'] as List? ?? []).cast<Map<String, dynamic>>()) {
           final ref = page['illustration'] as String?;
           if (ref != null && ref.isNotEmpty) refs.add(ref);
         }
