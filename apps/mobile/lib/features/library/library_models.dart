@@ -23,6 +23,19 @@ sealed class Visual {
   /// wants to key off a visual wants this.
   String get ref;
 
+  /// The same picture, described in another language.
+  ///
+  /// [alt] is authored in English and is both read aloud by a screen reader
+  /// and *printed on screen* wherever the art behind a slot has not been
+  /// drawn. Neither is acceptable to a child playing in Swahili or French, so
+  /// the localizing layer swaps the description and keeps the ref — the
+  /// picture is the same picture in every language.
+  Visual withAlt(String alt) => switch (this) {
+        TokenVisual(:final ref) => TokenVisual(ref: ref, alt: alt),
+        SceneVisual(:final ref) => SceneVisual(ref: ref, alt: alt),
+        SlotVisual(:final ref) => SlotVisual(ref: ref, alt: alt),
+      };
+
   static Visual? fromJson(Map<String, dynamic>? j) {
     if (j == null) return null;
     final ref = j['ref'] as String?;

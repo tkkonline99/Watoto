@@ -63,7 +63,12 @@ flutter:
   generate: true
   assets:
     - assets/content/
-    - assets/i18n/
+    # Named one by one rather than as a directory, so `assets/i18n/en.json`
+    # stays on disk for the translators and the coverage tests without being
+    # shipped. It is extracted from the content library, so every value in it
+    # is a string the app already carries — see ContentI18n.
+    - assets/i18n/fr.json
+    - assets/i18n/sw.json
     - assets/legal/
     - assets/licenses/
     - assets/audio/sfx/

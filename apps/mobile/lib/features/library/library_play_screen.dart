@@ -432,7 +432,10 @@ class _LessonViewState extends ConsumerState<_LessonView> {
     // In both cases the stage collapses rather than reserving empty space. A
     // slot or a scene still shows, because that is different art from
     // whatever the response is doing.
-    final visual = step.visual;
+    // Localized: the alt is announced to a screen reader and, on the 1,512
+    // parts whose art is still a brief, printed inside the striped
+    // placeholder. Authored in English, it was doing both in every language.
+    final visual = loc.stepVisual(_step);
     final stageRepeatsResponse = choice != null ||
         (stageShowsEmoji(plan.mechanic) && visual is TokenVisual);
 

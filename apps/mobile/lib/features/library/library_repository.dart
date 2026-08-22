@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -34,7 +35,14 @@ class LibraryRepository {
     final raw = await rootBundle.loadString(
       'assets/content/watoto_content_library.json',
     );
-    return LibraryRepository(parseLibraryItems(raw));
+    // 2.3 MB of JSON and 684 items to build from it. Decoded inline this ran
+    // on the platform thread while the first frame was trying to draw, which
+    // on a low-end Android phone is the difference between a splash that
+    // animates and one that sits still. `compute` is a no-op on web, where
+    // there is no second thread to move it to.
+    return LibraryRepository(
+      await compute(parseLibraryItems, raw, debugLabel: 'content-library'),
+    );
   }
 }
 

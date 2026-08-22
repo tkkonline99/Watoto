@@ -77,7 +77,11 @@ List<LibQuestion> localizedQuizQuestions({
         // its text, so any field not named here is silently dropped — the
         // declared visual was, and every quiz fell back to a glyph guessed
         // from the prompt while its scene sat unused in the content.
-        visual: quiz.questions[i].visual,
+        //
+        // Localized rather than copied: the visual's `alt` is a sentence, and
+        // it is both announced to a screen reader and printed on screen where
+        // the art behind a slot has not been drawn.
+        visual: loc.questionVisual(i),
       ),
   ];
 }

@@ -167,7 +167,9 @@ class StoryViewState extends ConsumerState<StoryView> {
         stageBanner: _invitesPress
             ? _PressBanner(shown: _pressed, text: _bannerText(l10n, page))
             : null,
-        stageSemanticLabel: page.visual?.alt,
+        // Localized, so a French or Swahili reader is not read the English
+        // brief before the page's own narration.
+        stageSemanticLabel: loc.pageVisual(_page)?.alt,
         prompt: loc.pageNarration(_page),
         promptAudio: ReplayNarrationButton(onReplay: _speakPage),
         response: Row(
