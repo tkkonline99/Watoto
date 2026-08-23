@@ -170,7 +170,7 @@ class KidCodeStageState extends State<KidCodeStage>
       _phase = 2;
       _output = '';
     });
-    HapticFeedback.mediumImpact();
+    unawaited(HapticFeedback.mediumImpact());
     final full = _expectedOutput;
     // Typewriter output — addictive "it worked!" moment.
     for (var i = 1; i <= full.length; i++) {
@@ -180,7 +180,7 @@ class KidCodeStageState extends State<KidCodeStage>
     }
     if (!mounted) return;
     setState(() => _phase = 3);
-    HapticFeedback.lightImpact();
+    unawaited(HapticFeedback.lightImpact());
     widget.onCompleted();
   }
 

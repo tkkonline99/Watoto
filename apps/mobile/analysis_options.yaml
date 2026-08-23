@@ -14,7 +14,11 @@ analyzer:
 linter:
   rules:
     avoid_print: true
-    # unawaited_futures: enable project-wide after cleanup pass
+    # On since the cleanup pass it was waiting for: there were ten, all of
+    # them haptics, route pushes or narration that nothing should wait for.
+    # Its value is the next one — a dropped await is how the first item of
+    # a session came to be narrated in English (cold_start_i18n_test.dart).
+    unawaited_futures: true
     prefer_const_constructors: true
     prefer_const_declarations: true
     prefer_final_locals: true

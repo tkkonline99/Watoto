@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -197,9 +199,9 @@ void main() {
     expect(find.byType(ReplayNarrationButton), findsOneWidget);
 
     // A button promising to speak must disappear when nothing will be said.
-    ProviderScope.containerOf(tester.element(find.byType(WatotoApp)))
+    unawaited(ProviderScope.containerOf(tester.element(find.byType(WatotoApp)))
         .read(narrationProvider.notifier)
-        .toggle();
+        .toggle());
     await tester.pumpAndSettle();
 
     expect(find.text('Hear it again'), findsNothing);

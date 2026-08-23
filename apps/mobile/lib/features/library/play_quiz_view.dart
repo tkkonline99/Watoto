@@ -82,11 +82,11 @@ class QuizViewState extends ConsumerState<QuizView> {
     // on a cold start is a frame *before* the bundle has finished loading.
     await ref.read(contentI18nProvider.future);
     if (!mounted) return;
-    ref.read(narrationProvider.notifier).speak(
+    unawaited(ref.read(narrationProvider.notifier).speak(
           _questions[_q].prompt,
           lang,
           style: SpeakStyle.lesson,
-        );
+        ));
   }
 
   void _offerHint() {

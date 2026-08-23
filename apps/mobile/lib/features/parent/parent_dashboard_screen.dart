@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart' hide Badge;
@@ -794,7 +796,7 @@ class ParentDashboardScreen extends ConsumerWidget {
                       .read(sessionProvider.notifier)
                       .selectChild(children.first.id);
                 }
-                if (context.mounted) context.push('/certificate');
+                if (context.mounted) unawaited(context.push('/certificate'));
               },
             ),
             const Divider(height: 32),

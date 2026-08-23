@@ -129,7 +129,7 @@ class _ChildHomeScreenState extends ConsumerState<ChildHomeScreen> {
           style: SpeakStyle.cheer,
         );
     if (!mounted) return;
-    context.push('/play/${item.id}');
+    unawaited(context.push('/play/${item.id}'));
     await ref.read(offlineStoreProvider).markGuidedTourDone(child.id);
   }
 
@@ -756,7 +756,7 @@ Future<void> _openSubject(
 
   final topic = subject.topicNameFor(stage);
   if (topic == null) return;
-  context.push('/subject/${stage.stage}/${Uri.encodeComponent(topic)}');
+  unawaited(context.push('/subject/${stage.stage}/${Uri.encodeComponent(topic)}'));
 }
 
 class _WelcomeBar extends StatelessWidget {

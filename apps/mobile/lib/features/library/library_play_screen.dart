@@ -225,11 +225,11 @@ class _LessonViewState extends ConsumerState<_LessonView> {
     // read the English text out in the child's own voice.
     final loc = await awaitLocalizedItem(ref, widget.item);
     if (!mounted) return;
-    ref.read(narrationProvider.notifier).speak(
+    unawaited(ref.read(narrationProvider.notifier).speak(
           loc.stepNarration(_step),
           lang,
           style: SpeakStyle.lesson,
-        );
+        ));
   }
 
   /// The child finished the step's interaction — reveal feedback, SFX, combo.

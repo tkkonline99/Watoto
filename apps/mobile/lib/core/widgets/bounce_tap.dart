@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -37,7 +39,7 @@ class _BounceTapState extends State<BounceTap>
   }
 
   Future<void> _press(VoidCallback action) async {
-    if (widget.haptic) HapticFeedback.selectionClick();
+    if (widget.haptic) unawaited(HapticFeedback.selectionClick());
     await _ctl.reverse();
     await _ctl.forward();
     action();
