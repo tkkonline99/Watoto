@@ -1,14 +1,22 @@
 """Generate flat kid-friendly illustrations from image_manifest.csv.
 
 Matches the shipped starter pack style: 512x512 RGBA, soft pastels, simple
-shapes, no embedded text. Free-tier default is stages 1–5; use --all for the
-full 543-image library.
+shapes, no embedded text. Free-tier default is stages 1-5; use --all for the
+full library.
 
 Usage (from apps/mobile):
     python tool/generate_art_batch.py                  # stages 1-5
     python tool/generate_art_batch.py --all            # all stages
     python tool/generate_art_batch.py --stages 1,2,3
     python tool/generate_art_batch.py --force          # overwrite existing
+
+**This tool declines briefs it cannot place.** What to draw is decided by
+`brief_classifier`, which returns None when the brief is ambiguous or names
+nothing it knows; the row is then counted as declined and no file is written.
+Roughly 40% of briefs land there, and that is the tool working: the slot keeps
+its striped placeholder, which states the art is undrawn and prints a true
+description of the part. See "Why the missing art is not generated" in the
+README for what happened when this had no way to decline.
 """
 from __future__ import annotations
 
@@ -20,6 +28,10 @@ import os
 import re
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from brief_classifier import classify
 
 try:
     from PIL import Image, ImageDraw, ImageFilter
@@ -353,27 +365,11 @@ def draw_number_badge(draw, cx, cy, n: str, color=TEAL):
             _circle(draw, cx + dx * 50, cy + dy * 50, 12, color)
 
 
-def draw_abstract(draw, seed: str, stage: int):
-    """Distinct abstract composition when no keyword matches."""
-    h = _hash(seed)
-    rng = [(h >> (i * 4)) & 0xF for i in range(8)]
-    for i in range(5):
-        cx = 80 + (rng[i % 8] * 37 + i * 70) % 360
-        cy = 90 + (rng[(i + 3) % 8] * 41 + i * 55) % 340
-        r = 40 + (rng[(i + 1) % 8] % 8) * 12
-        col = ACCENTS[(h + i * 3) % len(ACCENTS)]
-        if i % 3 == 0:
-            draw_star(draw, cx, cy, r * 0.7, col)
-        elif i % 3 == 1:
-            _circle(draw, cx, cy, r, col)
-        else:
-            draw.rounded_rectangle(
-                [cx - r, cy - r * 0.7, cx + r, cy + r * 0.7],
-                radius=20,
-                fill=col,
-            )
-    # warm sun accent
-    draw_sun(draw, 420, 90, 36, GOLD)
+# `draw_abstract` lived here: the catch-all that drew a random pastel
+# composition whenever no keyword matched. It is gone with the cascade
+# that needed it. The classifier now returns None instead, and None means
+# no file, which means the slot keeps a striped placeholder that says so.
+# A blob is not a picture of anything; it only looks like progress.
 
 
 _SCENE_RE = re.compile(r"\bscene\s*:\s*(.*)", re.IGNORECASE | re.DOTALL)
@@ -402,200 +398,283 @@ def scene_of(brief: str) -> str:
     m = _SCENE_RE.search(brief or "")
     return (m.group(1) if m else (brief or "")).strip()
 
+# ------------------------------------------------------------- motif painters
+#
+# One painter per motif key in brief_classifier.MOTIFS. Splitting the deciding
+# from the drawing is most of the point of the rewrite: the old code did both
+# in one `if` cascade, so the only way to ask "what would this brief draw?" was
+# to draw it, and the only way to test the decision was to inspect a PNG.
 
-def classify_and_draw(draw, brief: str, name: str, stage: int, seed: str):
-    t = f"{scene_of(brief)} {name}".lower()
+
+def _paint_body(draw, cx, cy, stage, seed):
+    draw_body(draw, cx, cy - 10, 190)
+
+
+def _paint_hands(draw, cx, cy, stage, seed):
+    draw_hands(draw, cx, cy, 150)
+
+
+def _paint_music(draw, cx, cy, stage, seed):
+    draw_note(draw, cx, cy, 170)
+
+
+def _paint_face(draw, cx, cy, stage, seed):
+    draw_face(draw, cx, cy - 10, 140, SOFT_BROWN)
+
+
+def _paint_bear(draw, cx, cy, stage, seed):
+    draw_bear(draw, cx, cy, 130)
+
+
+def _paint_bunny(draw, cx, cy, stage, seed):
+    draw_bunny(draw, cx, cy + 30, 110)
+
+
+def _paint_bird(draw, cx, cy, stage, seed):
+    draw_bird(draw, cx, cy, 100, _accent(seed))
+
+
+def _paint_fish(draw, cx, cy, stage, seed):
+    draw_fish(draw, cx, cy, 110, TEAL)
+
+
+def _paint_animal(draw, cx, cy, stage, seed):
+    col = _accent(seed)
+    _ellipse(draw, [cx - 140, cy - 80, cx + 140, cy + 120], col)
+    _circle(draw, cx + 90, cy - 60, 70, col)
+    _circle(draw, cx + 110, cy - 70, 10, NAVY)
+    _circle(draw, cx - 40, cy - 20, 12, NAVY)
+    _circle(draw, cx + 20, cy - 20, 12, NAVY)
+
+
+def _paint_night(draw, cx, cy, stage, seed):
+    draw.rectangle([0, 0, SIZE, SIZE], fill=(40, 70, 110, 255))
+    draw_star(draw, cx, cy - 20, 90, GOLD)
+    for i in range(8):
+        draw_star(draw, 40 + (i * 60 + _hash(seed + str(i))) % 420,
+                  40 + (i * 37) % 200, 12 + i % 10, GOLD)
+
+
+def _paint_sun(draw, cx, cy, stage, seed):
+    draw_sun(draw, cx, cy - 20, 100)
+
+
+def _paint_moon(draw, cx, cy, stage, seed):
+    _circle(draw, cx, cy, 110, GOLD)
+    _circle(draw, cx + 35, cy - 20, 90, STAGE_BG.get(stage, CREAM)[:3] + (255,))
+
+
+def _paint_rain(draw, cx, cy, stage, seed):
+    draw_cloud(draw, cx, cy - 40, 90)
+    for i in range(6):
+        x = cx - 80 + i * 30
+        draw.line([(x, cy + 40), (x - 8, cy + 100)], fill=TEAL, width=6)
+
+
+def _paint_cloud(draw, cx, cy, stage, seed):
+    draw_cloud(draw, cx, cy - 40, 90)
+
+
+def _paint_tree(draw, cx, cy, stage, seed):
+    draw_tree(draw, cx, cy - 20, 120)
+
+
+def _paint_flower(draw, cx, cy, stage, seed):
+    draw_flower(draw, cx, cy, 80, _accent(seed))
+
+
+def _paint_bubble(draw, cx, cy, stage, seed):
+    for i, (dx, dy, r) in enumerate([(-80, 40, 50), (20, -30, 70),
+                                     (100, 50, 40), (-20, 90, 30)]):
+        col = (*TEAL[:3], 120) if i % 2 else (*SKY[:3], 160)
+        _circle(draw, cx + dx, cy + dy, r, col)
+        _circle(draw, cx + dx - r * 0.3, cy + dy - r * 0.3, r * 0.15, WHITE)
+
+
+def _paint_ball(draw, cx, cy, stage, seed):
+    draw_ball(draw, cx, cy, 120, _accent(seed), GOLD)
+
+
+def _paint_bell(draw, cx, cy, stage, seed):
+    _ellipse(draw, [cx - 70, cy - 60, cx + 70, cy + 80], GOLD)
+    draw.rectangle([cx - 12, cy - 100, cx + 12, cy - 50], fill=SOFT_GRAY)
+    _circle(draw, cx, cy + 90, 14, CORAL)
+
+
+def _paint_cup(draw, cx, cy, stage, seed):
+    draw.rounded_rectangle([cx - 70, cy - 40, cx + 70, cy + 100], radius=16,
+                           fill=TEAL)
+    draw.arc([cx + 50, cy - 10, cx + 110, cy + 60], -90, 90, fill=TEAL,
+             width=10)
+
+
+def _paint_hat(draw, cx, cy, stage, seed):
+    _ellipse(draw, [cx - 120, cy + 20, cx + 120, cy + 80], CORAL)
+    draw.rectangle([cx - 60, cy - 80, cx + 60, cy + 40], fill=CORAL)
+
+
+def _paint_door(draw, cx, cy, stage, seed):
+    draw.rounded_rectangle([cx - 90, cy - 140, cx + 90, cy + 140], radius=12,
+                           fill=BROWN)
+    _circle(draw, cx + 50, cy + 10, 12, GOLD)
+
+
+def _paint_box(draw, cx, cy, stage, seed):
+    draw.rounded_rectangle([cx - 110, cy - 60, cx + 110, cy + 100], radius=16,
+                           fill=_accent(seed))
+
+
+def _paint_vehicle(draw, cx, cy, stage, seed):
+    draw_car(draw, cx, cy, 120, _accent(seed))
+
+
+def _paint_house(draw, cx, cy, stage, seed):
+    draw_house(draw, cx, cy, 110)
+
+
+def _paint_book(draw, cx, cy, stage, seed):
+    draw_book(draw, cx, cy, 110)
+
+
+def _paint_apple(draw, cx, cy, stage, seed):
+    draw_apple(draw, cx, cy, 100)
+
+
+def _paint_cloth(draw, cx, cy, stage, seed):
+    draw.rounded_rectangle([cx - 140, cy - 80, cx + 140, cy + 100], radius=30,
+                           fill=LAVENDER)
+    draw.rounded_rectangle([cx - 100, cy - 40, cx + 100, cy + 60], radius=20,
+                           fill=PEACH)
+
+
+def _paint_shoe(draw, cx, cy, stage, seed):
+    _ellipse(draw, [cx - 120, cy - 20, cx + 120, cy + 80], CORAL)
+    draw.rounded_rectangle([cx - 40, cy - 70, cx + 100, cy + 20], radius=30,
+                           fill=CORAL)
+
+
+def _paint_lamp(draw, cx, cy, stage, seed):
+    _ellipse(draw, [cx - 80, cy - 100, cx + 80, cy + 40], GOLD)
+    draw.rectangle([cx - 14, cy + 30, cx + 14, cy + 120], fill=SOFT_GRAY)
+    _ellipse(draw, [cx - 50, cy + 110, cx + 50, cy + 140], SOFT_GRAY)
+
+
+def _paint_colors(draw, cx, cy, stage, seed):
+    for i, col in enumerate([CORAL, GOLD, TEAL, LAVENDER, MINT, PINK]):
+        _circle(draw, cx, cy, 160 - i * 24, col)
+
+
+def _paint_water(draw, cx, cy, stage, seed):
+    _ellipse(draw, [cx - 160, cy - 20, cx + 160, cy + 100], SKY)
+    _circle(draw, cx - 40, cy - 10, 30, WHITE)
+    _circle(draw, cx + 50, cy, 22, WHITE)
+
+
+def _paint_heart(draw, cx, cy, stage, seed):
+    _circle(draw, cx - 50, cy - 20, 70, PINK)
+    _circle(draw, cx + 50, cy - 20, 70, PINK)
+    draw.polygon([(cx - 110, cy), (cx + 110, cy), (cx, cy + 130)], fill=PINK)
+
+
+def _paint_map(draw, cx, cy, stage, seed):
+    _circle(draw, cx, cy, 140, SKY)
+    _ellipse(draw, [cx - 80, cy - 60, cx + 20, cy + 40], GREEN)
+    _ellipse(draw, [cx + 10, cy + 10, cx + 100, cy + 90], LEAF)
+
+
+def _paint_shapes(draw, cx, cy, stage, seed):
+    draw.rounded_rectangle([cx - 140, cy - 60, cx - 20, cy + 60], radius=12,
+                           fill=CORAL)
+    _circle(draw, cx + 80, cy, 70, TEAL)
+    draw.polygon([(cx, cy - 130), (cx - 50, cy - 50), (cx + 50, cy - 50)],
+                 fill=GOLD)
+
+
+def _paint_number(draw, cx, cy, stage, seed, digits="3"):
+    draw_number_badge(draw, cx, cy, digits, _accent(seed))
+
+
+MOTIF_PAINTERS = {
+    "body": _paint_body,
+    "hands": _paint_hands,
+    "music": _paint_music,
+    "face": _paint_face,
+    "bear": _paint_bear,
+    "bunny": _paint_bunny,
+    "bird": _paint_bird,
+    "fish": _paint_fish,
+    "animal": _paint_animal,
+    "night": _paint_night,
+    "sun": _paint_sun,
+    "moon": _paint_moon,
+    "rain": _paint_rain,
+    "cloud": _paint_cloud,
+    "tree": _paint_tree,
+    "flower": _paint_flower,
+    "bubble": _paint_bubble,
+    "ball": _paint_ball,
+    "bell": _paint_bell,
+    "cup": _paint_cup,
+    "hat": _paint_hat,
+    "door": _paint_door,
+    "box": _paint_box,
+    "vehicle": _paint_vehicle,
+    "house": _paint_house,
+    "book": _paint_book,
+    "apple": _paint_apple,
+    "cloth": _paint_cloth,
+    "shoe": _paint_shoe,
+    "lamp": _paint_lamp,
+    "colors": _paint_colors,
+    "water": _paint_water,
+    "heart": _paint_heart,
+    "map": _paint_map,
+    "shapes": _paint_shapes,
+    "number": _paint_number,
+}
+
+_DIGIT_RE = re.compile(r"\b(\d{1,3})\b")
+
+
+def classify_and_draw(draw, brief: str, name: str, stage: int, seed: str,
+                      subject: str = "") -> str | None:
+    """Draw what [brief] describes. Returns the motif drawn, or None.
+
+    None means the classifier would not commit, and **nothing is drawn**. The
+    old version had no such answer: every brief it could not place fell through
+    to `draw_abstract`, so 519 of the library's undrawn slots would have been
+    filled with a coloured blob and another ~300 with a confidently wrong
+    picture. A slot left empty keeps its striped placeholder, which tells the
+    truth — see "Why the missing art is not generated" in the README.
+
+    [name] is no longer part of the matching. It is the output filename, and
+    feeding it in meant `step_reading_lesson_03_7` contributed the word "read"
+    and drew a book regardless of the brief.
+    """
+    verdict = classify(scene_of(brief), subject)
+    if verdict.motif is None:
+        return None
+    painter = MOTIF_PAINTERS.get(verdict.motif)
+    if painter is None:
+        return None
     cx, cy = SIZE // 2, SIZE // 2 + 10
-
-    # Body, hands and music come first: the pre-reading band leans on them
-    # constantly (clap to the beat, head shoulders knees and toes, sing the
-    # alphabet) and without a primitive each one fell through to an abstract
-    # blob — which is worse than the emoji the app falls back to when the file
-    # is simply absent. A drawn image has to beat that emoji to be worth
-    # shipping.
-    if any(k in t for k in ("shoulder", "knees", "toes", "whole body", "head, ")):
-        draw_body(draw, cx, cy - 10, 190)
-        return
-    if any(k in t for k in ("clap", "hands", "wave", "waving", "pat-a-cake")):
-        draw_hands(draw, cx, cy, 150)
-        return
-    if any(k in t for k in ("music", "song", "sing", "beat", "rhythm", "drum", "tune", "melody")):
-        draw_note(draw, cx, cy, 170)
-        return
-
-    # faces / people
-    if any(k in t for k in ("face", "baby", "smile", "caregiver", "mama", "dada", "child", "kid", "person", "people", "family", "hug", "kiss", "sneeze", "yawn", "head")):
-        draw_face(draw, cx, cy - 10, 140, PEACH if "baby" in t else SOFT_BROWN)
-        return
-    if "bear" in t or "teddy" in t:
-        draw_bear(draw, cx, cy, 130)
-        return
-    if "bunny" in t or "rabbit" in t:
-        draw_bunny(draw, cx, cy + 30, 110)
-        return
-    if "bird" in t:
-        draw_bird(draw, cx, cy, 100, _accent(seed))
-        if "nest" in t:
-            _ellipse(draw, [cx - 120, cy + 80, cx + 120, cy + 160], BROWN)
-            _ellipse(draw, [cx - 90, cy + 90, cx + 90, cy + 140], SOFT_BROWN)
-        if "leaf" in t:
-            _ellipse(draw, [cx - 160, cy - 40, cx - 40, cy + 60], LEAF)
-        return
-    if "fish" in t:
-        draw_fish(draw, cx, cy, 110, TEAL)
-        return
-    if any(k in t for k in ("cow", "farm", "animal", "cat", "kitten", "dog", "puppy", "lion", "elephant", "giraffe", "koala", "duck", "hen", "chick")):
-        # generic friendly animal blob + face
-        col = _accent(seed)
-        _ellipse(draw, [cx - 140, cy - 80, cx + 140, cy + 120], col)
-        _circle(draw, cx + 90, cy - 60, 70, col)
-        _circle(draw, cx + 110, cy - 70, 10, NAVY)
-        _circle(draw, cx - 40, cy - 20, 12, NAVY)
-        _circle(draw, cx + 20, cy - 20, 12, NAVY)
-        if "elephant" in t:
-            _ellipse(draw, [cx + 60, cy + 20, cx + 160, cy + 140], col)
-        return
-
-    # nature / sky
-    if "star" in t or "twinkle" in t or "night" in t or "sky" in t and "star" in t:
-        # dark-ish night with stars
-        draw.rectangle([0, 0, SIZE, SIZE], fill=(40, 70, 110, 255))
-        draw_star(draw, cx, cy - 20, 90, GOLD)
-        for i in range(8):
-            draw_star(draw, 40 + (i * 60 + _hash(seed + str(i))) % 420, 40 + (i * 37) % 200, 12 + i % 10, GOLD)
-        return
-    if "sun" in t or "sunrise" in t:
-        draw_sun(draw, cx, cy - 20, 100)
-        return
-    if "moon" in t:
-        _circle(draw, cx, cy, 110, GOLD)
-        _circle(draw, cx + 35, cy - 20, 90, STAGE_BG.get(stage, CREAM)[:3] + (255,))
-        return
-    if "cloud" in t or "rain" in t:
-        draw_cloud(draw, cx, cy - 40, 90)
-        if "rain" in t:
-            for i in range(6):
-                x = cx - 80 + i * 30
-                draw.line([(x, cy + 40), (x - 8, cy + 100)], fill=TEAL, width=6)
-        return
-    if "tree" in t or "leaf" in t or "forest" in t:
-        draw_tree(draw, cx, cy - 20, 120)
-        return
-    if "flower" in t or "garden" in t:
-        draw_flower(draw, cx, cy, 80, _accent(seed))
-        return
-    if "bubble" in t:
-        for i, (dx, dy, r) in enumerate([(-80, 40, 50), (20, -30, 70), (100, 50, 40), (-20, 90, 30)]):
-            col = (*TEAL[:3], 120) if i % 2 else (*SKY[:3], 160)
-            _circle(draw, cx + dx, cy + dy, r, col)
-            _circle(draw, cx + dx - r * 0.3, cy + dy - r * 0.3, r * 0.15, WHITE)
-        return
-
-    # objects
-    if "ball" in t:
-        draw_ball(draw, cx, cy, 120, _accent(seed), GOLD)
-        if "bell" in t:
-            _circle(draw, cx + 100, cy - 80, 50, GOLD)
-            draw.rectangle([cx + 92, cy - 130, cx + 108, cy - 100], fill=SOFT_GRAY)
-        return
-    if "bell" in t:
-        _ellipse(draw, [cx - 70, cy - 60, cx + 70, cy + 80], GOLD)
-        draw.rectangle([cx - 12, cy - 100, cx + 12, cy - 50], fill=SOFT_GRAY)
-        _circle(draw, cx, cy + 90, 14, CORAL)
-        return
-    if "drum" in t:
-        _ellipse(draw, [cx - 130, cy - 40, cx + 130, cy + 80], CORAL)
-        _ellipse(draw, [cx - 130, cy - 70, cx + 130, cy - 10], GOLD)
-        return
-    if "cup" in t:
-        draw.rounded_rectangle([cx - 70, cy - 40, cx + 70, cy + 100], radius=16, fill=TEAL)
-        draw.arc([cx + 50, cy - 10, cx + 110, cy + 60], -90, 90, fill=TEAL, width=10)
-        return
-    if "hat" in t:
-        _ellipse(draw, [cx - 120, cy + 20, cx + 120, cy + 80], CORAL)
-        draw.rectangle([cx - 60, cy - 80, cx + 60, cy + 40], fill=CORAL)
-        return
-    if "door" in t:
-        draw.rounded_rectangle([cx - 90, cy - 140, cx + 90, cy + 140], radius=12, fill=BROWN)
-        _circle(draw, cx + 50, cy + 10, 12, GOLD)
-        return
-    if "box" in t:
-        draw.rounded_rectangle([cx - 110, cy - 60, cx + 110, cy + 100], radius=16, fill=_accent(seed))
-        if "car" in t:
-            draw_car(draw, cx, cy + 20, 70, CORAL)
-        return
-    if "car" in t or "train" in t or "bus" in t:
-        draw_car(draw, cx, cy, 120, _accent(seed))
-        return
-    if "house" in t or "home" in t or "coop" in t:
-        draw_house(draw, cx, cy, 110)
-        return
-    if "book" in t or "letter" in t or "word" in t or "read" in t or "phon" in t:
-        draw_book(draw, cx, cy, 110)
-        return
-    if "apple" in t or "fruit" in t:
-        draw_apple(draw, cx, cy, 100)
-        return
-    if "cloth" in t or "blanket" in t:
-        draw.rounded_rectangle([cx - 140, cy - 80, cx + 140, cy + 100], radius=30, fill=LAVENDER)
-        draw.rounded_rectangle([cx - 100, cy - 40, cx + 100, cy + 60], radius=20, fill=PEACH)
-        return
-    if "shoe" in t:
-        _ellipse(draw, [cx - 120, cy - 20, cx + 120, cy + 80], CORAL)
-        draw.rounded_rectangle([cx - 40, cy - 70, cx + 100, cy + 20], radius=30, fill=CORAL)
-        return
-    if "lamp" in t or "light" in t or "glow" in t:
-        _ellipse(draw, [cx - 80, cy - 100, cx + 80, cy + 40], GOLD)
-        draw.rectangle([cx - 14, cy + 30, cx + 14, cy + 120], fill=SOFT_GRAY)
-        _ellipse(draw, [cx - 50, cy + 110, cx + 50, cy + 140], SOFT_GRAY)
-        return
-    if "color" in t or "swirl" in t or "gradient" in t or "spiral" in t:
-        for i, col in enumerate([CORAL, GOLD, TEAL, LAVENDER, MINT, PINK]):
-            _circle(draw, cx, cy, 160 - i * 24, col)
-        return
-    if "texture" in t or "tile" in t:
-        draw.rounded_rectangle([cx - 160, cy - 80, cx - 20, cy + 80], radius=20, fill=TEAL)
-        draw.rounded_rectangle([cx + 20, cy - 80, cx + 160, cy + 80], radius=20, fill=CORAL)
-        return
-    if "bath" in t or "splash" in t or "water" in t or "pond" in t:
-        _ellipse(draw, [cx - 160, cy - 20, cx + 160, cy + 100], SKY)
-        _circle(draw, cx - 40, cy - 10, 30, WHITE)
-        _circle(draw, cx + 50, cy, 22, WHITE)
-        return
-    if "drum" in t or "music" in t or "maraca" in t:
-        _ellipse(draw, [cx - 100, cy - 50, cx + 100, cy + 90], _accent(seed))
-        return
-    if re.search(r"\b\d+\b", t) or "number" in t or "count" in t:
-        m = re.search(r"\b(\d+)\b", t)
-        draw_number_badge(draw, cx, cy, m.group(1) if m else "3", _accent(seed))
-        return
-    if "hand" in t or "clap" in t or "wave" in t:
-        # simple mitten/hand
-        _ellipse(draw, [cx - 70, cy - 40, cx + 70, cy + 120], PEACH)
-        for i in range(4):
-            x = cx - 60 + i * 40
-            _ellipse(draw, [x - 18, cy - 120, x + 18, cy - 20], PEACH)
-        return
-    if "heart" in t or "love" in t:
-        _circle(draw, cx - 50, cy - 20, 70, PINK)
-        _circle(draw, cx + 50, cy - 20, 70, PINK)
-        draw.polygon([(cx - 110, cy), (cx + 110, cy), (cx, cy + 130)], fill=PINK)
-        return
-    if "map" in t or "world" in t or "earth" in t:
-        _circle(draw, cx, cy, 140, SKY)
-        _ellipse(draw, [cx - 80, cy - 60, cx + 20, cy + 40], GREEN)
-        _ellipse(draw, [cx + 10, cy + 10, cx + 100, cy + 90], LEAF)
-        return
-    if "shape" in t or "circle" in t or "square" in t or "triangle" in t or "pattern" in t:
-        draw.rounded_rectangle([cx - 140, cy - 60, cx - 20, cy + 60], radius=12, fill=CORAL)
-        _circle(draw, cx + 80, cy, 70, TEAL)
-        draw.polygon([(cx, cy - 130), (cx - 50, cy - 50), (cx + 50, cy - 50)], fill=GOLD)
-        return
-
-    draw_abstract(draw, seed, stage)
+    if verdict.motif == "number":
+        found = _DIGIT_RE.search(scene_of(brief))
+        painter(draw, cx, cy, stage, seed, digits=found.group(1) if found else "3")
+    else:
+        painter(draw, cx, cy, stage, seed)
+    return verdict.motif
 
 
-def render_image(image_ref: str, stage_raw: str, art_brief: str) -> Image.Image:
+def render_image(image_ref: str, stage_raw: str, art_brief: str,
+                 subject: str = "") -> Image.Image | None:
+    """The picture for one brief, or None when the brief cannot be placed.
+
+    None is a real answer and callers must handle it by writing no file. The
+    slot then keeps its striped placeholder, which states plainly that the art
+    is undrawn and prints a true description of the part — strictly better than
+    a picture that asserts something false about it.
+    """
     stage = _stage_primary(stage_raw)
     bg = STAGE_BG.get(stage, CREAM)
     img = Image.new("RGBA", (SIZE, SIZE), bg)
@@ -605,7 +684,8 @@ def render_image(image_ref: str, stage_raw: str, art_brief: str) -> Image.Image:
     # soft vignette-ish corner sun for warmth
     if stage <= 3:
         _circle(draw, 60, 60, 40, (*GOLD[:3], 90))
-    classify_and_draw(draw, art_brief, name, stage, seed)
+    if classify_and_draw(draw, art_brief, name, stage, seed, subject) is None:
+        return None
     # Softer preschool look; stages 1–3 get an extra pass (hero free-tier pack).
     img = img.filter(ImageFilter.SMOOTH)
     if stage <= 3:
@@ -637,7 +717,7 @@ def main():
     if not rows:
         sys.exit(f"No rows for stages={stages}")
 
-    written = skipped = 0
+    written = skipped = abstained = 0
     for row in rows:
         ref = row["image_ref"].replace("\\", "/").lstrip("/")
         # image_ref is like img/s01/ball.png
@@ -645,14 +725,22 @@ def main():
         if dest.exists() and not args.force:
             skipped += 1
             continue
+        img = render_image(ref, row["stage"],
+                           row.get("art_brief") or Path(ref).stem,
+                           row.get("subject") or "")
+        if img is None:
+            # The classifier would not commit. Writing nothing leaves the
+            # striped placeholder, which is the honest state.
+            abstained += 1
+            continue
         dest.parent.mkdir(parents=True, exist_ok=True)
-        img = render_image(ref, row["stage"], row.get("art_brief") or Path(ref).stem)
         img.save(dest, "PNG", optimize=True)
         written += 1
         if written % 50 == 0:
             print(f"  … {written} written")
 
-    print(f"Art batch done: wrote {written}, skipped existing {skipped}, total rows {len(rows)}")
+    print(f"Art batch done: wrote {written}, skipped existing {skipped}, "
+          f"declined {abstained}, total rows {len(rows)}")
     print(f"Output: {out_root}")
     return 0
 

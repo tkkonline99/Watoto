@@ -139,8 +139,22 @@ and prints a true description; a wrong picture says "this is finished" and
 misleads a child who is looking at it for a clue. Filling the slots would make
 `noart` read zero and make the app worse.
 
-These need an illustrator, or a classifier that understands the brief rather
-than grepping it. Until then the placeholder is the honest state.
+The classifier was rewritten rather than left as it was
+(`apps/mobile/tool/brief_classifier.py`, tested by `test_brief_classifier.py`).
+It matches whole words instead of substrings, scores every motif and takes the
+best rather than the first rule written, and — the part that matters — returns
+None when it cannot place a brief, so `generate_art_batch.py` writes no file
+and the placeholder stays. It is confident about 44% of the undrawn slots and
+declines the rest, where the old cascade drew something for 66% and was wrong
+or blank-eyed for about half of that.
+
+So the tool is now safe to run, and running it would fill roughly 670 of the
+1,512. That is still a decision rather than an obligation: these are shapes on
+a pastel ground, not illustration, and a subject-appropriate shape is a
+different thing from a good picture. What is settled is that it will no longer
+draw a rain cloud over a question about fruit.
+
+The rest need an illustrator. Until then the placeholder is the honest state.
 
 ### Media
 
