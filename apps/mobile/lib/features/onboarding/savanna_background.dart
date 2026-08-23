@@ -192,8 +192,29 @@ class SavannaScaffold extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(18, 12, 14, 0),
                   child: Row(
                     children: [
-                      const _Wordmark(),
-                      const Spacer(),
+                      // The wordmark is a logo, not content, and it used to be
+                      // laid out at whatever width it wanted. "Text size" goes
+                      // to 1.6 and stacks on the device's own setting, so at
+                      // around 2x it grew wider than the bar and pushed the
+                      // account, language and parent-zone buttons off the
+                      // right edge — the top bar overflowed on every screen
+                      // built on this scaffold, including onboarding.
+                      //
+                      // The controls take their size first and the mark takes
+                      // what is left, shrinking only when there is not enough.
+                      // At ordinary text sizes nothing moves; a reader who
+                      // needs large text keeps the buttons instead of losing
+                      // them to the brand.
+                      const Expanded(
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            alignment: Alignment.centerLeft,
+                            child: _Wordmark(),
+                          ),
+                        ),
+                      ),
                       ?topRight,
                     ],
                   ),
