@@ -150,6 +150,26 @@ def floor(alt: str, item: dict) -> str:
     return f"{alt}, from the {item.get('type', 'lesson')} '{item['title']}'"
 
 
+# An art brief may end with a note addressed to whoever draws the picture,
+# and on a question step that note states the answer outright:
+#
+#   "Three and one more is. DO NOT depict the answer (Four) or anything that
+#    reveals it; draw only what the sentence states."
+#
+# The brief is the right place for that. `alt` is not. It is the stage's
+# screen-reader label and the text printed inside the striped placeholder
+# wherever the art is still undrawn — which is exactly these parts — so all
+# 191 of them read the instruction out to a child and named the answer while
+# doing it. A blind child was told "four" before being asked.
+_ILLUSTRATOR_NOTE = re.compile(
+    r"\s*\bdo\s+not\s+depict\b.*$",
+    re.IGNORECASE | re.DOTALL)
+
+def strip_illustrator_note(scene: str) -> str:
+    """The half of a brief that describes the picture, without the direction."""
+    return _ILLUSTRATOR_NOTE.sub("", scene).strip().rstrip(" .,;")
+
+
 def load_manifest_briefs() -> dict[str, str]:
     """part key -> the descriptive half of an already-written art brief."""
     if not MANIFEST.exists():
@@ -162,7 +182,7 @@ def load_manifest_briefs() -> dict[str, str]:
                 continue
             # Briefs are "<style boilerplate>. Scene: <the actual subject>."
             scene = brief.split("Scene:", 1)[-1].strip() if "Scene:" in brief else brief
-            scene = scene.rstrip(" .")
+            scene = strip_illustrator_note(scene.rstrip(" ."))
             for key in (row.get("used_by") or "").split(";"):
                 key = key.strip()
                 if key and scene:

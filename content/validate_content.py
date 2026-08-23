@@ -83,6 +83,9 @@ def token_allows(allowed, claimed, subject):
             return True
     return False
 
+ILLUSTRATOR_NOTE = re.compile(r"\bdo\s+not\s+depict\b", re.IGNORECASE)
+
+
 def check_visual(cid, where, visual, skills, subject, tokens,
                  errors, warnings, assets, rendered, slots, *, is_page):
     """Grade one visual object. `where` is e.g. "step 2" or "question 0"."""
@@ -102,6 +105,16 @@ def check_visual(cid, where, visual, skills, subject, tokens,
     if len(alt.split()) < 4:
         errors.append(f"{cid}: {where} visual.alt must be a real description "
                       f"(>=4 words) — it is the screen-reader label and the art brief")
+    # An art brief may carry a direction to whoever draws the picture, and on a
+    # question step that direction states the answer: "DO NOT depict the answer
+    # (Four)". `alt` is announced to a screen reader and printed inside the
+    # striped placeholder, so 191 parts read that out and named the answer
+    # while doing it. `author_visuals.strip_illustrator_note` keeps it in the
+    # manifest and out of here; this is what makes it stay out.
+    if ILLUSTRATOR_NOTE.search(alt):
+        errors.append(f"{cid}: {where} visual.alt carries an instruction meant "
+                      f"for the illustrator, and it names the answer — a screen "
+                      f"reader reads this to the child: {alt!r}")
 
     if mode == "token" and ref:
         if tokens is None:

@@ -10703,7 +10703,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s03/step_counting_lesson_05_1.png",
-            "alt": "Three and one more is. DO NOT depict the answer (Four) or anything that reveals it; draw only what the sentence states"
+            "alt": "Three and one more is"
           }
         },
         {
@@ -12504,7 +12504,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s03/step_patterns_lesson_05_1.png",
-            "alt": "Keep it going: red, blue. DO NOT depict the answer (Blue) or anything that reveals it; draw only what the sentence states"
+            "alt": "Keep it going: red, blue"
           }
         },
         {
@@ -13175,7 +13175,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s03/step_phono_lesson_02_1.png",
-            "alt": "They all end the same way. DO NOT depict the answer (Rhyming words) or anything that reveals it; draw only what the sentence states"
+            "alt": "They all end the same way"
           }
         },
         {
@@ -16206,7 +16206,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s04/step_arts_lesson_05_1.png",
-            "alt": "Slow music. Sway slowly. DO NOT depict the answer (Slowly) or anything that reveals it; draw only what the sentence states"
+            "alt": "Slow music. Sway slowly"
           }
         },
         {
@@ -16305,7 +16305,7 @@
           "visual": {
             "mode": "token",
             "ref": "giraffe",
-            "alt": "Now pretend to be a tall giraffe. DO NOT depict the answer (Tall and high) or anything that reveals it; draw only what the sentence states"
+            "alt": "Now pretend to be a tall giraffe"
           }
         },
         {
@@ -17460,7 +17460,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s04/step_literacy_lesson_06_1.png",
-            "alt": "Fan. DO NOT depict the answer (Fan) or anything that reveals it; draw only what the sentence states"
+            "alt": "Fan, from the lesson 'Rhyme Time'"
           }
         },
         {
@@ -18287,7 +18287,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s04/step_math_lesson_03_0.png",
-            "alt": "Hold up 1 finger and 1 more. DO NOT depict the answer (2) or anything that reveals it; draw only what the sentence states"
+            "alt": "Hold up 1 finger and 1 more"
           }
         },
         {
@@ -18303,7 +18303,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s04/step_math_lesson_03_1.png",
-            "alt": "Now 2 and 1 more. DO NOT depict the answer (That) or anything that reveals it; draw only what the sentence states"
+            "alt": "Now 2 and 1 more"
           }
         },
         {
@@ -18402,7 +18402,7 @@
           "visual": {
             "mode": "scene",
             "ref": "shape.loose-objects",
-            "alt": "Now the triangle and the rectangle. DO NOT depict the answer (Triangle) or anything that reveals it; draw only what the sentence states"
+            "alt": "Now the triangle and the rectangle"
           }
         },
         {
@@ -18597,7 +18597,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s04/step_math_lesson_06_1.png",
-            "alt": "Now red, blue, green, red, blue. DO NOT depict the answer (Green) or anything that reveals it; draw only what the sentence states"
+            "alt": "Now red, blue, green, red, blue"
           }
         },
         {
@@ -19774,7 +19774,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s04/step_science_lesson_06_0.png",
-            "alt": "The leaf in water. DO NOT depict the answer (Floats) or anything that reveals it; draw only what the sentence states"
+            "alt": "The leaf in water"
           }
         },
         {
@@ -19790,7 +19790,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s04/step_science_lesson_06_1.png",
-            "alt": "The stone. DO NOT depict the answer (Sinks) or anything that reveals it; draw only what the sentence states"
+            "alt": "The stone, from the lesson 'Float or Sink'"
           }
         },
         {
@@ -20861,7 +20861,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s04/step_social_lesson_05_1.png",
-            "alt": "When someone helps, we say thank you. DO NOT depict the answer (Thank you) or anything that reveals it; draw only what the sentence states"
+            "alt": "When someone helps, we say thank you"
           }
         },
         {
@@ -21738,7 +21738,7 @@
           "visual": {
             "mode": "token",
             "ref": "ball",
-            "alt": "Take turns rolling the ball. DO NOT depict the answer (You, then me) or anything that reveals it; draw only what the sentence states"
+            "alt": "Take turns rolling the ball"
           }
         },
         {
@@ -21930,7 +21930,7 @@
           "visual": {
             "mode": "token",
             "ref": "hug",
-            "alt": "Now offer a hug or help. DO NOT depict the answer (A hug or help) or anything that reveals it; draw only what the sentence states"
+            "alt": "Now offer a hug or help"
           }
         },
         {
@@ -22029,7 +22029,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s04/step_semotional_lesson_05_1.png",
-            "alt": "Helping makes us both feel good. DO NOT depict the answer (Both of us) or anything that reveals it; draw only what the sentence states"
+            "alt": "Helping makes us both feel good"
           }
         },
         {
@@ -22128,7 +22128,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s04/step_semotional_lesson_06_1.png",
-            "alt": "You did it! Trying again works. DO NOT depict the answer (Trying again) or anything that reveals it; draw only what the sentence states"
+            "alt": "You did it! Trying again works"
           }
         },
         {
@@ -23046,7 +23046,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s05/step_coding_lesson_03_1.png",
-            "alt": "Loops repeat steps so we don't write them all. DO NOT depict the answer (Repeats steps) or anything that reveals it; draw only what the sentence states"
+            "alt": "Loops repeat steps so we don't write them all"
           }
         },
         {
@@ -23164,7 +23164,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s05/step_coding_lesson_04_1.png",
-            "alt": "Fix it so the robot reaches the apple. DO NOT depict the answer (Debugging) or anything that reveals it; draw only what the sentence states"
+            "alt": "Fix it so the robot reaches the apple"
           }
         },
         {
@@ -23394,7 +23394,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s05/step_coding_lesson_06_1.png",
-            "alt": "Add it to a loop to play it again. DO NOT depict the answer (Put it in a loop) or anything that reveals it; draw only what the sentence states"
+            "alt": "Add it to a loop to play it again"
           }
         },
         {
@@ -24184,7 +24184,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s05/step_math_lesson_02_1.png",
-            "alt": "Now take away 2 more. DO NOT depict the answer (2) or anything that reveals it; draw only what the sentence states"
+            "alt": "Now take away 2 more"
           }
         },
         {
@@ -24533,7 +24533,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s05/step_math_lesson_05_1.png",
-            "alt": "These two are the same. They are equal. DO NOT depict the answer (Same) or anything that reveals it; draw only what the sentence states"
+            "alt": "These two are the same. They are equal"
           }
         },
         {
@@ -24639,7 +24639,7 @@
           "visual": {
             "mode": "token",
             "ref": "pencil",
-            "alt": "Lay the cubes along the pencil. DO NOT depict the answer (Four cubes) or anything that reveals it; draw only what the sentence states"
+            "alt": "Lay the cubes along the pencil"
           }
         },
         {
@@ -24656,7 +24656,7 @@
           "visual": {
             "mode": "token",
             "ref": "crayon",
-            "alt": "The crayon is shorter. Three cubes. DO NOT depict the answer (Three cubes) or anything that reveals it; draw only what the sentence states"
+            "alt": "The crayon is shorter. Three cubes"
           }
         },
         {
@@ -25680,7 +25680,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s05/step_reading_lesson_04_1.png",
-            "alt": "Now m-a-p. DO NOT depict the answer (map) or anything that reveals it; draw only what the sentence states"
+            "alt": "Now m-a-p, from the lesson 'Blend Words'"
           }
         },
         {
@@ -25799,7 +25799,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s05/step_reading_lesson_05_1.png",
-            "alt": "B + ig = big. D + ig = dig. DO NOT depict the answer (big) or anything that reveals it; draw only what the sentence states"
+            "alt": "B + ig = big. D + ig = dig"
           }
         },
         {
@@ -25917,7 +25917,7 @@
           "visual": {
             "mode": "token",
             "ref": "cat",
-            "alt": "The cat is big. DO NOT depict the answer (The cat is big) or anything that reveals it; draw only what the sentence states"
+            "alt": "The cat is big"
           }
         },
         {
@@ -26583,7 +26583,7 @@
           "visual": {
             "mode": "token",
             "ref": "dog",
-            "alt": "Is a dog living or non-living. DO NOT depict the answer (Living) or anything that reveals it; draw only what the sentence states"
+            "alt": "Is a dog living or non-living"
           }
         },
         {
@@ -26599,7 +26599,7 @@
           "visual": {
             "mode": "token",
             "ref": "rock",
-            "alt": "Is a rock living or non-living. DO NOT depict the answer (Non-living) or anything that reveals it; draw only what the sentence states"
+            "alt": "Is a rock living or non-living"
           }
         },
         {
@@ -27044,7 +27044,7 @@
           "visual": {
             "mode": "token",
             "ref": "door",
-            "alt": "To open the door away from you, do we push or pull. DO NOT depict the answer (Push) or anything that reveals it; draw only what the sentence states"
+            "alt": "To open the door away from you, do we push or pull"
           }
         },
         {
@@ -27060,7 +27060,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s05/step_science_lesson_05_1.png",
-            "alt": "To bring the wagon close, we pull. DO NOT depict the answer (Pull) or anything that reveals it; draw only what the sentence states"
+            "alt": "To bring the wagon close, we pull"
           }
         },
         {
@@ -27177,7 +27177,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s05/step_science_lesson_06_1.png",
-            "alt": "Warm makes ice melt back to water. DO NOT depict the answer (Melt) or anything that reveals it; draw only what the sentence states"
+            "alt": "Warm makes ice melt back to water"
           }
         },
         {
@@ -28314,7 +28314,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s05/step_social_lesson_05_1.png",
-            "alt": "Flags have colors and shapes. DO NOT depict the answer (Colors and shapes) or anything that reveals it; draw only what the sentence states"
+            "alt": "Flags have colors and shapes"
           }
         },
         {
@@ -29224,7 +29224,7 @@
           "visual": {
             "mode": "scene",
             "ref": "arithmetic.number-sentence",
-            "alt": "6 + 3 = 9. DO NOT depict the answer (9) or anything that reveals it; draw only what the sentence states"
+            "alt": "6 + 3 = 9"
           }
         },
         {
@@ -29368,7 +29368,7 @@
           "visual": {
             "mode": "scene",
             "ref": "arithmetic.number-sentence",
-            "alt": "10 - 4 = 6. DO NOT depict the answer (6) or anything that reveals it; draw only what the sentence states"
+            "alt": "10 - 4 = 6"
           }
         },
         {
@@ -31004,7 +31004,7 @@
           "visual": {
             "mode": "token",
             "ref": "fish",
-            "alt": "I see a big fish. DO NOT depict the answer (big) or anything that reveals it; draw only what the sentence states"
+            "alt": "I see a big fish"
           }
         },
         {
@@ -32062,7 +32062,7 @@
           "visual": {
             "mode": "token",
             "ref": "ice",
-            "alt": "Ice is hard. DO NOT depict the answer (Solid) or anything that reveals it; draw only what the sentence states"
+            "alt": "Ice is hard, from the lesson 'Solid, Liquid, Gas'"
           }
         },
         {
@@ -32079,7 +32079,7 @@
           "visual": {
             "mode": "token",
             "ref": "water",
-            "alt": "Water pours. DO NOT depict the answer (Liquid) or anything that reveals it; draw only what the sentence states"
+            "alt": "Water pours, from the lesson 'Solid, Liquid, Gas'"
           }
         },
         {
@@ -32096,7 +32096,7 @@
           "visual": {
             "mode": "token",
             "ref": "steam",
-            "alt": "Steam floats away. DO NOT depict the answer (Gas) or anything that reveals it; draw only what the sentence states"
+            "alt": "Steam floats away, from the lesson 'Solid, Liquid, Gas'"
           }
         },
         {
@@ -34115,7 +34115,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s06/step_social_lesson_05_1.png",
-            "alt": "We wear different clothes and speak different languages. All special. DO NOT depict the answer (All special) or anything that reveals it; draw only what the sentence states"
+            "alt": "We wear different clothes and speak different languages. All special"
           }
         },
         {
@@ -35447,7 +35447,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s06/step_tech_lesson_04_1.png",
-            "alt": "Patterns repeat. DO NOT depict the answer (Red, then blue) or anything that reveals it; draw only what the sentence states"
+            "alt": "Patterns repeat, from the lesson 'Spot the Pattern'"
           }
         },
         {
@@ -35587,7 +35587,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s06/step_tech_lesson_05_0.png",
-            "alt": "Which part do we look at and tap. DO NOT depict the answer (The screen) or anything that reveals it; draw only what the sentence states"
+            "alt": "Which part do we look at and tap"
           }
         },
         {
@@ -35603,7 +35603,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s06/step_tech_lesson_05_1.png",
-            "alt": "Which part turns the tablet on and off. DO NOT depict the answer (The button) or anything that reveals it; draw only what the sentence states"
+            "alt": "Which part turns the tablet on and off"
           }
         },
         {
@@ -35743,7 +35743,7 @@
           "visual": {
             "mode": "token",
             "ref": "grown",
-            "alt": "Grown-ups help keep us safe online. DO NOT depict the answer (A grown-up) or anything that reveals it; draw only what the sentence states"
+            "alt": "Grown-ups help keep us safe online"
           }
         },
         {
@@ -36664,7 +36664,7 @@
           "visual": {
             "mode": "token",
             "ref": "mouth",
-            "alt": "Germs get inside you through your mouth, so one moment matters most. DO NOT depict the answer (Before eating) or anything that reveals it; draw only what the sentence states"
+            "alt": "Germs get inside you through your mouth, so one moment matters most"
           }
         },
         {
@@ -36715,7 +36715,7 @@
           "visual": {
             "mode": "token",
             "ref": "water",
-            "alt": "Water alone only pushes germs about. Soap lifts them off. DO NOT depict the answer (Soap and water) or anything that reveals it; draw only what the sentence states"
+            "alt": "Water alone only pushes germs about. Soap lifts them off"
           }
         },
         {
@@ -36732,7 +36732,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s07/step_health_lesson_02_6.png",
-            "alt": "You have been playing outside in the dirt. DO NOT depict the answer (Wash your hands) or anything that reveals it; draw only what the sentence states"
+            "alt": "You have been playing outside in the dirt"
           }
         },
         {
@@ -36760,7 +36760,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s07/step_health_lesson_02_8.png",
-            "alt": "You know the whole routine now. DO NOT depict the answer (Scrubbing with soap) or anything that reveals it; draw only what the sentence states"
+            "alt": "You know the whole routine now"
           }
         }
       ],
@@ -36966,7 +36966,7 @@
           "visual": {
             "mode": "token",
             "ref": "happy",
-            "alt": "Moving every day keeps us healthy and happy. DO NOT depict the answer (Every day) or anything that reveals it; draw only what the sentence states"
+            "alt": "Moving every day keeps us healthy and happy"
           }
         },
         {
@@ -37105,7 +37105,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s07/step_health_lesson_05_1.png",
-            "alt": "A calm bedtime helps us sleep well. DO NOT depict the answer (A calm bedtime) or anything that reveals it; draw only what the sentence states"
+            "alt": "A calm bedtime helps us sleep well"
           }
         },
         {
@@ -38164,7 +38164,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s07/step_math_lesson_02_2.png",
-            "alt": "Eight is nearly ten. DO NOT depict the answer (2) or anything that reveals it; draw only what the sentence states"
+            "alt": "Eight is nearly ten"
           }
         },
         {
@@ -38206,7 +38206,7 @@
           "visual": {
             "mode": "scene",
             "ref": "arithmetic.number-sentence",
-            "alt": "Now the hard sum has become an easy one: 10 + 5. DO NOT depict the answer (15) or anything that reveals it; draw only what the sentence states"
+            "alt": "Now the hard sum has become an easy one: 10 + 5"
           }
         },
         {
@@ -38235,7 +38235,7 @@
           "visual": {
             "mode": "scene",
             "ref": "arithmetic.number-sentence",
-            "alt": "Your turn. We want to add 9 + 6. DO NOT depict the answer (1) or anything that reveals it; draw only what the sentence states"
+            "alt": "Your turn. We want to add 9 + 6"
           }
         },
         {
@@ -38348,7 +38348,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s07/step_math_lesson_03_2.png",
-            "alt": "How far is 15 from 10. DO NOT depict the answer (5) or anything that reveals it; draw only what the sentence states"
+            "alt": "How far is 15 from 10"
           }
         },
         {
@@ -38401,7 +38401,7 @@
           "visual": {
             "mode": "scene",
             "ref": "arithmetic.number-sentence",
-            "alt": "This one lands on ten in a single step. DO NOT depict the answer (10) or anything that reveals it; draw only what the sentence states"
+            "alt": "This one lands on ten in a single step"
           }
         },
         {
@@ -38514,7 +38514,7 @@
           "visual": {
             "mode": "scene",
             "ref": "counting.tens-and-units",
-            "alt": "The bundles of ten in 47. DO NOT depict the answer (4) or anything that reveals it; draw only what the sentence states"
+            "alt": "The bundles of ten in 47"
           }
         },
         {
@@ -38556,7 +38556,7 @@
           "visual": {
             "mode": "scene",
             "ref": "counting.tens-and-units",
-            "alt": "Now backwards: build the number from its parts. DO NOT depict the answer (62) or anything that reveals it; draw only what the sentence states"
+            "alt": "Now backwards: build the number from its parts"
           }
         },
         {
@@ -38586,7 +38586,7 @@
           "visual": {
             "mode": "scene",
             "ref": "counting.tens-and-units",
-            "alt": "Tens are worth more than ones, so look at the tens first. DO NOT depict the answer (85) or anything that reveals it; draw only what the sentence states"
+            "alt": "Tens are worth more than ones, so look at the tens first"
           }
         },
         {
@@ -38675,7 +38675,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s07/step_math_lesson_05_1.png",
-            "alt": "Clock. DO NOT depict the answer (o'clock) or anything that reveals it; draw only what the sentence states"
+            "alt": "Clock, from the lesson 'Tell Time to the Hour'"
           }
         },
         {
@@ -38816,7 +38816,7 @@
           "visual": {
             "mode": "token",
             "ref": "coin",
-            "alt": "Read the number on each coin. DO NOT depict the answer (10) or anything that reveals it; draw only what the sentence states"
+            "alt": "Read the number on each coin"
           }
         },
         {
@@ -38882,7 +38882,7 @@
           "visual": {
             "mode": "token",
             "ref": "mango",
-            "alt": "You have 20. The mango costs 15. DO NOT depict the answer (Yes) or anything that reveals it; draw only what the sentence states"
+            "alt": "You have 20. The mango costs 15"
           }
         },
         {
@@ -38912,7 +38912,7 @@
           "visual": {
             "mode": "token",
             "ref": "coins",
-            "alt": "Sometimes different coins make the same amount. DO NOT depict the answer (10 + 1) or anything that reveals it; draw only what the sentence states"
+            "alt": "Sometimes different coins make the same amount"
           }
         }
       ],
@@ -39650,7 +39650,7 @@
           "visual": {
             "mode": "scene",
             "ref": "audio.waveform",
-            "alt": "Read it again: cape. The new e is silent. You never say it out loud. DO NOT depict the answer (cape) or anything that reveals it; draw only what the sentence states"
+            "alt": "Read it again: cape. The new e is silent. You never say it out loud"
           }
         },
         {
@@ -39679,7 +39679,7 @@
           "visual": {
             "mode": "scene",
             "ref": "audio.waveform",
-            "alt": "Look for the quiet e at the end of the word. DO NOT depict the answer (hope) or anything that reveals it; draw only what the sentence states"
+            "alt": "Look for the quiet e at the end of the word"
           }
         },
         {
@@ -39708,7 +39708,7 @@
           "visual": {
             "mode": "token",
             "ref": "rain",
-            "alt": "Find the two letters doing the work in rain. DO NOT depict the answer (a and i) or anything that reveals it; draw only what the sentence states"
+            "alt": "Find the two letters doing the work in rain"
           }
         },
         {
@@ -39726,7 +39726,7 @@
           "visual": {
             "mode": "scene",
             "ref": "audio.waveform",
-            "alt": "Listen for that same /ay/ sound in another word. DO NOT depict the answer (train) or anything that reveals it; draw only what the sentence states"
+            "alt": "Listen for that same /ay/ sound in another word"
           }
         },
         {
@@ -39755,7 +39755,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s07/step_reading_lesson_01_9.png",
-            "alt": "The tail is long. DO NOT depict the answer (tail) or anything that reveals it; draw only what the sentence states"
+            "alt": "The tail is long"
           }
         }
       ],
@@ -39964,7 +39964,7 @@
           "visual": {
             "mode": "scene",
             "ref": "audio.waveform",
-            "alt": "Say black slowly and listen to the very start. DO NOT depict the answer (bl) or anything that reveals it; draw only what the sentence states"
+            "alt": "Say black slowly and listen to the very start"
           }
         },
         {
@@ -40006,7 +40006,7 @@
           "visual": {
             "mode": "scene",
             "ref": "audio.waveform",
-            "alt": "Which of these begins with that st sound. DO NOT depict the answer (star) or anything that reveals it; draw only what the sentence states"
+            "alt": "Which of these begins with that st sound"
           }
         },
         {
@@ -40035,7 +40035,7 @@
           "visual": {
             "mode": "scene",
             "ref": "audio.waveform",
-            "alt": "Say each one and listen to the last part. DO NOT depict the answer (sand) or anything that reveals it; draw only what the sentence states"
+            "alt": "Say each one and listen to the last part"
           }
         },
         {
@@ -40053,7 +40053,7 @@
           "visual": {
             "mode": "token",
             "ref": "frog",
-            "alt": "Here is a new word to sound out: frog. DO NOT depict the answer (fr) or anything that reveals it; draw only what the sentence states"
+            "alt": "Here is a new word to sound out: frog"
           }
         },
         {
@@ -40430,7 +40430,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s07/step_reading_lesson_06_2.png",
-            "alt": "Before we think about the whole story, check one thing you heard. DO NOT depict the answer (Honey) or anything that reveals it; draw only what the sentence states"
+            "alt": "Before we think about the whole story, check one thing you heard"
           }
         },
         {
@@ -40448,7 +40448,7 @@
           "visual": {
             "mode": "token",
             "ref": "job",
-            "alt": "Now the whole story. Every sentence talked about bees doing a job. DO NOT depict the answer (How bees work together) or anything that reveals it; draw only what the sentence states"
+            "alt": "Now the whole story. Every sentence talked about bees doing a job"
           }
         },
         {
@@ -40476,7 +40476,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s07/step_reading_lesson_06_5.png",
-            "alt": "The other sentences are details. They fill in the picture. DO NOT depict the answer (Some bees make honey) or anything that reveals it; draw only what the sentence states"
+            "alt": "The other sentences are details. They fill in the picture"
           }
         },
         {
@@ -40504,7 +40504,7 @@
           "visual": {
             "mode": "token",
             "ref": "bee",
-            "alt": "The title that fits our bee story. DO NOT depict the answer (Busy Bees) or anything that reveals it; draw only what the sentence states"
+            "alt": "The title that fits our bee story"
           }
         },
         {
@@ -40533,7 +40533,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s07/step_reading_lesson_06_9.png",
-            "alt": "Find the idea that holds all three sentences together. DO NOT depict the answer (Rain helps life grow) or anything that reveals it; draw only what the sentence states"
+            "alt": "Find the idea that holds all three sentences together"
           }
         }
       ],
@@ -41376,7 +41376,7 @@
           "visual": {
             "mode": "token",
             "ref": "head",
-            "alt": "Put the first two stages in order in your head. DO NOT depict the answer (Caterpillar) or anything that reveals it; draw only what the sentence states"
+            "alt": "Put the first two stages in order in your head"
           }
         },
         {
@@ -41405,7 +41405,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s07/step_science_lesson_02_4.png",
-            "alt": "Inside the chrysalis it is very busy indeed. DO NOT depict the answer (It is changing shape) or anything that reveals it; draw only what the sentence states"
+            "alt": "Inside the chrysalis it is very busy indeed"
           }
         },
         {
@@ -41457,7 +41457,7 @@
           "visual": {
             "mode": "token",
             "ref": "butterfly",
-            "alt": "Then the butterfly lays eggs, and it all begins again. DO NOT depict the answer (A life cycle) or anything that reveals it; draw only what the sentence states"
+            "alt": "Then the butterfly lays eggs, and it all begins again"
           }
         }
       ],
@@ -43369,7 +43369,7 @@
           "visual": {
             "mode": "token",
             "ref": "happy",
-            "alt": "Sharing time fairly makes everyone happy. DO NOT depict the answer (Fairness) or anything that reveals it; draw only what the sentence states"
+            "alt": "Sharing time fairly makes everyone happy"
           }
         },
         {
@@ -44424,7 +44424,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s07/step_writing_lesson_03_1.png",
-            "alt": "One of these you can do. The other you sit on. DO NOT depict the answer (jump) or anything that reveals it; draw only what the sentence states"
+            "alt": "One of these you can do. The other you sit on"
           }
         },
         {
@@ -44452,7 +44452,7 @@
           "visual": {
             "mode": "scene",
             "ref": "sentence.card",
-            "alt": "The dog barks. DO NOT depict the answer (barks) or anything that reveals it; draw only what the sentence states"
+            "alt": "The dog barks, from the lesson 'Verbs: Action Words'"
           }
         },
         {
@@ -44480,7 +44480,7 @@
           "visual": {
             "mode": "scene",
             "ref": "sentence.card",
-            "alt": "You lie still when you do this one, but you are still doing it. DO NOT depict the answer (Yes) or anything that reveals it; draw only what the sentence states"
+            "alt": "You lie still when you do this one, but you are still doing it"
           }
         },
         {
@@ -44498,7 +44498,7 @@
           "visual": {
             "mode": "scene",
             "ref": "sentence.card",
-            "alt": "Amina reads a book. DO NOT depict the answer (reads) or anything that reveals it; draw only what the sentence states"
+            "alt": "Amina reads a book"
           }
         },
         {
@@ -44527,7 +44527,7 @@
           "visual": {
             "mode": "scene",
             "ref": "sentence.card",
-            "alt": "The bird ___. DO NOT depict the answer (flies) or anything that reveals it; draw only what the sentence states"
+            "alt": "The bird ___, from the lesson 'Verbs: Action Words'"
           }
         }
       ],
@@ -44735,7 +44735,7 @@
           "visual": {
             "mode": "token",
             "ref": "hat",
-            "alt": "Where is my hat. DO NOT depict the answer (They ask) or anything that reveals it; draw only what the sentence states"
+            "alt": "Where is my hat"
           }
         },
         {
@@ -44863,7 +44863,7 @@
           "visual": {
             "mode": "token",
             "ref": "cat",
-            "alt": "One cat, two ___. DO NOT depict the answer (cats) or anything that reveals it; draw only what the sentence states"
+            "alt": "One cat, two ___"
           }
         },
         {
@@ -44879,7 +44879,7 @@
           "visual": {
             "mode": "token",
             "ref": "dog",
-            "alt": "One dog becomes two dogs. DO NOT depict the answer (s) or anything that reveals it; draw only what the sentence states"
+            "alt": "One dog becomes two dogs"
           }
         },
         {
@@ -45771,7 +45771,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_tech_lesson_02_1.png",
-            "alt": "Loops save us from writing the same step over and over. DO NOT depict the answer (To save steps) or anything that reveals it; draw only what the sentence states"
+            "alt": "Loops save us from writing the same step over and over"
           }
         },
         {
@@ -45914,7 +45914,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_tech_lesson_03_1.png",
-            "alt": "The robot checks: is it raining? If yes, it grabs the umbrella. DO NOT depict the answer (The umbrella) or anything that reveals it; draw only what the sentence states"
+            "alt": "The robot checks: is it raining? If yes, it grabs the umbrella"
           }
         },
         {
@@ -46065,7 +46065,7 @@
           "visual": {
             "mode": "token",
             "ref": "robot",
-            "alt": "Change it to 'up' so the robot reaches the goal. DO NOT depict the answer (up) or anything that reveals it; draw only what the sentence states"
+            "alt": "Change it to 'up' so the robot reaches the goal"
           }
         },
         {
@@ -46211,7 +46211,7 @@
           "visual": {
             "mode": "token",
             "ref": "grown",
-            "alt": "If something feels mean or scary, tell a trusted grown-up. DO NOT depict the answer (Tell a grown-up) or anything that reveals it; draw only what the sentence states"
+            "alt": "If something feels mean or scary, tell a trusted grown-up"
           }
         },
         {
@@ -46369,7 +46369,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_tech_lesson_06_1.png",
-            "alt": "Computers show pictures using tiny squares called pixels. DO NOT depict the answer (Pixels) or anything that reveals it; draw only what the sentence states"
+            "alt": "Computers show pictures using tiny squares called pixels"
           }
         },
         {
@@ -47206,7 +47206,7 @@
           "visual": {
             "mode": "scene",
             "ref": "counting.array",
-            "alt": "Three rows of four. DO NOT depict the answer (12) or anything that reveals it; draw only what the sentence states"
+            "alt": "Three rows of four"
           }
         },
         {
@@ -47343,7 +47343,7 @@
           "visual": {
             "mode": "scene",
             "ref": "counting.tens-and-units",
-            "alt": "Add ones: 4 + 8 = 12. Carry the ten. DO NOT depict the answer (12) or anything that reveals it; draw only what the sentence states"
+            "alt": "Add ones: 4 + 8 = 12. Carry the ten"
           }
         },
         {
@@ -47361,7 +47361,7 @@
           "visual": {
             "mode": "scene",
             "ref": "counting.tens-and-units",
-            "alt": "Add tens: 2 + 1 + 1 = 4. DO NOT depict the answer (42) or anything that reveals it; draw only what the sentence states"
+            "alt": "Add tens: 2 + 1 + 1 = 4"
           }
         },
         {
@@ -47501,7 +47501,7 @@
           "visual": {
             "mode": "scene",
             "ref": "counting.tens-and-units",
-            "alt": "Ones: 2 is less than 7, so borrow a ten. DO NOT depict the answer (5) or anything that reveals it; draw only what the sentence states"
+            "alt": "Ones: 2 is less than 7, so borrow a ten"
           }
         },
         {
@@ -47519,7 +47519,7 @@
           "visual": {
             "mode": "scene",
             "ref": "counting.tens-and-units",
-            "alt": "Tens: 4 - 2 = 2. DO NOT depict the answer (25) or anything that reveals it; draw only what the sentence states"
+            "alt": "Tens: 4 - 2 = 2"
           }
         },
         {
@@ -47954,7 +47954,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_math_lesson_06_1.png",
-            "alt": "Each number is 5 minutes apart. DO NOT depict the answer (5) or anything that reveals it; draw only what the sentence states"
+            "alt": "Each number is 5 minutes apart"
           }
         },
         {
@@ -48792,7 +48792,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_reading_lesson_01_0.png",
-            "alt": "And. DO NOT depict the answer (cupcake) or anything that reveals it; draw only what the sentence states"
+            "alt": "And, from the lesson 'Compound Words'"
           }
         },
         {
@@ -48942,7 +48942,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_reading_lesson_02_1.png",
-            "alt": "Means. DO NOT depict the answer (re-do) or anything that reveals it; draw only what the sentence states"
+            "alt": "Means, from the lesson 'Prefixes un- and re-'"
           }
         },
         {
@@ -49076,7 +49076,7 @@
           "visual": {
             "mode": "token",
             "ref": "dog",
-            "alt": "The thirsty dog drank from its bowl. DO NOT depict the answer (Needing a drink) or anything that reveals it; draw only what the sentence states"
+            "alt": "The thirsty dog drank from its bowl"
           }
         },
         {
@@ -49093,7 +49093,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_reading_lesson_03_1.png",
-            "alt": "Other words give us clues. DO NOT depict the answer (In nearby words) or anything that reveals it; draw only what the sentence states"
+            "alt": "Other words give us clues"
           }
         },
         {
@@ -49239,7 +49239,7 @@
           "visual": {
             "mode": "token",
             "ref": "beach",
-            "alt": "Maya played at the beach. DO NOT depict the answer (Maya) or anything that reveals it; draw only what the sentence states"
+            "alt": "Maya played at the beach"
           }
         },
         {
@@ -49395,7 +49395,7 @@
           "visual": {
             "mode": "token",
             "ref": "blue",
-            "alt": "Blue is the best color. DO NOT depict the answer (Opinion) or anything that reveals it; draw only what the sentence states"
+            "alt": "Blue is the best color"
           }
         },
         {
@@ -49535,7 +49535,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_reading_lesson_06_1.png",
-            "alt": "The details tell more about the main idea. DO NOT depict the answer (Tell us more) or anything that reveals it; draw only what the sentence states"
+            "alt": "The details tell more about the main idea"
           }
         },
         {
@@ -50933,7 +50933,7 @@
           "visual": {
             "mode": "token",
             "ref": "rain",
-            "alt": "It cools into clouds (Condense), then falls as rain (Precipitate). DO NOT depict the answer (Condense) or anything that reveals it; draw only what the sentence states"
+            "alt": "It cools into clouds (Condense), then falls as rain (Precipitate)"
           }
         },
         {
@@ -52229,7 +52229,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_social_lesson_03_1.png",
-            "alt": "Leaders make choices for the whole community. DO NOT depict the answer (Leaders) or anything that reveals it; draw only what the sentence states"
+            "alt": "Leaders make choices for the whole community"
           }
         },
         {
@@ -52679,7 +52679,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_social_lesson_06_1.png",
-            "alt": "Learning about others helps us respect them. DO NOT depict the answer (Respect them) or anything that reveals it; draw only what the sentence states"
+            "alt": "Learning about others helps us respect them"
           }
         },
         {
@@ -53490,7 +53490,7 @@
           "visual": {
             "mode": "token",
             "ref": "box",
-            "alt": "One box, two ___. DO NOT depict the answer (boxes) or anything that reveals it; draw only what the sentence states"
+            "alt": "One box, two ___"
           }
         },
         {
@@ -53506,7 +53506,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_writing_lesson_01_1.png",
-            "alt": "Today I walk. Yesterday I ___. DO NOT depict the answer (walked) or anything that reveals it; draw only what the sentence states"
+            "alt": "Today I walk. Yesterday I ___"
           }
         },
         {
@@ -53651,7 +53651,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_writing_lesson_02_1.png",
-            "alt": "Paris. DO NOT depict the answer (paris) or anything that reveals it; draw only what the sentence states"
+            "alt": "Paris, from the lesson 'Capitals for Names'"
           }
         },
         {
@@ -53804,7 +53804,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s08/step_writing_lesson_03_1.png",
-            "alt": "The last item gets 'and'. DO NOT depict the answer (and) or anything that reveals it; draw only what the sentence states"
+            "alt": "The last item gets 'and'"
           }
         },
         {
@@ -54097,7 +54097,7 @@
           "visual": {
             "mode": "scene",
             "ref": "sentence.card",
-            "alt": "The ___ dog. DO NOT depict the answer (fluffy) or anything that reveals it; draw only what the sentence states"
+            "alt": "The ___ dog, from the lesson 'Describing Words'"
           }
         },
         {
@@ -54114,7 +54114,7 @@
           "visual": {
             "mode": "scene",
             "ref": "sentence.card",
-            "alt": "Adjectives make writing colorful. DO NOT depict the answer (Describe) or anything that reveals it; draw only what the sentence states"
+            "alt": "Adjectives make writing colorful"
           }
         },
         {
@@ -55225,7 +55225,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_coding_lesson_02_1.png",
-            "alt": "If-else lets a program pick between options. DO NOT depict the answer (Picks an option) or anything that reveals it; draw only what the sentence states"
+            "alt": "If-else lets a program pick between options"
           }
         },
         {
@@ -55377,7 +55377,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_coding_lesson_03_1.png",
-            "alt": "Change it: score + 3. Now score holds 8. DO NOT depict the answer (8) or anything that reveals it; draw only what the sentence states"
+            "alt": "Change it: score + 3. Now score holds 8"
           }
         },
         {
@@ -55643,7 +55643,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_coding_lesson_05_0.png",
-            "alt": "5 is greater than 3. DO NOT depict the answer (True) or anything that reveals it; draw only what the sentence states"
+            "alt": "5 is greater than 3"
           }
         },
         {
@@ -55659,7 +55659,7 @@
           "visual": {
             "mode": "token",
             "ref": "cat",
-            "alt": "A cat has wings. DO NOT depict the answer (False) or anything that reveals it; draw only what the sentence states"
+            "alt": "A cat has wings"
           }
         },
         {
@@ -56805,7 +56805,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_math_lesson_02_1.png",
-            "alt": "The bottom number is the total parts; the top is how many we have. DO NOT depict the answer (Total parts) or anything that reveals it; draw only what the sentence states"
+            "alt": "The bottom number is the total parts; the top is how many we have"
           }
         },
         {
@@ -56957,7 +56957,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_math_lesson_03_1.png",
-            "alt": "The more parts you cut, the smaller each part. DO NOT depict the answer (Smaller) or anything that reveals it; draw only what the sentence states"
+            "alt": "The more parts you cut, the smaller each part"
           }
         },
         {
@@ -57103,7 +57103,7 @@
           "visual": {
             "mode": "scene",
             "ref": "counting.array",
-            "alt": "3 × 20 is 3 × 2 = 6, then a zero: 60. DO NOT depict the answer (60) or anything that reveals it; draw only what the sentence states"
+            "alt": "3 × 20 is 3 × 2 = 6, then a zero: 60"
           }
         },
         {
@@ -57242,7 +57242,7 @@
           "visual": {
             "mode": "scene",
             "ref": "counting.tens-and-units",
-            "alt": "Round 47 to the nearest ten. DO NOT depict the answer (50) or anything that reveals it; draw only what the sentence states"
+            "alt": "Round 47 to the nearest ten"
           }
         },
         {
@@ -57259,7 +57259,7 @@
           "visual": {
             "mode": "scene",
             "ref": "counting.tens-and-units",
-            "alt": "Round 230 to the nearest 100: 200. DO NOT depict the answer (200) or anything that reveals it; draw only what the sentence states"
+            "alt": "Round 230 to the nearest 100: 200"
           }
         },
         {
@@ -57393,7 +57393,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_math_lesson_06_0.png",
-            "alt": "The graph shows pets in the class. DO NOT depict the answer (Dogs) or anything that reveals it; draw only what the sentence states"
+            "alt": "The graph shows pets in the class"
           }
         },
         {
@@ -57410,7 +57410,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_math_lesson_06_1.png",
-            "alt": "Compare the bars. DO NOT depict the answer (Subtract) or anything that reveals it; draw only what the sentence states"
+            "alt": "Compare the bars, from the lesson 'Read a Bar Graph'"
           }
         },
         {
@@ -58242,7 +58242,7 @@
           "visual": {
             "mode": "token",
             "ref": "lion",
-            "alt": "As brave as a lion. DO NOT depict the answer (Simile) or anything that reveals it; draw only what the sentence states"
+            "alt": "As brave as a lion"
           }
         },
         {
@@ -58258,7 +58258,7 @@
           "visual": {
             "mode": "token",
             "ref": "zoo",
-            "alt": "The classroom was a zoo. DO NOT depict the answer (Metaphor) or anything that reveals it; draw only what the sentence states"
+            "alt": "The classroom was a zoo"
           }
         },
         {
@@ -58398,7 +58398,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_reading_lesson_02_0.png",
-            "alt": "Mia grabbed her umbrella and frowned at the window. DO NOT depict the answer (It is raining) or anything that reveals it; draw only what the sentence states"
+            "alt": "Mia grabbed her umbrella and frowned at the window"
           }
         },
         {
@@ -58415,7 +58415,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_reading_lesson_02_1.png",
-            "alt": "Authors don't say everything; readers figure it out. DO NOT depict the answer (Figure it out) or anything that reveals it; draw only what the sentence states"
+            "alt": "Authors don't say everything; readers figure it out"
           }
         },
         {
@@ -58561,7 +58561,7 @@
           "visual": {
             "mode": "token",
             "ref": "night",
-            "alt": "It rained all night. DO NOT depict the answer (The river flooded) or anything that reveals it; draw only what the sentence states"
+            "alt": "It rained all night"
           }
         },
         {
@@ -58858,7 +58858,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_reading_lesson_05_1.png",
-            "alt": "Summarizing shows you understood the whole text. DO NOT depict the answer (Understood it) or anything that reveals it; draw only what the sentence states"
+            "alt": "Summarizing shows you understood the whole text"
           }
         },
         {
@@ -59009,7 +59009,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_reading_lesson_06_1.png",
-            "alt": "Buy this. DO NOT depict the answer (Persuade) or anything that reveals it; draw only what the sentence states"
+            "alt": "Buy this, from the lesson 'Author's Purpose'"
           }
         },
         {
@@ -59842,7 +59842,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_science_lesson_01_1.png",
-            "alt": "Bring the magnet near the paperclip. DO NOT depict the answer (Some metals) or anything that reveals it; draw only what the sentence states"
+            "alt": "Bring the magnet near the paperclip"
           }
         },
         {
@@ -60146,7 +60146,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_science_lesson_03_1.png",
-            "alt": "If one animal disappears, the whole web is affected. DO NOT depict the answer (It is affected) or anything that reveals it; draw only what the sentence states"
+            "alt": "If one animal disappears, the whole web is affected"
           }
         },
         {
@@ -60304,7 +60304,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_science_lesson_04_1.png",
-            "alt": "Fossils show us animals that lived millions of years ago, like dinosaurs. DO NOT depict the answer (Ancient animals) or anything that reveals it; draw only what the sentence states"
+            "alt": "Fossils show us animals that lived millions of years ago, like dinosaurs"
           }
         },
         {
@@ -61891,7 +61891,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_social_lesson_04_1.png",
-            "alt": "A budget plans what to spend and save. DO NOT depict the answer (Spending and saving) or anything that reveals it; draw only what the sentence states"
+            "alt": "A budget plans what to spend and save"
           }
         },
         {
@@ -62045,7 +62045,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_social_lesson_05_1.png",
-            "alt": "Events further right happened later. DO NOT depict the answer (Later) or anything that reveals it; draw only what the sentence states"
+            "alt": "Events further right happened later"
           }
         },
         {
@@ -63030,7 +63030,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_writing_lesson_01_0.png",
-            "alt": "Recess should be longer. DO NOT depict the answer (because) or anything that reveals it; draw only what the sentence states"
+            "alt": "Recess should be longer"
           }
         },
         {
@@ -63047,7 +63047,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_writing_lesson_01_1.png",
-            "alt": "Add a second reason and a closing sentence. DO NOT depict the answer (Opinion → reasons) or anything that reveals it; draw only what the sentence states"
+            "alt": "Add a second reason and a closing sentence"
           }
         },
         {
@@ -63339,7 +63339,7 @@
           "visual": {
             "mode": "scene",
             "ref": "sentence.card",
-            "alt": "The comma and period stay inside the quotes. DO NOT depict the answer (Inside the quotes) or anything that reveals it; draw only what the sentence states"
+            "alt": "The comma and period stay inside the quotes"
           }
         },
         {
@@ -63640,7 +63640,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_writing_lesson_05_1.png",
-            "alt": "Tenses tell when something happens. DO NOT depict the answer (When) or anything that reveals it; draw only what the sentence states"
+            "alt": "Tenses tell when something happens"
           }
         },
         {
@@ -63774,7 +63774,7 @@
           "visual": {
             "mode": "token",
             "ref": "dog",
-            "alt": "My dog runs fast. DO NOT depict the answer (A capital and a period) or anything that reveals it; draw only what the sentence states"
+            "alt": "My dog runs fast"
           }
         },
         {
@@ -63791,7 +63791,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s09/step_writing_lesson_06_1.png",
-            "alt": "Good writers always edit their work. DO NOT depict the answer (Edit their work) or anything that reveals it; draw only what the sentence states"
+            "alt": "Good writers always edit their work"
           }
         },
         {
@@ -65365,7 +65365,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_coding_lesson_06_2.png",
-            "alt": "Before trusting a website, ask: who wrote it, and is it backed up elsewhere. DO NOT depict the answer (Who wrote it) or anything that reveals it; draw only what the sentence states"
+            "alt": "Before trusting a website, ask: who wrote it, and is it backed up elsewhere"
           }
         },
         {
@@ -66341,7 +66341,7 @@
           "visual": {
             "mode": "scene",
             "ref": "counting.array",
-            "alt": "Break 23 into 20 + 3. Multiply each: 20×4=80, 3×4=12. DO NOT depict the answer (80 and 12) or anything that reveals it; draw only what the sentence states"
+            "alt": "Break 23 into 20 + 3. Multiply each: 20×4=80, 3×4=12"
           }
         },
         {
@@ -66371,7 +66371,7 @@
           "visual": {
             "mode": "scene",
             "ref": "counting.array",
-            "alt": "Try 31 × 5 the same way: (30×5) + (1×5). DO NOT depict the answer (155) or anything that reveals it; draw only what the sentence states"
+            "alt": "Try 31 × 5 the same way: (30×5) + (1×5)"
           }
         },
         {
@@ -66641,7 +66641,7 @@
           "visual": {
             "mode": "scene",
             "ref": "fraction.bars",
-            "alt": "The bottoms match, so add the tops: 1 + 2 = 3. DO NOT depict the answer (3/5) or anything that reveals it; draw only what the sentence states"
+            "alt": "The bottoms match, so add the tops: 1 + 2 = 3"
           }
         },
         {
@@ -66658,7 +66658,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_math_lesson_04_1.png",
-            "alt": "The denominator stays the same. It tells the size of each piece. DO NOT depict the answer (Only the top) or anything that reveals it; draw only what the sentence states"
+            "alt": "The denominator stays the same. It tells the size of each piece"
           }
         },
         {
@@ -66675,7 +66675,7 @@
           "visual": {
             "mode": "scene",
             "ref": "fraction.bars",
-            "alt": "Try 4/6 - 1/6. DO NOT depict the answer (3/6) or anything that reveals it; draw only what the sentence states"
+            "alt": "Try 4/6 - 1/6"
           }
         },
         {
@@ -66814,7 +66814,7 @@
           "visual": {
             "mode": "scene",
             "ref": "fraction.bars",
-            "alt": "0.25 means 25 hundredths. Two digits after the dot = hundredths. DO NOT depict the answer (25 hundredths) or anything that reveals it; draw only what the sentence states"
+            "alt": "0.25 means 25 hundredths. Two digits after the dot = hundredths"
           }
         },
         {
@@ -66957,7 +66957,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_math_lesson_06_0.png",
-            "alt": "A rectangle is 5 long and 3 wide. Perimeter = add all sides: 5+3+5+3. DO NOT depict the answer (16) or anything that reveals it; draw only what the sentence states"
+            "alt": "A rectangle is 5 long and 3 wide. Perimeter = add all sides: 5+3+5+3"
           }
         },
         {
@@ -66975,7 +66975,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_math_lesson_06_1.png",
-            "alt": "Area = length × width = 5 × 3. DO NOT depict the answer (15) or anything that reveals it; draw only what the sentence states"
+            "alt": "Area = length × width = 5 × 3"
           }
         },
         {
@@ -66993,7 +66993,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_math_lesson_06_2.png",
-            "alt": "Try a 6 × 2 rectangle: find both. DO NOT depict the answer (12) or anything that reveals it; draw only what the sentence states"
+            "alt": "Try a 6 × 2 rectangle: find both"
           }
         },
         {
@@ -67849,7 +67849,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_reading_lesson_01_2.png",
-            "alt": "Her smile was sunshine. DO NOT depict the answer (her smile was sunshine) or anything that reveals it; draw only what the sentence states"
+            "alt": "Her smile was sunshine"
           }
         },
         {
@@ -68001,7 +68001,7 @@
           "visual": {
             "mode": "token",
             "ref": "cake",
-            "alt": "A piece of cake. DO NOT depict the answer (a piece of cake) or anything that reveals it; draw only what the sentence states"
+            "alt": "A piece of cake"
           }
         },
         {
@@ -68138,7 +68138,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_reading_lesson_03_0.png",
-            "alt": "Never give up. DO NOT depict the answer (The story's message) or anything that reveals it; draw only what the sentence states"
+            "alt": "Never give up, from the lesson 'Finding the Theme'"
           }
         },
         {
@@ -68155,7 +68155,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_reading_lesson_03_1.png",
-            "alt": "In a tale where a slow tortoise wins by trying hard, the theme is. DO NOT depict the answer (Steady effort wins) or anything that reveals it; draw only what the sentence states"
+            "alt": "In a tale where a slow tortoise wins by trying hard, the theme is"
           }
         },
         {
@@ -68172,7 +68172,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_reading_lesson_03_2.png",
-            "alt": "Ask: what did the character learn? That points to the theme. DO NOT depict the answer (What they learned) or anything that reveals it; draw only what the sentence states"
+            "alt": "Ask: what did the character learn? That points to the theme"
           }
         },
         {
@@ -68318,7 +68318,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_reading_lesson_04_2.png",
-            "alt": "Who is telling the story changes how we see it. DO NOT depict the answer (Who tells it) or anything that reveals it; draw only what the sentence states"
+            "alt": "Who is telling the story changes how we see it"
           }
         },
         {
@@ -68442,7 +68442,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_reading_lesson_05_0.png",
-            "alt": "A summary keeps only the most important ideas. Who, what, and why. Skip tiny details. DO NOT depict the answer (Most) or anything that reveals it; draw only what the sentence states"
+            "alt": "A summary keeps only the most important ideas. Who, what, and why. Skip tiny details"
           }
         },
         {
@@ -68470,7 +68470,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_reading_lesson_05_2.png",
-            "alt": "Now keep the main events in order to build your summary. DO NOT depict the answer (In order) or anything that reveals it; draw only what the sentence states"
+            "alt": "Now keep the main events in order to build your summary"
           }
         },
         {
@@ -68593,7 +68593,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_reading_lesson_06_0.png",
-            "alt": "Mateo zipped his coat and stamped his boots in the snow. DO NOT depict the answer (Cold) or anything that reveals it; draw only what the sentence states"
+            "alt": "Mateo zipped his coat and stamped his boots in the snow"
           }
         },
         {
@@ -68610,7 +68610,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_reading_lesson_06_1.png",
-            "alt": "An inference is a smart guess from evidence in the text. DO NOT depict the answer (A smart guess) or anything that reveals it; draw only what the sentence states"
+            "alt": "An inference is a smart guess from evidence in the text"
           }
         },
         {
@@ -68626,7 +68626,7 @@
           "visual": {
             "mode": "token",
             "ref": "clock",
-            "alt": "Her stomach growled as she eyed the clock. DO NOT depict the answer (She is hungry) or anything that reveals it; draw only what the sentence states"
+            "alt": "Her stomach growled as she eyed the clock"
           }
         },
         {
@@ -69436,7 +69436,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_science_lesson_01_0.png",
-            "alt": "Connect the battery, wire, and bulb to make a loop. DO NOT depict the answer (A complete loop) or anything that reveals it; draw only what the sentence states"
+            "alt": "Connect the battery, wire, and bulb to make a loop"
           }
         },
         {
@@ -69638,7 +69638,7 @@
           "visual": {
             "mode": "token",
             "ref": "sun",
-            "alt": "A year is one trip around the Sun. Farther planets take longer. DO NOT depict the answer (Longer) or anything that reveals it; draw only what the sentence states"
+            "alt": "A year is one trip around the Sun. Farther planets take longer"
           }
         },
         {
@@ -69804,7 +69804,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_science_lesson_03_2.png",
-            "alt": "A rolling ball has motion energy; a fire gives heat. Energy can change form. DO NOT depict the answer (Motion) or anything that reveals it; draw only what the sentence states"
+            "alt": "A rolling ball has motion energy; a fire gives heat. Energy can change form"
           }
         },
         {
@@ -70144,7 +70144,7 @@
           "visual": {
             "mode": "token",
             "ref": "water",
-            "alt": "More heat evaporates liquid into gas: water into vapor. Same stuff, new form. DO NOT depict the answer (Gas) or anything that reveals it; draw only what the sentence states"
+            "alt": "More heat evaporates liquid into gas: water into vapor. Same stuff, new form"
           }
         },
         {
@@ -70295,7 +70295,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_science_lesson_06_0.png",
-            "alt": "Which paper plane flies farthest. DO NOT depict the answer (Ask) or anything that reveals it; draw only what the sentence states"
+            "alt": "Which paper plane flies farthest"
           }
         },
         {
@@ -70312,7 +70312,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_science_lesson_06_1.png",
-            "alt": "Make a hypothesis (a smart guess), then test it with a fair experiment. DO NOT depict the answer (Hypothesis) or anything that reveals it; draw only what the sentence states"
+            "alt": "Make a hypothesis (a smart guess), then test it with a fair experiment"
           }
         },
         {
@@ -71478,7 +71478,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_social_lesson_03_1.png",
-            "alt": "When many people want a scarce item, demand is high and the price often rises. DO NOT depict the answer (Demand) or anything that reveals it; draw only what the sentence states"
+            "alt": "When many people want a scarce item, demand is high and the price often rises"
           }
         },
         {
@@ -71495,7 +71495,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_social_lesson_03_2.png",
-            "alt": "People trade goods and services to get what they need. DO NOT depict the answer (Trade) or anything that reveals it; draw only what the sentence states"
+            "alt": "People trade goods and services to get what they need"
           }
         },
         {
@@ -71647,7 +71647,7 @@
           "visual": {
             "mode": "token",
             "ref": "key",
-            "alt": "Maps use a compass and a key to help us read them. DO NOT depict the answer (Compass and key) or anything that reveals it; draw only what the sentence states"
+            "alt": "Maps use a compass and a key to help us read them"
           }
         },
         {
@@ -71793,7 +71793,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_social_lesson_05_2.png",
-            "alt": "Leaders like Mansa Musa were known across the world. History is full of great civilizations. DO NOT depict the answer (Mansa Musa) or anything that reveals it; draw only what the sentence states"
+            "alt": "Leaders like Mansa Musa were known across the world. History is full of great civilizations"
           }
         },
         {
@@ -71945,7 +71945,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_social_lesson_06_2.png",
-            "alt": "Voting is how citizens help choose leaders and decisions. DO NOT depict the answer (By voting) or anything that reveals it; draw only what the sentence states"
+            "alt": "Voting is how citizens help choose leaders and decisions"
           }
         },
         {
@@ -72906,7 +72906,7 @@
           "visual": {
             "mode": "scene",
             "ref": "sentence.card",
-            "alt": "S main idea:. DO NOT depict the answer (Tells) or anything that reveals it; draw only what the sentence states"
+            "alt": "S main idea:, from the lesson 'Topic Sentence and Support'"
           }
         },
         {
@@ -72922,7 +72922,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_writing_lesson_02_1.png",
-            "alt": "They are loyal. They help us exercise. DO NOT depict the answer (Supporting) or anything that reveals it; draw only what the sentence states"
+            "alt": "They are loyal. They help us exercise"
           }
         },
         {
@@ -72939,7 +72939,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_writing_lesson_02_2.png",
-            "alt": "Strong paragraphs are one clear idea plus reasons that fit it. DO NOT depict the answer (One clear idea) or anything that reveals it; draw only what the sentence states"
+            "alt": "Strong paragraphs are one clear idea plus reasons that fit it"
           }
         },
         {
@@ -73085,7 +73085,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_writing_lesson_03_2.png",
-            "alt": "Because. DO NOT depict the answer (Because) or anything that reveals it; draw only what the sentence states"
+            "alt": "Because, from the lesson 'Linking Words'"
           }
         },
         {
@@ -73225,7 +73225,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_writing_lesson_04_2.png",
-            "alt": "Start a new line each time a new person speaks. DO NOT depict the answer (A new speaker) or anything that reveals it; draw only what the sentence states"
+            "alt": "Start a new line each time a new person speaks"
           }
         },
         {
@@ -73517,7 +73517,7 @@
           "visual": {
             "mode": "slot",
             "ref": "img/s10/step_writing_lesson_06_2.png",
-            "alt": "Great writers reread and improve their work. DO NOT depict the answer (Revise) or anything that reveals it; draw only what the sentence states"
+            "alt": "Great writers reread and improve their work"
           }
         },
         {
