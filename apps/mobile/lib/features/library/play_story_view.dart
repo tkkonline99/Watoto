@@ -14,7 +14,6 @@ import '../../core/state/app_state.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../core/widgets/stages/question_scaffold.dart';
 import '../../l10n/gen/app_localizations.dart';
-import 'content_i18n.dart';
 import 'content_lexicon.dart';
 import 'library_models.dart';
 import 'play_celebration.dart';
@@ -77,14 +76,13 @@ class StoryViewState extends ConsumerState<StoryView> {
     ref.read(soundEffectsProvider).celebrate();
   }
 
-  void _speakPage() {
+  Future<void> _speakPage() async {
     if (widget.item.pages.isEmpty) return;
     final lang = ref.read(localeProvider).languageCode;
-    final loc = LocalizedItem(
-      widget.item,
-      ref.read(contentI18nProvider).asData?.value,
-      lang,
-    );
+    // Waited for, not sampled — see awaitLocalizedItem. This fires from a
+    // post-frame callback, so on a cold start it is a frame ahead of the load.
+    final loc = await awaitLocalizedItem(ref, widget.item);
+    if (!mounted) return;
     ref.read(narrationProvider.notifier).speak(loc.pageNarration(_page), lang);
   }
 

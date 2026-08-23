@@ -54,11 +54,20 @@ class QuizViewState extends ConsumerState<QuizView> {
   List<LibQuestion>? _questionsCache;
 
   List<LibQuestion> get _questions {
-    return _questionsCache ??= localizedQuizQuestions(
+    final cached = _questionsCache;
+    if (cached != null) return cached;
+    final i18n = ref.read(contentI18nProvider).asData?.value;
+    final built = localizedQuizQuestions(
       quiz: widget.item,
-      i18n: ref.read(contentI18nProvider).asData?.value,
+      i18n: i18n,
       lang: ref.read(localeProvider).languageCode,
     );
+    // Freeze it only once the overlay is really loaded. Caching the list built
+    // from a null overlay is what kept a French child's first quiz of the
+    // session in English for its whole run — `build` watches the bundle and
+    // rebuilds when it lands, but the cache meant the rebuild changed nothing.
+    if (i18n != null) _questionsCache = built;
+    return built;
   }
 
   @override
@@ -67,8 +76,12 @@ class QuizViewState extends ConsumerState<QuizView> {
     WidgetsBinding.instance.addPostFrameCallback((_) => _speakPrompt());
   }
 
-  void _speakPrompt() {
+  Future<void> _speakPrompt() async {
     final lang = ref.read(localeProvider).languageCode;
+    // Wait for the locale bundle. This fires from a post-frame callback, which
+    // on a cold start is a frame *before* the bundle has finished loading.
+    await ref.read(contentI18nProvider.future);
+    if (!mounted) return;
     ref.read(narrationProvider.notifier).speak(
           _questions[_q].prompt,
           lang,

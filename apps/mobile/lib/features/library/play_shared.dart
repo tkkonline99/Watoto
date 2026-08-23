@@ -29,6 +29,26 @@ LocalizedItem localizedItem(WidgetRef ref, LibraryItem item) {
   return LocalizedItem(item, i18n, lang);
 }
 
+/// The same view, but waited for rather than sampled.
+///
+/// [localizedItem] reads the locale bundle as a snapshot, which is right in a
+/// `build`: it is null while the bundle loads, and the screen rebuilds when it
+/// arrives. It is wrong for narration, which is fired once from a post-frame
+/// callback and never repeated.
+///
+/// Nothing on the way to a play screen touches the bundle, so the first item
+/// opened after a cold start is what starts it loading — and it then spoke
+/// from the snapshot a frame later, while that load was still in flight. The
+/// result was the English text read aloud by the child's own language voice,
+/// on the first thing they played every time they opened the app.
+Future<LocalizedItem> awaitLocalizedItem(WidgetRef ref, LibraryItem item) async {
+  final lang = ref.read(localeProvider).languageCode;
+  // ContentI18n.load never rejects — a bundle it cannot read becomes empty —
+  // so this waits for the load, it does not gamble on it.
+  final i18n = await ref.read(contentI18nProvider.future);
+  return LocalizedItem(item, i18n, lang);
+}
+
 /// The co-play prompt for a grown-up, on activities aimed at the very young.
 ///
 /// Stages 1–2 are `parent-led`: the design tier says outright that the parent

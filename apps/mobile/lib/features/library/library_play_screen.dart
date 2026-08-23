@@ -16,7 +16,6 @@ import '../../core/widgets/stages/stage_scenes.dart';
 import '../../l10n/gen/app_localizations.dart';
 import '../auth/entitlements.dart';
 import '../gamification/reward_outcome.dart';
-import 'content_i18n.dart';
 import 'circuit_figures.dart';
 import 'content_lexicon.dart';
 import 'library_models.dart';
@@ -218,14 +217,14 @@ class _LessonViewState extends ConsumerState<_LessonView> {
   }
 
   /// Speaks the current step's narration (the caption), if narration is on.
-  void _speakStep() {
+  Future<void> _speakStep() async {
     if (widget.item.steps.isEmpty) return;
     final lang = ref.read(localeProvider).languageCode;
-    final loc = LocalizedItem(
-      widget.item,
-      ref.read(contentI18nProvider).asData?.value,
-      lang,
-    );
+    // Waited for, not sampled: on a cold start this is the screen that starts
+    // the locale bundle loading, and speaking from the snapshot a frame later
+    // read the English text out in the child's own voice.
+    final loc = await awaitLocalizedItem(ref, widget.item);
+    if (!mounted) return;
     ref.read(narrationProvider.notifier).speak(
           loc.stepNarration(_step),
           lang,
@@ -243,18 +242,16 @@ class _LessonViewState extends ConsumerState<_LessonView> {
     });
     ref.read(soundEffectsProvider).correct();
     final lang = ref.read(localeProvider).languageCode;
-    final loc = LocalizedItem(
-      widget.item,
-      ref.read(contentI18nProvider).asData?.value,
-      lang,
-    );
-    unawaited(
-      ref.read(narrationProvider.notifier).speak(
-            loc.stepFeedback(_step),
+    final step = _step;
+    unawaited(() async {
+      final loc = await awaitLocalizedItem(ref, widget.item);
+      if (!mounted) return;
+      await ref.read(narrationProvider.notifier).speak(
+            loc.stepFeedback(step),
             lang,
             style: SpeakStyle.cheer,
-          ),
-    );
+          );
+    }());
     // Auto-advance after a beat so the loop stays snappy. User can still tap
     // Next/Done immediately — button is enabled as soon as [_interacted] is true.
     // Held in a field so a manual Next cancels it: a stale timer would other-
