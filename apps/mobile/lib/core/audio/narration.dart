@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
@@ -7,9 +8,11 @@ import '../analytics/analytics.dart';
 import '../offline/offline_providers.dart';
 
 /// Spoken narration for audio-first bands. Wraps [FlutterTts] with:
-/// - preferred natural/enhanced voices when the OS offers them
-/// - gentler rate + slightly warmer pitch for young listeners
-/// - sentence chunking + short pauses so speech sounds less robotic
+/// - the most natural voice the device reports, preferring offline ones
+/// - a pace just under normal, set correctly for each platform
+/// - one utterance per passage, so the voice flows instead of restarting
+///   at every sentence
+/// - a newer line cleanly replacing an older one, never interleaving with it
 ///
 /// Every engine call is guarded: missing TTS / tests degrade to silence.
 class NarrationController extends Notifier<bool> {
@@ -17,6 +20,22 @@ class NarrationController extends Notifier<bool> {
   bool _configured = false;
   String? _langReady;
   final Map<String, Map<String, String>> _preferredVoice = {};
+
+  /// Bumped by every [speak] and [stop]. A sequence that finds it changed has
+  /// been replaced and must not say another word.
+  ///
+  /// Without it, a passage still being read would carry on after a new line
+  /// started: Android and Windows answer an interrupted `speak` call as if it
+  /// had finished, so the old loop went on to its next sentence and talked
+  /// over the new one.
+  int _generation = 0;
+  Completer<void> _replaced = Completer<void>();
+
+  void _replaceCurrent() {
+    _generation++;
+    if (!_replaced.isCompleted) _replaced.complete();
+    _replaced = Completer<void>();
+  }
 
   /// Resolved engine locale per app language, or null when this device has no
   /// voice for it. Populated on first speak; `containsKey` distinguishes
@@ -45,21 +64,40 @@ class NarrationController extends Notifier<bool> {
     'fr': ['fr-FR', 'fr-CA', 'fr-BE', 'fr'],
   };
 
-  /// Slightly different pacing per language (research: FR/SW benefit from
-  /// a touch slower for clarity on stock engines).
-  // Slightly slower = clearer for kids on stock Chrome/Windows voices.
-  static double _rateFor(String lang) => switch (lang) {
-        'fr' => 0.38,
-        'sw' => 0.36,
-        _ => 0.40,
+  /// Speaking pace per language, as a fraction of the voice's normal speed:
+  /// a touch under normal so young listeners can follow, and a little slower
+  /// again for French and Swahili, which stock voices tend to run together.
+  static double _paceFor(String lang) => switch (lang) {
+        'fr' => 0.88,
+        'sw' => 0.85,
+        _ => 0.9,
       };
 
-  /// Soft, friendly pitch — not cartoonish, not flat.
-  static double _pitchFor(String lang) => switch (lang) {
-        'fr' => 1.08,
-        'sw' => 1.10,
-        _ => 1.08,
-      };
+  /// The voice's own pitch. Shifting the pitch of a neural or "natural" voice
+  /// is what makes it sound processed; the styles move it only a little.
+  static const double _pitch = 1.0;
+
+  /// Converts a [pace] (1.0 = the voice's normal speed) into the value
+  /// `flutter_tts` expects on [platform].
+  ///
+  /// The plugin hands the number to each platform unchanged, and they do not
+  /// agree on what it means: AVSpeech (iOS) treats 0.5 as normal, Android and
+  /// the Web Speech API treat 1.0 as normal, and the Windows plugin adds 0.5
+  /// before WinRT, where 1.0 is normal. The old fixed 0.40 was a gentle pace
+  /// on iOS and Windows — and 40% speed, every word stretched, on Android and
+  /// in the browser.
+  static double engineRate(
+    double pace, {
+    required TargetPlatform platform,
+    required bool isWeb,
+  }) {
+    if (isWeb) return pace;
+    return switch (platform) {
+      TargetPlatform.iOS => (pace * 0.5).clamp(0.0, 1.0),
+      TargetPlatform.windows => (pace - 0.5).clamp(0.0, 1.5),
+      _ => pace,
+    };
+  }
 
   Future<FlutterTts> _engine() async {
     final tts = _tts ??= FlutterTts();
@@ -145,8 +183,79 @@ class NarrationController extends Notifier<bool> {
   bool isKnownUnavailable(String langCode) =>
       _resolvedLocale.containsKey(langCode) && _resolvedLocale[langCode] == null;
 
-  /// Picks the most "natural" available voice for [localeTag].
-  /// Prefers names containing neural / natural / premium / enhanced / google.
+  /// How natural a voice is likely to sound, from what the platform reports.
+  ///
+  /// Names alone miss most of it — Android calls its voices
+  /// `en-us-x-tpc-local`, iOS calls them "Samantha" — so the quality, gender,
+  /// network and install fields count too. An online-only voice is marked
+  /// down hard: this app is used offline, and a network voice starts every
+  /// line late and falls silent when the connection drops. One whose data is
+  /// not downloaded cannot speak at all.
+  static int voiceScore(Map<String, String> v) {
+    final name = (v['name'] ?? v['voice'] ?? '').toLowerCase();
+    final quality =
+        (v['quality'] ?? '').toLowerCase().replaceAll(RegExp('[^a-z]'), '');
+    var s = 0;
+    if (name.contains('neural')) s += 50;
+    if (name.contains('natural')) s += 45;
+    if (name.contains('premium')) s += 40;
+    if (name.contains('enhanced')) s += 35;
+    if (name.contains('wavenet')) s += 35;
+    if (name.contains('google')) s += 25;
+    if (name.contains('samantha') ||
+        name.contains('karen') ||
+        name.contains('moira')) {
+      s += 20; // friendly iOS system voices
+    }
+    s += switch (quality) {
+      'premium' => 45,
+      'veryhigh' => 40,
+      'enhanced' => 35,
+      'high' => 25,
+      'low' || 'verylow' => -20,
+      _ => 0,
+    };
+    if (v['network_required'] == '1') s -= 60;
+    if ((v['features'] ?? '').contains('notInstalled')) s -= 200;
+    if (v['gender'] == 'female' ||
+        name.contains('female') ||
+        name.contains('woman')) {
+      s += 8;
+    }
+    if (name.contains('compact')) s -= 15;
+    if (name.contains('eloquence')) s -= 5;
+    return s;
+  }
+
+  /// The best of [voices] for [localeTag], or null when none speaks that
+  /// language. A voice in the exact locale gets a head start so the accent
+  /// matches the language the engine resolved, and ties go to the name that
+  /// sorts first — the same device gets the same voice every time.
+  static Map<String, String>? pickVoice(
+    List<Map<String, String>> voices,
+    String localeTag,
+  ) {
+    String loc(Map<String, String> v) =>
+        (v['locale'] ?? v['localeId'] ?? '').toLowerCase().replaceAll('_', '-');
+    final tag = localeTag.toLowerCase().replaceAll('_', '-');
+    final lang = tag.split('-').first;
+    final candidates = voices.where((v) {
+      final l = loc(v);
+      return l == lang || l.startsWith('$lang-');
+    }).toList();
+    if (candidates.isEmpty) return null;
+    int total(Map<String, String> v) =>
+        voiceScore(v) + (loc(v) == tag ? 30 : 0);
+    candidates.sort((a, b) {
+      final byScore = total(b).compareTo(total(a));
+      return byScore != 0
+          ? byScore
+          : (a['name'] ?? '').compareTo(b['name'] ?? '');
+    });
+    return candidates.first;
+  }
+
+  /// Loads the language and the best voice for it.
   Future<void> _ensureVoice(FlutterTts tts, String langCode) async {
     final localeTag =
         _resolvedLocale[langCode] ?? _locale[langCode] ?? 'en-US';
@@ -171,33 +280,8 @@ class NarrationController extends Notifier<bool> {
             });
           }
         }
-        final langPrefix = localeTag.split('-').first.toLowerCase();
-        final candidates = voices.where((v) {
-          final loc = (v['locale'] ?? v['localeId'] ?? '').toLowerCase();
-          return loc.startsWith(langPrefix) || loc.contains(localeTag.toLowerCase());
-        }).toList();
-
-        int score(Map<String, String> v) {
-          final name = (v['name'] ?? v['voice'] ?? '').toLowerCase();
-          var s = 0;
-          if (name.contains('neural')) s += 50;
-          if (name.contains('natural')) s += 45;
-          if (name.contains('premium')) s += 40;
-          if (name.contains('enhanced')) s += 35;
-          if (name.contains('wavenet')) s += 35;
-          if (name.contains('google')) s += 25;
-          if (name.contains('samantha') || name.contains('karen') || name.contains('moira')) {
-            s += 20; // friendly iOS system voices
-          }
-          if (name.contains('female') || name.contains('woman')) s += 8;
-          if (name.contains('compact')) s -= 15;
-          if (name.contains('eloquence')) s -= 5;
-          return s;
-        }
-
-        candidates.sort((a, b) => score(b).compareTo(score(a)));
-        if (candidates.isNotEmpty) {
-          final best = candidates.first;
+        final best = pickVoice(voices, localeTag);
+        if (best != null) {
           final voice = <String, String>{
             if (best['name'] != null) 'name': best['name']!,
             if (best['locale'] != null) 'locale': best['locale']!,
@@ -214,8 +298,6 @@ class NarrationController extends Notifier<bool> {
       // Voice enumeration unsupported — language alone is fine.
     }
 
-    await tts.setSpeechRate(_rateFor(langCode));
-    await tts.setPitch(_pitchFor(langCode));
     _langReady = localeTag;
   }
 
@@ -292,7 +374,7 @@ class NarrationController extends Notifier<bool> {
 
   /// Emoji and pictographs — decorative in captions, gibberish when spoken.
   static final _emoji = RegExp(
-    r'[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE0F}\u{1F900}-\u{1F9FF}]',
+    r'[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B00}-\u{2BFF}\u{FE0F}\u{200D}\u{20E3}]',
     unicode: true,
   );
 
@@ -437,43 +519,58 @@ class NarrationController extends Notifier<bool> {
     return t;
   }
 
-  /// Split into speakable chunks (sentences) so long prompts get natural pauses.
+  /// Longest passage handed to the engine as a single utterance.
+  ///
+  /// One utterance is what sounds smooth: the engine carries its intonation
+  /// across the sentences and pauses at each full stop by itself. Speaking
+  /// every sentence as its own call restarted the voice each time — flat
+  /// again at every sentence start, with a warm-up on Android and a fixed
+  /// 280 ms gap on top. The cap exists only for long story pages, since a
+  /// browser can stall an utterance after about 15 seconds of speech.
+  static const int maxUtteranceChars = 220;
+
+  /// Splits [text] into utterances: whole sentences, joined up to
+  /// [maxUtteranceChars]. A sentence is never cut in the middle, even one
+  /// longer than the cap.
   static List<String> chunkForSpeech(String text, {String lang = 'en'}) {
     final t = naturalize(text, lang: lang);
-    final parts = t
+    final sentences = t
         .split(RegExp(r'(?<=[.!?…])\s+'))
         .map((s) => s.trim())
-        .where((s) => s.isNotEmpty)
-        .toList();
-    if (parts.isEmpty) return [t];
-    // Merge only very tiny fragments so short sentences still pause.
-    final merged = <String>[];
+        .where((s) => s.isNotEmpty);
+    final out = <String>[];
     final buf = StringBuffer();
-    for (final p in parts) {
-      if (buf.isEmpty) {
-        buf.write(p);
-      } else if (buf.length < 24 && p.length < 24) {
-        buf.write(' $p');
-      } else {
-        merged.add(buf.toString());
+    for (final s in sentences) {
+      if (buf.isNotEmpty && buf.length + 1 + s.length > maxUtteranceChars) {
+        out.add(buf.toString());
         buf.clear();
-        buf.write(p);
       }
+      if (buf.isNotEmpty) buf.write(' ');
+      buf.write(s);
     }
-    if (buf.isNotEmpty) merged.add(buf.toString());
-    return merged;
+    if (buf.isNotEmpty) out.add(buf.toString());
+    return out;
   }
 
   /// Speaks [text] in [langCode] when narration is on. Never throws.
-  /// Optional [emotion]: 'cheer' raises pitch slightly; 'calm' lowers rate.
+  ///
+  /// Starting a line replaces whatever was being said. The returned future
+  /// completes when the line has been spoken, when a newer line or [stop]
+  /// replaces it, or at once when there is nothing to say — so a caller can
+  /// wait for the child to have heard it. [style] nudges pace and pitch.
   Future<void> speak(
     String text,
     String langCode, {
     SpeakStyle style = SpeakStyle.lesson,
   }) async {
     if (!state || text.trim().isEmpty) return;
+    _replaceCurrent();
+    final generation = _generation;
+    final replaced = _replaced.future;
+    bool isCurrent() => generation == _generation;
     try {
       final resolved = await resolvedLocaleFor(langCode);
+      if (!isCurrent()) return;
       if (resolved == null) {
         // No voice for this language on this device. Speaking the text with
         // whatever voice happens to be loaded reads Swahili with English
@@ -484,32 +581,32 @@ class NarrationController extends Notifier<bool> {
       }
       final tts = await _engine();
       await tts.stop();
+      if (!isCurrent()) return;
       await _ensureVoice(tts, langCode);
 
-      var rate = _rateFor(langCode);
-      var pitch = _pitchFor(langCode);
+      var pace = _paceFor(langCode);
+      var pitch = _pitch;
       switch (style) {
         case SpeakStyle.cheer:
-          pitch = (pitch + 0.06).clamp(0.5, 2.0);
-          rate = (rate + 0.03).clamp(0.1, 1.0);
+          pace *= 1.05;
+          pitch = 1.05;
         case SpeakStyle.hint:
-          rate = (rate - 0.04).clamp(0.1, 1.0);
-          pitch = (pitch - 0.02).clamp(0.5, 2.0);
+          pace *= 0.93;
+          pitch = 0.98;
         case SpeakStyle.lesson:
           break;
       }
-      await tts.setSpeechRate(rate);
+      await tts.setSpeechRate(
+        engineRate(pace, platform: defaultTargetPlatform, isWeb: kIsWeb),
+      );
       await tts.setPitch(pitch);
 
-      final chunks = chunkForSpeech(text, lang: langCode);
-      for (var i = 0; i < chunks.length; i++) {
-        if (!state) break;
-        await tts.speak(chunks[i]);
-        // Brief inter-sentence breath (awaitSpeakCompletion already waited).
-        if (i < chunks.length - 1) {
-          // Slightly longer breath between sentences = less robotic.
-          await Future<void>.delayed(const Duration(milliseconds: 280));
-        }
+      for (final utterance in chunkForSpeech(text, lang: langCode)) {
+        if (!state || !isCurrent()) break;
+        // Raced against replacement: a browser never answers the `speak` call
+        // for an utterance that was cancelled, which would leave this waiting
+        // for ever.
+        await Future.any<void>([tts.speak(utterance).then((_) {}), replaced]);
       }
     } catch (_) {
       // No TTS engine available (desktop/test) — degrade to silent captions.
@@ -533,6 +630,7 @@ class NarrationController extends Notifier<bool> {
       };
 
   Future<void> stop() async {
+    _replaceCurrent();
     try {
       await _tts?.stop();
     } catch (_) {}

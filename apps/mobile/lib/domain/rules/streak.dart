@@ -56,6 +56,45 @@ StreakTick nextStreakTick({
   return const StreakTick(streak: 1);
 }
 
+/// The run as it stands on [todayKey] if the child does nothing more.
+///
+/// The stored count only moves when an activity is finished, so read raw it
+/// keeps a run that ended last week at its old length — on the home pill, in
+/// the parent insights and in the reminders — until the next activity resets
+/// it. A run is still alive while finishing something today would extend it:
+/// the last active day is today or yesterday, or the day before that with
+/// this week's shield unspent.
+int liveStreak({
+  required String? lastDayKey,
+  required String todayKey,
+  required String yesterdayKey,
+  required String dayBeforeYesterdayKey,
+  required int stored,
+  required bool shieldAvailable,
+}) {
+  if (lastDayKey == todayKey || lastDayKey == yesterdayKey) return stored;
+  if (shieldAvailable && lastDayKey == dayBeforeYesterdayKey) return stored;
+  return 0;
+}
+
+/// Day key `yyyy-MM-dd` for [d]'s calendar day, in [d]'s own time zone.
+String dayKeyOf(DateTime d) =>
+    '${d.year.toString().padLeft(4, '0')}-'
+    '${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')}';
+
+/// Day key for the calendar day [days] before [d].
+///
+/// Counted on the calendar, not in 24-hour steps. A daylight-saving day is 23
+/// or 25 hours long, so `d.subtract(Duration(days: 1))` taken in the hour
+/// after midnight following a spring-forward day lands two days back, and a
+/// child who played yesterday loses the run. Noon keeps the result clear of
+/// zones that change their clocks at midnight.
+String dayKeyBefore(DateTime d, int days) => dayKeyOf(
+      d.isUtc
+          ? DateTime.utc(d.year, d.month, d.day - days, 12)
+          : DateTime(d.year, d.month, d.day - days, 12),
+    );
+
 /// ISO week key `yyyy-Www` for weekly shield allotment.
 String isoWeekKey(DateTime d) {
   // Thursday-based ISO week (same as package:intl without the dependency).

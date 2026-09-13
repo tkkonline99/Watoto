@@ -5,6 +5,8 @@
 /// import the screen that composes them. They belong below both.
 library;
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -21,6 +23,59 @@ import 'library_repository.dart';
 import 'play_style.dart';
 import 'step_play.dart';
 import 'step_visuals.dart';
+
+/// Moves a play surface on once the child has had both a beat to see the
+/// result and the time to hear it, whichever comes later.
+///
+/// Advancing on a fixed timer cut the spoken feedback off mid-sentence: the
+/// next line stops the voice, and "Woof! The puppy woke up happy." does not
+/// fit in 1.4 seconds. [cap] stops a voice that never reports finishing — a
+/// browser drops the reply for an utterance that errors — from holding the
+/// activity still. The Next button stays live throughout, so waiting never
+/// blocks a child who wants to go on.
+class SpeechBeat {
+  SpeechBeat({
+    required Future<void> speech,
+    required Duration minimum,
+    required this.onDone,
+    Duration cap = const Duration(seconds: 8),
+  }) {
+    _minimum = Timer(minimum, () {
+      _minimumPassed = true;
+      _maybeFinish();
+    });
+    _cap = Timer(cap, () {
+      _heard = true;
+      _maybeFinish();
+    });
+    speech.catchError((Object _) {}).whenComplete(() {
+      _heard = true;
+      _maybeFinish();
+    });
+  }
+
+  /// Runs once, when the beat has passed and the line has been heard.
+  final VoidCallback onDone;
+  late final Timer _minimum;
+  late final Timer _cap;
+  bool _minimumPassed = false;
+  bool _heard = false;
+  bool _finished = false;
+
+  void _maybeFinish() {
+    if (_finished || !_minimumPassed || !_heard) return;
+    _finished = true;
+    _cap.cancel();
+    onDone();
+  }
+
+  /// Drops the pending move; the callback will not run.
+  void cancel() {
+    _finished = true;
+    _minimum.cancel();
+    _cap.cancel();
+  }
+}
 
 /// Builds the localized view of an item from the current locale.
 LocalizedItem localizedItem(WidgetRef ref, LibraryItem item) {

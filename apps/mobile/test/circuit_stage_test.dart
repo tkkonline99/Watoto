@@ -18,6 +18,7 @@ import 'package:watoto_mobile/core/offline/offline_providers.dart';
 import 'package:watoto_mobile/core/offline/offline_store.dart';
 import 'package:watoto_mobile/core/offline/sync_op.dart';
 import 'package:watoto_mobile/core/widgets/mascot_widget.dart';
+import 'package:watoto_mobile/features/library/content_i18n.dart';
 import 'package:watoto_mobile/features/library/library_models.dart';
 import 'package:watoto_mobile/features/library/library_repository.dart';
 import 'package:watoto_mobile/features/library/play_stage_circuit.dart';
@@ -26,6 +27,8 @@ import 'package:watoto_mobile/features/library/step_play.dart';
 import 'package:watoto_mobile/features/onboarding/consent.dart';
 import 'package:watoto_mobile/features/onboarding/savanna_background.dart';
 import 'package:watoto_mobile/router/app_router.dart';
+
+import 'support/speech_engine.dart';
 
 class _UnreachableApi implements SyncApi {
   @override
@@ -72,9 +75,11 @@ void main() {
 
   setUp(() async {
     store = await OfflineStore.open(inMemory: true);
+    useInstantSpeechEngine();
   });
 
   tearDown(() async {
+    resetSpeechEngine();
     await store.close();
   });
 
@@ -115,6 +120,10 @@ void main() {
           libraryProvider.overrideWith(
             (ref) async => LibraryRepository([_lesson]),
           ),
+          // No translations for this lesson; the real bundle's isolate load
+          // never finishes under the test clock, so narration never started
+          // and the player never heard the feedback it now waits for.
+          contentI18nProvider.overrideWith((ref) async => ContentI18n(const {})),
         ],
         child: const WatotoApp(),
       );
