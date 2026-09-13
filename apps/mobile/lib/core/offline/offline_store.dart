@@ -15,7 +15,14 @@ import 'store_error.dart';
 import 'sync_op.dart';
 
 export '../../domain/rules/streak.dart'
-    show nextStreak, nextStreakTick, StreakTick, isoWeekKey;
+    show
+        nextStreak,
+        nextStreakTick,
+        StreakTick,
+        isoWeekKey,
+        liveStreak,
+        dayKeyOf,
+        dayKeyBefore;
 export '../../domain/rules/username.dart';
 
 part 'offline_store_cosmetics.dart';
@@ -460,9 +467,24 @@ class OfflineStore {
 
   int xpFor(String childId) => _stats.get('xp:$childId', defaultValue: 0)!;
 
-  /// Consecutive days [childId] has learned (today or yesterday keeps the run
-  /// alive; a longer gap resets it). Surfaced on the home 🔥 pill.
-  int streakFor(String childId) =>
+  /// Consecutive days [childId] has learned, as the run stands [now]: 0 once
+  /// it has lapsed, even though nothing has been written since (see
+  /// [liveStreak]). Surfaced on the home 🔥 pill.
+  int streakFor(String childId, {DateTime? now}) {
+    final when = now ?? DateTime.now();
+    return liveStreak(
+      lastDayKey: _account.get('streakDate:$childId'),
+      todayKey: _dayKey(when),
+      yesterdayKey: dayKeyBefore(when, 1),
+      dayBeforeYesterdayKey: dayKeyBefore(when, 2),
+      stored: _storedStreak(childId),
+      shieldAvailable: !streakShieldUsedThisWeek(childId, now: when),
+    );
+  }
+
+  /// The count as last written. Only the next activity resets it after a
+  /// lapse, so nothing outside the streak bookkeeping should read it.
+  int _storedStreak(String childId) =>
       _stats.get('streak:$childId', defaultValue: 0)!;
 
   /// Records that [childId] was active "today" and rolls the streak forward.
@@ -478,10 +500,9 @@ class OfflineStore {
     final tick = nextStreakTick(
       lastDayKey: lastKey,
       todayKey: todayKey,
-      yesterdayKey: _dayKey(now.subtract(const Duration(days: 1))),
-      dayBeforeYesterdayKey:
-          _dayKey(now.subtract(const Duration(days: 2))),
-      current: streakFor(childId),
+      yesterdayKey: dayKeyBefore(now, 1),
+      dayBeforeYesterdayKey: dayKeyBefore(now, 2),
+      current: _storedStreak(childId),
       shieldAvailable: !shieldUsedThisWeek,
     );
     await _stats.put('streak:$childId', tick.streak);
@@ -511,9 +532,11 @@ class OfflineStore {
     return _account.get('streakShieldWeek:$childId') == week;
   }
 
-  static String _dayKey(DateTime d) =>
-      '${d.year.toString().padLeft(4, '0')}-'
-      '${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')}';
+  /// ISO week key (`yyyy-Www`) in which the shield was last spent, or null.
+  String? streakShieldWeek(String childId) =>
+      _account.get('streakShieldWeek:$childId');
+
+  static String _dayKey(DateTime d) => dayKeyOf(d);
 
   Map<String, dynamic>? progressFor(String childId, String lessonId) =>
       _read('lesson:$childId:$lessonId');

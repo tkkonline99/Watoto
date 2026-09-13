@@ -8,5 +8,13 @@ export 'ports/repositories.dart';
 export 'rules/economy.dart';
 export 'rules/levels.dart';
 export 'rules/stars.dart';
-export 'rules/streak.dart' show nextStreak, nextStreakTick, StreakTick, isoWeekKey;
+export 'rules/streak.dart'
+    show
+        nextStreak,
+        nextStreakTick,
+        StreakTick,
+        isoWeekKey,
+        liveStreak,
+        dayKeyOf,
+        dayKeyBefore;
 export 'rules/username.dart';

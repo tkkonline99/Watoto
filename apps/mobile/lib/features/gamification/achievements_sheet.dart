@@ -39,7 +39,7 @@ Future<void> showAchievementsSheet(BuildContext context, WidgetRef ref) {
   final child = ref.read(activeChildProvider);
   final childId = child?.id;
   final xp = childId == null ? 0 : store.xpFor(childId);
-  final stats = badgeStatsFor(store, childId);
+  final held = heldBadgesFor(store, childId).map((b) => b.id).toSet();
 
   return showModalBottomSheet<void>(
     context: context,
@@ -113,11 +113,11 @@ Future<void> showAchievementsSheet(BuildContext context, WidgetRef ref) {
                     _BadgeChip(
                       emoji: b.emoji,
                       label: badgeLabel(l10n, b.id),
-                      earned: b.earnedBy(stats),
+                      earned: held.contains(b.id),
                     ),
                 ],
               ),
-              if (earnedBadges(stats).isEmpty) ...[
+              if (held.isEmpty) ...[
                 const SizedBox(height: 12),
                 Text(
                   l10n.noBadgesYet,

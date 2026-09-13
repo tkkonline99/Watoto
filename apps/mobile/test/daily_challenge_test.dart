@@ -50,6 +50,20 @@ void main() {
     expect(a.key, isNot(equals(b.key)));
   });
 
+  test('the challenge does not change in the hour after a spring-forward',
+      () {
+    // From local midnight a spring-forward day is 23 hours old at 23:00, so a
+    // local `inDays` count runs one short until 01:00 for the rest of summer.
+    for (final day in [DateTime(2026, 3, 9), DateTime(2026, 3, 30)]) {
+      final justAfterMidnight = day.add(const Duration(minutes: 30));
+      final noon = DateTime(day.year, day.month, day.day, 12);
+      expect(
+        dailyChallengeSubjectFor(justAfterMidnight).key,
+        dailyChallengeSubjectFor(noon).key,
+      );
+    }
+  });
+
   test('preferred stage overrides birth-year stage', () async {
     final child = ChildProfile(
       id: 'c1',

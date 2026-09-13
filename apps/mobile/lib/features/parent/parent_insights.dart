@@ -38,7 +38,7 @@ List<ParentInsight> buildParentInsights({
   DateTime? now,
 }) {
   final snap = weeklySnapshotFor(store, childId, now: now);
-  final streak = store.streakFor(childId);
+  final streak = store.streakFor(childId, now: now);
   final out = <ParentInsight>[];
 
   if (snap.activities == 0) {
