@@ -66,6 +66,35 @@ void main() {
         ReminderKind.inactive,
       );
     });
+
+    test('a missed day is only "at risk" while the shield can still save it',
+        () {
+      expect(
+        reminderFor(
+          lastActiveDayKey: '2026-07-26',
+          streak: 4,
+          onDay: today,
+        ),
+        ReminderKind.streakAtRisk,
+      );
+      // Shield already spent this week: the run ended at midnight.
+      expect(
+        reminderFor(
+          lastActiveDayKey: '2026-07-26',
+          streak: 4,
+          onDay: today,
+          shieldUsedWeek: isoWeekKey(today),
+        ),
+        ReminderKind.keepGoing,
+      );
+    });
+
+    test('day gaps are calendar days across a daylight-saving change', () {
+      expect(daysBetweenKeys('2026-03-08', '2026-03-09'), 1);
+      expect(daysBetweenKeys('2026-03-29', '2026-03-30'), 1);
+      expect(daysBetweenKeys('2026-03-27', '2026-03-30'), 3);
+      expect(daysBetweenKeys('2026-11-01', '2026-11-02'), 1);
+    });
   });
 
   group('planning', () {

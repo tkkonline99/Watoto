@@ -5,6 +5,8 @@
 /// targets a child, and nothing schedules unless a grown-up has opted in.
 library;
 
+import '../../../domain/rules/streak.dart' show isoWeekKey;
+
 /// Days of silence before a family counts as lapsed.
 const int inactiveAfterDays = 3;
 
@@ -37,11 +39,17 @@ String reminderDayKey(DateTime d) =>
     '${d.day.toString().padLeft(2, '0')}';
 
 /// Whole days between two day keys, or null when either is unparseable.
+///
+/// Measured between UTC midnights. A key parses to *local* midnight, and
+/// across a spring-forward night two consecutive local midnights are 23 hours
+/// apart, which `inDays` truncates to 0.
 int? daysBetweenKeys(String from, String to) {
   final a = DateTime.tryParse(from);
   final b = DateTime.tryParse(to);
   if (a == null || b == null) return null;
-  return b.difference(a).inDays;
+  return DateTime.utc(b.year, b.month, b.day)
+      .difference(DateTime.utc(a.year, a.month, a.day))
+      .inDays;
 }
 
 /// The reminder due on [onDay], given when the child was last active.
@@ -49,10 +57,16 @@ int? daysBetweenKeys(String from, String to) {
 /// [lastActiveDayKey] is null for a child who has never finished anything —
 /// they get the lapsed nudge rather than a streak warning about a streak they
 /// do not have.
+///
+/// [shieldUsedWeek] is the ISO week the weekly streak shield was last spent
+/// in. Two days after the last activity the run survives only if that day's
+/// week still has its shield; otherwise it ended at midnight, and "ends today"
+/// would be a warning about something already gone.
 ReminderKind reminderFor({
   required String? lastActiveDayKey,
   required int streak,
   required DateTime onDay,
+  String? shieldUsedWeek,
 }) {
   final today = reminderDayKey(onDay);
   if (lastActiveDayKey == null) return ReminderKind.inactive;
@@ -61,7 +75,11 @@ ReminderKind reminderFor({
   final gap = daysBetweenKeys(lastActiveDayKey, today);
   if (gap == null) return ReminderKind.none;
   if (gap >= inactiveAfterDays) return ReminderKind.inactive;
-  if (streak >= streakWorthProtecting) return ReminderKind.streakAtRisk;
+  final runAlive =
+      gap == 1 || (gap == 2 && isoWeekKey(onDay) != shieldUsedWeek);
+  if (runAlive && streak >= streakWorthProtecting) {
+    return ReminderKind.streakAtRisk;
+  }
   return ReminderKind.keepGoing;
 }
 
@@ -93,6 +111,7 @@ List<PlannedReminder> planReminders({
   required DateTime now,
   required int hour,
   required int minute,
+  String? shieldUsedWeek,
   int horizonDays = reminderHorizonDays,
 }) {
   final out = <PlannedReminder>[];
@@ -104,6 +123,7 @@ List<PlannedReminder> planReminders({
       lastActiveDayKey: lastActiveDayKey,
       streak: streak,
       onDay: day,
+      shieldUsedWeek: shieldUsedWeek,
     );
     if (kind == ReminderKind.none) continue;
     out.add(

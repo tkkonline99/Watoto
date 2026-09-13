@@ -22,7 +22,6 @@ import '../../features/auth/entitlements.dart';
 import '../../features/auth/parent_gate_dialog.dart';
 import '../../features/gamification/achievements_sheet.dart';
 import '../../features/gamification/badge_stats_source.dart';
-import '../../features/gamification/rewards.dart';
 import '../../l10n/gen/app_localizations.dart';
 import 'family_layer.dart';
 import 'parent_insights.dart';
@@ -632,7 +631,7 @@ class ParentDashboardScreen extends ConsumerWidget {
                 builder: (context) {
                   final xp = store.xpFor(child.id);
                   final stats = badgeStatsFor(store, child.id);
-                  final badges = earnedBadges(stats);
+                  final badges = heldBadgesFor(store, child.id);
                   final stars = store.totalStars(child.id);
                   final coins = store.coinsFor(child.id);
                   return Card(

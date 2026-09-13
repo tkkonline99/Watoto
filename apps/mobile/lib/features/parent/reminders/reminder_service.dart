@@ -126,7 +126,8 @@ class ReminderService {
 
     final planned = planReminders(
       lastActiveDayKey: store.lastActiveDayKey(childId),
-      streak: store.streakFor(childId),
+      streak: store.streakFor(childId, now: when),
+      shieldUsedWeek: store.streakShieldWeek(childId),
       now: when,
       hour: store.reminderHour,
       minute: store.reminderMinute,

@@ -97,6 +97,10 @@ const subjectCatalog = <SubjectCategory>[
 /// catalogue by calendar day so the challenge feels fresh each morning while
 /// staying stable within a single day.
 SubjectCategory dailyChallengeSubjectFor(DateTime date) {
-  final dayOfYear = date.difference(DateTime(date.year)).inDays;
+  // Counted in UTC so a daylight-saving hour cannot shift the rotation: from
+  // local midnight, spring-forward leaves `inDays` one short until 01:00.
+  final dayOfYear = DateTime.utc(date.year, date.month, date.day)
+      .difference(DateTime.utc(date.year))
+      .inDays;
   return subjectCatalog[dayOfYear % subjectCatalog.length];
 }

@@ -27,3 +27,18 @@ BadgeStats badgeStatsFor(OfflineStore store, String? childId) {
     perfectQuizzes: store.perfectQuizCount(childId),
   );
 }
+
+/// The badges [childId] holds, in catalogue order.
+///
+/// A badge stays once awarded. The streak badges read a number that falls
+/// back to 0 when a run ends, so judging a shelf on today's stats alone took
+/// the 🔥 badge back from a child who had earned it.
+List<Badge> heldBadgesFor(OfflineStore store, String? childId) {
+  final stats = badgeStatsFor(store, childId);
+  final awarded =
+      childId == null ? const <String>{} : store.seenBadgeIds(childId);
+  return [
+    for (final b in allBadges)
+      if (b.earnedBy(stats) || awarded.contains(b.id)) b,
+  ];
+}
