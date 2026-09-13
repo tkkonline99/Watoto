@@ -108,11 +108,33 @@ void main() {
       }
     });
 
-    test('chunk splits long multi-sentence text', () {
-      final chunks = NarrationController.chunkForSpeech(
-        'Tap the star. Great job! Now try the next one.',
+    test('a passage is one utterance until it is long enough to need a break',
+        () {
+      // Separate calls per sentence restarted the voice at every full stop.
+      expect(
+        NarrationController.chunkForSpeech(
+          'Tap the star. Great job! Now try the next one.',
+        ),
+        ['Tap the star. Great job! Now try the next one.'],
       );
+      final page = List.filled(10, 'The lion walked slowly to the river.')
+          .join(' ');
+      final chunks = NarrationController.chunkForSpeech(page);
       expect(chunks.length, greaterThanOrEqualTo(2));
+      expect(chunks.join(' '), page);
+      for (final c in chunks) {
+        expect(c.length, lessThanOrEqualTo(NarrationController.maxUtteranceChars));
+        expect(c, endsWith('.'), reason: 'split mid-sentence: "$c"');
+      }
+    });
+
+    test('an utterance never cuts a long sentence in half', () {
+      final sentence = '${List.filled(40, 'very').join(' ')} long.';
+      expect(NarrationController.chunkForSpeech(sentence), [sentence]);
+    });
+
+    test('text that is all pictographs gives the engine nothing to say', () {
+      expect(NarrationController.chunkForSpeech('🎉 ⭐'), isEmpty);
     });
   });
 

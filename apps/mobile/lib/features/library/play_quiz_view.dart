@@ -70,10 +70,19 @@ class QuizViewState extends ConsumerState<QuizView> {
     return built;
   }
 
+  /// Pending move to the next question once the praise has been heard.
+  SpeechBeat? _advance;
+
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) => _speakPrompt());
+  }
+
+  @override
+  void dispose() {
+    _advance?.cancel();
+    super.dispose();
   }
 
   Future<void> _speakPrompt() async {
@@ -130,12 +139,18 @@ class QuizViewState extends ConsumerState<QuizView> {
         _feedbackGood = true;
       });
       ref.read(soundEffectsProvider).correct();
-      ref.read(narrationProvider.notifier).speak(
-            praise,
-            lang,
-            style: SpeakStyle.cheer,
-          );
-      Timer(const Duration(milliseconds: 900), _next);
+      // Move on once the praise has been heard; a fixed 900 ms cut it off,
+      // because the next question's prompt stops the voice.
+      _advance?.cancel();
+      _advance = SpeechBeat(
+        speech: ref.read(narrationProvider.notifier).speak(
+              praise,
+              lang,
+              style: SpeakStyle.cheer,
+            ),
+        minimum: const Duration(milliseconds: 900),
+        onDone: _next,
+      );
     } else {
       setState(() {
         _wrongThisQ = true;

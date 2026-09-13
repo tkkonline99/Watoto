@@ -171,7 +171,7 @@ class _LessonViewState extends ConsumerState<_LessonView> {
     return count;
   }
   final _elapsed = Stopwatch()..start();
-  Timer? _autoAdvance; // pending "move on a beat after the interaction"
+  SpeechBeat? _autoAdvance; // pending "move on once the feedback is heard"
 
   /// Held directly rather than read through `ref` in [dispose], where the
   /// element is already torn down and `ref.read` throws.
@@ -243,7 +243,7 @@ class _LessonViewState extends ConsumerState<_LessonView> {
     ref.read(soundEffectsProvider).correct();
     final lang = ref.read(localeProvider).languageCode;
     final step = _step;
-    unawaited(() async {
+    final feedbackSpoken = () async {
       final loc = await awaitLocalizedItem(ref, widget.item);
       if (!mounted) return;
       await ref.read(narrationProvider.notifier).speak(
@@ -251,17 +251,23 @@ class _LessonViewState extends ConsumerState<_LessonView> {
             lang,
             style: SpeakStyle.cheer,
           );
-    }());
-    // Auto-advance after a beat so the loop stays snappy. User can still tap
-    // Next/Done immediately — button is enabled as soon as [_interacted] is true.
-    // Held in a field so a manual Next cancels it: a stale timer would other-
-    // wise fire on the *following* step and skip (or complete) it early.
+    }();
+    // Auto-advance once the feedback has been heard, and never sooner than a
+    // beat, so the loop stays snappy without cutting the voice off. User can
+    // still tap Next/Done immediately — button is enabled as soon as
+    // [_interacted] is true. Held in a field so a manual Next cancels it: a
+    // stale beat would otherwise fire on the *following* step and skip (or
+    // complete) it early.
     _autoAdvance?.cancel();
-    _autoAdvance = Timer(const Duration(milliseconds: 1400), () {
-      if (!mounted || !_interacted) return;
-      // Only auto-advance if we're still on the same completed step.
-      _next();
-    });
+    _autoAdvance = SpeechBeat(
+      speech: feedbackSpoken,
+      minimum: const Duration(milliseconds: 1400),
+      onDone: () {
+        if (!mounted || !_interacted) return;
+        // Only auto-advance if we're still on the same completed step.
+        _next();
+      },
+    );
   }
 
   void _next() {

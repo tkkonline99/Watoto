@@ -10,6 +10,7 @@ import 'package:watoto_mobile/core/offline/offline_providers.dart';
 import 'package:watoto_mobile/core/offline/offline_store.dart';
 import 'package:watoto_mobile/core/offline/sync_op.dart';
 import 'package:watoto_mobile/core/widgets/mascot_widget.dart';
+import 'package:watoto_mobile/features/library/content_i18n.dart';
 import 'package:watoto_mobile/features/library/content_lexicon.dart';
 import 'package:watoto_mobile/features/library/library_models.dart';
 import 'package:watoto_mobile/features/library/library_repository.dart';
@@ -19,6 +20,7 @@ import 'package:watoto_mobile/features/onboarding/savanna_background.dart';
 import 'package:watoto_mobile/router/app_router.dart';
 
 import 'support/phone_viewport.dart';
+import 'support/speech_engine.dart';
 
 /// Long enough to reveal a step's feedback, short enough that the player's
 /// auto-advance (1400ms after the interaction) has not fired yet.
@@ -148,9 +150,11 @@ void main() {
   setUp(() async {
     store = await OfflineStore.open(inMemory: true);
     usePhoneViewport();
+    useInstantSpeechEngine();
   });
 
   tearDown(() async {
+    resetSpeechEngine();
     resetPhoneViewport();
     await store.close();
   });
@@ -176,6 +180,11 @@ void main() {
           _choiceLesson,
         ]),
       ),
+      // These synthetic lessons have no translations. The real bundle loads
+      // through an isolate that never finishes under the test clock, which
+      // kept narration from ever starting — and a lesson now moves on only
+      // once its feedback has been spoken.
+      contentI18nProvider.overrideWith((ref) async => ContentI18n(const {})),
     ],
     child: const WatotoApp(),
   );
