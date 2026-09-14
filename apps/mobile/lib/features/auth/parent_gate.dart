@@ -13,24 +13,47 @@ import 'dart:math';
 class ParentGateChallenge {
   const ParentGateChallenge({required this.prompt, required this.answer});
 
-  /// e.g. "four — two — nine"
+  /// e.g. "four — two — nine". English; show [promptIn] to a family.
   final String prompt;
 
   /// e.g. "429"
   final String answer;
+
+  /// The digits of [answer] spelled out in [languageCode] (a locale name such
+  /// as `sw` or `fr_CA` is fine), or [prompt] for a language with no number
+  /// words here.
+  ///
+  /// The gate has to open for the grown-up holding the device. Spelled in
+  /// English for everyone, it asked a parent reading Swahili or French to
+  /// decode a language they may not read.
+  String promptIn(String languageCode) {
+    final words = _numberWords[languageCode.split(RegExp('[_-]')).first];
+    if (words == null) return prompt;
+    return answer.split('').map((d) => words[int.parse(d)]).join(' — ');
+  }
 }
 
-const _words = [
-  'zero', 'one', 'two', 'three', 'four',
-  'five', 'six', 'seven', 'eight', 'nine',
-];
+const _numberWords = {
+  'en': [
+    'zero', 'one', 'two', 'three', 'four',
+    'five', 'six', 'seven', 'eight', 'nine',
+  ],
+  'sw': [
+    'sifuri', 'moja', 'mbili', 'tatu', 'nne',
+    'tano', 'sita', 'saba', 'nane', 'tisa',
+  ],
+  'fr': [
+    'zéro', 'un', 'deux', 'trois', 'quatre',
+    'cinq', 'six', 'sept', 'huit', 'neuf',
+  ],
+};
 
 /// Generate a fresh spelled-out 3-digit challenge.
 ParentGateChallenge makeParentGate([Random? rng]) {
   final r = rng ?? Random();
   final digits = List.generate(3, (_) => r.nextInt(10));
   return ParentGateChallenge(
-    prompt: digits.map((d) => _words[d]).join(' — '),
+    prompt: digits.map((d) => _numberWords['en']![d]).join(' — '),
     answer: digits.join(),
   );
 }
