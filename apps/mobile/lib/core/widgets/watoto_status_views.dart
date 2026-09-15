@@ -126,6 +126,28 @@ class WatotoNotFoundScreen extends StatelessWidget {
   }
 }
 
+/// What a family sees when a screen's data fails to load: a kind message in
+/// their language and a way to try again.
+///
+/// The lesson player, the storybooks and the guides used to print the
+/// exception itself (`Text('$e')`) — developer English, on a child's screen.
+class WatotoLoadError extends StatelessWidget {
+  const WatotoLoadError({super.key, required this.onRetry});
+
+  final VoidCallback onRetry;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return WatotoErrorView(
+      title: l10n.loadErrorTitle,
+      subtitle: l10n.loadErrorBody,
+      retryLabel: l10n.retry,
+      onRetry: onRetry,
+    );
+  }
+}
+
 /// Kid-safe error card — never raw exception dumps on child surfaces.
 class WatotoErrorView extends StatelessWidget {
   const WatotoErrorView({

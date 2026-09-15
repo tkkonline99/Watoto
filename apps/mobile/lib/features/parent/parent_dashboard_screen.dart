@@ -800,6 +800,16 @@ class ParentDashboardScreen extends ConsumerWidget {
               },
             ),
             const Divider(height: 32),
+            // The curriculum browser — every age's topics, theme and grown-up
+            // tip — was routed but linked from nowhere.
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: const Icon(Icons.map_outlined),
+              title: Text(l10n.curriculum),
+              subtitle: Text(l10n.curriculumOverviewBody),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => context.push('/curriculum'),
+            ),
             ListTile(
               contentPadding: EdgeInsets.zero,
               leading: const Icon(Icons.menu_book_outlined),

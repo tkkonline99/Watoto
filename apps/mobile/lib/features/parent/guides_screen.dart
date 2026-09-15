@@ -97,7 +97,9 @@ class GuidesScreen extends ConsumerWidget {
       body: SafeArea(
         child: guidesAsync.when(
           loading: () => const Center(child: CircularProgressIndicator()),
-          error: (e, _) => Center(child: Text('$e')),
+          error: (e, _) => WatotoLoadError(
+            onRetry: () => ref.invalidate(guidesProvider),
+          ),
           data: (repo) => ListView(
             padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),
             children: [
@@ -162,7 +164,13 @@ class GuideDocScreen extends ConsumerWidget {
     return guidesAsync.when(
       loading: () =>
           const Scaffold(body: Center(child: CircularProgressIndicator())),
-      error: (e, _) => Scaffold(body: Center(child: Text('$e'))),
+      error: (e, _) => Scaffold(
+        body: SafeArea(
+          child: WatotoLoadError(
+            onRetry: () => ref.invalidate(guidesProvider),
+          ),
+        ),
+      ),
       data: (repo) {
         final doc = repo.byId[id];
         if (doc == null) {

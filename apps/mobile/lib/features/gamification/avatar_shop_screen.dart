@@ -272,7 +272,7 @@ class _AvatarTile extends StatelessWidget {
       enabled: onTap != null,
       selected: selected,
       label: spoken,
-      child: ExcludeSemantics(child: _tile()),
+      child: _tile(),
     );
   }
 
@@ -280,7 +280,10 @@ class _AvatarTile extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(16),
-      child: Container(
+      // Excluded inside the InkWell, not around it: around it, the tap action
+      // went too, and a screen reader could hear an avatar but not choose it.
+      child: ExcludeSemantics(
+        child: Container(
         width: 88,
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
@@ -308,6 +311,7 @@ class _AvatarTile extends StatelessWidget {
             ),
           ],
         ),
+      ),
       ),
     );
   }

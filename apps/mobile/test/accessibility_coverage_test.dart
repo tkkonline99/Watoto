@@ -21,6 +21,7 @@ void main() {
     'lib/features/curriculum/curriculum_screen.dart',
     'lib/features/curriculum/subject_detail_screen.dart',
     'lib/features/curriculum/age_picker.dart',
+    'lib/features/stories/story_library_screen.dart',
     // The auth screens (login, account, both resets) build every tap target
     // out of these shared widgets, so this is where their semantics live.
     'lib/features/auth/auth_widgets.dart',

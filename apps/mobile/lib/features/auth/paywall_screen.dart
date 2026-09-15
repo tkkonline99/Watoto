@@ -48,9 +48,10 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
       if (!mounted) return;
       setState(() => _message = 'ok');
       _leave();
-    } catch (e) {
+    } catch (_) {
       if (!mounted) return;
-      setState(() => _message = '$e');
+      // The exception is for developers; the parent used to be shown it raw.
+      setState(() => _message = 'failed');
     } finally {
       if (mounted) setState(() => _busy = false);
     }
@@ -179,7 +180,7 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
             if (_message != null && _message != 'ok') ...[
               const SizedBox(height: 12),
               Text(
-                _message == 'none' ? l10n.restoreNone : _message!,
+                _message == 'none' ? l10n.restoreNone : l10n.purchaseFailed,
                 style: const TextStyle(color: Colors.redAccent),
                 textAlign: TextAlign.center,
               ),

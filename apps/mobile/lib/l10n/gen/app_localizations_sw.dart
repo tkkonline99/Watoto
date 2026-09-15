@@ -848,6 +848,19 @@ class AppLocalizationsSw extends AppLocalizations {
   String get itemTypeStory => 'Hadithi';
 
   @override
+  String get loadErrorTitle => 'Hitilafu imetokea';
+
+  @override
+  String get loadErrorBody => 'Hatukuweza kupakia hiki. Tafadhali jaribu tena.';
+
+  @override
+  String get purchaseFailed => 'Ununuzi haukufanikiwa. Tafadhali jaribu tena.';
+
+  @override
+  String get curriculumOverviewBody =>
+      'Mtoto wako hugundua nini katika kila umri';
+
+  @override
   String get badgeThreeLessons => 'Masomo 3';
 
   @override
