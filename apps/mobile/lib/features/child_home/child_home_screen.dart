@@ -309,15 +309,18 @@ Map<String, double> _subjectRings(
   final stage = stageForChild(child, store);
   final out = <String, double>{};
   for (final subject in subjectCatalog) {
-    final topic = subject.topicNameFor(stage);
-    if (topic == null) continue;
-    final items = repo.forStageSubject(stage.stage, topic);
+    // The whole subject at this stage — every topic the tile holds, not just
+    // the one a tap opens on.
+    final items = [
+      for (final topic in subject.topicNamesFor(stage))
+        ...repo.forStageSubject(stage.stage, topic),
+    ];
     if (items.isEmpty) continue;
     out[subject.key] = subjectProgress(
       store: store,
       childId: child.id,
       stage: stage.stage,
-      subject: topic,
+      subject: subject.englishLabel,
       items: [for (final i in items) (id: i.id, type: i.type.name)],
     );
   }

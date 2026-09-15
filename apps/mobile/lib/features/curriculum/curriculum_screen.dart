@@ -12,6 +12,7 @@ import '../library/content_i18n.dart';
 import '../library/library_models.dart';
 import '../library/library_repository.dart';
 import 'curriculum_data.dart';
+import 'curriculum_i18n.dart';
 import 'curriculum_models.dart';
 import 'subject_i18n.dart';
 
@@ -73,7 +74,10 @@ class _CurriculumScreenState extends ConsumerState<CurriculumScreen> {
                 children: [
                   _StageHeader(stage: stage, l10n: l10n),
                   const SizedBox(height: 12),
-                  _DesignTip(text: stage.designTip, label: l10n.forGrownups),
+                  _DesignTip(
+                    text: localizedCurriculum(stage.designTip, lang),
+                    label: l10n.forGrownups,
+                  ),
                   const SizedBox(height: 16),
                   for (final topic in stage.topics)
                     _TopicCard(
@@ -147,9 +151,11 @@ class _StageHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final lang = l10n.localeName;
+    final band = localizedCurriculum(stage.band, lang);
     final sub = stage.grade == null
-        ? stage.band
-        : '${stage.band} · ${stage.grade}';
+        ? band
+        : '$band · ${localizedCurriculum(stage.grade!, lang)}';
     return Card(
       color: WatotoColors.sky.withValues(alpha: 0.12),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -168,7 +174,7 @@ class _StageHeader extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             Text(
-              stage.title,
+              localizedCurriculum(stage.title, lang),
               style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w800),
             ),
             Text(
@@ -177,7 +183,7 @@ class _StageHeader extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              stage.theme,
+              localizedCurriculum(stage.theme, lang),
               style: const TextStyle(fontSize: 15, height: 1.4),
             ),
           ],
@@ -282,7 +288,7 @@ class _TopicCard extends ConsumerWidget {
                     // Done-ness is shown with a ✓ glyph and type with an emoji;
                     // both are silent to a screen reader without this.
                     label: '${itemTitle(i18n, lang, item)}. '
-                        '${item.type.name}. '
+                        '${itemTypeLabel(l10n, item.type)}. '
                         '${isItemDone(ref, item) ? l10n.done : l10n.tapToPlay}',
                     child: ExcludeSemantics(
                       child: InkWell(
@@ -339,7 +345,7 @@ class _TopicCard extends ConsumerWidget {
                     ),
                     Expanded(
                       child: Text(
-                        activity,
+                        localizedCurriculum(activity, lang),
                         style: const TextStyle(fontSize: 15),
                       ),
                     ),

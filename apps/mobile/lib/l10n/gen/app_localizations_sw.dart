@@ -828,6 +828,26 @@ class AppLocalizationsSw extends AppLocalizations {
   String get goHome => 'Rudi nyumbani';
 
   @override
+  String get subjectPlanTitle => 'Tutakachogundua';
+
+  @override
+  String subjectDoneCount(int done, int total) {
+    return '$done kati ya $total zimekamilika';
+  }
+
+  @override
+  String get upNext => 'Inayofuata';
+
+  @override
+  String get itemTypeLesson => 'Somo';
+
+  @override
+  String get itemTypeQuiz => 'Chemsha bongo';
+
+  @override
+  String get itemTypeStory => 'Hadithi';
+
+  @override
   String get badgeThreeLessons => 'Masomo 3';
 
   @override

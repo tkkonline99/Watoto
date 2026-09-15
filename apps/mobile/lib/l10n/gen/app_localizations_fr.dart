@@ -831,6 +831,26 @@ class AppLocalizationsFr extends AppLocalizations {
   String get goHome => 'Retour à l\'accueil';
 
   @override
+  String get subjectPlanTitle => 'Ce que nous allons découvrir';
+
+  @override
+  String subjectDoneCount(int done, int total) {
+    return '$done sur $total terminées';
+  }
+
+  @override
+  String get upNext => 'À suivre';
+
+  @override
+  String get itemTypeLesson => 'Leçon';
+
+  @override
+  String get itemTypeQuiz => 'Quiz';
+
+  @override
+  String get itemTypeStory => 'Histoire';
+
+  @override
   String get badgeThreeLessons => '3 leçons';
 
   @override
