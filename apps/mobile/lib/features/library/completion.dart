@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/offline/offline_providers.dart';
+import '../../l10n/gen/app_localizations.dart';
 import 'library_models.dart';
 
 /// Whether the active child has completed [item] — the single source for the
@@ -23,3 +24,12 @@ bool isItemDone(WidgetRef ref, LibraryItem item) {
 /// icon-font tree-shaking can drop conditionally-referenced glyphs, and the
 /// emoji matches the app's visual language anyway.
 const String doneMark = '✅';
+
+/// The item's kind in the family's language, for screen-reader labels. The
+/// enum's own name ("lesson") is English whatever language the app is in.
+String itemTypeLabel(AppLocalizations l10n, LibraryType type) =>
+    switch (type) {
+      LibraryType.lesson => l10n.itemTypeLesson,
+      LibraryType.quiz => l10n.itemTypeQuiz,
+      LibraryType.story => l10n.itemTypeStory,
+    };

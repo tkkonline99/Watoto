@@ -1594,6 +1594,42 @@ abstract class AppLocalizations {
   /// **'Go home'**
   String get goHome;
 
+  /// No description provided for @subjectPlanTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What we\'ll explore'**
+  String get subjectPlanTitle;
+
+  /// No description provided for @subjectDoneCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{done} of {total} done'**
+  String subjectDoneCount(int done, int total);
+
+  /// No description provided for @upNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Up next'**
+  String get upNext;
+
+  /// No description provided for @itemTypeLesson.
+  ///
+  /// In en, this message translates to:
+  /// **'Lesson'**
+  String get itemTypeLesson;
+
+  /// No description provided for @itemTypeQuiz.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiz'**
+  String get itemTypeQuiz;
+
+  /// No description provided for @itemTypeStory.
+  ///
+  /// In en, this message translates to:
+  /// **'Story'**
+  String get itemTypeStory;
+
   /// No description provided for @badgeThreeLessons.
   ///
   /// In en, this message translates to:

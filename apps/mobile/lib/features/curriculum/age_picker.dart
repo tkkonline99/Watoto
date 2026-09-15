@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
+import 'curriculum_i18n.dart';
 import 'curriculum_models.dart';
 
 /// Asks the child to pick an age, then returns the matching curriculum stage.
@@ -69,7 +70,11 @@ class _AgeTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final subtitle = stage.grade ?? stage.band;
+    // Band and grade names are curriculum data, English at the source.
+    final subtitle = localizedCurriculum(
+      stage.grade ?? stage.band,
+      AppLocalizations.of(context).localeName,
+    );
     return Semantics(
       button: true,
       label: '$label. $subtitle',
