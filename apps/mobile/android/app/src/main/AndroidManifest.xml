@@ -64,6 +64,13 @@
             <action android:name="android.intent.action.PROCESS_TEXT"/>
             <data android:mimeType="text/plain"/>
         </intent>
+        <!-- Narration. Since Android 11 an app cannot see the device's
+             text-to-speech engine unless it declares this query, and
+             flutter_tts does not merge it in — without it the voice is
+             silent on current phones. -->
+        <intent>
+            <action android:name="android.intent.action.TTS_SERVICE"/>
+        </intent>
     </queries>
 </manifest>
 

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../core/offline/offline_providers.dart';
+import '../core/widgets/watoto_status_views.dart';
 import '../features/auth/account_screen.dart';
 import '../features/auth/change_credentials_screen.dart';
 import '../features/auth/login_screen.dart';
@@ -67,6 +68,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       defaultValue: '/welcome',
     ),
     refreshListenable: refresh,
+    // A link that matches no route (an old deep link, a typo) gets the app's
+    // own page in the family's language, with a way home — not go_router's
+    // English "Page Not Found".
+    errorBuilder: (c, s) => const WatotoNotFoundScreen(),
     redirect: (context, state) {
       final s = ref.read(sessionProvider);
       final loc = state.matchedLocation;

@@ -776,6 +776,7 @@ class ParentDashboardScreen extends ConsumerWidget {
               title: Text(l10n.premiumTitle),
               subtitle: Text(
                 freePremiumMapSummary(
+                  l10n,
                   isPremium: ref.watch(isPremiumProvider),
                 ),
               ),

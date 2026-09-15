@@ -436,7 +436,23 @@
       }
     }
   },
-  "premiumMapFree": "Free includes stages 1–5. Premium unlocks stages 6–10.",
+  "premiumMapFreeLaunch": "All stages 1–10 are free in this release. Optional Premium plans may arrive later.",
+  "premiumMapActive": "Premium is active: all stages 1–10 unlocked.",
+  "premiumMapSplit": "Free: stages 1–{freeMax} (birth to early primary). Premium unlocks stages {firstPremium}–10, offline packs and multi-child features.",
+  "@premiumMapSplit": {
+    "placeholders": {
+      "freeMax": {
+        "type": "int"
+      },
+      "firstPremium": {
+        "type": "int"
+      }
+    }
+  },
+  "premiumStoreUnavailable": "Purchases aren't available in this version yet.",
+  "notFoundTitle": "Oops! We couldn't find that.",
+  "notFoundBody": "It may have moved or been removed.",
+  "goHome": "Go home",
   "badgeThreeLessons": "3 lessons",
   "badgeTenLessons": "10 lessons",
   "save": "Save",

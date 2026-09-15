@@ -13,6 +13,7 @@ import '../../core/state/app_state.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../core/widgets/stages/question_scaffold.dart';
 import '../../core/widgets/stages/stage_scenes.dart';
+import '../../core/widgets/watoto_status_views.dart';
 import '../../l10n/gen/app_localizations.dart';
 import '../auth/entitlements.dart';
 import '../gamification/reward_outcome.dart';
@@ -52,7 +53,7 @@ class LibraryPlayScreen extends ConsumerWidget {
       data: (repo) {
         final item = repo.byId[id];
         if (item == null) {
-          return Scaffold(body: Center(child: Text('Not found: $id')));
+          return const WatotoNotFoundScreen();
         }
         if (!isContentUnlocked(
           item.stage,

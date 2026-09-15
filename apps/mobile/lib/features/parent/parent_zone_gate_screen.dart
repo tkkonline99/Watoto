@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -30,17 +32,43 @@ class ParentZoneGateScreen extends ConsumerStatefulWidget {
 class _ParentZoneGateScreenState extends ConsumerState<ParentZoneGateScreen> {
   final _secret = TextEditingController();
   bool _error = false;
-  bool _locked = false;
-  String? _lockMessage;
+
+  /// Repaints once a second while the PIN is locked out, so the countdown
+  /// moves and the field comes back by itself when the wait is over. Nothing
+  /// else rebuilds this screen when a lockout lapses: without it the grown-up
+  /// faced a disabled field until they closed the gate and opened it again.
+  Timer? _lockTicker;
 
   /// PIN wins when the family has both: it is the secret they chose
   /// specifically to keep this door shut.
   bool get _usePin => ref.read(offlineStoreProvider).hasPin;
 
   @override
+  void initState() {
+    super.initState();
+    // A lockout can begin elsewhere (the login screen shares the counter), so
+    // the gate may open already locked.
+    _watchLockout();
+  }
+
+  @override
   void dispose() {
+    _lockTicker?.cancel();
     _secret.dispose();
     super.dispose();
+  }
+
+  void _watchLockout() {
+    final store = ref.read(offlineStoreProvider);
+    if (_lockTicker != null || !store.hasPin || !store.isPinLocked) return;
+    _lockTicker = Timer.periodic(const Duration(seconds: 1), (ticker) {
+      if (!mounted) return ticker.cancel();
+      if (!ref.read(offlineStoreProvider).isPinLocked) {
+        ticker.cancel();
+        _lockTicker = null;
+      }
+      setState(() {});
+    });
   }
 
   void _passed() {
@@ -61,39 +89,14 @@ class _ParentZoneGateScreenState extends ConsumerState<ParentZoneGateScreen> {
       return;
     }
 
-    // Drop expired lockout before attempting.
-    if (_locked && !store.isPinLocked) {
-      setState(() {
-        _locked = false;
-        _lockMessage = null;
-      });
-    }
     final result = await store.tryPin(_secret.text);
     if (!mounted) return;
     if (result == 'ok') return _passed();
-    if (result == 'locked') {
-      final secs = store.pinLockRemaining?.inSeconds ?? 0;
-      setState(() {
-        _locked = true;
-        _error = false;
-        _lockMessage = _lockedFor(secs);
-      });
-      _secret.clear();
-      return;
-    }
-    setState(() {
-      _error = true;
-      _locked = false;
-      _lockMessage = null;
-    });
     _secret.clear();
-  }
-
-  String _lockedFor(int seconds) {
-    final m = seconds ~/ 60;
-    final s = seconds % 60;
-    if (m > 0) return 'Too many tries. Wait ${m}m ${s}s.';
-    return 'Too many tries. Wait ${s}s.';
+    // A lockout explains itself above the field; "wrong PIN" under it as well
+    // would be two messages about one try.
+    setState(() => _error = result != 'locked');
+    _watchLockout();
   }
 
   @override
@@ -101,7 +104,8 @@ class _ParentZoneGateScreenState extends ConsumerState<ParentZoneGateScreen> {
     final l10n = AppLocalizations.of(context);
     final store = ref.watch(offlineStoreProvider);
     final usePin = store.hasPin;
-    final pinLocked = store.isPinLocked;
+    final pinLocked = usePin && store.isPinLocked;
+    final lockLeft = store.pinLockRemaining;
 
     return Scaffold(
       appBar: AppBar(
@@ -135,9 +139,10 @@ class _ParentZoneGateScreenState extends ConsumerState<ParentZoneGateScreen> {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 24),
-                if (_lockMessage != null) ...[
+                if (pinLocked && lockLeft != null) ...[
                   Text(
-                    _lockMessage!,
+                    // Rounded up, so the last second reads "1s", not "0s".
+                    l10n.pinLockedFor((lockLeft.inMilliseconds / 1000).ceil()),
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       color: WatotoColors.berry,
@@ -150,7 +155,7 @@ class _ParentZoneGateScreenState extends ConsumerState<ParentZoneGateScreen> {
                   controller: _secret,
                   keyboardType: usePin ? TextInputType.number : null,
                   obscureText: true,
-                  enabled: !usePin || !pinLocked,
+                  enabled: !pinLocked,
                   // obscureText + number keyboard drops keystrokes on many
                   // Android IMEs unless suggestions/autocorrect are off
                   // (flutter#67391).
@@ -164,14 +169,14 @@ class _ParentZoneGateScreenState extends ConsumerState<ParentZoneGateScreen> {
                   onSubmitted: (_) => _submit(),
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),
-                    errorText: _error
+                    errorText: _error && !pinLocked
                         ? (usePin ? l10n.wrongPin : l10n.wrongPassword)
                         : null,
                   ),
                 ),
                 const SizedBox(height: 16),
                 FilledButton(
-                  onPressed: usePin && pinLocked ? null : _submit,
+                  onPressed: pinLocked ? null : _submit,
                   child: Text(l10n.unlock),
                 ),
                 const SizedBox(height: 4),

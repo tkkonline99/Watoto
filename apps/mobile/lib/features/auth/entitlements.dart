@@ -15,6 +15,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/config/publish_config.dart';
 import '../../core/offline/offline_providers.dart';
 import '../../core/offline/offline_store.dart';
+import '../../l10n/gen/app_localizations.dart';
 
 /// Product ids — must match `backend/products.json` and store consoles.
 const premiumMonthlyId = 'watoto.premium.monthly';
@@ -66,18 +67,20 @@ bool isContentUnlocked(int stage, Entitlement e, {int? freeMax}) =>
 /// to put the paywall back in the path.
 final freeStageMaxProvider = Provider<int>((ref) => effectiveFreeStageMax);
 
-/// Human-readable free vs premium split for parent UI.
-String freePremiumMapSummary({required bool isPremium}) {
-  if (publishFreeOnly) {
-    return 'All stages 1–10 are free in this release. '
-        'Optional Premium plans may arrive later.';
-  }
-  if (isPremium) {
-    return 'Premium is active: all stages 1–10 unlocked.';
-  }
-  return 'Free: stages 1–$freeStageMax (Birth–early primary). '
-      'Premium unlocks stages ${freeStageMax + 1}–10, offline packs, '
-      'and multi-child convenience features.';
+/// The free vs premium split for parent UI, in the family's language.
+///
+/// It used to be English prose, shown as-is on the Parent Dashboard and the
+/// paywall to Swahili and French families alike. [freeOnly] defaults to the
+/// build's [publishFreeOnly]; tests pass it to reach the split a paid build
+/// would show.
+String freePremiumMapSummary(
+  AppLocalizations l10n, {
+  required bool isPremium,
+  bool? freeOnly,
+}) {
+  if (freeOnly ?? publishFreeOnly) return l10n.premiumMapFreeLaunch;
+  if (isPremium) return l10n.premiumMapActive;
+  return l10n.premiumMapSplit(freeStageMax, freeStageMax + 1);
 }
 
 final entitlementProvider = Provider<Entitlement>((ref) {

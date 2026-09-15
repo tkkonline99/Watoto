@@ -32,6 +32,10 @@ android {
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
+        // flutter_local_notifications (parent reminders) uses java.time APIs
+        // that older Android lacks; without desugaring the release build
+        // fails its AAR metadata check.
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
@@ -44,6 +48,7 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        multiDexEnabled = true
     }
 
     signingConfigs {
@@ -78,4 +83,9 @@ kotlin {
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    // Version from the flutter_local_notifications 22.x setup guide.
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
 }

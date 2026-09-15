@@ -1552,11 +1552,47 @@ abstract class AppLocalizations {
   /// **'{count} items waiting to sync'**
   String syncPending(int count);
 
-  /// No description provided for @premiumMapFree.
+  /// No description provided for @premiumMapFreeLaunch.
   ///
   /// In en, this message translates to:
-  /// **'Free includes stages 1–5. Premium unlocks stages 6–10.'**
-  String get premiumMapFree;
+  /// **'All stages 1–10 are free in this release. Optional Premium plans may arrive later.'**
+  String get premiumMapFreeLaunch;
+
+  /// No description provided for @premiumMapActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Premium is active: all stages 1–10 unlocked.'**
+  String get premiumMapActive;
+
+  /// No description provided for @premiumMapSplit.
+  ///
+  /// In en, this message translates to:
+  /// **'Free: stages 1–{freeMax} (birth to early primary). Premium unlocks stages {firstPremium}–10, offline packs and multi-child features.'**
+  String premiumMapSplit(int freeMax, int firstPremium);
+
+  /// No description provided for @premiumStoreUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchases aren\'t available in this version yet.'**
+  String get premiumStoreUnavailable;
+
+  /// No description provided for @notFoundTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Oops! We couldn\'t find that.'**
+  String get notFoundTitle;
+
+  /// No description provided for @notFoundBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It may have moved or been removed.'**
+  String get notFoundBody;
+
+  /// No description provided for @goHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Go home'**
+  String get goHome;
 
   /// No description provided for @badgeThreeLessons.
   ///

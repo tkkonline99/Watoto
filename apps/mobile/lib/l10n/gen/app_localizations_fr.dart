@@ -805,7 +805,30 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get premiumMapFree => 'Gratuit: etapes 1-5. Premium: etapes 6-10.';
+  String get premiumMapFreeLaunch =>
+      'Toutes les étapes 1 à 10 sont gratuites dans cette version. Des offres Premium facultatives pourraient arriver plus tard.';
+
+  @override
+  String get premiumMapActive =>
+      'Premium est actif : toutes les étapes 1 à 10 sont débloquées.';
+
+  @override
+  String premiumMapSplit(int freeMax, int firstPremium) {
+    return 'Gratuit : étapes 1 à $freeMax (de la naissance au début du primaire). Premium débloque les étapes $firstPremium à 10, les packs hors-ligne et les fonctions multi-enfants.';
+  }
+
+  @override
+  String get premiumStoreUnavailable =>
+      'Les achats ne sont pas encore disponibles dans cette version.';
+
+  @override
+  String get notFoundTitle => 'Oups ! Nous n\'avons pas trouvé ça.';
+
+  @override
+  String get notFoundBody => 'Cela a peut-être été déplacé ou supprimé.';
+
+  @override
+  String get goHome => 'Retour à l\'accueil';
 
   @override
   String get badgeThreeLessons => '3 leçons';
