@@ -78,7 +78,7 @@ class _AgeTile extends StatelessWidget {
     return Semantics(
       button: true,
       label: '$label. $subtitle',
-      child: ExcludeSemantics(child: _tile(subtitle)),
+      child: _tile(subtitle),
     );
   }
 
@@ -86,7 +86,11 @@ class _AgeTile extends StatelessWidget {
     return InkWell(
       borderRadius: BorderRadius.circular(16),
       onTap: onTap,
-      child: Container(
+      // Excluded inside the InkWell, not around it: wrapped around it, the
+      // exclusion took the tap action too, and a screen reader could hear an
+      // age but never pick it.
+      child: ExcludeSemantics(
+        child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         decoration: BoxDecoration(
           color: WatotoColors.sky.withValues(alpha: 0.12),
@@ -115,6 +119,7 @@ class _AgeTile extends StatelessWidget {
             const Icon(Icons.chevron_right, color: WatotoColors.deep),
           ],
         ),
+      ),
       ),
     );
   }

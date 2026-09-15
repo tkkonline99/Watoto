@@ -851,6 +851,20 @@ class AppLocalizationsFr extends AppLocalizations {
   String get itemTypeStory => 'Histoire';
 
   @override
+  String get loadErrorTitle => 'Un problème est survenu';
+
+  @override
+  String get loadErrorBody =>
+      'Impossible de charger ce contenu. Veuillez réessayer.';
+
+  @override
+  String get purchaseFailed => 'L\'achat n\'a pas abouti. Veuillez réessayer.';
+
+  @override
+  String get curriculumOverviewBody =>
+      'Ce que votre enfant explore à chaque âge';
+
+  @override
   String get badgeThreeLessons => '3 leçons';
 
   @override

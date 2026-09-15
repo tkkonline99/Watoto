@@ -1630,6 +1630,30 @@ abstract class AppLocalizations {
   /// **'Story'**
   String get itemTypeStory;
 
+  /// No description provided for @loadErrorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong'**
+  String get loadErrorTitle;
+
+  /// No description provided for @loadErrorBody.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t load this. Please try again.'**
+  String get loadErrorBody;
+
+  /// No description provided for @purchaseFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'The purchase didn\'t go through. Please try again.'**
+  String get purchaseFailed;
+
+  /// No description provided for @curriculumOverviewBody.
+  ///
+  /// In en, this message translates to:
+  /// **'What your child explores at every age'**
+  String get curriculumOverviewBody;
+
   /// No description provided for @badgeThreeLessons.
   ///
   /// In en, this message translates to:

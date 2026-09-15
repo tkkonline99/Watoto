@@ -49,7 +49,13 @@ class LibraryPlayScreen extends ConsumerWidget {
     return libAsync.when(
       loading: () =>
           const Scaffold(body: Center(child: CircularProgressIndicator())),
-      error: (e, _) => Scaffold(body: Center(child: Text('$e'))),
+      error: (e, _) => Scaffold(
+        body: SafeArea(
+          child: WatotoLoadError(
+            onRetry: () => ref.invalidate(libraryProvider),
+          ),
+        ),
+      ),
       data: (repo) {
         final item = repo.byId[id];
         if (item == null) {

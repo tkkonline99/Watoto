@@ -340,7 +340,7 @@ class _PlayTile extends StatelessWidget {
       button: true,
       enabled: !locked,
       label: '$title. ${itemTypeLabel(l10n, item.type)}. $state$next',
-      child: ExcludeSemantics(child: _tile(context, l10n)),
+      child: _tile(context, l10n),
     );
   }
 
@@ -356,7 +356,11 @@ class _PlayTile extends StatelessWidget {
           }
           context.push('/play/${item.id}');
         },
-        child: Container(
+        // Excluded inside the InkWell, not around it: around it, the tap
+        // action went too, and a screen reader could hear the lesson but
+        // not open it.
+        child: ExcludeSemantics(
+          child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
           decoration: BoxDecoration(
             color: WatotoColors.sun.withValues(alpha: upNext ? 0.30 : 0.18),
@@ -409,6 +413,7 @@ class _PlayTile extends StatelessWidget {
                     ),
             ],
           ),
+        ),
         ),
       ),
     );

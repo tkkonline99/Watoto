@@ -853,6 +853,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get itemTypeStory => 'Story';
 
   @override
+  String get loadErrorTitle => 'Something went wrong';
+
+  @override
+  String get loadErrorBody => 'We couldn\'t load this. Please try again.';
+
+  @override
+  String get purchaseFailed =>
+      'The purchase didn\'t go through. Please try again.';
+
+  @override
+  String get curriculumOverviewBody => 'What your child explores at every age';
+
+  @override
   String get badgeThreeLessons => '3 lessons';
 
   @override
