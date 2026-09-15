@@ -7,7 +7,12 @@ import 'auth_service.dart';
 import 'parent_gate.dart';
 
 /// Shows the FTC-style parent gate. Returns true if the adult passed.
+///
+/// Draws a new number each time it opens. It used to read one challenge for
+/// the whole run, so a child who had watched a grown-up answer it once could
+/// type the same three digits to reach PIN or password recovery.
 Future<bool> showParentGateDialog(BuildContext context, WidgetRef ref) async {
+  ref.invalidate(parentGateChallengeProvider);
   final challenge = ref.read(parentGateChallengeProvider);
   final result = await showDialog<bool>(
     context: context,
@@ -60,7 +65,9 @@ class _ParentGateDialogState extends State<_ParentGateDialog> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text(l10n.parentGateBody(widget.challenge.prompt)),
+          Text(l10n.parentGateBody(
+            widget.challenge.promptIn(l10n.localeName),
+          )),
           const SizedBox(height: 12),
           TextField(
             controller: _controller,
