@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../l10n/gen/app_localizations.dart';
 import '../theme/watoto_theme.dart';
 import 'mascot_widget.dart';
 import 'watoto_button.dart';
@@ -101,6 +102,30 @@ class WatotoEmptyView extends StatelessWidget {
   }
 }
 
+/// Where a link to something that is not there lands — a route that matches
+/// nothing, or a lesson or guide id that no longer exists.
+///
+/// These used to print `Not found: <id>` in English on a blank page (or, for
+/// an unknown route, go_router's own English "Page Not Found"), with no way
+/// back. A child can reach them from an old deep link, so they speak the
+/// family's language and offer the way home.
+class WatotoNotFoundScreen extends StatelessWidget {
+  const WatotoNotFoundScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Scaffold(
+      body: SafeArea(
+        child: WatotoErrorView(
+          title: l10n.notFoundTitle,
+          subtitle: l10n.notFoundBody,
+        ),
+      ),
+    );
+  }
+}
+
 /// Kid-safe error card — never raw exception dumps on child surfaces.
 class WatotoErrorView extends StatelessWidget {
   const WatotoErrorView({
@@ -160,7 +185,7 @@ class WatotoErrorView extends StatelessWidget {
               TextButton(
                 onPressed: () => context.go('/'),
                 child: Text(
-                  homeLabel ?? 'Home',
+                  homeLabel ?? AppLocalizations.of(context).goHome,
                   style: const TextStyle(
                     fontFamily: 'Baloo2',
                     fontSize: 18,

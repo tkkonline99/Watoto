@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../core/theme/watoto_theme.dart';
 import '../../core/widgets/markdown_lite.dart';
+import '../../core/widgets/watoto_status_views.dart';
 import '../../l10n/gen/app_localizations.dart';
 
 /// Curriculum guides for grown-ups — the full teaching packages behind the
@@ -165,7 +166,7 @@ class GuideDocScreen extends ConsumerWidget {
       data: (repo) {
         final doc = repo.byId[id];
         if (doc == null) {
-          return Scaffold(body: Center(child: Text('Not found: $id')));
+          return const WatotoNotFoundScreen();
         }
         return Scaffold(
           appBar: AppBar(title: Text(doc.title)),

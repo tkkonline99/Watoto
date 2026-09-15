@@ -802,7 +802,30 @@ class AppLocalizationsSw extends AppLocalizations {
   }
 
   @override
-  String get premiumMapFree => 'Bure: hatua 1–5. Premium: hatua 6–10.';
+  String get premiumMapFreeLaunch =>
+      'Hatua zote 1–10 ni bure katika toleo hili. Mipango ya hiari ya Premium inaweza kuja baadaye.';
+
+  @override
+  String get premiumMapActive =>
+      'Premium imewashwa: hatua zote 1–10 zimefunguliwa.';
+
+  @override
+  String premiumMapSplit(int freeMax, int firstPremium) {
+    return 'Bure: hatua 1–$freeMax (tangu kuzaliwa hadi mwanzo wa shule ya msingi). Premium hufungua hatua $firstPremium–10, vifurushi vya nje ya mtandao na vipengele vya watoto wengi.';
+  }
+
+  @override
+  String get premiumStoreUnavailable =>
+      'Ununuzi bado haupatikani katika toleo hili.';
+
+  @override
+  String get notFoundTitle => 'Samahani! Hatukukipata hicho.';
+
+  @override
+  String get notFoundBody => 'Huenda kimehamishwa au kimeondolewa.';
+
+  @override
+  String get goHome => 'Rudi nyumbani';
 
   @override
   String get badgeThreeLessons => 'Masomo 3';

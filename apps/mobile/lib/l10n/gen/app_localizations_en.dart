@@ -808,8 +808,29 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get premiumMapFree =>
-      'Free includes stages 1–5. Premium unlocks stages 6–10.';
+  String get premiumMapFreeLaunch =>
+      'All stages 1–10 are free in this release. Optional Premium plans may arrive later.';
+
+  @override
+  String get premiumMapActive => 'Premium is active: all stages 1–10 unlocked.';
+
+  @override
+  String premiumMapSplit(int freeMax, int firstPremium) {
+    return 'Free: stages 1–$freeMax (birth to early primary). Premium unlocks stages $firstPremium–10, offline packs and multi-child features.';
+  }
+
+  @override
+  String get premiumStoreUnavailable =>
+      'Purchases aren\'t available in this version yet.';
+
+  @override
+  String get notFoundTitle => 'Oops! We couldn\'t find that.';
+
+  @override
+  String get notFoundBody => 'It may have moved or been removed.';
+
+  @override
+  String get goHome => 'Go home';
 
   @override
   String get badgeThreeLessons => '3 lessons';

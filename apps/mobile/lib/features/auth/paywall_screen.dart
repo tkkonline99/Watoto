@@ -128,7 +128,7 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
             _Bullet(l10n.premiumBullet3),
             const SizedBox(height: 12),
             Text(
-              freePremiumMapSummary(isPremium: premium),
+              freePremiumMapSummary(l10n, isPremium: premium),
               textAlign: TextAlign.center,
               style: const TextStyle(fontSize: 13, color: Colors.black54),
             ),
@@ -141,11 +141,14 @@ class _PaywallScreenState extends ConsumerState<PaywallScreen> {
               ),
             ] else ...[
               const SizedBox(height: 8),
-              const Text(
-                'Store billing is not configured in this build. '
-                'Use a debug build or ALLOW_SANDBOX_IAP for testing.',
+              // A store build whose billing is not wired up yet. This used to
+              // tell the *parent* to "use a debug build or ALLOW_SANDBOX_IAP";
+              // that advice is for developers, who can pass
+              // --dart-define=ALLOW_SANDBOX_IAP=true to test purchases.
+              Text(
+                l10n.premiumStoreUnavailable,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 12, color: Colors.black45),
+                style: const TextStyle(fontSize: 12, color: Colors.black45),
               ),
             ],
             const SizedBox(height: 24),
