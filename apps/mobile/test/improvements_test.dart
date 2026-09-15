@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
 import 'package:watoto_mobile/core/offline/offline_store.dart';
@@ -6,6 +7,7 @@ import 'package:watoto_mobile/features/gamification/adaptive.dart';
 import 'package:watoto_mobile/features/library/library_models.dart';
 import 'package:watoto_mobile/features/library/step_play.dart';
 import 'package:watoto_mobile/features/parent/parent_insights.dart';
+import 'package:watoto_mobile/l10n/gen/app_localizations.dart';
 
 void main() {
   group('sandbox IAP gate', () {
@@ -16,11 +18,15 @@ void main() {
     });
 
     test('freePremiumMapSummary mentions free stages', () {
-      final s = freePremiumMapSummary(isPremium: false);
+      final l10n = lookupAppLocalizations(const Locale('en'));
+      final s = freePremiumMapSummary(l10n, isPremium: false);
       // Free-only launch copy (PUBLISH_FREE_ONLY default).
       expect(s.toLowerCase(), contains('free'));
       expect(s, contains('1–10'));
-      expect(freePremiumMapSummary(isPremium: true).toLowerCase(), contains('free'));
+      expect(
+        freePremiumMapSummary(l10n, isPremium: true).toLowerCase(),
+        contains('free'),
+      );
     });
   });
 
