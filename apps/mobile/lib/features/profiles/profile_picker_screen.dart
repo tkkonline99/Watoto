@@ -78,15 +78,20 @@ class _ProfileTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Semantics(
-      button: true,
-      label: semanticLabel,
-      child: ExcludeSemantics(
-        child: Card(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-          child: InkWell(
-            onTap: onTap,
-            borderRadius: BorderRadius.circular(24),
+    // The label goes inside the Card and the exclusion inside the InkWell.
+    // Wrapped around the card, the exclusion took the tap action too, and a
+    // screen reader could hear a child's name but never pick them; and a Card
+    // is its own semantics container, so a label outside it lands on a
+    // different node from the tap.
+    return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+      child: Semantics(
+        button: true,
+        label: semanticLabel,
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(24),
+          child: ExcludeSemantics(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

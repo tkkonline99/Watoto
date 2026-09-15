@@ -50,7 +50,8 @@ class _CurriculumScreenState extends ConsumerState<CurriculumScreen> {
         backgroundColor: Colors.transparent,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_rounded, color: WatotoColors.deep),
-          onPressed: () => context.go('/'),
+          // Back to wherever it was opened from — the Parent Zone links here.
+          onPressed: () => context.canPop() ? context.pop() : context.go('/'),
         ),
         title: Text(
           l10n.curriculum,
@@ -290,11 +291,12 @@ class _TopicCard extends ConsumerWidget {
                     label: '${itemTitle(i18n, lang, item)}. '
                         '${itemTypeLabel(l10n, item.type)}. '
                         '${isItemDone(ref, item) ? l10n.done : l10n.tapToPlay}',
-                    child: ExcludeSemantics(
-                      child: InkWell(
+                    // Exclusion inside the InkWell, so the tap action stays.
+                    child: InkWell(
                     borderRadius: BorderRadius.circular(12),
                     onTap: () => context.push('/play/${item.id}'),
-                    child: Container(
+                    child: ExcludeSemantics(
+                      child: Container(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 12,
                         vertical: 10,
