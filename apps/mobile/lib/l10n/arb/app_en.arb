@@ -453,6 +453,22 @@
   "notFoundTitle": "Oops! We couldn't find that.",
   "notFoundBody": "It may have moved or been removed.",
   "goHome": "Go home",
+  "subjectPlanTitle": "What we'll explore",
+  "subjectDoneCount": "{done} of {total} done",
+  "@subjectDoneCount": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "upNext": "Up next",
+  "itemTypeLesson": "Lesson",
+  "itemTypeQuiz": "Quiz",
+  "itemTypeStory": "Story",
   "badgeThreeLessons": "3 lessons",
   "badgeTenLessons": "10 lessons",
   "save": "Save",

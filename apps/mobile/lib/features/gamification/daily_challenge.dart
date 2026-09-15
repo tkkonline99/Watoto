@@ -57,9 +57,13 @@ List<LibraryItem> dailyChallengeCandidates({
   final date = now ?? DateTime.now();
   final stage = stageForChild(child, store);
   final subject = dailyChallengeSubjectFor(date);
-  final topic = subject.topicNameFor(stage);
-  if (topic == null) return const [];
-  return library.forStageSubject(stage.stage, topic);
+  // Every topic the subject holds at this stage, in curriculum order. It used
+  // to draw only from the first, so Writing, Body Parts or Health could never
+  // be today's challenge.
+  return [
+    for (final topic in subject.topicNamesFor(stage))
+      ...library.forStageSubject(stage.stage, topic),
+  ];
 }
 
 /// Picks (and pins) today's challenge for [child], or null when no content

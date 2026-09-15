@@ -833,6 +833,26 @@ class AppLocalizationsEn extends AppLocalizations {
   String get goHome => 'Go home';
 
   @override
+  String get subjectPlanTitle => 'What we\'ll explore';
+
+  @override
+  String subjectDoneCount(int done, int total) {
+    return '$done of $total done';
+  }
+
+  @override
+  String get upNext => 'Up next';
+
+  @override
+  String get itemTypeLesson => 'Lesson';
+
+  @override
+  String get itemTypeQuiz => 'Quiz';
+
+  @override
+  String get itemTypeStory => 'Story';
+
+  @override
   String get badgeThreeLessons => '3 lessons';
 
   @override
