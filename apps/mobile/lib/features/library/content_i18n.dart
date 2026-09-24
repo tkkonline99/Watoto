@@ -49,7 +49,10 @@ class ContentI18n {
   static Future<Map<String, String>> _bundle(String code) async {
     try {
       final raw = await rootBundle.loadString('assets/i18n/$code.json');
-      return compute(_decodeBundle, raw, debugLabel: 'i18n:$code');
+      // Awaited so a decode failure inside the isolate lands in the catch
+      // below. Returned bare, the Future escaped the try, and a malformed
+      // bundle took the whole provider down instead of falling back.
+      return await compute(_decodeBundle, raw, debugLabel: 'i18n:$code');
     } catch (_) {
       return const {};
     }
