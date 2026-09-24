@@ -140,6 +140,16 @@ jobs:
       - name: Build web
         working-directory: apps/mobile
         run: flutter build web --release
+      # The deploy below only runs on a tag and needs Firebase secrets, so on an
+      # ordinary push the build was being thrown away. Keep it: this is the one
+      # runnable copy of the app CI can produce without any credentials.
+      - name: Upload web build
+        uses: actions/upload-artifact@v4
+        with:
+          name: watoto-web-${{ github.sha }}
+          path: apps/mobile/build/web
+          retention-days: 14
+          if-no-files-found: error
       - name: Deploy to Firebase Hosting
         if: github.ref_type == 'tag'
         run: |
