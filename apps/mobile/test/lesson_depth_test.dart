@@ -295,8 +295,9 @@ void main() {
       // asserts the direction of travel: the count may fall, never rise.
       // Lower it as stages land; see docs/CONTENT_WORKLIST.md.
       // 332 before any of this; 302 after stage 1, 230 after stages 2 and 3,
-      // 164 once stages 4 and 5 followed (content/author_stage{1..5}.py).
-      const knownShallow = 164;
+      // 164 after 4 and 5, 134 once stage 6 followed
+      // (content/author_stage{1..6}.py). Only stages 8-10 remain.
+      const knownShallow = 134;
       expect(
         shallow.length,
         lessThanOrEqualTo(knownShallow),

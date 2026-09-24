@@ -136,16 +136,36 @@ def apply_stage(
             continue
         base = item["steps"][:n_base]
         steps = list(base)
-        for action, mechanic, narr, fb in extras:
-            steps.append({
+        for offset, entry in enumerate(extras):
+            action, mechanic, narr, fb = entry[:4]
+            # Optional fifth element: everything a question step needs beyond
+            # narration. `prompt` and `choices` are per-language tuples, in the
+            # same (en, sw, fr) order as the rest; `answer`, `choiceIndex`,
+            # `count`, `rows` and `cols` are numbers and travel as they are.
+            # Without this a `multiChoice` step renders nothing to choose
+            # between — which is how stages 4 and 5 first shipped 46 of them.
+            more = entry[4] if len(entry) > 4 else {}
+            n = len(base) + offset
+            step = {
                 "narration": narr[0], "action": action, "feedback": fb[0],
                 "mechanic": mechanic,
-            })
-        for offset, (_a, _m, narr, fb) in enumerate(extras):
-            n = len(base) + offset
+            }
+            if "prompt" in more:
+                step["prompt"] = more["prompt"][0]
+            if "choices" in more:
+                step["choices"] = list(more["choices"][0])
+            for key in ("answer", "choiceIndex", "count", "rows", "cols"):
+                if key in more:
+                    step[key] = more[key]
+            steps.append(step)
+
             for i, lang in enumerate(LANGS):
                 overlay[lang][f"{lid}.steps.{n}.narration"] = narr[i]
                 overlay[lang][f"{lid}.steps.{n}.feedback"] = fb[i]
+                if "prompt" in more:
+                    overlay[lang][f"{lid}.steps.{n}.prompt"] = more["prompt"][i]
+                for m, choice in enumerate(more.get("choices", [[]] * 3)[i]):
+                    overlay[lang][f"{lid}.steps.{n}.choices.{m}"] = choice
         if not check_only:
             item["steps"] = steps
 

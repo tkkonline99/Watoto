@@ -85,6 +85,21 @@ const Map<String, LexEntry> lexicon = {
   'blanket': LexEntry('🛏️', _object), 'pot': LexEntry('🍲', _object),
   // Stage-2 and -3 "find the real one" steps name these; without them the
   // step falls back to the generic subject icon.
+  // Stage 6 teaches concepts, so its steps name the concept rather than an
+  // object on screen ("Speed is distance and time together"). These are the
+  // ones that recur often enough to be worth an icon of their own — without
+  // them a third of the stage draws the generic subject fallback.
+  'solid': LexEntry('🧊', _concept, choice: false),
+  'liquid': LexEntry('💧', _concept, choice: false),
+  'gas': LexEntry('💨', _concept, choice: false),
+  'material': LexEntry('🧱', _concept, choice: false),
+  'speed': LexEntry('⏱️', _concept, choice: false),
+  'tool': LexEntry('🔧', _object), 'screen': LexEntry('📱', _object),
+  'photo': LexEntry('📷', _object), 'kitchen': LexEntry('🍽️', _concept, choice: false),
+  'animal': LexEntry('🐾', _concept, choice: false),
+  'shape': LexEntry('🔷', _shape, choice: false),
+  'state': LexEntry('🌡️', _concept, choice: false),
+  'service': LexEntry('💇', _concept, choice: false),
   // Nouns the stage-4 and -5 arcs name while asking a question about them.
   // Without these the step falls back to the generic subject icon and the
   // picture stops being about the step.

@@ -17653,6 +17653,49 @@
           "action": "drag",
           "feedback": "'1 ten and 4 ones. That is 14!'",
           "mechanic": "drag"
+        },
+        {
+          "narration": "A ten-rod is worth ten ones stacked together.",
+          "action": "tap",
+          "feedback": "One rod, ten ones. Always.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "So in 23, the 2 means two rods — twenty.",
+          "action": "tap",
+          "feedback": "The place a digit sits tells you its size.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "In 45, how many tens are there?",
+          "action": "tap",
+          "feedback": "Four tens and five ones.",
+          "mechanic": "multiChoice",
+          "prompt": "How many tens in 45?",
+          "choices": [
+            "4",
+            "5",
+            "45"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Build 30. How many ones will you need?",
+          "action": "drag",
+          "feedback": "None! Three rods and nothing left over.",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "Count the rods and ones on a real number chart.",
+          "action": "real-world",
+          "feedback": "Every two-digit number splits this way.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Where a digit sits changes what it is worth.",
+          "action": "celebrate",
+          "feedback": "That one idea runs through all of maths.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -17716,6 +17759,55 @@
             "9"
           ],
           "choiceIndex": 2
+        },
+        {
+          "narration": "Counting on beats counting all over again.",
+          "action": "tap",
+          "feedback": "Start at the big number and step up.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "For 7 + 2, hold 7 in your head. Then 8, 9.",
+          "action": "tap",
+          "feedback": "Two steps up from seven. That is 9.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Try it: 8 + 2. Count on from 8.",
+          "action": "tap",
+          "feedback": "9, 10. The answer is 10.",
+          "mechanic": "multiChoice",
+          "prompt": "8 + 2 = ?",
+          "choices": [
+            "9",
+            "10",
+            "11"
+          ],
+          "choiceIndex": 1
+        },
+        {
+          "narration": "Now 5 + 4. Which is quicker to hold: the 5 or the 4?",
+          "action": "tap",
+          "feedback": "The bigger one. Fewer steps to count.",
+          "mechanic": "multiChoice",
+          "prompt": "Start counting on from which?",
+          "choices": [
+            "5",
+            "4"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Add two small numbers of your own, out loud.",
+          "action": "real-world",
+          "feedback": "Big one first, then step up. Every time.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "You added without counting from one.",
+          "action": "celebrate",
+          "feedback": "That is what makes sums fast.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -17778,6 +17870,56 @@
             "8"
           ],
           "choiceIndex": 0
+        },
+        {
+          "narration": "Taking away is counting backwards.",
+          "action": "tap",
+          "feedback": "Start at the big number and step down.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "9 - 3: hold 9, then 8, 7, 6.",
+          "action": "tap",
+          "feedback": "Three steps down lands on 6.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Your turn: 8 - 3.",
+          "action": "tap",
+          "feedback": "7, 6, 5. The answer is 5.",
+          "mechanic": "multiChoice",
+          "prompt": "8 - 3 = ?",
+          "choices": [
+            "4",
+            "5",
+            "6"
+          ],
+          "choiceIndex": 1
+        },
+        {
+          "narration": "10 - 10. What is left?",
+          "action": "tap",
+          "feedback": "Nothing at all. Zero.",
+          "mechanic": "multiChoice",
+          "prompt": "10 - 10 = ?",
+          "choices": [
+            "0",
+            "1",
+            "10"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Take away some real objects and count what is left.",
+          "action": "real-world",
+          "feedback": "Your hands agree with the numbers.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Adding steps up; taking away steps down.",
+          "action": "celebrate",
+          "feedback": "Same number line, two directions.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -17833,6 +17975,55 @@
           "action": "tap",
           "feedback": "'Sixteen. 16!'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Every teen number is ten, plus some more.",
+          "action": "tap",
+          "feedback": "The ten is hiding inside all of them.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Seventeen is ten and seven. You can hear it.",
+          "action": "tap",
+          "feedback": "The name says the answer out loud.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Ten and eight more make which number?",
+          "action": "tap",
+          "feedback": "Eighteen. Ten hiding inside again.",
+          "mechanic": "multiChoice",
+          "prompt": "10 + 8 = ?",
+          "choices": [
+            "18",
+            "80",
+            "108"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Which is bigger: 14 or 19?",
+          "action": "tap",
+          "feedback": "Both have one ten, so the ones decide.",
+          "mechanic": "multiChoice",
+          "prompt": "Bigger number?",
+          "choices": [
+            "14",
+            "19"
+          ],
+          "choiceIndex": 1
+        },
+        {
+          "narration": "Find a teen number written somewhere near you.",
+          "action": "real-world",
+          "feedback": "A page, a clock, a door. They are everywhere.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Teen numbers stop being tricky once you find the ten.",
+          "action": "celebrate",
+          "feedback": "Now you know where to look.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -17889,6 +18080,49 @@
           "action": "drag",
           "feedback": "'1 ten, 2 ones. 12!'",
           "mechanic": "drag"
+        },
+        {
+          "narration": "Any number can be broken into tens and ones.",
+          "action": "tap",
+          "feedback": "Breaking it up makes it easier to hold.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "16 is one ten and six ones.",
+          "action": "tap",
+          "feedback": "One rod, six cubes. That is all sixteen is.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Break 27 apart. How many ones?",
+          "action": "tap",
+          "feedback": "Seven ones, and two tens.",
+          "mechanic": "multiChoice",
+          "prompt": "Ones in 27?",
+          "choices": [
+            "2",
+            "7",
+            "27"
+          ],
+          "choiceIndex": 1
+        },
+        {
+          "narration": "Build 20 with rods only.",
+          "action": "drag",
+          "feedback": "Two rods, zero ones. A round number.",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "Say your own age as tens and ones.",
+          "action": "real-world",
+          "feedback": "Numbers you use every day split too.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Tens and ones is how numbers are built.",
+          "action": "celebrate",
+          "feedback": "Take one apart and you can always put it back.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -17945,6 +18179,54 @@
           "action": "tap",
           "feedback": "'Solid. 3D!'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Flat shapes lie on paper. Solid shapes you can hold.",
+          "action": "tap",
+          "feedback": "Flat is 2D. Solid is 3D.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "A square is flat. A box is the solid version.",
+          "action": "tap",
+          "feedback": "Every solid has a flat shape hiding on its face.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Which of these could you hold in your hand?",
+          "action": "tap",
+          "feedback": "The ball. Solid shapes take up space.",
+          "mechanic": "multiChoice",
+          "prompt": "Which is solid?",
+          "choices": [
+            "A ball",
+            "A circle"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "A tin of beans is closest to which solid?",
+          "action": "tap",
+          "feedback": "A cylinder — round faces, straight sides.",
+          "mechanic": "multiChoice",
+          "prompt": "Which solid?",
+          "choices": [
+            "Cube",
+            "Cylinder"
+          ],
+          "choiceIndex": 1
+        },
+        {
+          "narration": "Find one flat shape and one solid shape near you.",
+          "action": "real-world",
+          "feedback": "Hold one, point at the other.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Flat or solid — you can tell them apart now.",
+          "action": "celebrate",
+          "feedback": "Two words that sort every shape there is.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -18101,6 +18383,67 @@
       ]
     },
     {
+      "id": "s06.math.quiz.04",
+      "stage": 6,
+      "ages": "5-6",
+      "subject": "Math",
+      "type": "quiz",
+      "title": "Tens and Ones",
+      "objective": "Read a two-digit number as tens and ones.",
+      "designTier": "gamify-gently",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Build the number with real objects first.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s06/digit_3.png",
+          "desc": "3"
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/digit_6.png",
+          "desc": "6"
+        }
+      ],
+      "questions": [
+        {
+          "prompt": "How many tens are in 36?",
+          "options": [
+            {
+              "label": "3",
+              "asset": "img/s06/digit_3.png"
+            },
+            {
+              "label": "6",
+              "asset": "img/s06/digit_6.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Three tens and six ones.",
+          "retryFeedback": "The first digit counts the tens. Try again!"
+        },
+        {
+          "prompt": "And how many ones?",
+          "options": [
+            {
+              "label": "6",
+              "asset": "img/s06/digit_6.png"
+            },
+            {
+              "label": "3",
+              "asset": "img/s06/digit_3.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Six ones. 36 is 30 and 6.",
+          "retryFeedback": "The second digit counts the ones. Try again!"
+        }
+      ]
+    },
+    {
       "id": "s06.math.story.01",
       "stage": 6,
       "ages": "5-6",
@@ -18140,6 +18483,52 @@
       ]
     },
     {
+      "id": "s06.math.story.02",
+      "stage": 6,
+      "ages": "5-6",
+      "subject": "Math",
+      "type": "story",
+      "title": "The Number That Hid a Ten",
+      "objective": "Place value, inside a story.",
+      "designTier": "gamify-gently",
+      "reading": false,
+      "timed": false,
+      "interaction": "listen",
+      "parentNote": "Break a two-digit number apart together after.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s06/num_sixteen.png",
+          "desc": "Sixteen looked like a big, hard number."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/num_split.png",
+          "desc": "Then Zawadi split it: one ten, six ones."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/num_easy.png",
+          "desc": "Suddenly it was two small numbers holding hands."
+        }
+      ],
+      "pages": [
+        {
+          "narration": "Sixteen looked like a big, hard number.",
+          "illustration": "img/s06/num_sixteen.png"
+        },
+        {
+          "narration": "Then Zawadi split it: one ten, six ones.",
+          "illustration": "img/s06/num_split.png"
+        },
+        {
+          "narration": "Suddenly it was two small numbers holding hands.",
+          "illustration": "img/s06/num_easy.png"
+        }
+      ]
+    },
+    {
       "id": "s06.reading.lesson.01",
       "stage": 6,
       "ages": "5-6",
@@ -18172,6 +18561,54 @@
           "action": "tap",
           "feedback": "'fi-sh. Fish!' Two letters, one sound.",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Two letters, one sound. That is a digraph.",
+          "action": "tap",
+          "feedback": "s and h stop being s and h. They become shhh.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "So 'shop' is sh-o-p. Three sounds, four letters.",
+          "action": "tap",
+          "feedback": "Counting sounds is not counting letters.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "How many sounds are in 'shed'?",
+          "action": "tap",
+          "feedback": "Three: sh-e-d.",
+          "mechanic": "multiChoice",
+          "prompt": "Sounds in 'shed'?",
+          "choices": [
+            "3",
+            "4"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Which word has the sh sound at the end?",
+          "action": "tap",
+          "feedback": "'wish'. The digraph can sit anywhere.",
+          "mechanic": "multiChoice",
+          "prompt": "Which ends in sh?",
+          "choices": [
+            "wish",
+            "sock"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Hunt for sh in a real book with a grown-up.",
+          "action": "real-world",
+          "feedback": "It turns up on nearly every page.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Some sounds need two letters to write them down.",
+          "action": "celebrate",
+          "feedback": "Knowing that stops a lot of reading going wrong.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -18226,6 +18663,54 @@
           "action": "tap",
           "feedback": "'lun-ch. Lunch!'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "ch is a digraph too. Two letters, one sound.",
+          "action": "tap",
+          "feedback": "Like sh, but sharper: ch.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "'chin' is ch-i-n. The ch works as one piece.",
+          "action": "tap",
+          "feedback": "Never split it when you sound a word out.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Which word starts with the ch sound?",
+          "action": "tap",
+          "feedback": "'chair'. Same two letters, same sound.",
+          "mechanic": "multiChoice",
+          "prompt": "Starts with ch?",
+          "choices": [
+            "chair",
+            "cat"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Careful: does 'school' start with the ch sound?",
+          "action": "tap",
+          "feedback": "No — it says /k/. English keeps a few surprises.",
+          "mechanic": "multiChoice",
+          "prompt": "Does 'school' say ch?",
+          "choices": [
+            "No",
+            "Yes"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Say three ch words out loud together.",
+          "action": "real-world",
+          "feedback": "Chin, chip, chair. Your mouth knows the shape.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "sh and ch are the first two digraphs.",
+          "action": "celebrate",
+          "feedback": "There are more, and you know what to look for now.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -18280,6 +18765,54 @@
           "action": "tap",
           "feedback": "'see, go'. Words we know fast!",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Some words are not worth sounding out.",
+          "action": "tap",
+          "feedback": "They come up so often you just learn them.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "'you', 'see' and 'go' are three of them.",
+          "action": "tap",
+          "feedback": "Know them by sight and sentences speed up.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Which of these is a sight word from this lesson?",
+          "action": "tap",
+          "feedback": "'go'. Short, common, worth memorising.",
+          "mechanic": "multiChoice",
+          "prompt": "Which is a sight word?",
+          "choices": [
+            "go",
+            "green"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Read: 'I see you go.' How many sight words?",
+          "action": "tap",
+          "feedback": "Three of the four. That whole sentence is fast now.",
+          "mechanic": "multiChoice",
+          "prompt": "How many?",
+          "choices": [
+            "2",
+            "3"
+          ],
+          "choiceIndex": 1
+        },
+        {
+          "narration": "Find one of these words in a real book.",
+          "action": "real-world",
+          "feedback": "You will not have to look far.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Some words you work out; some you simply know.",
+          "action": "celebrate",
+          "feedback": "Both kinds together is what reading is.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -18341,6 +18874,54 @@
             "I"
           ],
           "choiceIndex": 0
+        },
+        {
+          "narration": "A sentence is a whole thought, written down.",
+          "action": "tap",
+          "feedback": "It tells you who, and what they did.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "In 'The dog can run', the dog is who.",
+          "action": "tap",
+          "feedback": "And 'run' is what it does.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "In 'I see a big fish', which word is the doing word?",
+          "action": "tap",
+          "feedback": "'see'. Every sentence has one.",
+          "mechanic": "multiChoice",
+          "prompt": "Doing word?",
+          "choices": [
+            "see",
+            "fish"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Which word tells you the size of the fish?",
+          "action": "tap",
+          "feedback": "'big'. Describing words add the detail.",
+          "mechanic": "multiChoice",
+          "prompt": "Size word?",
+          "choices": [
+            "big",
+            "see"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Read one whole sentence from a real book aloud.",
+          "action": "real-world",
+          "feedback": "Slowly is fine. Finishing it is the point.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Words make sentences; sentences make stories.",
+          "action": "celebrate",
+          "feedback": "You are one step from reading a book alone.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -18396,6 +18977,48 @@
           "action": "drag",
           "feedback": "'s-u-n. Sun!' You're writing!",
           "mechanic": "drag"
+        },
+        {
+          "narration": "Spelling is blending, backwards.",
+          "action": "tap",
+          "feedback": "Say the word, catch each sound, write its letter.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "'cat' has three sounds, so it needs three letters.",
+          "action": "tap",
+          "feedback": "Count the sounds first. Then write.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Spell 'pin'. Listen for all three sounds.",
+          "action": "drag",
+          "feedback": "p-i-n. You heard the middle one.",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "Which letter is missing: s _ n ?",
+          "action": "tap",
+          "feedback": "'u' — sun. The middle sound is the hardest to catch.",
+          "mechanic": "multiChoice",
+          "prompt": "s _ n",
+          "choices": [
+            "u",
+            "a"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Spell your own name out loud, sound by sound.",
+          "action": "real-world",
+          "feedback": "Names break into sounds like any other word.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Reading takes a word apart; spelling puts it together.",
+          "action": "celebrate",
+          "feedback": "You did both today.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -18450,6 +19073,54 @@
           "action": "tap",
           "feedback": "A period means stop. Nice!",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Capitals and periods are signposts for the reader.",
+          "action": "tap",
+          "feedback": "One says start here; one says stop.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Without them, sentences run into each other.",
+          "action": "tap",
+          "feedback": "The reader cannot tell where to breathe.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Where does a capital letter go?",
+          "action": "tap",
+          "feedback": "At the start. Always.",
+          "mechanic": "multiChoice",
+          "prompt": "Capital goes...",
+          "choices": [
+            "At the start",
+            "At the end"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "What does a period tell the reader to do?",
+          "action": "tap",
+          "feedback": "Stop, and take a breath.",
+          "mechanic": "multiChoice",
+          "prompt": "A period means...",
+          "choices": [
+            "Stop",
+            "Keep going"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Find a capital and a period on a real page.",
+          "action": "real-world",
+          "feedback": "Every sentence there has both.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Punctuation is written politeness to the reader.",
+          "action": "celebrate",
+          "feedback": "Use them and people can follow you.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -18574,6 +19245,77 @@
       ]
     },
     {
+      "id": "s06.reading.quiz.04",
+      "stage": 6,
+      "ages": "5-6",
+      "subject": "Reading & Writing",
+      "type": "quiz",
+      "title": "Two Letters, One Sound",
+      "objective": "Recognise the sh and ch digraphs.",
+      "designTier": "gamify-gently",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Say each word slowly, stretching the first sound.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s06/word_ship.png",
+          "desc": "ship"
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/word_chip.png",
+          "desc": "chip"
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/count3.png",
+          "desc": "3"
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/count4.png",
+          "desc": "4"
+        }
+      ],
+      "questions": [
+        {
+          "prompt": "Which word starts with the shhh sound?",
+          "options": [
+            {
+              "label": "ship",
+              "asset": "img/s06/word_ship.png"
+            },
+            {
+              "label": "chip",
+              "asset": "img/s06/word_chip.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "'ship'. Two letters, one sound.",
+          "retryFeedback": "That one says ch. Try again!"
+        },
+        {
+          "prompt": "How many sounds are in 'fish'?",
+          "options": [
+            {
+              "label": "3",
+              "asset": "img/s06/count3.png"
+            },
+            {
+              "label": "4",
+              "asset": "img/s06/count4.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Three: f-i-sh. The sh is one sound.",
+          "retryFeedback": "Count sounds, not letters. Try again!"
+        }
+      ]
+    },
+    {
       "id": "s06.reading.story.01",
       "stage": 6,
       "ages": "5-6",
@@ -18609,6 +19351,52 @@
           "narration": "Sam and the cat sit on the mat. The end!",
           "illustration": "img/s06/sam_cat.png",
           "interaction": "tap-word"
+        }
+      ]
+    },
+    {
+      "id": "s06.reading.story.02",
+      "stage": 6,
+      "ages": "5-6",
+      "subject": "Reading & Writing",
+      "type": "story",
+      "title": "The Two Letters That Argued",
+      "objective": "Digraphs make one sound together.",
+      "designTier": "gamify-gently",
+      "reading": false,
+      "timed": false,
+      "interaction": "listen",
+      "parentNote": "Hunt for sh and ch in a real book after.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s06/letters_argue.png",
+          "desc": "s wanted to hiss. h wanted to breathe."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/letters_split.png",
+          "desc": "They pulled the word in two and nobody could read it."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/letters_agree.png",
+          "desc": "So they agreed on one sound: shhh. And the word worked."
+        }
+      ],
+      "pages": [
+        {
+          "narration": "s wanted to hiss. h wanted to breathe.",
+          "illustration": "img/s06/letters_argue.png"
+        },
+        {
+          "narration": "They pulled the word in two and nobody could read it.",
+          "illustration": "img/s06/letters_split.png"
+        },
+        {
+          "narration": "So they agreed on one sound: shhh. And the word worked.",
+          "illustration": "img/s06/letters_agree.png"
         }
       ]
     },
@@ -18669,6 +19457,48 @@
             "Gas"
           ],
           "choiceIndex": 2
+        },
+        {
+          "narration": "The same stuff can be all three states.",
+          "action": "tap",
+          "feedback": "Water proves it: ice, water, steam.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Which state keeps its own shape?",
+          "action": "tap",
+          "feedback": "A solid holds its own shape, whatever it sits in.",
+          "mechanic": "multiChoice",
+          "prompt": "Keeps its shape?",
+          "choices": [
+            "Solid",
+            "Liquid"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "What turns ice into water?",
+          "action": "tap",
+          "feedback": "Heat. Take heat away and it goes back.",
+          "mechanic": "multiChoice",
+          "prompt": "Ice to water?",
+          "choices": [
+            "Heat",
+            "Cold"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Find a solid and a liquid in your kitchen.",
+          "action": "real-world",
+          "feedback": "One holds its shape, one does not.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Solid, liquid, gas — three ways to be the same thing.",
+          "action": "celebrate",
+          "feedback": "Heat is what moves it between them.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -18725,6 +19555,54 @@
           "action": "tap",
           "feedback": "'Shelter keeps them safe!'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Every animal needs the same three things.",
+          "action": "tap",
+          "feedback": "Food, water, and somewhere safe.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "A nest, a den, a burrow — all the same job.",
+          "action": "tap",
+          "feedback": "Different shapes, one purpose: shelter.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Which of these is NOT something an animal needs?",
+          "action": "tap",
+          "feedback": "A toy. Nice, but nothing lives on toys.",
+          "mechanic": "multiChoice",
+          "prompt": "Not a need?",
+          "choices": [
+            "A toy",
+            "Water"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "You need those three things too. True or false?",
+          "action": "tap",
+          "feedback": "True. You are an animal as well.",
+          "mechanic": "multiChoice",
+          "prompt": "True or false?",
+          "choices": [
+            "True",
+            "False"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Name an animal near you and where it shelters.",
+          "action": "real-world",
+          "feedback": "A bird in a tree, an ant under a stone.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Food, water, shelter. Three needs, every animal.",
+          "action": "celebrate",
+          "feedback": "Now you can check any creature against the list.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -18779,6 +19657,54 @@
           "action": "tap",
           "feedback": "'Moon and stars. Nighttime!'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "The sun is a star, just a very close one.",
+          "action": "tap",
+          "feedback": "That is why it looks so big and warm.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "The moon makes no light of its own.",
+          "action": "tap",
+          "feedback": "It shines because the sun lights it up.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Why can we not see stars in the daytime?",
+          "action": "tap",
+          "feedback": "The sun is too bright. They are still there.",
+          "mechanic": "multiChoice",
+          "prompt": "Why no stars by day?",
+          "choices": [
+            "The sun is too bright",
+            "They go away"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Which gives us daytime and warmth?",
+          "action": "tap",
+          "feedback": "The sun. Our nearest star.",
+          "mechanic": "multiChoice",
+          "prompt": "Daytime and warmth?",
+          "choices": [
+            "The sun",
+            "The moon"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Look up tonight and find one star.",
+          "action": "real-world",
+          "feedback": "Every one is a sun, very far away.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Sun, moon and stars are not three kinds of thing.",
+          "action": "celebrate",
+          "feedback": "Two are stars, one is a rock catching light.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -18833,6 +19759,54 @@
           "action": "drag",
           "feedback": "'A hat for sunny days!'",
           "mechanic": "drag"
+        },
+        {
+          "narration": "Clothes are how we keep our body at the right heat.",
+          "action": "tap",
+          "feedback": "Not fashion — temperature.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Thick layers trap warm air near your skin.",
+          "action": "tap",
+          "feedback": "That is why a coat works.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "What is a sun hat actually for?",
+          "action": "tap",
+          "feedback": "Shade. It keeps the sun off your head.",
+          "mechanic": "multiChoice",
+          "prompt": "A sun hat gives...",
+          "choices": [
+            "Shade",
+            "Warmth"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "It is raining. Which would you choose?",
+          "action": "tap",
+          "feedback": "Boots. Wet feet get cold fast.",
+          "mechanic": "multiChoice",
+          "prompt": "For rain?",
+          "choices": [
+            "Boots",
+            "Sandals"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Look outside and say what you would wear.",
+          "action": "real-world",
+          "feedback": "You read the weather and chose. That is planning.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Weather changes; what you wear should change with it.",
+          "action": "celebrate",
+          "feedback": "Checking first is a small, useful habit.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -18887,6 +19861,54 @@
           "action": "tap",
           "feedback": "'Metal and plastic. Different materials!'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Things are made of materials, and materials are chosen.",
+          "action": "tap",
+          "feedback": "Somebody picked wood for that chair on purpose.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Metal is strong, plastic is light, glass is clear.",
+          "action": "tap",
+          "feedback": "Each is picked for what it can do.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Why are windows made of glass?",
+          "action": "tap",
+          "feedback": "You can see through it. Nothing else common does that.",
+          "mechanic": "multiChoice",
+          "prompt": "Glass is chosen because...",
+          "choices": [
+            "You can see through it",
+            "It is heavy"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Would a paper chair work?",
+          "action": "tap",
+          "feedback": "No. Paper is not strong enough to hold you.",
+          "mechanic": "multiChoice",
+          "prompt": "Paper chair?",
+          "choices": [
+            "No",
+            "Yes"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Pick up something near you. What is it made of?",
+          "action": "real-world",
+          "feedback": "Now ask why that material and not another.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Everything around you was a choice somebody made.",
+          "action": "celebrate",
+          "feedback": "Materials are the first thing a maker decides.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -18941,6 +19963,54 @@
           "action": "tap",
           "feedback": "'Slooow.' Things move at different speeds!",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Speed is distance and time together.",
+          "action": "tap",
+          "feedback": "Fast means far in a short time.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "A snail and a car can travel the same distance.",
+          "action": "tap",
+          "feedback": "The difference is how long it takes.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Which would reach the shop first?",
+          "action": "tap",
+          "feedback": "The bike. Faster means fewer minutes.",
+          "mechanic": "multiChoice",
+          "prompt": "Arrives first?",
+          "choices": [
+            "A bike",
+            "A snail"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Is walking always slow?",
+          "action": "tap",
+          "feedback": "No — it depends what you compare it to.",
+          "mechanic": "multiChoice",
+          "prompt": "Always slow?",
+          "choices": [
+            "No",
+            "Yes"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Walk slowly across the room, then quickly.",
+          "action": "real-world",
+          "feedback": "Same distance, different time. That is speed.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Fast and slow only mean something next to each other.",
+          "action": "celebrate",
+          "feedback": "Comparing is how measuring starts.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -19081,6 +20151,72 @@
       ]
     },
     {
+      "id": "s06.science.quiz.04",
+      "stage": 6,
+      "ages": "5-6",
+      "subject": "Science",
+      "type": "quiz",
+      "title": "Solid, Liquid or Gas?",
+      "objective": "Sort familiar things by state of matter.",
+      "designTier": "gamify-gently",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Melt an ice cube together and watch.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s06/state_solid.png",
+          "desc": "Solid"
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/state_liquid.png",
+          "desc": "Liquid"
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/state_gas.png",
+          "desc": "Gas"
+        }
+      ],
+      "questions": [
+        {
+          "prompt": "Ice keeps its own shape. Which state?",
+          "options": [
+            {
+              "label": "Solid",
+              "asset": "img/s06/state_solid.png"
+            },
+            {
+              "label": "Liquid",
+              "asset": "img/s06/state_liquid.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Solid. It holds its shape.",
+          "retryFeedback": "A liquid takes the shape of its cup. Try again!"
+        },
+        {
+          "prompt": "Steam floats away into the air. Which state?",
+          "options": [
+            {
+              "label": "Gas",
+              "asset": "img/s06/state_gas.png"
+            },
+            {
+              "label": "Solid",
+              "asset": "img/s06/state_solid.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "Gas. It spreads out to fill the room.",
+          "retryFeedback": "A solid would stay put. Try again!"
+        }
+      ]
+    },
+    {
       "id": "s06.science.story.01",
       "stage": 6,
       "ages": "5-6",
@@ -19116,6 +20252,52 @@
           "narration": "Drip-drop. It rains back down! Water goes round and round.",
           "illustration": "img/s06/rain_down.png",
           "interaction": null
+        }
+      ]
+    },
+    {
+      "id": "s06.science.story.02",
+      "stage": 6,
+      "ages": "5-6",
+      "subject": "Science",
+      "type": "story",
+      "title": "The Puddle That Came Back",
+      "objective": "Water changes state and returns.",
+      "designTier": "gamify-gently",
+      "reading": false,
+      "timed": false,
+      "interaction": "listen",
+      "parentNote": "Freeze water, melt it, and talk about it.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s06/water_dry.png",
+          "desc": "The puddle dried up and the ground went hard."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/water_up.png",
+          "desc": "But the water was not gone. It had gone up."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/water_rain.png",
+          "desc": "Days later it came back down as rain."
+        }
+      ],
+      "pages": [
+        {
+          "narration": "The puddle dried up and the ground went hard.",
+          "illustration": "img/s06/water_dry.png"
+        },
+        {
+          "narration": "But the water was not gone. It had gone up.",
+          "illustration": "img/s06/water_up.png"
+        },
+        {
+          "narration": "Days later it came back down as rain.",
+          "illustration": "img/s06/water_rain.png"
         }
       ]
     },
@@ -19157,6 +20339,54 @@
           "action": "tap",
           "feedback": "'An anthem is a country's special song.'",
           "mechanic": "tap"
+        },
+        {
+          "narration": "A symbol is a picture that stands for an idea.",
+          "action": "tap",
+          "feedback": "A flag is a symbol for a whole country.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "An anthem does the same job with sound.",
+          "action": "tap",
+          "feedback": "People stand for it because of what it stands for.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "What is a flag?",
+          "action": "tap",
+          "feedback": "A symbol of a country.",
+          "mechanic": "multiChoice",
+          "prompt": "A flag is...",
+          "choices": [
+            "A symbol of a country",
+            "A kind of cloth"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Do all countries have a flag?",
+          "action": "tap",
+          "feedback": "Yes — every one, and all different.",
+          "mechanic": "multiChoice",
+          "prompt": "All countries?",
+          "choices": [
+            "Yes",
+            "No"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Describe your country's flag from memory.",
+          "action": "real-world",
+          "feedback": "Colours and shapes, chosen to mean something.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Symbols let a whole country fit on one cloth.",
+          "action": "celebrate",
+          "feedback": "That is a lot of meaning in a small space.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -19211,6 +20441,54 @@
           "action": "tap",
           "feedback": "Sharing is good citizenship!",
           "mechanic": "tap"
+        },
+        {
+          "narration": "A citizen is someone who belongs to a place.",
+          "action": "tap",
+          "feedback": "Belonging comes with looking after it.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Good citizens do small things, often.",
+          "action": "tap",
+          "feedback": "Helping, sharing, keeping to the rules.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Which is good citizenship?",
+          "action": "tap",
+          "feedback": "Picking up litter that is not even yours.",
+          "mechanic": "multiChoice",
+          "prompt": "Good citizenship?",
+          "choices": [
+            "Picking up litter",
+            "Walking past it"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Taking turns and giving some to a friend is called...",
+          "action": "tap",
+          "feedback": "Sharing. It is the easiest one to start with.",
+          "mechanic": "multiChoice",
+          "prompt": "This is called...",
+          "choices": [
+            "Sharing",
+            "Winning"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Name one thing you could do for your class or street.",
+          "action": "real-world",
+          "feedback": "Small and real beats big and imagined.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "A place is only as good as the people in it.",
+          "action": "celebrate",
+          "feedback": "You are one of those people.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -19265,6 +20543,54 @@
           "action": "tap",
           "feedback": "Maps help us find places!",
           "mechanic": "tap"
+        },
+        {
+          "narration": "A map is the world seen from directly above.",
+          "action": "tap",
+          "feedback": "Like a bird looking straight down.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "From above, a bed is just a rectangle.",
+          "action": "tap",
+          "feedback": "Maps swap real things for simple shapes.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "A map shows things from...",
+          "action": "tap",
+          "feedback": "Above. That is what makes it a map.",
+          "mechanic": "multiChoice",
+          "prompt": "From where?",
+          "choices": [
+            "Above",
+            "The side"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "What do maps help us do?",
+          "action": "tap",
+          "feedback": "Find places without having to be told.",
+          "mechanic": "multiChoice",
+          "prompt": "Maps help us...",
+          "choices": [
+            "Find places",
+            "Tell the time"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Draw your own room from above, with three things in it.",
+          "action": "real-world",
+          "feedback": "You just made a map.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Maps are a trick of point of view.",
+          "action": "celebrate",
+          "feedback": "Once you see it, you can read any of them.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -19319,6 +20645,54 @@
           "action": "drag",
           "feedback": "'A service!'",
           "mechanic": "drag"
+        },
+        {
+          "narration": "A good is a thing. A service is work someone does.",
+          "action": "tap",
+          "feedback": "One you can hold; one you cannot.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Bread is a good. Baking it for you is a service.",
+          "action": "tap",
+          "feedback": "Often the two come together.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "A haircut is a...",
+          "action": "tap",
+          "feedback": "A service. You cannot carry it home in a bag.",
+          "mechanic": "multiChoice",
+          "prompt": "A haircut is...",
+          "choices": [
+            "A service",
+            "A good"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Is a bus ride a good or a service?",
+          "action": "tap",
+          "feedback": "A service. The driver does the work.",
+          "mechanic": "multiChoice",
+          "prompt": "Bus ride?",
+          "choices": [
+            "Service",
+            "Good"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Name one good and one service your family used today.",
+          "action": "real-world",
+          "feedback": "Both are all around you, all the time.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Everything bought is a thing or a piece of work.",
+          "action": "celebrate",
+          "feedback": "Knowing which is the start of understanding money.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -19379,6 +20753,54 @@
             "All special"
           ],
           "choiceIndex": 1
+        },
+        {
+          "narration": "People everywhere do the same things differently.",
+          "action": "tap",
+          "feedback": "Eat, dress, greet, celebrate — all of it varies.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Different is not the same as wrong.",
+          "action": "tap",
+          "feedback": "It is just another way that works for them.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Children around the world eat...",
+          "action": "tap",
+          "feedback": "Many different foods, all of them proper meals.",
+          "mechanic": "multiChoice",
+          "prompt": "They eat...",
+          "choices": [
+            "Many different foods",
+            "All the same food"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Someone greets you in a way you have not seen. What now?",
+          "action": "tap",
+          "feedback": "Greet them back. Curiosity beats staring.",
+          "mechanic": "multiChoice",
+          "prompt": "What now?",
+          "choices": [
+            "Greet them back",
+            "Laugh"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Name one thing your family does that others might not.",
+          "action": "real-world",
+          "feedback": "That is your culture. Everyone has one.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "The world is full of right answers.",
+          "action": "celebrate",
+          "feedback": "Yours is one of them, not the only one.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -19433,6 +20855,54 @@
           "action": "tap",
           "feedback": "Now! Tools change over time.",
           "mechanic": "tap"
+        },
+        {
+          "narration": "Tools change because people keep improving them.",
+          "action": "tap",
+          "feedback": "Each one solves a problem the last one had.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "A quill ran out of ink. A pen carries its own.",
+          "action": "tap",
+          "feedback": "That is why one replaced the other.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "What happens to tools over time?",
+          "action": "tap",
+          "feedback": "They change, as people find better ways.",
+          "mechanic": "multiChoice",
+          "prompt": "Over time, tools...",
+          "choices": [
+            "Change",
+            "Stay the same"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Which is faster for sending a message today?",
+          "action": "tap",
+          "feedback": "A phone. Seconds instead of days.",
+          "mechanic": "multiChoice",
+          "prompt": "Faster today?",
+          "choices": [
+            "A phone",
+            "A messenger"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Ask a grown-up about a tool they used that is gone now.",
+          "action": "real-world",
+          "feedback": "They watched the change happen.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Everything normal was once brand new.",
+          "action": "celebrate",
+          "feedback": "The tools you use will look old one day too.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -19557,6 +21027,67 @@
       ]
     },
     {
+      "id": "s06.social.quiz.04",
+      "stage": 6,
+      "ages": "5-6",
+      "subject": "Social Studies",
+      "type": "quiz",
+      "title": "Good or Service?",
+      "objective": "Tell a thing from a piece of work.",
+      "designTier": "gamify-gently",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Name what you bought this week, one of each.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s06/econ_good.png",
+          "desc": "Good"
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/econ_service.png",
+          "desc": "Service"
+        }
+      ],
+      "questions": [
+        {
+          "prompt": "Bread is something you can hold. It is a...",
+          "options": [
+            {
+              "label": "Good",
+              "asset": "img/s06/econ_good.png"
+            },
+            {
+              "label": "Service",
+              "asset": "img/s06/econ_service.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "A good. You can carry it home.",
+          "retryFeedback": "A service is work, not a thing. Try again!"
+        },
+        {
+          "prompt": "A haircut is work done for you. It is a...",
+          "options": [
+            {
+              "label": "Service",
+              "asset": "img/s06/econ_service.png"
+            },
+            {
+              "label": "Good",
+              "asset": "img/s06/econ_good.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "A service. Nothing to carry home.",
+          "retryFeedback": "You cannot hold a haircut. Try again!"
+        }
+      ]
+    },
+    {
       "id": "s06.social.story.01",
       "stage": 6,
       "ages": "5-6",
@@ -19592,6 +21123,52 @@
           "narration": "Now the park is clean and pretty. Good citizens work together!",
           "illustration": "img/s06/clean_park.png",
           "interaction": null
+        }
+      ]
+    },
+    {
+      "id": "s06.social.story.02",
+      "stage": 6,
+      "ages": "5-6",
+      "subject": "Social Studies",
+      "type": "story",
+      "title": "The Map We Drew Ourselves",
+      "objective": "A map is a view from above, made by people.",
+      "designTier": "gamify-gently",
+      "reading": false,
+      "timed": false,
+      "interaction": "listen",
+      "parentNote": "Draw your home from above together after.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s06/map_lost.png",
+          "desc": "Nobody could explain where the tap was."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/map_above.png",
+          "desc": "So we climbed on a chair and looked straight down."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/map_drawn.png",
+          "desc": "We drew what we saw. Now anyone can find it."
+        }
+      ],
+      "pages": [
+        {
+          "narration": "Nobody could explain where the tap was.",
+          "illustration": "img/s06/map_lost.png"
+        },
+        {
+          "narration": "So we climbed on a chair and looked straight down.",
+          "illustration": "img/s06/map_above.png"
+        },
+        {
+          "narration": "We drew what we saw. Now anyone can find it.",
+          "illustration": "img/s06/map_drawn.png"
         }
       ]
     },
@@ -19633,6 +21210,48 @@
           "action": "drag-then-run",
           "feedback": "Robot moves and reaches the star! 'You coded that!' ⭐",
           "mechanic": "drag"
+        },
+        {
+          "narration": "A computer cannot guess what you meant.",
+          "action": "tap",
+          "feedback": "It does exactly what the blocks say, in order.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "So a wrong order gives a wrong path.",
+          "action": "tap",
+          "feedback": "Not broken — just following you exactly.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Send the robot around the rock: forward, turn, forward.",
+          "action": "drag",
+          "feedback": "Three blocks, one path around.",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "Which block moves the robot ahead?",
+          "action": "tap",
+          "feedback": "Forward. Turn only changes which way it faces.",
+          "mechanic": "multiChoice",
+          "prompt": "Moves ahead?",
+          "choices": [
+            "Forward",
+            "Turn"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Give a grown-up three instructions to cross the room.",
+          "action": "real-world",
+          "feedback": "Watch them follow it exactly, mistakes and all.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Coding is saying what you mean, in order.",
+          "action": "celebrate",
+          "feedback": "The hard part is being exact, not being clever.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -19687,6 +21306,48 @@
           "action": "tap",
           "feedback": "You sorted by two rules!",
           "mechanic": "drag"
+        },
+        {
+          "narration": "One rule sorts a pile. Two rules sort it finer.",
+          "action": "tap",
+          "feedback": "Both rules have to be true at once.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Red and round means red AND round.",
+          "action": "tap",
+          "feedback": "A red square does not get in.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Does a blue circle fit 'red and round'?",
+          "action": "tap",
+          "feedback": "No. It passes one rule but fails the other.",
+          "mechanic": "multiChoice",
+          "prompt": "Does it fit?",
+          "choices": [
+            "No",
+            "Yes"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Now sort for big and blue.",
+          "action": "drag",
+          "feedback": "Fewer things get through two rules than one.",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "Sort real objects by two rules of your own.",
+          "action": "real-world",
+          "feedback": "You choose the rules. That is the interesting part.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Two rules at once is real logic.",
+          "action": "celebrate",
+          "feedback": "Computers sort exactly this way, millions of times.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -19741,6 +21402,48 @@
           "action": "tap",
           "feedback": "You made an algorithm!",
           "mechanic": "drag"
+        },
+        {
+          "narration": "An algorithm is just steps in the right order.",
+          "action": "tap",
+          "feedback": "You already follow dozens of them every day.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Swap two steps and the whole thing can fail.",
+          "action": "tap",
+          "feedback": "Rinse before you brush and nothing gets clean.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "When brushing teeth, what comes first?",
+          "action": "tap",
+          "feedback": "Wet the brush. Everything else follows from it.",
+          "mechanic": "multiChoice",
+          "prompt": "First step?",
+          "choices": [
+            "Wet the brush",
+            "Rinse"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Put the steps for making a sandwich in order.",
+          "action": "drag",
+          "feedback": "Bread, filling, bread. Order is everything.",
+          "mechanic": "drag"
+        },
+        {
+          "narration": "Say the steps of getting ready for bed, in order.",
+          "action": "real-world",
+          "feedback": "That is an algorithm you wrote yourself.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Order is not a detail. It is the instruction.",
+          "action": "celebrate",
+          "feedback": "Get it right and the rest follows.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -19801,6 +21504,54 @@
             "Blue, then blue"
           ],
           "choiceIndex": 0
+        },
+        {
+          "narration": "A pattern is a rule that repeats.",
+          "action": "tap",
+          "feedback": "Find the rule and you can predict the rest.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Red, red, blue repeats in threes.",
+          "action": "tap",
+          "feedback": "Count the group before you guess.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Red, red, blue, red, red, ...?",
+          "action": "tap",
+          "feedback": "Blue. The group of three starts again.",
+          "mechanic": "multiChoice",
+          "prompt": "What comes next?",
+          "choices": [
+            "Blue",
+            "Red"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "What do patterns let you do?",
+          "action": "tap",
+          "feedback": "Know what is coming without being told.",
+          "mechanic": "multiChoice",
+          "prompt": "Patterns let you...",
+          "choices": [
+            "Predict what is next",
+            "Count backwards"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Find a repeating pattern on a floor or a fabric.",
+          "action": "real-world",
+          "feedback": "Someone designed that rule on purpose.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Spotting the rule is worth more than the answer.",
+          "action": "celebrate",
+          "feedback": "It works on the next pattern too.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -19865,6 +21616,54 @@
           ],
           "choiceIndex": 0,
           "mechanic": "multiChoice"
+        },
+        {
+          "narration": "A device is parts, each with one job.",
+          "action": "tap",
+          "feedback": "Knowing the names makes asking for help easier.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "The screen shows and receives; the button powers.",
+          "action": "tap",
+          "feedback": "Two parts, two very different jobs.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "Which part do you see and tap?",
+          "action": "tap",
+          "feedback": "The screen. It does both at once.",
+          "mechanic": "multiChoice",
+          "prompt": "See and tap?",
+          "choices": [
+            "The screen",
+            "The button"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Which part turns it on and off?",
+          "action": "tap",
+          "feedback": "The button. One job, done well.",
+          "mechanic": "multiChoice",
+          "prompt": "On and off?",
+          "choices": [
+            "The button",
+            "The screen"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Point at the screen and the button on a real device.",
+          "action": "real-world",
+          "feedback": "Same parts on almost every device there is.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Naming the parts is the start of understanding the whole.",
+          "action": "celebrate",
+          "feedback": "A device stops being magic and becomes a machine.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -19925,6 +21724,54 @@
             "A grown-up"
           ],
           "choiceIndex": 1
+        },
+        {
+          "narration": "Your name, your photo and where you live are private.",
+          "action": "tap",
+          "feedback": "Private means you choose who knows.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "A screen cannot tell you who is really asking.",
+          "action": "tap",
+          "feedback": "That is why a grown-up checks first.",
+          "mechanic": "explain"
+        },
+        {
+          "narration": "A game asks for your photo. What do you do?",
+          "action": "tap",
+          "feedback": "Stop and find a grown-up. Always, every time.",
+          "mechanic": "multiChoice",
+          "prompt": "What do you do?",
+          "choices": [
+            "Ask a grown-up",
+            "Send it"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Is it rude to say no to a screen?",
+          "action": "tap",
+          "feedback": "Not at all. You never owe a screen an answer.",
+          "mechanic": "multiChoice",
+          "prompt": "Rude to say no?",
+          "choices": [
+            "No",
+            "Yes"
+          ],
+          "choiceIndex": 0
+        },
+        {
+          "narration": "Say out loud who you would go to.",
+          "action": "real-world",
+          "feedback": "Knowing the name in advance makes it easy.",
+          "mechanic": "celebrate"
+        },
+        {
+          "narration": "Stop, and ask. Two words that keep you safe.",
+          "action": "celebrate",
+          "feedback": "You are allowed to use them any time.",
+          "mechanic": "celebrate"
         }
       ],
       "recap": [
@@ -20049,6 +21896,67 @@
       ]
     },
     {
+      "id": "s06.tech.quiz.04",
+      "stage": 6,
+      "ages": "5-6",
+      "subject": "Technology & Logic",
+      "type": "quiz",
+      "title": "Steps in Order",
+      "objective": "Recognise that order changes the result.",
+      "designTier": "gamify-gently",
+      "reading": false,
+      "timed": false,
+      "interaction": "tap",
+      "parentNote": "Do one task deliberately out of order together.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s06/algo_steps.png",
+          "desc": "Algorithm"
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/algo_mess.png",
+          "desc": "Accident"
+        }
+      ],
+      "questions": [
+        {
+          "prompt": "Steps in the right order make an...",
+          "options": [
+            {
+              "label": "Algorithm",
+              "asset": "img/s06/algo_steps.png"
+            },
+            {
+              "label": "Accident",
+              "asset": "img/s06/algo_mess.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "An algorithm. A recipe is one too.",
+          "retryFeedback": "Order is the whole idea. Try again!"
+        },
+        {
+          "prompt": "What happens if you swap two steps?",
+          "options": [
+            {
+              "label": "It can go wrong",
+              "asset": "img/s06/algo_mess.png"
+            },
+            {
+              "label": "Nothing changes",
+              "asset": "img/s06/algo_steps.png"
+            }
+          ],
+          "answer": 0,
+          "correctFeedback": "It can go wrong. Order is the instruction.",
+          "retryFeedback": "Try rinsing before brushing! Try again!"
+        }
+      ]
+    },
+    {
       "id": "s06.tech.story.01",
       "stage": 6,
       "ages": "5-6",
@@ -20084,6 +21992,52 @@
           "narration": "All sorted and tidy. Robo says: 'Thank you for the good logic!'",
           "illustration": "img/s06/robo_tidy.png",
           "interaction": null
+        }
+      ]
+    },
+    {
+      "id": "s06.tech.story.02",
+      "stage": 6,
+      "ages": "5-6",
+      "subject": "Technology & Logic",
+      "type": "story",
+      "title": "The Robot That Went in Circles",
+      "objective": "Debugging: find the wrong step, fix it, run again.",
+      "designTier": "gamify-gently",
+      "reading": false,
+      "timed": false,
+      "interaction": "listen",
+      "parentNote": "Give a wrong instruction on purpose and fix it.",
+      "accessibility": "All narration is also shown as captions; playable audio-only.",
+      "assets": [
+        {
+          "type": "image",
+          "ref": "img/s06/robot_circle.png",
+          "desc": "The robot turned, turned, and turned again."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/robot_read.png",
+          "desc": "Kito read the blocks one at a time, out loud."
+        },
+        {
+          "type": "image",
+          "ref": "img/s06/robot_fixed.png",
+          "desc": "One turn too many. He took it out, and off it went."
+        }
+      ],
+      "pages": [
+        {
+          "narration": "The robot turned, turned, and turned again.",
+          "illustration": "img/s06/robot_circle.png"
+        },
+        {
+          "narration": "Kito read the blocks one at a time, out loud.",
+          "illustration": "img/s06/robot_read.png"
+        },
+        {
+          "narration": "One turn too many. He took it out, and off it went.",
+          "illustration": "img/s06/robot_fixed.png"
         }
       ]
     },
