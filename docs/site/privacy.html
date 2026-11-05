@@ -1,40 +1,150 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Watoto Privacy Policy</title>
-<style>
-body{font-family:system-ui,sans-serif;max-width:44rem;margin:2rem auto;padding:0 1rem;line-height:1.55;color:#023047}
-h1,h2{color:#023047} a{color:#219EBC}
-hr{border:none;border-top:1px solid #e7dec9;margin:1.5rem 0}
-</style></head><body>
-<p><h1>Privacy Policy — Watoto</h1></p><p><strong>Effective date:</strong> 2026-07-18  
-<strong>Last updated:</strong> 2026-07-18  
-<strong>Operator:</strong> Watoto Learning  
-<strong>Applies to:</strong> the Watoto mobile app (iOS, Android, and desktop builds) and related services.</p><p>Contact: **privacy@watoto.app** · Support: **support@watoto.app**  
-Web: **https://watoto.app**</p><p><hr/>
-<h2>1. Who we are and what Watoto is</h2></p><p>Watoto is a multilingual learning app for children. A **parent or guardian** creates and controls the account. Children do not create credentialed accounts and do not enter email addresses or phone numbers.</p><p>We design Watoto for children: **no third-party ads**, **no sale of personal data**, **no open chat between children**, and **no external links** on child-facing screens.</p><p><h2>2. Data we collect</h2></p><p>### On the device (offline-first)</p><p>- Child **nickname** (not legal name), avatar choice, approximate age band (birth year only)
-- Learning progress (lessons, quizzes, stories), XP, stars, coins, streaks, badges
-- Parent PIN or local account email/password (hashed on device)
-- Parental consent choices and accessibility preferences
-- Optional analytics flag (off by default)</p><p>### Optional cloud (when Firebase is enabled by the family)</p><p>- Parent account email and Firebase authentication identifiers
-- Consent ledger entries (policy version, method, time)
-- Synced progress under `accounts/{parentUid}/profiles/{profileId}/progress/`
-- Subscription entitlement fields written only by our servers (not by the app client)</p><p>We do **not** require a child’s real name, school ID, precise location, contacts, photos from the camera roll, or microphone recordings for core play (on-device text-to-speech may read captions without storing audio).</p><p><h2>3. How we use data</h2></p><p>- Provide and improve learning activities and progress
-- Enforce parent controls (PIN, screen time, consent)
-- Security, abuse prevention, and crash diagnostics (configured without advertising IDs)
-- Comply with law and respond to parental requests</p><p>We do **not** use children’s data for behavioral advertising or to profile children for marketing.</p><p><h2>4. Legal bases (where GDPR/UK GDPR applies)</h2></p><p>- **Contract** — operating features the parent requested  
-- **Consent** — verifiable parental consent for a child’s personal data (Art. 8) and optional analytics  
-- **Legitimate interests** — security and integrity of the service, balanced for children  </p><p>Digital consent age follows applicable law (US COPPA under 13; EU/UK as set by member state, typically 13–16).</p><p><h2>5. Parental consent (COPPA / children)</h2></p><p>Before collecting personal information from a child under the applicable age, Watoto presents a **parental gate** and records consent (policy version, method, timestamp). Parents may review, export, refuse further collection, or delete data from the Parent Zone or by emailing **privacy@watoto.app**.</p><p><h2>6. Sharing</h2></p><p>We share data only with:</p><p>- **Cloud infrastructure** (when cloud is enabled) — Firebase / Google Cloud under our configuration  
-- **App stores** — for distribution and (if you enable purchases later) billing  
-- **Law enforcement** when required by valid legal process  </p><p>We do not sell personal information.</p><p><h2>7. International transfers</h2></p><p>Default mode keeps progress **on device**. When cloud sync is enabled, data may be processed in regions selected for the Firebase project. Transfers from the EEA/UK use SCCs or other approved mechanisms where required.</p><p><h2>8. Retention</h2></p><p>| Data | Retention |
-|------|-----------|
-| On-device progress | Until the parent deletes the profile or uninstalls / clears app data |
-| Cloud account &amp; progress | While the account is active; purged within 30 days of verified deletion request (after any legal hold) |
-| Consent evidence | Retained as long as needed to demonstrate compliance, then deleted |
-| Crash logs (if enabled) | Up to 90 days |</p><p><h2>9. Security</h2></p><p>We use industry-standard protections (HTTPS in transit for cloud, access rules so parents only see their own data, server-only entitlement fields). No method is 100% secure; parents should protect device unlock and the parent PIN.</p><p><h2>10. Your rights</h2></p><p>Parents may access, correct, export, or delete child data; withdraw consent; and lodge a complaint with a supervisory authority where applicable. Use Parent Zone or email **privacy@watoto.app**. We aim to respond within 30 days.</p><p><h2>11. Children</h2></p><p>Watoto is directed to children with parental control. We do not knowingly allow a child to create a parent account.</p><p><h2>12. Changes</h2></p><p>We will update this policy and the in-app version when material practices change. Continued use after notice constitutes acceptance where permitted by law.</p><p><h2>13. Contact</h2></p><p>Watoto Learning  
-Email: privacy@watoto.app · support@watoto.app  
-Web: https://watoto.app  </p><p><hr/>
-*This policy is written for a free, offline-first launch. If you enable cloud accounts or paid subscriptions, update the operator details, hosting regions, and payment processors to match the live configuration. Have counsel review for your markets before store submission.*
-</p>
-<p><a href="/terms">Terms</a> · <a href="/">Home</a> · <a href="mailto:privacy@watoto.app">Contact</a></p>
-</body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Watoto Privacy Policy</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      max-width: 44rem;
+      margin: 2rem auto;
+      padding: 0 1.25rem;
+      line-height: 1.6;
+      color: #023047;
+      background: #FFFDF9;
+    }
+    h1, h2, h3 { color: #023047; font-family: Georgia, serif; }
+    a { color: #219EBC; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    hr { border: none; border-top: 1px solid #E7DEC9; margin: 1.5rem 0; }
+    code { background: #F4EFE6; padding: 0.15rem 0.35rem; border-radius: 0.25rem; font-size: 0.9em; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; background: #FFFFFF; }
+    th, td { border: 1px solid #E7DEC9; padding: 0.65rem 0.85rem; text-align: left; vertical-align: top; }
+    th { background: #F4EFE6; font-weight: 600; }
+    footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #E7DEC9; }
+  </style>
+</head>
+<body>
+  <h1>Privacy Policy — Watoto</h1>
+  <p>
+    <strong>Effective date:</strong> 2026-07-18<br />
+    <strong>Last updated:</strong> 2026-07-18<br />
+    <strong>Operator:</strong> Watoto Learning<br />
+    <strong>Applies to:</strong> the Watoto mobile app (iOS, Android, and desktop builds) and related services.
+  </p>
+  <p>
+    Contact: <a href="mailto:privacy@watoto.app"><strong>privacy@watoto.app</strong></a> ·
+    Support: <a href="mailto:support@watoto.app"><strong>support@watoto.app</strong></a><br />
+    Web: <a href="./"><strong>https://watoto.app</strong></a>
+  </p>
+
+  <hr />
+
+  <h2>1. Who we are and what Watoto is</h2>
+  <p>Watoto is a multilingual learning app for children. A <strong>parent or guardian</strong> creates and controls the account. Children do not create credentialed accounts and do not enter email addresses or phone numbers.</p>
+  <p>We design Watoto for children: <strong>no third-party ads</strong>, <strong>no sale of personal data</strong>, <strong>no open chat between children</strong>, and <strong>no external links</strong> on child-facing screens.</p>
+
+  <h2>2. Data we collect</h2>
+  <h3>On the device (offline-first)</h3>
+  <ul>
+    <li>Child <strong>nickname</strong> (not legal name), avatar choice, approximate age band (birth year only)</li>
+    <li>Learning progress (lessons, quizzes, stories), XP, stars, coins, streaks, badges</li>
+    <li>Parent PIN or local account email/password (hashed on device)</li>
+    <li>Parental consent choices and accessibility preferences</li>
+    <li>Optional analytics flag (off by default)</li>
+  </ul>
+
+  <h3>Optional cloud (when Firebase is enabled by the family)</h3>
+  <ul>
+    <li>Parent account email and Firebase authentication identifiers</li>
+    <li>Consent ledger entries (policy version, method, time)</li>
+    <li>Synced progress under <code>accounts/{parentUid}/profiles/{profileId}/progress/</code></li>
+    <li>Subscription entitlement fields written only by our servers (not by the app client)</li>
+  </ul>
+  <p>We do <strong>not</strong> require a child’s real name, school ID, precise location, contacts, photos from the camera roll, or microphone recordings for core play (on-device text-to-speech may read captions without storing audio).</p>
+
+  <h2>3. How we use data</h2>
+  <ul>
+    <li>Provide and improve learning activities and progress</li>
+    <li>Enforce parent controls (PIN, screen time, consent)</li>
+    <li>Security, abuse prevention, and crash diagnostics (configured without advertising IDs)</li>
+    <li>Comply with law and respond to parental requests</li>
+  </ul>
+  <p>We do <strong>not</strong> use children’s data for behavioral advertising or to profile children for marketing.</p>
+
+  <h2>4. Legal bases (where GDPR/UK GDPR applies)</h2>
+  <ul>
+    <li><strong>Contract</strong> — operating features the parent requested</li>
+    <li><strong>Consent</strong> — verifiable parental consent for a child’s personal data (Art. 8) and optional analytics</li>
+    <li><strong>Legitimate interests</strong> — security and integrity of the service, balanced for children</li>
+  </ul>
+  <p>Digital consent age follows applicable law (US COPPA under 13; EU/UK as set by member state, typically 13–16).</p>
+
+  <h2>5. Parental consent (COPPA / children)</h2>
+  <p>Before collecting personal information from a child under the applicable age, Watoto presents a <strong>parental gate</strong> and records consent (policy version, method, timestamp). Parents may review, export, refuse further collection, or delete data from the Parent Zone or by emailing <a href="mailto:privacy@watoto.app"><strong>privacy@watoto.app</strong></a>.</p>
+
+  <h2>6. Sharing</h2>
+  <p>We share data only with:</p>
+  <ul>
+    <li><strong>Cloud infrastructure</strong> (when cloud is enabled) — Firebase / Google Cloud under our configuration</li>
+    <li><strong>App stores</strong> — for distribution and (if you enable purchases later) billing</li>
+    <li><strong>Law enforcement</strong> when required by valid legal process</li>
+  </ul>
+  <p>We do not sell personal information.</p>
+
+  <h2>7. International transfers</h2>
+  <p>Default mode keeps progress <strong>on device</strong>. When cloud sync is enabled, data may be processed in regions selected for the Firebase project. Transfers from the EEA/UK use SCCs or other approved mechanisms where required.</p>
+
+  <h2>8. Retention</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th>Retention</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>On-device progress</td>
+        <td>Until the parent deletes the profile or uninstalls / clears app data</td>
+      </tr>
+      <tr>
+        <td>Cloud account &amp; progress</td>
+        <td>While the account is active; purged within 30 days of verified deletion request (after any legal hold)</td>
+      </tr>
+      <tr>
+        <td>Consent evidence</td>
+        <td>Retained as long as needed to demonstrate compliance, then deleted</td>
+      </tr>
+      <tr>
+        <td>Crash logs (if enabled)</td>
+        <td>Up to 90 days</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>9. Security</h2>
+  <p>We use industry-standard protections (HTTPS in transit for cloud, access rules so parents only see their own data, server-only entitlement fields). No method is 100% secure; parents should protect device unlock and the parent PIN.</p>
+
+  <h2>10. Your rights</h2>
+  <p>Parents may access, correct, export, or delete child data; withdraw consent; and lodge a complaint with a supervisory authority where applicable. Use Parent Zone or email <a href="mailto:privacy@watoto.app"><strong>privacy@watoto.app</strong></a>. We aim to respond within 30 days.</p>
+
+  <h2>11. Children</h2>
+  <p>Watoto is directed to children with parental control. We do not knowingly allow a child to create a parent account.</p>
+
+  <h2>12. Changes</h2>
+  <p>We will update this policy and the in-app version when material practices change. Continued use after notice constitutes acceptance where permitted by law.</p>
+
+  <h2>13. Contact</h2>
+  <p>
+    Watoto Learning<br />
+    Email: <a href="mailto:privacy@watoto.app">privacy@watoto.app</a> · <a href="mailto:support@watoto.app">support@watoto.app</a><br />
+    Web: <a href="./">https://watoto.app</a>
+  </p>
+
+  <footer>
+    <p><a href="terms">Terms of Service</a> · <a href="support">Support</a> · <a href="./">Home</a> · <a href="mailto:privacy@watoto.app">Contact Privacy</a></p>
+  </footer>
+</body>
+</html>

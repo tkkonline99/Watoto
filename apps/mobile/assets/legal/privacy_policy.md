@@ -99,8 +99,4 @@ We will update this policy and the in-app version when material practices change
 
 Watoto Learning  
 Email: privacy@watoto.app · support@watoto.app  
-Web: https://watoto.app  
-
----
-
-*This policy is written for a free, offline-first launch. If you enable cloud accounts or paid subscriptions, update the operator details, hosting regions, and payment processors to match the live configuration. Have counsel review for your markets before store submission.*
+Web: https://watoto.app

@@ -60,7 +60,3 @@ Unless mandatory local law says otherwise, these Terms are governed by the laws 
 ## 13. Contact
 
 support@watoto.app · privacy@watoto.app · https://watoto.app
-
----
-
-*Have counsel review for your jurisdiction before store submission. Update these Terms if you add paid subscriptions or change the operator entity.*

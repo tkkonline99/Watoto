@@ -3,22 +3,69 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Watoto — Safe learning for children</title>
+  <title>Watoto — Safe, Multilingual Learning for Children</title>
   <style>
-    body { font-family: system-ui, sans-serif; max-width: 40rem; margin: 3rem auto; padding: 0 1rem; color: #023047; line-height: 1.5; }
-    h1 { color: #FB8500; }
-    a { color: #219EBC; font-weight: 600; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      max-width: 44rem;
+      margin: 2.5rem auto;
+      padding: 0 1.25rem;
+      color: #023047;
+      line-height: 1.6;
+      background: #FFFDF9;
+    }
+    h1 { color: #FB8500; font-family: Georgia, serif; margin-bottom: 0.25rem; }
+    h2 { color: #023047; font-family: Georgia, serif; margin-top: 2rem; }
+    a { color: #219EBC; font-weight: 600; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding: 0.75rem 1rem;
+      background: #F4EFE6;
+      border-radius: 0.5rem;
+      margin: 1.25rem 0;
+    }
+    .card {
+      border: 1px solid #E7DEC9;
+      border-radius: 0.75rem;
+      padding: 1.25rem;
+      margin: 1.25rem 0;
+      background: #FFFFFF;
+    }
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #E7DEC9;
+      font-size: 0.9rem;
+      color: #4A6572;
+    }
   </style>
 </head>
 <body>
   <h1>Watoto</h1>
-  <p>Playful, offline-first learning for children — English, French, and Swahili.</p>
-  <p>
-    <a href="/privacy">Privacy Policy</a> ·
-    <a href="/terms">Terms of Service</a> ·
-    <a href="mailto:support@watoto.app">Support</a>
-  </p>
-  <p>Host this <code>docs/site/</code> folder on your domain (Firebase Hosting, GitHub Pages, Netlify, etc.)
-     so App Store / Play Console privacy URLs resolve publicly.</p>
+  <p><strong>Playful, offline-first learning for children ages 0–10 in English, Kiswahili, and Français.</strong></p>
+
+  <nav class="nav" aria-label="Site links">
+    <a href="privacy">Privacy Policy</a>
+    <a href="terms">Terms of Service</a>
+    <a href="support">Family Support &amp; FAQ</a>
+    <a href="mailto:support@watoto.app">Contact Support</a>
+  </nav>
+
+  <div class="card">
+    <h2>Designed for Children &amp; Families</h2>
+    <ul>
+      <li><strong>100% Kid-Safe:</strong> No third-party advertisements, no behavioral tracking, no open chat, and no unguarded external links on child screens.</li>
+      <li><strong>Offline-First:</strong> Works completely offline across 10 age stages (ages 0–10), 57 subjects, and 684 interactive lessons, stories, and quizzes.</li>
+      <li><strong>Trilingual Curriculum:</strong> Switch seamlessly between English, Kiswahili, and French with read-aloud narration.</li>
+      <li><strong>Parent Zone Controls:</strong> Protected by a parent math gate and PIN, with per-child progress reports, daily screen-time limits, offline JSON backup/restore, and instant local data deletion.</li>
+    </ul>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Watoto Learning · <a href="privacy">Privacy Policy</a> · <a href="terms">Terms of Service</a> · <a href="support">Support</a></p>
+  </footer>
 </body>
 </html>
