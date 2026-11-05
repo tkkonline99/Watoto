@@ -34,6 +34,10 @@ class StoryViewState extends ConsumerState<StoryView> {
   /// Cleared on every page turn: the next page asks again.
   bool _pressed = false;
 
+  /// Index of the word pill most recently tapped by the child for phonics
+  /// read-along replay. Cleared when turning the page.
+  int? _tappedWordIndex;
+
   @override
   void initState() {
     super.initState();
@@ -95,9 +99,21 @@ class StoryViewState extends ConsumerState<StoryView> {
     setState(() {
       _page += delta;
       _pressed = false;
+      _tappedWordIndex = null;
     });
     ref.read(soundEffectsProvider).page();
     _speakPage();
+  }
+
+  void _speakSingleWord(int index, String rawWord) {
+    final cleaned = rawWord.replaceAll(RegExp(r'''[^\p{L}\p{N}'-]''', unicode: true), '');
+    final spoken = cleaned.isEmpty ? rawWord : cleaned;
+    setState(() => _tappedWordIndex = index);
+    ref.read(soundEffectsProvider).tap();
+    final lang = ref.read(localeProvider).languageCode;
+    unawaited(
+      ref.read(narrationProvider.notifier).speak(spoken, lang),
+    );
   }
 
   void _finish() {
@@ -174,7 +190,20 @@ class StoryViewState extends ConsumerState<StoryView> {
         // brief before the page's own narration.
         stageSemanticLabel: loc.pageVisual(_page)?.alt,
         prompt: loc.pageNarration(_page),
-        promptAudio: ReplayNarrationButton(onReplay: _speakPage),
+        promptAudio: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            StoryReadAlongBar(
+              key: ValueKey('story-read-along-$_page'),
+              narration: loc.pageNarration(_page),
+              activeWordNotifier: ref.read(narrationProvider.notifier).activeWord,
+              tappedWordIndex: _tappedWordIndex,
+              onWordTap: _speakSingleWord,
+            ),
+            const SizedBox(height: 4),
+            ReplayNarrationButton(onReplay: _speakPage),
+          ],
+        ),
         response: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -234,4 +263,110 @@ class _PressBanner extends StatelessWidget {
           ),
         ),
       );
+}
+
+/// Interactive karaoke read-along word pills + tap-a-word phonics bar.
+///
+/// Highlights each word in a warm golden pill as [activeWordNotifier] advances
+/// during spoken narration, and lets the child tap any individual word pill to
+/// hear that single word pronounced aloud.
+class StoryReadAlongBar extends StatelessWidget {
+  const StoryReadAlongBar({
+    super.key,
+    required this.narration,
+    required this.activeWordNotifier,
+    required this.tappedWordIndex,
+    required this.onWordTap,
+  });
+
+  final String narration;
+  final ValueNotifier<NarrationWordSpan?> activeWordNotifier;
+  final int? tappedWordIndex;
+  final void Function(int index, String word) onWordTap;
+
+  static List<({String word, int start, int end})> tokenize(String text) {
+    final matches = RegExp(r'\S+').allMatches(text);
+    return [
+      for (final m in matches)
+        (word: m.group(0)!, start: m.start, end: m.end),
+    ];
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final tokens = tokenize(narration);
+    if (tokens.isEmpty) return const SizedBox.shrink();
+
+    return ExcludeSemantics(
+      child: ValueListenableBuilder<NarrationWordSpan?>(
+        valueListenable: activeWordNotifier,
+        builder: (context, span, _) {
+          return SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              key: const ValueKey('story-read-along-bar'),
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                for (var i = 0; i < tokens.length; i++)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 2.5),
+                    child: Builder(
+                      builder: (context) {
+                        final token = tokens[i];
+                        final isSpokenNow = span != null &&
+                            span.text == narration &&
+                            span.start < token.end &&
+                            span.end > token.start;
+                        final isHighlighted =
+                            isSpokenNow || tappedWordIndex == i;
+                        return GestureDetector(
+                          key: ValueKey('story-word-$i'),
+                          onTap: () => onWordTap(i, token.word),
+                          child: AnimatedScale(
+                            scale: isHighlighted ? 1.1 : 1.0,
+                            duration: const Duration(milliseconds: 150),
+                            child: AnimatedContainer(
+                              duration: const Duration(milliseconds: 150),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 6,
+                                vertical: 2,
+                              ),
+                              decoration: BoxDecoration(
+                                color: isHighlighted
+                                    ? WatotoColors.sun.withValues(alpha: 0.42)
+                                    : WatotoColors.sky.withValues(alpha: 0.08),
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(
+                                  color: isHighlighted
+                                      ? WatotoColors.mango
+                                      : Colors.transparent,
+                                  width: 1.5,
+                                ),
+                              ),
+                              child: RichText(
+                                text: TextSpan(
+                                  text: token.word,
+                                  style: TextStyle(
+                                    fontFamily: 'Baloo2',
+                                    fontSize: 13,
+                                    fontWeight: isHighlighted
+                                        ? FontWeight.w900
+                                        : FontWeight.w700,
+                                    color: WatotoColors.deep,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+              ],
+            ),
+          );
+        },
+      ),
+    );
+  }
 }

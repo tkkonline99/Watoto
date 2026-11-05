@@ -896,7 +896,130 @@ class TapStageState extends State<TapStage> {
             ),
           ),
         ],
+        if (SavannaRhythmPad.isMusicStep(widget.emoji, prompt)) ...[
+          const SizedBox(height: 14),
+          SavannaRhythmPad(onCompleted: _tap),
+        ],
       ],
+    );
+  }
+}
+
+/// Interactive 4-bar African Marimba & Djembe rhythm pad for music/rhythm play.
+class SavannaRhythmPad extends StatefulWidget {
+  const SavannaRhythmPad({
+    super.key,
+    this.onCompleted,
+    this.onNotePlayed,
+    this.targetBeats = 3,
+  });
+
+  final VoidCallback? onCompleted;
+  final void Function(int barIndex)? onNotePlayed;
+  final int targetBeats;
+
+  static bool isMusicStep(String emoji, String? prompt) {
+    if (const {'🥁', '🎵', '🎶', '🪇', '🎺', '🎸'}.contains(emoji)) {
+      return true;
+    }
+    if (prompt == null) return false;
+    final lower = prompt.toLowerCase();
+    return lower.contains('drum') ||
+        lower.contains('rhythm') ||
+        lower.contains('marimba') ||
+        lower.contains('ngoma') ||
+        lower.contains('tambour');
+  }
+
+  @override
+  State<SavannaRhythmPad> createState() => _SavannaRhythmPadState();
+}
+
+class _SavannaRhythmPadState extends State<SavannaRhythmPad> {
+  static const _bars = <({String icon, String note, Color color})>[
+    (icon: '🥁', note: 'Do', color: Color(0xFFEE6C5A)),
+    (icon: '🎶', note: 'Re', color: WatotoColors.mango),
+    (icon: '🎵', note: 'Mi', color: WatotoColors.leaf),
+    (icon: '✨', note: 'Sol', color: WatotoColors.sky),
+  ];
+
+  int? _activeBar;
+  int _beatsPlayed = 0;
+
+  void _tapBar(int index) {
+    HapticFeedback.lightImpact();
+    setState(() {
+      _activeBar = index;
+      _beatsPlayed++;
+    });
+    widget.onNotePlayed?.call(index);
+    if (_beatsPlayed >= widget.targetBeats) {
+      widget.onCompleted?.call();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ExcludeSemantics(
+      child: Row(
+        key: const ValueKey('savanna-rhythm-pad'),
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          for (var i = 0; i < _bars.length; i++)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: GestureDetector(
+                key: ValueKey('marimba-bar-$i'),
+                onTap: () => _tapBar(i),
+                child: AnimatedScale(
+                  scale: _activeBar == i ? 1.16 : 1.0,
+                  duration: const Duration(milliseconds: 140),
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 140),
+                    width: 60,
+                    height: 68,
+                    decoration: BoxDecoration(
+                      color: _activeBar == i
+                          ? _bars[i].color
+                          : _bars[i].color.withValues(alpha: 0.22),
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: _bars[i].color,
+                        width: 2.5,
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        RichText(
+                          text: TextSpan(
+                            text: _bars[i].icon,
+                            style: const TextStyle(fontSize: 22),
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        RichText(
+                          text: TextSpan(
+                            text: _bars[i].note,
+                            style: TextStyle(
+                              fontFamily: 'Baloo2',
+                              fontSize: 13,
+                              fontWeight: FontWeight.w900,
+                              color: _activeBar == i
+                                  ? Colors.white
+                                  : WatotoColors.deep,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+        ],
+      ),
     );
   }
 }

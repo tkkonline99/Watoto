@@ -4,6 +4,7 @@ library;
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -181,6 +182,12 @@ class CelebrationState extends ConsumerState<Celebration> {
                 if (earnedStars > 0) ...[
                   const SizedBox(height: 8),
                   EarnedStars(stars: earnedStars, animate: !brief),
+                ],
+                if (!brief) ...[
+                  const SizedBox(height: 10),
+                  CelebrationBalloonPop(
+                    onPop: () => ref.read(soundEffectsProvider).star(),
+                  ),
                 ],
                 const SizedBox(height: 8),
                 Text(
@@ -404,6 +411,83 @@ class BadgeReveal extends StatelessWidget {
                 ),
             ],
           ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Interactive balloon-and-star pop row on the celebration screen so kids can
+/// pop floating balloons with their fingers for sparkles and chimes.
+class CelebrationBalloonPop extends StatefulWidget {
+  const CelebrationBalloonPop({super.key, this.onPop});
+
+  final VoidCallback? onPop;
+
+  @override
+  State<CelebrationBalloonPop> createState() => _CelebrationBalloonPopState();
+}
+
+class _CelebrationBalloonPopState extends State<CelebrationBalloonPop> {
+  static const _balloons = <({String unpopped, Color color})>[
+    (unpopped: '🎈', color: Color(0xFFEE6C5A)),
+    (unpopped: '🌟', color: WatotoColors.mango),
+    (unpopped: '🎉', color: WatotoColors.leaf),
+    (unpopped: '🫧', color: WatotoColors.sky),
+  ];
+
+  final List<bool> _popped = List<bool>.filled(_balloons.length, false);
+
+  void _popBalloon(int index) {
+    if (_popped[index]) return;
+    HapticFeedback.lightImpact();
+    setState(() => _popped[index] = true);
+    widget.onPop?.call();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ExcludeSemantics(
+      child: Row(
+        key: const ValueKey('celebration-balloon-pop'),
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          for (var i = 0; i < _balloons.length; i++)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 6),
+              child: GestureDetector(
+                key: ValueKey('celebration-balloon-$i'),
+                onTap: () => _popBalloon(i),
+                child: AnimatedScale(
+                  scale: _popped[i] ? 1.25 : 1.0,
+                  duration: const Duration(milliseconds: 160),
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 160),
+                    width: 44,
+                    height: 44,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: _popped[i]
+                          ? WatotoColors.sun.withValues(alpha: 0.35)
+                          : _balloons[i].color.withValues(alpha: 0.16),
+                      border: Border.all(
+                        color: _popped[i]
+                            ? WatotoColors.mango
+                            : _balloons[i].color.withValues(alpha: 0.5),
+                        width: 2,
+                      ),
+                    ),
+                    child: RichText(
+                      text: TextSpan(
+                        text: _popped[i] ? '✨' : _balloons[i].unpopped,
+                        style: const TextStyle(fontSize: 22),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
         ],
       ),
     );

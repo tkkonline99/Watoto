@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../core/analytics/analytics.dart';
 import '../../core/audio/narration.dart';
+import '../../core/audio/sound_effects.dart';
 import '../../core/offline/offline_providers.dart';
 import '../../core/state/app_state.dart';
 import '../../core/widgets/mascot_widget.dart';
@@ -226,6 +227,7 @@ class _ChildHomeScreenState extends ConsumerState<ChildHomeScreen> {
               const SizedBox(height: 14),
               _CheerBanner(l10n: l10n),
               _MascotCompanion(l10n: l10n),
+              const _SavannaStickerBar(),
               const SizedBox(height: 14),
               // The challenge is the hero and stays above the fold: the quest
               // and "keep going" rows are ambient context, not the thing we
@@ -434,9 +436,38 @@ class _CheerBannerState extends ConsumerState<_CheerBanner> {
 /// companion that is *there*, remembers you, and visibly misses you is the
 /// difference between a graphic and a relationship — and it is the cheapest
 /// reason for a five-year-old to open the app tomorrow.
-class _MascotCompanion extends ConsumerWidget {
+class _MascotCompanion extends ConsumerStatefulWidget {
   const _MascotCompanion({required this.l10n});
   final AppLocalizations l10n;
+
+  @override
+  ConsumerState<_MascotCompanion> createState() => _MascotCompanionState();
+}
+
+class _MascotCompanionState extends ConsumerState<_MascotCompanion> {
+  int _tickleCount = 0;
+  String? _tickledLine;
+
+  void _tickle() {
+    final lang = ref.read(localeProvider).languageCode;
+    final line = mascotTickleSpeech(
+      _tickleCount,
+      lang,
+      hour: DateTime.now().hour,
+    );
+    setState(() {
+      _tickleCount++;
+      _tickledLine = line;
+    });
+    unawaited(ref.read(soundEffectsProvider).star());
+    unawaited(
+      ref.read(narrationProvider.notifier).speak(
+            line,
+            lang,
+            style: SpeakStyle.cheer,
+          ),
+    );
+  }
 
   Future<void> _rename(
     BuildContext context,
@@ -444,6 +475,7 @@ class _MascotCompanion extends ConsumerWidget {
     String childId,
     String? current,
   ) async {
+    final l10n = widget.l10n;
     final controller = TextEditingController(text: current ?? '');
     final name = await showDialog<String>(
       context: context,
@@ -478,7 +510,8 @@ class _MascotCompanion extends ConsumerWidget {
   }
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
+    final l10n = widget.l10n;
     final child = ref.watch(activeChildProvider);
     ref.watch(economyTickProvider); // name / streak changes
     if (child == null) return const SizedBox.shrink();
@@ -486,18 +519,20 @@ class _MascotCompanion extends ConsumerWidget {
     final store = ref.watch(offlineStoreProvider);
     final streak = ref.watch(streakProvider);
     final name = store.mascotName(child.id);
-    final mood = mascotMoodFor(
+    final baseMood = mascotMoodFor(
       lastActiveDayKey: store.lastActiveDayKey(child.id),
       streak: streak,
       now: DateTime.now(),
     );
+    final mood = _tickleCount > 0 ? MascotMood.cheer : baseMood;
 
-    final line = switch (mood) {
+    final defaultLine = switch (baseMood) {
       MascotMood.sleep => l10n.mascotMissedYou,
       MascotMood.cheer => l10n.mascotProud(streak),
       MascotMood.think => l10n.mascotCurious,
       MascotMood.idle => l10n.mascotReady,
     };
+    final line = _tickledLine ?? defaultLine;
 
     return Semantics(
       button: true,
@@ -513,7 +548,15 @@ class _MascotCompanion extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
               child: Row(
                 children: [
-                  MascotWidget(mood: mood, size: 48),
+                  GestureDetector(
+                    key: const ValueKey('mascot-tickle-target'),
+                    onTap: _tickle,
+                    child: AnimatedScale(
+                      scale: _tickleCount.isOdd ? 1.14 : 1.0,
+                      duration: const Duration(milliseconds: 160),
+                      child: MascotWidget(mood: mood, size: 48),
+                    ),
+                  ),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Column(
@@ -530,6 +573,7 @@ class _MascotCompanion extends ConsumerWidget {
                         ),
                         Text(
                           line,
+                          key: const ValueKey('mascot-speech-line'),
                           maxLines: 2,
                           style: TextStyle(
                             fontSize: 12.5,
@@ -549,6 +593,118 @@ class _MascotCompanion extends ConsumerWidget {
                 ],
               ),
             ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Interactive "My Savanna" sticker world strip on the child home screen.
+///
+/// Displays the animals and landmarks the child has earned or bought as
+/// tappable stickers; tapping any sticker makes it bounce, sparkles, and
+/// speaks a trilingual Savanna fun fact aloud.
+class _SavannaStickerBar extends ConsumerStatefulWidget {
+  const _SavannaStickerBar();
+
+  @override
+  ConsumerState<_SavannaStickerBar> createState() => _SavannaStickerBarState();
+}
+
+class _SavannaStickerBarState extends ConsumerState<_SavannaStickerBar> {
+  String? _activeKey;
+  String? _spokenFact;
+
+  void _tapSticker(SavannaDecoration d) {
+    final lang = ref.read(localeProvider).languageCode;
+    final fact = savannaStickerGreeting(d.key, lang);
+    setState(() {
+      _activeKey = d.key;
+      _spokenFact = fact;
+    });
+    unawaited(ref.read(soundEffectsProvider).star());
+    unawaited(
+      ref.read(narrationProvider.notifier).speak(
+            fact,
+            lang,
+            style: SpeakStyle.cheer,
+          ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final child = ref.watch(activeChildProvider);
+    ref.watch(economyTickProvider);
+    final xp = ref.watch(xpProvider);
+    final store = ref.watch(offlineStoreProvider);
+    if (child == null) return const SizedBox.shrink();
+
+    final unlocked = visibleDecorations(
+      purchased: store.unlockedDecorations(child.id),
+      level: levelForXp(xp),
+      subjectsExplored: store.completedSubjects(child.id).length,
+    );
+    if (unlocked.isEmpty) return const SizedBox.shrink();
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: ExcludeSemantics(
+        child: Container(
+          key: const ValueKey('savanna-sticker-bar'),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          decoration: BoxDecoration(
+            color: Colors.white.withValues(alpha: 0.68),
+            borderRadius: BorderRadius.circular(18),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Wrap(
+                spacing: 8,
+                runSpacing: 6,
+                children: [
+                  for (final d in unlocked)
+                    GestureDetector(
+                      key: ValueKey('savanna-sticker-${d.key}'),
+                      onTap: () => _tapSticker(d),
+                      child: AnimatedScale(
+                        scale: _activeKey == d.key ? 1.22 : 1.0,
+                        duration: const Duration(milliseconds: 160),
+                        child: Container(
+                          padding: const EdgeInsets.all(6),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: _activeKey == d.key
+                                ? WatotoColors.sun.withValues(alpha: 0.4)
+                                : WatotoColors.leaf.withValues(alpha: 0.14),
+                          ),
+                          child: RichText(
+                            text: TextSpan(
+                              text: d.emoji,
+                              style: const TextStyle(fontSize: 22),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+              if (_spokenFact != null) ...[
+                const SizedBox(height: 6),
+                Text(
+                  _spokenFact!,
+                  key: const ValueKey('savanna-sticker-fact'),
+                  style: const TextStyle(
+                    fontFamily: 'Baloo2',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w800,
+                    color: WatotoColors.deep,
+                  ),
+                ),
+              ],
+            ],
           ),
         ),
       ),

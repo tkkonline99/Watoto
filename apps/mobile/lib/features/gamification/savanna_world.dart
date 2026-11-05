@@ -268,3 +268,161 @@ SavannaDecoration? nextEarnedDecoration({
   }
   return null;
 }
+
+/// Trilingual Savanna greeting & fun fact when a child taps an unlocked animal
+/// or landmark sticker in their Savanna world.
+String savannaStickerGreeting(String key, String lang) {
+  final code = lang.toLowerCase();
+  const lines = <String, ({String en, String sw, String fr})>{
+    'zebra': (
+      en: 'Jambo! Every zebra has one-of-a-kind stripes!',
+      sw: 'Jambo! Kila punda milia ana mistari ya kipekee!',
+      fr: 'Jambo ! Chaque zèbre a des rayures uniques !',
+    ),
+    'acacia': (
+      en: 'Shady acacia trees feed giraffes and shelter birds!',
+      sw: 'Miti ya mkunga huwapa twiga chakula na ndege kivuli!',
+      fr: 'Les acacias nourrissent les girafes et abritent les oiseaux !',
+    ),
+    'elephant': (
+      en: 'Hooray! Elephants use their trunks to wave hello!',
+      sw: 'Hongera! Tembo hutumia mkonga wake kusalimia!',
+      fr: 'Bravo ! Les éléphants saluent avec leur trompe !',
+    ),
+    'giraffe': (
+      en: 'Twiga the giraffe can see all across the savanna!',
+      sw: 'Twiga anaweza kuona savana nzima kutoka juu!',
+      fr: 'La girafe voit toute la savane depuis là-haut !',
+    ),
+    'lion': (
+      en: 'Roar! Simba the lion loves learning with you!',
+      sw: 'Ngurumo! Simba anapenda kujifunza na wewe!',
+      fr: 'Rugissement ! Simba adore apprendre avec toi !',
+    ),
+    'hippo': (
+      en: 'Splash! Hippos stay cool in the river all day!',
+      sw: 'Chubwi! Kiboko hupenda kukaa mtoni mchana kutwa!',
+      fr: 'Plouf ! Les hippopotames restent au frais dans la rivière !',
+    ),
+    'flowers': (
+      en: 'Bright savanna flowers bloom after the rain!',
+      sw: 'Maua mazuri ya savanauchanua baada ya mvua!',
+      fr: 'Les fleurs de la savane éclosent après la pluie !',
+    ),
+    'bush': (
+      en: 'Green savanna bushes hide little beetles and birds!',
+      sw: 'Vichaka vya kijani huficha wadudu na ndege wadogo!',
+      fr: 'Les buissons verts cachent de petits oiseaux !',
+    ),
+    'rock': (
+      en: 'Warm sun rocks where lizards love to rest!',
+      sw: 'Mawe yenye joto ambapo mijusi hupenda kupumzika!',
+      fr: 'Des rochers chauds où les lézards se reposent !',
+    ),
+    'palm': (
+      en: 'Tall palm trees sway in the warm breeze!',
+      sw: 'Mitende mirefu inayumba kwenye upepo mwanana!',
+      fr: 'Les grands palmiers dansent dans la brise !',
+    ),
+    'hut': (
+      en: 'Karibu! A cozy village home for story time!',
+      sw: 'Karibu! Nyumba nzuri ya kijijini kwa wakati wa hadithi!',
+      fr: 'Karibu ! Une maison accueillante pour les histoires !',
+    ),
+    'drum': (
+      en: 'Boom-tap! The savanna drum calls everyone to dance!',
+      sw: 'Bumu-tap! Ngoma ya savana inaita kila mtu kucheza!',
+      fr: 'Boum-tap ! Le tambour invite tout le monde à danser !',
+    ),
+    'parrot': (
+      en: 'Squawk! The colorful parrot repeats your new words!',
+      sw: 'Kasuku mwenye rangi nyingi anarudia maneno yako mapya!',
+      fr: 'Le perroquet coloré répète tes nouveaux mots !',
+    ),
+    'monkey': (
+      en: 'Ooh-ooh! Tumbili the monkey swings from branch to branch!',
+      sw: 'Tumbili anaruka kutoka tawi hadi tawi kwa furaha!',
+      fr: 'Le petit singe saute de branche en branche !',
+    ),
+    'rhino': (
+      en: 'Steady and strong! Kifaru the rhino charges ahead!',
+      sw: 'Imara na hodari! Kifaru anasonga mbele!',
+      fr: 'Fort et courageux ! Le rhinocéros avance !',
+    ),
+    'baobab': (
+      en: 'The giant baobab is the tree of life on the savanna!',
+      sw: 'Mbuyu mkubwa ni mti wa uzima katika savana!',
+      fr: 'Le grand baobab est l’arbre de vie de la savane !',
+    ),
+    'butterflies': (
+      en: 'Flutter, flutter! Butterflies dance in the sunshine!',
+      sw: 'Vipepeo wanacheza kwenye mwanga wa jua!',
+      fr: 'Les papillons dansent dans la lumière du soleil !',
+    ),
+    'rainbow': (
+      en: 'Seven bright colors shining over the savanna!',
+      sw: 'Rangi saba angavu zinang’aa juu ya savana!',
+      fr: 'Sept belles couleurs brillent sur la savane !',
+    ),
+  };
+
+  final entry = lines[key];
+  if (entry == null) {
+    return switch (code) {
+      'sw' => 'Hongera! Savana yako inakua!',
+      'fr' => 'Bravo ! Ta savane grandit !',
+      _ => 'Hooray! Your savanna is growing!',
+    };
+  }
+  return switch (code) {
+    'sw' => entry.sw,
+    'fr' => entry.fr,
+    _ => entry.en,
+  };
+}
+
+/// Playful, encouraging lines Kibo the lion cub speaks when tickled/tapped on
+/// the Home screen. Adapts to morning/evening hours when [hour] is supplied.
+String mascotTickleSpeech(int tapIndex, String lang, {int? hour}) {
+  final code = lang.toLowerCase();
+  final en = <String>[
+    if (hour != null && hour < 12)
+      'Good morning, rafiki! Ready for a sunny savanna adventure?'
+    else if (hour != null && hour >= 18)
+      'Cozy evening, friend! Let us read a story under the stars!'
+    else
+      'Hehehe, that tickles! Twende, let us learn together!',
+    'Roar! You have a superpower brain today!',
+    'High paw! Every star you earn grows our savanna!',
+    'Asante rafiki! Tap a subject tile and let us play!',
+  ];
+  final sw = <String>[
+    if (hour != null && hour < 12)
+      'Habari za asubuhi rafiki! Twende tukajifunze!'
+    else if (hour != null && hour >= 18)
+      'Jioni njema rafiki! Tusome hadithi chini ya nyota!'
+    else
+      'Hehehe, unanichekesha! Twende tujifunze pamoja!',
+    'Ngurumo! Akili yako inang’aa sana leo!',
+    'Gonga tano! Kila nyota inakuza savana yetu!',
+    'Asante rafiki! Gusa somo tuanze kucheza!',
+  ];
+  final fr = <String>[
+    if (hour != null && hour < 12)
+      'Bonjour mon ami ! Prêt pour une aventure dans la savane ?'
+    else if (hour != null && hour >= 18)
+      'Bonsoir mon ami ! Lisons une histoire sous les étoiles !'
+    else
+      'Hahaha, ça chatouille ! Apprenons ensemble !',
+    'Rugissement ! Tu es super curieux aujourd’hui !',
+    'Tape-m’en cinq ! Chaque étoile fait grandir notre savane !',
+    'Merci mon ami ! Touche une matière pour jouer !',
+  ];
+
+  final list = switch (code) {
+    'sw' => sw,
+    'fr' => fr,
+    _ => en,
+  };
+  return list[tapIndex.abs() % list.length];
+}
