@@ -108,3 +108,20 @@ final analyticsOptInProvider =
     NotifierProvider<AnalyticsOptInController, bool>(
   AnalyticsOptInController.new,
 );
+
+/// Cozy sunset / starry bedtime mode ("Usiku Mwema") for calm evening reading.
+class BedtimeModeController extends Notifier<bool> {
+  @override
+  bool build() => ref.watch(offlineStoreProvider).bedtimeMode;
+
+  Future<void> set(bool value) async {
+    await ref.read(offlineStoreProvider).setBedtimeMode(value);
+    state = value;
+  }
+
+  Future<void> toggle() => set(!state);
+}
+
+final bedtimeModeProvider = NotifierProvider<BedtimeModeController, bool>(
+  BedtimeModeController.new,
+);

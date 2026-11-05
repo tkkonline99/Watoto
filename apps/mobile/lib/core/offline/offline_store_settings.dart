@@ -39,6 +39,12 @@ extension OfflineStoreSettings on OfflineStore {
   Future<void> setReducedMotion(bool v) =>
       _account.put('reducedMotion', v ? 'true' : 'false');
 
+  /// Cozy sunset / starry night bedtime mode ("Usiku Mwema").
+  bool get bedtimeMode => _account.get('bedtimeMode') == 'true';
+
+  Future<void> setBedtimeMode(bool v) =>
+      _account.put('bedtimeMode', v ? 'true' : 'false');
+
   /// Parent opt-in for privacy-preserving product analytics (default off).
   bool get analyticsOptIn => _account.get('analyticsOptIn') == 'true';
 

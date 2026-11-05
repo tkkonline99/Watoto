@@ -23,6 +23,7 @@ import '../../features/gamification/next_best.dart';
 import '../../features/gamification/rewards.dart';
 import '../../features/gamification/savanna_world.dart';
 import '../../features/gamification/today_quest.dart';
+import '../../features/gamification/word_of_the_day.dart';
 import '../../features/library/library_repository.dart';
 import '../../features/onboarding/guided_tour.dart';
 import '../../features/onboarding/savanna_background.dart';
@@ -30,6 +31,7 @@ import '../../features/parent/family_layer.dart';
 import '../../features/parent/reminders/reminder_service.dart';
 import '../../features/profiles/child_profile.dart';
 import '../../l10n/gen/app_localizations.dart';
+import 'savanna_sketchpad_sheet.dart';
 
 /// Child home — welcome bar, a concrete daily challenge, and subject tiles.
 /// Age is inferred from the child's profile (and remembered after a long-press
@@ -177,11 +179,24 @@ class _ChildHomeScreenState extends ConsumerState<ChildHomeScreen> {
               ),
           ];
 
+    final bedtime = ref.watch(bedtimeModeProvider);
+    final libRepo = ref.watch(libraryProvider).asData?.value;
+    final memoryBoost = (child != null && libRepo != null)
+        ? resolveMemoryBoostForChild(
+            childId: child.id,
+            store: store,
+            library: libRepo,
+          )
+        : null;
+
     return SavannaScaffold(
       extras: world,
+      bedtime: bedtime,
       topRight: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
+          _BedtimeToggleButton(bedtime: bedtime),
+          const SizedBox(width: 8),
           _AccountButton(tooltip: l10n.account),
           const SizedBox(width: 8),
           _LanguageMenu(),
@@ -285,6 +300,21 @@ class _ChildHomeScreenState extends ConsumerState<ChildHomeScreen> {
                   ),
                 ],
               ),
+              if (memoryBoost != null && child != null) ...[
+                const SizedBox(height: 14),
+                KiboMemoryBoostCard(
+                  recommendation: memoryBoost,
+                  locale: lang,
+                  onLaunch: () async {
+                    await store.grantCoins(child.id, memoryBoost.bonusCoins);
+                    ref.read(economyTickProvider.notifier).state++;
+                    if (!context.mounted) return;
+                    unawaited(context.push('/play/${memoryBoost.item.id}'));
+                  },
+                ),
+              ],
+              const SizedBox(height: 14),
+              SavannaWordOfTheDayCard(locale: lang),
             ],
           ),
         ),
@@ -590,6 +620,16 @@ class _MascotCompanionState extends ConsumerState<_MascotCompanion> {
                       size: 18,
                       color: WatotoColors.deep.withValues(alpha: 0.5),
                     ),
+                  const SizedBox(width: 6),
+                  IconButton(
+                    key: const ValueKey('open-sketchpad-button'),
+                    tooltip: 'Savanna Sketchpad',
+                    onPressed: () => showSavannaSketchpad(context),
+                    icon: const Icon(
+                      Icons.palette_rounded,
+                      color: WatotoColors.mango,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -1647,6 +1687,42 @@ class _AccountButton extends ConsumerWidget {
                   ),
                 ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _BedtimeToggleButton extends ConsumerWidget {
+  const _BedtimeToggleButton({required this.bedtime});
+  final bool bedtime;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return ExcludeSemantics(
+      child: InkWell(
+        key: const ValueKey('bedtime-mode-toggle'),
+        customBorder: const CircleBorder(),
+        onTap: () => ref.read(bedtimeModeProvider.notifier).toggle(),
+        child: Container(
+          width: 46,
+          height: 46,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: bedtime ? const Color(0xFF28234A) : Colors.white,
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: WatotoColors.deep.withValues(alpha: 0.12),
+                blurRadius: 10,
+                offset: const Offset(0, 4),
+              ),
+            ],
+          ),
+          child: Icon(
+            bedtime ? Icons.bedtime_rounded : Icons.wb_sunny_rounded,
+            color: bedtime ? WatotoColors.sun : WatotoColors.mango,
           ),
         ),
       ),

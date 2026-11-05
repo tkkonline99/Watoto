@@ -9,11 +9,43 @@ import 'package:go_router/go_router.dart';
 import '../../core/offline/desktop_export_stub.dart'
     if (dart.library.io) '../../core/offline/desktop_export_io.dart';
 import '../../core/offline/offline_providers.dart';
+import '../../core/state/app_state.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../core/widgets/mascot_widget.dart';
 import '../../core/widgets/watoto_button.dart';
 import '../../l10n/gen/app_localizations.dart';
 import 'rewards.dart';
+
+/// Builds a privacy-safe, family-friendly milestone postcard text in the
+/// active language (`en`, `sw`, or `fr`) — includes only the child's nickname,
+/// avatar emoji, level, lessons, stars, and streak (zero PII).
+String buildMilestonePostcardText({
+  required String nickname,
+  required String emoji,
+  required int level,
+  required int lessons,
+  required int stars,
+  required int streak,
+  required String locale,
+}) {
+  switch (locale) {
+    case 'sw':
+      return '💌 Postikadi ya Watoto Savanna!\n'
+          '$emoji $nickname amefika Kiwango cha $level, '
+          'amekamilisha masomo $lessons, amepata nyota $stars ⭐ '
+          'na mfululizo wa siku $streak 🔥! Hongera sana!';
+    case 'fr':
+      return '💌 Carte Postale Watoto Savanna !\n'
+          '$emoji $nickname a atteint le Niveau $level, '
+          'terminé $lessons leçons, gagné $stars étoiles ⭐ '
+          'et une série de $streak jours 🔥 ! Bravo !';
+    default:
+      return '💌 Watoto Savanna Family Postcard!\n'
+          '$emoji $nickname reached Level $level, '
+          'completed $lessons lessons, earned $stars stars ⭐, '
+          'and is on a $streak-day learning streak 🔥! So proud!';
+  }
+}
 
 /// Simple on-device certificate, saveable as an image so it can leave the app.
 class CertificateScreen extends ConsumerStatefulWidget {
@@ -186,6 +218,29 @@ class _CertificateScreenState extends ConsumerState<CertificateScreen> {
                           '${l10n.certificateBody(level, lessons, stars)} '
                           '($dateStr)',
                         ),
+              ),
+              OutlinedButton.icon(
+                key: const ValueKey('share-milestone-postcard-button'),
+                onPressed: () async {
+                  final locale = ref.read(localeProvider).languageCode;
+                  final streak = store.streakFor(child.id);
+                  final postcard = buildMilestonePostcardText(
+                    nickname: child.nickname,
+                    emoji: child.emoji,
+                    level: level,
+                    lessons: lessons,
+                    stars: stars,
+                    streak: streak,
+                    locale: locale,
+                  );
+                  await Clipboard.setData(ClipboardData(text: postcard));
+                  if (!context.mounted) return;
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(postcard)),
+                  );
+                },
+                icon: const Icon(Icons.mark_email_read_rounded),
+                label: const Text('Share Postcard 💌'),
               ),
               WatotoButton(
                 label: l10n.done,

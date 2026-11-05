@@ -672,6 +672,9 @@ class NarrationController extends Notifier<bool> {
         case SpeakStyle.hint:
           pace *= 0.93;
           pitch = 0.98;
+        case SpeakStyle.gentle:
+          pace *= 0.85;
+          pitch = 0.94;
         case SpeakStyle.lesson:
           break;
       }
@@ -733,7 +736,7 @@ class NarrationController extends Notifier<bool> {
 }
 
 /// Cadence hint for the TTS engine.
-enum SpeakStyle { lesson, cheer, hint }
+enum SpeakStyle { lesson, cheer, hint, gentle }
 
 final narrationProvider = NotifierProvider<NarrationController, bool>(
   NarrationController.new,

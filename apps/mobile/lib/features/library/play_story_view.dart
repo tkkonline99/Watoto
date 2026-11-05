@@ -86,10 +86,12 @@ class StoryViewState extends ConsumerState<StoryView> {
     // post-frame callback, so on a cold start it is a frame ahead of the load.
     final loc = await awaitLocalizedItem(ref, widget.item);
     if (!mounted) return;
+    final bedtime = ref.read(bedtimeModeProvider);
     unawaited(
       ref.read(narrationProvider.notifier).speak(
             loc.pageNarration(_page),
             lang,
+            style: bedtime ? SpeakStyle.gentle : SpeakStyle.lesson,
             audioKey: '${widget.item.id}.pages.$_page.narration',
           ),
     );

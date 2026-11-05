@@ -13,6 +13,8 @@ bool debugDisableSavannaAmbient = false;
 // Savanna scene colours, shared by every screen so the chrome stays identical.
 const _bgTop = Color(0xFFFFF7E6);
 const _bgBottom = Color(0xFFFFE0A0);
+const _nightTop = Color(0xFF28234A);
+const _nightBottom = Color(0xFF4B3B6B);
 const _groundBack = Color(0xFFC2DD9C);
 const _groundFront = Color(0xFFA7CE7C);
 
@@ -21,12 +23,19 @@ const _groundFront = Color(0xFFA7CE7C);
 /// of a [Stack] (it sizes to its parent). Shared by the language, onboarding and
 /// home screens via [SavannaScaffold].
 class SavannaScene extends StatefulWidget {
-  const SavannaScene({super.key, this.extras = const []});
+  const SavannaScene({
+    super.key,
+    this.extras = const [],
+    this.bedtime = false,
+  });
 
   /// Decorations the child has earned or bought. Onboarding passes none; the
   /// home passes the child's world so the backdrop reflects their progress
   /// instead of being the same wallpaper for everyone.
   final List<SceneDecoration> extras;
+
+  /// When true, renders the cozy sunset / starry night palette ("Usiku Mwema").
+  final bool bedtime;
 
   @override
   State<SavannaScene> createState() => _SavannaSceneState();
@@ -83,13 +92,15 @@ class _SavannaSceneState extends State<SavannaScene>
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        const Positioned.fill(
+        Positioned.fill(
           child: DecoratedBox(
             decoration: BoxDecoration(
               gradient: RadialGradient(
-                center: Alignment(0, -0.55),
+                center: const Alignment(0, -0.55),
                 radius: 1.25,
-                colors: [_bgTop, _bgBottom],
+                colors: widget.bedtime
+                    ? const [_nightTop, _nightBottom]
+                    : const [_bgTop, _bgBottom],
               ),
             ),
           ),
@@ -98,6 +109,33 @@ class _SavannaSceneState extends State<SavannaScene>
           animation: _ambient,
           builder: (context, _) => _SavannaDecor(t: _ambient.value),
         ),
+        if (widget.bedtime)
+          const IgnorePointer(
+            child: ExcludeSemantics(
+              child: SizedBox.expand(
+                key: ValueKey('savanna-bedtime-stars'),
+                child: Stack(
+                  children: [
+                    Positioned(
+                      top: 32,
+                      left: 48,
+                      child: Text('✨', style: TextStyle(fontSize: 20)),
+                    ),
+                    Positioned(
+                      top: 56,
+                      right: 92,
+                      child: Text('🌙', style: TextStyle(fontSize: 28)),
+                    ),
+                    Positioned(
+                      top: 90,
+                      left: 140,
+                      child: Text('⭐', style: TextStyle(fontSize: 16)),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
         if (widget.extras.isNotEmpty)
           Positioned.fill(
             child: _EarnedDecorLayer(extras: widget.extras),
@@ -169,6 +207,7 @@ class SavannaScaffold extends StatelessWidget {
     required this.child,
     this.topRight,
     this.extras = const [],
+    this.bedtime = false,
   });
 
   final Widget child;
@@ -179,12 +218,17 @@ class SavannaScaffold extends StatelessWidget {
   /// The child's earned/bought savanna decorations. Empty during onboarding.
   final List<SceneDecoration> extras;
 
+  /// When true, renders the cozy sunset / starry night palette ("Usiku Mwema").
+  final bool bedtime;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          Positioned.fill(child: SavannaScene(extras: extras)),
+          Positioned.fill(
+            child: SavannaScene(extras: extras, bedtime: bedtime),
+          ),
           SafeArea(
             child: Column(
               children: [

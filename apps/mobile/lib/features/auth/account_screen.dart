@@ -192,7 +192,10 @@ class AccountScreen extends ConsumerWidget {
   }
 
   Future<void> _confirmDelete(BuildContext context, WidgetRef ref) async {
-    if (!await showParentGateDialog(context, ref)) return;
+    if (!ref.read(sessionProvider).parentAccessAllowed &&
+        !await showParentGateDialog(context, ref)) {
+      return;
+    }
     if (!context.mounted) return;
     final l10n = AppLocalizations.of(context);
     final ok = await showDialog<bool>(
