@@ -107,7 +107,8 @@ class _SavannaSceneState extends State<SavannaScene>
         ),
         AnimatedBuilder(
           animation: _ambient,
-          builder: (context, _) => _SavannaDecor(t: _ambient.value),
+          builder: (context, _) =>
+              _SavannaDecor(t: _ambient.value, bedtime: widget.bedtime),
         ),
         if (widget.bedtime)
           const IgnorePointer(
@@ -249,13 +250,13 @@ class SavannaScaffold extends StatelessWidget {
                       // At ordinary text sizes nothing moves; a reader who
                       // needs large text keeps the buttons instead of losing
                       // them to the brand.
-                      const Expanded(
+                      Expanded(
                         child: Align(
                           alignment: Alignment.centerLeft,
                           child: FittedBox(
                             fit: BoxFit.scaleDown,
                             alignment: Alignment.centerLeft,
-                            child: _Wordmark(),
+                            child: _Wordmark(bedtime: bedtime),
                           ),
                         ),
                       ),
@@ -314,22 +315,23 @@ class SavannaLockButton extends StatelessWidget {
 }
 
 class _Wordmark extends StatelessWidget {
-  const _Wordmark();
+  const _Wordmark({this.bedtime = false});
+  final bool bedtime;
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text('🦁', style: TextStyle(fontSize: 26)),
-        SizedBox(width: 8),
+        const Text('🦁', style: TextStyle(fontSize: 26)),
+        const SizedBox(width: 8),
         Text(
           'Watoto',
           style: TextStyle(
             fontFamily: 'Baloo2',
             fontSize: 22,
             fontWeight: FontWeight.w800,
-            color: WatotoColors.deep,
+            color: bedtime ? const Color(0xFFFFF6E5) : WatotoColors.deep,
           ),
         ),
       ],
@@ -340,8 +342,9 @@ class _Wordmark extends StatelessWidget {
 /// Sun, drifting clouds, a grassy ground, a tree, a butterfly and a bird. All
 /// movement is sine-driven off the shared ambient clock [t] (0..1).
 class _SavannaDecor extends StatelessWidget {
-  const _SavannaDecor({required this.t});
+  const _SavannaDecor({required this.t, this.bedtime = false});
   final double t;
+  final bool bedtime;
 
   double _wave(double phase, double amp) =>
       math.sin((t + phase) * 2 * math.pi) * amp;
@@ -350,27 +353,36 @@ class _SavannaDecor extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Positioned(
-          top: -36,
-          right: -28,
-          child: Container(
-            width: 130,
-            height: 130,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: const Color(0xFFFFD166),
-              boxShadow: [
-                BoxShadow(
-                  color: const Color(0xFFFFD166).withValues(alpha: 0.5),
-                  blurRadius: 50,
-                  spreadRadius: 12,
-                ),
-              ],
+        if (!bedtime)
+          Positioned(
+            top: -36,
+            right: -28,
+            child: Container(
+              width: 130,
+              height: 130,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: const Color(0xFFFFD166),
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color(0xFFFFD166).withValues(alpha: 0.5),
+                    blurRadius: 50,
+                    spreadRadius: 12,
+                  ),
+                ],
+              ),
             ),
           ),
+        Positioned(
+          top: 70,
+          left: 24 + _wave(0.0, 12),
+          child: _Cloud(width: 92, bedtime: bedtime),
         ),
-        Positioned(top: 70, left: 24 + _wave(0.0, 12), child: const _Cloud(width: 92)),
-        Positioned(top: 130, right: 30 + _wave(0.5, 14), child: const _Cloud(width: 64)),
+        Positioned(
+          top: 130,
+          right: 30 + _wave(0.5, 14),
+          child: _Cloud(width: 64, bedtime: bedtime),
+        ),
         const Positioned(
           bottom: 0,
           left: 0,
@@ -401,8 +413,9 @@ class _SavannaDecor extends StatelessWidget {
 }
 
 class _Cloud extends StatelessWidget {
-  const _Cloud({required this.width});
+  const _Cloud({required this.width, this.bedtime = false});
   final double width;
+  final bool bedtime;
 
   @override
   Widget build(BuildContext context) {
@@ -410,7 +423,7 @@ class _Cloud extends StatelessWidget {
       width: width,
       height: width * 0.42,
       decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.92),
+        color: Colors.white.withValues(alpha: bedtime ? 0.12 : 0.92),
         borderRadius: BorderRadius.circular(width),
         boxShadow: [
           BoxShadow(

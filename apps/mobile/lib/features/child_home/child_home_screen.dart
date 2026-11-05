@@ -770,14 +770,17 @@ class _TodayQuestCard extends ConsumerWidget {
 
     final quest = todayQuestFor(ref.watch(offlineStoreProvider), child.id);
     final complete = quest.complete;
+    final bedtime = ref.watch(bedtimeModeProvider);
 
     return Semantics(
       label: '${l10n.todayQuest}. '
           '${l10n.todayQuestProgress(quest.done, quest.goal)}',
       child: Material(
-        color: complete
-            ? WatotoColors.leaf.withValues(alpha: 0.16)
-            : WatotoColors.mango.withValues(alpha: 0.14),
+        color: bedtime
+            ? Colors.white.withValues(alpha: 0.90)
+            : (complete
+                ? WatotoColors.leaf.withValues(alpha: 0.16)
+                : WatotoColors.mango.withValues(alpha: 0.14)),
         borderRadius: BorderRadius.circular(20),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
@@ -942,6 +945,12 @@ Future<void> _openSubject(
         break;
       }
     }
+    stage ??= available.reduce(
+      (a, b) => (a.stage - preferred.stage).abs() <=
+              (b.stage - preferred.stage).abs()
+          ? a
+          : b,
+    );
   }
 
   stage ??= await showAgePicker(
@@ -951,7 +960,7 @@ Future<void> _openSubject(
   );
   if (stage == null || !context.mounted) return;
 
-  if (child != null) {
+  if (child != null && forceAgePicker) {
     await store.setPreferredStage(child.id, stage.stage);
   }
   if (!context.mounted) return;
@@ -1145,14 +1154,16 @@ class _ProfileAvatar extends StatelessWidget {
   }
 }
 
-class _GreetingBlock extends StatelessWidget {
+class _GreetingBlock extends ConsumerWidget {
   const _GreetingBlock({required this.greeting, required this.subtitle});
 
   final String greeting;
   final String subtitle;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final bedtime = ref.watch(bedtimeModeProvider);
+    final primary = bedtime ? const Color(0xFFFFF6E5) : WatotoColors.deep;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -1160,11 +1171,11 @@ class _GreetingBlock extends StatelessWidget {
           greeting,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
-          style: const TextStyle(
+          style: TextStyle(
             fontFamily: 'Baloo2',
             fontSize: 24,
             fontWeight: FontWeight.w800,
-            color: WatotoColors.deep,
+            color: primary,
           ),
         ),
         Text(
@@ -1174,7 +1185,7 @@ class _GreetingBlock extends StatelessWidget {
           style: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w600,
-            color: WatotoColors.deep.withValues(alpha: 0.6),
+            color: primary.withValues(alpha: bedtime ? 0.85 : 0.6),
           ),
         ),
       ],
@@ -1233,12 +1244,15 @@ class _ContinueLearningCard extends ConsumerWidget {
     if (target == null) return const SizedBox.shrink();
 
     final headline = _headline(target.reason);
+    final bedtime = ref.watch(bedtimeModeProvider);
 
     return Semantics(
       button: true,
       label: '$headline. ${target.item.title}',
       child: Material(
-        color: WatotoColors.sky.withValues(alpha: 0.12),
+        color: bedtime
+            ? Colors.white.withValues(alpha: 0.90)
+            : WatotoColors.sky.withValues(alpha: 0.12),
         borderRadius: BorderRadius.circular(20),
         child: InkWell(
           borderRadius: BorderRadius.circular(20),

@@ -183,7 +183,7 @@ class _SavannaSketchpadSheetState extends ConsumerState<SavannaSketchpadSheet> {
                   onPanStart: (d) => _startStroke(d.localPosition),
                   onPanUpdate: (d) => _appendStroke(d.localPosition),
                   child: CustomPaint(
-                    painter: _SketchpadPainter(
+                    foregroundPainter: _SketchpadPainter(
                       strokes: _strokes,
                       stencil: stencil,
                     ),
