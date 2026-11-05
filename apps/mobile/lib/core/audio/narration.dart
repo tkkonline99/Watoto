@@ -6,6 +6,24 @@ import 'package:flutter_tts/flutter_tts.dart';
 
 import '../analytics/analytics.dart';
 import '../offline/offline_providers.dart';
+import 'sfx_backend_io.dart'
+    if (dart.library.js_interop) 'sfx_backend_web.dart';
+
+/// Active spoken word span reported during narration playback (for read-along
+/// word highlighting and accessibility testing).
+class NarrationWordSpan {
+  const NarrationWordSpan({
+    required this.text,
+    required this.word,
+    required this.start,
+    required this.end,
+  });
+
+  final String text;
+  final String word;
+  final int start;
+  final int end;
+}
 
 /// Spoken narration for audio-first bands. Wraps [FlutterTts] with:
 /// - the most natural voice the device reports, preferring offline ones
@@ -17,9 +35,50 @@ import '../offline/offline_providers.dart';
 /// Every engine call is guarded: missing TTS / tests degrade to silence.
 class NarrationController extends Notifier<bool> {
   FlutterTts? _tts;
+  final SfxBackend _voBackend = SfxBackend();
   bool _configured = false;
   String? _langReady;
   final Map<String, Map<String, String>> _preferredVoice = {};
+
+  /// Live word span currently being spoken by the narration engine, or null
+  /// when idle. Listeners can highlight the spoken word in story/lesson text.
+  final ValueNotifier<NarrationWordSpan?> activeWord =
+      ValueNotifier<NarrationWordSpan?>(null);
+
+  /// Optional bundled voiceover asset set (`audio/<lang>/<audioKey>.mp3`).
+  /// Populated when the offline VO pack is bundled or injected in tests.
+  final Set<String> _bundledVoAssets = {};
+
+  /// Registers relative asset paths (e.g. `audio/sw/s01.animals.story.01.pages.0.narration.mp3`)
+  /// that exist in the bundled voiceover pack.
+  void registerBundledVoAssets(Iterable<String> assets) {
+    for (final a in assets) {
+      final clean = a.replaceAll('\\', '/').replaceFirst(RegExp('^assets/'), '');
+      _bundledVoAssets.add(clean);
+    }
+  }
+
+  /// Resolves the best bundled voiceover asset for [audioKey] in [langCode].
+  /// Tries `audio/<lang>/<audioKey>.mp3` first, then `audio/en/<audioKey>.mp3`
+  /// when [allowEnglishFallback] is true.
+  static String? resolveVoAsset(
+    String langCode,
+    String? audioKey,
+    Set<String> availableAssets, {
+    bool allowEnglishFallback = false,
+  }) {
+    if (audioKey == null || audioKey.trim().isEmpty || availableAssets.isEmpty) {
+      return null;
+    }
+    final key = audioKey.trim();
+    final primary = 'audio/$langCode/$key.mp3';
+    if (availableAssets.contains(primary)) return primary;
+    if (allowEnglishFallback && langCode != 'en') {
+      final fallback = 'audio/en/$key.mp3';
+      if (availableAssets.contains(fallback)) return fallback;
+    }
+    return null;
+  }
 
   /// Bumped by every [speak] and [stop]. A sequence that finds it changed has
   /// been replaced and must not say another word.
@@ -111,6 +170,16 @@ class NarrationController extends Notifier<bool> {
       } catch (_) {}
       try {
         await tts.setVolume(1.0);
+      } catch (_) {}
+      try {
+        tts.setProgressHandler((text, start, end, word) {
+          activeWord.value = NarrationWordSpan(
+            text: text,
+            word: word,
+            start: start,
+            end: end,
+          );
+        });
       } catch (_) {}
       _configured = true;
     }
@@ -562,13 +631,23 @@ class NarrationController extends Notifier<bool> {
     String text,
     String langCode, {
     SpeakStyle style = SpeakStyle.lesson,
+    String? audioKey,
   }) async {
     if (!state || text.trim().isEmpty) return;
     _replaceCurrent();
+    activeWord.value = null;
     final generation = _generation;
     final replaced = _replaced.future;
     bool isCurrent() => generation == _generation;
     try {
+      // 1. Prefer a bundled offline neural voiceover MP3 when present.
+      final voAsset = resolveVoAsset(langCode, audioKey, _bundledVoAssets);
+      if (voAsset != null) {
+        await _voBackend.play(voAsset, 1.0);
+        return;
+      }
+
+      // 2. Fall back to on-device FlutterTts (naturalized + chunked).
       final resolved = await resolvedLocaleFor(langCode);
       if (!isCurrent()) return;
       if (resolved == null) {
@@ -610,6 +689,10 @@ class NarrationController extends Notifier<bool> {
       }
     } catch (_) {
       // No TTS engine available (desktop/test) — degrade to silent captions.
+    } finally {
+      if (isCurrent()) {
+        activeWord.value = null;
+      }
     }
   }
 
@@ -631,6 +714,10 @@ class NarrationController extends Notifier<bool> {
 
   Future<void> stop() async {
     _replaceCurrent();
+    activeWord.value = null;
+    try {
+      await _voBackend.stop();
+    } catch (_) {}
     try {
       await _tts?.stop();
     } catch (_) {}

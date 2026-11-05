@@ -511,12 +511,32 @@ Future<void> _restoreBackupFlow(
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
 }
 
-class _SyncStatusCard extends ConsumerWidget {
+class _SyncStatusCard extends ConsumerStatefulWidget {
   const _SyncStatusCard({required this.l10n});
   final AppLocalizations l10n;
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<_SyncStatusCard> createState() => _SyncStatusCardState();
+}
+
+class _SyncStatusCardState extends ConsumerState<_SyncStatusCard> {
+  bool _syncing = false;
+
+  Future<void> _syncNow() async {
+    if (_syncing) return;
+    setState(() => _syncing = true);
+    try {
+      final engine = ref.read(syncEngineProvider);
+      engine.resetBackoff();
+      await engine.flush();
+    } finally {
+      if (mounted) setState(() => _syncing = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = widget.l10n;
     final engine = ref.watch(syncEngineProvider);
     final pending = engine.pendingCount;
     final err = engine.lastError;
@@ -536,6 +556,19 @@ class _SyncStatusCard extends ConsumerWidget {
           color: WatotoColors.sky,
         ),
         title: Text(message),
+        trailing: (pending > 0 || err != null)
+            ? IconButton(
+                key: const ValueKey('sync-now-button'),
+                icon: _syncing
+                    ? const SizedBox(
+                        width: 18,
+                        height: 18,
+                        child: CircularProgressIndicator(strokeWidth: 2),
+                      )
+                    : const Icon(Icons.sync_rounded),
+                onPressed: _syncing ? null : _syncNow,
+              )
+            : null,
       ),
     );
   }

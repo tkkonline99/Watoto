@@ -159,12 +159,23 @@ PurchaseBridge productionAwarePurchaseBridge() {
   return defaultPurchaseBridge();
 }
 
+typedef ReceiptVerifier = Future<({bool valid, DateTime? expiry})> Function({
+  required String platform,
+  required String productId,
+  required String receipt,
+  required String accountToken,
+});
+
 class EntitlementService {
-  EntitlementService(this._store, {PurchaseBridge? bridge})
-      : _bridge = bridge ?? productionAwarePurchaseBridge();
+  EntitlementService(
+    this._store, {
+    PurchaseBridge? bridge,
+    this.verifier,
+  }) : _bridge = bridge ?? productionAwarePurchaseBridge();
 
   final OfflineStore _store;
   final PurchaseBridge _bridge;
+  final ReceiptVerifier? verifier;
 
   bool get isSandbox => _bridge is SandboxPurchaseBridge;
 
@@ -195,8 +206,25 @@ class EntitlementService {
       );
       return current;
     }
+    if (verifier != null) {
+      final verified = await verifier!(
+        platform: purchase.platform,
+        productId: productId,
+        receipt: purchase.receipt,
+        accountToken: token,
+      );
+      if (!verified.valid) {
+        throw StateError('Store receipt verification failed.');
+      }
+      final days = productId.contains('annual') ? 365 : 30;
+      await _store.setLocalPremium(
+        true,
+        expiry: verified.expiry ?? DateTime.now().add(Duration(days: days)),
+        source: purchase.platform,
+      );
+      return current;
+    }
     // Real store receipt: client must not set premium; server verifies.
-    // Placeholder until Firebase callable is wired from the native bridge.
     throw StateError(
       'Store receipt received (${purchase.platform}) — call verifyPurchase Cloud Function next.',
     );
@@ -212,6 +240,22 @@ class EntitlementService {
           true,
           expiry: DateTime.now().add(const Duration(days: 30)),
           source: 'restore',
+        );
+      }
+      return current;
+    }
+    if (verifier != null) {
+      final verified = await verifier!(
+        platform: purchase.platform,
+        productId: premiumMonthlyId,
+        receipt: purchase.receipt,
+        accountToken: token,
+      );
+      if (verified.valid) {
+        await _store.setLocalPremium(
+          true,
+          expiry: verified.expiry ?? DateTime.now().add(const Duration(days: 30)),
+          source: 'restore:${purchase.platform}',
         );
       }
     }

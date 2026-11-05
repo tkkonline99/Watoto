@@ -235,6 +235,7 @@ class _LessonViewState extends ConsumerState<_LessonView> {
           loc.stepNarration(_step),
           lang,
           style: SpeakStyle.lesson,
+          audioKey: '${widget.item.id}.steps.$_step.narration',
         ));
   }
 
@@ -256,6 +257,7 @@ class _LessonViewState extends ConsumerState<_LessonView> {
             loc.stepFeedback(step),
             lang,
             style: SpeakStyle.cheer,
+            audioKey: '${widget.item.id}.steps.$step.feedback',
           );
     }();
     // Auto-advance once the feedback has been heard, and never sooner than a

@@ -95,6 +95,7 @@ class QuizViewState extends ConsumerState<QuizView> {
           _questions[_q].prompt,
           lang,
           style: SpeakStyle.lesson,
+          audioKey: '${widget.item.id}.questions.$_q.prompt',
         ));
   }
 

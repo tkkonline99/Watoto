@@ -9,6 +9,7 @@ library;
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
+import 'package:http/http.dart' as http;
 
 import '../../core/offline/offline_store.dart';
 import '../../core/offline/sync_op.dart';
@@ -106,5 +107,74 @@ void debugLogCloudFlush(List<SyncOp> ops) {
   debugPrint('[cloud] would flush ${ops.length} ops');
   for (final op in ops.take(5)) {
     debugPrint('  ${op.opType} ${op.clientOpId}');
+  }
+}
+
+/// Bidirectional family backup & progress sync client over HTTPS (NestJS or
+/// Firebase Cloud Functions / Firestore REST).
+class CloudSyncClient {
+  CloudSyncClient({
+    http.Client? client,
+    String? baseUrl,
+    this.timeout = const Duration(seconds: 12),
+  })  : _client = client ?? http.Client(),
+        baseUrl = baseUrl ??
+            const String.fromEnvironment(
+              'WATOTO_API_URL',
+              defaultValue: 'http://localhost:3000/v1',
+            );
+
+  final http.Client _client;
+  final String baseUrl;
+  final Duration timeout;
+
+  /// Uploads a portable [FamilyBackup] snapshot for [uid] so another device
+  /// signed into the same parent account can pull and merge it.
+  Future<bool> pushFamilySnapshot(
+    OfflineStore store, {
+    required String uid,
+    required String idToken,
+    String? email,
+  }) async {
+    final backup = buildFamilyBackup(store, email: email);
+    final res = await _client
+        .put(
+          Uri.parse('$baseUrl/accounts/$uid/backup'),
+          headers: {
+            'content-type': 'application/json',
+            'authorization': 'Bearer $idToken',
+          },
+          body: backup.toJsonString(),
+        )
+        .timeout(timeout);
+    return res.statusCode >= 200 && res.statusCode < 300;
+  }
+
+  /// Pulls the latest cloud [FamilyBackup] for [uid] and merges it
+  /// non-destructively into [store].
+  Future<BackupRestoreResult> pullAndMergeSnapshot(
+    OfflineStore store, {
+    required String uid,
+    required String idToken,
+  }) async {
+    final res = await _client
+        .get(
+          Uri.parse('$baseUrl/accounts/$uid/backup'),
+          headers: {
+            'accept': 'application/json',
+            'authorization': 'Bearer $idToken',
+          },
+        )
+        .timeout(timeout);
+    if (res.statusCode == 404) {
+      return const BackupRestoreResult(
+        childrenRestored: 0,
+        progressRestored: 0,
+      );
+    }
+    if (res.statusCode >= 300) {
+      throw StateError('Cloud snapshot fetch failed (${res.statusCode})');
+    }
+    return restoreFamilyBackup(store, res.body, overwrite: false);
   }
 }

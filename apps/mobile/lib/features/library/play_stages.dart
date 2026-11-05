@@ -199,6 +199,8 @@ class SmartInteractionStage extends StatelessWidget {
       StepMechanic.drag => DragStage(
           emoji: emoji,
           prompt: prompt,
+          dragMode: plan.dragMode,
+          traceTarget: plan.traceTarget,
           onCompleted: () => onCompleted(),
         ),
       StepMechanic.tap || StepMechanic.multiChoice => TapStage(
@@ -981,17 +983,28 @@ class CountStageState extends State<CountStage> {
   }
 }
 
-/// Drag the object into the basket — the `drag` / build / trace family. Also
-/// completes on a tap so it stays reachable for screen-reader users.
+/// Interactive stage for the `drag` / `order` / `trace` family.
+///
+/// Renders one of three tactile sub-modes:
+/// - `'trace'`: finger-tracing canvas with glowing stroke ink and star checkpoints.
+/// - `'order'`: sequence-building rail (`1 → 2 → 3`).
+/// - `'basket'`: classic drag-into-basket sorting.
+///
+/// All three sub-modes also complete on tap so the activity stays reachable for
+/// screen-reader users and young toddlers.
 class DragStage extends StatefulWidget {
   const DragStage({
     super.key,
     required this.emoji,
     required this.onCompleted,
     this.prompt,
+    this.dragMode = 'basket',
+    this.traceTarget,
   });
   final String emoji;
   final String? prompt;
+  final String dragMode;
+  final String? traceTarget;
   final VoidCallback onCompleted;
   @override
   State<DragStage> createState() => DragStageState();
@@ -999,6 +1012,8 @@ class DragStage extends StatefulWidget {
 
 class DragStageState extends State<DragStage> {
   bool _done = false;
+  final List<Offset> _strokePoints = [];
+  int _orderedCount = 0;
 
   void _finish() {
     if (_done) return;
@@ -1007,9 +1022,216 @@ class DragStageState extends State<DragStage> {
     widget.onCompleted();
   }
 
+  void _onTracePanUpdate(DragUpdateDetails details) {
+    if (_done) return;
+    setState(() {
+      _strokePoints.add(details.localPosition);
+    });
+    if (_strokePoints.length >= 10) {
+      _finish();
+    }
+  }
+
+  void _onOrderTapStep(int stepIdx) {
+    if (_done) return;
+    if (stepIdx == _orderedCount) {
+      HapticFeedback.selectionClick();
+      setState(() => _orderedCount++);
+      if (_orderedCount >= 3) {
+        _finish();
+      }
+    } else {
+      // Tapping the main token or any chip when assisted still advances
+      // gently for younger bands.
+      HapticFeedback.selectionClick();
+      setState(() => _orderedCount++);
+      if (_orderedCount >= 3) {
+        _finish();
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    if (widget.dragMode == 'trace') {
+      final glyph = widget.traceTarget ?? widget.emoji;
+      final starsLit = _done
+          ? 3
+          : (_strokePoints.length ~/ 3).clamp(0, 3);
+      return Column(
+        children: [
+          Text(
+            widget.prompt ?? l10n.dragToBasket,
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 15, color: WatotoColors.sky),
+          ),
+          const SizedBox(height: 12),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              for (var i = 0; i < 3; i++)
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  child: ExcludeSemantics(
+                    child: Icon(
+                      i < starsLit ? Icons.star_rounded : Icons.star_outline_rounded,
+                      color: i < starsLit ? WatotoColors.sun : WatotoColors.sky,
+                      size: 26,
+                    ),
+                  ),
+                ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Semantics(
+            button: true,
+            label: widget.prompt ?? l10n.dragToBasket,
+            child: GestureDetector(
+              onTap: _finish,
+              onPanUpdate: _onTracePanUpdate,
+              onPanEnd: (_) {
+                if (_strokePoints.isNotEmpty) _finish();
+              },
+              child: ExcludeSemantics(
+                child: Container(
+                  key: const ValueKey('trace-canvas-pad'),
+                  width: 180,
+                  height: 160,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(24),
+                    border: Border.all(
+                      color: _done
+                          ? WatotoColors.leaf
+                          : WatotoColors.mango.withValues(alpha: 0.45),
+                      width: 3,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: WatotoColors.deep.withValues(alpha: 0.08),
+                        blurRadius: 10,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Opacity(
+                        opacity: _done ? 1.0 : 0.35,
+                        child: Text(
+                          glyph,
+                          style: const TextStyle(
+                            fontFamily: 'Baloo2',
+                            fontSize: 84,
+                            fontWeight: FontWeight.w900,
+                            color: WatotoColors.deep,
+                          ),
+                        ),
+                      ),
+                      Positioned.fill(
+                        child: CustomPaint(
+                          painter: _TraceStrokePainter(
+                            points: List<Offset>.of(_strokePoints),
+                            done: _done,
+                          ),
+                        ),
+                      ),
+                      if (_done)
+                        const Positioned(
+                          top: 8,
+                          right: 10,
+                          child: Text('✅', style: TextStyle(fontSize: 26)),
+                        ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      );
+    }
+
+    if (widget.dragMode == 'order') {
+      return Column(
+        children: [
+          Text(
+            widget.prompt ?? l10n.dragToBasket,
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 15, color: WatotoColors.sky),
+          ),
+          const SizedBox(height: 14),
+          Semantics(
+            button: true,
+            label: widget.prompt ?? l10n.dragToBasket,
+            child: GestureDetector(
+              onTap: _finish,
+              child: ExcludeSemantics(
+                child: Row(
+                  key: const ValueKey('order-sequence-rail'),
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    for (var i = 0; i < 3; i++)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 6),
+                        child: GestureDetector(
+                          onTap: () => _onOrderTapStep(i),
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 180),
+                            width: 76,
+                            height: 88,
+                            padding: const EdgeInsets.symmetric(vertical: 4),
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              color: (_done || i < _orderedCount)
+                                  ? WatotoColors.leaf.withValues(alpha: 0.18)
+                                  : Colors.white,
+                              borderRadius: BorderRadius.circular(18),
+                              border: Border.all(
+                                color: (_done || i < _orderedCount)
+                                    ? WatotoColors.leaf
+                                    : WatotoColors.sky.withValues(alpha: 0.35),
+                                width: 3,
+                              ),
+                            ),
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    widget.emoji,
+                                    style: TextStyle(
+                                      fontSize: 20 + (i * 5).toDouble(),
+                                    ),
+                                  ),
+                                  Text(
+                                    '${i + 1}',
+                                    style: const TextStyle(
+                                      fontFamily: 'Baloo2',
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w900,
+                                      color: WatotoColors.deep,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      );
+    }
+
     return Column(
       children: [
         Text(
@@ -1061,4 +1283,31 @@ class DragStageState extends State<DragStage> {
       ],
     );
   }
+}
+
+class _TraceStrokePainter extends CustomPainter {
+  const _TraceStrokePainter({required this.points, required this.done});
+
+  final List<Offset> points;
+  final bool done;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    if (points.length < 2) return;
+    final paint = Paint()
+      ..color = done ? WatotoColors.leaf : WatotoColors.mango
+      ..strokeWidth = 10
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round
+      ..style = PaintingStyle.stroke;
+    final path = Path()..moveTo(points.first.dx, points.first.dy);
+    for (var i = 1; i < points.length; i++) {
+      path.lineTo(points[i].dx, points[i].dy);
+    }
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant _TraceStrokePainter oldDelegate) =>
+      oldDelegate.points.length != points.length || oldDelegate.done != done;
 }

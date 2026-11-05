@@ -18,4 +18,8 @@ class SfxBackend {
     _el = el;
     el.play();
   }
+
+  Future<void> stop() async {
+    _el?.pause();
+  }
 }

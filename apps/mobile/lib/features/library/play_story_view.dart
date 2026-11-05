@@ -83,7 +83,12 @@ class StoryViewState extends ConsumerState<StoryView> {
     final loc = await awaitLocalizedItem(ref, widget.item);
     if (!mounted) return;
     unawaited(
-        ref.read(narrationProvider.notifier).speak(loc.pageNarration(_page), lang));
+      ref.read(narrationProvider.notifier).speak(
+            loc.pageNarration(_page),
+            lang,
+            audioKey: '${widget.item.id}.pages.$_page.narration',
+          ),
+    );
   }
 
   void _go(int delta) {

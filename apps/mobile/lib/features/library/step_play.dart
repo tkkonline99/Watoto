@@ -62,6 +62,8 @@ class StepPlayPlan {
     this.messageChoices = const [],
     this.codeChallenge,
     this.circuitMode,
+    this.dragMode = 'basket',
+    this.traceTarget,
   });
 
   final StepMechanic mechanic;
@@ -97,6 +99,14 @@ class StepPlayPlan {
   /// The same board runs both ways — "Now open a gap in the wire" is the
   /// second half of the same idea, not a different exercise.
   final String? circuitMode;
+
+  /// Sub-mode when [mechanic] is [StepMechanic.drag]:
+  /// `'basket'` (sort/drop), `'trace'` (finger-tracing canvas), or `'order'`
+  /// (sequence ordering rail).
+  final String dragMode;
+
+  /// Optional glyph/letter/shape to trace when [dragMode] is `'trace'`.
+  final String? traceTarget;
 }
 
 /// Visual scaffold for place-value / division problems.
@@ -472,12 +482,18 @@ StepPlayPlan planStep({
       action.contains('order') ||
       action.contains('trace') ||
       interaction.contains('trace')) {
-    final tracing = action.contains('trace') ||
-        interaction.contains('trace') ||
-        RegExp(r'\btrace\b', caseSensitive: false).hasMatch(narration);
+    final mode = resolveDragMode(
+      action: action,
+      interaction: interaction,
+      narration: narration,
+    );
     return StepPlayPlan(
       mechanic: StepMechanic.drag,
-      promptHint: tracing ? 'Trace it with your finger!' : 'Drag it in!',
+      dragMode: mode,
+      traceTarget: mode == 'trace' ? extractTraceTarget(narration) : null,
+      promptHint: mode == 'trace'
+          ? 'Trace it with your finger!'
+          : (mode == 'order' ? 'Put them in order!' : 'Drag it in!'),
     );
   }
 
@@ -488,8 +504,15 @@ StepPlayPlan planStep({
   // the youngest hands).
   final gesture = _gesturePrompt(action, interaction, narration);
   if (gesture != null) {
+    final mode = resolveDragMode(
+      action: action,
+      interaction: interaction,
+      narration: narration,
+    );
     return StepPlayPlan(
       mechanic: StepMechanic.drag,
+      dragMode: mode,
+      traceTarget: mode == 'trace' ? extractTraceTarget(narration) : null,
       promptHint: gesture,
     );
   }
@@ -725,6 +748,64 @@ String _circuitModeFrom(String narration) =>
         ? 'gap'
         : 'build';
 
+/// Resolves which interactive sub-mechanic a [StepMechanic.drag] step should
+/// render: `'trace'` (finger-tracing canvas), `'order'` (sequence rail), or
+/// `'basket'` (classic drag-into-basket).
+String resolveDragMode({
+  required String action,
+  required String interaction,
+  required String narration,
+}) {
+  final a = action.toLowerCase();
+  final i = interaction.toLowerCase();
+  final n = narration.toLowerCase();
+  if (a.contains('trace') ||
+      a.contains('draw') ||
+      i.contains('trace') ||
+      RegExp(r'\b(trace|draw|paint|fuata|chora|tracer|dessine)\b')
+          .hasMatch(n)) {
+    return 'trace';
+  }
+  if (a.contains('order') ||
+      a.contains('sequence') ||
+      i.contains('order') ||
+      RegExp(r'\b(order|sequence|mpangilio|ordre)\b').hasMatch(n)) {
+    return 'order';
+  }
+  return 'basket';
+}
+
+/// Extracts the letter, digit, or shape glyph a tracing step asks the child to
+/// trace, or null when the step's hero emoji should stand in.
+String? extractTraceTarget(String narration) {
+  final quoted = RegExp(r"""['"]([A-Za-z0-9]{1,2})['"]""").firstMatch(narration);
+  if (quoted != null) return quoted.group(1);
+  final letter = RegExp(
+    r'\b(?:letter|herufi|lettre)\s+([A-Za-z])\b',
+    caseSensitive: false,
+  ).firstMatch(narration);
+  if (letter != null) return letter.group(1)!.toUpperCase();
+  final number = RegExp(
+    r'\b(?:number|nambari|numéro|chiffre)\s+(\d{1,2})\b',
+    caseSensitive: false,
+  ).firstMatch(narration);
+  if (number != null) return number.group(1);
+  final lower = narration.toLowerCase();
+  if (lower.contains('circle') || lower.contains('duara') || lower.contains('cercle')) {
+    return '○';
+  }
+  if (lower.contains('triangle') || lower.contains('pembetatu')) {
+    return '△';
+  }
+  if (lower.contains('square') || lower.contains('mraba') || lower.contains('carré')) {
+    return '□';
+  }
+  if (lower.contains('zigzag')) {
+    return '〰️';
+  }
+  return null;
+}
+
 /// Prefer author-supplied mechanic / answer / choices when present.
 ///
 /// [interaction] is the item-level mechanic string. It is only ever used to
@@ -890,23 +971,32 @@ StepPlayPlan? _planFromExplicit(
       // first and never consults the gesture prompts, so a declared mechanic
       // must not either, or a tracing step starts saying "draw".
       final act = step.action.toLowerCase();
+      final mode = resolveDragMode(
+        action: act,
+        interaction: interaction,
+        narration: step.narration,
+      );
+      final target =
+          mode == 'trace' ? extractTraceTarget(step.narration) : null;
       final dragFamily = act.startsWith('drag') ||
           interaction.startsWith('drag') ||
           act.contains('order') ||
           act.contains('trace') ||
           interaction.contains('trace');
       if (dragFamily) {
-        final tracing = act.contains('trace') ||
-            interaction.contains('trace') ||
-            RegExp(r'\btrace\b', caseSensitive: false).hasMatch(step.narration);
         return StepPlayPlan(
           mechanic: StepMechanic.drag,
-          promptHint:
-              tracing ? 'Trace it with your finger!' : 'Drag it in!',
+          dragMode: mode,
+          traceTarget: target,
+          promptHint: mode == 'trace'
+              ? 'Trace it with your finger!'
+              : (mode == 'order' ? 'Put them in order!' : 'Drag it in!'),
         );
       }
       return StepPlayPlan(
         mechanic: StepMechanic.drag,
+        dragMode: mode,
+        traceTarget: target,
         promptHint: _gesturePrompt(step.action, interaction, step.narration) ??
             'Drag it in!',
       );

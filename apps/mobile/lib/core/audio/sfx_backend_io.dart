@@ -11,4 +11,8 @@ class SfxBackend {
     await player.stop();
     await player.play(AssetSource(asset), volume: volume);
   }
+
+  Future<void> stop() async {
+    await _player?.stop();
+  }
 }
