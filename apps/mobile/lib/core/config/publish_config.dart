@@ -51,21 +51,11 @@ int get effectiveFreeStageMax => publishFreeOnly ? maxPublishedStage : 5;
 /// Distinct from [effectiveFreeStageMax], which is about paying: that gates a
 /// stage the build *has*. This one says the stage is not in the product.
 ///
-/// Set to 7 because that is where the content stops being worth a child's
-/// time. Measured against the per-tier depth in `lesson_depth_test.dart`,
-/// stages 1-7 hold their lesson depth, and 6 and 7 hold it on quizzes and
-/// stories too. Stages 8-10 have all 36 of their lessons below depth — two
-/// steps for an eight-year-old. In playing time that is roughly two and a half
-/// hours for stage 7 against about 36 minutes for stage 9.
-///
-/// Shipping those as "ages 8-10" would promise a band the app cannot serve,
-/// to exactly the parent most likely to check. Ages 0-7 is a smaller product
-/// and a true one.
-///
-/// It was 6 until `content/author_stage7.py` took stage 7 to depth. That is
-/// the intended way to move this: author the stage, then raise the number.
-/// `--dart-define=WATOTO_MAX_STAGE=10` shows the whole library in a dev build
-/// without shipping it. `docs/CONTENT_WORKLIST.md` is the remaining work.
+/// Defaults to 10 now that all 10 stages (ages 0–10, 57 subjects, 684 items)
+/// have been authored to their per-tier depth targets enforced by
+/// `test/lesson_depth_test.dart` (lessons, quizzes, and stories across EN, SW,
+/// and FR). Override with `--dart-define=WATOTO_MAX_STAGE=N` when testing a
+/// narrower stage ceiling.
 const maxPublishedStage = int.fromEnvironment(
   'WATOTO_MAX_STAGE',
   defaultValue: 10,

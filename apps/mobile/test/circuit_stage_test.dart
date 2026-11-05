@@ -15,7 +15,6 @@ import 'package:hive/hive.dart';
 import 'package:watoto_mobile/app.dart';
 import 'package:watoto_mobile/core/network/watoto_api.dart';
 import 'package:watoto_mobile/core/offline/offline_providers.dart';
-import 'package:watoto_mobile/core/offline/offline_store.dart';
 import 'package:watoto_mobile/core/offline/sync_op.dart';
 import 'package:watoto_mobile/core/widgets/mascot_widget.dart';
 import 'package:watoto_mobile/features/library/content_i18n.dart';
@@ -37,7 +36,7 @@ class _UnreachableApi implements SyncApi {
 }
 
 /// The real opening step of the shipped circuits lesson.
-final _lesson = LibraryItem(
+const _lesson = LibraryItem(
   id: 'test.circuit',
   stage: 10,
   ages: '9-10',
@@ -48,7 +47,7 @@ final _lesson = LibraryItem(
   designTier: 'grant-autonomy',
   reading: true,
   interaction: 'build-circuit',
-  steps: const [
+  steps: [
     LessonStep(
       narration: 'Connect the battery, wire, and bulb to make a loop.',
       action: 'build-circuit',

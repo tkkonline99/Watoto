@@ -4,7 +4,6 @@ library;
 
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -18,7 +17,7 @@ import '../gamification/reward_outcome.dart';
 import '../gamification/rewards.dart' as rewards;
 
 class ProgressDots extends StatelessWidget {
-  const ProgressDots({required this.count, required this.active});
+  const ProgressDots({super.key, required this.count, required this.active});
   final int count;
   final int active;
   @override
@@ -43,6 +42,7 @@ class ProgressDots extends StatelessWidget {
 
 class Celebration extends ConsumerStatefulWidget {
   const Celebration({
+    super.key,
     required this.emoji,
     required this.title,
     required this.xp,
@@ -257,7 +257,7 @@ class CelebrationState extends ConsumerState<Celebration> {
 }
 
 class EarnedStars extends StatelessWidget {
-  const EarnedStars({required this.stars, this.animate = true});
+  const EarnedStars({super.key, required this.stars, this.animate = true});
 
   final int stars;
   final bool animate;
@@ -307,7 +307,7 @@ class EarnedStars extends StatelessWidget {
 /// This used to happen silently, which threw away the one moment where the
 /// streak system is genuinely reassuring rather than demanding.
 class StreakSavedNote extends StatelessWidget {
-  const StreakSavedNote({required this.days, required this.l10n});
+  const StreakSavedNote({super.key, required this.days, required this.l10n});
 
   final int days;
   final AppLocalizations l10n;
@@ -347,7 +347,7 @@ class StreakSavedNote extends StatelessWidget {
 /// Badges revealed at the moment they are earned, rather than as a toast the
 /// next time the child happens to open the home screen.
 class BadgeReveal extends StatelessWidget {
-  const BadgeReveal({required this.badgeIds, required this.l10n});
+  const BadgeReveal({super.key, required this.badgeIds, required this.l10n});
 
   final List<String> badgeIds;
   final AppLocalizations l10n;

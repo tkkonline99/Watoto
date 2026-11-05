@@ -4,7 +4,6 @@ library;
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/audio/narration.dart';
@@ -36,6 +35,7 @@ class QuizViewState extends ConsumerState<QuizView> {
   int _q = 0;
   bool _wrongThisQ = false;
   int _firstTryCorrect = 0;
+  int _retries = 0;
   String? _feedback;
   bool _feedbackGood = false;
   bool _done = false;
@@ -154,9 +154,11 @@ class QuizViewState extends ConsumerState<QuizView> {
     } else {
       setState(() {
         _wrongThisQ = true;
+        _retries++;
         _feedback = question.retryFeedback;
         _feedbackGood = false;
       });
+      ref.read(soundEffectsProvider).retry();
       ref.read(narrationProvider.notifier).speak(
             question.retryFeedback,
             lang,
@@ -207,6 +209,7 @@ class QuizViewState extends ConsumerState<QuizView> {
               passed: scorePct >= 40,
               answers: _answers,
               durationS: _elapsed.elapsed.inSeconds,
+              retries: _retries,
             ),
       );
     }

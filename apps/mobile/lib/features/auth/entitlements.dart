@@ -14,7 +14,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/config/publish_config.dart';
 import '../../core/offline/offline_providers.dart';
-import '../../core/offline/offline_store.dart';
 import '../../l10n/gen/app_localizations.dart';
 
 /// Product ids — must match `backend/products.json` and store consoles.

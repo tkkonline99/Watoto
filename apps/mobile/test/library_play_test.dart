@@ -7,7 +7,6 @@ import 'package:hive/hive.dart';
 import 'package:watoto_mobile/app.dart';
 import 'package:watoto_mobile/core/network/watoto_api.dart';
 import 'package:watoto_mobile/core/offline/offline_providers.dart';
-import 'package:watoto_mobile/core/offline/offline_store.dart';
 import 'package:watoto_mobile/core/offline/sync_op.dart';
 import 'package:watoto_mobile/core/widgets/mascot_widget.dart';
 import 'package:watoto_mobile/features/library/content_i18n.dart';
@@ -37,7 +36,7 @@ class _UnreachableApi implements SyncApi {
 }
 
 // A synthetic tap-interaction lesson (subject "Animals" → 🐘 stage emoji).
-final _tapLesson = LibraryItem(
+const _tapLesson = LibraryItem(
   id: 'test.tap.1',
   stage: 3,
   ages: '2-3',
@@ -48,7 +47,7 @@ final _tapLesson = LibraryItem(
   designTier: 'guided',
   reading: false,
   interaction: 'tap',
-  steps: const [
+  steps: [
     LessonStep(
       narration: 'Tap the elephant!',
       action: 'tap',
@@ -64,7 +63,7 @@ final _tapLesson = LibraryItem(
 
 // A quiz in the same stage+subject as _tapLesson: deterministic "next
 // activity" after the lesson (items sort lessons before quizzes).
-final _animalQuiz = LibraryItem(
+const _animalQuiz = LibraryItem(
   id: 'test.quiz.1',
   stage: 3,
   ages: '2-3',
@@ -75,7 +74,7 @@ final _animalQuiz = LibraryItem(
   designTier: 'guided',
   reading: false,
   interaction: 'single-select',
-  questions: const [
+  questions: [
     LibQuestion(
       prompt: 'Which one says woof?',
       options: [
@@ -90,7 +89,7 @@ final _animalQuiz = LibraryItem(
 );
 
 // A reading step that quotes the word to find — must stage TEXT choices.
-final _wordLesson = LibraryItem(
+const _wordLesson = LibraryItem(
   id: 'test.word.1',
   stage: 7,
   ages: '6-7',
@@ -101,7 +100,7 @@ final _wordLesson = LibraryItem(
   designTier: 'guided',
   reading: true,
   interaction: 'tap',
-  steps: const [
+  steps: [
     LessonStep(
       narration: "'cap' has a SHORT a. Tap 'cap'.",
       action: 'tap-word',
@@ -111,7 +110,7 @@ final _wordLesson = LibraryItem(
 );
 
 // A directive step naming an object ("ball") — must stage a multiple choice.
-final _choiceLesson = LibraryItem(
+const _choiceLesson = LibraryItem(
   id: 'test.choice.1',
   stage: 4,
   ages: '3-4',
@@ -122,7 +121,7 @@ final _choiceLesson = LibraryItem(
   designTier: 'guided',
   reading: false,
   interaction: 'tap',
-  steps: const [
+  steps: [
     LessonStep(
       narration: 'Ball starts with /b/. Tap the ball.',
       action: 'tap-correct',
@@ -400,5 +399,26 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Perfect!'), findsNothing);
     expect(find.text('Ball starts with /b/. Tap the ball.'), findsOneWidget);
+  });
+
+  testWidgets('quiz wrong picks are recorded as retries in attemptHistory', (
+    tester,
+  ) async {
+    final childId = await seed();
+    await tester.pumpWidget(buildApp());
+    await tester.pumpAndSettle();
+
+    goTo(tester, '/play/${_animalQuiz.id}');
+    await tester.pumpAndSettle();
+
+    // Tap the wrong answer first ('Cat'), then the right answer ('Dog').
+    await tester.tap(find.text('Cat'));
+    await tester.pump(_feedbackBeat);
+    await tester.tap(find.text('Dog'));
+    await tester.pumpAndSettle(_autoAdvance);
+
+    final history = store.attemptHistory(childId);
+    expect(history, isNotEmpty);
+    expect(history.last.retries, 1);
   });
 }

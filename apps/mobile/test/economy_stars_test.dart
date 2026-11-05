@@ -123,7 +123,7 @@ void main() {
 
     test('continue learning picks next incomplete', () async {
       const c = 'c1';
-      final items = [
+      const items = [
         LibraryItem(
           id: 'A',
           stage: 1,

@@ -140,7 +140,7 @@ void main() {
 
   group('guided tour', () {
     test('picks curated first lesson for stage 1 age', () {
-      final items = [
+      const items = [
         LibraryItem(
           id: 's01.cause.lesson.01',
           stage: 1,

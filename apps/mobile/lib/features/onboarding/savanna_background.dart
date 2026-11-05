@@ -136,7 +136,7 @@ class _EarnedDecorLayer extends StatelessWidget {
             // decorations spread through its upper two-thirds so none of them
             // hang off the bottom of the screen.
             final bandTop = (h - _groundHeight * 0.82).clamp(0.0, h);
-            final bandHeight = _groundHeight * 0.52;
+            const bandHeight = _groundHeight * 0.52;
             return Stack(
               children: [
                 for (final d in extras)
@@ -274,9 +274,9 @@ class _Wordmark extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       mainAxisSize: MainAxisSize.min,
-      children: const [
+      children: [
         Text('🦁', style: TextStyle(fontSize: 26)),
         SizedBox(width: 8),
         Text(

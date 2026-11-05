@@ -52,7 +52,7 @@ void main() {
       // Document the product rule: release never enables dev-token by default.
       // (Unit tests run in debug; production uses kReleaseMode == true.)
       expect(kReleaseMode || !kReleaseMode, isTrue);
-      final releaseDefault = kReleaseMode
+      const releaseDefault = kReleaseMode
           ? false
           : true; // mirrors WatotoApi._defaultAllowDevToken shape
       if (kReleaseMode) {

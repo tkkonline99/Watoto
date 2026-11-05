@@ -24,6 +24,7 @@ import 'step_play.dart';
 
 class DivisionWorkspace extends StatelessWidget {
   const DivisionWorkspace({
+    super.key,
     required this.workspace,
     this.filledDigit,
   });
@@ -212,6 +213,7 @@ class SmartInteractionStage extends StatelessWidget {
 /// Big digit buttons or a mini pad — never a dead "write it" prompt.
 class NumberAnswerStage extends StatefulWidget {
   const NumberAnswerStage({
+    super.key,
     required this.plan,
     required this.onCorrect,
     required this.onWrong,
@@ -359,6 +361,7 @@ class NumberAnswerStageState extends State<NumberAnswerStage> {
 
 class DigitChip extends StatelessWidget {
   const DigitChip({
+    super.key,
     required this.label,
     this.onTap,
     this.highlight = false,
@@ -405,6 +408,7 @@ class DigitChip extends StatelessWidget {
 /// Tap empty cells to fill an m×n array — multiplication made tactile.
 class ArrayBuildStage extends StatefulWidget {
   const ArrayBuildStage({
+    super.key,
     required this.rows,
     required this.cols,
     required this.onCompleted,
@@ -777,6 +781,7 @@ Widget bigEmoji(String emoji) => BreathingArt(
 
 class ExplainStage extends StatelessWidget {
   const ExplainStage({
+    super.key,
     required this.emoji,
     required this.onCompleted,
     this.prompt,
@@ -807,6 +812,7 @@ class ExplainStage extends StatelessWidget {
 /// Tap the big picture to make it pop — bounce + stars so plain taps still feel fun.
 class TapStage extends StatefulWidget {
   const TapStage({
+    super.key,
     required this.emoji,
     required this.onCompleted,
     this.prompt,
@@ -896,6 +902,7 @@ class TapStageState extends State<TapStage> {
 /// Tap every object to count it — the `tap-to-count` / number family.
 class CountStage extends StatefulWidget {
   const CountStage({
+    super.key,
     required this.emoji,
     required this.count,
     required this.onCompleted,
@@ -978,6 +985,7 @@ class CountStageState extends State<CountStage> {
 /// completes on a tap so it stays reachable for screen-reader users.
 class DragStage extends StatefulWidget {
   const DragStage({
+    super.key,
     required this.emoji,
     required this.onCompleted,
     this.prompt,

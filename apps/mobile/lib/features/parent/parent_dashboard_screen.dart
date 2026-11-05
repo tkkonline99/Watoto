@@ -13,7 +13,6 @@ import '../../core/l10n/store_error_text.dart';
 import '../../core/offline/desktop_export_stub.dart'
     if (dart.library.io) '../../core/offline/desktop_export_io.dart';
 import '../../core/offline/offline_providers.dart';
-import '../../core/offline/offline_store.dart';
 import '../../core/state/app_state.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../data/cloud/cloud_sync.dart';

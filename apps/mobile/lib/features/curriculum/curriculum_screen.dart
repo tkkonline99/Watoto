@@ -7,6 +7,7 @@ import '../../core/offline/offline_providers.dart';
 import '../../core/state/app_state.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
+import '../gamification/daily_challenge.dart';
 import '../library/completion.dart';
 import '../library/content_i18n.dart';
 import '../library/library_models.dart';
@@ -34,11 +35,12 @@ class _CurriculumScreenState extends ConsumerState<CurriculumScreen> {
     final l10n = AppLocalizations.of(context);
     final lang = ref.watch(localeProvider).languageCode;
     final child = ref.watch(activeChildProvider);
+    final store = ref.watch(offlineStoreProvider);
     final repo = ref.watch(libraryProvider).asData?.value;
     final i18n = ref.watch(contentI18nProvider).asData?.value;
     final defaultStage = child == null
         ? 1
-        : stageForBirthYear(child.birthYear).stage;
+        : stageForChild(child, store).stage;
     // Clamped so a stage saved by a build with a higher [maxPublishedStage]
     // cannot select a chip that is no longer in the row.
     final selected =
@@ -99,7 +101,7 @@ class _CurriculumScreenState extends ConsumerState<CurriculumScreen> {
   }
 }
 
-class _StageSelector extends StatelessWidget {
+class _StageSelector extends StatefulWidget {
   const _StageSelector({
     required this.selected,
     required this.childStage,
@@ -111,34 +113,66 @@ class _StageSelector extends StatelessWidget {
   final ValueChanged<int> onSelect;
 
   @override
+  State<_StageSelector> createState() => _StageSelectorState();
+}
+
+class _StageSelectorState extends State<_StageSelector> {
+  final _chipKeys = {
+    for (final s in publishedCurriculumStages) s.stage: GlobalKey(),
+  };
+
+  @override
+  void initState() {
+    super.initState();
+    // Stages 6–10 start off-screen to the right; center the active stage chip
+    // once the strip has laid out so an older child sees their own band selected.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      final ctx = _chipKeys[widget.selected]?.currentContext;
+      if (ctx != null) {
+        Scrollable.ensureVisible(ctx, alignment: 0.5);
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return SizedBox(
       height: 56,
-      child: ListView.separated(
+      child: ListView(
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         // Published only: every chip here leads into that stage's activities,
         // so an unshipped one is a dead end rather than a preview.
-        itemCount: publishedCurriculumStages.length,
-        separatorBuilder: (_, _) => const SizedBox(width: 8),
-        itemBuilder: (context, i) {
-          final stage = publishedCurriculumStages[i];
-          final isSelected = stage.stage == selected;
-          final isChild = stage.stage == childStage;
-          return ChoiceChip(
-            selected: isSelected,
-            onSelected: (_) => onSelect(stage.stage),
-            selectedColor: WatotoColors.sun,
-            avatar: isChild ? const Text('⭐') : null,
-            label: Text(
-              stage.ageRange,
-              style: TextStyle(
-                fontWeight: FontWeight.w700,
-                color: isSelected ? WatotoColors.deep : Colors.black54,
-              ),
+        children: [
+          for (var i = 0; i < publishedCurriculumStages.length; i++) ...[
+            if (i > 0) const SizedBox(width: 8),
+            Builder(
+              builder: (context) {
+                final stage = publishedCurriculumStages[i];
+                final isSelected = stage.stage == widget.selected;
+                final isChild = stage.stage == widget.childStage;
+                return ChoiceChip(
+                  key: _chipKeys[stage.stage],
+                  selected: isSelected,
+                  onSelected: (_) => widget.onSelect(stage.stage),
+                  selectedColor: WatotoColors.sun,
+                  avatar: isChild
+                      ? const ExcludeSemantics(child: Text('⭐'))
+                      : null,
+                  label: Text(
+                    l10n.ageBandLabel(stage.ageRange),
+                    style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      color: isSelected ? WatotoColors.deep : Colors.black54,
+                    ),
+                  ),
+                );
+              },
             ),
-          );
-        },
+          ],
+        ],
       ),
     );
   }

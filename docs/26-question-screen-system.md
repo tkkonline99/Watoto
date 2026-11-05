@@ -149,12 +149,10 @@ Where an item has no declared visual, the `step_visuals.dart` ladder still
 runs, so nothing regresses mid-migration. The validator lands with
 `strict=False` and warns; it flips to an error once the library is clean.
 
-### A note on the legacy player
+### A note on the retired legacy player
 
-`lesson_player_screen.dart` and `quiz_runner_screen.dart` implement an older
-`watoto.lesson/1.0` schema (`LessonBody` / `ConceptBlock.emoji`), read two
-sample packs in `assets/content/`, and are reachable only by typing
-`/lesson/:slug` or `/quiz/:slug` — no screen in the app links to them. They are
-out of scope for this contract. `ConceptBlock.emoji` is the free-text glyph
-field this document was originally written against; it exists only there, and
-no item in the content library has an `emoji` field at all.
+The older `lesson_player_screen.dart` and `quiz_runner_screen.dart` (which
+implemented a `watoto.lesson/1.0` schema with `LessonBody` / `ConceptBlock.emoji`
+for two early sample packs) have been retired and removed from the codebase.
+All 684 library items now play through `library_play_screen.dart` and
+`QuestionScaffold`.

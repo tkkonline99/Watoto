@@ -135,8 +135,8 @@ void main() {
 
   testWidgets('a drawn option renders its diagram and its caption',
       (tester) async {
-    final plan = ChoicePlan(
-      const [
+    const plan = ChoicePlan(
+      [
         ChoiceOption('The bulb stays lit.', 'The bulb stays lit.',
             figure: CircuitFigure.loopLit),
         ChoiceOption('The bulb goes out.', 'The bulb goes out.',

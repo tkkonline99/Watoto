@@ -8,7 +8,6 @@ import 'package:watoto_mobile/app.dart';
 import 'package:watoto_mobile/core/network/watoto_api.dart';
 import 'package:watoto_mobile/core/offline/offline_providers.dart';
 import 'package:watoto_mobile/core/widgets/mascot_widget.dart';
-import 'package:watoto_mobile/core/offline/offline_store.dart';
 import 'package:watoto_mobile/core/offline/sync_op.dart';
 import 'package:watoto_mobile/features/onboarding/consent.dart';
 import 'package:watoto_mobile/features/onboarding/savanna_background.dart';

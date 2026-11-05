@@ -27,7 +27,6 @@ import '../features/profiles/add_child_screen.dart';
 import '../features/profiles/profile_picker_screen.dart';
 import '../features/stories/story_library_screen.dart';
 import 'return_to.dart';
-import '../core/offline/offline_store.dart';
 
 /// Lets a widget test start on a post-login surface without driving `/login`
 /// first. Tests that exercise the gate itself leave it false.

@@ -9,7 +9,6 @@ import 'package:watoto_mobile/app.dart';
 import 'package:watoto_mobile/core/network/watoto_api.dart';
 import 'package:watoto_mobile/core/offline/offline_providers.dart';
 import 'package:watoto_mobile/core/widgets/mascot_widget.dart';
-import 'package:watoto_mobile/core/offline/offline_store.dart';
 import 'package:watoto_mobile/core/offline/sync_op.dart';
 import 'package:watoto_mobile/features/curriculum/curriculum_data.dart';
 import 'package:watoto_mobile/features/curriculum/subject_catalog.dart';
@@ -203,6 +202,43 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.textContaining('Stage '), findsWidgets);
 
+      await store.close();
+    });
+
+    testWidgets('curriculum screen defaults to the child preferred stage', (
+      tester,
+    ) async {
+      final store = await OfflineStore.open(inMemory: true);
+      final child = await store.completeOnboarding(
+        consent: const ConsentRecord(
+          coreData: true,
+          aiFeatures: false,
+          voiceRecording: false,
+          recordedAt: null,
+        ),
+        pin: '1234',
+        nickname: 'Amani',
+        avatarKey: 'lion',
+        birthYear: DateTime.now().year - 7,
+      );
+      await store.setPreferredStage(child.id, 3);
+
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [
+            offlineStoreProvider.overrideWithValue(store),
+            syncApiProvider.overrideWithValue(_UnreachableApi()),
+          ],
+          child: const WatotoApp(),
+        ),
+      );
+      await tester.pumpAndSettle();
+      ProviderScope.containerOf(
+        tester.element(find.byType(WatotoApp)),
+      ).read(appRouterProvider).go('/curriculum');
+      await tester.pumpAndSettle();
+
+      expect(find.textContaining('Stage 3'), findsOneWidget);
       await store.close();
     });
   });

@@ -214,6 +214,13 @@ extension OfflineStoreData on OfflineStore {
       return key.endsWith(':$childId') || key.contains(':$childId');
     }).toList();
     await _stats.deleteAll(statKeys);
+    final childOps = pendingOps
+        .where((op) => op.payload['childId'] == childId)
+        .map((op) => op.clientOpId)
+        .toList();
+    if (childOps.isNotEmpty) {
+      await _queue.deleteAll(childOps);
+    }
     if (activeChildId == childId) {
       await _account.delete('activeChildId');
     }
@@ -263,8 +270,43 @@ extension OfflineStoreData on OfflineStore {
     }
   }
 
-  Future<void> _enqueue(SyncOp op) =>
-      _queue.put(op.clientOpId, jsonEncode(op.toJson()));
+  Future<void> _enqueue(SyncOp op) async {
+    // Supersede any pending op for the same lesson or story so replaying a
+    // favourite activity offline does not bloat the outbound queue with
+    // redundant writes.
+    final idKey = switch (op.opType) {
+      'lesson_progress' => 'lessonId',
+      'story_read' => 'storyId',
+      _ => null,
+    };
+    if (idKey != null) {
+      final targetId = op.payload[idKey];
+      final targetChild = op.payload['childId'];
+      if (targetId != null) {
+        final obsolete = <String>[];
+        for (final existing in pendingOps) {
+          if (existing.opType == op.opType &&
+              existing.payload[idKey] == targetId &&
+              existing.payload['childId'] == targetChild) {
+            obsolete.add(existing.clientOpId);
+          }
+        }
+        if (obsolete.isNotEmpty) {
+          await _queue.deleteAll(obsolete);
+        }
+      }
+    }
+    await _queue.put(op.clientOpId, jsonEncode(op.toJson()));
+    if (_queue.length > OfflineStore.syncQueueCap) {
+      final sorted = pendingOps;
+      final dropCount = sorted.length - OfflineStore.syncQueueCap;
+      if (dropCount > 0) {
+        await _queue.deleteAll(
+          sorted.take(dropCount).map((e) => e.clientOpId),
+        );
+      }
+    }
+  }
 
   Future<void> removeOps(Iterable<String> clientOpIds) =>
       _queue.deleteAll(clientOpIds);

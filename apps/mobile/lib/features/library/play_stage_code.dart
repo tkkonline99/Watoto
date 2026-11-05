@@ -16,6 +16,7 @@ import 'step_play.dart';
 
 class KidCodeStage extends StatefulWidget {
   const KidCodeStage({
+    super.key,
     required this.plan,
     required this.onCompleted,
     required this.onTapSound,

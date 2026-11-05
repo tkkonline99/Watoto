@@ -23,7 +23,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
 import 'package:watoto_mobile/app.dart';
 import 'package:watoto_mobile/core/offline/offline_providers.dart';
-import 'package:watoto_mobile/core/offline/offline_store.dart';
 import 'package:watoto_mobile/features/auth/auth_service.dart';
 import 'package:watoto_mobile/features/auth/parent_gate.dart';
 import 'package:watoto_mobile/features/onboarding/consent.dart';

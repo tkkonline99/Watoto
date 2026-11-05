@@ -12,7 +12,6 @@ import 'package:hive/hive.dart';
 import 'package:watoto_mobile/app.dart';
 import 'package:watoto_mobile/core/network/watoto_api.dart';
 import 'package:watoto_mobile/core/offline/offline_providers.dart';
-import 'package:watoto_mobile/core/offline/offline_store.dart';
 import 'package:watoto_mobile/core/offline/sync_op.dart';
 import 'package:watoto_mobile/core/widgets/mascot_widget.dart';
 import 'package:watoto_mobile/features/auth/entitlements.dart';
@@ -30,7 +29,7 @@ class _Unreachable implements SyncApi {
 }
 
 /// Stage 7 — past the free tier, so opening it is parent-gated.
-final _premiumLesson = LibraryItem(
+const _premiumLesson = LibraryItem(
   id: 'test.premium.1',
   stage: 7,
   ages: '6-7',
@@ -41,7 +40,7 @@ final _premiumLesson = LibraryItem(
   designTier: 'guided',
   reading: true,
   interaction: 'tap',
-  steps: const [
+  steps: [
     LessonStep(
       narration: 'Tap the cat.',
       action: 'tap',

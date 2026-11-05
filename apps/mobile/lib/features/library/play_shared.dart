@@ -191,7 +191,7 @@ PreferredSizeWidget playAppBar(BuildContext context, String title) => AppBar(
 
 /// Toggles spoken narration on/off; the icon reflects the current state.
 class NarrationButton extends ConsumerWidget {
-  const NarrationButton();
+  const NarrationButton({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

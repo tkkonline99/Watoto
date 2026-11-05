@@ -40,7 +40,7 @@ class PasswordResetRequestResult {
 /// Offline default: in-memory anonymous session + local password reset via
 /// one-time codes emailed with a mailto: handoff (and OfflineStore).
 class LocalAuthService implements AuthService {
-  LocalAuthService({OfflineStore? store}) : _store = store;
+  LocalAuthService({this._store});
 
   static const _uuid = Uuid();
 

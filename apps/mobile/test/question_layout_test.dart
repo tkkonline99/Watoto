@@ -10,7 +10,6 @@ import 'package:watoto_mobile/app.dart';
 import 'package:watoto_mobile/core/audio/narration.dart';
 import 'package:watoto_mobile/core/network/watoto_api.dart';
 import 'package:watoto_mobile/core/offline/offline_providers.dart';
-import 'package:watoto_mobile/core/offline/offline_store.dart';
 import 'package:watoto_mobile/core/offline/sync_op.dart';
 import 'package:watoto_mobile/core/widgets/mascot_widget.dart';
 import 'package:watoto_mobile/features/library/library_models.dart';
@@ -46,7 +45,7 @@ class _UnreachableApi implements SyncApi {
 
 /// A stage-1 lesson whose first step stages a choice — the screen this all
 /// started from.
-final _firstWords = LibraryItem(
+const _firstWords = LibraryItem(
   id: 's01.lang.lesson.01',
   stage: 1,
   ages: '0-1',
@@ -60,7 +59,7 @@ final _firstWords = LibraryItem(
   parentNote: "Record your own voice for 'mama'/'dada' in Settings.",
   // Two steps, so the primary button reads "Next" as it does on the real
   // screen — on a lesson's last step it reads "Done" instead.
-  steps: const [
+  steps: [
     LessonStep(
       narration: 'Tap the smiling grown-up.',
       action: 'tap',

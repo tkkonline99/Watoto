@@ -8,7 +8,6 @@ library;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/offline/offline_providers.dart';
-import '../../../core/offline/offline_store.dart';
 import '../../../l10n/gen/app_localizations.dart';
 import 'reminder_policy.dart';
 import 'reminder_scheduler.dart';

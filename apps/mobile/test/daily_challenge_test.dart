@@ -65,7 +65,7 @@ void main() {
   });
 
   test('preferred stage overrides birth-year stage', () async {
-    final child = ChildProfile(
+    const child = ChildProfile(
       id: 'c1',
       nickname: 'Amani',
       avatarKey: 'lion',
@@ -78,7 +78,7 @@ void main() {
 
   test('resolve picks first incomplete item and bonus awards once', () async {
     const childId = 'c1';
-    final child = ChildProfile(
+    const child = ChildProfile(
       id: childId,
       nickname: 'Amani',
       avatarKey: 'lion',

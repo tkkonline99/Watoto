@@ -229,7 +229,7 @@ void main() {
     test('an untranslated language falls back rather than breaking', () {
       // Partial bundles must stay safe: a language with no recap keys shows
       // the English source rather than an empty question.
-      final item = LibraryItem(
+      const item = LibraryItem(
         id: 'test.fallback',
         stage: 6,
         ages: '6-7',
@@ -240,7 +240,7 @@ void main() {
         designTier: '',
         reading: true,
         interaction: 'tap',
-        recap: const [
+        recap: [
           RecapItem(prompt: 'How many?', options: ['1', '2'], answer: 0),
         ],
       );
@@ -291,7 +291,7 @@ void main() {
     });
 
     test('authored recaps are offered in every language', () {
-      final item = LibraryItem(
+      const item = LibraryItem(
         id: 'test.authored',
         stage: 6,
         ages: '6-7',
@@ -302,7 +302,7 @@ void main() {
         designTier: '',
         reading: true,
         interaction: 'tap',
-        recap: const [
+        recap: [
           RecapItem(prompt: 'A?', options: ['1', '2'], answer: 0),
           RecapItem(prompt: 'B?', options: ['3', '4'], answer: 1),
         ],

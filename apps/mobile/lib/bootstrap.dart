@@ -11,7 +11,6 @@ import 'core/offline/desktop_migration_stub.dart'
     if (dart.library.io) 'core/offline/desktop_migration_io.dart';
 import 'core/analytics/analytics.dart';
 import 'core/offline/offline_providers.dart';
-import 'core/offline/offline_store.dart';
 import 'core/offline/sync_lifecycle.dart';
 import 'core/crash/crash_reporting.dart';
 import 'features/auth/auth_service.dart';

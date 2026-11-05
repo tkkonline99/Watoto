@@ -59,6 +59,11 @@ class OfflineStore {
   /// along in the support bundle. Capped so it can never grow unbounded.
   static const diagnosticsCap = 200;
 
+  /// Maximum outbound sync operations retained while offline. Oldest entries
+  /// are dropped once the cap is exceeded so an offline-only device never
+  /// suffers unbounded Hive storage growth.
+  static const syncQueueCap = 500;
+
   /// Bump when the key layout changes in a way older bundles cannot satisfy.
   static const backupFormatVersion = 1;
 
@@ -591,6 +596,7 @@ class OfflineStore {
         clientOpId: _uuid.v4(),
         opType: 'lesson_progress',
         payload: {
+          'childId': childId,
           'lessonId': lessonId,
           'status': 'completed',
           'scorePct': scorePct,
@@ -638,6 +644,7 @@ class OfflineStore {
         clientOpId: _uuid.v4(),
         opType: 'quiz_attempt',
         payload: {
+          'childId': childId,
           'quizId': quizId,
           'answers': answers,
           'durationS': durationS,
@@ -669,7 +676,7 @@ class OfflineStore {
       SyncOp(
         clientOpId: _uuid.v4(),
         opType: 'story_read',
-        payload: {'storyId': storyId},
+        payload: {'childId': childId, 'storyId': storyId},
         clientUpdatedAt: now,
       ),
     );

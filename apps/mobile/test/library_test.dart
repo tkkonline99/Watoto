@@ -6,7 +6,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
 import 'package:watoto_mobile/core/network/watoto_api.dart';
 import 'package:watoto_mobile/core/offline/offline_providers.dart';
-import 'package:watoto_mobile/core/offline/offline_store.dart';
 import 'package:watoto_mobile/core/offline/sync_op.dart';
 import 'package:watoto_mobile/features/curriculum/subject_i18n.dart';
 import 'package:watoto_mobile/features/library/library_models.dart';
@@ -141,6 +140,51 @@ void main() {
       expect(store.progressFor(childId, lesson.id)?['status'], 'completed');
       expect(store.hasReadStory(childId, story.id), isTrue);
       expect(store.xpFor(childId), lesson.xp + story.xp);
+    });
+
+    test('replaying a lesson compacts duplicate lesson_progress sync ops',
+        () async {
+      await store.recordLessonCompleted(
+        childId: childId,
+        lessonId: 's01.cause.lesson.01',
+        scorePct: 80,
+        timeSpentS: 20,
+        xpEarned: 10,
+      );
+      await store.recordLessonCompleted(
+        childId: childId,
+        lessonId: 's01.cause.lesson.01',
+        scorePct: 100,
+        timeSpentS: 25,
+        xpEarned: 10,
+      );
+      final lessonOps = store.pendingOps
+          .where((o) =>
+              o.opType == 'lesson_progress' &&
+              o.payload['lessonId'] == 's01.cause.lesson.01')
+          .toList();
+      expect(lessonOps, hasLength(1));
+      expect(lessonOps.single.payload['scorePct'], 100);
+      expect(lessonOps.single.payload['childId'], childId);
+    });
+
+    test('deleting a child purges their queued sync ops', () async {
+      await store.recordLessonCompleted(
+        childId: childId,
+        lessonId: 's01.cause.lesson.01',
+        scorePct: 100,
+        timeSpentS: 20,
+        xpEarned: 10,
+      );
+      expect(
+        store.pendingOps.where((o) => o.payload['childId'] == childId),
+        isNotEmpty,
+      );
+      await store.deleteChild(childId);
+      expect(
+        store.pendingOps.where((o) => o.payload['childId'] == childId),
+        isEmpty,
+      );
     });
   });
 }

@@ -3,7 +3,7 @@ import 'package:watoto_mobile/core/config/publish_config.dart';
 import 'package:watoto_mobile/features/curriculum/curriculum_data.dart';
 import 'package:watoto_mobile/features/curriculum/subject_catalog.dart';
 
-/// Guards the v1 scope decision: this build offers ages 0–6 and nothing above.
+/// Guards the published stage ceiling enforced by [maxPublishedStage].
 ///
 /// The decision itself is [maxPublishedStage] and the reasoning lives there.
 /// What these tests hold is that the cap is actually *enforced* on every
@@ -12,8 +12,8 @@ import 'package:watoto_mobile/features/curriculum/subject_catalog.dart';
 /// that one screen happens to respect.
 ///
 /// They are deliberately written against `maxPublishedStage` rather than
-/// against a literal 6, so raising the flag as stage 7 lands does not turn
-/// this file red.
+/// against a literal stage count so overriding the flag in builds or tests
+/// exercises the clamp cleanly.
 void main() {
   group('published curriculum', () {
     test('stops at the cap and starts at stage 1', () {

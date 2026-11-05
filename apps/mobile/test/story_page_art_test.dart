@@ -21,7 +21,6 @@ import 'package:hive/hive.dart';
 import 'package:watoto_mobile/app.dart';
 import 'package:watoto_mobile/core/network/watoto_api.dart';
 import 'package:watoto_mobile/core/offline/offline_providers.dart';
-import 'package:watoto_mobile/core/offline/offline_store.dart';
 import 'package:watoto_mobile/core/offline/sync_op.dart';
 import 'package:watoto_mobile/core/widgets/mascot_widget.dart';
 import 'package:watoto_mobile/features/library/library_models.dart';
@@ -39,7 +38,7 @@ class _UnreachableApi implements SyncApi {
 
 /// Two pages naming two different bundled pictures. Real paths, so a rename
 /// in the asset tree fails this rather than passing on a stub.
-final _story = LibraryItem(
+const _story = LibraryItem(
   id: 'test.story.art',
   stage: 6,
   ages: '6-8',
@@ -50,7 +49,7 @@ final _story = LibraryItem(
   designTier: 'encourage-effort',
   reading: true,
   interaction: 'read',
-  pages: const [
+  pages: [
     LibPage(
       narration: 'A bear balances 3 apples on top of his head.',
       illustration: 'img/s06/bear_apples.png',

@@ -7,7 +7,6 @@ import 'package:go_router/go_router.dart';
 import '../../core/analytics/analytics.dart';
 import '../../core/audio/narration.dart';
 import '../../core/offline/offline_providers.dart';
-import '../../core/offline/offline_store.dart';
 import '../../core/state/app_state.dart';
 import '../../core/widgets/mascot_widget.dart';
 import '../../core/theme/watoto_theme.dart';

@@ -1,15 +1,16 @@
 # v1 scope — which stages ship
 
-**Decision: v1 is ages 0–7, stages 1–7. Stages 8–10 stay in the repo and out of
-the build.**
+**Decision: v1 ships all 10 stages (ages 0–10, 57 subjects, 684 items).**
 
-> Originally 0–6. `content/author_stage7.py` took stage 7 to depth on all three
-> item types, so `maxPublishedStage` went to 7 — the flag working as intended.
-> The bar has not moved; stage 7 cleared it.
+> Originally scoped at 0–6 (and then 0–7 after `content/author_stage7.py`),
+> stages 8, 9, and 10 have since been authored to full tier depth across all
+> three item types (`lessons`, `quizzes`, `stories`) in English, Swahili (`sw`),
+> and French (`fr`), raising `maxPublishedStage` to `10`.
 
 Enforced by `maxPublishedStage` in
 [`apps/mobile/lib/core/config/publish_config.dart`](../apps/mobile/lib/core/config/publish_config.dart),
-guarded by [`apps/mobile/test/published_stages_test.dart`](../apps/mobile/test/published_stages_test.dart).
+guarded by [`apps/mobile/test/published_stages_test.dart`](../apps/mobile/test/published_stages_test.dart)
+and [`apps/mobile/test/lesson_depth_test.dart`](../apps/mobile/test/lesson_depth_test.dart).
 
 ## Why
 
