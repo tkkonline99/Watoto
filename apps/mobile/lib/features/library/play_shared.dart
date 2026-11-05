@@ -16,6 +16,7 @@ import '../../core/offline/offline_providers.dart';
 import '../../core/state/app_state.dart';
 import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
+import '../ai/ask_kibo_sheet.dart';
 import 'content_art.dart';
 import 'content_i18n.dart';
 import 'library_models.dart';
@@ -173,21 +174,35 @@ class CoPlayTip extends ConsumerWidget {
   }
 }
 
-PreferredSizeWidget playAppBar(BuildContext context, String title) => AppBar(
-  backgroundColor: Colors.transparent,
-  leading: IconButton(
-    icon: const Icon(Icons.arrow_back_rounded, color: WatotoColors.deep),
-    onPressed: () => context.pop(),
-  ),
-  title: Text(
-    title,
-    style: const TextStyle(
-      fontWeight: FontWeight.w800,
-      color: WatotoColors.deep,
-    ),
-  ),
-  actions: const [NarrationButton()],
-);
+PreferredSizeWidget playAppBar(
+  BuildContext context,
+  String title, {
+  String subject = 'Savanna',
+  int stage = 1,
+  String? promptContext,
+}) =>
+    AppBar(
+      backgroundColor: Colors.transparent,
+      leading: IconButton(
+        icon: const Icon(Icons.arrow_back_rounded, color: WatotoColors.deep),
+        onPressed: () => context.pop(),
+      ),
+      title: Text(
+        title,
+        style: const TextStyle(
+          fontWeight: FontWeight.w800,
+          color: WatotoColors.deep,
+        ),
+      ),
+      actions: [
+        AskKiboButton(
+          subject: subject,
+          stage: stage,
+          promptContext: promptContext ?? title,
+        ),
+        const NarrationButton(),
+      ],
+    );
 
 /// Toggles spoken narration on/off; the icon reflects the current state.
 class NarrationButton extends ConsumerWidget {

@@ -249,7 +249,13 @@ class QuizViewState extends ConsumerState<QuizView> {
     }
     final question = _questions[_q];
     return Scaffold(
-      appBar: playAppBar(context, loc.title),
+      appBar: playAppBar(
+        context,
+        loc.title,
+        subject: widget.item.subject,
+        stage: widget.item.stage,
+        promptContext: question.prompt,
+      ),
       body: QuestionScaffold(
         stage: widget.item.stage,
         // A quiz a child reads is text-heavy by definition: the prompt and

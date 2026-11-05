@@ -31,6 +31,8 @@ import '../../features/parent/family_layer.dart';
 import '../../features/parent/reminders/reminder_service.dart';
 import '../../features/profiles/child_profile.dart';
 import '../../l10n/gen/app_localizations.dart';
+import '../ai/ai_smart_practice_sheet.dart';
+import '../ai/ai_story_weaver_sheet.dart';
 import 'savanna_sketchpad_sheet.dart';
 
 /// Child home — welcome bar, a concrete daily challenge, and subject tiles.
@@ -315,6 +317,8 @@ class _ChildHomeScreenState extends ConsumerState<ChildHomeScreen> {
               ],
               const SizedBox(height: 14),
               SavannaWordOfTheDayCard(locale: lang),
+              const SizedBox(height: 12),
+              _AiKidToolsRow(locale: lang),
             ],
           ),
         ),
@@ -1689,6 +1693,83 @@ class _AccountButton extends ConsumerWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _AiKidToolsRow extends StatelessWidget {
+  const _AiKidToolsRow({required this.locale});
+  final String locale;
+
+  @override
+  Widget build(BuildContext context) {
+    final storyLabel = switch (locale) {
+      'sw' => '📖✨ Hadithi ya AI',
+      'fr' => '📖✨ Histoire IA',
+      _ => '📖✨ AI Story Weaver',
+    };
+    final practiceLabel = switch (locale) {
+      'sw' => '🎯🤖 Mazoezi ya AI',
+      'fr' => '🎯🤖 Pratique IA',
+      _ => '🎯🤖 AI Smart Practice',
+    };
+
+    return ExcludeSemantics(
+      child: Row(
+        children: [
+          Expanded(
+            child: OutlinedButton(
+              key: const ValueKey('open-ai-story-weaver-button'),
+              style: OutlinedButton.styleFrom(
+                backgroundColor: Colors.white.withValues(alpha: 0.88),
+                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(18),
+                ),
+              ),
+              onPressed: () => showAiStoryWeaver(context),
+              child: RichText(
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                text: TextSpan(
+                  text: storyLabel,
+                  style: const TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w800,
+                    color: WatotoColors.deep,
+                  ),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: OutlinedButton(
+              key: const ValueKey('open-ai-smart-practice-button'),
+              style: OutlinedButton.styleFrom(
+                backgroundColor: Colors.white.withValues(alpha: 0.88),
+                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(18),
+                ),
+              ),
+              onPressed: () => showAiSmartPractice(context),
+              child: RichText(
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                text: TextSpan(
+                  text: practiceLabel,
+                  style: const TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w800,
+                    color: WatotoColors.deep,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

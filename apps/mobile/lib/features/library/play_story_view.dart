@@ -142,7 +142,13 @@ class StoryViewState extends ConsumerState<StoryView> {
     final isLast = _page == pages.length - 1;
     final page = pages[_page];
     return Scaffold(
-      appBar: playAppBar(context, loc.title),
+      appBar: playAppBar(
+        context,
+        loc.title,
+        subject: widget.item.subject,
+        stage: widget.item.stage,
+        promptContext: loc.pageNarration(_page),
+      ),
       body: QuestionScaffold(
         stage: widget.item.stage,
         // §26.2: a story page is text-heavy, so the stage takes 180dp and the

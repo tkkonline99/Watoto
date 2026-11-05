@@ -488,7 +488,13 @@ class _LessonViewState extends ConsumerState<_LessonView> {
     }
 
     return Scaffold(
-      appBar: playAppBar(context, loc.title),
+      appBar: playAppBar(
+        context,
+        loc.title,
+        subject: widget.item.subject,
+        stage: widget.item.stage,
+        promptContext: loc.stepNarration(_step),
+      ),
       body: QuestionScaffold(
         stage: widget.item.stage,
         textHeavy: widget.item.reading,

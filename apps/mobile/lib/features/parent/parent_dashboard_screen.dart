@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../core/ai/watoto_ai_engine.dart';
 import '../../core/analytics/analytics.dart';
 import '../../core/audio/narration.dart';
 import '../../core/l10n/store_error_text.dart';
@@ -756,6 +757,10 @@ class ParentDashboardScreen extends ConsumerWidget {
               label: Text(l10n.addChild),
               onPressed: () => context.go('/profiles/add'),
             ),
+            if (children.isNotEmpty) ...[
+              const SizedBox(height: 16),
+              _AiParentCoachCard(child: children.first),
+            ],
             const Divider(height: 32),
             Text(l10n.screenTime, style: _section),
             const SizedBox(height: 8),
@@ -1056,6 +1061,139 @@ Widget _sizeChip(WidgetRef ref, String label, double value, double current) {
     selected: (current - value).abs() < 0.01,
     onSelected: (_) => ref.read(textScaleProvider.notifier).set(value),
   );
+}
+
+class _AiParentCoachCard extends ConsumerWidget {
+  const _AiParentCoachCard({required this.child});
+  final ChildProfile child;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final locale = ref.watch(localeProvider).languageCode;
+    final store = ref.watch(offlineStoreProvider);
+    final consent = store.consent;
+    final briefing = ref.watch(watotoAiEngineProvider).generateParentCoachBriefing(
+          childId: child.id,
+          nickname: child.nickname,
+          locale: locale,
+        );
+
+    final heading = switch (locale) {
+      'sw' => '🧑‍🏫📊 Kocha wa AI kwa Mzazi (${child.nickname})',
+      'fr' => '🧑‍🏫📊 Coach Parent IA (${child.nickname})',
+      _ => '🧑‍🏫📊 AI Parent Coach (${child.nickname})',
+    };
+
+    final subheading = switch (locale) {
+      'sw' => 'Michezo ya Dakika 3 Bila Skrini (Nyumbani):',
+      'fr' => 'Activités de 3 Minutes Sans Écran (Maison) :',
+      _ => '3-Minute Screen-Free Family Games:',
+    };
+
+    return ExcludeSemantics(
+      child: Card(
+        key: const ValueKey('ai-parent-coach-card'),
+        color: const Color(0xFFFFFBF2),
+        child: Padding(
+          padding: const EdgeInsets.all(14),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: RichText(
+                      text: TextSpan(
+                        text: heading,
+                        style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w800,
+                          color: WatotoColors.deep,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Switch(
+                    key: const ValueKey('ai-coach-consent-toggle'),
+                    value: consent.aiFeatures,
+                    onChanged: (v) => ref
+                        .read(sessionProvider.notifier)
+                        .saveConsent(consent.copyWith(aiFeatures: v)),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 6),
+              RichText(
+                text: TextSpan(
+                  text: briefing.strengthSummary,
+                  style: const TextStyle(
+                    fontSize: 13,
+                    height: 1.35,
+                    color: WatotoColors.deep,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 6),
+              RichText(
+                text: TextSpan(
+                  text: briefing.focusSummary,
+                  style: const TextStyle(
+                    fontSize: 13,
+                    height: 1.35,
+                    color: WatotoColors.deep,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              RichText(
+                text: TextSpan(
+                  text: subheading,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w800,
+                    color: WatotoColors.mango,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 6),
+              for (int i = 0; i < briefing.offlineActivities.length; i++)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 4),
+                  child: InkWell(
+                    key: ValueKey('ai-coach-activity-$i'),
+                    borderRadius: BorderRadius.circular(10),
+                    onTap: () async {
+                      final text = briefing.offlineActivities[i];
+                      await Clipboard.setData(ClipboardData(text: text));
+                      if (!context.mounted) return;
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text(text)),
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 4,
+                        horizontal: 6,
+                      ),
+                      child: RichText(
+                        text: TextSpan(
+                          text: briefing.offlineActivities[i],
+                          style: const TextStyle(
+                            fontSize: 12.5,
+                            fontWeight: FontWeight.w600,
+                            color: WatotoColors.deep,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 class _WeeklyCard extends StatelessWidget {
