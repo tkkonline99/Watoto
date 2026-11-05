@@ -1,5 +1,12 @@
-﻿<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- Google Play Families Policy: explicitly strip AD_ID so no transitive
+         library can merge the advertising identifier permission into a
+         children's app build. -->
+    <uses-permission
+        android:name="com.google.android.gms.permission.AD_ID"
+        tools:node="remove"/>
     <!-- Practice reminders (opt-in, parent-facing). POST_NOTIFICATIONS and
          VIBRATE are merged in by the flutter_local_notifications manifest;
          this one lets a queued reminder survive a reboot. Deliberately NOT
@@ -10,7 +17,10 @@
     <application
         android:label="Watoto"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:allowBackup="false"
+        android:fullBackupContent="false"
+        android:usesCleartextTraffic="false">
         <activity
             android:name=".MainActivity"
             android:exported="true"

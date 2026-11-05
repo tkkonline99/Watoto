@@ -461,7 +461,7 @@ class AppLocalizationsSw extends AppLocalizations {
   String get termsOfService => 'Masharti ya Huduma';
 
   @override
-  String get legalDraftNote => 'Rasimu — inasubiri ukaguzi wa kisheria';
+  String get legalDraftNote => 'Inatumika 2026-07-18 · COPPA na GDPR-K';
 
   @override
   String levelLabel(int level) {

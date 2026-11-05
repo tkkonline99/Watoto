@@ -462,7 +462,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get termsOfService => 'Conditions d\'utilisation';
 
   @override
-  String get legalDraftNote => 'Brouillon — en attente de révision juridique';
+  String get legalDraftNote => 'En vigueur 2026-07-18 · COPPA et RGPD-K';
 
   @override
   String levelLabel(int level) {

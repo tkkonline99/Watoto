@@ -24,12 +24,12 @@ const privacyEmail = String.fromEnvironment(
 /// Public website base (host privacy + terms here for the stores).
 const websiteBaseUrl = String.fromEnvironment(
   'WATOTO_WEBSITE_URL',
-  defaultValue: 'https://watoto.app',
+  defaultValue: 'https://tkkonline99.github.io/Watoto',
 );
 
-String get privacyPolicyUrl => '$websiteBaseUrl/privacy';
-String get termsOfServiceUrl => '$websiteBaseUrl/terms';
-String get supportUrl => '$websiteBaseUrl/support';
+String get privacyPolicyUrl => '$websiteBaseUrl/privacy.html';
+String get termsOfServiceUrl => '$websiteBaseUrl/terms.html';
+String get supportUrl => '$websiteBaseUrl/support.html';
 
 /// Android applicationId / iOS bundle id family (already wired in native projects).
 const androidApplicationId = 'app.watoto.watoto_mobile';

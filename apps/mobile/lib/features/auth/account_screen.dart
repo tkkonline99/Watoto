@@ -7,6 +7,7 @@ import '../../core/theme/watoto_theme.dart';
 import '../../l10n/gen/app_localizations.dart';
 import 'auth_widgets.dart';
 import 'entitlements.dart';
+import 'parent_gate_dialog.dart';
 
 /// The family's own account (route `/account`), reached from the person button
 /// in the home's top chrome.
@@ -191,6 +192,8 @@ class AccountScreen extends ConsumerWidget {
   }
 
   Future<void> _confirmDelete(BuildContext context, WidgetRef ref) async {
+    if (!await showParentGateDialog(context, ref)) return;
+    if (!context.mounted) return;
     final l10n = AppLocalizations.of(context);
     final ok = await showDialog<bool>(
       context: context,
