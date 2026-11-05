@@ -44,6 +44,15 @@ class _SubjectDetailScreenState extends ConsumerState<SubjectDetailScreen> {
   late String _topicName = widget.subject;
 
   @override
+  void didUpdateWidget(covariant SubjectDetailScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.subject != widget.subject ||
+        oldWidget.stage != widget.stage) {
+      _topicName = widget.subject;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final lang = ref.watch(localeProvider).languageCode;
