@@ -15,7 +15,9 @@ import '../../features/library/library_repository.dart';
 import '../../features/onboarding/consent.dart';
 import '../../features/profiles/child_profile.dart';
 import '../../features/quiz/quiz_models.dart';
+import '../../data/cloud/cloud_sync.dart';
 import '../../features/auth/auth_service.dart';
+import '../../firebase/firebase_bootstrap.dart';
 import '../analytics/analytics.dart';
 import '../network/watoto_api.dart';
 import 'offline_store.dart';
@@ -35,9 +37,14 @@ final offlineStoreProvider = Provider<OfflineStore>(
 );
 
 final syncApiProvider = Provider<SyncApi>((ref) {
-  // Prefer AuthPort token (Firebase when wired); Nest dev-token only in debug.
   final auth = ref.watch(authServiceProvider);
   final store = ref.watch(offlineStoreProvider);
+  if (isFirebaseInitialized) {
+    return FirestoreSyncApi(
+      uidProvider: () => auth.current?.uid,
+      store: store,
+    );
+  }
   return WatotoApi(
     deviceId: store.deviceId,
     tokenProvider: ({bool forceRefresh = false}) =>

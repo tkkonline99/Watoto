@@ -23,6 +23,7 @@ from __future__ import annotations
 import argparse
 import csv
 import hashlib
+import json
 import math
 import os
 import re
@@ -594,6 +595,275 @@ def _paint_number(draw, cx, cy, stage, seed, digits="3"):
     draw_number_badge(draw, cx, cy, digits, _accent(seed))
 
 
+def _paint_robot(draw, cx, cy, stage, seed):
+    col = _accent(seed, 2)
+    _soft_shadow(draw, cx, cy, 130)
+    # Antenna
+    draw.line([(cx, cy - 170), (cx, cy - 115)], fill=NAVY, width=8)
+    _circle(draw, cx, cy - 178, 16, GOLD, outline=NAVY, width=5)
+    # Head & body
+    draw.rounded_rectangle([cx - 95, cy - 120, cx + 95, cy + 10], radius=28, fill=SKY, outline=NAVY, width=6)
+    draw.rounded_rectangle([cx - 80, cy + 15, cx + 80, cy + 135], radius=24, fill=col, outline=NAVY, width=6)
+    # Screen face
+    draw.rounded_rectangle([cx - 72, cy - 98, cx + 72, cy - 12], radius=18, fill=WHITE, outline=NAVY, width=4)
+    _circle(draw, cx - 32, cy - 60, 14, NAVY)
+    _circle(draw, cx + 32, cy - 60, 14, NAVY)
+    _circle(draw, cx - 28, cy - 65, 5, WHITE)
+    _circle(draw, cx + 36, cy - 65, 5, WHITE)
+    draw.arc([cx - 28, cy - 52, cx + 28, cy - 22], 20, 160, fill=CORAL, width=6)
+    _circle(draw, cx - 48, cy - 42, 10, PINK)
+    _circle(draw, cx + 48, cy - 42, 10, PINK)
+    # Chest code blocks / arrows
+    for i, c in enumerate([GOLD, MINT, CORAL]):
+        bx = cx - 50 + i * 36
+        draw.rounded_rectangle([bx, cy + 45, bx + 28, cy + 95], radius=6, fill=c, outline=NAVY, width=3)
+
+
+def _paint_tablet(draw, cx, cy, stage, seed):
+    _soft_shadow(draw, cx, cy, 135)
+    draw.rounded_rectangle([cx - 110, cy - 145, cx + 110, cy + 145], radius=26, fill=NAVY)
+    draw.rounded_rectangle([cx - 94, cy - 120, cx + 94, cy + 108], radius=14, fill=SOFT_SKY)
+    _circle(draw, cx, cy + 126, 10, SOFT_GRAY)
+    # Friendly star/shield badge on screen
+    _circle(draw, cx, cy - 10, 56, WHITE, outline=TEAL, width=5)
+    draw_star(draw, cx, cy - 10, 38, GOLD)
+    for i, c in enumerate([CORAL, MINT, LAVENDER]):
+        draw.rounded_rectangle([cx - 66 + i * 48, cy + 62, cx - 30 + i * 48, cy + 88], radius=8, fill=c)
+
+
+def _paint_circuit(draw, cx, cy, stage, seed):
+    # Wire loop
+    draw.rounded_rectangle([cx - 130, cy - 40, cx + 130, cy + 120], radius=36, outline=CORAL, width=10)
+    # Battery at bottom
+    draw.rounded_rectangle([cx - 55, cy + 85, cx + 55, cy + 145], radius=12, fill=TEAL, outline=NAVY, width=5)
+    draw.rectangle([cx - 25, cy + 85, cx + 25, cy + 145], fill=GOLD, outline=NAVY, width=4)
+    # Glowing bulb at top
+    _circle(draw, cx, cy - 65, 82, (*GOLD[:3], 90))
+    _circle(draw, cx, cy - 65, 58, GOLD, outline=NAVY, width=6)
+    draw.rounded_rectangle([cx - 26, cy - 12, cx + 26, cy + 20], radius=6, fill=SOFT_GRAY, outline=NAVY, width=5)
+    for a in range(-150, -20, 30):
+        rad = math.radians(a)
+        draw.line([(cx + math.cos(rad) * 70, cy - 65 + math.sin(rad) * 70),
+                   (cx + math.cos(rad) * 96, cy - 65 + math.sin(rad) * 96)], fill=GOLD, width=7)
+
+
+def _paint_magnet(draw, cx, cy, stage, seed):
+    _soft_shadow(draw, cx, cy, 130)
+    # U-shape magnet
+    draw.arc([cx - 110, cy - 110, cx + 110, cy + 110], 0, 180, fill=CORAL, width=42)
+    draw.rectangle([cx - 110, cy - 90, cx - 68, cy + 5], fill=CORAL, outline=NAVY, width=4)
+    draw.rectangle([cx + 68, cy - 90, cx + 110, cy + 5], fill=TEAL, outline=NAVY, width=4)
+    draw.rectangle([cx - 110, cy - 120, cx - 68, cy - 85], fill=SOFT_GRAY, outline=NAVY, width=4)
+    draw.rectangle([cx + 68, cy - 120, cx + 110, cy - 85], fill=SOFT_GRAY, outline=NAVY, width=4)
+    # Sparkles / attraction waves
+    draw_star(draw, cx, cy - 110, 26, GOLD)
+    draw_star(draw, cx - 35, cy - 145, 16, GOLD)
+    draw_star(draw, cx + 35, cy - 145, 16, GOLD)
+
+
+def _paint_butterfly(draw, cx, cy, stage, seed):
+    col1 = _accent(seed, 0)
+    col2 = _accent(seed, 3)
+    _soft_shadow(draw, cx, cy, 125)
+    # Four wings
+    _ellipse(draw, [cx - 145, cy - 120, cx - 10, cy + 10], col1, outline=NAVY, width=5)
+    _ellipse(draw, [cx + 10, cy - 120, cx + 145, cy + 10], col1, outline=NAVY, width=5)
+    _ellipse(draw, [cx - 120, cy - 5, cx - 12, cy + 110], col2, outline=NAVY, width=5)
+    _ellipse(draw, [cx + 12, cy - 5, cx + 120, cy + 110], col2, outline=NAVY, width=5)
+    _circle(draw, cx - 78, cy - 58, 24, GOLD)
+    _circle(draw, cx + 78, cy - 58, 24, GOLD)
+    _circle(draw, cx - 65, cy + 48, 16, WHITE)
+    _circle(draw, cx + 65, cy + 48, 16, WHITE)
+    # Body & smiling head
+    draw.rounded_rectangle([cx - 18, cy - 70, cx + 18, cy + 95], radius=18, fill=BROWN, outline=NAVY, width=5)
+    _circle(draw, cx, cy - 82, 28, GOLD, outline=NAVY, width=5)
+    _circle(draw, cx - 10, cy - 86, 5, NAVY)
+    _circle(draw, cx + 10, cy - 86, 5, NAVY)
+    draw.arc([cx - 12, cy - 80, cx + 12, cy - 66], 20, 160, fill=NAVY, width=4)
+    # Antennae
+    draw.arc([cx - 45, cy - 140, cx - 5, cy - 95], 0, 180, fill=NAVY, width=4)
+    draw.arc([cx + 5, cy - 140, cx + 45, cy - 95], 0, 180, fill=NAVY, width=4)
+
+
+def _paint_plant(draw, cx, cy, stage, seed):
+    # Soil mound / pot
+    _ellipse(draw, [cx - 150, cy + 75, cx + 150, cy + 165], BROWN, outline=NAVY, width=5)
+    # Stem
+    draw.line([(cx, cy + 95), (cx, cy - 75)], fill=GREEN, width=14)
+    # Leaves
+    _ellipse(draw, [cx - 115, cy - 35, cx - 8, cy + 35], LEAF, outline=NAVY, width=5)
+    _ellipse(draw, [cx + 8, cy - 65, cx + 115, cy + 5], LEAF, outline=NAVY, width=5)
+    # Flower / sprout top
+    draw_flower(draw, cx, cy - 95, 65, _accent(seed, 1))
+
+
+def _paint_weather(draw, cx, cy, stage, seed):
+    draw_sun(draw, cx - 65, cy - 65, 62, GOLD)
+    draw_cloud(draw, cx + 35, cy - 15, 85, WHITE)
+    # Gentle breeze lines & raindrops
+    for i in range(3):
+        y = cy + 60 + i * 26
+        draw.line([(cx - 110 + i * 15, y), (cx + 70 + i * 15, y)], fill=TEAL, width=6)
+        _circle(draw, cx + 80 + i * 15, y - 6, 8, SKY)
+
+
+def _paint_science(draw, cx, cy, stage, seed):
+    _soft_shadow(draw, cx, cy + 20, 120)
+    # Conical flask / beaker
+    pts = [(cx - 35, cy - 95), (cx + 35, cy - 95), (cx + 110, cy + 95), (cx - 110, cy + 95)]
+    draw.polygon(pts, fill=WHITE, outline=NAVY)
+    liquid = [(cx - 65, cy + 5), (cx + 65, cy + 5), (cx + 102, cy + 88), (cx - 102, cy + 88)]
+    draw.polygon(liquid, fill=MINT)
+    draw.line(pts + [pts[0]], fill=NAVY, width=6)
+    draw.rounded_rectangle([cx - 48, cy - 112, cx + 48, cy - 90], radius=8, fill=SKY, outline=NAVY, width=5)
+    # Bubbles
+    _circle(draw, cx - 20, cy + 45, 14, WHITE)
+    _circle(draw, cx + 25, cy + 25, 10, WHITE)
+    _circle(draw, cx + 5, cy - 35, 12, GOLD)
+    draw_star(draw, cx + 95, cy - 75, 24, GOLD)
+
+
+def _paint_community(draw, cx, cy, stage, seed):
+    # Civic building / school with columns and friendly people
+    draw.rectangle([cx - 135, cy - 35, cx + 135, cy + 120], fill=PEACH, outline=NAVY, width=6)
+    draw.polygon([(cx - 150, cy - 35), (cx, cy - 135), (cx + 150, cy - 35)], fill=CORAL, outline=NAVY)
+    draw.line([(cx - 150, cy - 35), (cx, cy - 135), (cx + 150, cy - 35), (cx - 150, cy - 35)], fill=NAVY, width=6)
+    _circle(draw, cx, cy - 72, 22, GOLD, outline=NAVY, width=4)
+    for x in (-85, -30, 30, 85):
+        draw.rectangle([cx + x - 12, cy - 20, cx + x + 12, cy + 115], fill=WHITE, outline=NAVY, width=4)
+    draw.rounded_rectangle([cx - 28, cy + 35, cx + 28, cy + 120], radius=10, fill=BROWN, outline=NAVY, width=4)
+
+
+def _paint_market(draw, cx, cy, stage, seed):
+    # Market stall awning + goods + golden coins
+    draw.rectangle([cx - 130, cy + 20, cx + 130, cy + 125], fill=SOFT_BROWN, outline=NAVY, width=6)
+    for i in range(5):
+        col = CORAL if i % 2 == 0 else WHITE
+        x0 = cx - 135 + i * 54
+        draw.rounded_rectangle([x0, cy - 95, x0 + 54, cy - 30], radius=12, fill=col, outline=NAVY, width=4)
+    draw_apple(draw, cx - 65, cy - 2, 28)
+    _circle(draw, cx, cy + 2, 26, GOLD, outline=NAVY, width=4)
+    _circle(draw, cx + 65, cy + 2, 26, MINT, outline=NAVY, width=4)
+    # Coin badge
+    _circle(draw, cx + 95, cy + 85, 34, GOLD, outline=NAVY, width=5)
+    draw_star(draw, cx + 95, cy + 85, 18, BROWN)
+
+
+def _paint_history(draw, cx, cy, stage, seed):
+    # Sun + ancient pyramid/monument + timeline path
+    draw_sun(draw, cx + 95, cy - 95, 45, GOLD)
+    draw.polygon([(cx - 130, cy + 85), (cx - 20, cy - 85), (cx + 90, cy + 85)], fill=GOLD, outline=NAVY)
+    draw.line([(cx - 130, cy + 85), (cx - 20, cy - 85), (cx + 90, cy + 85), (cx - 130, cy + 85)], fill=NAVY, width=6)
+    draw.polygon([(cx + 10, cy + 85), (cx + 85, cy - 35), (cx + 150, cy + 85)], fill=PEACH, outline=NAVY)
+    draw.line([(cx + 10, cy + 85), (cx + 85, cy - 35), (cx + 150, cy + 85), (cx + 10, cy + 85)], fill=NAVY, width=5)
+    # Timeline arrow below
+    draw.line([(cx - 140, cy + 125), (cx + 140, cy + 125)], fill=TEAL, width=8)
+    for x in (-100, 0, 100):
+        _circle(draw, cx + x, cy + 125, 12, CORAL, outline=NAVY, width=4)
+
+
+def _paint_compass(draw, cx, cy, stage, seed):
+    _soft_shadow(draw, cx, cy, 135)
+    _circle(draw, cx, cy, 130, WHITE, outline=NAVY, width=8)
+    _circle(draw, cx, cy, 108, SOFT_SKY, outline=TEAL, width=4)
+    # 4-point compass star
+    draw.polygon([(cx, cy - 98), (cx - 24, cy), (cx + 24, cy)], fill=CORAL, outline=NAVY)
+    draw.polygon([(cx, cy + 98), (cx - 24, cy), (cx + 24, cy)], fill=WHITE, outline=NAVY)
+    draw.polygon([(cx - 98, cy), (cx, cy - 24), (cx, cy + 24)], fill=GOLD, outline=NAVY)
+    draw.polygon([(cx + 98, cy), (cx, cy - 24), (cx, cy + 24)], fill=GOLD, outline=NAVY)
+    _circle(draw, cx, cy, 16, NAVY)
+
+
+def _paint_writing(draw, cx, cy, stage, seed):
+    _soft_shadow(draw, cx - 15, cy, 125)
+    # Notebook page with ruled lines
+    draw.rounded_rectangle([cx - 120, cy - 135, cx + 85, cy + 135], radius=18, fill=WHITE, outline=NAVY, width=6)
+    for i, col in enumerate([TEAL, CORAL, GOLD, MINT]):
+        y = cy - 80 + i * 48
+        draw.rounded_rectangle([cx - 90, y, cx + 45 - (i % 2) * 30, y + 16], radius=8, fill=col)
+    # Cheerful oversized pencil
+    draw.polygon([(cx + 55, cy - 95), (cx + 125, cy - 75), (cx + 75, cy + 95), (cx + 5, cy + 75)], fill=GOLD, outline=NAVY)
+    draw.polygon([(cx + 5, cy + 75), (cx + 75, cy + 95), (cx + 28, cy + 135)], fill=PEACH, outline=NAVY)
+    _circle(draw, cx + 28, cy + 132, 9, NAVY)
+
+
+def _paint_reading(draw, cx, cy, stage, seed):
+    _soft_shadow(draw, cx, cy + 15, 135)
+    # Open storybook with picture icons popping out
+    draw.rounded_rectangle([cx - 145, cy - 60, cx - 4, cy + 115], radius=14, fill=WHITE, outline=NAVY, width=6)
+    draw.rounded_rectangle([cx + 4, cy - 60, cx + 145, cy + 115], radius=14, fill=WHITE, outline=NAVY, width=6)
+    for y in (-20, 15, 50, 80):
+        draw.line([(cx - 115, cy + y), (cx - 28, cy + y)], fill=TEAL, width=7)
+        draw.line([(cx + 28, cy + y), (cx + 115, cy + y)], fill=CORAL, width=7)
+    draw_star(draw, cx - 65, cy - 105, 32, GOLD)
+    _circle(draw, cx + 55, cy - 105, 28, MINT, outline=NAVY, width=4)
+    draw_star(draw, cx, cy - 135, 22, CORAL)
+
+
+def _paint_math(draw, cx, cy, stage, seed):
+    # Balance / comparison blocks of two sizes and colors
+    col1 = _accent(seed, 0)
+    col2 = _accent(seed, 4)
+    for i in range(4):
+        y = cy + 85 - i * 46
+        draw.rounded_rectangle([cx - 115, y - 38, cx - 25, y], radius=8, fill=col1, outline=NAVY, width=5)
+    for i in range(2):
+        y = cy + 85 - i * 46
+        draw.rounded_rectangle([cx + 25, y - 38, cx + 115, y], radius=8, fill=col2, outline=NAVY, width=5)
+    draw.line([(cx - 145, cy + 95), (cx + 145, cy + 95)], fill=NAVY, width=8)
+
+
+def _paint_clock(draw, cx, cy, stage, seed):
+    _soft_shadow(draw, cx, cy, 130)
+    _circle(draw, cx, cy, 128, CORAL, outline=NAVY, width=6)
+    _circle(draw, cx, cy, 104, WHITE, outline=NAVY, width=4)
+    for a in range(0, 360, 30):
+        rad = math.radians(a)
+        r_dot = 9 if a % 90 == 0 else 5
+        _circle(draw, cx + math.cos(rad) * 86, cy + math.sin(rad) * 86, r_dot, NAVY)
+    # Hands (3 o'clock)
+    draw.line([(cx, cy), (cx, cy - 68)], fill=TEAL, width=9)
+    draw.line([(cx, cy), (cx + 54, cy)], fill=CORAL, width=9)
+    _circle(draw, cx, cy, 12, NAVY)
+
+
+def _paint_chart(draw, cx, cy, stage, seed):
+    draw.rounded_rectangle([cx - 140, cy - 125, cx + 140, cy + 125], radius=20, fill=WHITE, outline=NAVY, width=6)
+    heights = [75, 145, 110, 175]
+    cols = [CORAL, TEAL, GOLD, LAVENDER]
+    for i, (h, c) in enumerate(zip(heights, cols)):
+        x0 = cx - 105 + i * 56
+        draw.rounded_rectangle([x0, cy + 95 - h, x0 + 40, cy + 95], radius=8, fill=c, outline=NAVY, width=4)
+    draw.line([(cx - 118, cy + 95), (cx + 118, cy + 95)], fill=NAVY, width=6)
+
+
+def _paint_palette(draw, cx, cy, stage, seed):
+    _soft_shadow(draw, cx, cy, 135)
+    _ellipse(draw, [cx - 140, cy - 110, cx + 140, cy + 110], PEACH, outline=NAVY, width=6)
+    _circle(draw, cx - 75, cy + 25, 24, STAGE_BG.get(stage, CREAM), outline=NAVY, width=5)
+    for (dx, dy), col in zip([(-65, -45), (-5, -68), (65, -45), (85, 20), (20, 58)],
+                             [CORAL, GOLD, TEAL, LAVENDER, GREEN]):
+        _circle(draw, cx + dx, cy + dy, 26, col, outline=NAVY, width=4)
+
+
+def _paint_emotion(draw, cx, cy, stage, seed):
+    draw_face(draw, cx, cy + 15, 115, SOFT_BROWN)
+    # Floating heart above
+    _circle(draw, cx - 22, cy - 135, 24, PINK)
+    _circle(draw, cx + 22, cy - 135, 24, PINK)
+    draw.polygon([(cx - 44, cy - 128), (cx + 44, cy - 128), (cx, cy - 82)], fill=PINK)
+
+
+def _paint_health(draw, cx, cy, stage, seed):
+    _soft_shadow(draw, cx, cy, 135)
+    # Healthy plate with apple, broccoli/greens, and grain
+    _circle(draw, cx, cy, 132, WHITE, outline=NAVY, width=7)
+    _circle(draw, cx, cy, 98, SOFT_SKY, outline=TEAL, width=4)
+    draw_apple(draw, cx - 38, cy - 20, 42)
+    _circle(draw, cx + 42, cy - 25, 34, GREEN, outline=NAVY, width=4)
+    draw.rounded_rectangle([cx - 45, cy + 32, cx + 55, cy + 72], radius=16, fill=GOLD, outline=NAVY, width=4)
+
+
 MOTIF_PAINTERS = {
     "body": _paint_body,
     "hands": _paint_hands,
@@ -631,6 +901,26 @@ MOTIF_PAINTERS = {
     "map": _paint_map,
     "shapes": _paint_shapes,
     "number": _paint_number,
+    "robot": _paint_robot,
+    "tablet": _paint_tablet,
+    "circuit": _paint_circuit,
+    "magnet": _paint_magnet,
+    "butterfly": _paint_butterfly,
+    "plant": _paint_plant,
+    "weather": _paint_weather,
+    "science": _paint_science,
+    "community": _paint_community,
+    "market": _paint_market,
+    "history": _paint_history,
+    "compass": _paint_compass,
+    "writing": _paint_writing,
+    "reading": _paint_reading,
+    "math": _paint_math,
+    "clock": _paint_clock,
+    "chart": _paint_chart,
+    "palette": _paint_palette,
+    "emotion": _paint_emotion,
+    "health": _paint_health,
 }
 
 _DIGIT_RE = re.compile(r"\b(\d{1,3})\b")
@@ -667,7 +957,8 @@ def classify_and_draw(draw, brief: str, name: str, stage: int, seed: str,
 
 
 def render_image(image_ref: str, stage_raw: str, art_brief: str,
-                 subject: str = "") -> Image.Image | None:
+                 subject: str = "", fallback_text: str = "",
+                 skill: str = "") -> Image.Image | None:
     """The picture for one brief, or None when the brief cannot be placed.
 
     None is a real answer and callers must handle it by writing no file. The
@@ -681,10 +972,29 @@ def render_image(image_ref: str, stage_raw: str, art_brief: str,
     draw = ImageDraw.Draw(img, "RGBA")
     name = Path(image_ref).stem
     seed = image_ref
-    # soft vignette-ish corner sun for warmth
-    if stage <= 3:
-        _circle(draw, 60, 60, 40, (*GOLD[:3], 90))
-    if classify_and_draw(draw, art_brief, name, stage, seed, subject) is None:
+    # Soft pastel background dots and corner scalloped accents matching house style
+    dot_col = (*GOLD[:3], 45) if stage <= 5 else (*LAVENDER[:3], 45)
+    for corner_x, corner_y in [(0, 0), (SIZE, 0), (0, SIZE), (SIZE, SIZE)]:
+        _circle(draw, corner_x, corner_y, 72, dot_col)
+    for idx in range(6):
+        dx = 55 + ((_hash(seed + f"x{idx}")) % 400)
+        dy = 55 + ((_hash(seed + f"y{idx}")) % 400)
+        if abs(dx - SIZE // 2) > 135 or abs(dy - SIZE // 2) > 135:
+            _circle(draw, dx, dy, 10 + (idx % 3) * 4, dot_col)
+
+    motif = classify_and_draw(draw, art_brief, name, stage, seed, subject)
+    if motif is None and fallback_text:
+        motif = classify_and_draw(draw, f"{art_brief} {fallback_text}", name, stage, seed, subject)
+    if motif is None and skill:
+        fallback_motif = SKILL_FALLBACK.get(skill)
+        if fallback_motif and fallback_motif in MOTIF_PAINTERS:
+            cx, cy = SIZE // 2, SIZE // 2 + 10
+            if fallback_motif == "number":
+                MOTIF_PAINTERS[fallback_motif](draw, cx, cy, stage, seed, digits="3")
+            else:
+                MOTIF_PAINTERS[fallback_motif](draw, cx, cy, stage, seed)
+            motif = fallback_motif
+    if motif is None:
         return None
     # Softer preschool look; stages 1–3 get an extra pass (hero free-tier pack).
     img = img.filter(ImageFilter.SMOOTH)
@@ -693,14 +1003,90 @@ def render_image(image_ref: str, stage_raw: str, art_brief: str,
     return img
 
 
+SKILL_FALLBACK = {
+    "animals": "animal", "arts": "palette", "body": "body", "cause": "ball",
+    "coding.algorithms": "robot", "coding.creative": "tablet",
+    "coding.debugging": "robot", "coding.digital-literacy": "tablet",
+    "coding.logic": "robot", "coding.loops": "robot",
+    "coding.programs": "robot", "coding.variables": "robot",
+    "colors": "palette", "counting": "number", "emotions": "emotion",
+    "health": "health", "lang": "face", "literacy": "book",
+    "math.arithmetic": "number", "math.comparison": "math",
+    "math.counting": "number", "math.data": "chart", "math.decimals": "math",
+    "math.fractions": "shapes", "math.measurement": "math",
+    "math.money": "market", "math.multiplication-division": "number",
+    "math.patterns": "shapes", "math.place-value": "number",
+    "math.time": "clock", "motor": "body", "music": "music",
+    "numbers": "number", "object": "box", "patterns": "shapes",
+    "phono": "reading", "reading.comprehension": "book",
+    "reading.literary": "book", "reading.mechanics": "writing",
+    "reading.phonics": "reading", "reading.sight-words": "book",
+    "reading.text-features": "book", "reading.vocabulary": "reading",
+    "science.animals": "animal", "science.body": "health",
+    "science.earth-space": "night", "science.ecosystems": "plant",
+    "science.energy": "circuit", "science.forces": "magnet",
+    "science.inquiry": "science", "science.life-cycles": "butterfly",
+    "science.living-things": "plant", "science.matter": "weather",
+    "science.plants": "plant", "science.weather": "weather",
+    "semotional": "emotion", "sensory": "palette",
+    "social.citizenship": "community", "social.community": "community",
+    "social.culture": "history", "social.economics": "market",
+    "social.family": "face", "social.government": "community",
+    "social.history": "history", "social.maps": "compass",
+    "sorting": "shapes", "tech.algorithms": "robot",
+    "tech.creative": "tablet", "tech.debugging": "robot",
+    "tech.digital-literacy": "tablet", "tech.logic": "robot",
+    "tech.loops": "robot", "tech.patterns": "shapes",
+    "tracing": "writing", "vocab": "book", "writing.composition": "writing",
+    "writing.grammar": "writing", "writing.mechanics": "writing",
+    "writing.transitions": "writing",
+}
+
+
 def load_rows(stages: set[int] | None) -> list[dict]:
-    rows = []
+    by_ref: dict[str, dict] = {}
     with MANIFEST.open(encoding="utf-8", newline="") as f:
         for row in csv.DictReader(f):
             st = set(_parse_stages(row["stage"]))
             if stages is None or st & stages:
-                rows.append(row)
-    return rows
+                ref = row["image_ref"].replace("\\", "/").lstrip("/")
+                by_ref[ref] = dict(row)
+    lib_path = MOBILE / "assets" / "content" / "watoto_content_library.json"
+    if lib_path.exists():
+        lib = json.loads(lib_path.read_text(encoding="utf-8"))
+        for item in lib.get("content", []):
+            st = int(item.get("stage", 1))
+            if stages is not None and st not in stages:
+                continue
+            skills = item.get("skills") or []
+            skill = skills[-1] if skills else ""
+            title = item.get("title") or ""
+            for field in ("steps", "questions", "pages"):
+                for part in item.get(field, []):
+                    vis = part.get("visual")
+                    if not isinstance(vis, dict) or vis.get("mode") != "slot":
+                        continue
+                    ref = (vis.get("ref") or "").replace("\\", "/").lstrip("/")
+                    if not ref:
+                        continue
+                    context_text = " ".join(filter(None, [
+                        title,
+                        part.get("narration") or "",
+                        part.get("prompt") or "",
+                    ]))
+                    if ref in by_ref:
+                        by_ref[ref].setdefault("fallback_text", context_text)
+                        by_ref[ref].setdefault("skill", skill)
+                    else:
+                        by_ref[ref] = {
+                            "image_ref": ref,
+                            "stage": str(st),
+                            "subject": item.get("subject") or "",
+                            "art_brief": vis.get("alt") or Path(ref).stem,
+                            "fallback_text": context_text,
+                            "skill": skill,
+                        }
+    return list(by_ref.values())
 
 
 def main():
@@ -727,7 +1113,9 @@ def main():
             continue
         img = render_image(ref, row["stage"],
                            row.get("art_brief") or Path(ref).stem,
-                           row.get("subject") or "")
+                           row.get("subject") or "",
+                           row.get("fallback_text") or "",
+                           row.get("skill") or "")
         if img is None:
             # The classifier would not commit. Writing nothing leaves the
             # striped placeholder, which is the honest state.

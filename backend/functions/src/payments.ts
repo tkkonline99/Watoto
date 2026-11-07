@@ -144,8 +144,8 @@ export const verifyPurchase = onCall(async (req) => {
   const receipt = String(req.data?.receipt ?? "");
   if (!receipt) throw new HttpsError("invalid-argument", "receipt is required.");
 
-  const v = platform === "apple" ? await verifyApple(receipt)
-          : platform === "google" ? await verifyGoogle(receipt)
+  const v = (platform === "apple" || platform === "ios") ? await verifyApple(receipt)
+          : (platform === "google" || platform === "android") ? await verifyGoogle(receipt)
           : (() => { throw new HttpsError("invalid-argument", "Unknown platform."); })();
   const result = await v;
 

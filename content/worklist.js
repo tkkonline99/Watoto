@@ -111,9 +111,19 @@ const IMAGE_EXT = /\.(png|jpe?g|webp)$/i;
 const referenced = new Set(photoRefs());
 for (const it of arr) {
   for (const a of it.assets || []) if (a.type === 'image') referenced.add(a.ref.replace(/^img\//, ''));
-  for (const q of it.questions || []) for (const o of q.options || []) if (o.asset) referenced.add(o.asset.replace(/^img\//, ''));
-  for (const p of it.pages || []) if (p.illustration) referenced.add(p.illustration.replace(/^img\//, ''));
-  for (let i = 0; i < (it.steps || []).length; i++) referenced.add(stepArtRef(it, i));
+  for (const q of it.questions || []) {
+    if (q.visual && q.visual.ref) referenced.add(q.visual.ref.replace(/^img\//, ''));
+    for (const o of q.options || []) if (o.asset) referenced.add(o.asset.replace(/^img\//, ''));
+  }
+  for (const p of it.pages || []) {
+    if (p.illustration) referenced.add(p.illustration.replace(/^img\//, ''));
+    if (p.visual && p.visual.ref) referenced.add(p.visual.ref.replace(/^img\//, ''));
+  }
+  for (let i = 0; i < (it.steps || []).length; i++) {
+    referenced.add(stepArtRef(it, i));
+    const st = it.steps[i];
+    if (st && st.visual && st.visual.ref) referenced.add(st.visual.ref.replace(/^img\//, ''));
+  }
 }
 const orphans = [];
 for (const d of fs.readdirSync(IMGDIR)) {
@@ -141,7 +151,7 @@ function scoreMatch(orphan, item) {
 // ---- declared audio with no file behind it ----
 const audioRefs = new Set();
 for (const it of arr) for (const a of it.assets || []) if (a.type === 'audio') audioRefs.add(a.ref);
-const missingAudio = [...audioRefs].filter((r) => !fs.existsSync(path.join(ROOT, 'apps/mobile/assets/audio', r)));
+const missingAudio = [...audioRefs].filter((r) => !fs.existsSync(path.join(ROOT, 'apps/mobile/assets/audio', r.replace(/^audio\//, ''))));
 
 const isBare = (s) => !(s.mechanic || '').trim() && s.answer == null;
 
@@ -197,10 +207,16 @@ for (const { stage, ages, subject } of subs) {
   // way a lesson gets a picture at all — steps carry no illustration field.
   // Counting only fields called the seven pre-reading song and movement
   // lessons art-less while their step scenes sat rendered beside them.
+  const hasSlotVisual = (part) =>
+    part && part.visual && (
+      part.visual.mode === 'scene' ||
+      part.visual.mode === 'token' ||
+      (part.visual.ref && fs.existsSync(path.join(IMGDIR, part.visual.ref.replace(/^img\//, ''))))
+    );
   const noArt = items.filter((it) => {
-    const q = (it.questions || []).some((x) => (x.options || []).some((o) => o.asset));
-    const p = (it.pages || []).some((x) => x.illustration);
-    const s = (it.steps || []).some((_, i) => fs.existsSync(path.join(IMGDIR, stepArtRef(it, i))));
+    const q = (it.questions || []).some((x) => hasSlotVisual(x) || (x.options || []).some((o) => o.asset));
+    const p = (it.pages || []).some((x) => x.illustration || hasSlotVisual(x));
+    const s = (it.steps || []).some((x, i) => hasSlotVisual(x) || fs.existsSync(path.join(IMGDIR, stepArtRef(it, i))));
     return !(it.assets || []).some((a) => a.type === 'image') && !q && !p && !s;
   });
   const bare = byType.lesson.reduce((n, l) => n + (l.steps || []).filter(isBare).length, 0);

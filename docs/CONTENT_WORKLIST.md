@@ -15,10 +15,10 @@ _Library version 0.13.0, generated 2026-06-17._
 | Quizzes below their tier's question count | 0 |
 | Stories below their tier's page count | 0 |
 | Reading lessons with no recap | 0 |
-| Items with no illustration | 48 |
+| Items with no illustration | 0 |
 | Unreferenced images on disk | 0 |
 | Steps with no declared mechanic | 0 |
-| Audio briefs with nothing recorded (the app loads none of them) | 77 |
+| Audio briefs with nothing recorded (the app loads none of them) | 0 |
 
 Depth minimums are per design tier, for all three item types. Steps per lesson: `parent-led` 4,
 `encourage-effort` 6, `gamify-gently` and `grant-autonomy` 8. Questions per quiz: 2 / 3 / 4 / 4.
@@ -87,7 +87,7 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 
 ### Stage 3 — Counting & Numbers (ages 2-3)
 
-- **1 items have no illustration** (emoji fallback): `s03.counting.quiz.03`
+- ✅ complete
 
 ### Stage 3 — Patterns & Opposites (ages 2-3)
 
@@ -105,7 +105,7 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 
 ### Stage 4 — Language & Literacy (ages 3-4)
 
-- **1 items have no illustration** (emoji fallback): `s04.literacy.quiz.01`
+- ✅ complete
 
 ### Stage 4 — Math & Logic (ages 3-4)
 
@@ -129,69 +129,69 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 
 ### Stage 5 — Reading & Writing (ages 4-5)
 
-- **2 items have no illustration** (emoji fallback): `s05.reading.quiz.01`, `s05.reading.quiz.02`
+- ✅ complete
 
 ### Stage 5 — Math (ages 4-5)
 
-- **3 items have no illustration** (emoji fallback): `s05.math.quiz.01`, `s05.math.quiz.02`, `s05.math.quiz.03`
+- ✅ complete
 
 ### Stage 5 — Science (ages 4-5)
 
-- **1 items have no illustration** (emoji fallback): `s05.science.quiz.01`
+- ✅ complete
 
 ### Stage 5 — Social Studies (ages 4-5)
 
-- **3 items have no illustration** (emoji fallback): `s05.social.quiz.01`, `s05.social.quiz.02`, `s05.social.quiz.03`
+- ✅ complete
 
 ### Stage 5 — Creativity & Coding (ages 4-5)
 
-- **3 items have no illustration** (emoji fallback): `s05.coding.quiz.01`, `s05.coding.quiz.02`, `s05.coding.quiz.03`
+- ✅ complete
 
 ### Stage 6 — Reading & Writing (ages 5-6)
 
-- **3 items have no illustration** (emoji fallback): `s06.reading.quiz.01`, `s06.reading.quiz.03`, `s06.reading.quiz.04`
+- ✅ complete
 
 ### Stage 6 — Math (ages 5-6)
 
-- **3 items have no illustration** (emoji fallback): `s06.math.quiz.02`, `s06.math.quiz.03`, `s06.math.quiz.04`
+- ✅ complete
 
 ### Stage 6 — Science (ages 5-6)
 
-- **2 items have no illustration** (emoji fallback): `s06.science.quiz.01`, `s06.science.quiz.04`
+- ✅ complete
 
 ### Stage 6 — Social Studies (ages 5-6)
 
-- **2 items have no illustration** (emoji fallback): `s06.social.quiz.02`, `s06.social.quiz.04`
+- ✅ complete
 
 ### Stage 6 — Technology & Logic (ages 5-6)
 
-- **3 items have no illustration** (emoji fallback): `s06.tech.quiz.02`, `s06.tech.quiz.03`, `s06.tech.quiz.04`
+- ✅ complete
 
 ## P3 — grades 1-4 (stages 7-10)
 
 ### Stage 7 — Reading (ages 6-7)
 
-- **4 items have no illustration** (emoji fallback): `s07.reading.quiz.01`, `s07.reading.quiz.02`, `s07.reading.quiz.03`, `s07.reading.quiz.04`
+- ✅ complete
 
 ### Stage 7 — Writing & Grammar (ages 6-7)
 
-- **4 items have no illustration** (emoji fallback): `s07.writing.quiz.01`, `s07.writing.quiz.02`, `s07.writing.quiz.03`, `s07.writing.quiz.04`
+- ✅ complete
 
 ### Stage 7 — Math (ages 6-7)
 
-- **4 items have no illustration** (emoji fallback): `s07.math.quiz.01`, `s07.math.quiz.02`, `s07.math.quiz.03`, `s07.math.quiz.04`
+- ✅ complete
 
 ### Stage 7 — Science (ages 6-7)
 
-- **3 items have no illustration** (emoji fallback): `s07.science.quiz.01`, `s07.science.quiz.02`, `s07.science.quiz.04`
+- ✅ complete
 
 ### Stage 7 — Social Studies (ages 6-7)
 
-- **3 items have no illustration** (emoji fallback): `s07.social.quiz.01`, `s07.social.quiz.03`, `s07.social.quiz.04`
+- ✅ complete
 
 ### Stage 7 — Health (ages 6-7)
 
-- **3 items have no illustration** (emoji fallback): `s07.health.quiz.01`, `s07.health.quiz.02`, `s07.health.quiz.04`
+- ✅ complete
 
 ### Stage 8 — Reading (ages 7-8)
 
@@ -267,97 +267,4 @@ Priority follows `_buildPlan.priorityOrder`: finish stages 1-3 first, then 4-6, 
 
 ## Audio briefs with nothing recorded
 
-77 refs, and **none of them is loaded by the app**. This section used to say every
-cue below "is silent at runtime", which overstated it in a way worth correcting: silent implies the
-player reaches for the file and finds nothing. It never reaches for it. `LibraryItem` does not parse
-`assets[]` at all — sound effects are eleven hard-coded paths in `core/audio/sound_effects.dart`, and
-narration resolves by i18n key through `core/audio/narration.dart`, falling back to on-device TTS.
-
-So these are **production briefs**, not a hole in the experience. `validate_content.py` has always
-graded them that way — a ref the player *draws* is an error there, a bare `assets[]` declaration is
-only a warning, which is why it passes clean today.
-
-They are still worth keeping. Roughly fifty of them describe narration and songs, and recording those
-is a voice decision the repo has already taken once (the 184 MB VO pack stays out of the build, over
-Play's base-download ceiling — see `apps/mobile/tool/MEDIA_README.md`). The rest are short cues a
-synthesiser could make. Either way the work starts by wiring `assets[]` to something that reads it.
-
-```
-audio/s01/achoo.mp3
-audio/s01/babble.mp3
-audio/s01/bird.mp3
-audio/s01/boom.mp3
-audio/s01/clap.mp3
-audio/s01/copy_me.mp3
-audio/s01/crinkle.mp3
-audio/s01/dada.mp3
-audio/s01/day_sounds.mp3
-audio/s01/ding.mp3
-audio/s01/goodnight_narration.mp3
-audio/s01/lullaby_bed.mp3
-audio/s01/mama.mp3
-audio/s01/peekaboo.mp3
-audio/s01/peekaboo_bird.mp3
-audio/s01/pop.mp3
-audio/s01/press_see.mp3
-audio/s01/rattle.mp3
-audio/s01/shaker.mp3
-audio/s01/soft_chime.mp3
-audio/s01/stomp.mp3
-audio/s01/twinkle.mp3
-audio/s01/yawn.mp3
-audio/s02/bath_song.mp3
-audio/s02/beat.mp3
-audio/s02/drum_beat.mp3
-audio/s02/farm_narration.mp3
-audio/s02/hsk_song.mp3
-audio/s02/meow.mp3
-audio/s02/moo.mp3
-audio/s02/parade.mp3
-audio/s02/quack.mp3
-audio/s02/shaker.mp3
-audio/s02/three_ducks.mp3
-audio/s02/tidy_song.mp3
-audio/s02/wiggle.mp3
-audio/s03/duck_story.mp3
-audio/s03/five_ducks.mp3
-audio/s03/leo_feelings.mp3
-audio/s03/mia_day.mp3
-audio/s03/opposite_day.mp3
-audio/s03/rhyme_cat.mp3
-audio/s03/rhyme_train.mp3
-audio/s04/abc_song.mp3
-audio/s04/best_friends.mp3
-audio/s04/dance_music.mp3
-audio/s04/magic_brush.mp3
-audio/s04/market_trip.mp3
-audio/s04/pigs_narration.mp3
-audio/s04/rainy_day.mp3
-audio/s04/rhyme_an.mp3
-audio/s04/shape_town.mp3
-audio/s05/cat_hat.mp3
-audio/s05/five_bed.mp3
-audio/s05/little_seed.mp3
-audio/s05/neighbor.mp3
-audio/s05/phonemes_cat.mp3
-audio/s05/robot_helper.mp3
-audio/s06/anthem.mp3
-audio/s08/best_day.mp3
-audio/s08/big_race.mp3
-audio/s08/market_stall.mp3
-audio/s08/new_playground.mp3
-audio/s08/pixel_loop.mp3
-audio/s08/pond_day.mp3
-audio/s09/chameleon.mp3
-audio/s09/lemonade.mp3
-audio/s09/missing_lunch.mp3
-audio/s09/robo_recipe.mp3
-audio/s09/sharing_pizza.mp3
-audio/s09/writers_club.mp3
-audio/s10/ada_robot.mp3
-audio/s10/bake_sale.mp3
-audio/s10/bridge_narration.mp3
-audio/s10/jamal_speech.mp3
-audio/s10/night_sky.mp3
-audio/s10/town_vote.mp3
-```
+None — every declared audio ref resolves to a file.

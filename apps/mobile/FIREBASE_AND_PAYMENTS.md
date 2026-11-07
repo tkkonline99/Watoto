@@ -1,62 +1,76 @@
 # Firebase + Payments (mobile)
 
-The app runs fully offline with `LocalAuthService` and a **sandbox Premium**
-entitlement. Real Firebase Auth and store IAP plug in without rewriting
-features.
+Watoto ships with full `firebase_core`, `firebase_auth`, `cloud_firestore`, and
+`cloud_functions` integration wired end-to-end. When `DefaultFirebaseOptions.isConfigured`
+is `false` (the default offline clone state), the app automatically falls back to
+`LocalAuthService`, `OfflineStore`, and `SandboxPurchaseBridge` (in debug builds)
+with zero network errors.
 
-## Free vs Premium (now live in the app)
+## Free vs Premium
 
 | Tier | What unlocks |
-|------|----------------|
-| **Free** | Curriculum stages **1–5**, XP/coins/stars, daily challenge, avatar shop |
-| **Premium** | Stages **6–10**, multi-device sync (when backend is live), offline packs (roadmap) |
+|------|--------------|
+| **Free** | Curriculum stages **1–5** (or **1–10** when `PUBLISH_FREE_ONLY=true`), XP/coins/stars, daily challenge, avatar shop |
+| **Premium** | Stages **6–10**, multi-device Firestore cloud sync, server-verified entitlements |
 
-Gating never interrupts a child mid-activity. Premium prompts are **parent zone
-only** (`/paywall`).
+Gating never interrupts a child mid-activity. Premium prompts and voice-pack
+downloads live strictly behind the **Parent Zone** (`/parent` and `/paywall`).
 
-## Sandbox purchase (works today)
+## Sandbox purchase (works offline today)
 
-1. Open **Parent zone** → **Watoto Premium**.
+1. Open **Parent Zone** → **Watoto Premium**.
 2. Tap **Monthly (sandbox)** or **Annual (sandbox)**.
 3. Local entitlement is written for 30 / 365 days (`OfflineStore.setLocalPremium`).
 
-Product ids match `backend/products.json`:
-
+Product IDs match `backend/products.json`:
 - `watoto.premium.monthly`
 - `watoto.premium.annual`
 
-## Activate real Firebase Auth
+## Activate Live Firebase Auth + Firestore Sync (~10 minutes)
 
-1. Create a Firebase project; enable Email/Password + Anonymous; create Firestore.
-2. From `apps/mobile`:
+All Dart and TypeScript code is already wired in:
+- `lib/firebase_options.dart` (`DefaultFirebaseOptions`)
+- `lib/firebase/firebase_bootstrap.dart` (`initializeWatotoFirebase()`)
+- `lib/features/auth/firebase_auth_service.dart` (`FirebaseAuthService`)
+- `lib/data/cloud/cloud_sync.dart` (`FirestoreSyncApi`)
+- `lib/features/auth/iap_bridge.dart` (`verifyStoreReceiptCallable`, `fetchServerEntitlement`)
+
+To connect your live Firebase project:
+
+1. **Create & configure Firebase project:**
+   - Enable **Authentication** → Email/Password + Anonymous.
+   - Create **Cloud Firestore** database (production mode).
+2. **Deploy Firestore rules, indexes, and Cloud Functions:**
    ```bash
-   flutter pub add firebase_core firebase_auth cloud_firestore
+   cd backend
+   firebase login
+   firebase use --add   # select your Firebase project
+   cd functions && npm ci && npm run build && cd ..
+   firebase deploy --only firestore:rules,firestore:indexes,functions
+   ```
+3. **Generate `lib/firebase_options.dart` via FlutterFire:**
+   ```bash
+   cd apps/mobile
    dart pub global activate flutterfire_cli
-   flutterfire configure
+   flutterfire configure --out=lib/firebase_options.dart
    ```
-3. Replace the body of `lib/features/auth/firebase_auth_service.dart` with the
-   adapter in `auth/FIREBASE_SETUP_FLUTTER.md`.
-4. In `lib/features/auth/auth_service.dart`, point the provider at
-   `createAuthService()` (or `FirebaseAuthService()`).
-5. In `main.dart`, after binding:
-   ```dart
-   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-   await container.read(authServiceProvider).ensureAnonymousSession();
+   *(Alternatively, pass `--dart-define=FIREBASE_PROJECT_ID=... --dart-define=FIREBASE_API_KEY=...` at build time.)*
+4. **Build release binaries:**
+   ```bash
+   flutter build appbundle --release \
+     --dart-define=USE_FIREBASE=true \
+     --dart-define=FIREBASE_OPTIONS_CONFIGURED=true
    ```
-6. Deploy `backend/` (rules + functions) and create store products — see
-   `backend/PAYMENTS_README.md`.
 
-## Activate real IAP
+## Activate Live StoreKit 2 / Google Play Billing IAP
 
-1. Create the two products in App Store Connect + Play Console (same ids).
-2. Implement a native `PurchaseBridge` (StoreKit 2 / Play Billing) that returns
-   a receipt; keep `SandboxPurchaseBridge` for debug builds.
-3. After buy/restore, call the `verifyPurchase` Cloud Function; entitlement is
-   written **server-side only** (clients cannot set `plan` in Firestore rules).
-4. Swap `EntitlementService` to read the account doc (mirror of
-   `auth/entitlements.ts`) instead of / in addition to local premium.
+1. Create `watoto.premium.monthly` and `watoto.premium.annual` in App Store Connect and Google Play Console.
+2. Configure store secrets for Cloud Functions (`backend/functions/src/payments.ts`):
+   - `APPLE_ISSUER_ID`, `APPLE_KEY_ID`, `APPLE_PRIVATE_KEY`, `APPLE_BUNDLE_ID`
+   - `GOOGLE_PACKAGE_NAME` (and Play Developer API service account access)
+3. Build with `--dart-define=PUBLISH_FREE_ONLY=false`. After purchase/restore, `EntitlementService` automatically invokes `verifyStoreReceiptCallable` (`verifyPurchase` Cloud Function) and syncs `accounts/{uid}` via `refreshFromServer()`.
 
-## Screen time
+## Screen Time
 
-Parent zone → **Screen time**: Off / 15 / 25 / 45 minutes. When exceeded, child
+Parent Zone → **Screen time**: Off / 15 / 25 / 45 minutes. When exceeded, child
 routes redirect to `/rest`. Parents can grant **+10 minutes** from the dashboard.

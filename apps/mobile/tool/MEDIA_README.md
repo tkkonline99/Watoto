@@ -29,11 +29,15 @@ Flat preschool style matching the s01 starter pack. `text_risk` briefs stay text
 
 `NarrationController.speak(text, lang, audioKey: '…')` tries, in order:
 
-1. `assets/audio/<lang>/<audioKey>.mp3`
-2. `assets/audio/en/<audioKey>.mp3`
+1. Bundled asset: `assets/audio/<lang>/<audioKey>.mp3`
+2. Downloaded Parent Zone voice pack (`VoicePackService`): `<appSupport>/voice_packs/<lang>/<audioKey>.mp3`
 3. On-device Flutter TTS (naturalized + chunked)
 
 Lesson / quiz / story play screens pass the content i18n key as `audioKey`.
+Parents can download or remove the `en`, `sw`, and `fr` neural voice packs
+from **Parent Zone → Accessibility → Offline Neural Voice Packs**, which
+fetches and SHA-256-verifies `<lang>.zip` from the `voice-pack-v1` GitHub
+Release.
 
 ## (c) Offline TTS export
 

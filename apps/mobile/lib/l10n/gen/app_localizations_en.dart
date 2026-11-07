@@ -461,7 +461,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get termsOfService => 'Terms of Service';
 
   @override
-  String get legalDraftNote => 'Effective 2026-07-18 · COPPA & GDPR-K compliant';
+  String get legalDraftNote =>
+      'Effective 2026-07-18 · COPPA & GDPR-K compliant';
 
   @override
   String levelLabel(int level) {

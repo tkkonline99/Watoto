@@ -152,7 +152,7 @@ void main() {
       ));
       await tester.pump();
       expect(find.text('🥫'), findsNothing);
-      expect(find.byType(StripedPlaceholder), findsOneWidget);
+      expect(find.byType(Image), findsOneWidget);
     });
 
     test('a declared token outranks the narration', () {
@@ -192,7 +192,7 @@ void main() {
         (tester) async {
       await tester.pumpWidget(host(const VisualStage(
         visual: SlotVisual(
-          ref: 'img/s10/step_science_lesson_05_7.png',
+          ref: 'img/s10/unrendered_slot_fixture.png',
           alt: 'A lid on a pan of hot water, drops forming underneath',
         ),
         fallbackEmoji: '🥫',

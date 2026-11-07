@@ -8,6 +8,7 @@ import '../analytics/analytics.dart';
 import '../offline/offline_providers.dart';
 import 'sfx_backend_io.dart'
     if (dart.library.js_interop) 'sfx_backend_web.dart';
+import 'voice_pack_service.dart';
 
 /// Active spoken word span reported during narration playback (for read-along
 /// word highlighting and accessibility testing).
@@ -647,7 +648,16 @@ class NarrationController extends Notifier<bool> {
         return;
       }
 
-      // 2. Fall back to on-device FlutterTts (naturalized + chunked).
+      // 2. Check for a downloaded neural voiceover pack file on disk.
+      final downloadedClip = ref
+          .read(voicePackServiceProvider)
+          .resolveDownloadedClip(langCode, audioKey);
+      if (downloadedClip != null) {
+        await _voBackend.playFile(downloadedClip, 1.0);
+        return;
+      }
+
+      // 3. Fall back to on-device FlutterTts (naturalized + chunked).
       final resolved = await resolvedLocaleFor(langCode);
       if (!isCurrent()) return;
       if (resolved == null) {

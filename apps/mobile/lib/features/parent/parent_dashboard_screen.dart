@@ -10,6 +10,7 @@ import 'package:go_router/go_router.dart';
 import '../../core/ai/watoto_ai_engine.dart';
 import '../../core/analytics/analytics.dart';
 import '../../core/audio/narration.dart';
+import '../../core/audio/voice_pack_service.dart';
 import '../../core/l10n/store_error_text.dart';
 import '../../core/offline/desktop_export_stub.dart'
     if (dart.library.io) '../../core/offline/desktop_export_io.dart';
@@ -912,6 +913,7 @@ class ParentDashboardScreen extends ConsumerWidget {
               onChanged: (_) => ref.read(narrationProvider.notifier).toggle(),
             ),
             const _NarrationAvailabilityNotice(),
+            const _VoicePackCard(),
             SwitchListTile(
               contentPadding: EdgeInsets.zero,
               value: ref.watch(dyslexiaFriendlyProvider),
@@ -1188,6 +1190,147 @@ class _AiParentCoachCard extends ConsumerWidget {
                     ),
                   ),
                 ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _VoicePackCard extends ConsumerStatefulWidget {
+  const _VoicePackCard();
+
+  @override
+  ConsumerState<_VoicePackCard> createState() => _VoicePackCardState();
+}
+
+class _VoicePackCardState extends ConsumerState<_VoicePackCard> {
+  String? _busyLang;
+
+  Future<void> _download(String langCode) async {
+    if (_busyLang != null) return;
+    setState(() => _busyLang = langCode);
+    try {
+      final svc = ref.read(voicePackServiceProvider);
+      final count = await svc.downloadAndInstall(langCode);
+      ref.read(voicePackTickProvider.notifier).state++;
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Installed $langCode neural voice pack ($count clips)'),
+        ),
+      );
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Voice pack download failed: $e')),
+      );
+    } finally {
+      if (mounted) setState(() => _busyLang = null);
+    }
+  }
+
+  Future<void> _remove(String langCode) async {
+    if (_busyLang != null) return;
+    setState(() => _busyLang = langCode);
+    try {
+      await ref.read(voicePackServiceProvider).removePack(langCode);
+      ref.read(voicePackTickProvider.notifier).state++;
+    } finally {
+      if (mounted) setState(() => _busyLang = null);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    ref.watch(voicePackTickProvider);
+    final svc = ref.watch(voicePackServiceProvider);
+    if (!svc.isSupported) return const SizedBox.shrink();
+    final locale = ref.watch(localeProvider).languageCode;
+    final title = switch (locale) {
+      'sw' => '🎙️ Sauti za Neural Nje ya Mtandao (EN / SW / FR)',
+      'fr' => '🎙️ Voix Neuronales Hors Ligne (EN / SW / FR)',
+      _ => '🎙️ Offline Neural Voice Packs (EN / SW / FR)',
+    };
+    final subtitle = switch (locale) {
+      'sw' => 'Pakua sauti za studio kwenye Wi-Fi ili kufanya kazi bila mtandao.',
+      'fr' => 'Téléchargez les voix studio en Wi-Fi pour une lecture hors ligne.',
+      _ => 'Download studio neural voices over Wi-Fi for offline narration.',
+    };
+
+    return ExcludeSemantics(
+      child: Card(
+        key: const ValueKey('voice-pack-card'),
+        margin: const EdgeInsets.only(top: 6, bottom: 6),
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              RichText(
+                text: TextSpan(
+                  text: title,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w800,
+                    fontSize: 14,
+                    color: WatotoColors.deep,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 4),
+              RichText(
+                text: TextSpan(
+                  text: subtitle,
+                  style: const TextStyle(fontSize: 12, color: Colors.black54),
+                ),
+              ),
+              const SizedBox(height: 8),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  for (final entry in voicePackCatalog)
+                    Builder(
+                      builder: (context) {
+                        final installed = svc.isInstalled(entry.langCode);
+                        final busy = _busyLang == entry.langCode;
+                        final label = installed
+                            ? '${entry.langCode.toUpperCase()} ✓ (${svc.installedClipCount(entry.langCode)})'
+                            : '${entry.langCode.toUpperCase()} · ${entry.voiceName}';
+                        return ActionChip(
+                          key: ValueKey('voice-pack-chip-${entry.langCode}'),
+                          avatar: Icon(
+                            busy
+                                ? Icons.hourglass_top
+                                : (installed
+                                      ? Icons.check_circle
+                                      : Icons.cloud_download_outlined),
+                            size: 16,
+                            color: installed
+                                ? WatotoColors.leaf
+                                : WatotoColors.sky,
+                          ),
+                          label: RichText(
+                            text: TextSpan(
+                              text: label,
+                              style: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w700,
+                                color: WatotoColors.deep,
+                              ),
+                            ),
+                          ),
+                          onPressed: busy
+                              ? null
+                              : () => installed
+                                    ? _remove(entry.langCode)
+                                    : _download(entry.langCode),
+                        );
+                      },
+                    ),
+                ],
+              ),
             ],
           ),
         ),

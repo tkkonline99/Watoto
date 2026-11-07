@@ -943,7 +943,7 @@ abstract class AppLocalizations {
   /// No description provided for @legalDraftNote.
   ///
   /// In en, this message translates to:
-  /// **'Draft — pending legal review'**
+  /// **'Effective 2026-07-18 · COPPA & GDPR-K compliant'**
   String get legalDraftNote;
 
   /// No description provided for @levelLabel.

@@ -14,7 +14,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/config/publish_config.dart';
 import '../../core/offline/offline_providers.dart';
+import '../../firebase/firebase_bootstrap.dart';
 import '../../l10n/gen/app_localizations.dart';
+import 'iap_bridge.dart';
 
 /// Product ids — must match `backend/products.json` and store consoles.
 const premiumMonthlyId = 'watoto.premium.monthly';
@@ -263,8 +265,30 @@ class EntitlementService {
   }
 
   Future<void> clearPremium() => _store.setLocalPremium(false);
+
+  /// Pulls the authoritative server entitlement from `accounts/{uid}` in
+  /// Firestore and updates the local offline cache.
+  Future<Entitlement> refreshFromServer(
+    String uid, {
+    Future<Entitlement?> Function(String uid)? fetcher,
+  }) async {
+    if (uid.isEmpty || (!isFirebaseInitialized && fetcher == null)) {
+      return current;
+    }
+    final remote = await (fetcher ?? fetchServerEntitlement)(uid);
+    if (remote == null) return current;
+    await _store.setLocalPremium(
+      remote.isPremium,
+      expiry: remote.entitlementExpiry,
+      source: 'firestore',
+    );
+    return current;
+  }
 }
 
 final entitlementServiceProvider = Provider<EntitlementService>(
-  (ref) => EntitlementService(ref.watch(offlineStoreProvider)),
+  (ref) => EntitlementService(
+    ref.watch(offlineStoreProvider),
+    verifier: isFirebaseInitialized ? verifyStoreReceiptCallable : null,
+  ),
 );

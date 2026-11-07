@@ -12,6 +12,12 @@ class SfxBackend {
     await player.play(AssetSource(asset), volume: volume);
   }
 
+  Future<void> playFile(String filePath, double volume) async {
+    final player = _player ??= AudioPlayer();
+    await player.stop();
+    await player.play(DeviceFileSource(filePath), volume: volume);
+  }
+
   Future<void> stop() async {
     await _player?.stop();
   }

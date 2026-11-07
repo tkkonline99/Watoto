@@ -1,15 +1,11 @@
-/// Native IAP bridge seam for Apple/Google (improvement 6 — business).
-///
-/// Free-only launch uses [UnconfiguredPurchaseBridge] / sandbox.
-/// When ready:
-///   1. `flutter pub add in_app_purchase`
-///   2. Implement [StoreKitPlayPurchaseBridge]
-///   3. Call Cloud Function `verifyPurchase` before granting entitlement
-///   4. Build with `--dart-define=PUBLISH_FREE_ONLY=false`
+/// Native IAP bridge seam + Cloud Functions / Firestore entitlement verification
+/// for Apple StoreKit 2 and Google Play Billing.
 library;
 
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_functions/cloud_functions.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
@@ -47,11 +43,28 @@ const premiumCatalog = <PremiumProduct>[
   ),
 ];
 
+/// Normalizes platform names so both client (`ios` / `android`) and backend
+/// (`apple` / `google`) conventions match.
+String normalizeStorePlatform(String platform) {
+  switch (platform.trim().toLowerCase()) {
+    case 'ios':
+    case 'apple':
+    case 'appstore':
+      return 'apple';
+    case 'android':
+    case 'google':
+    case 'play':
+      return 'google';
+    default:
+      return platform.trim().toLowerCase();
+  }
+}
+
 /// Native StoreKit 2 / Google Play Billing bridge over MethodChannel
 /// (`app.watoto.iap`).
 class StoreKitPlayPurchaseBridge implements PurchaseBridge {
   StoreKitPlayPurchaseBridge({MethodChannel? channel})
-      : _channel = channel ?? const MethodChannel('app.watoto.iap');
+    : _channel = channel ?? const MethodChannel('app.watoto.iap');
 
   final MethodChannel _channel;
 
@@ -70,7 +83,8 @@ class StoreKitPlayPurchaseBridge implements PurchaseBridge {
         'Store purchase did not return a receipt for $productId.',
       );
     }
-    final platform = result?['platform'] as String? ??
+    final platform =
+        result?['platform'] as String? ??
         (defaultTargetPlatform == TargetPlatform.iOS ? 'ios' : 'android');
     return (platform: platform, receipt: receipt);
   }
@@ -86,20 +100,104 @@ class StoreKitPlayPurchaseBridge implements PurchaseBridge {
       );
       final receipt = result?['receipt'] as String?;
       if (receipt == null || receipt.isEmpty) return null;
-      final platform = result?['platform'] as String? ??
+      final platform =
+          result?['platform'] as String? ??
           (defaultTargetPlatform == TargetPlatform.iOS ? 'ios' : 'android');
       return (platform: platform, receipt: receipt);
     } on MissingPluginException {
       if (kDebugMode) {
-        debugPrint('[iap] restore requested for $accountToken (no native plugin)');
+        debugPrint(
+          '[iap] restore requested for $accountToken (no native plugin)',
+        );
       }
       return null;
     }
   }
 }
 
-/// Verifies a store receipt against the backend (`POST /v1/billing/verify` or
-/// `WATOTO_VERIFY_PURCHASE_URL`) before granting premium entitlement.
+/// Parses an expiry timestamp returned by Cloud Functions or Firestore
+/// (epoch milliseconds, [Timestamp], or ISO-8601 string).
+DateTime? parseEntitlementExpiry(Object? raw) {
+  if (raw == null) return null;
+  if (raw is Timestamp) return raw.toDate().toUtc();
+  if (raw is int) return DateTime.fromMillisecondsSinceEpoch(raw, isUtc: true);
+  if (raw is num) {
+    return DateTime.fromMillisecondsSinceEpoch(raw.toInt(), isUtc: true);
+  }
+  if (raw is String && raw.isNotEmpty) {
+    final asInt = int.tryParse(raw);
+    if (asInt != null) {
+      return DateTime.fromMillisecondsSinceEpoch(asInt, isUtc: true);
+    }
+    return DateTime.tryParse(raw)?.toUtc();
+  }
+  return null;
+}
+
+/// Verifies a store receipt via the `verifyPurchase` Firebase Cloud Function
+/// (`backend/functions/src/payments.ts`).
+Future<({bool valid, DateTime? expiry})> verifyStoreReceiptCallable({
+  required String platform,
+  required String productId,
+  required String receipt,
+  required String accountToken,
+  Future<Map<String, dynamic>> Function(Map<String, Object?> payload)? caller,
+}) async {
+  final invoke =
+      caller ??
+      ((Map<String, Object?> payload) async {
+        final res = await FirebaseFunctions.instance
+            .httpsCallable('verifyPurchase')
+            .call<dynamic>(payload);
+        final data = res.data;
+        if (data is Map) return Map<String, dynamic>.from(data);
+        return <String, dynamic>{};
+      });
+  final body = await invoke(<String, Object?>{
+    'platform': normalizeStorePlatform(platform),
+    'productId': productId,
+    'receipt': receipt,
+    'accountToken': accountToken,
+  });
+  final valid =
+      body['ok'] == true || body['valid'] == true || body['plan'] == 'premium';
+  final expiry = parseEntitlementExpiry(body['entitlementExpiry']);
+  return (valid: valid && body['plan'] != 'free', expiry: expiry);
+}
+
+/// Reads the authoritative server entitlement from `accounts/{uid}` in
+/// Firestore (written by `verifyPurchase` / store notifications in
+/// `backend/functions/src/payments.ts`).
+Future<Entitlement?> fetchServerEntitlement(
+  String uid, {
+  FirebaseFirestore? firestore,
+  Future<Map<String, dynamic>?> Function(String uid)? docReader,
+}) async {
+  final reader =
+      docReader ??
+      ((String id) async {
+        final snap = await (firestore ?? FirebaseFirestore.instance)
+            .collection('accounts')
+            .doc(id)
+            .get();
+        return snap.data();
+      });
+  final data = await reader(uid);
+  if (data == null) return null;
+  final plan = (data['plan'] as String?) ?? 'free';
+  final expiry = parseEntitlementExpiry(data['entitlementExpiry']);
+  final now = DateTime.now().toUtc();
+  final isPremium =
+      plan == 'premium' && (expiry == null || expiry.isAfter(now));
+  return Entitlement(
+    plan: isPremium ? 'premium' : 'free',
+    entitlementExpiry: expiry,
+    isPremium: isPremium,
+  );
+}
+
+/// Verifies a store receipt against the HTTP backend (`POST /v1/billing/verify`
+/// or `WATOTO_VERIFY_PURCHASE_URL`) before granting premium entitlement.
 Future<({bool valid, DateTime? expiry})> verifyStoreReceiptHttp({
   required String platform,
   required String productId,
@@ -109,7 +207,8 @@ Future<({bool valid, DateTime? expiry})> verifyStoreReceiptHttp({
   String? verifyUrl,
 }) async {
   final httpClient = client ?? http.Client();
-  final url = verifyUrl ??
+  final url =
+      verifyUrl ??
       const String.fromEnvironment(
         'WATOTO_VERIFY_PURCHASE_URL',
         defaultValue: 'http://localhost:3000/v1/billing/verify',

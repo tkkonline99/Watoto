@@ -19,6 +19,10 @@ class SfxBackend {
     el.play();
   }
 
+  Future<void> playFile(String filePath, double volume) async {
+    // Web has no local filesystem voice-pack directory; no-op.
+  }
+
   Future<void> stop() async {
     _el?.pause();
   }

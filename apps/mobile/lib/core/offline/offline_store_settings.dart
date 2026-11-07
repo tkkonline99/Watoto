@@ -303,4 +303,30 @@ extension OfflineStoreSettings on OfflineStore {
       await _account.delete('entitlementExpiry');
     }
   }
+
+  // --------------------------------------------------------------- voice packs
+
+  /// Whether the downloadable neural voiceover pack for [langCode] (`en`, `sw`,
+  /// `fr`) has been installed on this device.
+  bool isVoicePackInstalled(String langCode) =>
+      _account.get('voicePackInstalled:$langCode') == 'true';
+
+  /// Number of MP3 clips extracted for [langCode], or 0 when not installed.
+  int voicePackClipCount(String langCode) =>
+      int.tryParse(_account.get('voicePackCount:$langCode') ?? '') ?? 0;
+
+  /// Records installation state and clip count for [langCode]'s neural voice pack.
+  Future<void> setVoicePackInstalled(
+    String langCode, {
+    required bool installed,
+    int clipCount = 0,
+  }) async {
+    if (installed) {
+      await _account.put('voicePackInstalled:$langCode', 'true');
+      await _account.put('voicePackCount:$langCode', '$clipCount');
+    } else {
+      await _account.delete('voicePackInstalled:$langCode');
+      await _account.delete('voicePackCount:$langCode');
+    }
+  }
 }
