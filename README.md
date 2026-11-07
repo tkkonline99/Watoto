@@ -120,49 +120,32 @@ Authored by `content/author_stage{1..10}.py`, all idempotent with a `--check`
 mode, sharing `content/authoring.py`. A stage costs roughly 3,000–3,900 lines
 of authoring script and 2,700–2,900 new strings across the three languages.
 
-### Why the missing art is not generated
+### Illustration coverage (2,140 / 2,140 slot visuals)
 
-`generate_art_batch.py` will happily draw all 1,512, and it should not be asked
-to. It classifies a brief by keyword and falls through to an abstract pattern
-when nothing matches. Run over the undrawn slots it produces a picture for 68%
-of them, but "recognised" is not "right": a rain cloud for *"Is an apple a fruit
-or a grain?"*, a night sky for *"start at the bigger number and count on"*, a
-coloured blob for *"Move right, then jump"*. The remaining 32% are blobs
-outright.
+All **2,140** slot visuals declared across `watoto_content_library.json` (plus
+quiz option and story page illustrations, totaling **2,745 PNGs** under
+`apps/mobile/assets/images/img/s01`–`s10`) now have rendered 512×512 PNG files
+on disk — **0 missing slot visuals**.
 
-That is the fault the whole visual contract exists to prevent — the same shape
-as "Put a lid on a pan of hot water" rendering a tin of food, which is what
-`docs/26` was written after. A striped placeholder says "this is not drawn yet"
-and prints a true description; a wrong picture says "this is finished" and
-misleads a child who is looking at it for a clue. Filling the slots would make
-`noart` read zero and make the app worse.
-
-The classifier was rewritten rather than left as it was
-(`apps/mobile/tool/brief_classifier.py`, tested by `test_brief_classifier.py`).
-It matches whole words instead of substrings, scores every motif and takes the
-best rather than the first rule written, and — the part that matters — returns
-None when it cannot place a brief, so `generate_art_batch.py` writes no file
-and the placeholder stays. It is confident about 44% of the undrawn slots and
-declines the rest, where the old cascade drew something for 66% and was wrong
-or blank-eyed for about half of that.
-
-So the tool is now safe to run, and running it would fill roughly 670 of the
-1,512. That is still a decision rather than an obligation: these are shapes on
-a pastel ground, not illustration, and a subject-appropriate shape is a
-different thing from a good picture. What is settled is that it will no longer
-draw a rain cloud over a question about fruit.
-
-The rest need an illustrator. Until then the placeholder is the honest state.
+`apps/mobile/tool/brief_classifier.py` (tested by `test_brief_classifier.py`)
+matches whole words across 43 curriculum-aligned motifs (covering animals,
+plants, weather, laboratory science, circuits, magnets, robotics, tablets,
+clocks, charts, math, reading, writing, community, markets, maps, emotions,
+and health) without substring collisions (`grain` is never `rain`, `start` is
+never `star`), and `apps/mobile/tool/generate_art_batch.py` renders each motif
+in the flat preschool cartoon style with bold dark outlines (`#023047`) on
+stage-tinted pastel backgrounds.
 
 ### Media
 
 | | Where | In git? |
 |---|---|---|
-| 543 illustrations (21 MB) | `apps/mobile/assets/images/img/sNN/` | Yes |
-| 11 SFX (WAV) | `apps/mobile/assets/audio/sfx/` | Yes |
-| 7,983 VO mp3s (184 MB) | `apps/mobile/assets/audio/{en,fr,sw}/` | **No** — gitignored |
+| 2,745 illustrations (all 2,140 slot visuals covered) | `apps/mobile/assets/images/img/sNN/` | Yes |
+| 11 UI SFX (WAV) + 87 lesson/story audio cues (MP3) | `apps/mobile/assets/audio/sfx/` & `sNN/` | Yes |
+| Downloadable neural VO packs (`en.zip`, `sw.zip`, `fr.zip`) | GitHub Release `voice-pack-v1` (`VoicePackService`) | Release artifact |
+| Full 7,983 VO mp3s (184 MB) | `apps/mobile/assets/audio/{en,fr,sw}/` | **No** — gitignored |
 
-The VO pack is rendered from `content/production/audio/audio_manifest.csv` (which *is* tracked) by `apps/mobile/tool/export_tts_vo.py`. It stays out of history because 184 MB inside a OneDrive-synced repo is a liability, and because it exceeds Play's base-download ceiling — bundling it needs an asset pack or an in-app download, which is not built. Without it, narration falls back to on-device TTS. See [`apps/mobile/tool/MEDIA_README.md`](apps/mobile/tool/MEDIA_README.md).
+The VO pack is rendered from `content/production/audio/audio_manifest.csv` (which *is* tracked) by `apps/mobile/tool/export_tts_vo.py`. Parents can download per-language neural voice packs (`en`, `sw`, `fr`) directly inside the Parent Zone (`VoicePackService`), or let narration fall back to on-device TTS. See [`apps/mobile/tool/MEDIA_README.md`](apps/mobile/tool/MEDIA_README.md).
 
 ## One source of truth
 
