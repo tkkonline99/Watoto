@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -56,6 +57,11 @@ def main() -> int:
             print(" ", v)
         return 1
     print("Layer dependency check OK")
+    classifier_test = Path(__file__).resolve().parent / "test_brief_classifier.py"
+    if classifier_test.exists():
+        res = subprocess.run([sys.executable, str(classifier_test)], check=False)
+        if res.returncode != 0:
+            return res.returncode
     return 0
 
 

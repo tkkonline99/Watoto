@@ -26,12 +26,48 @@ export function b64urlJson(segment: string): any {
 }
 
 /**
- * Decode + optionally verify an Apple JWS (x5c chain).
+ * SHA-256 fingerprint of Apple Root CA - G3, the anchor for every App Store
+ * signed payload (https://www.apple.com/certificateauthority/). Overridable via
+ * APPLE_ROOT_CA_SHA256 so tests (or a future Apple root rotation) can supply
+ * their own anchor without a code change.
+ */
+export const APPLE_ROOT_CA_G3_SHA256 =
+  "63:34:3A:BF:B8:9A:6A:03:EB:B5:7E:9B:3F:5F:A7:BE:7C:4F:5C:75:6F:30:17:B3:A8:C4:88:C3:65:3E:91:79";
+
+/**
+ * Walk an x5c chain leaf → intermediate → root: each certificate must be
+ * issued and signed by the next, all must be inside their validity window,
+ * and the last must be the pinned Apple root. Without this, a JWS carrying a
+ * self-signed leaf would "verify" against its own key.
+ */
+export function verifyX5cChain(x5c: string[], now: Date = new Date()): crypto.X509Certificate {
+  if (x5c.length < 2) throw new Error("JWS x5c chain too short");
+  const certs = x5c.map((b64) => new crypto.X509Certificate(Buffer.from(b64, "base64")));
+  for (const c of certs) {
+    if (now < new Date(c.validFrom) || now > new Date(c.validTo)) {
+      throw new Error(`JWS certificate outside validity window: ${c.subject}`);
+    }
+  }
+  for (let i = 0; i < certs.length - 1; i++) {
+    const child = certs[i], parent = certs[i + 1];
+    if (!child.checkIssued(parent) || !child.verify(parent.publicKey)) {
+      throw new Error("JWS certificate chain is broken");
+    }
+  }
+  const root = certs[certs.length - 1];
+  const pinned = (process.env.APPLE_ROOT_CA_SHA256 || APPLE_ROOT_CA_G3_SHA256).toUpperCase();
+  if (root.fingerprint256.toUpperCase() !== pinned) {
+    throw new Error("JWS chain does not end at the Apple root CA");
+  }
+  return certs[0];
+}
+
+/**
+ * Decode + verify an Apple JWS (x5c chain).
  *
- * When APPLE_JWS_REQUIRE_VERIFY=true (recommended in production), the leaf
- * certificate's public key must verify the ES256 signature. Full Apple Root CA
- * pinning should still be added before hard launch (store the Apple Root CA G3
- * PEM in secrets and walk x5c → root).
+ * Verification is ON by default: the x5c chain must lead to the pinned Apple
+ * Root CA G3 and the leaf key must verify the ES256 signature. Set
+ * APPLE_JWS_REQUIRE_VERIFY=false only for local emulator work.
  */
 export function decodeJWS(jws: string, opts?: { requireVerify?: boolean }): any {
   const parts = jws.split(".");
@@ -39,7 +75,7 @@ export function decodeJWS(jws: string, opts?: { requireVerify?: boolean }): any 
   const [headerB64, payloadB64, sigB64] = parts;
   const header = b64urlJson(headerB64);
   const requireVerify =
-    opts?.requireVerify ?? process.env.APPLE_JWS_REQUIRE_VERIFY === "true";
+    opts?.requireVerify ?? process.env.APPLE_JWS_REQUIRE_VERIFY !== "false";
 
   if (requireVerify) {
     const x5c: string[] | undefined = header.x5c;
@@ -49,11 +85,7 @@ export function decodeJWS(jws: string, opts?: { requireVerify?: boolean }): any 
     if (header.alg !== "ES256") {
       throw new Error(`Unsupported JWS alg: ${header.alg}`);
     }
-    // Leaf cert (first x5c element) is DER base64.
-    const leafPem =
-      "-----BEGIN CERTIFICATE-----\n" +
-      x5c[0].match(/.{1,64}/g)!.join("\n") +
-      "\n-----END CERTIFICATE-----";
+    const leafKey = verifyX5cChain(x5c).publicKey;
     const signingInput = `${headerB64}.${payloadB64}`;
     const sig = Buffer.from(sigB64, "base64url");
     // Apple uses IEEE-P1363 (r||s) for ES256 in many payloads.
@@ -62,8 +94,8 @@ export function decodeJWS(jws: string, opts?: { requireVerify?: boolean }): any 
       v.update(signingInput);
       v.end();
       return dsaEncoding
-        ? v.verify({ key: leafPem, dsaEncoding }, sig)
-        : v.verify(leafPem, sig);
+        ? v.verify({ key: leafKey, dsaEncoding }, sig)
+        : v.verify(leafKey, sig);
     };
     const ok = verifyOnce("ieee-p1363") || verifyOnce("der") || verifyOnce();
     if (!ok) throw new Error("JWS signature verification failed");

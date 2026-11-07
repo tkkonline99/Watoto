@@ -351,7 +351,7 @@ def resolve(item, part, kind, index, tokens, briefs, on_disk):
         return {"mode": "scene", "ref": scene, "alt": alt}, "scene-decorative"
 
     ref = step_ref(item, index) if kind == "step" else question_ref(item, index)
-    return {"mode": "slot", "ref": ref, "alt": alt}, "brief"
+    return {"mode": "slot", "ref": ref, "alt": alt}, ("drawn" if ref in on_disk else "brief")
 
 
 def apply(lib, tokens, briefs, on_disk, stats):

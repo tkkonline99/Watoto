@@ -1173,7 +1173,7 @@ _DIGIT_RE = re.compile(r"\b(\d{1,3})\b")
 
 
 def classify_and_draw(draw, brief: str, name: str, stage: int, seed: str,
-                      subject: str = "") -> str | None:
+                      subject: str = "", context_brief: str = "") -> str | None:
     """Draw what [brief] describes. Returns the motif drawn, or None.
 
     None means the classifier would not commit, and **nothing is drawn**. The
@@ -1189,23 +1189,30 @@ def classify_and_draw(draw, brief: str, name: str, stage: int, seed: str,
     """
     cleaned = scene_of(brief)
     verdict = classify(cleaned, subject)
+    if verdict.motif is None and brief != cleaned:
+        verdict = classify(brief, subject)
+    if verdict.motif is None and context_brief:
+        verdict = classify(f"{cleaned} {context_brief}", subject)
+    if verdict.motif is None and context_brief:
+        verdict = classify(context_brief, subject)
     if verdict.motif is None:
         return None
     painter = MOTIF_PAINTERS.get(verdict.motif)
     if painter is None:
         return None
     cx, cy = SIZE // 2, SIZE // 2 + 10
+    effective_brief = f"{cleaned} {context_brief}".strip() if context_brief else cleaned
     if verdict.motif == "number":
-        found = _DIGIT_RE.search(cleaned)
+        found = _DIGIT_RE.search(effective_brief)
         painter(draw, cx, cy, stage, seed,
-                digits=found.group(1) if found else "3", brief=cleaned)
+                digits=found.group(1) if found else "3", brief=effective_brief)
     else:
-        painter(draw, cx, cy, stage, seed, brief=cleaned)
+        painter(draw, cx, cy, stage, seed, brief=effective_brief)
     return verdict.motif
 
 
 def render_image(image_ref: str, stage_raw: str, art_brief: str,
-                 subject: str = "") -> Image.Image | None:
+                 subject: str = "", context_brief: str = "") -> Image.Image | None:
     """The picture for one brief, or None when the brief cannot be placed.
 
     None is a real answer and callers must handle it by writing no file. The
@@ -1229,9 +1236,16 @@ def render_image(image_ref: str, stage_raw: str, art_brief: str,
         if abs(dx - SIZE // 2) > 135 or abs(dy - SIZE // 2) > 135:
             _circle(draw, dx, dy, 10 + (idx % 3) * 4, dot_col)
 
-    motif = classify_and_draw(draw, art_brief, name, stage, seed, subject)
+    motif = classify_and_draw(draw, art_brief, name, stage, seed, subject, context_brief)
     if motif is None:
         return None
+    # Soft rounded picture-book card border matching the curated illustration pack
+    draw.rounded_rectangle(
+        [10, 10, SIZE - 10, SIZE - 10],
+        radius=42,
+        outline=(255, 255, 255, 235),
+        width=12,
+    )
     # Softer preschool look; stages 1–3 get an extra pass (hero free-tier pack).
     img = img.filter(ImageFilter.SMOOTH)
     if stage <= 3:
@@ -1279,13 +1293,18 @@ def load_rows(stages: set[int] | None) -> list[dict]:
                     referenced.add(ref)
                     if stages is not None and st not in stages:
                         continue
+                    part_text = part.get("narration") or part.get("prompt") or part.get("text") or ""
+                    ctx_brief = f"{item.get('title') or ''} {part_text}".strip()
                     if ref not in by_ref:
                         by_ref[ref] = {
                             "image_ref": ref,
                             "stage": str(st),
                             "subject": item.get("subject") or "",
                             "art_brief": vis.get("alt") or Path(ref).stem,
+                            "context_brief": ctx_brief,
                         }
+                    elif not by_ref[ref].get("context_brief"):
+                        by_ref[ref]["context_brief"] = ctx_brief
     rows: list[dict] = []
     for ref, row in by_ref.items():
         if referenced and ref not in referenced:
@@ -1323,7 +1342,8 @@ def main():
             continue
         img = render_image(ref, row["stage"],
                            row.get("art_brief") or Path(ref).stem,
-                           row.get("subject") or "")
+                           row.get("subject") or "",
+                           row.get("context_brief") or "")
         if img is None:
             # The classifier would not commit. Writing nothing leaves the
             # striped placeholder, which is the honest state.

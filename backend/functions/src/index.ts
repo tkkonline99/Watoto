@@ -13,7 +13,7 @@ import { onCall, HttpsError } from "firebase-functions/v2/https";
 import { onSchedule } from "firebase-functions/v2/scheduler";
 import { initializeApp } from "firebase-admin/app";
 import { getAuth } from "firebase-admin/auth";
-import { getFirestore, FieldValue, Timestamp } from "firebase-admin/firestore";
+import { getFirestore, FieldValue, Timestamp, QueryDocumentSnapshot } from "firebase-admin/firestore";
 
 initializeApp();
 const db = getFirestore();
@@ -65,7 +65,7 @@ export const exportAccountData = onCall(async (req) => {
     profiles.push({
       id: p.id,
       profile: p.data(),
-      progress: progressSnap.docs.map((d) => ({ itemId: d.id, ...d.data() })),
+      progress: progressSnap.docs.map((d: QueryDocumentSnapshot) => ({ itemId: d.id, ...d.data() })),
     });
   }
   const consentsSnap = await accRef.collection("consents").get();
@@ -74,7 +74,7 @@ export const exportAccountData = onCall(async (req) => {
     exportedAt: new Date().toISOString(),
     account: acc.data(),
     profiles,
-    consents: consentsSnap.docs.map((d) => ({ id: d.id, ...d.data() })),
+    consents: consentsSnap.docs.map((d: QueryDocumentSnapshot) => ({ id: d.id, ...d.data() })),
   };
 });
 
