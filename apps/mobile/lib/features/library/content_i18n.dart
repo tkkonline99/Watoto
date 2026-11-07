@@ -49,7 +49,7 @@ class ContentI18n {
   static Future<Map<String, String>> _bundle(String code) async {
     try {
       final raw = await rootBundle.loadString('assets/i18n/$code.json');
-      return compute(_decodeBundle, raw, debugLabel: 'i18n:$code');
+      return await compute(_decodeBundle, raw, debugLabel: 'i18n:$code');
     } catch (_) {
       return const {};
     }

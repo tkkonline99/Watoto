@@ -248,6 +248,11 @@ class QuizViewState extends ConsumerState<QuizView> {
       );
     }
     final question = _questions[_q];
+    final optionAssetsDistinct = question.options.every(
+          (o) => o.asset != null && o.asset!.trim().isNotEmpty,
+        ) &&
+        question.options.map((o) => o.asset!.trim()).toSet().length ==
+            question.options.length;
     return Scaffold(
       appBar: playAppBar(
         context,
@@ -316,7 +321,9 @@ class QuizViewState extends ConsumerState<QuizView> {
                           child: Row(
                             children: [
                               // Illustrate one-word answers ("Ball" → ⚽)
-                              // from the English source label.
+                              // from the English source label, or use the
+                              // option's declared asset when every option on
+                              // the question carries a distinct illustration.
                               if (question.options[i].label
                                       .trim()
                                       .toLowerCase()
@@ -325,6 +332,17 @@ class QuizViewState extends ConsumerState<QuizView> {
                                 AnswerPictureDisc(
                                   glyph: lexiconLookup(word)!.emoji,
                                   photoAsset: optionPhotoAsset(word),
+                                  size: 44,
+                                ),
+                                const SizedBox(width: 14),
+                              ] else if (optionAssetsDistinct) ...[
+                                AnswerPictureDisc(
+                                  glyph: illustrationFor(
+                                        question.options[i].label,
+                                      ) ??
+                                      '⭐',
+                                  photoAsset:
+                                      'assets/images/${question.options[i].asset!.trim()}',
                                   size: 44,
                                 ),
                                 const SizedBox(width: 14),

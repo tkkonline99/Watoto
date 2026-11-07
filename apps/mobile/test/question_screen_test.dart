@@ -279,4 +279,32 @@ void main() {
           greaterThan(QuestionBand.master.targetSize));
     });
   });
+
+  group('text-driven procedural scenes', () {
+    Widget host(Widget child) => MaterialApp(home: Scaffold(body: child));
+
+    testWidgets(
+        'place value, fractions, trace, and colour field paint from SceneData.text',
+        (tester) async {
+      for (final entry in const [
+        ('counting.tens-and-units', 'Show 37 as tens and ones: 3 tens and 7 ones.'),
+        ('fraction.bars', 'Which shape is split into quarters (3/4 shaded)?'),
+        ('glyph.trace', 'Follow the zigzag mountain path from start to end.'),
+        ('colour.field', 'Tap the colour purple.'),
+      ]) {
+        final built = buildScene(
+          entry.$1,
+          data: SceneData(text: entry.$2),
+        );
+        expect(built, isNotNull, reason: '${entry.$1} failed to build');
+        await tester.pumpWidget(host(SizedBox(
+          width: 280,
+          height: 200,
+          child: built,
+        )));
+        await tester.pump();
+        expect(find.byType(CustomPaint), findsWidgets);
+      }
+    });
+  });
 }

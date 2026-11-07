@@ -12,13 +12,14 @@
 import { onCall, HttpsError } from "firebase-functions/v2/https";
 import { onSchedule } from "firebase-functions/v2/scheduler";
 import { initializeApp } from "firebase-admin/app";
+import { getAuth } from "firebase-admin/auth";
 import { getFirestore, FieldValue, Timestamp } from "firebase-admin/firestore";
 
 initializeApp();
 const db = getFirestore();
 
-const GRACE_DAYS = 14;            // soft-delete grace before hard purge (see runbook)
-const POLICY_VERSION = "2026-06"; // bump when PRIVACY_POLICY.md/TOS change materially
+export const GRACE_DAYS = 14;               // soft-delete grace before hard purge (see runbook)
+export const POLICY_VERSION = "2026-06-01"; // aligned with publish_config.dart consentPolicyVersionLabel
 
 function requireAuth(req: { auth?: { uid?: string } }): string {
   const uid = req.auth?.uid;
@@ -102,8 +103,14 @@ export const hardDeleteExpiredAccounts = onSchedule("every 24 hours", async () =
   const due = await db.collection("accounts").where("purgeAfter", "<=", now).get();
   for (const doc of due.docs) {
     await db.recursiveDelete(doc.ref); // removes the account doc and all subcollections
+    try {
+      await getAuth().deleteUser(doc.id);
+    } catch (err: any) {
+      if (err?.code !== "auth/user-not-found") {
+        console.error(JSON.stringify({ event: "auth_delete_error", uid: doc.id, code: err?.code }));
+      }
+    }
     console.log(JSON.stringify({ event: "account_purged", uid: doc.id, at: now.toDate().toISOString() }));
-    // Auth user removal is done here in production via getAuth().deleteUser(doc.id).
   }
 });
 

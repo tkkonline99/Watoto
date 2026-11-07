@@ -16,12 +16,12 @@ import * as crypto from "node:crypto";
 import { GoogleAuth } from "google-auth-library";
 
 // Mirrors backend/products.json — keep in sync.
-const PRODUCTS: Record<string, { tier: string; periodDays: number }> = {
+export const PRODUCTS: Record<string, { tier: string; periodDays: number }> = {
   "watoto.premium.monthly": { tier: "premium", periodDays: 30 },
   "watoto.premium.annual": { tier: "premium", periodDays: 365 },
 };
 
-function b64urlJson(segment: string): any {
+export function b64urlJson(segment: string): any {
   return JSON.parse(Buffer.from(segment, "base64url").toString("utf8"));
 }
 
@@ -33,7 +33,7 @@ function b64urlJson(segment: string): any {
  * pinning should still be added before hard launch (store the Apple Root CA G3
  * PEM in secrets and walk x5c → root).
  */
-function decodeJWS(jws: string, opts?: { requireVerify?: boolean }): any {
+export function decodeJWS(jws: string, opts?: { requireVerify?: boolean }): any {
   const parts = jws.split(".");
   if (parts.length !== 3) throw new Error("Invalid JWS compact serialization");
   const [headerB64, payloadB64, sigB64] = parts;
@@ -94,11 +94,27 @@ function appleBearer(): string {
   return `${signingInput}.${sig.toString("base64url")}`;
 }
 
-async function verifyApple(transactionId: string): Promise<{ productId: string; expiryMs: number; uid?: string }> {
-  const host = "https://api.storekit.itunes.apple.com"; // sandbox: api.storekit-sandbox.itunes.apple.com
-  const res = await fetch(`${host}/inApps/v1/subscriptions/${transactionId}`, {
-    headers: { Authorization: `Bearer ${appleBearer()}` },
-  });
+const APPLE_PROD_HOST = "https://api.storekit.itunes.apple.com";
+const APPLE_SANDBOX_HOST = "https://api.storekit-sandbox.itunes.apple.com";
+
+export async function verifyApple(transactionId: string): Promise<{ productId: string; expiryMs: number; uid?: string }> {
+  const token = appleBearer();
+  const encodedId = encodeURIComponent(transactionId);
+  const prodUrl = `${APPLE_PROD_HOST}/inApps/v1/subscriptions/${encodedId}`;
+  const sandboxUrl = `${APPLE_SANDBOX_HOST}/inApps/v1/subscriptions/${encodedId}`;
+
+  let res = await fetch(
+    process.env.APPLE_USE_SANDBOX === "true" ? sandboxUrl : prodUrl,
+    { headers: { Authorization: `Bearer ${token}` } },
+  );
+  // App Store Review tests production builds against the sandbox StoreKit
+  // environment (Guideline 2.1). Fall back to sandbox when production returns
+  // 404 / 400 (transaction not found in production).
+  if (!res.ok && process.env.APPLE_USE_SANDBOX !== "true" && (res.status === 404 || res.status === 400)) {
+    res = await fetch(sandboxUrl, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  }
   if (!res.ok) throw new HttpsError("permission-denied", `Apple verification failed (${res.status}).`);
   const body: any = await res.json();
   const item = body.data?.[0]?.lastTransactions?.[0];
@@ -115,10 +131,10 @@ async function googleAccessToken(): Promise<string> {
   return t.token as string;
 }
 
-async function verifyGoogle(purchaseToken: string): Promise<{ productId: string; expiryMs: number; uid?: string }> {
+export async function verifyGoogle(purchaseToken: string): Promise<{ productId: string; expiryMs: number; uid?: string }> {
   const pkg = process.env.GOOGLE_PACKAGE_NAME;
   const res = await fetch(
-    `https://androidpublisher.googleapis.com/androidpublisher/v3/applications/${pkg}/purchases/subscriptionsv2/tokens/${purchaseToken}`,
+    `https://androidpublisher.googleapis.com/androidpublisher/v3/applications/${pkg}/purchases/subscriptionsv2/tokens/${encodeURIComponent(purchaseToken)}`,
     { headers: { Authorization: `Bearer ${await googleAccessToken()}` } }
   );
   if (!res.ok) throw new HttpsError("permission-denied", `Google verification failed (${res.status}).`);
@@ -133,6 +149,26 @@ async function verifyGoogle(purchaseToken: string): Promise<{ productId: string;
 }
 
 /**
+ * Validate a decoded store verification result against the calling user and
+ * requested product before granting entitlement.
+ */
+export function assertReceiptMatchesCaller(
+  result: { productId: string; expiryMs: number; uid?: string },
+  callerUid: string,
+  expectedProductId?: string,
+): void {
+  if (!PRODUCTS[result.productId]) {
+    throw new HttpsError("failed-precondition", "Unknown product.");
+  }
+  if (expectedProductId && expectedProductId !== result.productId) {
+    throw new HttpsError("failed-precondition", "Product ID mismatch.");
+  }
+  if (result.uid && result.uid !== callerUid) {
+    throw new HttpsError("permission-denied", "Receipt belongs to a different account.");
+  }
+}
+
+/**
  * verifyPurchase — called by the client right after a store purchase.
  * data: { platform: "apple" | "google"; receipt: string; productId: string }
  *   receipt = Apple transactionId or Google purchaseToken.
@@ -142,14 +178,14 @@ export const verifyPurchase = onCall(async (req) => {
   if (!uid) throw new HttpsError("unauthenticated", "Sign in as the account holder.");
   const platform = req.data?.platform;
   const receipt = String(req.data?.receipt ?? "");
+  const expectedProductId = req.data?.productId ? String(req.data.productId) : undefined;
   if (!receipt) throw new HttpsError("invalid-argument", "receipt is required.");
 
-  const v = (platform === "apple" || platform === "ios") ? await verifyApple(receipt)
+  const result = (platform === "apple" || platform === "ios") ? await verifyApple(receipt)
           : (platform === "google" || platform === "android") ? await verifyGoogle(receipt)
           : (() => { throw new HttpsError("invalid-argument", "Unknown platform."); })();
-  const result = await v;
 
-  if (!PRODUCTS[result.productId]) throw new HttpsError("failed-precondition", "Unknown product.");
+  assertReceiptMatchesCaller(result, uid, expectedProductId);
   const active = result.expiryMs > Date.now();
   await setEntitlement(uid, active ? "premium" : "free", active ? result.expiryMs : null);
   return { ok: true, plan: active ? "premium" : "free", entitlementExpiry: result.expiryMs };

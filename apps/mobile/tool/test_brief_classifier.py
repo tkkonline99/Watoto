@@ -52,6 +52,23 @@ class SubstringCollisions(unittest.TestCase):
     def test_already_is_not_read(self):
         self.assertNotEqual(classify_key("She had already eaten"), "book")
 
+    def test_prefix_wildcard_collisions_are_prevented(self):
+        # "grown-up" is not a plant ("grow*"), "window" is not wind ("wind*"),
+        # "goodnight" is not market goods ("good*"), "today" is not ancient
+        # history, and "rule that repeats" is a pattern, not civic government.
+        self.assertEqual(classify_key("Tap the smiling grown-up"), "face")
+        self.assertEqual(classify_key("Look out of the window"), "door")
+        self.assertEqual(
+            classify_key("Dim the light and say goodnight"), "lamp")
+        self.assertNotEqual(
+            classify_key("Say goodnight to the moon"), "market")
+        self.assertNotEqual(
+            classify_key("You mixed three new colours today"), "history")
+        self.assertEqual(
+            classify_key("A pattern is a rule that repeats"), "robot")
+        self.assertNotEqual(
+            classify_key("Each thing you are wearing right now"), "community")
+
     def test_real_words_still_match(self):
         # The point is not to stop matching, so the honest versions of each
         # collision above must still land.
@@ -112,6 +129,11 @@ class Matches(unittest.TestCase):
         ("Before you touch food, hands come first", "hands"),
         ("Count the mangoes in the basket", "apple"),
         ("A map of the world", "map"),
+        ("Three and one more is", "number"),
+        ("Draw from dot 1 to dot 2 to dot 3", "writing"),
+        ("Word with the short i sound: b-i-g", "reading"),
+        ("The clock shows 7 o'clock", "clock"),
+        ("Empty dark sky", "night"),
     )
 
     def test_cases(self):
@@ -153,6 +175,17 @@ class TableHygiene(unittest.TestCase):
                     continue
                 with self.subTest(motif=motif.key, term=term):
                     self.assertNotIn(term, STOP)
+
+    def test_terms_are_tokenizable(self):
+        # WORD_RE strips hyphens and apostrophes ("b-i-g" -> "b i g",
+        # "o'clock" -> "o clock"), so any punctuation inside a term makes it
+        # dead code that can never match.
+        import re
+        valid = re.compile(r"^[a-z0-9]+(?: [a-z0-9]+)*\*?$")
+        for motif in MOTIFS:
+            for term in motif.terms:
+                with self.subTest(motif=motif.key, term=term):
+                    self.assertRegex(term, valid)
 
 
 if __name__ == "__main__":

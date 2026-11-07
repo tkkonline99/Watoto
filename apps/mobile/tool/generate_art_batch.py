@@ -374,30 +374,29 @@ def draw_number_badge(draw, cx, cy, n: str, color=TEAL):
 
 
 _SCENE_RE = re.compile(r"\bscene\s*:\s*(.*)", re.IGNORECASE | re.DOTALL)
+_ILLUSTRATOR_NOTE_RE = re.compile(
+    r"\s*\bdo\s+not\s+depict\b.*$",
+    re.IGNORECASE | re.DOTALL,
+)
 
 
 def scene_of(brief: str) -> str:
-    """The part of a brief that says what to draw, without the style preamble.
+    """The part of a brief that says what to draw, without the style preamble
+    or the illustrator's 'DO NOT depict the answer...' note.
 
     Every step brief is written as a style boilerplate followed by the actual
     subject: "Flat pastel cartoon, 512x512, soft rounded shapes, no text, no
     letters or numerals drawn in the image. Scene: Look at the black and white
     swirls."
 
-    The classifier below matches on substrings, and that boilerplate was being
-    fed to it along with the scene. The word **cartoon contains "car"**, so the
-    `"car" in t` rule matched all 820 step briefs and every one of them
-    rendered as a car — including "The dark sky" and "black and white swirls".
-    "letters" collides with the `"letter"` rule the same way; car simply came
-    first in the cascade. Nobody had rendered these, which is presumably how it
-    went unnoticed.
-
-    Splitting on "Scene:" fixes both at once and needs no change to the
-    keyword rules, several of which are deliberate prefix matches ("phon" for
-    phonics and phonemes) that word-boundary matching would break.
+    Question briefs also end with "DO NOT depict the answer (Four) or anything
+    that reveals it; draw only what the sentence states." Stripping that note
+    here keeps words inside the prohibition (and the forbidden answer itself)
+    out of the classifier.
     """
     m = _SCENE_RE.search(brief or "")
-    return (m.group(1) if m else (brief or "")).strip()
+    raw = (m.group(1) if m else (brief or "")).strip()
+    return _ILLUSTRATOR_NOTE_RE.sub("", raw).strip().rstrip(" .,;")
 
 # ------------------------------------------------------------- motif painters
 #
@@ -407,48 +406,130 @@ def scene_of(brief: str) -> str:
 # to draw it, and the only way to test the decision was to inspect a PNG.
 
 
-def _paint_body(draw, cx, cy, stage, seed):
+def _paint_body(draw, cx, cy, stage, seed, brief=""):
     draw_body(draw, cx, cy - 10, 190)
+    low = f"{brief} {seed}".lower()
+    if "knee" in low:
+        _circle(draw, cx - 38, cy + 95, 22, (*GOLD[:3], 160), outline=CORAL, width=4)
+        _circle(draw, cx + 38, cy + 95, 22, (*GOLD[:3], 160), outline=CORAL, width=4)
+    elif "toe" in low or "foot" in low or "feet" in low:
+        _circle(draw, cx - 38, cy + 158, 22, (*GOLD[:3], 160), outline=CORAL, width=4)
+        _circle(draw, cx + 38, cy + 158, 22, (*GOLD[:3], 160), outline=CORAL, width=4)
+    elif "shoulder" in low:
+        _circle(draw, cx - 72, cy - 42, 22, (*GOLD[:3], 160), outline=CORAL, width=4)
+        _circle(draw, cx + 72, cy - 42, 22, (*GOLD[:3], 160), outline=CORAL, width=4)
 
 
-def _paint_hands(draw, cx, cy, stage, seed):
+def _paint_hands(draw, cx, cy, stage, seed, brief=""):
     draw_hands(draw, cx, cy, 150)
 
 
-def _paint_music(draw, cx, cy, stage, seed):
-    draw_note(draw, cx, cy, 170)
+def _paint_music(draw, cx, cy, stage, seed, brief=""):
+    low = f"{brief} {seed}".lower()
+    if "drum" in low or "boom" in low:
+        _soft_shadow(draw, cx, cy + 25, 125)
+        draw.rounded_rectangle([cx - 115, cy - 40, cx + 115, cy + 110], radius=22, fill=CORAL, outline=NAVY, width=6)
+        _ellipse(draw, [cx - 115, cy - 68, cx + 115, cy - 12], GOLD, outline=NAVY, width=6)
+        for x in (-70, 0, 70):
+            draw.line([(cx + x, cy - 12), (cx + x, cy + 105)], fill=WHITE, width=6)
+        # Drumsticks
+        draw.line([(cx - 95, cy - 115), (cx - 25, cy - 45)], fill=BROWN, width=8)
+        draw.line([(cx + 95, cy - 115), (cx + 25, cy - 45)], fill=BROWN, width=8)
+        _circle(draw, cx - 25, cy - 45, 14, PEACH, outline=NAVY, width=4)
+        _circle(draw, cx + 25, cy - 45, 14, PEACH, outline=NAVY, width=4)
+    else:
+        draw_note(draw, cx, cy, 170)
 
 
-def _paint_face(draw, cx, cy, stage, seed):
+def _paint_face(draw, cx, cy, stage, seed, brief=""):
+    low = f"{brief} {seed}".lower()
     draw_face(draw, cx, cy - 10, 140, SOFT_BROWN)
+    if "mouth" in low or "babble" in low or "ba-ba" in low or "ma-ma" in low:
+        _circle(draw, cx, cy + 24, 24, CORAL, outline=NAVY, width=4)
+        for r_arc in (38, 62):
+            draw.arc([cx + 125 - r_arc, cy - r_arc, cx + 125 + r_arc, cy + r_arc],
+                     -45, 45, fill=TEAL, width=6)
 
 
-def _paint_bear(draw, cx, cy, stage, seed):
+def _paint_bear(draw, cx, cy, stage, seed, brief=""):
     draw_bear(draw, cx, cy, 130)
 
 
-def _paint_bunny(draw, cx, cy, stage, seed):
+def _paint_bunny(draw, cx, cy, stage, seed, brief=""):
     draw_bunny(draw, cx, cy + 30, 110)
 
 
-def _paint_bird(draw, cx, cy, stage, seed):
-    draw_bird(draw, cx, cy, 100, _accent(seed))
+def _paint_bird(draw, cx, cy, stage, seed, brief=""):
+    low = f"{brief} {seed}".lower()
+    col = GOLD if ("duck" in low or "chick" in low or "quack" in low) else _accent(seed)
+    draw_bird(draw, cx, cy, 100, col)
 
 
-def _paint_fish(draw, cx, cy, stage, seed):
+def _paint_fish(draw, cx, cy, stage, seed, brief=""):
     draw_fish(draw, cx, cy, 110, TEAL)
 
 
-def _paint_animal(draw, cx, cy, stage, seed):
+def _paint_animal(draw, cx, cy, stage, seed, brief=""):
+    low = f"{brief} {seed}".lower()
+    if "cow" in low or "moo" in low:
+        _soft_shadow(draw, cx, cy + 15, 135)
+        # White cow head with black spots, horns, ears, and wide pink muzzle
+        _ellipse(draw, [cx - 145, cy - 65, cx - 85, cy - 15], WHITE, outline=NAVY, width=5)
+        _ellipse(draw, [cx + 85, cy - 65, cx + 145, cy - 15], WHITE, outline=NAVY, width=5)
+        draw.polygon([(cx - 65, cy - 90), (cx - 85, cy - 140), (cx - 35, cy - 100)], fill=GOLD, outline=NAVY)
+        draw.polygon([(cx + 65, cy - 90), (cx + 85, cy - 140), (cx + 35, cy - 100)], fill=GOLD, outline=NAVY)
+        _circle(draw, cx, cy - 10, 105, WHITE, outline=NAVY, width=6)
+        _ellipse(draw, [cx - 75, cy - 85, cx - 15, cy - 30], DARK)
+        _ellipse(draw, [cx + 25, cy - 65, cx + 80, cy - 10], DARK)
+        _ellipse(draw, [cx - 95, cy + 15, cx + 95, cy + 110], PINK, outline=NAVY, width=5)
+        _circle(draw, cx - 38, cy - 25, 13, NAVY)
+        _circle(draw, cx + 38, cy - 25, 13, NAVY)
+        _circle(draw, cx - 32, cy + 52, 12, BROWN)
+        _circle(draw, cx + 32, cy + 52, 12, BROWN)
+        draw.arc([cx - 35, cy + 55, cx + 35, cy + 92], 20, 160, fill=NAVY, width=5)
+        return
+    if "puppy" in low or "dog" in low or "woof" in low:
+        _soft_shadow(draw, cx, cy + 15, 130)
+        # Floppy ears + warm brown puppy face
+        _ellipse(draw, [cx - 145, cy - 70, cx - 75, cy + 65], BROWN, outline=NAVY, width=5)
+        _ellipse(draw, [cx + 75, cy - 70, cx + 145, cy + 65], BROWN, outline=NAVY, width=5)
+        _circle(draw, cx, cy, 105, SOFT_BROWN, outline=NAVY, width=6)
+        _ellipse(draw, [cx - 55, cy + 10, cx + 55, cy + 85], CREAM)
+        if "sleep" in low:
+            draw.arc([cx - 58, cy - 32, cx - 18, cy + 2], 15, 165, fill=NAVY, width=6)
+            draw.arc([cx + 18, cy - 32, cx + 58, cy + 2], 15, 165, fill=NAVY, width=6)
+            draw_star(draw, cx + 95, cy - 115, 22, GOLD)
+            draw_star(draw, cx + 130, cy - 150, 15, GOLD)
+        else:
+            _circle(draw, cx - 38, cy - 20, 14, NAVY)
+            _circle(draw, cx + 38, cy - 20, 14, NAVY)
+            _circle(draw, cx - 34, cy - 24, 5, WHITE)
+            _circle(draw, cx + 42, cy - 24, 5, WHITE)
+        _circle(draw, cx, cy + 25, 16, DARK)
+        draw.arc([cx - 32, cy + 32, cx + 32, cy + 68], 20, 160, fill=NAVY, width=5)
+        return
+    if "cat" in low or "kitten" in low or "meow" in low:
+        _soft_shadow(draw, cx, cy + 15, 125)
+        col = PEACH
+        draw.polygon([(cx - 95, cy - 45), (cx - 110, cy - 140), (cx - 25, cy - 85)], fill=col, outline=NAVY)
+        draw.polygon([(cx + 95, cy - 45), (cx + 110, cy - 140), (cx + 25, cy - 85)], fill=col, outline=NAVY)
+        _circle(draw, cx, cy, 102, col, outline=NAVY, width=6)
+        _circle(draw, cx - 36, cy - 18, 14, NAVY)
+        _circle(draw, cx + 36, cy - 18, 14, NAVY)
+        draw.polygon([(cx - 14, cy + 10), (cx + 14, cy + 10), (cx, cy + 26)], fill=PINK)
+        for dy in (-6, 12):
+            draw.line([(cx - 135, cy + 15 + dy), (cx - 55, cy + 18)], fill=NAVY, width=4)
+            draw.line([(cx + 55, cy + 18), (cx + 135, cy + 15 + dy)], fill=NAVY, width=4)
+        return
     col = _accent(seed)
-    _ellipse(draw, [cx - 140, cy - 80, cx + 140, cy + 120], col)
-    _circle(draw, cx + 90, cy - 60, 70, col)
+    _ellipse(draw, [cx - 140, cy - 80, cx + 140, cy + 120], col, outline=NAVY, width=5)
+    _circle(draw, cx + 90, cy - 60, 70, col, outline=NAVY, width=5)
     _circle(draw, cx + 110, cy - 70, 10, NAVY)
     _circle(draw, cx - 40, cy - 20, 12, NAVY)
     _circle(draw, cx + 20, cy - 20, 12, NAVY)
 
 
-def _paint_night(draw, cx, cy, stage, seed):
+def _paint_night(draw, cx, cy, stage, seed, brief=""):
     draw.rectangle([0, 0, SIZE, SIZE], fill=(40, 70, 110, 255))
     draw_star(draw, cx, cy - 20, 90, GOLD)
     for i in range(8):
@@ -456,35 +537,35 @@ def _paint_night(draw, cx, cy, stage, seed):
                   40 + (i * 37) % 200, 12 + i % 10, GOLD)
 
 
-def _paint_sun(draw, cx, cy, stage, seed):
+def _paint_sun(draw, cx, cy, stage, seed, brief=""):
     draw_sun(draw, cx, cy - 20, 100)
 
 
-def _paint_moon(draw, cx, cy, stage, seed):
+def _paint_moon(draw, cx, cy, stage, seed, brief=""):
     _circle(draw, cx, cy, 110, GOLD)
     _circle(draw, cx + 35, cy - 20, 90, STAGE_BG.get(stage, CREAM)[:3] + (255,))
 
 
-def _paint_rain(draw, cx, cy, stage, seed):
+def _paint_rain(draw, cx, cy, stage, seed, brief=""):
     draw_cloud(draw, cx, cy - 40, 90)
     for i in range(6):
         x = cx - 80 + i * 30
         draw.line([(x, cy + 40), (x - 8, cy + 100)], fill=TEAL, width=6)
 
 
-def _paint_cloud(draw, cx, cy, stage, seed):
+def _paint_cloud(draw, cx, cy, stage, seed, brief=""):
     draw_cloud(draw, cx, cy - 40, 90)
 
 
-def _paint_tree(draw, cx, cy, stage, seed):
+def _paint_tree(draw, cx, cy, stage, seed, brief=""):
     draw_tree(draw, cx, cy - 20, 120)
 
 
-def _paint_flower(draw, cx, cy, stage, seed):
+def _paint_flower(draw, cx, cy, stage, seed, brief=""):
     draw_flower(draw, cx, cy, 80, _accent(seed))
 
 
-def _paint_bubble(draw, cx, cy, stage, seed):
+def _paint_bubble(draw, cx, cy, stage, seed, brief=""):
     for i, (dx, dy, r) in enumerate([(-80, 40, 50), (20, -30, 70),
                                      (100, 50, 40), (-20, 90, 30)]):
         col = (*TEAL[:3], 120) if i % 2 else (*SKY[:3], 160)
@@ -492,110 +573,163 @@ def _paint_bubble(draw, cx, cy, stage, seed):
         _circle(draw, cx + dx - r * 0.3, cy + dy - r * 0.3, r * 0.15, WHITE)
 
 
-def _paint_ball(draw, cx, cy, stage, seed):
+def _paint_ball(draw, cx, cy, stage, seed, brief=""):
     draw_ball(draw, cx, cy, 120, _accent(seed), GOLD)
 
 
-def _paint_bell(draw, cx, cy, stage, seed):
-    _ellipse(draw, [cx - 70, cy - 60, cx + 70, cy + 80], GOLD)
-    draw.rectangle([cx - 12, cy - 100, cx + 12, cy - 50], fill=SOFT_GRAY)
-    _circle(draw, cx, cy + 90, 14, CORAL)
+def _paint_bell(draw, cx, cy, stage, seed, brief=""):
+    low = f"{brief} {seed}".lower()
+    _ellipse(draw, [cx - 70, cy - 60, cx + 70, cy + 80], GOLD, outline=NAVY, width=5)
+    draw.rectangle([cx - 12, cy - 100, cx + 12, cy - 50], fill=SOFT_GRAY, outline=NAVY, width=4)
+    _circle(draw, cx, cy + 90, 16, CORAL, outline=NAVY, width=4)
+    if "still" not in low and "quiet" not in low:
+        for r_arc in (95, 120):
+            draw.arc([cx - r_arc, cy - r_arc, cx + r_arc, cy + r_arc], -35, 35, fill=TEAL, width=6)
+            draw.arc([cx - r_arc, cy - r_arc, cx + r_arc, cy + r_arc], 145, 215, fill=TEAL, width=6)
 
 
-def _paint_cup(draw, cx, cy, stage, seed):
+def _paint_cup(draw, cx, cy, stage, seed, brief=""):
     draw.rounded_rectangle([cx - 70, cy - 40, cx + 70, cy + 100], radius=16,
-                           fill=TEAL)
+                           fill=TEAL, outline=NAVY, width=5)
     draw.arc([cx + 50, cy - 10, cx + 110, cy + 60], -90, 90, fill=TEAL,
              width=10)
 
 
-def _paint_hat(draw, cx, cy, stage, seed):
+def _paint_hat(draw, cx, cy, stage, seed, brief=""):
     _ellipse(draw, [cx - 120, cy + 20, cx + 120, cy + 80], CORAL)
     draw.rectangle([cx - 60, cy - 80, cx + 60, cy + 40], fill=CORAL)
 
 
-def _paint_door(draw, cx, cy, stage, seed):
+def _paint_door(draw, cx, cy, stage, seed, brief=""):
     draw.rounded_rectangle([cx - 90, cy - 140, cx + 90, cy + 140], radius=12,
-                           fill=BROWN)
-    _circle(draw, cx + 50, cy + 10, 12, GOLD)
+                           fill=BROWN, outline=NAVY, width=5)
+    _circle(draw, cx + 50, cy + 10, 12, GOLD, outline=NAVY, width=3)
 
 
-def _paint_box(draw, cx, cy, stage, seed):
+def _paint_box(draw, cx, cy, stage, seed, brief=""):
     draw.rounded_rectangle([cx - 110, cy - 60, cx + 110, cy + 100], radius=16,
-                           fill=_accent(seed))
+                           fill=_accent(seed), outline=NAVY, width=5)
 
 
-def _paint_vehicle(draw, cx, cy, stage, seed):
+def _paint_vehicle(draw, cx, cy, stage, seed, brief=""):
     draw_car(draw, cx, cy, 120, _accent(seed))
 
 
-def _paint_house(draw, cx, cy, stage, seed):
+def _paint_house(draw, cx, cy, stage, seed, brief=""):
     draw_house(draw, cx, cy, 110)
 
 
-def _paint_book(draw, cx, cy, stage, seed):
+def _paint_book(draw, cx, cy, stage, seed, brief=""):
     draw_book(draw, cx, cy, 110)
 
 
-def _paint_apple(draw, cx, cy, stage, seed):
+def _paint_apple(draw, cx, cy, stage, seed, brief=""):
     draw_apple(draw, cx, cy, 100)
 
 
-def _paint_cloth(draw, cx, cy, stage, seed):
+def _paint_cloth(draw, cx, cy, stage, seed, brief=""):
     draw.rounded_rectangle([cx - 140, cy - 80, cx + 140, cy + 100], radius=30,
                            fill=LAVENDER)
     draw.rounded_rectangle([cx - 100, cy - 40, cx + 100, cy + 60], radius=20,
                            fill=PEACH)
 
 
-def _paint_shoe(draw, cx, cy, stage, seed):
+def _paint_shoe(draw, cx, cy, stage, seed, brief=""):
     _ellipse(draw, [cx - 120, cy - 20, cx + 120, cy + 80], CORAL)
     draw.rounded_rectangle([cx - 40, cy - 70, cx + 100, cy + 20], radius=30,
                            fill=CORAL)
 
 
-def _paint_lamp(draw, cx, cy, stage, seed):
-    _ellipse(draw, [cx - 80, cy - 100, cx + 80, cy + 40], GOLD)
-    draw.rectangle([cx - 14, cy + 30, cx + 14, cy + 120], fill=SOFT_GRAY)
-    _ellipse(draw, [cx - 50, cy + 110, cx + 50, cy + 140], SOFT_GRAY)
+def _paint_lamp(draw, cx, cy, stage, seed, brief=""):
+    low = f"{brief} {seed}".lower()
+    is_off = "off" in low or "dim" in low
+    shade_col = SOFT_GRAY if is_off else GOLD
+    if not is_off:
+        _circle(draw, cx, cy - 30, 130, (*GOLD[:3], 85))
+        for a in range(0, 360, 45):
+            rad = math.radians(a)
+            draw.line([(cx + math.cos(rad) * 95, cy - 30 + math.sin(rad) * 95),
+                       (cx + math.cos(rad) * 125, cy - 30 + math.sin(rad) * 125)],
+                      fill=GOLD, width=6)
+    _ellipse(draw, [cx - 80, cy - 100, cx + 80, cy + 40], shade_col, outline=NAVY, width=5)
+    draw.rectangle([cx - 14, cy + 30, cx + 14, cy + 120], fill=SOFT_GRAY, outline=NAVY, width=4)
+    _ellipse(draw, [cx - 50, cy + 110, cx + 50, cy + 140], SOFT_GRAY, outline=NAVY, width=4)
 
 
-def _paint_colors(draw, cx, cy, stage, seed):
+def _paint_colors(draw, cx, cy, stage, seed, brief=""):
     for i, col in enumerate([CORAL, GOLD, TEAL, LAVENDER, MINT, PINK]):
         _circle(draw, cx, cy, 160 - i * 24, col)
 
 
-def _paint_water(draw, cx, cy, stage, seed):
+def _paint_water(draw, cx, cy, stage, seed, brief=""):
+    low = f"{brief} {seed}".lower()
+    if "lid" in low or "pan" in low or "condens" in low or "drop" in low:
+        # Pan of hot water with tilted lid and condensation drops underneath
+        draw.rounded_rectangle([cx - 115, cy + 10, cx + 115, cy + 125], radius=16, fill=SOFT_GRAY, outline=NAVY, width=6)
+        draw.rectangle([cx - 107, cy + 45, cx + 107, cy + 118], fill=SKY)
+        draw.line([(cx + 115, cy + 35), (cx + 175, cy + 20)], fill=NAVY, width=12)
+        # Tilted lid above pan
+        draw.polygon([(cx - 125, cy - 55), (cx + 115, cy - 85), (cx + 105, cy - 105), (cx - 115, cy - 75)],
+                     fill=TEAL, outline=NAVY)
+        _circle(draw, cx - 5, cy - 95, 16, CORAL, outline=NAVY, width=4)
+        # Condensation droplets hanging under the lid
+        for dx, dy in [(-65, -42), (-15, -48), (35, -55), (75, -60), (-35, -15), (20, -20)]:
+            _circle(draw, cx + dx, cy + dy, 9, SKY, outline=NAVY, width=3)
+        return
     _ellipse(draw, [cx - 160, cy - 20, cx + 160, cy + 100], SKY)
     _circle(draw, cx - 40, cy - 10, 30, WHITE)
     _circle(draw, cx + 50, cy, 22, WHITE)
 
 
-def _paint_heart(draw, cx, cy, stage, seed):
+def _paint_heart(draw, cx, cy, stage, seed, brief=""):
     _circle(draw, cx - 50, cy - 20, 70, PINK)
     _circle(draw, cx + 50, cy - 20, 70, PINK)
     draw.polygon([(cx - 110, cy), (cx + 110, cy), (cx, cy + 130)], fill=PINK)
 
 
-def _paint_map(draw, cx, cy, stage, seed):
-    _circle(draw, cx, cy, 140, SKY)
-    _ellipse(draw, [cx - 80, cy - 60, cx + 20, cy + 40], GREEN)
-    _ellipse(draw, [cx + 10, cy + 10, cx + 100, cy + 90], LEAF)
+def _paint_map(draw, cx, cy, stage, seed, brief=""):
+    _circle(draw, cx, cy, 140, SKY, outline=NAVY, width=6)
+    _ellipse(draw, [cx - 80, cy - 60, cx + 20, cy + 40], GREEN, outline=NAVY, width=4)
+    _ellipse(draw, [cx + 10, cy + 10, cx + 100, cy + 90], LEAF, outline=NAVY, width=4)
 
 
-def _paint_shapes(draw, cx, cy, stage, seed):
+def _paint_shapes(draw, cx, cy, stage, seed, brief=""):
+    low = f"{brief} {seed}".lower()
+    if "bin" in low or "sort" in low:
+        # Two sorting bins with geometric blocks above them
+        draw.rounded_rectangle([cx - 145, cy + 10, cx - 15, cy + 125], radius=14, fill=CORAL, outline=NAVY, width=5)
+        draw.rounded_rectangle([cx + 15, cy + 10, cx + 145, cy + 125], radius=14, fill=TEAL, outline=NAVY, width=5)
+        _circle(draw, cx - 80, cy - 55, 36, CORAL, outline=NAVY, width=5)
+        draw.rounded_rectangle([cx + 44, cy - 91, cx + 116, cy - 19], radius=10, fill=TEAL, outline=NAVY, width=5)
+        return
     draw.rounded_rectangle([cx - 140, cy - 60, cx - 20, cy + 60], radius=12,
-                           fill=CORAL)
-    _circle(draw, cx + 80, cy, 70, TEAL)
+                           fill=CORAL, outline=NAVY, width=5)
+    _circle(draw, cx + 80, cy, 70, TEAL, outline=NAVY, width=5)
     draw.polygon([(cx, cy - 130), (cx - 50, cy - 50), (cx + 50, cy - 50)],
-                 fill=GOLD)
+                 fill=GOLD, outline=NAVY)
 
 
-def _paint_number(draw, cx, cy, stage, seed, digits="3"):
+def _paint_number(draw, cx, cy, stage, seed, digits="3", brief=""):
+    low = f"{brief} {seed}".lower()
+    if "three and one more" in low:
+        # Two distinct groups: 3 coral dots on the left + 1 teal dot on the right
+        for i, dy in enumerate((-65, 0, 65)):
+            _circle(draw, cx - 75, cy + dy, 26, CORAL, outline=NAVY, width=5)
+        _circle(draw, cx + 75, cy, 26, TEAL, outline=NAVY, width=5)
+        return
+    word_nums = {
+        "four": "4", "five": "5", "six": "6", "seven": "7",
+        "eight": "8", "nine": "9", "three": "3", "two": "2", "one": "1",
+    }
+    if digits == "3":
+        for w, d in word_nums.items():
+            if re.search(rf"\b{w}\b", low):
+                digits = d
+                break
     draw_number_badge(draw, cx, cy, digits, _accent(seed))
 
 
-def _paint_robot(draw, cx, cy, stage, seed):
+def _paint_robot(draw, cx, cy, stage, seed, brief=""):
     col = _accent(seed, 2)
     _soft_shadow(draw, cx, cy, 130)
     # Antenna
@@ -619,7 +753,25 @@ def _paint_robot(draw, cx, cy, stage, seed):
         draw.rounded_rectangle([bx, cy + 45, bx + 28, cy + 95], radius=6, fill=c, outline=NAVY, width=3)
 
 
-def _paint_tablet(draw, cx, cy, stage, seed):
+def _paint_tablet(draw, cx, cy, stage, seed, brief=""):
+    low = f"{brief} {seed}".lower()
+    if "btn_music" in low or "music button" in low:
+        _soft_shadow(draw, cx, cy, 130)
+        _circle(draw, cx, cy, 128, GOLD, outline=NAVY, width=7)
+        _circle(draw, cx, cy, 102, WHITE, outline=NAVY, width=4)
+        draw_note(draw, cx + 8, cy + 5, 110, CORAL)
+        return
+    if "btn_quiet" in low or "quiet button" in low:
+        _soft_shadow(draw, cx, cy, 130)
+        _circle(draw, cx, cy, 128, LAVENDER, outline=NAVY, width=7)
+        _circle(draw, cx, cy, 102, WHITE, outline=NAVY, width=4)
+        # Speaker cone + mute slash
+        draw.polygon([(cx - 55, cy - 22), (cx - 22, cy - 22), (cx + 18, cy - 55),
+                      (cx + 18, cy + 55), (cx - 22, cy + 22), (cx - 55, cy + 22)],
+                     fill=TEAL, outline=NAVY)
+        draw.line([(cx + 35, cy - 32), (cx + 75, cy + 32)], fill=CORAL, width=9)
+        draw.line([(cx + 75, cy - 32), (cx + 35, cy + 32)], fill=CORAL, width=9)
+        return
     _soft_shadow(draw, cx, cy, 135)
     draw.rounded_rectangle([cx - 110, cy - 145, cx + 110, cy + 145], radius=26, fill=NAVY)
     draw.rounded_rectangle([cx - 94, cy - 120, cx + 94, cy + 108], radius=14, fill=SOFT_SKY)
@@ -631,7 +783,7 @@ def _paint_tablet(draw, cx, cy, stage, seed):
         draw.rounded_rectangle([cx - 66 + i * 48, cy + 62, cx - 30 + i * 48, cy + 88], radius=8, fill=c)
 
 
-def _paint_circuit(draw, cx, cy, stage, seed):
+def _paint_circuit(draw, cx, cy, stage, seed, brief=""):
     # Wire loop
     draw.rounded_rectangle([cx - 130, cy - 40, cx + 130, cy + 120], radius=36, outline=CORAL, width=10)
     # Battery at bottom
@@ -647,7 +799,7 @@ def _paint_circuit(draw, cx, cy, stage, seed):
                    (cx + math.cos(rad) * 96, cy - 65 + math.sin(rad) * 96)], fill=GOLD, width=7)
 
 
-def _paint_magnet(draw, cx, cy, stage, seed):
+def _paint_magnet(draw, cx, cy, stage, seed, brief=""):
     _soft_shadow(draw, cx, cy, 130)
     # U-shape magnet
     draw.arc([cx - 110, cy - 110, cx + 110, cy + 110], 0, 180, fill=CORAL, width=42)
@@ -661,7 +813,7 @@ def _paint_magnet(draw, cx, cy, stage, seed):
     draw_star(draw, cx + 35, cy - 145, 16, GOLD)
 
 
-def _paint_butterfly(draw, cx, cy, stage, seed):
+def _paint_butterfly(draw, cx, cy, stage, seed, brief=""):
     col1 = _accent(seed, 0)
     col2 = _accent(seed, 3)
     _soft_shadow(draw, cx, cy, 125)
@@ -685,7 +837,7 @@ def _paint_butterfly(draw, cx, cy, stage, seed):
     draw.arc([cx + 5, cy - 140, cx + 45, cy - 95], 0, 180, fill=NAVY, width=4)
 
 
-def _paint_plant(draw, cx, cy, stage, seed):
+def _paint_plant(draw, cx, cy, stage, seed, brief=""):
     # Soil mound / pot
     _ellipse(draw, [cx - 150, cy + 75, cx + 150, cy + 165], BROWN, outline=NAVY, width=5)
     # Stem
@@ -697,7 +849,15 @@ def _paint_plant(draw, cx, cy, stage, seed):
     draw_flower(draw, cx, cy - 95, 65, _accent(seed, 1))
 
 
-def _paint_weather(draw, cx, cy, stage, seed):
+def _paint_weather(draw, cx, cy, stage, seed, brief=""):
+    low = f"{brief} {seed}".lower()
+    if "ice" in low or "freeze" in low or "melt" in low or "solid" in low:
+        # Melting ice cube in a puddle under a warm sun
+        draw_sun(draw, cx + 95, cy - 95, 48, GOLD)
+        _ellipse(draw, [cx - 140, cy + 65, cx + 140, cy + 125], SKY, outline=NAVY, width=4)
+        draw.rounded_rectangle([cx - 65, cy - 55, cx + 65, cy + 75], radius=18, fill=SOFT_SKY, outline=NAVY, width=6)
+        draw.rounded_rectangle([cx - 42, cy - 35, cx - 10, cy + 15], radius=8, fill=WHITE)
+        return
     draw_sun(draw, cx - 65, cy - 65, 62, GOLD)
     draw_cloud(draw, cx + 35, cy - 15, 85, WHITE)
     # Gentle breeze lines & raindrops
@@ -707,7 +867,7 @@ def _paint_weather(draw, cx, cy, stage, seed):
         _circle(draw, cx + 80 + i * 15, y - 6, 8, SKY)
 
 
-def _paint_science(draw, cx, cy, stage, seed):
+def _paint_science(draw, cx, cy, stage, seed, brief=""):
     _soft_shadow(draw, cx, cy + 20, 120)
     # Conical flask / beaker
     pts = [(cx - 35, cy - 95), (cx + 35, cy - 95), (cx + 110, cy + 95), (cx - 110, cy + 95)]
@@ -723,7 +883,7 @@ def _paint_science(draw, cx, cy, stage, seed):
     draw_star(draw, cx + 95, cy - 75, 24, GOLD)
 
 
-def _paint_community(draw, cx, cy, stage, seed):
+def _paint_community(draw, cx, cy, stage, seed, brief=""):
     # Civic building / school with columns and friendly people
     draw.rectangle([cx - 135, cy - 35, cx + 135, cy + 120], fill=PEACH, outline=NAVY, width=6)
     draw.polygon([(cx - 150, cy - 35), (cx, cy - 135), (cx + 150, cy - 35)], fill=CORAL, outline=NAVY)
@@ -734,7 +894,7 @@ def _paint_community(draw, cx, cy, stage, seed):
     draw.rounded_rectangle([cx - 28, cy + 35, cx + 28, cy + 120], radius=10, fill=BROWN, outline=NAVY, width=4)
 
 
-def _paint_market(draw, cx, cy, stage, seed):
+def _paint_market(draw, cx, cy, stage, seed, brief=""):
     # Market stall awning + goods + golden coins
     draw.rectangle([cx - 130, cy + 20, cx + 130, cy + 125], fill=SOFT_BROWN, outline=NAVY, width=6)
     for i in range(5):
@@ -749,7 +909,7 @@ def _paint_market(draw, cx, cy, stage, seed):
     draw_star(draw, cx + 95, cy + 85, 18, BROWN)
 
 
-def _paint_history(draw, cx, cy, stage, seed):
+def _paint_history(draw, cx, cy, stage, seed, brief=""):
     # Sun + ancient pyramid/monument + timeline path
     draw_sun(draw, cx + 95, cy - 95, 45, GOLD)
     draw.polygon([(cx - 130, cy + 85), (cx - 20, cy - 85), (cx + 90, cy + 85)], fill=GOLD, outline=NAVY)
@@ -762,7 +922,7 @@ def _paint_history(draw, cx, cy, stage, seed):
         _circle(draw, cx + x, cy + 125, 12, CORAL, outline=NAVY, width=4)
 
 
-def _paint_compass(draw, cx, cy, stage, seed):
+def _paint_compass(draw, cx, cy, stage, seed, brief=""):
     _soft_shadow(draw, cx, cy, 135)
     _circle(draw, cx, cy, 130, WHITE, outline=NAVY, width=8)
     _circle(draw, cx, cy, 108, SOFT_SKY, outline=TEAL, width=4)
@@ -774,7 +934,34 @@ def _paint_compass(draw, cx, cy, stage, seed):
     _circle(draw, cx, cy, 16, NAVY)
 
 
-def _paint_writing(draw, cx, cy, stage, seed):
+def _paint_writing(draw, cx, cy, stage, seed, brief=""):
+    low = f"{brief} {seed}".lower()
+    if "dot 1" in low or "dot 2" in low or "dots" in low:
+        # Connect-the-dots 1 -> 2 -> 3 with progressive dot clusters & dashed path
+        draw.rounded_rectangle([cx - 145, cy - 125, cx + 145, cy + 125], radius=22, fill=WHITE, outline=NAVY, width=6)
+        pts = [(cx - 95, cy + 55), (cx, cy - 65), (cx + 95, cy + 55)]
+        for (x0, y0), (x1, y1) in zip(pts, pts[1:]):
+            for step_i in range(6):
+                t0 = step_i / 6.0
+                t1 = (step_i + 0.5) / 6.0
+                draw.line([(x0 + (x1 - x0) * t0, y0 + (y1 - y0) * t0),
+                           (x0 + (x1 - x0) * t1, y0 + (y1 - y0) * t1)], fill=SKY, width=8)
+        cols = [GREEN, GOLD, CORAL]
+        for idx, ((px, py), col) in enumerate(zip(pts, cols), start=1):
+            _circle(draw, px, py, 32, col, outline=NAVY, width=5)
+            for d_i in range(idx):
+                offset_x = (d_i - (idx - 1) / 2.0) * 14
+                _circle(draw, px + offset_x, py, 5, WHITE)
+        return
+    if "zigzag" in low or "trace" in low or "tracing" in low or "line" in low:
+        # Tracing canvas with dotted zigzag/curve guide and start/end markers
+        draw.rounded_rectangle([cx - 145, cy - 120, cx + 145, cy + 120], radius=22, fill=WHITE, outline=NAVY, width=6)
+        pts = [(cx - 110, cy + 45), (cx - 35, cy - 55), (cx + 35, cy + 45), (cx + 110, cy - 55)]
+        draw.line(pts, fill=SOFT_SKY, width=18)
+        draw.line(pts, fill=NAVY, width=4)
+        _circle(draw, pts[0][0], pts[0][1], 18, GREEN, outline=NAVY, width=4)
+        _circle(draw, pts[-1][0], pts[-1][1], 18, CORAL, outline=NAVY, width=4)
+        return
     _soft_shadow(draw, cx - 15, cy, 125)
     # Notebook page with ruled lines
     draw.rounded_rectangle([cx - 120, cy - 135, cx + 85, cy + 135], radius=18, fill=WHITE, outline=NAVY, width=6)
@@ -787,7 +974,28 @@ def _paint_writing(draw, cx, cy, stage, seed):
     _circle(draw, cx + 28, cy + 132, 9, NAVY)
 
 
-def _paint_reading(draw, cx, cy, stage, seed):
+def _paint_reading(draw, cx, cy, stage, seed, brief=""):
+    low = f"{brief} {seed}".lower()
+    if any(k in low for k in ("b-i-g", "b i g", "c-a-t", "c a t", "h-o-t", "h o t",
+                              "m-a-p", "m a p", "starts with", "phon", "blend",
+                              "digraph", "vowel", "consonant", "sound")):
+        # Phonics sound card with 3 phoneme Elkonin boxes + speaker wave + subject clue
+        _soft_shadow(draw, cx, cy, 135)
+        draw.rounded_rectangle([cx - 140, cy - 125, cx + 140, cy + 125], radius=22, fill=WHITE, outline=NAVY, width=6)
+        # 3 phoneme boxes at bottom
+        for i, col in enumerate([CORAL, GOLD, TEAL]):
+            bx = cx - 108 + i * 76
+            draw.rounded_rectangle([bx, cy + 42, bx + 64, cy + 98], radius=10, fill=col, outline=NAVY, width=4)
+        # Visual subject on top half of card + sound waves
+        if "b-i-g" in low or "b i g" in low:
+            _circle(draw, cx - 35, cy - 35, 52, TEAL, outline=NAVY, width=5)
+            _circle(draw, cx + 55, cy - 10, 20, CORAL, outline=NAVY, width=4)
+        else:
+            draw_star(draw, cx - 25, cy - 35, 48, GOLD)
+            for r_arc in (32, 54):
+                draw.arc([cx + 25 - r_arc, cy - 35 - r_arc, cx + 25 + r_arc, cy - 35 + r_arc],
+                         -45, 45, fill=TEAL, width=6)
+        return
     _soft_shadow(draw, cx, cy + 15, 135)
     # Open storybook with picture icons popping out
     draw.rounded_rectangle([cx - 145, cy - 60, cx - 4, cy + 115], radius=14, fill=WHITE, outline=NAVY, width=6)
@@ -800,7 +1008,7 @@ def _paint_reading(draw, cx, cy, stage, seed):
     draw_star(draw, cx, cy - 135, 22, CORAL)
 
 
-def _paint_math(draw, cx, cy, stage, seed):
+def _paint_math(draw, cx, cy, stage, seed, brief=""):
     # Balance / comparison blocks of two sizes and colors
     col1 = _accent(seed, 0)
     col2 = _accent(seed, 4)
@@ -813,7 +1021,16 @@ def _paint_math(draw, cx, cy, stage, seed):
     draw.line([(cx - 145, cy + 95), (cx + 145, cy + 95)], fill=NAVY, width=8)
 
 
-def _paint_clock(draw, cx, cy, stage, seed):
+def _paint_clock(draw, cx, cy, stage, seed, brief=""):
+    low = f"{brief} {seed}".lower()
+    hour = 3
+    m = re.search(r"\b(1[0-2]|[1-9])\s*o[' ]?clock\b", low)
+    if m:
+        hour = int(m.group(1))
+    elif "morning" in low:
+        hour = 7
+    elif "bedtime" in low or "goodnight" in low:
+        hour = 8
     _soft_shadow(draw, cx, cy, 130)
     _circle(draw, cx, cy, 128, CORAL, outline=NAVY, width=6)
     _circle(draw, cx, cy, 104, WHITE, outline=NAVY, width=4)
@@ -821,13 +1038,15 @@ def _paint_clock(draw, cx, cy, stage, seed):
         rad = math.radians(a)
         r_dot = 9 if a % 90 == 0 else 5
         _circle(draw, cx + math.cos(rad) * 86, cy + math.sin(rad) * 86, r_dot, NAVY)
-    # Hands (3 o'clock)
-    draw.line([(cx, cy), (cx, cy - 68)], fill=TEAL, width=9)
-    draw.line([(cx, cy), (cx + 54, cy)], fill=CORAL, width=9)
+    # Minute hand at 12, hour hand at `hour`
+    draw.line([(cx, cy), (cx, cy - 72)], fill=TEAL, width=9)
+    h_rad = math.radians(-90 + (hour % 12) * 30)
+    draw.line([(cx, cy), (cx + math.cos(h_rad) * 52, cy + math.sin(h_rad) * 52)],
+              fill=CORAL, width=9)
     _circle(draw, cx, cy, 12, NAVY)
 
 
-def _paint_chart(draw, cx, cy, stage, seed):
+def _paint_chart(draw, cx, cy, stage, seed, brief=""):
     draw.rounded_rectangle([cx - 140, cy - 125, cx + 140, cy + 125], radius=20, fill=WHITE, outline=NAVY, width=6)
     heights = [75, 145, 110, 175]
     cols = [CORAL, TEAL, GOLD, LAVENDER]
@@ -837,7 +1056,7 @@ def _paint_chart(draw, cx, cy, stage, seed):
     draw.line([(cx - 118, cy + 95), (cx + 118, cy + 95)], fill=NAVY, width=6)
 
 
-def _paint_palette(draw, cx, cy, stage, seed):
+def _paint_palette(draw, cx, cy, stage, seed, brief=""):
     _soft_shadow(draw, cx, cy, 135)
     _ellipse(draw, [cx - 140, cy - 110, cx + 140, cy + 110], PEACH, outline=NAVY, width=6)
     _circle(draw, cx - 75, cy + 25, 24, STAGE_BG.get(stage, CREAM), outline=NAVY, width=5)
@@ -846,7 +1065,34 @@ def _paint_palette(draw, cx, cy, stage, seed):
         _circle(draw, cx + dx, cy + dy, 26, col, outline=NAVY, width=4)
 
 
-def _paint_emotion(draw, cx, cy, stage, seed):
+def _paint_emotion(draw, cx, cy, stage, seed, brief=""):
+    low = f"{brief} {seed}".lower()
+    if "sad" in low:
+        _soft_shadow(draw, cx, cy + 15, 115)
+        _circle(draw, cx, cy + 15, 115, SOFT_BROWN, outline=NAVY, width=5)
+        _circle(draw, cx - 35, cy, 12, NAVY)
+        _circle(draw, cx + 35, cy, 12, NAVY)
+        draw.arc([cx - 38, cy + 38, cx + 38, cy + 78], 200, 340, fill=NAVY, width=6)
+        _circle(draw, cx + 52, cy + 26, 9, SKY, outline=NAVY, width=3)
+        return
+    if "angry" in low or "cross" in low:
+        _soft_shadow(draw, cx, cy + 15, 115)
+        _circle(draw, cx, cy + 15, 115, SOFT_BROWN, outline=NAVY, width=5)
+        draw.line([(cx - 55, cy - 22), (cx - 18, cy - 8)], fill=NAVY, width=6)
+        draw.line([(cx + 55, cy - 22), (cx + 18, cy - 8)], fill=NAVY, width=6)
+        _circle(draw, cx - 35, cy + 5, 12, NAVY)
+        _circle(draw, cx + 35, cy + 5, 12, NAVY)
+        draw.arc([cx - 38, cy + 42, cx + 38, cy + 78], 200, 340, fill=CORAL, width=6)
+        return
+    if "scared" in low or "scary" in low or "worried" in low:
+        _soft_shadow(draw, cx, cy + 15, 115)
+        _circle(draw, cx, cy + 15, 115, SOFT_BROWN, outline=NAVY, width=5)
+        _circle(draw, cx - 35, cy, 16, WHITE, outline=NAVY, width=4)
+        _circle(draw, cx + 35, cy, 16, WHITE, outline=NAVY, width=4)
+        _circle(draw, cx - 35, cy, 7, NAVY)
+        _circle(draw, cx + 35, cy, 7, NAVY)
+        _circle(draw, cx, cy + 52, 18, CORAL, outline=NAVY, width=4)
+        return
     draw_face(draw, cx, cy + 15, 115, SOFT_BROWN)
     # Floating heart above
     _circle(draw, cx - 22, cy - 135, 24, PINK)
@@ -854,7 +1100,7 @@ def _paint_emotion(draw, cx, cy, stage, seed):
     draw.polygon([(cx - 44, cy - 128), (cx + 44, cy - 128), (cx, cy - 82)], fill=PINK)
 
 
-def _paint_health(draw, cx, cy, stage, seed):
+def _paint_health(draw, cx, cy, stage, seed, brief=""):
     _soft_shadow(draw, cx, cy, 135)
     # Healthy plate with apple, broccoli/greens, and grain
     _circle(draw, cx, cy, 132, WHITE, outline=NAVY, width=7)
@@ -941,7 +1187,8 @@ def classify_and_draw(draw, brief: str, name: str, stage: int, seed: str,
     feeding it in meant `step_reading_lesson_03_7` contributed the word "read"
     and drew a book regardless of the brief.
     """
-    verdict = classify(scene_of(brief), subject)
+    cleaned = scene_of(brief)
+    verdict = classify(cleaned, subject)
     if verdict.motif is None:
         return None
     painter = MOTIF_PAINTERS.get(verdict.motif)
@@ -949,16 +1196,16 @@ def classify_and_draw(draw, brief: str, name: str, stage: int, seed: str,
         return None
     cx, cy = SIZE // 2, SIZE // 2 + 10
     if verdict.motif == "number":
-        found = _DIGIT_RE.search(scene_of(brief))
-        painter(draw, cx, cy, stage, seed, digits=found.group(1) if found else "3")
+        found = _DIGIT_RE.search(cleaned)
+        painter(draw, cx, cy, stage, seed,
+                digits=found.group(1) if found else "3", brief=cleaned)
     else:
-        painter(draw, cx, cy, stage, seed)
+        painter(draw, cx, cy, stage, seed, brief=cleaned)
     return verdict.motif
 
 
 def render_image(image_ref: str, stage_raw: str, art_brief: str,
-                 subject: str = "", fallback_text: str = "",
-                 skill: str = "") -> Image.Image | None:
+                 subject: str = "") -> Image.Image | None:
     """The picture for one brief, or None when the brief cannot be placed.
 
     None is a real answer and callers must handle it by writing no file. The
@@ -983,17 +1230,6 @@ def render_image(image_ref: str, stage_raw: str, art_brief: str,
             _circle(draw, dx, dy, 10 + (idx % 3) * 4, dot_col)
 
     motif = classify_and_draw(draw, art_brief, name, stage, seed, subject)
-    if motif is None and fallback_text:
-        motif = classify_and_draw(draw, f"{art_brief} {fallback_text}", name, stage, seed, subject)
-    if motif is None and skill:
-        fallback_motif = SKILL_FALLBACK.get(skill)
-        if fallback_motif and fallback_motif in MOTIF_PAINTERS:
-            cx, cy = SIZE // 2, SIZE // 2 + 10
-            if fallback_motif == "number":
-                MOTIF_PAINTERS[fallback_motif](draw, cx, cy, stage, seed, digits="3")
-            else:
-                MOTIF_PAINTERS[fallback_motif](draw, cx, cy, stage, seed)
-            motif = fallback_motif
     if motif is None:
         return None
     # Softer preschool look; stages 1–3 get an extra pass (hero free-tier pack).
@@ -1001,46 +1237,6 @@ def render_image(image_ref: str, stage_raw: str, art_brief: str,
     if stage <= 3:
         img = img.filter(ImageFilter.SMOOTH_MORE)
     return img
-
-
-SKILL_FALLBACK = {
-    "animals": "animal", "arts": "palette", "body": "body", "cause": "ball",
-    "coding.algorithms": "robot", "coding.creative": "tablet",
-    "coding.debugging": "robot", "coding.digital-literacy": "tablet",
-    "coding.logic": "robot", "coding.loops": "robot",
-    "coding.programs": "robot", "coding.variables": "robot",
-    "colors": "palette", "counting": "number", "emotions": "emotion",
-    "health": "health", "lang": "face", "literacy": "book",
-    "math.arithmetic": "number", "math.comparison": "math",
-    "math.counting": "number", "math.data": "chart", "math.decimals": "math",
-    "math.fractions": "shapes", "math.measurement": "math",
-    "math.money": "market", "math.multiplication-division": "number",
-    "math.patterns": "shapes", "math.place-value": "number",
-    "math.time": "clock", "motor": "body", "music": "music",
-    "numbers": "number", "object": "box", "patterns": "shapes",
-    "phono": "reading", "reading.comprehension": "book",
-    "reading.literary": "book", "reading.mechanics": "writing",
-    "reading.phonics": "reading", "reading.sight-words": "book",
-    "reading.text-features": "book", "reading.vocabulary": "reading",
-    "science.animals": "animal", "science.body": "health",
-    "science.earth-space": "night", "science.ecosystems": "plant",
-    "science.energy": "circuit", "science.forces": "magnet",
-    "science.inquiry": "science", "science.life-cycles": "butterfly",
-    "science.living-things": "plant", "science.matter": "weather",
-    "science.plants": "plant", "science.weather": "weather",
-    "semotional": "emotion", "sensory": "palette",
-    "social.citizenship": "community", "social.community": "community",
-    "social.culture": "history", "social.economics": "market",
-    "social.family": "face", "social.government": "community",
-    "social.history": "history", "social.maps": "compass",
-    "sorting": "shapes", "tech.algorithms": "robot",
-    "tech.creative": "tablet", "tech.debugging": "robot",
-    "tech.digital-literacy": "tablet", "tech.logic": "robot",
-    "tech.loops": "robot", "tech.patterns": "shapes",
-    "tracing": "writing", "vocab": "book", "writing.composition": "writing",
-    "writing.grammar": "writing", "writing.mechanics": "writing",
-    "writing.transitions": "writing",
-}
 
 
 def load_rows(stages: set[int] | None) -> list[dict]:
@@ -1052,41 +1248,51 @@ def load_rows(stages: set[int] | None) -> list[dict]:
                 ref = row["image_ref"].replace("\\", "/").lstrip("/")
                 by_ref[ref] = dict(row)
     lib_path = MOBILE / "assets" / "content" / "watoto_content_library.json"
+    referenced: set[str] = set()
+    hard_required: set[str] = set()
     if lib_path.exists():
         lib = json.loads(lib_path.read_text(encoding="utf-8"))
         for item in lib.get("content", []):
             st = int(item.get("stage", 1))
-            if stages is not None and st not in stages:
-                continue
-            skills = item.get("skills") or []
-            skill = skills[-1] if skills else ""
-            title = item.get("title") or ""
+            for a in item.get("assets") or []:
+                if a.get("type") == "image" and a.get("ref"):
+                    r = a["ref"].replace("\\", "/").lstrip("/")
+                    referenced.add(r)
+                    hard_required.add(r)
             for field in ("steps", "questions", "pages"):
                 for part in item.get(field, []):
+                    if part.get("illustration"):
+                        r = part["illustration"].replace("\\", "/").lstrip("/")
+                        referenced.add(r)
+                        hard_required.add(r)
+                    for opt in part.get("options") or []:
+                        if isinstance(opt, dict) and opt.get("asset"):
+                            r = opt["asset"].replace("\\", "/").lstrip("/")
+                            referenced.add(r)
+                            hard_required.add(r)
                     vis = part.get("visual")
                     if not isinstance(vis, dict) or vis.get("mode") != "slot":
                         continue
                     ref = (vis.get("ref") or "").replace("\\", "/").lstrip("/")
                     if not ref:
                         continue
-                    context_text = " ".join(filter(None, [
-                        title,
-                        part.get("narration") or "",
-                        part.get("prompt") or "",
-                    ]))
-                    if ref in by_ref:
-                        by_ref[ref].setdefault("fallback_text", context_text)
-                        by_ref[ref].setdefault("skill", skill)
-                    else:
+                    referenced.add(ref)
+                    if stages is not None and st not in stages:
+                        continue
+                    if ref not in by_ref:
                         by_ref[ref] = {
                             "image_ref": ref,
                             "stage": str(st),
                             "subject": item.get("subject") or "",
                             "art_brief": vis.get("alt") or Path(ref).stem,
-                            "fallback_text": context_text,
-                            "skill": skill,
                         }
-    return list(by_ref.values())
+    rows: list[dict] = []
+    for ref, row in by_ref.items():
+        if referenced and ref not in referenced:
+            continue
+        row["hard_required"] = ref in hard_required
+        rows.append(row)
+    return rows
 
 
 def main():
@@ -1111,11 +1317,13 @@ def main():
         if dest.exists() and not args.force:
             skipped += 1
             continue
+        # Never overwrite high-detail (>100KB) curated/AI illustrations.
+        if dest.exists() and dest.stat().st_size > 100_000:
+            skipped += 1
+            continue
         img = render_image(ref, row["stage"],
                            row.get("art_brief") or Path(ref).stem,
-                           row.get("subject") or "",
-                           row.get("fallback_text") or "",
-                           row.get("skill") or "")
+                           row.get("subject") or "")
         if img is None:
             # The classifier would not commit. Writing nothing leaves the
             # striped placeholder, which is the honest state.

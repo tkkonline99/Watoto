@@ -132,9 +132,19 @@ class _TensAndUnitsPainter extends CustomPainter {
 
   final SceneData data;
 
+  int get _value {
+    if (data.count != null) return data.count!;
+    final t = data.text;
+    if (t != null) {
+      final m = RegExp(r'\b([1-9]\d)\b').firstMatch(t);
+      if (m != null) return int.parse(m.group(1)!);
+    }
+    return 34;
+  }
+
   @override
   void paint(Canvas canvas, Size size) {
-    final value = data.count ?? 34;
+    final value = _value;
     final tens = (value ~/ 10).clamp(0, 9);
     final units = value % 10;
 
@@ -180,7 +190,7 @@ class _TensAndUnitsPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _TensAndUnitsPainter old) =>
-      old.data.count != data.count;
+      old.data.count != data.count || old.data.text != data.text;
 }
 
 /// The first `a + b` or `a − b` in [text], when both operands fit base-ten
@@ -373,11 +383,48 @@ class _FractionBarsPainter extends CustomPainter {
 
   final SceneData data;
 
+  List<({int num, int den})> get _fractions {
+    final t = (data.text ?? '').toLowerCase();
+    final out = <({int num, int den})>[];
+    for (final m in RegExp(r'(\d)\s*/\s*(\d{1,2})').allMatches(t)) {
+      final n = int.parse(m.group(1)!);
+      final d = int.parse(m.group(2)!);
+      if (d >= 2 && d <= 10 && n >= 1 && n <= d) {
+        out.add((num: n, den: d));
+      }
+    }
+    if (out.isEmpty) {
+      if (t.contains('three quarter') || t.contains('three fourth')) {
+        out.add((num: 3, den: 4));
+      } else if (t.contains('quarter') || t.contains('fourth')) {
+        out.add((num: 1, den: 4));
+      }
+      if (t.contains('two third')) {
+        out.add((num: 2, den: 3));
+      } else if (t.contains('third')) {
+        out.add((num: 1, den: 3));
+      }
+      if (t.contains('half') || t.contains('halves')) {
+        out.add((num: 1, den: 2));
+      }
+      if (t.contains('tenth')) {
+        out.add((num: 1, den: 10));
+      }
+    }
+    if (out.length >= 2) return out.take(2).toList();
+    if (out.length == 1) {
+      final first = out.first;
+      final second = first.den == 2 ? (num: 1, den: 4) : (num: 1, den: 2);
+      return [first, second];
+    }
+    return const [(num: 1, den: 2), (num: 1, den: 4)];
+  }
+
   @override
   void paint(Canvas canvas, Size size) {
     // Two bars of the same whole cut differently, so the comparison is visible
     // as length. §26.6: never hue alone.
-    const cuts = [2, 4];
+    final bars = _fractions;
     final barH = size.height * 0.2;
     final barW = size.width * 0.82;
     final left = (size.width - barW) / 2;
@@ -387,14 +434,14 @@ class _FractionBarsPainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeWidth = 2.5;
 
-    for (var b = 0; b < cuts.length; b++) {
+    for (var b = 0; b < bars.length; b++) {
       final top = size.height * (b == 0 ? 0.22 : 0.56);
-      final parts = cuts[b];
+      final parts = bars[b].den;
+      final shadedCount = bars[b].num;
       final partW = barW / parts;
       for (var i = 0; i < parts; i++) {
         final rect = Rect.fromLTWH(left + i * partW, top, partW, barH);
-        // One shaded part per bar: 1/2 against 1/4.
-        final shaded = i == 0;
+        final shaded = i < shadedCount;
         canvas.drawRect(
           rect,
           Paint()
@@ -408,7 +455,8 @@ class _FractionBarsPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant _FractionBarsPainter old) => false;
+  bool shouldRepaint(covariant _FractionBarsPainter old) =>
+      old.data.text != data.text;
 }
 
 // ----------------------------------------------------------------- shapes
@@ -459,17 +507,63 @@ class _GlyphTracePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    // A generic stroke with start and end markers: a dotted guide the child
-    // follows. Tracing is never scored and never timed (§26.4).
+    // A stroke with start and end markers: a dotted guide the child follows.
+    // Adapts to straight lines, circles, zigzags, wiggly paths, or curves
+    // named in the prompt. Tracing is never scored and never timed (§26.4).
     final w = size.width, h = size.height;
-    final path = Path()
-      ..moveTo(w * 0.22, h * 0.74)
-      ..cubicTo(w * 0.34, h * 0.16, w * 0.66, h * 0.16, w * 0.78, h * 0.74);
+    final t = (data.text ?? '').toLowerCase();
+    final path = Path();
+    late final Offset startPt;
+    late final Offset endPt;
+
+    if (t.contains('zigzag') || t.contains('mountain')) {
+      startPt = Offset(w * 0.16, h * 0.72);
+      endPt = Offset(w * 0.84, h * 0.24);
+      path
+        ..moveTo(startPt.dx, startPt.dy)
+        ..lineTo(w * 0.38, h * 0.24)
+        ..lineTo(w * 0.62, h * 0.72)
+        ..lineTo(endPt.dx, endPt.dy);
+    } else if (t.contains('circle') || t.contains('round')) {
+      final r = math.min(w, h) * 0.3;
+      final center = Offset(w * 0.5, h * 0.5);
+      startPt = Offset(center.dx, center.dy - r);
+      endPt = Offset(center.dx - 4, center.dy - r);
+      path.addOval(Rect.fromCircle(center: center, radius: r));
+    } else if (t.contains('straight') ||
+        t.contains('road') ||
+        t.contains('edge')) {
+      startPt = Offset(w * 0.18, h * 0.5);
+      endPt = Offset(w * 0.82, h * 0.5);
+      path
+        ..moveTo(startPt.dx, startPt.dy)
+        ..lineTo(endPt.dx, endPt.dy);
+    } else if (t.contains('wiggly') || t.contains('dotted path')) {
+      startPt = Offset(w * 0.16, h * 0.55);
+      endPt = Offset(w * 0.84, h * 0.45);
+      path
+        ..moveTo(startPt.dx, startPt.dy)
+        ..cubicTo(
+          w * 0.36,
+          h * 0.12,
+          w * 0.64,
+          h * 0.88,
+          endPt.dx,
+          endPt.dy,
+        );
+    } else {
+      startPt = Offset(w * 0.22, h * 0.74);
+      endPt = Offset(w * 0.78, h * 0.74);
+      path
+        ..moveTo(startPt.dx, startPt.dy)
+        ..cubicTo(w * 0.34, h * 0.16, w * 0.66, h * 0.16, endPt.dx, endPt.dy);
+    }
 
     final guide = Paint()
       ..color = WatotoColors.sky.withValues(alpha: 0.45)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 14
+      ..strokeJoin = StrokeJoin.round
       ..strokeCap = StrokeCap.round;
     canvas.drawPath(path, guide);
 
@@ -484,14 +578,13 @@ class _GlyphTracePainter extends CustomPainter {
       canvas.drawPath(seg, dash);
     }
 
-    canvas.drawCircle(Offset(w * 0.22, h * 0.74), 11,
-        Paint()..color = WatotoColors.leaf);
-    canvas.drawCircle(Offset(w * 0.78, h * 0.74), 11,
-        Paint()..color = WatotoColors.berry);
+    canvas.drawCircle(startPt, 11, Paint()..color = WatotoColors.leaf);
+    canvas.drawCircle(endPt, 11, Paint()..color = WatotoColors.berry);
   }
 
   @override
-  bool shouldRepaint(covariant _GlyphTracePainter old) => false;
+  bool shouldRepaint(covariant _GlyphTracePainter old) =>
+      old.data.text != data.text;
 }
 
 // --------------------------------------------------------------- waveform
@@ -540,6 +633,11 @@ class _ColourFieldPainter extends CustomPainter {
   /// worse than a neutral one.
   Color get _colour {
     final t = (data.text ?? '').toLowerCase();
+    if (t.contains('purple')) return const Color(0xFF9B6ADE);
+    if (t.contains('pink')) return const Color(0xFFFF8FAB);
+    if (t.contains('brown')) return const Color(0xFFA66E48);
+    if (t.contains('black')) return WatotoColors.deep;
+    if (t.contains('white')) return Colors.white;
     if (t.contains('red')) return WatotoColors.berry;
     if (t.contains('blue')) return WatotoColors.sky;
     if (t.contains('green')) return WatotoColors.leaf;
